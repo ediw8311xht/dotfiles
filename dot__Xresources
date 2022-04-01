@@ -1,0 +1,86 @@
+
+!! Colorscheme
+
+! special
+*.foreground: #FFFFFF
+*.background: #000000
+*.cursorColor: #F0730F
+
+! black
+*.color0: #000000
+*.color8: #2a495d
+
+! red
+*.color1: #f12f2c
+*.color9: #d700ff
+
+! green
+*.color2: #00FF00
+*.color10: #00FF00
+
+! yellow
+*.color3: #e0c500
+*.color11: #f9c400
+
+! blue
+*.color4: #2587cc
+*.color12: #2ca2f5
+
+! magenta
+*.color5: #898edf
+*.color13: #a0a6f8
+
+! cyan
+*.color6: #58ccc3
+*.color14: #63f5ea
+
+! white
+*.color7: #FFFFFF
+*.color15: #555555
+
+
+URxvt.font:			xft:Anonymous Pro:pixelsize=17:antialias=true:hinting=true;
+URxvt.boldFont:		xft:Anonymous Pro:bold:pixelsize=17:antialias=true:hinting=true
+URxvt.scrollBar:	false
+URxvt.saveLines:	65535
+URxvt.perl-ext-common: keyboard-select,url-select,clipboard,font-size
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+Xft*dpi:       96
+Xft*antialias: True
+Xft*hinting:   Full
+URxvt.keysym.KP_Add:    +
+URxvt.keysym.KP_Subtract: -
+URxvt.keysym.KP_Multiply: *
+URxvt.keysym.KP_Divide  : /
+URxvt.keysym.KP_Decimal : .
+URxvt.keysym.KP_Separator : ,
+URxvt.keysym.KP_1:      1
+URxvt.keysym.KP_2:      2
+URxvt.keysym.KP_3:      3
+URxvt.keysym.KP_4:      4
+URxvt.keysym.KP_5:      5
+URxvt.keysym.KP_6:      6
+URxvt.keysym.KP_7:      7
+URxvt.keysym.KP_8:      8
+URxvt.keysym.KP_9:      9
+URxvt.keysym.KP_0:      0
+URxvt.transparent:		true
+URxvt.shading:			15
+
+URxvt.keysym.C-Up:     font-size:increase 2
+URxvt.keysym.C-Down:   font-size:decrease 2
+URxvt.keysym.C-S-Up:   font-size:incglobal
+URxvt.keysym.C-S-Down: font-size:decglobal
+URxvt.keysym.C-equal:  font-size:reset
+URxvt.keysym.C-slash:  font-size:show
+URxvt.keysym.C-period: font-size:hide
+
+URxvt.keysym.C-bracketleft: command:\033]720;1\007
+URxvt.keysym.C-bracketright: command:\033]721;1\007
+URxvt.iso14755: false
+URxvt.iso14755_52: false

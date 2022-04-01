@@ -1,0 +1,247 @@
+
+#---------------------------------------------------------------------|
+#----MAX-BALLARD---------(MY-i3/CONFIG)-------------------------------|
+#---------------------------------------------------------------------|
+set $MOUSEMOVESMALL								5
+set $MOUSEMOVELARGE								50
+set $LEFT_MONITOR								HDMI-A-0
+set $RIGHT_MONITOR								DVI-D-0
+set $BPIX 								 		3
+set $INGAPS										0
+set $OUTGAPS									0
+
+set $XFLOATRESIZE								50px
+set $YFLOATRESIZE								30px
+
+set $XFLOATMSPEED								50px
+set $YFLOATMSPEED								30px
+
+set $WSCRATCH_WIDTH 							1400
+set $WSCRATCH_HEIGHT							900
+
+set $WSCRATCH_PX								250
+set $WSCRATCH_PY								90
+
+set $mod 										Mod1
+
+font pango:hack 12
+
+floating_modifier $mod
+
+focus_follows_mouse yes
+
+#------Class------------------------Border----------Backgro---------Text------------Indicat---------ChildBr--------#
+client.unfocused 					#040404 		#444444 		#101010 		#444444   		#040404
+client.focused_inactive 			#040404 		#444444 		#101010 		#444444
+client.focused 						#999999 		#0080C0 		#000000 		#0080C0
+client.background       			#000000
+
+
+gaps inner $INGAPS
+gaps outer $OUTGAPS
+
+bindsym $mod+g				exec gnome-screenshot
+
+bindsym $mod+Insert			open
+
+bindsym $mod+Shift+e 		exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Ctrl+Shift+End	exec systemctl suspend
+
+bindsym $mod+Home			exec i3-msg workspace LHome; exec i3-msg workspace RHome
+bindsym $mod+Shift+Home		exec i3-msg workspace 1; exec i3-msg workspace 7
+
+bindsym $mod+Shift+Next 	exec i3-msg move container to workspace LHome
+bindsym $mod+Shift+Prior 	exec i3-msg move container to workspace RHome
+
+bindsym $mod+Next 			exec i3-msg workspace LHome
+bindsym $mod+Prior 			exec i3-msg workspace RHome
+
+workspace 1					output $LEFT_MONITOR
+workspace 3					output $LEFT_MONITOR
+workspace 5					output $LEFT_MONITOR
+workspace LHome				output $LEFT_MONITOR
+
+workspace 2					output $RIGHT_MONITOR
+workspace 4					output $RIGHT_MONITOR
+workspace 7					output $RIGHT_MONITOR
+workspace 8					output $RIGHT_MONITOR
+workspace 9					output $RIGHT_MONITOR
+workspace 10				output $RIGHT_MONITOR
+workspace RHome				output $RIGHT_MONITOR
+workspace 6					output $RIGHT_MONITOR
+workspace 0					output $RIGHT_MONITOR
+
+
+
+#--------------------------------------------------------------SCRATCHPAD------------------------------------------#
+bindsym $mod+Shift+Return 	exec	/usr/bin/brave
+bindsym	$mod+Shift+i 		exec 	$HOME/bin/random/brave-tor.sh
+bindsym $mod+Return 	  	exec 	/usr/bin/urxvt
+bindsym $mod+Shift+period	exec 	/usr/bin/firefox
+bindsym	$mod+Shift+b 		exec 	$HOME/bin/random/ubluetoggle.sh
+bindsym $mod+Shift+f		exec 	/usr/bin/dolphin
+bindsym	$mod+Shift+t 		exec 	$HOME/.local/opt/tor-browser_en-US/Browser/start-tor-browser
+bindsym	$mod+Shift+u 		exec 	/usr/bin/urxvt 									-name i3wm_scratchpad_urxvt
+bindsym	$mod+Shift+n 		exec 	$HOME/bin/i3wm/i3wm_scratchpad_notepad.sh
+
+bindsym	$mod+Shift+comma 	exec /usr/lib/thunderbird/thunderbird
+
+bindsym	$mod+t  	 	   	[class="Tor Browser"] 						scratchpad show
+bindsym	$mod+comma 	 	   	[class="Thunderbird"] 						scratchpad show
+bindsym	$mod+u  	 	   	[instance="i3wm_scratchpad_urxvt"] 			scratchpad show
+bindsym	$mod+n  	 	   	[instance="i3wm_scratchpad_notepad"]		scratchpad show
+bindsym	$mod+m 		 	  												scratchpad show
+ 
+bindsym $mod+Super_L		floating toggle
+bindsym Super_L				sticky toggle
+bindsym $mod+space			focus mode_toggle
+
+bindsym $mod+Shift+m 	  								floating enable, move position $WSCRATCH_PX $WSCRATCH_PY, resize set $WSCRATCH_WIDTH $WSCRATCH_HEIGHT, move scratchpad
+bindsym $mod+Shift+semicolon							resize set $WSCRATCH_WIDTH $WSCRATCH_HEIGHT
+
+for_window [instance="i3wm_scratchpad_urxvt"]			floating enable, move position $WSCRATCH_PX $WSCRATCH_PY, resize set $WSCRATCH_WIDTH $WSCRATCH_HEIGHT, move scratchpad
+for_window [instance="i3wm_scratchpad_notepad"]			floating enable, move position $WSCRATCH_PX $WSCRATCH_PY, resize set $WSCRATCH_WIDTH $WSCRATCH_HEIGHT, move scratchpad
+for_window [instance="i3wm_scratchpad_pavucontrol"]		floating enable, move position $WSCRATCH_PX $WSCRATCH_PY, resize set $WSCRATCH_WIDTH $WSCRATCH_HEIGHT, move scratchpad
+for_window [class="Thunderbird"]						floating enable, move position $WSCRATCH_PX $WSCRATCH_PY, resize set $WSCRATCH_WIDTH $WSCRATCH_HEIGHT, move scratchpad
+for_window [class="Tor Browser"]						floating enable, move position $WSCRATCH_PX $WSCRATCH_PY, resize set $WSCRATCH_WIDTH $WSCRATCH_HEIGHT, move scratchpad
+for_window [class="hexchat"]							floating enable
+
+for_window [class=".*"]									border pixel $BPIX
+
+#--------------------------------------------------------------OTHER-----------------------------------------------#
+
+bindsym $mod+Shift+Up 		exec $HOME/bin/random/nitrowscript.sh "UP"
+bindsym $mod+Shift+Down		exec $HOME/bin/random/nitrowscript.sh "DOWN"
+bindsym $mod+Shift+Left		exec $HOME/bin/random/nitrowscript.sh "LEFT"
+bindsym $mod+Shift+Right 	exec $HOME/bin/random/nitrowscript.sh "RIGHT"
+
+
+bindsym $mod+p 				exec dunstctl close-all
+
+bindsym $mod+Shift+o 		exec i3lock -f -e -c 000058
+
+bindsym $mod+r 				mode "resize"
+bindsym $mod+Shift+y		exec $HOME/bin/urxvt_notepad_script.sh "TMUX"
+bindsym Super_L 			mode "mousemove"
+
+#--------------------------------------------------------------BORING-STUFF----------------------------------------#
+
+bindsym	$mod+h 		 	   	focus left
+bindsym	$mod+j 		 	   	focus down
+bindsym	$mod+k 		 	   	focus up
+bindsym	$mod+l 			   	focus right
+bindsym	$mod+Tab 	 	   	focus right 
+
+bindsym	$mod+Shift+h 	   	move left 	$XFLOATMSPEED
+bindsym	$mod+Shift+l 	   	move right  $XFLOATMSPEED
+bindsym	$mod+Shift+j 	   	move down	$YFLOATMSPEED		
+bindsym	$mod+Shift+k 	   	move up		$YFLOATMSPEED
+
+bindsym $mod+Shift+q 	   	kill
+bindsym $mod+d 				exec dmenu_run
+
+
+bindsym $mod+v 				split v
+bindsym $mod+Shift+v 		split h
+bindsym $mod+semicolon		fullscreen
+bindsym $mod+s 				layout stacking
+bindsym $mod+w 				layout tabbed
+bindsym $mod+e 				layout toggle split
+bindsym $mod+a 				focus parent
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+bindsym $mod+6 workspace 6
+
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+6 move container to workspace 6
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+#--------------------------------------------------------------EXECS-----------------------------------------------#
+
+
+exec 		--no-startup-id 	xinput --set-prop 12 "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 0.44 
+exec 		--no-startup-id 	xinput --set-prop 12 "libinput Accel Speed" -1 
+exec 		--no-startup-id 	dunst
+exec 		--no-startup-id 	clipit --daemon
+exec_always --no-startup-id 	nitrogen --restore
+exec_always --no-startup-id 	$HOME/.config/polybar/launch.sh
+#exec_always --no-startup-id picom 
+
+#xmodmap -pk / xmodmap -pke (to see keymap & keysym table)
+#SWITCH CAPS LOCK AND TILDE (~) KEY
+
+
+#     49    	0x0000 (NoSymbol)	0xffeb (Super_L)	0x0000 (NoSymbol)	0xffeb (Super_L)	
+#    133    	0x007e (asciitilde)	0x0060 (grave)	0x007e (asciitilde)	0x0060 (grave)	
+exec_always 					xmodmap -e "keycode 49 	= 0x0000 0xffeb 0x0000 0xffeb"
+exec_always 					xmodmap -e "keycode 133 = 0x007e 0x0060	0x007e 0x0060" 
+
+#TURN OFF AUTO SLEEP MODE FOR MONITOR
+exec_always						xset s off
+exec_always						xset -dpms
+
+#--------------------------------------------------------------MODES-----------------------------------------------#
+
+mode "mousemove" {
+
+        bindsym Shift+h									exec xdotool mousemove_relative --polar 270 	50
+        bindsym Shift+j									exec xdotool mousemove_relative --polar 180 	50
+        bindsym Shift+k								    exec xdotool mousemove_relative --polar 0 		50
+        bindsym Shift+l								    exec xdotool mousemove_relative --polar 90		50
+
+        bindsym h										exec xdotool mousemove_relative --polar 270 	8
+        bindsym j										exec xdotool mousemove_relative --polar 180 	8
+        bindsym k										exec xdotool mousemove_relative --polar 0 		8
+        bindsym l										exec xdotool mousemove_relative --polar 90		8
+
+		bindsym $mod+a								   	exec xdotool mousedown 1
+		bindsym $mod+s								   	exec xdotool mousedown 2
+		bindsym $mod+f								   	exec xdotool mousedown 3
+
+
+		bindsym $mod+Shift+a							exec xdotool mouseup 1
+		bindsym $mod+Shift+s							exec xdotool mouseup 2
+		bindsym $mod+Shift+f							exec xdotool mouseup 3
+
+		bindsym $mod+z								    exec xdotool click 1
+		bindsym $mod+x								    exec xdotool click 3
+		bindsym $mod+v								    exec xdotool click 2
+
+
+        bindsym Super_L mode "default"
+        bindsym Escape  mode "default"
+
+#		bindsym s --release exec xdotool mouseup 1
+#		bindsym d --release exec xdotool mouseup 2
+#		bindsym f --release exec xdotool mouseup 3
+
+}
+
+mode "resize" {
+        bindsym h resize shrink width $XFLOATRESIZE px or 10 ppt
+        bindsym l resize grow width $XFLOATRESIZE px or 10 ppt
+        bindsym j resize grow height $YFLOATRESIZE px or 10 ppt
+        bindsym k resize shrink height $YFLOATRESIZE px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
