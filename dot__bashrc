@@ -69,14 +69,31 @@ if ${use_color} ; then
 		fi
 	fi
 
+	z_a='\[\e[00;01;07;37m\]'
+	z_b='\D{%F}'
+	z_c='|'
+	z_d='\D{%T}'
+	z_e='\[\e[00;01m\]'
+	z_f=':\w/:>'
+	z_g='\[\e[0m\]'
 	if [[ ${EUID} == 0 ]] ; then
 		PS1='\[\033[01;38m\][\h\[\033[01;38m\] \W\[\033[01;38m\]]\$\[\033[00m\] '
 	else
+		PROMPT_DIRTRIM="0"
+		PS1="${z_a} ${z_b} ${z_c}"
+		PS1+=" ${z_d} ${z_e} ${z_f}${z_g} "
 
-		PS1='\[\033[00;01;07;34m\] \@ \[\033[00;01;30m\] [\[\033[34m\]\u\[\033[00;01;30m\]] [\[\033[34m\]\w\[\033[00;01;30m\]]$\[\033[00;02;38m\] '
-		# PS1='\[\033[00;01;31;40m\][ \[\033[01;34m\]\u\]\[\033[01;28m\] \h\]\[\033[01;30m\] ]\]\]\[\033[00;01;36m\] \W\$\]\[\033[00;01;37m\] '
-		# PS1='\[\033[01;38m\][\u@\h\[\033[01;38m\] \W\[\033[01;38m\]]\$\[\033[01;38m\] '
+		#PS1='[\W\[\033[01;38m\]]\$\[\033[00m\] '
+		#PS1=' \[\033[01;07;34m\] \D{%F | %T} :\w/:> \[\033[00m\] '
+		#PS1='\[\033[01;07;34m\]\D{ %F | %T }\[\033[00;01;30;44m\] :\w/: \[\033[00m\]\n\[\033[00;01;07;44m\] |> \[\033[00m\] '
+		#PS1='  \[\033[01;07;34m\]\D{ %F | %T }\[\033[00;01;30;44m\] :$PWD/: \[\033[00m\] \n  \[\033[01;07;34m\] :\W:$ '
+		#PS1='\[\033[01;34m\] \@ [\u] \w$ \[\033[00;01;0m\] '
 	fi
+		#~PS1 ------------------------------------------------------------------- shortcut PS1
+
+		#PS1='\[\033[00;01;07;34m\] \@ \[\033[00;01;30m\] [\[\033[34m\]\u\[\033[00;01;30m\]] [\[\033[34m\]\w\[\033[00;01;30m\]]$\[\033[00;02;38m\] '
+		#PS1='\[\033[00;01;31;40m\][ \[\033[01;34m\]\u\]\[\033[01;28m\] \h\]\[\033[01;30m\] ]\]\]\[\033[00;01;36m\] \W\$\]\[\033[00;01;37m\] '
+		#PS1='\[\033[01;38m\][\u@\h\[\033[01;38m\] \W\[\033[01;38m\]]\$\[\033[01;38m\] '
 
 	alias ls='ls --color=auto'
 	alias grep='grep --colour=auto'
@@ -90,6 +107,50 @@ else
 		PS1='\u@\h \w \$ '
 	fi
 fi
+
+xspec() {
+	MAX_T="15"; LT="$(( "${MAX_T}" / "2" ))"
+	SZ="${#PWD}"
+	echo "${SZ}"
+	if [[ "${SZ}" -lt "15" ]] ; then
+		echo "${PWD}/:> "
+	else
+		BEG="$(( "${SZ}" - "${LT}" ))"
+		DEPTH="$(echo "${PWD}" | grep -Pno '/' | wc -l)"
+		DOTS=""; for z in $(seq 1 "${DEPTH}") ; do DOTS+="." ; done
+		echo "${PWD::LT}${DOTS}${PWD:BEG:SZ}/"
+	fi
+}
+
+# MY FUNCTION MAX BALLARD SWITCH PS1 / SHORT / MEDIUM / LONG
+mps() {
+	z_a='\[\e[00;01;07;37m\]'; z_e='\[\e[00;01m\]'; z_j='\[\e[00;01;34m\]'
+
+	z_b='\D{%F}'             ; z_d='\D{%T}'       ; z_m='\D{%s}'
+
+	z_f=':\w/:>'             ; z_h='-\$'		  ; z_i=':\W/:>'
+
+	z_k='\D{%d-%m-%y}'       ; z_l='\D{%H%M}'
+
+	if [[ "${1}" =~ ^(L|l|Long|long|LONG)$ ]] ; then
+
+		PROMPT_DIRTRIM="2"
+		PS1="${z_a} ${z_b} | ${z_d} ${z_e} ${z_f} "
+
+	elif [[ "${1}" =~ ^(M|m|Medium|medium|MEDIUM)$ ]] ; then
+		PROMPT_DIRTRIM="1"
+
+		PS1="${z_a} ${z_k} ${z_l} ${z_e} ${z_i} "
+
+		#PS1+=" ${z_d}${z_e} ${z_f}${z_g} "
+	elif [[ "${1}" =~ ^[Xx]([Ss]pec(ial)?|SPEC(IAL)?)?$ ]] ; then
+		PS1='$(xspec)'
+	elif [[ "${1}" =~ ^(S|s|Short|short|SHORT|)$ ]] ; then
+		PS1=" ${z_m} ${z_h} "
+	else return 2; fi
+
+	PS1+='\[\e[0m\]'
+}
 
 unset use_color safe_term match_lhs sh
 
@@ -149,71 +210,33 @@ trap nnn_cd EXIT
 # ----------------------------------------------------------------------
 # MY FUNCTIONS
 # ----------------------------------------------------------------------
-acheck() {
-	compgen -c | grep -x "${1}"
-}
-
-pifs() {
-	printf "%q" "${IFS}"; echo ""
-}
-
-ppifs() {
-	printf "IFS=%q" "${IFS}"; echo ""
-}
-
-nifs() {
-	IFS=$'\n'; printf "IFS=%q" "${IFS}"; echo ""
-
-}
-
-rifs() {
-	IFS=$' \t\n'; printf "IFS=%q" "${IFS}"; echo ""
-}
-
-#f() {
-#	if [[ "$#" -eq "1" ]] ; then 
-#		find / -iname "${1}"
-#	elif [[ "$#" -eq "2" ]] ; then
-#		find "${1}" -iname "${2}"
-#	else
-#		find "${1}" -type "${2}" -iname "${3}"
-#	fi
-#}
-#
-#fw() {
-#	if [[ "$#" -eq "1" ]] ; then 
-#		find / -iwholename "${1}"
-#	else
-#		find "${1}" -iwholename "${2}"
-#	fi
-#}
-
+acheck() 	{	compgen -c | grep -x "${1}"                          ; }
+pifs() 		{ 	printf "%q" "${IFS}"; echo ""						 ; }
+ppifs()		{ 	printf "IFS=%q" "${IFS}"; echo "" 					 ; }
+nifs() 		{ 	IFS=$'\n'; printf "IFS=%q" "${IFS}"; echo ""		 ; }
+rifs() 		{ 	IFS=$' \t\n'; printf "IFS=%q" "${IFS}"; echo "" 	 ; }
 #-----COPY-AND-PASTE-----FUNCTIONS--------------------------------------
-cop() {
-	echo "XSEL CLIP: $(echo ${1} | xsel -bi)"
+cop() 	{ echo "XSEL CLIP: $(echo ${1} | xsel -bi)"		; }
+pas() 	{ echo "$(xsel -bo)"		  					; }
+pasta() { cat <<< $(pas)			  					; }
+kad() 	{ docker kill $(docker ps -q) 					; }
+rad() 	{ docker rm $(docker ps -a -q)					; }
+pf() {
+	if [[ -z "${2}" ]] ; then 	find "${HOME}" -iname "*" | grep -Pi "${1}"
+	else					  	find "${1}" -iname "*" 	  | grep -Pi "${2}"      ;  fi
 }
-pas() {
-	echo "$(xsel -bo)"
-}
-pasta() {
-	cat <<< $(pas)
-}
-kad() {
-	docker kill $(docker ps -q)
-}
-rad() {
-	docker rm $(docker ps -a -q)
-}
-
-
 # ----------------------------------------------------------------------
-# MY ALIASES
+# `MY ALIASES
 # ----------------------------------------------------------------------
 alias		  sudo='sudo '
-
+alias 		  perlfind="echo 'pf(), gf'"
+alias		  gf='find / -iname "*" | grep -Pi'
 alias		  rm='echo "rm has been replaced with this message use trash-put or /bin/rm instead."'
+alias		  rename='echo "USE perl-rename instead, ALIAS IS \"ren\", or \"reni\" for case insensitive."'
 alias		  rmi='rm -i'
-#alias		   rename="CAREFUL use ren instead for (no-act) then irent with confirmation (act)."
+alias		  v="zathura"
+alias		  pdf="zathura"
+alias		  view_pdf="zathura"
 
 alias		  ren="perl-rename -v -n"
 alias		  reni="perl-rename -i"
@@ -235,12 +258,9 @@ alias		  snv="sudoedit"
 
 alias		  img="nsxiv"
 alias		  ic="clear; imgcat"
-alias		  ci="imgcat"
 alias		  c="clear"
 
 alias		  ldi="fdisk -l -o +uuid"
-alias		  ldm="cat /proc/mounts | grep -P \"/dev/[^ ]+\""
-alias		  lm="cat /proc/mounts"
 alias		  szof="du -ahc --time --max-depth=1"
 
 alias		  lsd="ls -lh"
@@ -250,6 +270,7 @@ alias		  lsad="ls -larh"
 alias		  lsat="ls -latrh"
 alias		  lsaz="ls -laSrh"
 
+# `PSG ALIASES
 alias		  psg="ps ax | grep --ignore-case"
 alias		  psp="ps ax | grep --perl-regexp --ignore-case"
 alias		  pe="ps -eo comm=,"
@@ -263,96 +284,55 @@ alias		  tres="ps -eHo euser,ruser,suser,fuser,f,comm,label"
 alias		  gr="grep --perl-regexp --ignore-case"
 alias		  grd="grep --ignore-case"
 
-
 alias		  nv="nvim"
-alias		  n="nvim"
-alias		  r="nv -R"
+alias		  r="ranger"
 alias		  g="gvim"
 
-alias		  rg="ranger"
-alias		  scm="sc-im"
+alias		  scim="sc-im"
 
-alias		  ted="-D $HOME/CLONED/teddit/ docker compose up"
-alias		  bib="cd $HOME/CLONED/bibliogram/; docker compose up"
 alias		  qs="ssh tesmond@45.77.222.97"
 
+alias		  vid="cd $HOME/Videos/"
+alias		  aud="cd $HOME/Audio/"
 alias		  desk="cd $HOME/Desktop/"
-alias		  docs="cd $HOME/Documents/"
-alias		  pics="cd $HOME/Pictures/"
 alias		  code="cd $HOME/Desktop/Coding/"
-alias		  down="cd $HOME/Downloads/"
-alias		  mbin="cd $HOME/bin/"
+alias		  docs="cd $HOME/Documents/"
+alias		  notes="cd $HOME/Documents/Notepad/"
 alias		  prof="cd $HOME/Documents/PROF_AND_WORK/"
+alias		  pics="cd $HOME/Pictures/"
+alias		  down="cd $HOME/Downloads/"
+alias		  b="cd $HOME/bin/"
+alias		  br="cd $HOME/bin/random/"
+alias		  bp="cd $HOME/bin/personal/"
 alias		  ebash="nvim $HOME/.bashrc"
 
-alias		  sa="alias | grep --ignore-case --perl-regexp"
+alias		  lib="cd /mnt/ad/"
+alias		  upl="cd /mnt/od/"
+alias		  six="cd /mnt/ud/"
+
+alias		  med1="cd /mnt/ed1/"
+alias		  med2="cd /mnt/ed2/"
+alias		  med3="cd /mnt/ed3/"
+
+alias		  esrc="cd /mnt/ed3/KNOWLEDGE_STANDARDS_FOUNDATION/encyclocrawler/src/main/java/org/encyclosphere/encyclocrawler/"
+alias		  asrc2="cd /mnt/ed3/KNOWLEDGE_STANDARDS_FOUNDATION/encyclocrawler/src/main/java/org/encyclosphere/encyclocrawler/crawlers/"
+alias		  ksf="cd /mnt/ed3/KNOWLEDGE_STANDARDS_FOUNDATION"
+
 alias		  sf="declare -F | grep --ignore-case --perl-regexp"
 alias		  sfi="declare -f | grep --ignore-case --perl-regexp"
+
 alias		  s='echo "$(alias & declare -F)" | grep --ignore-case perl-regexp'
 
-#-----		  ---------------------------EXTRA---------------------#
-
-alias		  searchpac='echo ""; pacman -Ss'
-alias		  searchyay='echo ""; yay -Ss'
-
-alias		  searchpaclocal='echo ""; pacman -Qs'
-alias		  searchyaylocal='echo ""; yay -Qs'
-
-alias		  searchYayInfo='echo ""; yay -Si'
-alias		  searchPacInfo='echo ""; pacman -Si'
-
-alias		  searchYayInfoLocal='echo ""; yay -Qi'
-alias		  searchPacInfoLocal='echo ""; pacman -Qi'
-
+#-------------------------------------------EXTRA-----------------------
 alias		  viewImage="nsxiv"
-alias		  viewImageInTerminal="clear; imgcat"
-
 alias		  listDisks="fdisk -l -o +uuid"
 alias 		  listDevicesMounted="cat /proc/mounts | grep -P \"/dev/[^ ]+\""
 alias		  listAllMounted="cat /proc/mounts"
 alias		  sizeOfTrue="du -ahc --time --max-depth=1"
-
-alias		  lsSortAlpha="ls -lrh"
-alias		  lsSortTime="ls -ltrh"
-alias		  lsSortSize="ls -lSrh"
-
-alias	   	  lsSortAlphaHidden="ls -larh"
-alias		  lsSortTimeHidden="ls -latrh"
-alias 		  lsSortSizeHidden="ls -laSrh"
-
-alias		   searchPs="ps ax | grep --ignore-case --perl-regexp"
-alias		   showPs="ps -eo comm=,"
-alias		   showPsTree="ps -ejH"
-alias	   	   showPsTreeVerbose="ps axjf"
-alias		   showPsSecurity="ps -eHo euser,ruser,suser,fuser,f,comm,label"
-
-alias		   nvimreadonly="nv -R"
-
-alias		   runTeddit="cd $HOME/CLONED/teddit/; docker compose up"
-alias		   sshMyWebServer="ssh tesmond@45.77.222.97"
-
-alias 		   EditBashrc="nvim $HOME/.bashrc"
-
-alias 		   searchMyAliases="alias | grep --ignore-case --perl-regexp"
-alias 		   searchFunctionsNames="declare -F | grep --ignore-case --perl-regexp"
-alias 		   searchFunctionsDefined="declare -f | grep --ignore-case --perl-regexp"
-alias 		   searchAliasesFunctions='echo "$(alias & declare -F)" | grep --ignore-case perl-regexp'
-
-
-#alias 			 ph="phoronix-test-suite"
-#alias 		  bench="phoronix-test-suite"
-alias 			pre="okular"
-
-
-#--------DJANGO-MY-WEB-SERVER-ALIASES-EXPORTS---------------------------
-#alias  djhelp='echo "alias djst=python3 $HOME/mywebsitepython____EFEF/mysite/mysite/manage.py";echo "alias  djva=source $HOME/mywebsitepython____EFEF/myvenv/bin/activate";echo "export DJMY=$HOME/mywebsitepython____EFEF/mysite/";echo "export DJMMY=$HOME/mywebsitepython____EFEF/mysite/mysite/";echo "export DJSET=$HOME/mywebsitepython____EFEF/mysite/mysite/settings.py";echo "export DSET=$HOME/mywebsitepython____EFEF/mysite/mysite/settings.py"'
-#alias  djst="python3 $HOME/mywebsitepython____EFEF/mysite/mysite/manage.py"
-#alias  djva="source $HOME/mywebsitepython____EFEF/myvenv/bin/activate"
-#alias  ncat="cat -n"
-#export DJMY="$HOME/mywebsitepython____EFEF/mysite/"
-#export DJMMY="$HOME/mywebsitepython____EFEF/mysite/mysite/"
-#export DJSET="$HOME/mywebsitepython____EFEF/mysite/mysite/settings.py"
-#export DSET="$HOME/mywebsitepython____EFEF/mysite/mysite/settings.py"
+alias		  showPs="ps -eo comm=,"
+alias		  showPsTree="ps -ejH"
+alias	   	  showPsTreeVerbose="ps axjf"
+alias		  showPsSecurity="ps -eHo euser,ruser,suser,fuser,f,comm,label"
 # ----------------------------------------------------------------------
 # MY EXPORTS
 # ----------------------------------------------------------------------
@@ -364,47 +344,22 @@ export DOWN="$HOME/Downloads/"
 export MYSTUFF="$HOME/Documents/MyStuff/"
 export EDITOR="nvim"
 export NVIMSWAP="$HOME/.local/share/nvim/swap/"
+export PYTHONPATH="${PYTHONPATH}:/home/maceurt/MY_PYTHON_MODULES/"
+export PYTHONPATH="${PYTHONPATH}:/usr/bin/python3"
+export QT_QPA_PLATFORMTHEME=qt5ct
 export DEFAULT_IFS=$' \t\n'
-export AUTOBACKUP="$HOME/BACKUP_FILES/AUTO_BACKUP/"
-#-PATHS-EXPORT----------------------------------------------------------
-#-----------------BIN
-if  [ -d "$HOME/bin/" ] ; then
-	PATH="$HOME/bin/:$PATH"
-fi
-if  [ -d "$HOME/bin/i3wm" ] ; then
-	PATH="$HOME/bin/i3wm:$PATH"
-fi
-if  [ -d "$HOME/bin/personal" ] ; then
-	PATH="$HOME/bin/personal:$PATH"
-fi 
-if  [ -d "$HOME/bin/personal" ] ; then
-	PATH="$HOME/bin/personal:$PATH"
-fi 
-if  [ -d "$HOME/bin/ufw" ] ; then
-	PATH="$HOME/bin/ufw:$PATH"
-fi
+export AUTOBACKUP="/mnt/ed3/"
 
-if  [ -d "$HOME/bin/random" ] ; then
-	PATH="$HOME/bin/random:$PATH"
-fi
-#--------------------
+if  [ -d "$HOME/bin/"         			 ] ; 	then PATH="$HOME/bin/:$PATH"        			 ;	fi
+if  [ -d "$HOME/bin/i3wm"     			 ] ;    then PATH="$HOME/bin/i3wm:$PATH"    			 ; 	fi
+if  [ -d "$HOME/bin/personal" 			 ] ;    then PATH="$HOME/bin/personal:$PATH"			 ; 	fi 
+if  [ -d "$HOME/bin/personal" 			 ] ; 	then PATH="$HOME/bin/personal:$PATH"			 ; 	fi 
+if  [ -d "$HOME/bin/ufw"      			 ] ; 	then PATH="$HOME/bin/ufw:$PATH"     			 ; 	fi
+if  [ -d "$HOME/bin/random"   			 ] ; 	then PATH="$HOME/bin/random:$PATH"  			 ; 	fi
+if  [ -d "$HOME/Desktop/Coding/pyprog"   ] ; 	then PATH="$HOME/Desktop/Coding/pyprog:$PATH"    ; 	fi
+if  [ -d "$HOME/Documents/Documentation" ] ; 	then PATH="$HOME/Documents/Documentation:$PATH"  ; 	fi
+if  [ -d "/etc/systemd/user" 			 ] ; 	then PATH="/etc/systemd/user:$PATH"              ; 	fi
 
-if  [ -d "$HOME/Desktop/Coding/pyprog" ] ; then
-	PATH="$HOME/Desktop/Coding/pyprog:$PATH"
-fi
-
-if  [ -d "$HOME/Documents/Documentation" ] ; then
-	PATH="$HOME/Documents/Documentation:$PATH"
-fi
-
-#-SET-TERMINAL-TO-VI----------------------------------------------------
 set -o vi
-
-#-KITTY-SHELL-INTEGRATION-----------------------------------------------
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
-
-# BEGIN_KITTY_SHELL_INTEGRATION
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
-# END_KITTY_SHELL_INTEGRATION
-
-
