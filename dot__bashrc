@@ -45,6 +45,23 @@ esac
 
 use_color=true
 
+xspec() {
+	echo '> '; return 0
+	MAX_T="${1:-15}"; LT="$(( "${MAX_T}" / "2" ))"
+	PD="${2:-${PWD}}"; SZ="${#PD}"
+	if [[ -z "${2}" ]] ; then
+		PD="${PWD%%*/}"
+		echo ''
+	elif [[ "${SZ}" -lt "${MAX_T}" ]] ; then
+		echo "${PD}"
+	else
+		BEG="$(( "${SZ}" - "${LT}" ))"
+		DEPTH="$(echo "${PD}" | grep -Pno '/' | wc -l)"
+		DOTS=""; for z in $(seq 1 "${DEPTH}") ; do DOTS+="." ; done
+		echo "${PD::LT}${DOTS}${PD:BEG:SZ}/"
+	fi
+}
+
 # Set colorful PS1 only on colorful terminals.
 # dircolors --print-database uses its own built-in database
 # instead of using /etc/DIR_COLORS.  Try to use the external file
@@ -69,6 +86,9 @@ if ${use_color} ; then
 		fi
 	fi
 
+	#----------------------------------`PS1
+	z_z='\[\e[00;32m\]'
+	z_y='\[\e[00;32m\]'
 	z_a='\[\e[00;01;07;37m\]'
 	z_b='\D{%F}'
 	z_c='|'
@@ -76,12 +96,17 @@ if ${use_color} ; then
 	z_e='\[\e[00;01m\]'
 	z_f=':\w/:>'
 	z_g='\[\e[0m\]'
+	z_h='$(xspec 8 \w)'
 	if [[ ${EUID} == 0 ]] ; then
 		PS1='\[\033[01;38m\][\h\[\033[01;38m\] \W\[\033[01;38m\]]\$\[\033[00m\] '
 	else
-		PROMPT_DIRTRIM="0"
-		PS1="${z_a} ${z_b} ${z_c}"
-		PS1+=" ${z_d} ${z_e} ${z_f}${z_g} "
+		#PS1=" ${z_z}${z_b}${z_d}${z_y} "
+		#PS1+="${z_g}"
+		PROMPT_DIRTRIM="2"
+		PS1=" ${z_y}|${z_z}"'\w'"${z_y}|:> "
+		PS1+="${z_g}"
+		#PS1="${z_a} ${z_b} ${z_c}"
+		#PS1+=" ${z_d} ${z_e} ${z_f}${z_g} "
 
 		#PS1='[\W\[\033[01;38m\]]\$\[\033[00m\] '
 		#PS1=' \[\033[01;07;34m\] \D{%F | %T} :\w/:> \[\033[00m\] '
@@ -108,20 +133,6 @@ else
 	fi
 fi
 
-xspec() {
-	MAX_T="15"; LT="$(( "${MAX_T}" / "2" ))"
-	SZ="${#PWD}"
-	echo "${SZ}"
-	if [[ "${SZ}" -lt "15" ]] ; then
-		echo "${PWD}/:> "
-	else
-		BEG="$(( "${SZ}" - "${LT}" ))"
-		DEPTH="$(echo "${PWD}" | grep -Pno '/' | wc -l)"
-		DOTS=""; for z in $(seq 1 "${DEPTH}") ; do DOTS+="." ; done
-		echo "${PWD::LT}${DOTS}${PWD:BEG:SZ}/"
-	fi
-}
-
 # MY FUNCTION MAX BALLARD SWITCH PS1 / SHORT / MEDIUM / LONG
 mps() {
 	z_a='\[\e[00;01;07;37m\]'; z_e='\[\e[00;01m\]'; z_j='\[\e[00;01;34m\]'
@@ -133,15 +144,11 @@ mps() {
 	z_k='\D{%d-%m-%y}'       ; z_l='\D{%H%M}'
 
 	if [[ "${1}" =~ ^(L|l|Long|long|LONG)$ ]] ; then
-
 		PROMPT_DIRTRIM="2"
 		PS1="${z_a} ${z_b} | ${z_d} ${z_e} ${z_f} "
-
 	elif [[ "${1}" =~ ^(M|m|Medium|medium|MEDIUM)$ ]] ; then
 		PROMPT_DIRTRIM="1"
-
 		PS1="${z_a} ${z_k} ${z_l} ${z_e} ${z_i} "
-
 		#PS1+=" ${z_d}${z_e} ${z_f}${z_g} "
 	elif [[ "${1}" =~ ^[Xx]([Ss]pec(ial)?|SPEC(IAL)?)?$ ]] ; then
 		PS1='$(xspec)'
@@ -234,9 +241,7 @@ alias		  gf='find / -iname "*" | grep -Pi'
 alias		  rm='echo "rm has been replaced with this message use trash-put or /bin/rm instead."'
 alias		  rename='echo "USE perl-rename instead, ALIAS IS \"ren\", or \"reni\" for case insensitive."'
 alias		  rmi='rm -i'
-alias		  v="zathura"
 alias		  pdf="zathura"
-alias		  view_pdf="zathura"
 
 alias		  ren="perl-rename -v -n"
 alias		  reni="perl-rename -i"
@@ -259,6 +264,7 @@ alias		  snv="sudoedit"
 alias		  img="nsxiv"
 alias		  ic="clear; imgcat"
 alias		  c="clear"
+alias		  f="fzf"
 
 alias		  ldi="fdisk -l -o +uuid"
 alias		  szof="du -ahc --time --max-depth=1"
