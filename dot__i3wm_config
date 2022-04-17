@@ -62,13 +62,13 @@ bindsym $mod+Shift+e 		exec "i3-nagbar -t warning -m 'You pressed the exit short
 #bindsym $mod+Next 			exec i3-msg workspace LHome
 #bindsym $mod+Prior 			exec i3-msg workspace RHome
 
-workspace 1					output $LEFT_MONITOR
-workspace LHome				output $LEFT_MONITOR
-
-workspace 10				output $RIGHT_MONITOR
-workspace 9					output $RIGHT_MONITOR
-workspace RHome				output $RIGHT_MONITOR
-workspace 0					output $RIGHT_MONITOR
+#workspace 1					output $LEFT_MONITOR
+#workspace LHome				output $LEFT_MONITOR
+#
+#workspace 10				output $RIGHT_MONITOR
+#workspace 9					output $RIGHT_MONITOR
+#workspace RHome				output $RIGHT_MONITOR
+#workspace 0					output $RIGHT_MONITOR
 #workspace 3					output $LEFT_MONITOR
 #workspace 5					output $LEFT_MONITOR
 #workspace 0					output $LEFT_MONITOR
@@ -127,6 +127,9 @@ bindsym $mod+Shift+Up 		exec $HOME/bin/random/nitrowscript.sh "UP"
 bindsym $mod+Shift+Down		exec $HOME/bin/random/nitrowscript.sh "DOWN"
 bindsym $mod+Shift+Left		exec $HOME/bin/random/nitrowscript.sh "LEFT"
 bindsym $mod+Shift+Right 	exec $HOME/bin/random/nitrowscript.sh "RIGHT"
+
+bindsym $mod+Down			exec pulseaudio-ctl down
+bindsym $mod+Up				exec pulseaudio-ctl up
 
 
 bindsym $mod+p 				exec dunstctl close-all
