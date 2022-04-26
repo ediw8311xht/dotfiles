@@ -1,7 +1,7 @@
 
-*.alpha:				0.80
+*.alpha:				0.89
 !*.color:				#000000
-*.font: 				Office Code Pro:pixelsize=15:antialias=true:autohint=true
+*.font: 				Office Code Pro:pixelsize=13:antialias=true:autohint=true
 
 ! #include </home/maceurt/.urxvt_themes/tempus_future.Xcolors>
 !! Colorscheme
@@ -46,8 +46,8 @@
 *.color15: #555555
 
 
-URxvt.font:			xft:Courier New:pixelsize=15:antialias=true:hinting=true
-URxvt.boldFont:		xft:Courier New:pixelsize=15:antialias=true:hinting=true
+URxvt.font:			xft:Courier New:pixelsize=15:antialias=true:autohint=true
+URxvt.boldFont:		xft:Courier New:pixelsize=15:antialias=true:autohint=true
 URxvt.scrollBar:	false
 URxvt.saveLines:	65535
 URxvt.perl-ext-common: keyboard-select,url-select,clipboard,font-size

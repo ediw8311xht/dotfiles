@@ -1,27 +1,23 @@
+
 #
 # ~/.bashrc
 #
 
 [[ $- != *i* ]] && return
-
 colors() {
 	local fgc bgc vals seq0
-
 	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
 	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
 	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
 	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
-
 	# foreground colors
 	for fgc in {30..37}; do
 		# background colors
 		for bgc in {40..47}; do
 			fgc=${fgc#37} # white
 			bgc=${bgc#40} # black
-
 			vals="${fgc:+$fgc;}${bgc}"
 			vals=${vals%%;}
-
 			seq0="${vals:+\e[${vals}m}"
 			printf "  %-9s" "${seq0:-(default)}"
 			printf " ${seq0}TEXT\e[m"
@@ -30,9 +26,7 @@ colors() {
 		echo; echo
 	done
 }
-
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
-
 # Change the window title of X terminals
 case ${TERM} in
 	xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*)
@@ -45,6 +39,7 @@ esac
 
 use_color=true
 
+# Fix
 xspec() {
 	echo '> '; return 0
 	MAX_T="${1:-15}"; LT="$(( "${MAX_T}" / "2" ))"
@@ -76,95 +71,58 @@ match_lhs=""
 	&& match_lhs=$(dircolors --print-database)
 [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] && use_color=true
 
-if ${use_color} ; then
-	# Enable colors for ls, etc.  Prefer ~/.dir_colors
-	if type -P dircolors >/dev/null ; then
-		if [[ -f ~/.dir_colors ]] ; then
-			eval $(dircolors -b ~/.dir_colors)
-		elif [[ -f /etc/DIR_COLORS ]] ; then
-			eval $(dircolors -b /etc/DIR_COLORS)
-		fi
-	fi
-
-	#----------------------------------`PS1
-	z_z='\[\e[00;32m\]'
-	z_y='\[\e[00;32m\]'
-	z_a='\[\e[00;01;07;37m\]'
-	z_b='\D{%F}'
-	z_c='|'
-	z_d='\D{%T}'
-	z_e='\[\e[00;01m\]'
-	z_f=':\w/:>'
-	z_g='\[\e[0m\]'
-	z_h='$(xspec 8 \w)'
+# --------------------------------------------------------------------- #
+# `PS1`	         														#
+# --------------------------------------------------------------------- #
+# Enable colors for ls, etc.  Prefer ~/.dir_colors
+if ${use_color} ; then if type -P dircolors >/dev/null ; then 
+                           if [[ -f ~/.dir_colors ]] ; then
+						       eval $(dircolors -b ~/.dir_colors)
+	                       elif [[ -f /etc/DIR_COLORS ]] ; then
+			                   eval $(dircolors -b /etc/DIR_COLORS)
+		                   fi
+	                   fi
 	if [[ ${EUID} == 0 ]] ; then
 		PS1='\[\033[01;38m\][\h\[\033[01;38m\] \W\[\033[01;38m\]]\$\[\033[00m\] '
 	else
-		#PS1=" ${z_z}${z_b}${z_d}${z_y} "
-		#PS1+="${z_g}"
 		PROMPT_DIRTRIM="2"
-		PS1=" ${z_y}|${z_z}"'\w'"${z_y}|:> "
-		PS1+="${z_g}"
-		#PS1="${z_a} ${z_b} ${z_c}"
-		#PS1+=" ${z_d} ${z_e} ${z_f}${z_g} "
 
-		#PS1='[\W\[\033[01;38m\]]\$\[\033[00m\] '
-		#PS1=' \[\033[01;07;34m\] \D{%F | %T} :\w/:> \[\033[00m\] '
-		#PS1='\[\033[01;07;34m\]\D{ %F | %T }\[\033[00;01;30;44m\] :\w/: \[\033[00m\]\n\[\033[00;01;07;44m\] |> \[\033[00m\] '
-		#PS1='  \[\033[01;07;34m\]\D{ %F | %T }\[\033[00;01;30;44m\] :$PWD/: \[\033[00m\] \n  \[\033[01;07;34m\] :\W:$ '
-		#PS1='\[\033[01;34m\] \@ [\u] \w$ \[\033[00;01;0m\] '
+	    z_a='\[\e[00;01;07;37m\]'   ;    z_b='\D{%F}'        ;    z_d='\D{%T}'
+	    z_e='\[\e[00;01m\]'         ;    z_f=':\w/:>'        ;    z_g='\[\e[0m\]'             
+		z_h='$(xspec 8 \w)'         ;    z_y='\[\e[00;32m\]' ;    z_z='\[\e[00;32m\]'
+		PS1=" ${z_y}|${z_z}"'\w'"${z_y}|:> ${z_g}"
 	fi
-		#~PS1 ------------------------------------------------------------------- shortcut PS1
-
-		#PS1='\[\033[00;01;07;34m\] \@ \[\033[00;01;30m\] [\[\033[34m\]\u\[\033[00;01;30m\]] [\[\033[34m\]\w\[\033[00;01;30m\]]$\[\033[00;02;38m\] '
-		#PS1='\[\033[00;01;31;40m\][ \[\033[01;34m\]\u\]\[\033[01;28m\] \h\]\[\033[01;30m\] ]\]\]\[\033[00;01;36m\] \W\$\]\[\033[00;01;37m\] '
-		#PS1='\[\033[01;38m\][\u@\h\[\033[01;38m\] \W\[\033[01;38m\]]\$\[\033[01;38m\] '
-
 	alias ls='ls --color=auto'
 	alias grep='grep --colour=auto'
 	alias egrep='egrep --colour=auto'
 	alias fgrep='fgrep --colour=auto'
 else
-	if [[ ${EUID} == 0 ]] ; then
-		# show root@ when we don't have colors
-		PS1='\u@\h \W \$ '
-	else
-		PS1='\u@\h \w \$ '
-	fi
+	if [[ ${EUID} == 0 ]] ; then PS1='\u@\h \W \$ '
+	else                         PS1='\u@\h \w \$ ' ; fi
 fi
 
-# MY FUNCTION MAX BALLARD SWITCH PS1 / SHORT / MEDIUM / LONG
 mps() {
-	z_a='\[\e[00;01;07;37m\]'; z_e='\[\e[00;01m\]'; z_j='\[\e[00;01;34m\]'
+	z_a='\[\e[00;01;07;37m\]'    ;     z_e='\[\e[00;01m\]'    ;     z_j='\[\e[00;01;34m\]'
+	z_b='\D{%F}'                 ;     z_d='\D{%T}'           ;     z_m='\D{%s}'
+	z_f=':\w/:>'                 ;     z_h='-\$'		      ;     z_i=':\W/:>'
+	z_k='\D{%d-%m-%y}'           ;     z_l='\D{%H%M}'
 
-	z_b='\D{%F}'             ; z_d='\D{%T}'       ; z_m='\D{%s}'
-
-	z_f=':\w/:>'             ; z_h='-\$'		  ; z_i=':\W/:>'
-
-	z_k='\D{%d-%m-%y}'       ; z_l='\D{%H%M}'
-
-	if [[ "${1}" =~ ^(L|l|Long|long|LONG)$ ]] ; then
-		PROMPT_DIRTRIM="2"
-		PS1="${z_a} ${z_b} | ${z_d} ${z_e} ${z_f} "
-	elif [[ "${1}" =~ ^(M|m|Medium|medium|MEDIUM)$ ]] ; then
-		PROMPT_DIRTRIM="1"
-		PS1="${z_a} ${z_k} ${z_l} ${z_e} ${z_i} "
-		#PS1+=" ${z_d}${z_e} ${z_f}${z_g} "
-	elif [[ "${1}" =~ ^[Xx]([Ss]pec(ial)?|SPEC(IAL)?)?$ ]] ; then
-		PS1='$(xspec)'
-	elif [[ "${1}" =~ ^(S|s|Short|short|SHORT|)$ ]] ; then
-		PS1=" ${z_m} ${z_h} "
-	else return 2; fi
-
-	PS1+='\[\e[0m\]'
+	if   [[ "${1}"     =~    ^[Ll]$            ]]  ; then PROMPT_DIRTRIM="2"
+		                                             PS1="${z_a} ${z_b} | ${z_d} ${z_e} ${z_f} "
+	elif [[ "${1}"     =~    ^[Mm]$            ]]  ; then PROMPT_DIRTRIM="1"
+		                                             PS1="${z_a} ${z_k} ${z_l} ${z_e} ${z_i} "
+	elif [[ "${1}"     =~    ^[Xx]$            ]]  ; then
+		            								 PS1='$(xspec)'
+	elif [[ "${1}"     =~    ^[Ss]$            ]]  ; then
+		            								 PS1=" ${z_m} ${z_h} "
+	else     										 return 2    ; fi
+	                                                 PS1+='\[\e[0m\]'
 }
 
+# --------------------------------------------------------------------- #
+#            															#
+# --------------------------------------------------------------------- #
 unset use_color safe_term match_lhs sh
-
-alias cp="cp -i"                          # confirm before overwriting something
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
-alias np='nano -w PKGBUILD'
 
 
 # Bash won't get SIGWINCH if another process is in the foreground.
@@ -172,190 +130,145 @@ alias np='nano -w PKGBUILD'
 # it regains control.  #65623
 # http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
 shopt -s checkwinsize
-
 shopt -s expand_aliases
-
 # export QT_SELECT=4
-
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
 
-#
-# # ex - archive extractor
-# # usage: ex <file>
-ex ()
-{
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1     ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
-
-nnn_cd()                                                                                                   
-{
-    if ! [ -z "$NNN_PIPE" ]; then
-        printf "%s\0" "0c${PWD}" > "${NNN_PIPE}" !&
-    fi  
-}
-
-trap nnn_cd EXIT
-
-# ----------------------------------------------------------------------
-# MY FUNCTIONS
-# ----------------------------------------------------------------------
-acheck() 	{	compgen -c | grep -x "${1}"                          ; }
-pifs() 		{ 	printf "%q" "${IFS}"; echo ""						 ; }
-ppifs()		{ 	printf "IFS=%q" "${IFS}"; echo "" 					 ; }
-nifs() 		{ 	IFS=$'\n'; printf "IFS=%q" "${IFS}"; echo ""		 ; }
+# --------------------------------------------------------------------- #
+# `FUNCTIONS`															#
+# --------------------------------------------------------------------- #
+acheck() 	{	compgen -c  | grep -x "${1}"                         ; }
+nifs() 		{ 	IFS=$'\n'   ; printf "IFS=%q" "${IFS}"; echo ""		 ; }
 rifs() 		{ 	IFS=$' \t\n'; printf "IFS=%q" "${IFS}"; echo "" 	 ; }
-#-----COPY-AND-PASTE-----FUNCTIONS--------------------------------------
-cop() 	{ echo "XSEL CLIP: $(echo ${1} | xsel -bi)"		; }
-pas() 	{ echo "$(xsel -bo)"		  					; }
-pasta() { cat <<< $(pas)			  					; }
-kad() 	{ docker kill $(docker ps -q) 					; }
-rad() 	{ docker rm $(docker ps -a -q)					; }
-pf() {
-	if [[ -z "${2}" ]] ; then 	find "${HOME}" -iname "*" | grep -Pi "${1}"
-	else					  	find "${1}" -iname "*" 	  | grep -Pi "${2}"      ;  fi
-}
-# ----------------------------------------------------------------------
-# `MY ALIASES
-# ----------------------------------------------------------------------
-alias		  sudo='sudo '
-alias 		  perlfind="echo 'pf(), gf'"
-alias		  gf='find / -iname "*" | grep -Pi'
-alias		  rm='echo "rm has been replaced with this message use trash-put or /bin/rm instead."'
-alias		  rename='echo "USE perl-rename instead, ALIAS IS \"ren\", or \"reni\" for case insensitive."'
-alias		  rmi='rm -i'
-alias		  pdf="zathura"
-
-alias		  ren="perl-rename -v -n"
-alias		  reni="perl-rename -i"
-alias		  tr="trash-put -i"
-
-alias		  pacse='echo ""; pacman -Ss'
-alias		  yayse='echo ""; yay -Ss'
-
-alias		  pacsel='echo ""; pacman -Qs'
-alias		  yaysel='echo ""; yay -Qs'
-
-alias		  yayi='echo ""; yay -Si'
-alias		  paci='echo ""; pacman -Si'
-
-alias		  yayil='echo ""; yay -Qi'
-alias		  pacil='echo ""; pacman -Qi'
-
-alias		  snv="sudoedit"
-
-alias		  img="nsxiv"
-alias		  ic="clear; imgcat"
-alias		  c="clear"
-alias		  f="fzf"
-
-alias		  ldi="fdisk -l -o +uuid"
-alias		  szof="du -ahc --time --max-depth=1"
-
-alias		  lsd="ls -lh"
-alias		  lst="ls -ltrh"
-alias		  lsz="ls -lSrh"
-alias		  lsad="ls -larh"
-alias		  lsat="ls -latrh"
-alias		  lsaz="ls -laSrh"
-
-# `PSG ALIASES
-alias		  psg="ps ax | grep --ignore-case"
-alias		  psp="ps ax | grep --perl-regexp --ignore-case"
-alias		  pe="ps -eo comm=,"
-alias		  po="ps -eo cmd=,"
-alias		  pse="ps -eo comm=, | grep --ignore-case"
-alias		  pso="ps -eo cmd=, | grep --ignore-case"
-alias		  tre="ps -ejH"
-alias		  trev="ps axjf"
-alias		  tres="ps -eHo euser,ruser,suser,fuser,f,comm,label"
-
-alias		  gr="grep --perl-regexp --ignore-case"
-alias		  grd="grep --ignore-case"
-
-alias		  nv="nvim"
-alias		  r="ranger"
-alias		  g="gvim"
-
-alias		  scim="sc-im"
-
-alias		  qs="ssh tesmond@45.77.222.97"
-
-alias		  vid="cd $HOME/Videos/"
-alias		  aud="cd $HOME/Audio/"
-alias		  desk="cd $HOME/Desktop/"
-alias		  code="cd $HOME/Desktop/Coding/"
-alias		  docs="cd $HOME/Documents/"
-alias		  notes="cd $HOME/Documents/Notepad/"
-alias		  prof="cd $HOME/Documents/PROF_AND_WORK/"
-alias		  pics="cd $HOME/Pictures/"
-alias		  down="cd $HOME/Downloads/"
-alias		  b="cd $HOME/bin/"
-alias		  br="cd $HOME/bin/random/"
-alias		  bp="cd $HOME/bin/personal/"
-alias		  ebash="nvim $HOME/.bashrc"
-
-alias		  lib="cd /mnt/ad/"
-alias		  upl="cd /mnt/od/"
-alias		  six="cd /mnt/ud/"
-
-alias		  med1="cd /mnt/ed1/"
-alias		  med2="cd /mnt/ed2/"
-alias		  med3="cd /mnt/ed3/"
-
-alias		  esrc="cd /mnt/ed3/KNOWLEDGE_STANDARDS_FOUNDATION/encyclocrawler/src/main/java/org/encyclosphere/encyclocrawler/"
-alias		  asrc2="cd /mnt/ed3/KNOWLEDGE_STANDARDS_FOUNDATION/encyclocrawler/src/main/java/org/encyclosphere/encyclocrawler/crawlers/"
-alias		  ksf="cd /mnt/ed3/KNOWLEDGE_STANDARDS_FOUNDATION"
-
-alias		  sf="declare -F | grep --ignore-case --perl-regexp"
-alias		  sfi="declare -f | grep --ignore-case --perl-regexp"
-
-alias		  s='echo "$(alias & declare -F)" | grep --ignore-case perl-regexp'
-
-#-------------------------------------------EXTRA-----------------------
-alias		  viewImage="nsxiv"
-alias		  listDisks="fdisk -l -o +uuid"
-alias 		  listDevicesMounted="cat /proc/mounts | grep -P \"/dev/[^ ]+\""
-alias		  listAllMounted="cat /proc/mounts"
-alias		  sizeOfTrue="du -ahc --time --max-depth=1"
-alias		  showPs="ps -eo comm=,"
-alias		  showPsTree="ps -ejH"
-alias	   	  showPsTreeVerbose="ps axjf"
-alias		  showPsSecurity="ps -eHo euser,ruser,suser,fuser,f,comm,label"
-# ----------------------------------------------------------------------
-# MY EXPORTS
-# ----------------------------------------------------------------------
-export MYPRINTER="MYPRINT"
-export NNN_COPIER="$HOME/nscript/csript"
-export DOCS="$HOME/Documents/"
-export DESK="$HOME/Desktop/"
-export DOWN="$HOME/Downloads/"
-export MYSTUFF="$HOME/Documents/MyStuff/"
-export EDITOR="nvim"
-export NVIMSWAP="$HOME/.local/share/nvim/swap/"
-export PYTHONPATH="${PYTHONPATH}:/home/maceurt/MY_PYTHON_MODULES/"
-export PYTHONPATH="${PYTHONPATH}:/usr/bin/python3"
+ppifs()		{ 	              printf "IFS=%q" "${IFS}"; echo "" 	 ; }
+pifs() 		{ 	              printf     "%q" "${IFS}"; echo ""	     ; }
+cop() 	    {                   echo "XSEL CLIP: $(xsel -bi)"	     ; }
+pas() 	    {                   echo "$(xsel -bo)"					 ; }
+pasta()     {   cat              <<< $(pas)			  			     ; }
+kad() 	    {   docker          kill $(docker ps -q) 				 ; }
+rad() 	    {   docker            rm $(docker ps -a -q)				 ; }
+pf() 		{   
+	if [[ -z "${2}" ]] ; then 	
+	   find "${HOME}" -iname "*"  | grep -Pi "${1}"
+	else					  	
+	   find    "${1}" -iname "*"  | grep -Pi "${2}"      
+	fi													             ; }
+# --------------------------------------------------------------------- #
+# `ALIASES`															    #
+# --------------------------------------------------------------------- #
+alias	        sudo='sudo '
+alias             cp="cp -i"                          
+alias             df='df -h'                         
+alias           free='free -m'                    
+alias 	    perlfind="echo 'pf(), gf'"
+alias	          gf='find / -iname "*" | grep -Pi'
+alias	          rm='echo "rm has been replaced with this message use trash-put or /bin/rm instead."'
+alias	      rename='echo "USE perl-rename instead, ALIAS IS \"ren\", or \"reni\" for case insensitive."'
+alias	         rmi='rm -i'
+alias	         pdf="zathura"
+alias	         i3c="i3 -C $HOME/.i3/config"
+alias	         ren="perl-rename -v -n"
+alias	        reni="perl-rename -i"
+alias	          tr="trash-put -i"
+alias	       pacse='echo ""; pacman -Ss'
+alias	       yayse='echo ""; yay -Ss'
+alias	      pacsel='echo ""; pacman -Qs'
+alias	      yaysel='echo ""; yay -Qs'
+alias	        yayi='echo ""; yay -Si'
+alias	        paci='echo ""; pacman -Si'
+alias	       yayil='echo ""; yay -Qi'
+alias	       pacil='echo ""; pacman -Qi'
+alias	         snv="sudoedit"
+alias	         img="nsxiv"
+alias	          ic="clear; imgcat"
+alias	           c="clear"
+alias	           f="fzf"
+alias	         ldi="fdisk -l -o +uuid"
+alias 			szof="du -ahc --time --max-depth=1"
+alias		     lsd="ls -lh"
+alias		     lst="ls -ltrh"
+alias		     lsz="ls -lSrh"
+alias		    lsad="ls -larh"
+alias		    lsat="ls -latrh"
+alias		    lsaz="ls -laSrh"
+alias		     psg="ps ax | grep --ignore-case"
+alias		     psp="ps ax | grep --perl-regexp --ignore-case"
+alias		      pe="ps -eo comm=,"
+alias		      po="ps -eo cmd=,"
+alias		     pse="ps -eo comm=, | grep --ignore-case"
+alias		     pso="ps -eo cmd=, | grep --ignore-case"
+alias		     tre="ps -ejH"
+alias		    trev="ps axjf"
+alias		    tres="ps -eHo euser,ruser,suser,fuser,f,comm,label"
+alias		      gr="grep --perl-regexp --ignore-case"
+alias		     grd="grep --ignore-case"
+alias		      nv="nvim"
+alias		       r="lf"
+alias		       l="lf"
+alias		       g="gvim"
+alias		    scim="sc-im"
+alias		      qs="ssh tesmond@45.77.222.97"
+alias		       h="cd $HOME"
+alias		     vid="cd $HOME/Videos/"
+alias		     aud="cd $HOME/Audio/"
+alias		    desk="cd $HOME/Desktop/"
+alias		    code="cd $HOME/Desktop/Coding/"
+alias		    docs="cd $HOME/Documents/"
+alias		   notes="cd $HOME/Documents/Notepad/"
+alias		    prof="cd $HOME/Documents/PROF_AND_WORK/"
+alias		    pics="cd $HOME/Pictures/"
+alias		    down="cd $HOME/Downloads/"
+alias		       b="cd $HOME/bin/"
+alias		      br="cd $HOME/bin/random/"
+alias		      bp="cd $HOME/bin/personal/"
+alias		     lib="cd /mnt/ad/"
+alias		       x="cd /mnt/ad/Library/"
+alias 		       p="cd /mnt/ad/Library/Programming/"
+alias		     upl="cd /mnt/od/"
+alias		     six="cd /mnt/ud/"
+alias		    med1="cd /mnt/ed1/"
+alias		    med2="cd /mnt/ed2/"
+alias		    med3="cd /mnt/ed3/"
+alias		    esrc="cd /mnt/ed3/KNOWLEDGE_STANDARDS_FOUNDATION/encyclocrawler/src/main/java/org/encyclosphere/encyclocrawler/"
+alias		   asrc2="cd /mnt/ed3/KNOWLEDGE_STANDARDS_FOUNDATION/encyclocrawler/src/main/java/org/encyclosphere/encyclocrawler/crawlers/"
+alias		     ksf="cd /mnt/ed3/KNOWLEDGE_STANDARDS_FOUNDATION"
+alias		   ebash="nvim $HOME/.bashrc"
+alias		      sf="declare -F | grep --ignore-case --perl-regexp"
+alias	         sfi="declare -f | grep --ignore-case --perl-regexp"
+alias		       s='echo "$(alias & declare -F)" | grep --ignore-case perl-regexp'
+# --------------------------------------------------------------------- #
+# `VERBOSE`																#
+# --------------------------------------------------------------------- #
+alias	   viewImage="nsxiv"
+alias	   listDisks="fdisk -l -o +uuid"
+alias devicesMounted="cat /proc/mounts | grep -P \"/dev/[^ ]+\""
+alias     allMounted="cat /proc/mounts"
+alias	  sizeOfTrue="du -ahc --time --max-depth=1"
+alias             Ps="ps -eo comm=,"
+alias         PsTree="ps -ejH"
+alias        PsTreeV="ps axjf"
+alias     PsSecurity="ps -eHo euser,ruser,suser,fuser,f,comm,label"
+# --------------------------------------------------------------------- #
+# `EXPORT`																#
+# --------------------------------------------------------------------- #
+export            MYPRINTER="MYPRINT"
+export           NNN_COPIER="$HOME/nscript/csript"
+export                 DOCS="$HOME/Documents/"
+export                 DESK="$HOME/Desktop/"
+export                 DOWN="$HOME/Downloads/"
+export              MYSTUFF="$HOME/Documents/MyStuff/"
+export               EDITOR="nvim"
+export             NVIMSWAP="$HOME/.local/share/nvim/swap/"
+export           PYTHONPATH="${PYTHONPATH}:/home/maceurt/MY_PYTHON_MODULES/"
+export           PYTHONPATH="${PYTHONPATH}:/usr/bin/python3"
+export           AUTOBACKUP="/mnt/ed3/"
 export QT_QPA_PLATFORMTHEME=qt5ct
-export DEFAULT_IFS=$' \t\n'
-export AUTOBACKUP="/mnt/ed3/"
-
+export      FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+#    export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+# --------------------------------------------------------------------- #
+# `PATH`																#
+# --------------------------------------------------------------------- #
 if  [ -d "$HOME/bin/"         			 ] ; 	then PATH="$HOME/bin/:$PATH"        			 ;	fi
 if  [ -d "$HOME/bin/i3wm"     			 ] ;    then PATH="$HOME/bin/i3wm:$PATH"    			 ; 	fi
 if  [ -d "$HOME/bin/personal" 			 ] ;    then PATH="$HOME/bin/personal:$PATH"			 ; 	fi 
@@ -369,3 +282,6 @@ if  [ -d "/etc/systemd/user" 			 ] ; 	then PATH="/etc/systemd/user:$PATH"       
 set -o vi
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# --------------------------------------------------------------------- #
+# `END` 																#
+# --------------------------------------------------------------------- #
