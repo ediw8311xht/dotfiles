@@ -3,7 +3,6 @@
 #----MAXIMILIAN-BALLARD-(MY-i3/CONFIG)--------------------------------|
 #---------------------------------------------------------------------|
 # i3 config file (v4)
-# Don't remove line above, i3 is stupid and needs it to recognize config file version
 
 #---------------------------------------------------SET------------------------------------------------------------#
 set $LEFT_MONITOR	    HDMI-A-0
@@ -26,13 +25,13 @@ set $BindM				bindsym		  				      Mod1+
 set $BindM_Sh     		bindsym		  				      Mod1+Shift+
 set $RelM				bindsym		  --release 	      Mod1+ 
 set $RelM_Sh			bindsym		  --release 	      Mod1+Shift+
-set $BORD1 				exec 		  i3-msg 		      border pixel 3
+set $BORD1 				exec 		  i3-msg 		      "border pixel 3"
 set $BORD2 				exec 		  "sleep 0.01; i3-msg 		      'border pixel 0'"
 set $EXENI				exec 		  --no-startup-id
 set $EXENI_A         	exec_always	  --no-startup-id
-# -V- For safety reasons keeping these bindings hard coded -V-
-bindsym 				$mod+Shift+r  restart
-bindsym     			$mod+Shift+c  reload
+#-----------------------Checks to make sure config file compiles correctly before running
+bindsym 				$mod+Shift+r  exec $HOME/bin/i3configcheck.sh
+#bindsym     			$mod+Shift+c  reload
 #---------------------------------------------------PARAM----------------------------------------------------------#
 client.unfocused 					#333333 		#333333 		#000000 		#444444   		#040404
 client.focused_inactive 			#000055 		#000055 		#000000 		#444444
@@ -43,6 +42,7 @@ focus_follows_mouse  	yes
 floating_modifier    	$mod
 gaps			 	 	inner      		0
 gaps				 	outer      		0
+default_border			pixel 			0
 font				 	xft:Hermit 		8
 workspace 			 	1		   	    output		 	$LEFT_MONITOR
 #---------------------------------------------------FOR_WINDOW-----------------------------------------------------#
@@ -51,24 +51,9 @@ for_window [instance="i3wm_scratchpad_pavucontrol"]		floating enable, move posit
 for_window [instance="i3wm_scratchpad_st"]				floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
 for_window [class="Tor Browser"]						floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
 for_window [class="hexchat"]							floating enable
+for_window [class="i3*input"]							resize set 1000 1000
 #---------------------------------------------------BINDS----------------------------------------------------------#
-$BindM      o	  	  		     	    fullscreen
-$BindM      s 		  		     	    layout      	stacking
-$BindM      w 		  		     	    layout      	tabbed
-$BindM      e 		  		     	    layout      	toggle   split
-$BindM      a 		  		     	    focus       	parent
-$BindM      comma 	  		     	    gaps        	inner    all set 0, 		gaps outer all set 0
-$BindM      period	  		     	    gaps        	inner    all set $INGAPS, 	gaps outer all set $OUTGAPS
-$BindM      v         		     	    split 		 	v
-$BindM      r	  	  	  		     	mode        	"resize"
-$BindM      d         		     	    exec        	dmenu_run
-$BindM      g		  		     	    exec        	gnome-screenshot
-$BindM      p   	  		     	    exec        	dunstctl           close-all
-$BindM      Down	  		     	    exec        	pulseaudio-ctl     down
-$BindM      Up		  		     	    exec        	pulseaudio-ctl     up
-$BindM      semicolon 	  $BORD1
-$BindM      space	      $BORD1;       focus 	     	mode_toggle
-$BindM      Return	  	  $BORD1;    	exec 		 	/usr/local/bin/st
+
 $BindM      1		  	  $BORD1;    	workspace   	1
 $BindM      2		  	  $BORD1;    	workspace   	2
 $BindM      3		  	  $BORD1;    	workspace   	3
@@ -79,23 +64,48 @@ $BindM      7		  	  $BORD1;    	workspace   	7
 $BindM      8		  	  $BORD1;    	workspace   	8
 $BindM      9		  	  $BORD1;    	workspace   	9
 $BindM      0		  	  $BORD1;    	workspace   	10
-$BindM      m 		  	  $BORD1;    	scratchpad  	show
+
+$BindM      q			  $BORD2;
+$BindM      w 		  		     	    layout      	tabbed
+$BindM      e 		  		     	    layout      	toggle   split
+$BindM      r	  	  	  		     	mode        	"resize"
+$BindM      t		  	  $BORD1;    	[class="Tor Browser"] 					scratchpad show
+$BindM      y			  $BORD2;
+$BindM      u		  	  $BORD1;    	[instance="i3wm_scratchpad_st"] 		scratchpad show
+
+$BindM      o	  	  		     	    fullscreen
+$BindM      p   	  		     	    exec        	dunstctl           close-all
+
+$BindM      a 		  		     	    focus       	parent
+$BindM      s 		  		     	    layout      	stacking
+$BindM      d         		     	    exec        	dmenu_run
+
+$BindM      g		  		     	    exec        	gnome-screenshot
 $BindM      h		      $BORD1;  	    focus 	     	left  
 $BindM      j		      $BORD1;  	    focus 	     	down  
 $BindM      k		      $BORD1;  	    focus 	     	up	  
 $BindM      l		      $BORD1;  	    focus 	     	right 
-$BindM      Super_L	  	  $BORD1;    	floating    	toggle
-$BindM      t		  	  $BORD1;    	[class="Tor Browser"] 					scratchpad show
-$BindM      u		  	  $BORD1;    	[instance="i3wm_scratchpad_st"] 		scratchpad show
+$BindM      semicolon 	  $BORD1
+$BindM      Return	  	  $BORD1;    	exec 		 	/usr/local/bin/st
+
+$BindM      v         		     	    split 		 	v
+$BindM      m 		  	  $BORD1;    	scratchpad  	show
 $BindM      n		  	  $BORD1;    	[instance="i3wm_scratchpad_notepad"] 	scratchpad show
 
-$BindM_Sh   comma 	  		     	    gaps 		 	inner 	 all set 0, 		gaps outer all set 0
-$BindM_Sh   period	  		     	    gaps 		 	inner 	 all set $INGAPS, 	gaps outer all set $OUTGAPS
+#$BindM      comma 	  		     	    gaps        	inner    all set 0, 		gaps outer all set 0
+$BindM      period	  		     	    gaps        	inner    all toggle $INGAPS, 	gaps outer all toggle $OUTGAPS
+$BindM      Super_L	  	  $BORD1;    	floating    	toggle
+$BindM      space	      $BORD1;       focus 	     	mode_toggle
+$BindM      Down	  		     	    exec        	pulseaudio-ctl     down
+$BindM      Up		  		     	    exec        	pulseaudio-ctl     up
+
+#$BindM_Sh   comma 	  		     	    gaps 		 	inner 	 all set 0, 		gaps outer all set 0
+#$BindM_Sh   period	  		     	    gaps 		 	inner 	 all set $INGAPS, 	gaps outer all set $OUTGAPS
 $BindM_Sh   m 	  	  	  		     	floating 	 	enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
 $BindM_Sh   semicolon 	  		     	resize 	 		set $WSW $WSH
 $BindM_Sh   v         		     	    split 		 	h
 $BindM_Sh   e 		  		     	    exec 		 	"i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
-$BindM_Sh   o 		  		     	    exec 		 	i3lock -f -e -c 000058
+$BindM_Sh   o 		  		     	    exec 		 	i3lock -f -e -c BBBBBB
 $BindM_Sh   y		  		     	    exec 		 	$HOME/bin/urxvt_notepad_script.sh  "TMUX"
 $BindM_Sh   Up 		  		     	    exec 		 	$HOME/bin/nitrowscript.sh 			"UP"
 $BindM_Sh   Down	  		     	    exec 		 	$HOME/bin/nitrowscript.sh 			"DOWN"
@@ -136,7 +146,7 @@ $EXENI_A    xmodmap 	  -e 			"keycode 133 = 0x007e 0x0060 0x007e 0x0060"
 $EXENI_A    xset 	 	  s 			off
 $EXENI_A    xset 	 	  -dpms
 $EXENI_A    nitrogen      --restore
-$EXENI_A    xcompmgr 	  -CcfF -I-.015 -O-.03 -D6 -t-1 -l-3 -r4.2 -o.5 &#xmodmap -pk / xmodmap -pke (to see keymap & keysym table)
+$EXENI_A    xcompmgr 	  -C 
 $EXENI_A    $HOME/.config/polybar/launch.sh
 #---------------------------------------------------MODES----------------------------------------------------------#
 mode "mousemove" {
@@ -165,6 +175,7 @@ mode "resize" {
                      bindsym l                                      resize grow      width  $XREUNIT px or 10 ppt
                      bindsym j                                      resize grow      height $YREUNIT px or 10 ppt
                      bindsym k                                      resize shrink    height $YREUNIT px or 10 ppt
+                     bindsym $mod+r                                 mode   "default"
                      bindsym Return                                 mode   "default"
                      bindsym Escape                                 mode   "default"
 }
@@ -245,6 +256,7 @@ $RelM_Sh	    v		      $BORD2
 $RelM_Sh	    x		      $BORD2
 $RelM_Sh	    y		      $BORD2
 $RelM_Sh	    z		      $BORD2
+$RelM_Sh	    space     	  $BORD2
 $RelM_Sh	    semicolon     $BORD2
 $RelM_Sh	    Left	      $BORD2
 $RelM_Sh	    Down	      $BORD2
