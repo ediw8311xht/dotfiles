@@ -1,0 +1,607 @@
+
+;modules-left = i3
+;modules-right =  temp1 memory cpu pulseaudio
+;modules-right = filesystem pulseaudio xkeyboard memory cpu eth battery temperature date powermenu
+
+[colors]
+background 		=	#000000
+foreground 		=	#DDDDDD
+border-color 	=	#000000
+background-alt 	=	#000000
+foreground-alt 	=	#000000
+primary 		=	#0000FF
+secondary 		=	#00FF00
+alert 			=	#FF0000
+
+i3bgl_f_in 		=	#000000
+i3bgl_vis_uf 	= 	#000000 
+i3bgl_uf 		=	#000000 
+i3fgl_f_in 		=	#00FF00
+i3fgl_vis_uf 	= 	#FFFFFF
+i3fgl_uf 		=	#999999
+
+temp1			=	#EEEEEE
+temp2			=	#EEEEEE
+mem1			=	#EEEEEE
+cpu1			=	#EEEEEE
+pulse1			=	#999999
+
+[bar/basicbar]
+bottom = false
+enable-ipc = false
+line-size = 0
+line-color = #f00
+offset-x = 0%
+offset-y = 80%
+;override-redirect = true
+monitor = ${env:MONITOR:}
+padding-left = 2
+padding-right = 2
+height = 15
+
+width = 100%
+border-size = 0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+background-alt = ${colors.background-alt}
+foreground-alt = ${colors.background-alt}
+primary = #ffb52a
+secondary = #060033
+alert = #bd2c40
+
+module-margin-left = 1
+module-margin-right = 1
+
+;------------------_FONTS_-------------------;
+; (0,1,2) [i3 (v/f/u)] 
+; (3,4,5) [Date TimeEST_US TimeGMT_UK]
+; (6,7,8) [temp1 memory cpu] 
+; (9) 	  [pulseaudio]
+font-0  	=  	Hack:pixelsize=10;4
+font-1  	=  	Hack:fontformat=truetype:size=8:antialias=false;0
+font-2  	=  	Hack:pixelsize=10;4
+font-3  	=  	Hack:pixelsize=10;4
+font-4  	=  	Hack:pixelsize=10;4
+font-5  	=  	Hack:pixelsize=10;4
+font-6 		=  	Hack:pixelsize=10;3
+font-7 		=  	Hack:pixelsize=10;3
+font-8 		=  	Hack:pixelsize=10;3
+font-9 		=  	Hack:pixelsize=10;3
+font-10 	=  	Hack:pixelsize=10;3
+font-11 	=  	Hack:pixelsize=10;3
+font-12 	=  	Hack:pixelsize=10;3
+;--------------------------------------------;
+
+
+;modules-center = date TimeEST_US TimeUTC
+modules-center = TimeUTC TimeEST
+;modules-center = date TimeEST_US TimeGMT_UK
+
+modules-left = i3
+;modules-right =  temp1 temp2 memory cpu pulseaudio
+modules-right =  pulseaudio
+;modules-right = filesystem pulseaudio xkeyboard memory cpu eth battery temperature date powermenu
+
+;tray-position = left
+;tray-padding = 0
+;tray-background = #0063ff
+
+;wm-restack = i3
+
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/temp1]
+inherit = module/temp_base
+thermal-zone = 0
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input
+label-foreground = ${colors.temp1}
+label-font = 6
+ 
+[module/temp2]
+inherit = module/temp_base
+; thermal-zone = 0
+label-foreground = ${colors.temp2}
+hwmon-path =  /sys/devices/virtual/thermal/thermal_zone0/hwmon0/device/hwmon0/temp1_input
+label-font = 6
+
+[module/temp3]
+inherit = module/temp_base
+thermal-zone = 2
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp3_input
+label-font = 6
+
+[module/temp4]
+inherit = module/temp_base
+thermal-zone = 3
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp4_input
+label-font = 6
+
+;-----------------------TEMPERATURE--------------------------------------------;
+;-----------------------TEMPERATURE--------------------------------------------;
+;-----------------------TEMPERATURE--------------------------------------------;
+;-----------------------TEMPERATURE--------------------------------------------;
+[module/temp_base]
+type = internal/temperature
+
+interval = 2
+
+; Thermal zone to use To list all the zone types, run 
+;$ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+; Default: 0
+thermal-zone = 0
+
+; Full path of temperature sysfs path
+; Use `sensors` to find preferred temperature source, then run
+; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+; to find path to desired file
+; Default reverts to thermal zone setting
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input
+
+; Base temperature for where to start the ramp (in degrees celsius)Default: 0
+base-temperature = 20
+warn-temperature = 70
+units = true
+
+; Available tags:
+;   <label> (default)
+;   <ramp>
+format = <label>
+
+; Available tags:
+;   <label-warn> (default)
+;   <ramp>
+format-warn = <label-warn>
+
+; Available tokens:
+;   %temperature% (deprecated)
+;   %temperature-c%   (default, temperature in °C)
+;   %temperature-f%   (temperature in °F)
+label = TEMP %temperature-c%
+
+; Available tokens:
+;   %temperature% (deprecated)
+;   %temperature-c%   (default, temperature in °C)
+;   %temperature-f%   (temperature in °F)
+label-warn = TEMP %temperature-c%
+label-warn-foreground = #f00
+
+; Requires the <ramp> tag
+; The icon selection will range from `base-temperature` to `warn-temperature`,
+; temperatures at and above `warn-temperature` will use the last icon
+; and temperatures at and below `base-temperature` will use `ramp-0`. 
+; All other icons are distributed evenly between the two temperatures.
+ramp-0 = A
+ramp-1 = B
+ramp-2 = C
+ramp-foreground = #55
+;-----------------------I3-----------------------------------------------------;
+;-----------------------I3-----------------------------------------------------;
+;-----------------------I3-----------------------------------------------------;
+;-----------------------I3-----------------------------------------------------;
+[module/i3]
+type = internal/i3
+
+label-focused-padding = 0
+label-visible-padding = 0
+label-unfocused-padding = 0
+
+
+;ws-icon-0 = 1;1
+;ws-icon-1 = 2;2
+;ws-icon-2 = 3;3
+;ws-icon-3 = 4;4
+;ws-icon-4 = 5;5
+;ws-icon-5 = 6;6
+;ws-icon-6 = 7;7
+;ws-icon-7 = 8;8
+;ws-icon-8 = 9;9
+;ws-icon-9 = 0;0
+;
+;ws-icon-LHome = G;LHome
+
+;label-focused = %name% 
+
+label-separator-padding = 0
+
+label-focused-background = ${colors.i3bgl_f_in}
+label-visible-background = ${colors.i3bgl_vis_uf}
+label-unfocused-background =  ${colors.i3bgl_uf}
+label-focused-foreground = ${colors.i3fgl_f_in}
+label-visible-foreground = ${colors.i3fgl_vis_uf}
+label-unfocused-foreground =  ${colors.i3fgl_uf}
+label-focused-font = 4
+label-visible-font = 5
+label-unfocused-font = 6
+
+label-mode-foreground = #0000FF
+label-mode-background = #222222
+
+label-focused = %name%
+label-visible = %name%
+label-unfocused = %name%
+
+label-separator = "  "
+
+
+format = <label-state> <label-mode>
+
+index-sort = true
+wrapping-scroll = false
+
+pin-workspaces = true
+label-focused-inactive-background = #00FF00
+
+label-urgent = %index%
+label-urgent-padding = 1
+
+
+;-----------------------memory-------------------------------------------------;
+;-----------------------memory-------------------------------------------------;
+;-----------------------memory-------------------------------------------------;
+;-----------------------memory-------------------------------------------------;
+[module/memory]
+type = internal/memory
+interval = 2
+label-font = 7
+; format-prefix = " "
+; format-prefix-foreground = ${colors.foreground-alt}
+label-foreground = ${colors.mem1}
+;format-underline = #4bffdc
+label = %percentage_used%%
+
+;-----------------------cpu----------------------------------------------------;
+;-----------------------cpu----------------------------------------------------;
+;-----------------------cpu----------------------------------------------------;
+;-----------------------cpu----------------------------------------------------;
+[module/cpu]
+type = internal/cpu
+interval = 2
+
+label-mode-foreground = #0000FF
+label = %percentage:2%%
+label-font = 8
+label-foreground = ${colors.cpu1}
+
+; label-visible-font = 5
+; label-unfocused-font = 6
+; format-underline = #f90000
+; format-prefix = " "
+; format-prefix-foreground = ${colors.foreground-alt}
+
+[module/eth]
+type = internal/network
+interface = wg-mullvad
+interval = 3.0
+
+; format-connected-underline = #55aa55
+; format-connected-prefix = " "
+; format-connected-prefix-foreground = ${colors.foreground-alt}
+; label-connected = %local_ip%
+
+; format-disconnected =
+; format-disconnected = <label-disconnected>
+; format-disconnected-underline = ${self.format-connected-underline}
+; label-disconnected = %ifname% disconnected
+; label-disconnected-foreground = ${colors.foreground-alt}
+
+;-----------------------date---------------------------------------------------;
+;-----------------------date---------------------------------------------------;
+;-----------------------date---------------------------------------------------;
+;-----------------------date---------------------------------------------------;
+[module/date]
+type = internal/date
+interval = 5
+
+date = "%Y:%m:%d"
+;date-alt = "%Y-%m-%d"
+
+label-font = 7
+label-foreground = #AAAAAA
+
+time = %H:%M
+time-alt = %H:%M:%S
+;format-prefix = 
+;format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = #0a6cf5
+
+;label = %time% %date%
+label = %date%
+
+label-padding = 1
+
+;-----------------------TIME---------------------------------------------------;
+;-----------------------TIME---------------------------------------------------;
+;-----------------------TIME---------------------------------------------------;
+;-----------------------TIME---------------------------------------------------;
+[module/TimeEST_US]
+type = internal/date
+interval = 1
+time = %H:%M:%S
+label = %time%
+label-foreground = #777777
+label-font = 7
+label-padding = 1
+
+[module/TimeEST]
+type = custom/script
+interval = 1
+exec = TZ=America/Indiana/Indianapolis date +"%Y-%m-%d - %H:%M"
+label-foreground = #FFFFFF
+label-padding = 5
+
+[module/TimeUTC]
+type = custom/script
+interval = 1
+exec = TZ=UTC date +"%Y-%m-%d - %H:%M"
+label-foreground = #999999
+label-padding = 5
+
+[module/TimeGMT_UK]
+type = internal/date
+interval = 1
+time = %H:%M:%S
+label = %time%
+label-foreground = #777777
+label-font = 7
+label-padding = 1
+
+;-----------------------PULSEAUDIO---------------------------------------------;
+;-----------------------PULSEAUDIO---------------------------------------------;
+;-----------------------PULSEAUDIO---------------------------------------------;
+;-----------------------PULSEAUDIO---------------------------------------------;
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL %percentage%%
+label-volume-foreground = ${color.cpu1}
+
+label-muted = 🔇 muted
+label-muted-foreground = #666
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+;-----------------------POWERMENU----------------------------------------------;
+;-----------------------POWERMENU----------------------------------------------;
+;-----------------------POWERMENU----------------------------------------------;
+;-----------------------POWERMENU----------------------------------------------;
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = Power
+label-open-foreground = ${colors.secondary}
+label-close = cancel
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+;-----------------------WM-----------------------------------------------------;
+;-----------------------WM-----------------------------------------------------;
+;-----------------------WM-----------------------------------------------------;
+;-----------------------WM-----------------------------------------------------;
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+;vim:ft=dosini
+
+;-----------------------SETTINGS-----------------------------------------------;
+;-----------------------SETTINGS-----------------------------------------------;
+;-----------------------SETTINGS-----------------------------------------------;
+;-----------------------SETTINGS-----------------------------------------------;
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+pseudo-transparency = false
+
+
+
+
+
+
+;llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll;
+;llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll;
+;llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll;
+;llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll;
+
+[bar/example]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 27
+;offset-x = 1%
+;offset-y = 1%
+radius = 6.0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 4
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = fixed:pixelsize=10;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=10;1
+
+modules-left = bspwm i3
+modules-center = mpd
+modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
+
+tray-position = right
+tray-padding = 3
+;tray-background = #0063ff
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+;------------------------------------------------------------------;
+;-------------------xwindow----------------------------------------;
+;------------------------------------------------------------------;
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+;------------------------------------------------------------------;
+;-------------------xkeyboard--------------------------------------;
+;------------------------------------------------------------------;
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+;format-prefix-underline = ${colors.secondary}
+
+label-layout = %layout%
+;label-layout-underline = ${colors.secondary}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.secondary}
+;label-indicator-underline = ${colors.secondary}
+
+;------------------------------------------------------------------;
+;-------------------filesystem-------------------------------------;
+;------------------------------------------------------------------;
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format = <label> <bar>
+label = BL
+
+bar-width = 10
+bar-indicator = |
+bar-indicator-foreground = #fff
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground-alt}
+
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
+
+
+;------------------------------------------------------------------;
+;----------------------ALSA----------------------------------------;
+;------------------------------------------------------------------;
+[module/alsa]
+type = internal/alsa
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = sound muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+

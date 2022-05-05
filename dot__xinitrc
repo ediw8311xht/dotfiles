@@ -68,7 +68,7 @@ exec $(get_session i3wm)
 setxkbmap -option caps:escape
 
 # exec --no-startup-id 'picom --config ~/.config/picom/picom.conf'
-xset r rate 200 20
+xset r rate 200 40
 xset -dpms
 xmodmap -e "keycode 133 = 0x007e 0x0060	0x007e 0x0060" 
 

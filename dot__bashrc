@@ -91,6 +91,8 @@ if ${use_color} ; then if type -P dircolors >/dev/null ; then
 	    z_e='\[\e[00;01m\]'         ;    z_f=':\w/:>'        ;    z_g='\[\e[0m\]'             
 		z_h='$(xspec 8 \w)'         ;    z_y='\[\e[00;32m\]' ;    z_z='\[\e[00;32m\]'
 		PS1=" ${z_y}|${z_z}"'\w'"${z_y}|:> ${z_g}"
+		#PS1='\[\033[01;38m\][\h\[\033[01;38m\] \W\[\033[01;38m\]]\$\[\033[00m\] '
+		#PS1='\u@\h \W \$ '
 	fi
 	alias ls='ls --color=auto'
 	alias grep='grep --colour=auto'
@@ -135,28 +137,59 @@ shopt -s expand_aliases
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
 
+
+
+
+#xdg-mime default nvim.desktop text/plain
+
 # --------------------------------------------------------------------- #
 # `FUNCTIONS`															#
 # --------------------------------------------------------------------- #
-acheck() 	{	compgen -c  | grep -x "${1}"                         ; }
+kn()		{ 
+	z="${IFS}"; IFS=$'\n'
+	ns=($(echo "$(grep -Pi '^ [0-9]+\K.*'"${1}"'.*$' <<< $(ps ax))"))
+	echo "MATCHES GOT: ${#ns[@]}"
+	echo "${ns[*]}"
+}
+acheck() 	{	
+	while [[ -n "${1}" ]] ; do
+		  compgen -c  | grep -x "${1}"; shift
+	done									 			 			 ; }
+pf() 		{   find 		  "${2:-"$HOME"}" | grep -Pi "${1}"   	 ; }
 nifs() 		{ 	IFS=$'\n'   ; printf "IFS=%q" "${IFS}"; echo ""		 ; }
 rifs() 		{ 	IFS=$' \t\n'; printf "IFS=%q" "${IFS}"; echo "" 	 ; }
 ppifs()		{ 	              printf "IFS=%q" "${IFS}"; echo "" 	 ; }
 pifs() 		{ 	              printf     "%q" "${IFS}"; echo ""	     ; }
-cop() 	    {                   echo "XSEL CLIP: $(xsel -bi)"	     ; }
-pas() 	    {                   echo "$(xsel -bo)"					 ; }
+cop() 	    {   xsel -bi 		 <<< "$@"			  ;	xsel -bo	 ; }
+pas() 	    {   xsel -bo					 						 ; }
 pasta()     {   cat              <<< $(pas)			  			     ; }
 kad() 	    {   docker          kill $(docker ps -q) 				 ; }
 rad() 	    {   docker            rm $(docker ps -a -q)				 ; }
-pf() 		{   
-	if [[ -z "${2}" ]] ; then 	
-	   find "${HOME}" -iname "*"  | grep -Pi "${1}"
-	else					  	
-	   find    "${1}" -iname "*"  | grep -Pi "${2}"      
-	fi													             ; }
+my_cd()		{	
+	if   [[ "${1}" = '-g' ]] ; then
+		cd '/'; cd "$(find . -type d 2>/dev/null| fzf --preview="ls -1 {}" )"
+	elif [[ -z "$@" 	  ]] ; then
+				cd "$(find . -type d 2>/dev/null| fzf --preview="ls -1 {}" )"
+	else
+				cd "$@" 
+	fi			 	 
+}
+
+#f() 	    {   
 # --------------------------------------------------------------------- #
 # `ALIASES`															    #
 # --------------------------------------------------------------------- #
+#__
+
+alias	          cd="my_cd"
+alias 			  fl="pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
+alias 			 fle='pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
+alias 			 flg="pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
+alias	           x="cd /"
+alias		       h="cd $HOME"
+alias	           f="fzf"
+alias			  fn='nvim $(fzf --preview="nvim {}")'
+alias		      fo='xdg-open $(fzf --preview="nvim {}")'
 alias	        sudo='sudo '
 alias             cp="cp -i"                          
 alias             df='df -h'                         
@@ -169,6 +202,7 @@ alias	         rmi='rm -i'
 alias	         pdf="zathura"
 alias	         i3c="i3 -C $HOME/.i3/config"
 alias	         ren="perl-rename -v -n"
+alias	         ren="perl-rename -v -n"
 alias	        reni="perl-rename -i"
 alias	          tr="trash-put -i"
 alias	       pacse='echo ""; pacman -Ss'
@@ -180,37 +214,35 @@ alias	        paci='echo ""; pacman -Si'
 alias	       yayil='echo ""; yay -Qi'
 alias	       pacil='echo ""; pacman -Qi'
 alias	         snv="sudoedit"
-alias	         img="nsxiv"
+alias	          ni="nsxiv -0"
+alias	           i="nsxiv -0 ."
+alias	         img="nsxiv -0"
+alias	        nimg="nsxiv -0 ."
 alias	          ic="clear; imgcat"
 alias	           c="clear"
-alias	           f="fzf"
 alias	         ldi="fdisk -l -o +uuid"
 alias 			szof="du -ahc --time --max-depth=1"
 alias		     lsd="ls -lh"
 alias		     lst="ls -ltrh"
 alias		     lsz="ls -lSrh"
-alias		    lsad="ls -larh"
-alias		    lsat="ls -latrh"
-alias		    lsaz="ls -laSrh"
-alias		     psg="ps ax | grep --ignore-case"
-alias		     psp="ps ax | grep --perl-regexp --ignore-case"
 alias		      pe="ps -eo comm=,"
 alias		      po="ps -eo cmd=,"
+alias			 psg="ps ax | grep -Pi"
 alias		     pse="ps -eo comm=, | grep --ignore-case"
 alias		     pso="ps -eo cmd=, | grep --ignore-case"
 alias		     tre="ps -ejH"
 alias		    trev="ps axjf"
 alias		    tres="ps -eHo euser,ruser,suser,fuser,f,comm,label"
-alias		      gr="grep --perl-regexp --ignore-case"
-alias		     grd="grep --ignore-case"
+alias		       g="grep --perl-regexp --ignore-case"
+alias		      gr="grep --ignore-case"
 alias		      nv="nvim"
 alias		       r="lf"
 alias		       l="lf"
-alias		       g="gvim"
 alias		    scim="sc-im"
 alias		      qs="ssh tesmond@45.77.222.97"
 alias		       h="cd $HOME"
 alias		     vid="cd $HOME/Videos/"
+alias		     vids="cd $HOME/Videos/"
 alias		     aud="cd $HOME/Audio/"
 alias		    desk="cd $HOME/Desktop/"
 alias		    code="cd $HOME/Desktop/Coding/"
@@ -218,18 +250,27 @@ alias		    docs="cd $HOME/Documents/"
 alias		   notes="cd $HOME/Documents/Notepad/"
 alias		    prof="cd $HOME/Documents/PROF_AND_WORK/"
 alias		    pics="cd $HOME/Pictures/"
+alias		    ebay="cd $HOME/Pictures/PHOTOS_EBAY/"
+alias			prof="cd $HOME/Documents/PROF_AND_WORK/"
+alias		    bael="cd $HOME/Documents/PROF_AND_WORK/BAELDUNG/"
+alias		       d="cd $HOME/Documents/PROF_AND_WORK/BAELDUNG/BAELDUNG_DOCS/"
 alias		    down="cd $HOME/Downloads/"
 alias		       b="cd $HOME/bin/"
 alias		      br="cd $HOME/bin/random/"
 alias		      bp="cd $HOME/bin/personal/"
+alias		       z="cd $HOME/SLINKS/"
 alias		     lib="cd /mnt/ad/"
-alias		       x="cd /mnt/ad/Library/"
 alias 		       p="cd /mnt/ad/Library/Programming/"
+#use sudo with this command
+alias		     phone="aft-mtp-cli"
 alias		     upl="cd /mnt/od/"
-alias		     six="cd /mnt/ud/"
+alias		     mud="cd /mnt/ud/"
+alias		    med1="cd /mnt/ed1/"
 alias		    med1="cd /mnt/ed1/"
 alias		    med2="cd /mnt/ed2/"
 alias		    med3="cd /mnt/ed3/"
+alias		    prog="cd /mnt/ed3/LINKLIBRARY/Library/Programming/"
+alias		    linkl="cd /mnt/ed3/LINKLIBRARY/Library/"
 alias		    esrc="cd /mnt/ed3/KNOWLEDGE_STANDARDS_FOUNDATION/encyclocrawler/src/main/java/org/encyclosphere/encyclocrawler/"
 alias		   asrc2="cd /mnt/ed3/KNOWLEDGE_STANDARDS_FOUNDATION/encyclocrawler/src/main/java/org/encyclosphere/encyclocrawler/crawlers/"
 alias		     ksf="cd /mnt/ed3/KNOWLEDGE_STANDARDS_FOUNDATION"
@@ -265,6 +306,7 @@ export           PYTHONPATH="${PYTHONPATH}:/usr/bin/python3"
 export           AUTOBACKUP="/mnt/ed3/"
 export QT_QPA_PLATFORMTHEME=qt5ct
 export      FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export			 LESS=""
 #    export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 # --------------------------------------------------------------------- #
 # `PATH`																#
@@ -279,9 +321,11 @@ if  [ -d "$HOME/Desktop/Coding/pyprog"   ] ; 	then PATH="$HOME/Desktop/Coding/py
 if  [ -d "$HOME/Documents/Documentation" ] ; 	then PATH="$HOME/Documents/Documentation:$PATH"  ; 	fi
 if  [ -d "/etc/systemd/user" 			 ] ; 	then PATH="/etc/systemd/user:$PATH"              ; 	fi
 
-set -o vi
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # --------------------------------------------------------------------- #
+
 # `END` 																#
 # --------------------------------------------------------------------- #
+set -o vi
+
