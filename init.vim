@@ -5,9 +5,10 @@ let g:mapleader = ","
 let mapleader = ","
 let maplocalleader = ","
 
-let &t_SI = "\<Esc>[4 q"
+let &t_SI = "\<Esc>[4 q" 
 let &t_EI = "\<Esc>[2 q"
 
+set t_Co=256
 "let g:powerline_pycmd="py3"
 set nocompatible
 set modelines=0
@@ -23,7 +24,7 @@ set shiftwidth=4
 set clipboard=unnamedplus
 set timeoutlen=50
 set ttimeoutlen=5
-"set laststatus=2
+"set laststatus=3
 set autoindent
 
 set backup
@@ -34,9 +35,10 @@ set dir=~/.mynvim/swapfiles
 set backupdir=~/.mynvim/backupfiles
 set undodir=~/.mynvim/undo_dir
 set timeout 
-set timeoutlen=1000
+set timeoutlen=700
 set ttimeoutlen=0
-	
+
+"colorscheme mustang
 "let g:airline_powerline_fonts = 1
 " Enable Autocompletion
 set wildmode=longest,list,full
@@ -45,10 +47,10 @@ syntax on
 " Disables Autocomment
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-augroup myCmds
-au!
-autocmd VimEnter * silent !echo -ne "\e[2 q"
-augroup END
+"augroup myCmds
+"au!
+"autocmd VimEnter * silent !echo -ne "\e[2 q"
+"augroup END
 
 
 "let g:ale_lint_on_save = 1
@@ -72,95 +74,102 @@ Plug 'romgrk/github-light.vim'
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
 "Plug 'https://github.com/powerline/powerline.git'
-"Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
 call plug#end()
 
 
-function! MyW()
-	:set wrap!
-	:redraw!
-endfunction
-
-"function! MyC()
-"	if &l:colorscheme == eldar
-"		colorscheme github-light
-"	end
-"endfunction
-
-":call MyC()
-
+"set background=light
+"set cursorline 
+"MAKE SURE COLORSCHEME IS ABOVE CTERM BG
 colorscheme eldar
 
-"nnoremap <leader>l :lua require('material.functions').toggle_style()<CR>
-let b:coc_diagnostic_disable=1
-
-"hi Normal guibg=NONE ctermbg=NONE
-
-" format error strings
-hi CursorLineNr guifg=#00FF00
-set cursorline
-" hi CursorLine 		cterm=Reverse term=Reverse ctermbg=17 ctermfg=30
-hi CursorLine 		term=Bold cterm=Bold ctermbg=18
-set cursorcolumn
-hi cursorcolumn 	gui=Bold cterm=Bold ctermbg=0
-" hi CursorColumn 	ctermfg=31 ctermbg=0
-" hi cursorcolumn 	cterm=Reverse			ctermbg=9
-
-
-set nowrap
-set number
-"set textwidth=0
-"set wrapmargin=0
-"set linebreak 
-"set columns=80 
-
-"function! TzWrap() 
-"	if &l:wrap == 0
-"		set textwidth=0
-"		set wrapmargin=0
-"		set linebreak 
-"		set columns=80 
-"		set colorcolumn=80
-"		set wrap!
-"		redraw!
-"	else
-"		set colorcolumn=0
-"		set wrap!
-"		redraw!
-"	endif
-"endfunction
-
-"nnoremap <space> :NERDTree<enter>
-
-function! MyW()
-	:set wrap!
-	:redraw!
+function! ToggleScheme()
+	if g:colors_name == 'eldar'
+		colorscheme github-light
+	else 
+		colorscheme eldar
+	end
 endfunction
 
-nnoremap <F3> :call MyW()<esc>
 
-"xnoremap <esc> i:q
+function! ToggleWrap()
+	if &colorcolumn == ""
+		:set colorcolumn=80
+		:set wrap
+	else
+		:set colorcolumn=
+		:set nowrap
+	end
+	:redraw
+endfunction
+
+function! ExecuteFunc()
+	if &colorcolumn == ""
+		:set colorcolumn=80
+		:set wrap
+	else
+		:set colorcolumn=
+		:set nowrap
+	end
+	:redraw
+endfunction
 
 nnoremap <silent> <esc> :noh<cr><esc>
 
-nnoremap <Leader>m iHello Me
+"------------------------------------------LEFT_HAND
+nnoremap <leader>f :call ToggleWrap()<esc>
 
-"au BufReadPost $HOME/.i3/config set syntax=i3config.vim
+nnoremap <leader>w :w<esc>
+
+nnoremap <leader>s :%so "${HOME}/.config/nvim/init.vim"<esc>
+
+nnoremap <leader>x :!%<esc>
+
+nnoremap <leader>d qd<esc>
+
+nnoremap <leader><leader> @d<esc>
+
+nnoremap <leader>c :set nocursorline!<esc>
+
+nnoremap <leader>e :set nocursorcolumn!<esc>
+
+"-----------------------------------------RIGHT_HAND
+
+nnoremap <leader>j :call ToggleScheme()<CR>
+
+nnoremap <leader>l :lua require('material.functions').toggle_style()<CR>
+
+nnoremap <leader>. :NERDTreeToggle<esc>
+
+nnoremap <leader>. :NERDTreeToggle<esc>
+"nnoremap <leader><leader> <esc>
+
+highlight clear LineNr 
+set cursorline
+hi cursorline 		cterm=undercurl
+"hi cursorline 		cterm=undercurl
+set nocursorcolumn
+hi cursorcolumn 	cterm=bold ctermfg=none ctermbg=none
+"hi columnline
+
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" map <silent> <Leader>s ah
+let b:coc_diagnostic_disable=1
 
-set statusline=
+set statusline=\ 
 set statusline+=%f\ 
-set statusline+=%m
-set statusline+=\ 
+set statusline+=[%4l]
+set statusline+=[%4v]
+set statusline+=%m\ 
+
 set statusline+=%=
-set statusline+=\|\  
+set statusline+=\  
 set statusline+=%L
-set statusline+=\ l
-set statusline+=\ \|\ 
+set statusline+=\ l,
+set statusline+=\ 
 set statusline+=%{wordcount().words}
 set statusline+=\ w\ 
-set statusline+=\|
 
+"------------ DON'T DELETE FOR REFERENCE------"
+" possible to toggle cursorcolumn, 
+" set cursorcolumn! or set nocursorcolumn
