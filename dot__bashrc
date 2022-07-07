@@ -37,19 +37,12 @@ my_cd()		{
 	fi			 	 
 }
 vid()		{	
-	while    [[ "${1}" =~ ^-             ]] ; do
-		if   [[ "${1}" =~ ^-[m]?k[v]?$ 	 ]] ; then
-			mpv *.mkv & disown	; return 0
-		elif [[ "${1}" =~ ^-[m]?p[4]?$   ]] ; then
-			mpv *.mp4 & disown	; return 0
-		elif [[ "${1}" =~ ^-a(ll)?$      ]] ; then
-			mpv $1    & disown  ; return 0
-		fi
+	while [[ "${1}" =~ ^- ]] ; do
 		shift
 	done
-	if [[ -n "${1}" ]] ; then mpv "${1}"      & disown
-	else                      mpv *.mkv *.mp4 & disown; fi
-	return 0
+	if [[ -n "${1}" ]] ; then mpv "${@}"      & disown; return 0
+	else                      mpv *			  & disown; return 0; fi
+	return 1
 }
 
 pf() 		{   find 		  "${2:-"$HOME"}" | grep -Pi "${1}"   	 ; }
@@ -134,16 +127,16 @@ alias		   red='      cd $HOME/CREAD/'
 alias		   desk='     cd $HOME/Desktop/'
 alias		   code='     cd $HOME/Desktop/Coding/'
 alias		   docs='     cd $HOME/Documents/'
-alias		   scrap='     cd $HOME/Documents/SCRAPED'
+alias		   scrap='    cd $HOME/Documents/SCRAPED'
 alias		   notes='    cd $HOME/Documents/Notepad/'
 alias	       prof='     cd $HOME/Documents/PROF_AND_WORK/'
 alias	       bael='     cd $HOME/Baeldung/'
-alias	       a='     	  nv $HOME/Baeldung/ARTICLES_ME/changing_primary_monitor_in_x_wayland.txt'
 alias	       art='      cd $HOME/Baeldung/ARTICLES_ME'
 alias	       down='     cd $HOME/Downloads/'
 alias	       pics='     cd $HOME/Pictures/'
 alias	       ebay='     cd $HOME/Pictures/PHOTOS_EBAY/'
 alias	       vids='     cd $HOME/Videos/'
+alias		   gmp='	  cd $HOME/Pictures/my_gimp_stuff/'
 alias		   lib='      cd /mnt/ad/'
 alias		   upl='      cd /mnt/od/'
 alias		   mud='      cd /mnt/ud/'
@@ -153,6 +146,12 @@ alias		   med2='     cd /mnt/ed2/'
 alias		   med3='     cd /mnt/ed3/'
 alias		   linkl='    cd /mnt/ed3/LINKLIBRARY/Library/'
 alias		   prog='     cd /mnt/ed3/LINKLIBRARY/Library/Programming/'
+
+
+# --------------------------------------------------------------------- #
+# `TEMP`															    #
+# --------------------------------------------------------------------- #
+alias	       a='     	  cd /home/maceurt/Baeldung/BAELDUNG_ARTICLE_ConnecttoaBluetoothDeviceviaTerminal; nv my_article_bluetooth.txt'
 
 # --------------------------------------------------------------------- #
 # `MY_WEBSITE`															#
@@ -189,6 +188,7 @@ if  [ -d "$HOME/bin/personal" 			                 ] ;    then PATH="$HOME/bin/pe
 if  [ -d "$HOME/bin/personal" 			                 ] ; 	then PATH="$HOME/bin/personal:$PATH"			                             ; 	fi 
 if  [ -d "$HOME/bin/ufw"      			                 ] ; 	then PATH="$HOME/bin/ufw:$PATH"     			                             ; 	fi
 if  [ -d "$HOME/bin/random"   			                 ] ; 	then PATH="$HOME/bin/random:$PATH"  			                             ; 	fi
+if  [ -d "$HOME/Desktop/MY_APPS"                   		 ] ; 	then PATH="$HOME/Desktop/MY_APPS:$PATH"                                		 ; 	fi
 if  [ -d "$HOME/Desktop/Coding/pyprog"                   ] ; 	then PATH="$HOME/Desktop/Coding/pyprog:$PATH"                                ; 	fi
 #if  [ -d "$HOME/Documents/Documentation"                 ] ; 	then PATH="$HOME/Documents/Documentation:$PATH"                               ; 	fi
 if  [ -d "/etc/systemd/user" 			                 ] ; 	then PATH="/etc/systemd/user:$PATH"                                          ; 	fi

@@ -76,12 +76,13 @@ font-12 	=  	Hack:pixelsize=10;3
 
 
 ;modules-center = date TimeEST_US TimeUTC
-modules-center = TimeUTC TimeEST
+modules-center = TimeEST 
 ;modules-center = date TimeEST_US TimeGMT_UK
 
 modules-left = i3
 ;modules-right =  temp1 temp2 memory cpu pulseaudio
-modules-right =  pulseaudio
+
+modules-right = TimeUTC2 TimePDT pulseaudio
 ;modules-right = filesystem pulseaudio xkeyboard memory cpu eth battery temperature date powermenu
 
 ;tray-position = left
@@ -320,12 +321,28 @@ label-padding = 1
 ;-----------------------TIME---------------------------------------------------;
 ;-----------------------TIME---------------------------------------------------;
 ;-----------------------TIME---------------------------------------------------;
+[module/TimePDT]
+type = custom/script
+interval = 1
+exec = TZ=PST8PDT date +"(PDT)%H:%M"
+;label = %time%
+label-foreground = #999999
+label-padding = 5
+label-font = 7
+
+[module/TimeUTC2]
+type = custom/script
+interval = 1
+exec = TZ=UTC date +"(UTC)%H:%M"
+label-foreground = #999999
+label-padding = 1
+
 [module/TimeEST_US]
 type = internal/date
 interval = 1
 time = %H:%M:%S
 label = %time%
-label-foreground = #777777
+label-foreground = #00FF09
 label-font = 7
 label-padding = 1
 

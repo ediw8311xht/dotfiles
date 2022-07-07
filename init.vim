@@ -5,15 +5,15 @@ let g:mapleader = ","
 let mapleader = ","
 let maplocalleader = ","
 
-let &t_SI = "\<Esc>[4 q" 
-let &t_EI = "\<Esc>[2 q"
+set termguicolors
+"let &t_SI = "\<ESC>[3 q" 
+"let &t_EI = "\<ESC>[4 q" 
 
 set t_Co=256
-"let g:powerline_pycmd="py3"
 set nocompatible
 set modelines=0
-set number
-set relativenumber
+set nu
+set rnu
 set ruler
 set encoding=utf-8
 set nowrap
@@ -22,9 +22,6 @@ set formatoptions=tcqrn1
 set tabstop=4
 set shiftwidth=4
 set clipboard=unnamedplus
-set timeoutlen=50
-set ttimeoutlen=5
-"set laststatus=3
 set autoindent
 
 set backup
@@ -38,15 +35,118 @@ set timeout
 set timeoutlen=700
 set ttimeoutlen=0
 
-"colorscheme mustang
-"let g:airline_powerline_fonts = 1
-" Enable Autocompletion
 set wildmode=longest,list,full
 
 syntax on
-" Disables Autocomment
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+call plug#begin()
+Plug 'godlygeek/tabular'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'marko-cerovac/material.nvim'
+Plug 'agude/vim-eldar'
+Plug 'romgrk/github-light.vim'
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
+call plug#end()
+
+"MAKE SURE COLORSCHEME IS ABOVE CTERM BG
+colorscheme eldar
+
+set guicursor=n:block90,i:ver20
+function! ToggleScheme()
+	if g:colors_name == 'eldar'
+		colorscheme elflord
+		"highlight Normal guibg=darkgrey ctermbg=darkgrey ctermfg=0
+		hi cursorline gui=bold guifg=none guibg=#444444
+		hi cursorcolumn 	cterm=bold ctermfg=none ctermbg=none
+		highlight LineNr guibg=#444444 guifg=white
+	elseif g:colors_name == 'elflord'
+		colorscheme morning
+		highlight Normal guibg=lightgray ctermbg=darkgrey ctermfg=0
+		hi cursorline gui=bold guifg=none guibg=#BBBBBB
+		highlight LineNr guibg=#444444 guifg=white
+	elseif g:colors_name == 'morning'
+		colorscheme material
+		let g:material_style = "oceanic"
+		hi cursorline gui=bold guifg=none guibg=black cterm=bold ctermfg=none ctermbg=18
+		highlight LineNr guifg=white
+	else 
+		colorscheme eldar
+		set cursorline
+		hi cursorline gui=bold guifg=none guibg=darkblue cterm=bold ctermfg=none ctermbg=18
+		set nocursorcolumn
+		highlight LineNr guibg=#000000 guifg=darkgrey
+	end
+	syntax on
+endfunction
+
+set cursorline
+hi cursorline 		gui=bold guifg=none guibg=darkblue cterm=bold ctermfg=none ctermbg=18
+set nocursorcolumn
+hi cursorcolumn 	cterm=italic,bold ctermfg=none ctermbg=none gui=underline guifg=none guibg=none
+set splitright
+highlight LineNr guibg=#111111 guifg=darkgrey
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+function! ToggleWrap()
+	if &wrap == ""
+		":set colorcolumn=80
+		:set wrap
+	else
+		":set colorcolumn=
+		:set nowrap
+	end
+	:redraw
+endfunction
+
+function! ToggleCColumn()
+	if &cursorline == ""
+		set cursorline!
+	elseif &cursorline == ""
+		set cursorline!
+	else
+		set cursorline!
+	end
+endfunction
+
+function! ExecuteFunc()
+	echo &highlight Normal
+endfunction
+
+nnoremap x "xx
+
+nnoremap <silent> <esc> :noh<cr><esc>
+nnoremap <leader> :<backspace>
+
+nnoremap <leader>. :NERDTreeToggle<esc>
+nnoremap <leader>c :set nocursorline!<esc>
+nnoremap <leader>e :set cursorcolumn!<esc>
+nnoremap <leader>f :call ToggleWrap()<esc>
+nnoremap <leader>h :vert helpgrep 
+nnoremap <leader>j :call ToggleScheme()<CR>
+nnoremap <leader>l :lua require('material.functions').toggle_style()<CR>
+nnoremap <leader>n :cnext<esc>
+nnoremap <leader>q :wq<esc>
+nnoremap <leader>s :%so "${HOME}/.config/nvim/init.vim"<esc>
+nnoremap <leader>w :w<esc>
+nnoremap <leader>x :!%:p<esc>
+nnoremap <leader>z :!%<esc>
+
+nnoremap <leader>N :cprevious<esc>
+"nnoremap <leader><leader> :call ExecuteFunc()<esc>
+
+set statusline=\ %f\ \|
+set statusline+=\%l\(%L\)\|%V\ 
+set statusline+=%m\ 
+set statusline+=%=\ %L\ l,\ 
+set statusline+=%{wordcount().words}\ w\ 
+
+"------------ DON'T DELETE FOR REFERENCE------"
+" possible to toggle cursorcolumn, 
+" set cursorcolumn! or set nocursorcolumn
+"-------------------SETBACKGROUND-AND-FOREGROUND--------------"
+" highlight Normal ctermfg=grey ctermbg=darkblue
 "augroup myCmds
 "au!
 "autocmd VimEnter * silent !echo -ne "\e[2 q"
@@ -59,14 +159,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " show number of errors
 "set statusline+=\ %{LinterStatus()}
 
-
-call plug#begin()
-Plug 'godlygeek/tabular'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'marko-cerovac/material.nvim'
-Plug 'agude/vim-eldar'
-Plug 'romgrk/github-light.vim'
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'ray-x/starry.nvim'
 "Plug 'bignimbus/pop-punk.vim'
 "Plug 'dense-analysis/ale'
@@ -74,102 +167,5 @@ Plug 'romgrk/github-light.vim'
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
 "Plug 'https://github.com/powerline/powerline.git'
-call plug#end()
 
-
-"set background=light
-"set cursorline 
-"MAKE SURE COLORSCHEME IS ABOVE CTERM BG
-colorscheme eldar
-
-function! ToggleScheme()
-	if g:colors_name == 'eldar'
-		colorscheme github-light
-	else 
-		colorscheme eldar
-	end
-endfunction
-
-
-function! ToggleWrap()
-	if &colorcolumn == ""
-		:set colorcolumn=80
-		:set wrap
-	else
-		:set colorcolumn=
-		:set nowrap
-	end
-	:redraw
-endfunction
-
-function! ExecuteFunc()
-	if &colorcolumn == ""
-		:set colorcolumn=80
-		:set wrap
-	else
-		:set colorcolumn=
-		:set nowrap
-	end
-	:redraw
-endfunction
-
-nnoremap <silent> <esc> :noh<cr><esc>
-
-"------------------------------------------LEFT_HAND
-nnoremap <leader>f :call ToggleWrap()<esc>
-
-nnoremap <leader>w :w<esc>
-
-nnoremap <leader>s :%so "${HOME}/.config/nvim/init.vim"<esc>
-
-nnoremap <leader>x :!%<esc>
-
-nnoremap <leader>d qd<esc>
-
-nnoremap <leader><leader> @d<esc>
-
-nnoremap <leader>c :set nocursorline!<esc>
-
-nnoremap <leader>e :set nocursorcolumn!<esc>
-
-"-----------------------------------------RIGHT_HAND
-
-nnoremap <leader>j :call ToggleScheme()<CR>
-
-nnoremap <leader>l :lua require('material.functions').toggle_style()<CR>
-
-nnoremap <leader>. :NERDTreeToggle<esc>
-
-nnoremap <leader>. :NERDTreeToggle<esc>
-"nnoremap <leader><leader> <esc>
-
-highlight clear LineNr 
-set cursorline
-hi cursorline 		cterm=undercurl
-"hi cursorline 		cterm=undercurl
-set nocursorcolumn
-hi cursorcolumn 	cterm=bold ctermfg=none ctermbg=none
-"hi columnline
-
-
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-let b:coc_diagnostic_disable=1
-
-set statusline=\ 
-set statusline+=%f\ 
-set statusline+=[%4l]
-set statusline+=[%4v]
-set statusline+=%m\ 
-
-set statusline+=%=
-set statusline+=\  
-set statusline+=%L
-set statusline+=\ l,
-set statusline+=\ 
-set statusline+=%{wordcount().words}
-set statusline+=\ w\ 
-
-"------------ DON'T DELETE FOR REFERENCE------"
-" possible to toggle cursorcolumn, 
-" set cursorcolumn! or set nocursorcolumn
+"let b:coc_diagnostic_disable=1
