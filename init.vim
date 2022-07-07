@@ -40,7 +40,9 @@ set wildmode=longest,list,full
 syntax on
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+
 call plug#begin()
+Plug 'prettier/vim-prettier'
 Plug 'godlygeek/tabular'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'marko-cerovac/material.nvim'
@@ -48,12 +50,42 @@ Plug 'agude/vim-eldar'
 Plug 'romgrk/github-light.vim'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
+Plug 'dense-analysis/ale'
+Plug 'AndrewRadev/tagalong.vim'
+Plug 'sukima/xmledit'
+Plug 'windwp/nvim-autopairs'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'windwp/nvim-ts-autotag'
 call plug#end()
+
+
+lua << EOF
+require('nvim-ts-autotag').setup()
+require("nvim-autopairs").setup {}
+EOF
+
+let g:html_mode = 1
+let g:tagalong_verbose = 1
+
+let g:ale_fixers = {
+ \ 'html': ['prettier'],
+ \'css': ['stylelint'],
+ \ }
+let g:ale_linters = {
+ \ 'html': ['htmlhint'],
+ \ 'css': ['stylelint'],
+ \}
+let g:ale_linters_explicit = 1
+let g:ale_fix_on_save = 1
 
 "MAKE SURE COLORSCHEME IS ABOVE CTERM BG
 colorscheme eldar
 
 set guicursor=n:block90,i:ver20
+
+hi MatchParen cterm=none ctermbg=none ctermfg=none
+hi MatchParen gui=bold guifg=none guibg=grey
+
 function! ToggleScheme()
 	if g:colors_name == 'eldar'
 		colorscheme elflord
@@ -132,8 +164,16 @@ nnoremap <leader>s :%so "${HOME}/.config/nvim/init.vim"<esc>
 nnoremap <leader>w :w<esc>
 nnoremap <leader>x :!%:p<esc>
 nnoremap <leader>z :!%<esc>
-
 nnoremap <leader>N :cprevious<esc>
+
+" --------- TAB STUFF --------------#
+nnoremap <leader>tt :tabnew<esc>
+nnoremap <leader>tn :tabnext<esc>
+nnoremap <leader>tp :tabprevious<esc>
+nnoremap <leader>tm :tabmove
+"nnoremap <leader>to :tabonly<esc>
+"nnoremap <leader>tc :tabclose<esc>
+
 "nnoremap <leader><leader> :call ExecuteFunc()<esc>
 
 set statusline=\ %f\ \|
