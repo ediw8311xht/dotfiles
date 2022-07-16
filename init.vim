@@ -15,7 +15,13 @@ set modelines=0
 set nu
 set rnu
 set ruler
+
+"neoclide 
 set encoding=utf-8
+set hidden
+set updatetime=200
+"
+
 set nowrap
 set textwidth=0
 set formatoptions=tcqrn1
@@ -56,8 +62,9 @@ Plug 'sukima/xmledit'
 Plug 'windwp/nvim-autopairs'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'windwp/nvim-ts-autotag'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'VebbNix/lf-vim'
 call plug#end()
-
 
 lua << EOF
 require('nvim-ts-autotag').setup()
@@ -142,9 +149,17 @@ function! ToggleCColumn()
 	end
 endfunction
 
+"function! OpenAll()
+"
+"	for s in 
+"endfunction
+
 function! ExecuteFunc()
 	echo &highlight Normal
 endfunction
+
+"function! CocToggle()
+"	if 
 
 nnoremap x "xx
 
@@ -152,6 +167,7 @@ nnoremap <silent> <esc> :noh<cr><esc>
 nnoremap <leader> :<backspace>
 
 nnoremap <leader>. :NERDTreeToggle<esc>
+nnoremap <leader>b :Bracey<esc>
 nnoremap <leader>c :set nocursorline!<esc>
 nnoremap <leader>e :set cursorcolumn!<esc>
 nnoremap <leader>f :call ToggleWrap()<esc>
@@ -164,13 +180,20 @@ nnoremap <leader>s :%so "${HOME}/.config/nvim/init.vim"<esc>
 nnoremap <leader>w :w<esc>
 nnoremap <leader>x :!%:p<esc>
 nnoremap <leader>z :!%<esc>
+
+
 nnoremap <leader>N :cprevious<esc>
+nnoremap <leader>a :toggle:
+
 
 " --------- TAB STUFF --------------#
 nnoremap <leader>tt :tabnew<esc>
 nnoremap <leader>tn :tabnext<esc>
 nnoremap <leader>tp :tabprevious<esc>
+nnoremap <leader>tb :tabprevious<esc>
 nnoremap <leader>tm :tabmove
+
+
 "nnoremap <leader>to :tabonly<esc>
 "nnoremap <leader>tc :tabclose<esc>
 
@@ -181,6 +204,10 @@ set statusline+=\%l\(%L\)\|%V\
 set statusline+=%m\ 
 set statusline+=%=\ %L\ l,\ 
 set statusline+=%{wordcount().words}\ w\ 
+
+autocmd BufNewFile,BufRead ~/.config/polybar/config setfiletype dosini
+"autocmd BufNewFile,BufRead ~/.config/lf/lfrc setfiletype dosini
+
 
 "------------ DON'T DELETE FOR REFERENCE------"
 " possible to toggle cursorcolumn, 

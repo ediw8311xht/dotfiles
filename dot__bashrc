@@ -37,11 +37,15 @@ my_cd()		{
 	fi			 	 
 }
 vid()		{	
+	AUD="auto"
 	while [[ "${1}" =~ ^- ]] ; do
+		if [[ "${1}" =~ ^-mono ]] ; then
+			AUD="mono"
+		fi
 		shift
 	done
-	if [[ -n "${1}" ]] ; then mpv "${@}"      & disown; return 0
-	else                      mpv *			  & disown; return 0; fi
+	if [[ -n "${1}" ]] ; then mpv --audio-channels="${AUD}" "${@}" & disown; return 0
+	else                      mpv --audio-channels="${AUD}" *	     & disown; return 0; fi
 	return 1
 }
 
@@ -146,6 +150,7 @@ alias		   med2='     cd /mnt/ed2/'
 alias		   med3='     cd /mnt/ed3/'
 alias		   linkl='    cd /mnt/ed3/LINKLIBRARY/Library/'
 alias		   prog='     cd /mnt/ed3/LINKLIBRARY/Library/Programming/'
+alias		   bravehist='cd $HOME/.config/BraveSoftware/Brave-Browser/Default/'
 
 
 # --------------------------------------------------------------------- #
