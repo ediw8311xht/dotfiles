@@ -1,27 +1,33 @@
 
-filetype on
+"
+"             ----------------------
+"             | Vim Config         |
+"             | Maximilian Ballard |
+"             ----------------------
+"
 
+" --------- LET/SET -------------------------------------------------------->
+filetype on
 let g:mapleader = ","
 let mapleader = ","
 let maplocalleader = ","
+
 
 set termguicolors
 "let &t_SI = "\<ESC>[3 q" 
 "let &t_EI = "\<ESC>[4 q" 
 
+set splitright
 set t_Co=256
 set nocompatible
 set modelines=0
 set nu
 set rnu
 set ruler
-
 "neoclide 
-set encoding=utf-8
+"set encoding=utf-8
 set hidden
 set updatetime=200
-"
-
 set nowrap
 set textwidth=0
 set formatoptions=tcqrn1
@@ -29,7 +35,6 @@ set tabstop=4
 set shiftwidth=4
 set clipboard=unnamedplus
 set autoindent
-
 set backup
 set undofile
 set undolevels=1000
@@ -40,21 +45,28 @@ set undodir=~/.mynvim/undo_dir
 set timeout 
 set timeoutlen=700
 set ttimeoutlen=0
-
 set wildmode=longest,list,full
-
+set foldcolumn=auto:4
+set showmode
 syntax on
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+" --------- MY VARS -------------------------------------------------------->
 
+let g:myBg = ["none", "#000000",  "#333333", "#111111", "#220000", "#002200", "#000022", "#FFFFFF"]
+let g:myFg = [".", 	".", 	    ".",       ".",       ".",       ".",       ".",       "#000000"]
+
+
+"<--------- PLUGINS -------------------------------------------------------->
 call plug#begin()
-Plug 'prettier/vim-prettier'
-Plug 'godlygeek/tabular'
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'marko-cerovac/material.nvim'
 Plug 'agude/vim-eldar'
 Plug 'romgrk/github-light.vim'
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'marko-cerovac/material.nvim'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'VebbNix/lf-vim'
+Plug 'prettier/vim-prettier'
+Plug 'godlygeek/tabular'
 Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 Plug 'dense-analysis/ale'
 Plug 'AndrewRadev/tagalong.vim'
@@ -63,8 +75,11 @@ Plug 'windwp/nvim-autopairs'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'windwp/nvim-ts-autotag'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'VebbNix/lf-vim'
+Plug 'https://github.com/vim-scripts/restore_view.vim',
+Plug 'rakr/vim-one'
 call plug#end()
+
+"<--------- LUA ------------------------------------------------------------>
 
 lua << EOF
 require('nvim-ts-autotag').setup()
@@ -73,9 +88,7 @@ EOF
 
 let g:html_mode = 1
 let g:tagalong_verbose = 1
-
 let g:ale_fixers = {
- \ 'html': ['prettier'],
  \'css': ['stylelint'],
  \ }
 let g:ale_linters = {
@@ -85,50 +98,87 @@ let g:ale_linters = {
 let g:ale_linters_explicit = 1
 let g:ale_fix_on_save = 1
 
-"MAKE SURE COLORSCHEME IS ABOVE CTERM BG
+
+"<--------- COLOR SCHEME STUFF --------------------------------------------->
+augroup MyColors
+    autocmd!
+    autocmd ColorScheme * highlight Visual cterm=NONE ctermbg=none ctermfg=16 gui=NONE guibg=#333333 guifg=#00FF00
+                      \ | highlight StatusLine cterm=NONE ctermbg=none ctermfg=160 gui=NONE guibg=#222222 guifg=#009900
+                      \ | highlight Normal cterm=NONE ctermbg=17 gui=NONE guibg=none
+                      \ | highlight NonText cterm=NONE ctermbg=17 gui=NONE guibg=none
+	                  \ | highlight LineNr			   guibg=none guifg=#0088F3
+augroup END
+
+" -!!!!!!!- MAKE SURE COLORSCHEME IS ABOVE CTERM BG
 colorscheme eldar
 
 set guicursor=n:block90,i:ver20
 
+hi CocSearch ctermfg=none guifg=none
+hi CocMenuSel ctermbg=none guibg=none
 hi MatchParen cterm=none ctermbg=none ctermfg=none
-hi MatchParen gui=bold guifg=none guibg=grey
-
-function! ToggleScheme()
-	if g:colors_name == 'eldar'
-		colorscheme elflord
-		"highlight Normal guibg=darkgrey ctermbg=darkgrey ctermfg=0
-		hi cursorline gui=bold guifg=none guibg=#444444
-		hi cursorcolumn 	cterm=bold ctermfg=none ctermbg=none
-		highlight LineNr guibg=#444444 guifg=white
-	elseif g:colors_name == 'elflord'
-		colorscheme morning
-		highlight Normal guibg=lightgray ctermbg=darkgrey ctermfg=0
-		hi cursorline gui=bold guifg=none guibg=#BBBBBB
-		highlight LineNr guibg=#444444 guifg=white
-	elseif g:colors_name == 'morning'
-		colorscheme material
-		let g:material_style = "oceanic"
-		hi cursorline gui=bold guifg=none guibg=black cterm=bold ctermfg=none ctermbg=18
-		highlight LineNr guifg=white
-	else 
-		colorscheme eldar
-		set cursorline
-		hi cursorline gui=bold guifg=none guibg=darkblue cterm=bold ctermfg=none ctermbg=18
-		set nocursorcolumn
-		highlight LineNr guibg=#000000 guifg=darkgrey
-	end
-	syntax on
-endfunction
-
+hi MatchParen gui=bold guifg=none guibg=none
 set cursorline
 hi cursorline 		gui=bold guifg=none guibg=darkblue cterm=bold ctermfg=none ctermbg=18
 set nocursorcolumn
 hi cursorcolumn 	cterm=italic,bold ctermfg=none ctermbg=none gui=underline guifg=none guibg=none
-set splitright
-highlight LineNr guibg=#111111 guifg=darkgrey
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-function! ToggleWrap()
+hi FoldColumn    			   guibg=none guifg=#00FF00 gui=bold
+hi Folded 	                   guibg=none guifg=#888888 gui=bold,italic
+
+"<--------- FUNCTIONS ------------------------------------------------------>
+
+let s:status_hidden = 0 | function! ToggleHiddenAll()
+	" https://unix.stackexchange.com/questions/140898/vim-hide-status-line-in-the-bottom/140899#140899
+	" from user - cuonglm - https://unix.stackexchange.com/users/38906/cuonglm
+    if s:status_hidden  == 0
+        "set noshowmode
+        set noruler
+        set laststatus=0
+        let s:status_hidden = 1
+    else
+        "set showmode
+        set ruler
+        set laststatus=2
+        let s:status_hidden = 0
+    endif
+endfunction
+
+
+function! 							ToggleScheme()
+	if     g:colors_name == 'eldar'           | colorscheme elflord
+	elseif g:colors_name == 'elflord'         | colorscheme delek
+	elseif g:colors_name == 'delek' 		  | colorscheme morning
+	elseif g:colors_name == 'morning'         | let g:material_style = "oceanic" | colorscheme material
+	elseif g:colors_name == 'material'        | colorscheme atom
+	elseif g:colors_name == 'atom'            | colorscheme one
+	else                                      | colorscheme eldar
+		set cursorline
+		hi cursorline gui=bold guifg=none guibg=darkblue cterm=bold ctermfg=none ctermbg=none
+		set nocursorcolumn
+	end
+	highlight Normal guifg=#FFFFFF
+	echo g:colors_name
+	hi FoldColumn    			   guibg=none guifg=#00FF00 gui=bold
+	hi Folded 	                   guibg=none guifg=#888888 gui=bold,italic
+	syntax on
+endfunction
+
+
+function! 							CycleBackgroundColor()
+	let i = 0
+	for _ in g:myBg
+		if synIDattr(hlID("Normal"), "bg") == _
+			let j = (i + 1) % len(g:myBg)
+			execute "highlight Normal guibg=" . g:myBg[j] . " guifg=" . g:myFg[j]
+			echo g:myBg[j] . " - " g:myFg[j]
+			return
+		endif | let i += 1 | endfor
+	execute "highlight Normal guibg=" . g:myBg[0]
+endfunction
+
+
+function! 							ToggleWrap()
 	if &wrap == ""
 		":set colorcolumn=80
 		:set wrap
@@ -139,100 +189,73 @@ function! ToggleWrap()
 	:redraw
 endfunction
 
-function! ToggleCColumn()
-	if &cursorline == ""
-		set cursorline!
-	elseif &cursorline == ""
-		set cursorline!
+
+function! 							ToggleCOC()
+	if g:coc_enabled == "0"
+		:CocEnable
 	else
-		set cursorline!
+		:CocDisable
 	end
 endfunction
 
-"function! OpenAll()
-"
-"	for s in 
-"endfunction
 
-function! ExecuteFunc()
-	echo &highlight Normal
-endfunction
 
-"function! CocToggle()
-"	if 
+"<--------- MAPPINGS ------------------------------------------------------->
 
+"REGULAR"
 nnoremap x "xx
+nnoremap <silent> <esc>      :noh                 <cr><esc>
+nnoremap <leader><leader>    :<backspace>
+nnoremap <leader>.           :			          NERDTreeToggle<esc>
 
-nnoremap <silent> <esc> :noh<cr><esc>
-nnoremap <leader> :<backspace>
+nnoremap <leader>a           :call 		          ToggleCOC()<esc>
+nnoremap <leader>b           :call				  CycleBackgroundColor()<CR><esc>
+nnoremap <silent><leader>h   :call                ToggleHiddenAll()<CR>
+nnoremap <leader>f           :call                ToggleWrap()<esc>
+nnoremap <leader>j           :call                ToggleScheme()<CR>
 
-nnoremap <leader>. :NERDTreeToggle<esc>
-nnoremap <leader>b :Bracey<esc>
-nnoremap <leader>c :set nocursorline!<esc>
-nnoremap <leader>e :set cursorcolumn!<esc>
-nnoremap <leader>f :call ToggleWrap()<esc>
-nnoremap <leader>h :vert helpgrep 
-nnoremap <leader>j :call ToggleScheme()<CR>
-nnoremap <leader>l :lua require('material.functions').toggle_style()<CR>
-nnoremap <leader>n :cnext<esc>
-nnoremap <leader>q :wq<esc>
-nnoremap <leader>s :%so "${HOME}/.config/nvim/init.vim"<esc>
-nnoremap <leader>w :w<esc>
-nnoremap <leader>x :!%:p<esc>
-nnoremap <leader>z :!%<esc>
+nnoremap <leader>c           :set 			   	  nocursorline!<esc>
+nnoremap <leader>e           :set                 cursorcolumn!<esc>
+nnoremap <leader>l           :lua                 require('material.functions').toggle_style()<CR>
+nnoremap <leader>n           :                    cnext<esc>
+nnoremap <leader>q           :                    wq<esc>
+nnoremap <leader>s           :                    %so "${HOME}/.config/nvim/init.vim"<esc>
+nnoremap <leader>w           :                    w<esc>
+"nnoremap <leader>y           :                    hi Normal guibg=Transparent<esc>
+nnoremap <leader>1           :                    hi cursorline guibg=none guifg=none gui=bold cterm=none ctermbg=none ctermfg=none<esc>
+nnoremap <leader>x           :                    !%:p<esc>
+
+nnoremap <leader><S-h> :vert helpgrep 
+nnoremap <leader><S-b> :Bracey<esc>
+nnoremap <leader><S-n> :cprevious<esc>
 
 
-nnoremap <leader>N :cprevious<esc>
-nnoremap <leader>a :toggle:
+"FOLD + TAB STUFF"
+nnoremap <leader>z z
+"     THIS TOGGLES FOLD 'https://vim.fandom.com/wiki/Folding#Mappings_to_toggle_folds'
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
 
-
-" --------- TAB STUFF --------------#
 nnoremap <leader>tt :tabnew<esc>
 nnoremap <leader>tn :tabnext<esc>
 nnoremap <leader>tp :tabprevious<esc>
 nnoremap <leader>tb :tabprevious<esc>
 nnoremap <leader>tm :tabmove
-
-
 "nnoremap <leader>to :tabonly<esc>
 "nnoremap <leader>tc :tabclose<esc>
-
 "nnoremap <leader><leader> :call ExecuteFunc()<esc>
 
+
+"<--------- STATUS LINE ---------------------------------------------------->
 set statusline=\ %f\ \|
 set statusline+=\%l\(%L\)\|%V\ 
 set statusline+=%m\ 
 set statusline+=%=\ %L\ l,\ 
 set statusline+=%{wordcount().words}\ w\ 
 
+
+"<--------- EXTRA ---------------------------------------------------------->
+
 autocmd BufNewFile,BufRead ~/.config/polybar/config setfiletype dosini
-"autocmd BufNewFile,BufRead ~/.config/lf/lfrc setfiletype dosini
 
 
-"------------ DON'T DELETE FOR REFERENCE------"
-" possible to toggle cursorcolumn, 
-" set cursorcolumn! or set nocursorcolumn
-"-------------------SETBACKGROUND-AND-FOREGROUND--------------"
-" highlight Normal ctermfg=grey ctermbg=darkblue
-"augroup myCmds
-"au!
-"autocmd VimEnter * silent !echo -ne "\e[2 q"
-"augroup END
-
-
-"let g:ale_lint_on_save = 1
-"let g:airline#extensions#ale#enabled = 1
-"let g:ale_set_highlights = 1
-" show number of errors
-"set statusline+=\ %{LinterStatus()}
-
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'ray-x/starry.nvim'
-"Plug 'bignimbus/pop-punk.vim'
-"Plug 'dense-analysis/ale'
-"Plug 'preservim/vim-markdown'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
-"Plug 'https://github.com/powerline/powerline.git'
-
-"let b:coc_diagnostic_disable=1
