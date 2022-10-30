@@ -266,3 +266,4 @@ alias tl="cd /$HOME/tempo_five/; nv -p *"
 
 alias pips="poetry search"
 alias nvgr='echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'
+alias chrome_ext='echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'
