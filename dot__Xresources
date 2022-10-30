@@ -1,9 +1,9 @@
 
 !!!!START_1!!!!
 !!!!ON!!!!!!!!!
-*.alpha:				    0.8
+*.alpha:				    1
 !*.alphaOffset: 			0.75
-*.font: 				FiraCode Retina:pixelsize=14:antialias=true
+*.font: 				FiraCode Retina:pixelsize=17:antialias=true
 
 *.foreground:  #FFFFFF
 *.background:  #000000

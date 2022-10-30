@@ -84,7 +84,10 @@ for_window [class="brave*"]					    border pixel 0
 for_window [class="Brave*"]					    border pixel 0
 
 #---------------------------------------------------BINDS----------------------------------------------------------#
-$BindM         a 		      $BORD1; 		            focus       	parent
+$BindM         a 		      mode freekey;				exec --no-startup-id "sleep 0.2;\
+                                                                              xdotool key 'alt+v';\
+																			  sleep 0.2;\
+																			  xdotool key 'alt+shift+w'"; 
 $BindM         d         		     	                exec        	dmenu_run -b -nb "#000000" -l 10 -fn "Office Code Pro:pixelsize=20:antialias=true:autohint=true"
 $BindM         e 		  		     	                layout      	toggle   split
 $BindM         f	  	  	  		     	            mode        	"mousemove"
@@ -128,6 +131,7 @@ $BindM         0		  	  $BORD1;    	            workspace   	10
 $BindM         bracketleft    $BORD1;    	            workspace   	11
 $BindM         bracketright   $BORD1;    	            workspace   	12
 #---------------------------------------------------SHIFT-BINDS----------------------------------------------------#
+$BindM_Sh      a 		      $BORD1; 		            focus       	parent
 $BindM_Sh      b		  	  $BORD1;    	            exec 		 	$HOME/bin/ubluetoggle.sh
 #              c		  	                                            SPECIAL BIND, DO NOT BIND KEY
 $BindM_Sh      e 		  		     	                exec 		 	"i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -333,7 +337,7 @@ mode "mousemove" {
 mode "freekey" {
        # EXIT
                      bindsym $mod+Shift+w                           mode   "default"
-                     bindsym Escape                                 mode   "default"
+                     #bindsym Escape                                 mode   "default"
 }
 
 mode "resize" {

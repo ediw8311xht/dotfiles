@@ -25,7 +25,7 @@ acheck() {
 	done									 			 			 
 }
 cg() {
-	if [[ -z "$@" ]] ; then
+	if [[ -z "$*" ]] ; then
 		compgen -A function -abck | sort | uniq -c | grep -Pio '.+[0-9]+ \K.*'
 	else 
 		while [[ -n "${1}" ]] ; do
@@ -42,7 +42,7 @@ fzc() {
 my_cd()	{
 	if   [[ "${1}" = '-g' ]] ; then
 		cd '/'; cd "$(find . -type d 2>/dev/null| fzf --preview="ls -1 {}" )"
-	elif [[ -z "$@" 	  ]] ; then
+	elif [[ -z "$*" 	  ]] ; then
 		cd "$(find . -type d 2>/dev/null| fzf --preview="ls -1 {}" )"
 	else
 		cd "$@" 
@@ -64,11 +64,12 @@ nifs() 		{ 	IFS=$'\n'   ; printf "IFS=%q" "${IFS}"; echo ""		 ; }
 rifs() 		{ 	IFS=$' \t\n'; printf "IFS=%q" "${IFS}"; echo "" 	 ; }
 ppifs()		{ 	              printf "IFS=%q" "${IFS}"; echo "" 	 ; }
 pifs() 		{ 	              printf     "%q" "${IFS}"; echo ""	     ; }
-cop() 	    {   xsel -bi 		 <<< "$@"			  ;	xsel -bo	 ; }
-pas() 	    {   xsel -bo					 						 ; }
 pasta()     {   cat              <<< $(pas)			  			     ; }
 kad() 	    {   docker          kill $(docker ps -q) 				 ; }
 rad() 	    {   docker            rm $(docker ps -a -q)				 ; }
+
+cop() 	    {   printf '%s' "$@" | xsel -bi;xsel -bo; echo "";          }
+pas() 	    {   xsel -bo; echo "";                                      }
 
 
 # --------------------------------------------------------------------- #
