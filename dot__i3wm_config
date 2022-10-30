@@ -115,8 +115,8 @@ $BindM      7		  	  $BORD1;    	workspace   	7
 $BindM      8		  	  $BORD1;    	workspace   	8
 $BindM      9		  	  $BORD1;    	workspace   	9
 $BindM      0		  	  $BORD1;    	workspace   	10
-$BindM      bracketright  $BORD1;    	workspace   	11
-$BindM      bracketleft   $BORD1;    	workspace   	12
+$BindM      bracketleft  $BORD1;    	workspace   	11
+$BindM      bracketright   $BORD1;    	workspace   	12
 #---------------------------------------------------SHIFT-BINDS----------------------------------------------------#
 $BindM_Sh   b		  	  $BORD1;    	exec 		 	$HOME/bin/ubluetoggle.sh
 #$BindM_Sh  c		  	  SPECIAL BIND, DO NOT BIND KEY
@@ -163,8 +163,8 @@ $BindM_Sh   7		  	  $BORD1;    	move        	container to workspace  7; workspac
 $BindM_Sh   8		  	  $BORD1;    	move        	container to workspace  8; workspace  8
 $BindM_Sh   9		  	  $BORD1;    	move        	container to workspace  9; workspace  9
 $BindM_Sh   0		  	  $BORD1;    	move        	container to workspace 10; workspace 10
-$BindM_Sh   bracketright  $BORD1;    	move        	container to workspace 11; workspace 11
-$BindM_Sh   bracketleft   $BORD1;    	move        	container to workspace 12; workspace 12
+$BindM_Sh   bracketleft  $BORD1;    	move        	container to workspace 11; workspace 11
+$BindM_Sh   bracketright   $BORD1;    	move        	container to workspace 12; workspace 12
 #---------------------------------------------------SPECIAL-BINDS--------------------------------------------------#
 bindsym 		  Super_L $BORD1; 		sticky toggle; 
 bindsym --release Super_L $BORD2
@@ -297,8 +297,8 @@ $RelM 		    comma 	      $BORD2
 $RelM 		    period	      $BORD2
 $RelM 		    Super_L	      $BORD2
 $RelM	    	space     	  $BORD2
-$RelM   	    bracketleft   $BORD2
 $RelM   	    bracketright  $BORD2
+$RelM   	    bracketleft   $BORD2
 $RelM_Sh        0		  	  $BORD2
 $RelM_Sh        1		  	  $BORD2
 $RelM_Sh        2		  	  $BORD2
@@ -341,8 +341,8 @@ $RelM_Sh	    Right	      $BORD2
 $RelM_Sh	    comma 	      $BORD2
 $RelM_Sh	    period	      $BORD2
 $RelM_Sh	    Super_L	      $BORD2
-$RelM_Sh	    bracketleft   $BORD2
 $RelM_Sh	    bracketright  $BORD2
+$RelM_Sh	    bracketleft   $BORD2
 #$RelM_Sh	    Return	      $BORD2
 bindsym --release $mod+Shift+Return exec "sleep 0.2; i3-msg 'border pixel 0'"
 #---------------------------------------------------END------------------------------------------------------------#
