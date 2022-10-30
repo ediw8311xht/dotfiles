@@ -30,8 +30,8 @@ set $BORD2 				exec 		  "sleep 0.01; i3-msg 		      'border pixel 0'"
 set $EXENI				exec 		  --no-startup-id
 set $EXENI_A         	exec_always	  --no-startup-id
 #-----------------------Checks to make sure config file compiles correctly before running
-bindsym 				$mod+Shift+r  exec $HOME/bin/i3configcheck.sh		  --3
-bindsym     			$mod+Shift+c  exec $HOME/bin/i3configcheck.sh --NOASK --1
+bindsym 				$mod+Shift+r  exec $HOME/bin/i3configcheck.sh
+#bindsym     			$mod+Shift+c  reload
 #---------------------------------------------------PARAM----------------------------------------------------------#
 client.unfocused 					#333333 		#333333 		#000000 		#444444   		#040404
 client.focused_inactive 			#000055 		#000055 		#000000 		#444444
@@ -44,19 +44,14 @@ gaps			 	 	inner      		0
 gaps				 	outer      		0
 default_border			pixel 			0
 font				 	xft:Hermit 		8
-workspace 			 	10		   	    output		 	$RIGHT_MONITOR
 workspace 			 	1		   	    output		 	$LEFT_MONITOR
 #---------------------------------------------------FOR_WINDOW-----------------------------------------------------#
-#for_window [workspace="7"]								floating enable, move position 1000, 400
 for_window [instance="i3wm_scratchpad_notepad"]			floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
 for_window [instance="i3wm_scratchpad_pavucontrol"]		floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
 for_window [instance="i3wm_scratchpad_st"]				floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
 for_window [class="Tor Browser"]						floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
 for_window [class="hexchat"]							floating enable
 for_window [class="i3*input"]							resize set 1000 1000
-for_window [instance="mycv"]							floating enable, move position 1000 1000
-for_window [class="mycv"]								floating enable, move position 1000 1000
-for_window [title="mycv*"]								floating enable, move position 1920 0
 #---------------------------------------------------BINDS----------------------------------------------------------#
 
 $BindM      1		  	  $BORD1;    	workspace   	1
@@ -77,15 +72,13 @@ $BindM      r	  	  	  		     	mode        	"resize"
 $BindM      t		  	  $BORD1;    	[class="Tor Browser"] 					scratchpad show
 $BindM      y			  $BORD2;
 $BindM      u		  	  $BORD1;    	[instance="i3wm_scratchpad_st"] 		scratchpad show
-$BindM		i			  				exec 			$HOME/bin/dmenu_websearch.sh
+
 $BindM      o	  	  		     	    fullscreen
 $BindM      p   	  		     	    exec        	dunstctl           close-all
 
 $BindM      a 		  		     	    focus       	parent
 $BindM      s 		  		     	    layout      	stacking
-$BindM      d         		     	    exec        	dmenu_run -b -nb "#000000" -l 10 -fn "Office Code Pro:pixelsize=20:antialias=true:autohint=true"
-$BindM      f	  	  	  		     	mode        	"mousemove"
-
+$BindM      d         		     	    exec        	dmenu_run
 
 $BindM      g		  		     	    exec        	gnome-screenshot
 $BindM      h		      $BORD1;  	    focus 	     	left  
@@ -93,11 +86,11 @@ $BindM      j		      $BORD1;  	    focus 	     	down
 $BindM      k		      $BORD1;  	    focus 	     	up	  
 $BindM      l		      $BORD1;  	    focus 	     	right 
 $BindM      semicolon 	  $BORD1
-$BindM      Return	  	  $BORD1;    	exec 		 	/usr/local/bin/st 
+$BindM      Return	  	  $BORD1;    	exec 		 	/usr/local/bin/st
 
 $BindM      v         		     	    split 		 	v
-$BindM      n		  	  $BORD1;    	[instance="i3wm_scratchpad_notepad"] 	scratchpad show
 $BindM      m 		  	  $BORD1;    	scratchpad  	show
+$BindM      n		  	  $BORD1;    	[instance="i3wm_scratchpad_notepad"] 	scratchpad show
 
 #$BindM      comma 	  		     	    gaps        	inner    all set 0, 		gaps outer all set 0
 $BindM      period	  		     	    gaps        	inner    all toggle $INGAPS, 	gaps outer all toggle $OUTGAPS
@@ -106,12 +99,14 @@ $BindM      space	      $BORD1;       focus 	     	mode_toggle
 $BindM      Down	  		     	    exec        	pulseaudio-ctl     down
 $BindM      Up		  		     	    exec        	pulseaudio-ctl     up
 
+#$BindM_Sh   comma 	  		     	    gaps 		 	inner 	 all set 0, 		gaps outer all set 0
+#$BindM_Sh   period	  		     	    gaps 		 	inner 	 all set $INGAPS, 	gaps outer all set $OUTGAPS
 $BindM_Sh   m 	  	  	  		     	floating 	 	enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
 $BindM_Sh   semicolon 	  		     	resize 	 		set $WSW $WSH
 $BindM_Sh   v         		     	    split 		 	h
 $BindM_Sh   e 		  		     	    exec 		 	"i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
-$BindM_Sh   o 		  		     	    exec 		 	i3lock -f -e -c 333333
-$BindM_Sh   y		  		     	    exec 		 	$HOME/bin/urxvt_notepad_script.sh   "TMUX"
+$BindM_Sh   o 		  		     	    exec 		 	i3lock -f -e -c BBBBBB
+$BindM_Sh   y		  		     	    exec 		 	$HOME/bin/urxvt_notepad_script.sh  "TMUX"
 $BindM_Sh   Up 		  		     	    exec 		 	$HOME/bin/nitrowscript.sh 			"UP"
 $BindM_Sh   Down	  		     	    exec 		 	$HOME/bin/nitrowscript.sh 			"DOWN"
 $BindM_Sh   Left	  		     	    exec 		 	$HOME/bin/nitrowscript.sh 			"LEFT"
@@ -121,13 +116,6 @@ $BindM_Sh   h		  	  $BORD1;    	move  	     	left      $XMVSPEED
 $BindM_Sh   j		  	  $BORD1;    	move  	     	down   	  $YMVSPEED
 $BindM_Sh   k		  	  $BORD1;    	move  	     	up     	  $YMVSPEED
 $BindM_Sh   l		  	  $BORD1;    	move  	     	right  	  $XMVSPEED
-$BindM_Sh   z		  	  $BORD1;    	exec 		 	$HOME/bin/brave-tor.sh
-$BindM_Sh   i		  	  $BORD1;    	exec 		 	$HOME/bin/mdmenu.sh
-$BindM_Sh   b		  	  $BORD1;    	exec 		 	$HOME/bin/ubluetoggle.sh
-$BindM_Sh   n		  	  $BORD1;    	exec 		 	/usr/local/bin/st -n 'i3wm_scratchpad_notepad' nvim "$HOME/Documents/Notepad/note.txt"
-$BindM_Sh   t		  	  $BORD1;    	exec 		 	$HOME/.local/opt/tor-browser_en-US/Browser/start-tor-browser
-$BindM_Sh   u		  	  $BORD1;    	exec 		 	/usr/local/bin/st -n i3wm_scratchpad_st
-
 $BindM_Sh   1		  	  $BORD1;    	move 		 	container to workspace  1; workspace  1
 $BindM_Sh   2		  	  $BORD1;    	move        	container to workspace  2; workspace  2
 $BindM_Sh   3		  	  $BORD1;    	move        	container to workspace  3; workspace  3
@@ -138,12 +126,19 @@ $BindM_Sh   7		  	  $BORD1;    	move        	container to workspace  7; workspac
 $BindM_Sh   8		  	  $BORD1;    	move        	container to workspace  8; workspace  8
 $BindM_Sh   9		  	  $BORD1;    	move        	container to workspace  9; workspace  9
 $BindM_Sh   0		  	  $BORD1;    	move        	container to workspace 10; workspace 10
+$BindM_Sh   i		  	  $BORD1;    	exec 		 	$HOME/bin/brave-tor.sh
+$BindM_Sh   b		  	  $BORD1;    	exec 		 	$HOME/bin/ubluetoggle.sh
+$BindM_Sh   n		  	  $BORD1;    	exec 		 	$HOME/bin/i3wm_scratchpad_notepad.sh
+$BindM_Sh   t		  	  $BORD1;    	exec 		 	$HOME/.local/opt/tor-browser_en-US/Browser/start-tor-browser
+$BindM_Sh   f		  	  $BORD1;    	exec 		 	/usr/bin/dolphin
+$BindM_Sh   u		  	  $BORD1;    	exec 		 	/usr/local/bin/st -n i3wm_scratchpad_st
 $BindM_Sh   Return	  	  $BORD1;    	exec		 	/usr/bin/brave
 
 bindsym 		  Super_L $BORD1; 		sticky toggle; 
 bindsym --release Super_L $BORD2
 #---------------------------------------------------EXECS----------------------------------------------------------#
 $EXENI 	  	dunst
+$EXENI 	  	clipit 		  --daemon
 $EXENI 	  	xinput 		  --set-prop 12 "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 0.44 
 $EXENI 	  	xinput 		  --set-prop 12 "libinput Accel Speed" -1 
 $EXENI_A    xmodmap 	  -e 			"keycode 49  = 0x0000 0xffeb 0x0000 0xffeb"
@@ -154,44 +149,27 @@ $EXENI_A    nitrogen      --restore
 $EXENI_A    xcompmgr 	  -C 
 $EXENI_A    $HOME/.config/polybar/launch.sh
 #---------------------------------------------------MODES----------------------------------------------------------#
-set $MOUSE_MOVE_BIND bindsym Shift+h "exec xdotool mousemove_relative --polar 270 	50" \
-					 bindsym Shift+j "exec  xdotool mousemove_relative --polar 180 	50" \
-					 bindsym Shift+k "exec  xdotool mousemove_relative --polar 0 	50" \
-                     bindsym Shift+l "exec  xdotool mousemove_relative --polar 90	50" \
-                     bindsym h 		 "exec  xdotool mousemove_relative --polar 270 	 8" \
-                     bindsym j 		 "exec  xdotool mousemove_relative --polar 180 	 8" \
-                     bindsym k 		 "exec  xdotool mousemove_relative --polar 0 	 8" \
-                     bindsym l 		 "exec  xdotool mousemove_relative --polar 90	 8" \
-		             bindsym g  	 "exec  xdotool click 4 " \
-		             bindsym v 		 "exec  xdotool click 5" 
-		             #bindsym $mod+r  "exec  xdotool click 5"
-
 mode "mousemove" {
-					 $MOUSE_MOVE_BIND
-		             bindsym f								     	exec xdotool click 1
-		             bindsym d								     	exec xdotool click 3
-		             bindsym s								     	exec xdotool click 2
-
-		             bindsym $mod+r								   	'exec xdotool mousedown 1; mode "mousedown1"'
-		             bindsym $mod+e								   	'exec xdotool mousedown 2; mode "mousedown2"'
-		             bindsym $mod+w								   	'exec xdotool mousedown 3; mode "mousedown3"'
-
-                     bindsym $mod+f  								 mode "default"
+                     bindsym Shift+h								exec xdotool mousemove_relative --polar 270 	50
+                     bindsym Shift+j								exec xdotool mousemove_relative --polar 180 	50
+                     bindsym Shift+k							    exec xdotool mousemove_relative --polar 0 		50
+                     bindsym Shift+l							    exec xdotool mousemove_relative --polar 90		50
+                     bindsym h										exec xdotool mousemove_relative --polar 270 	8
+                     bindsym j										exec xdotool mousemove_relative --polar 180 	8
+                     bindsym k										exec xdotool mousemove_relative --polar 0 		8
+                     bindsym l										exec xdotool mousemove_relative --polar 90		8
+		             bindsym $mod+a								   	exec xdotool mousedown 1
+		             bindsym $mod+s								   	exec xdotool mousedown 2
+		             bindsym $mod+f								   	exec xdotool mousedown 3
+		             bindsym $mod+Shift+a							exec xdotool mouseup 1
+		             bindsym $mod+Shift+s							exec xdotool mouseup 2
+		             bindsym $mod+Shift+f							exec xdotool mouseup 3
+		             bindsym $mod+z								    exec xdotool click 1
+		             bindsym $mod+x								    exec xdotool click 3
+		             bindsym $mod+v								    exec xdotool click 2
+                     bindsym Super_L mode "default"
+                     bindsym Escape  mode "default"
 }
-
-mode "mousedown1" { 
-					$MOUSE_MOVE_BIND 
-					bindsym $mod+Escape '"exec xdotool mouseup 1" ; mode "mousemove"'
-}
-mode "mousedown2" {
-					$MOUSE_MOVE_BIND 
-					bindsym $mod+Escape '"exec xdotool mouseup 1" ; mode "mousemove"'
-}
-mode "mousedown3" { 
-					$MOUSE_MOVE_BIND 
-					bindsym $mod+Escape '"exec xdotool mouseup 1" ; mode "mousemove"'
-}
-
 mode "resize" {
                      bindsym h                                      resize shrink    width  $XREUNIT px or 10 ppt
                      bindsym l                                      resize grow      width  $XREUNIT px or 10 ppt
@@ -286,7 +264,8 @@ $RelM_Sh	    Right	      $BORD2
 $RelM_Sh	    comma 	      $BORD2
 $RelM_Sh	    period	      $BORD2
 $RelM_Sh	    Super_L	      $BORD2
-$RelM_Sh	    Return	      $BORD2
+
+$RelM_Sh	    Return	      exec "sleep 0.5; i3-msg 'border pixel 0'"
 #bindsym --release $mod+Shift+Return exec "sleep 3; i3-msg 'border pixel 0'"
 #-----------------------------------------------END------------------------------------------------------------#
 

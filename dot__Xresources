@@ -1,7 +1,7 @@
 
-*.alpha:				0.96
+*.alpha:				0.89
 !*.color:				#000000
-*.font: 				Office Code Pro:pixelsize=15:antialias=true:autohint=true
+*.font: 				Office Code Pro:pixelsize=13:antialias=true:autohint=true
 
 ! #include </home/maceurt/.urxvt_themes/tempus_future.Xcolors>
 !! Colorscheme
@@ -93,4 +93,5 @@ URxvt.keysym.C-bracketleft: command:\033]720;1\007
 URxvt.keysym.C-bracketright: command:\033]721;1\007
 URxvt.iso14755: false
 URxvt.iso14755_52: false
+
 
