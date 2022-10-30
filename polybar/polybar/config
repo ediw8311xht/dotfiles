@@ -35,7 +35,7 @@ offset-y = 0%
 monitor = ${env:MONITOR:}
 padding-left = 2
 padding-right = 2
-height = 13
+height = 15
 
 width = 100%
 border-size = 0
@@ -58,7 +58,7 @@ module-margin-right = 5
 ; (6,7,8) [temp1 memory cpu] 
 ; (9) 	  [pulseaudio]
 font-0  	=  	Hermit:pixelsize=10;3
-font-1  	=  	Hermit:pixelsize=10;3
+font-1  	=  	Hack:pixelsize=10;3 
 font-2  	=  	Hermit:pixelsize=10;3
 font-3  	=  	Hermit:pixelsize=10;3
 font-4  	=  	Hermit:pixelsize=10;3
@@ -69,7 +69,11 @@ font-8 		=  	Hermit:pixelsize=10;3
 font-9 		=  	Hermit:pixelsize=10;3
 font-10 	=  	Hermit:pixelsize=10;3
 font-11 	=  	Hermit:pixelsize=10;3
-font-12 	=  	Hermit:pixelsize=10;3
+font-12 	=  	"FontAwesome:pixelsize=11;2"
+font-13 	=  	"JoyPixels:scale=11;2;2"
+font-14 	=  	"octicons:pixelsize=15;3;2"
+;font-12 	=  	"Linux Biolinum Keyboard O:size=17:antialias=true;0" 
+;font-13  	=  	JoyPixels:scale=10
 
 ;font-0  	=  	Hack:pixelsize=10;4
 ;font-1  	=  	Hack:fontformat=truetype:size=8:antialias=false;0
@@ -194,28 +198,24 @@ ramp-foreground = #55
 ;-----------------------I3-----------------------------------------------------;
 ;-----------------------I3-----------------------------------------------------;
 ;-----------------------I3-----------------------------------------------------;
+;I3WMi3wmi3gaps;-i3
 [module/i3]
 type = internal/i3
 
-label-focused-padding = 0
-label-visible-padding = 0
-label-unfocused-padding = 0
-
-
-;ws-icon-0 = 1;1
-;ws-icon-1 = 2;2
-;ws-icon-2 = 3;3
-;ws-icon-3 = 4;4
-;ws-icon-4 = 5;5
-;ws-icon-5 = 6;6
-;ws-icon-6 = 7;7
-;ws-icon-7 = 8;8
-;ws-icon-8 = 9;9
-;ws-icon-9 = 0;0
-;
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;3
+ws-icon-3 = 4;4
+ws-icon-4 = 5;5
+ws-icon-5 = 6;6
+ws-icon-6 = 7;7
+ws-icon-7 = 8;8
+ws-icon-8 = 9;9
+ws-icon-9 = 9;9
+ws-icon-10 = 10;10
+ws-icon-11 = 11;
+ws-icon-12 = 12;
 ;ws-icon-LHome = G;LHome
-
-;label-focused = %name% 
 
 label-separator-padding = 0
 
@@ -225,16 +225,17 @@ label-unfocused-background =  ${colors.i3bgl_uf}
 label-focused-foreground = ${colors.i3fgl_f_in}
 label-visible-foreground = ${colors.i3fgl_vis_uf}
 label-unfocused-foreground =  ${colors.i3fgl_uf}
-label-focused-font = 4
-label-visible-font = 5
-label-unfocused-font = 6
+label-focused-font = 13
+label-visible-font = 13
+label-unfocused-font = 13
 
+label-mode = %mode%
 label-mode-foreground = #0000FF
 label-mode-background = #222222
 
-label-focused = %name%
-label-visible = %name%
-label-unfocused = %name%
+label-focused = %icon%
+label-visible = %icon%
+label-unfocused = %icon%
 
 label-separator = "  "
 
@@ -249,6 +250,7 @@ label-focused-inactive-background = ${colors.background}
 
 label-urgent = %index%
 label-urgent-padding = 1
+;padding = 0
 
 
 ;-----------------------memory-------------------------------------------------;

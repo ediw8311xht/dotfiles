@@ -48,9 +48,12 @@ font pango:Fira Code Retina 8
 default_border			pixel 			0
 
 workspace 			 	1		   	    output		 	$LEFT_MONITOR
-workspace 			 	lh		   	    output		 	$LEFT_MONITOR
-workspace 			 	rh		   	    output		 	$RIGHT_MONITOR
+workspace 			 	2		   	    output		 	$LEFT_MONITOR
+workspace 			 	3		   	    output		 	$LEFT_MONITOR
+workspace 			 	4		   	    output		 	$LEFT_MONITOR
 workspace 			 	10		   	    output		 	$RIGHT_MONITOR
+workspace 			 	11		   	    output		 	$RIGHT_MONITOR
+workspace 			 	12		   	    output		 	$RIGHT_MONITOR
 
 #gaps 				    top -5
 #gaps 				    bottom -5
@@ -112,10 +115,11 @@ $BindM      7		  	  $BORD1;    	workspace   	7
 $BindM      8		  	  $BORD1;    	workspace   	8
 $BindM      9		  	  $BORD1;    	workspace   	9
 $BindM      0		  	  $BORD1;    	workspace   	10
-$BindM      bracketleft	  $BORD1;    	workspace   	lh
-$BindM      bracketright  $BORD1;    	workspace   	rh
+$BindM      bracketright  $BORD1;    	workspace   	11
+$BindM      bracketleft   $BORD1;    	workspace   	12
 #---------------------------------------------------SHIFT-BINDS----------------------------------------------------#
 $BindM_Sh   b		  	  $BORD1;    	exec 		 	$HOME/bin/ubluetoggle.sh
+#$BindM_Sh  c		  	  SPECIAL BIND, DO NOT BIND KEY
 $BindM_Sh   e 		  		     	    exec 		 	"i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
 $BindM_Sh   h		  	  $BORD1;    	move  	     	left      $XMVSPEED
 $BindM_Sh   i		  	  $BORD1;    	exec 		 	$HOME/bin/mdmenu.sh
@@ -132,6 +136,7 @@ $BindM_Sh   q		  	  $BORD1;    	kill
 $BindM_Sh   t		  	  $BORD1;    	exec 		 	$HOME/.local/opt/tor-browser_en-US/Browser/start-tor-browser; exec sleep 1 && i3-msg '[class="Tor Browser"] scratchpad show'
 $BindM_Sh   u		  	  $BORD1;    	exec 		 	/usr/local/bin/st -n i3wm_scratchpad_st
 $BindM_Sh   v         		     	    split h
+$BindM_Sh   x		  	  $BORD1;    	exec 		 	$HOME/bin/add_to_clip.sh "DATE" "TIME"
 $BindM_Sh   y		  		     	    exec 		 	$HOME/bin/urxvt_notepad_script.sh   "TMUX"
 $BindM_Sh   z		  	  $BORD1;    	exec 		 	$HOME/bin/brave-tor.sh
 $BindM_Sh   semicolon 	  		     	resize 	 		set $WSW $WSH
@@ -158,8 +163,8 @@ $BindM_Sh   7		  	  $BORD1;    	move        	container to workspace  7; workspac
 $BindM_Sh   8		  	  $BORD1;    	move        	container to workspace  8; workspace  8
 $BindM_Sh   9		  	  $BORD1;    	move        	container to workspace  9; workspace  9
 $BindM_Sh   0		  	  $BORD1;    	move        	container to workspace 10; workspace 10
-$BindM_Sh   bracketleft	  $BORD1;    	move        	container to workspace lh; workspace lh
-$BindM_Sh   bracketright  $BORD1;    	move        	container to workspace rh; workspace rh
+$BindM_Sh   bracketright  $BORD1;    	move        	container to workspace 11; workspace 11
+$BindM_Sh   bracketleft   $BORD1;    	move        	container to workspace 12; workspace 12
 #---------------------------------------------------SPECIAL-BINDS--------------------------------------------------#
 bindsym 		  Super_L $BORD1; 		sticky toggle; 
 bindsym --release Super_L $BORD2
