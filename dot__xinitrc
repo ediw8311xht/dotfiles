@@ -9,7 +9,7 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
-SESSION=${1:-xfce-session}
+SESSION=${1:-i3wm}
 
 # merge in defaults and keymaps
 
@@ -63,15 +63,19 @@ get_session(){
 	echo "dbus-launch ${dbus_args[*]}"
 }
 
-# exec $(get_session "$1")
-exec $(get_session i3wm)
-setxkbmap -option caps:escape
-
 # exec --no-startup-id 'picom --config ~/.config/picom/picom.conf'
-xset r rate 200 20
+# exec $(get_session "$1")
+
+#xrandr -r 60
 xset -dpms
+xset r rate 200 40
 xmodmap -e "keycode 133 = 0x007e 0x0060	0x007e 0x0060" 
-
-
+A="$(xrandr | grep -Po  'HDMI[^ ]+')"
+B="$(xrandr | grep -Po  'DVI[^ ]+')"
+#xrandr HDMI-A-0
+xrandr --output "${A}" --left-of "${B}"
+xrandr --output "${B}" --primary
+deluged
+exec $(get_session "${SESSION}")
 
 

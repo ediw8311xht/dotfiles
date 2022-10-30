@@ -1,68 +1,100 @@
 
-set 		shell 			sh
-set 		previewer 		stpv
-set 		cleaner 		stpvimgclr
-&stpvimg 	--listen 		$id
+set shell sh
+set shellopts '-eu'
+
 set 		ratios 			1:2:3
 set 		info 			size:time
 set 		scrolloff 		10
-set 		shellopts 		'-eu'
 set 		ifs 			"\n"
-set 		drawbox
+set			autoquit
+#set 		drawbox
 set 		dircounts
 set 		preview
 set 		number
 set 		ignorecase
-set 		icons
+#set 		icons
 set 		relativenumber
 
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv -s $id
+cmd on-quit &{{
+	#kill $(pidof "ctpv")
+	ctpv -e "${id}"
+	PROC="$(ps ax | grep -Po '^[\ ]*[0-9]+(?=\ .+[c]tpv -s '"${id})")"
+	kill "${PROC}"
+	if [[ "$?" -ne "0" ]] ; then
+		notify-send "CTPV NOT CLOSED: $?"
+		notify-send "PID: ${PROC}"
+	fi
+}}
+
+
+#set previewer ~/.config/lf/preview
+
 cmd np &{{
-	if [[ "$lf_preview" = "true" ]] ; then  lf -remote "send $id cd ..             "
-										    lf -remote "send $id set nopreview     "
-										    lf -remote "send $id set ratios 1:3    "
-										    lf -remote "send $id push ''		   "
-    else								    lf -remote "send $id set preview       "
-										    lf -remote "send $id set ratios 1:2:3  "; fi
+	if   [[ "$lf_ratios" = "1:2:3" ]] ; then  lf -remote "send $id set nopreview     "
+                                              lf -remote "send $id set ratios 1:3    "
+	elif [[  "$lf_ratios" =  "1:3" ]] ; then  lf -remote "send $id set preview       "
+                                              lf -remote "send $id set ratios 1:1    "
+    else								      lf -remote "send $id set preview       "
+										      lf -remote "send $id set ratios 1:2:3  "; fi
 }}
 
 cmd rep &{{
 	i="$1"; while [[ $((i--)) -gt 0 ]] ; do lf -remote "send $id ${2}"; done
 }}
 
-map 	th		  set hidden!
-map 	td  	  set dironly!
-map 	r 		  set reverse!
+cmd trash &{{
+	trash-put $fs && sleep 0.5 && lf -remote 'send reload'
+}}
+
 map     e         np
+map 	H		  set hidden!
+map     TR		  :trash
+map 	d  	  	  set dironly!
+map 	r 		  set reverse!
+map     RR        :reload
+map 	RN		  rename
+map 	P		  push :!echo<space>""<left>
 map 	;		  push '' 
 map		K		  :rep "3" "up"
 map 	J		  :rep "3" "down"
 map 	Q 		  &lf -remote 'send quit'; lf -remote 'quit'
 map     <esc>     clear
 map 	<enter>   shell
-map 	o 		  &mimeopen $f
-map 	O 		  $mimeopen --ask $f
+map 	o 		  &xdg-open $f
+map 	O 		  $xdg-open --ask $f
 
-# this open function borrowed from Luke Smith (very cool dude) link below
-# https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc
 cmd open ${{
-    case $(file --mime-type "$(readlink -f $f)" -b) in
-	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
-	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
-        text/*|application/json|inode/x-empty) $EDITOR $fx;;
-	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
-	image/svg+xml) display -- $f ;;
-	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" |
-		setsid -f sxiv -aio 2>/dev/null | while read -r file; do
-			[ -z "$file" ] && continue
-			lf -remote "send select \"$file\""
-			lf -remote "send toggle"
-		done &
-		;;
-	audio/*) mpv --audio-display=no $f ;;
-	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-	application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
-	application/pgp-encrypted) $EDITOR $fx ;;
-        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+    case $(file --mime-type -Lb $f) in
+        text/*) nvim $fx;;
+        *) for f in $fx; do xdg-open "${f}" > /dev/null 2> /dev/null & done;;
     esac
 }}
 
+#
+# this open function borrowed from Luke Smith (very cool dude) link below
+# https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc
+#cmd open ${{
+#    case $(file --mime-type "$(readlink -f $f)" -b) in
+#	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
+#	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
+#        text/*|application/json|inode/x-empty) $EDITOR $fx;;
+#	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
+#	image/svg+xml) display -- $f ;;
+#	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" |
+#		setsid -f sxiv -aio 2>/dev/null | while read -r file; do
+#			[ -z "$file" ] && continue
+#			lf -remote "send select \"$file\""
+#			lf -remote "send toggle"
+#		done &
+#		;;
+#	audio/*) mpv --audio-display=no $f ;;
+#	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+#	application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+#	application/pgp-encrypted) $EDITOR $fx ;;
+#        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+#    esac
+#}}
+set sortby name

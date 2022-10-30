@@ -1,21 +1,25 @@
 
-*.alpha:				0.89
-!*.color:				#000000
-*.font: 				Office Code Pro:pixelsize=13:antialias=true:autohint=true
+!!!!START_1!!!!
+!!!!ON!!!!!!!!!
+*.alpha:				    1
+!*.alphaOffset: 			0.75
+*.font: 				FiraCode Retina:pixelsize=14:antialias=true:autohint=true
 
-! #include </home/maceurt/.urxvt_themes/tempus_future.Xcolors>
-!! Colorscheme
+*.foreground:  #FFFFFF
+*.background:  #222222
 
+*.color:	   #FFFFFF
+*.cursorColor: #00FF00
+*.borderpx:    15px
+
+!*.foreground:  #BEBEBE
+!*.background:  #000015
 ! special
-*.foreground:  #EEEEEE
-*.background:  #000000
-*.cursorColor: #999999
-
 !URxvt.keysym.C-7: command:\033]11;#CCCCCC\007\033]10;black\007
 
 ! black
 *.color0: #000000
-*.color8: #111111
+*.color8: #2a495d
 
 ! red
 *.color1: #f12f2c
@@ -23,7 +27,7 @@
 
 ! green
 *.color2: #00FF00
-*.color10: #00FF00
+*.color10: #33DD33
 
 ! yellow
 *.color3: #e0c500
@@ -45,6 +49,58 @@
 *.color7: #FFFFFF
 *.color15: #555555
 
+*.color48: #FFFFFF
+
+!!!!FINISH_1!!!
+
+!!!!START_2!!!!
+!!!!OFF!!!!!!!!
+!-!*.alpha:				0.80
+!-!*.font: 				Office Code Pro:pixelsize=15:antialias=true:autohint=true
+!!URxvt.keysym.C-7: command:\033]11;#CCCCCC\007\033]10;black\007
+!! special
+!-!*.foreground:  #FFFFFF
+!-!*.background:  #000000
+!-!*.color:	   #FFFFFF
+!-!*.cursorColor: #FFFFFF
+!
+!!URxvt.keysym.C-7: command:\033]11;#CCCCCC\007\033]10;black\007
+!
+!! black
+!-!*.color0: #000000
+!-!*.color8: #2a495d
+!
+!! red
+!-!*.color1: #f12f2c
+!-!*.color9: #d700ff
+!
+!! green
+!-!*.color2: #00FF00
+!-!*.color10: #00FF00
+!
+!! yellow
+!-!*.color3: #e0c500
+!-!*.color11: #f9c400
+!
+!! blue
+!-!*.color4: #2587cc
+!-!*.color12: #2ca2f5
+!
+!! magenta
+!-!*.color5: #898edf
+!-!*.color13: #a0a6f8
+!
+!! cyan
+!-!*.color6: #58ccc3
+!-!*.color14: #63f5ea
+!
+!! white
+!-!*.color7: #FFFFFF
+!-!*.color15: #555555
+!
+!-!.color48: #FFFFFF
+!
+!!!!FINISH_2!!!
 
 URxvt.font:			xft:Courier New:pixelsize=15:antialias=true:autohint=true
 URxvt.boldFont:		xft:Courier New:pixelsize=15:antialias=true:autohint=true
@@ -76,8 +132,8 @@ URxvt.keysym.KP_7:      7
 URxvt.keysym.KP_8:      8
 URxvt.keysym.KP_9:      9
 URxvt.keysym.KP_0:      0
-!URxvt.transparent:		true
-!URxvt.shading:			15
+!*transparent:		false
+*.shading:			15
 
 !Urxvt.keysym.C-7:   URxvt.transparent true;
 
@@ -91,7 +147,6 @@ URxvt.keysym.C-period: font-size:hide
 
 URxvt.keysym.C-bracketleft: command:\033]720;1\007
 URxvt.keysym.C-bracketright: command:\033]721;1\007
-URxvt.iso14755: false
-URxvt.iso14755_52: false
-
+!URxvt.iso14755: false
+!URxvt.iso14755_52: false
 
