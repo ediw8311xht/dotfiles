@@ -231,6 +231,7 @@ export 				   PAGER='w3m -o display_lineinfo=TRUE'
 export				   TERM=st
 export		XDG_CONFIG_HOME="$HOME/.config"
 export			DELUGE_PORT="55888"
+export QT_QPA_PLATFORMTHEME="qt5ct"
 #    export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 # --------------------------------------------------------------------- #
@@ -267,3 +268,4 @@ alias tl="cd /$HOME/tempo_five/; nv -p *"
 alias pips="poetry search"
 alias nvgr='echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'
 alias chrome_ext='echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'
+

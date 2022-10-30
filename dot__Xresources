@@ -3,7 +3,7 @@
 !!!!ON!!!!!!!!!
 *.alpha:				    0.8
 !*.alphaOffset: 			0.75
-*.font: 				FiraCode Retina:pixelsize=14:antialias=true:autohint=true
+*.font: 				FiraCode Retina:pixelsize=14:antialias=true
 
 *.foreground:  #FFFFFF
 *.background:  #000000

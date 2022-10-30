@@ -218,11 +218,22 @@ function! GetUrls2()
     :v/["]\(\(ftp\|http\|https\):[/][/]\|www[.]\)[^"]*"/d
 endfunction
 
+function! ToggleVirtualEdit()
+	if g:virtualedit == none
+		:set virtualedit=all
+	else
+		:set virtualedit=none
+	end
+endfunction
+
 let g:is_bash      = 1
 
 "<-------------------------------------------------------------------------->
 
 "<--------- MAPPINGS ------------------------------------------------------->
+nnoremap <lt>                :tabprevious<esc>
+nnoremap <lt><lt>            :tabprevious<esc> 
+nnoremap >                   :tabnext<esc>
 nnoremap <leader>.           :                    NERDTreeToggle<esc>
 nnoremap <leader>1           :                    hi cursorline guibg=NONE guifg=NONE gui=bold cterm=NONE ctermbg=NONE ctermfg=NONE<esc>
 nnoremap <leader>a           :call                ToggleCOC()<esc>
@@ -238,6 +249,7 @@ nnoremap <leader>s           :                    %so "${HOME}/.config/nvim/init
 nnoremap <leader>w           :                    w<esc>
 nnoremap <leader>x           :                    !%:p<esc>
 nnoremap <leader>v           :                    %s/\t/    /g<esc>
+"nnoremap <leader>z           :                    :call ToggleVirtualEdit()<esc>
 nnoremap <leader>cc          :                    call ToggleScheme()<CR>
 nnoremap <leader>tt          :                    tabnew<esc>
 nnoremap <leader>tn          :                    tabnext<esc>
@@ -289,4 +301,13 @@ augroup END
 autocmd BufNewFile,BufRead ~/.config/polybar/config setfiletype dosini
 " autocmd BufNewFile,BufRead ~/.config/polybar/config setfiletype dosini
 "<-------------------------------------------------------------------------->
+
+"<--------- INFO ----------------------------------------------------------->
+"                   %<"      _-_is expanded to the name of the current buffer
+"    :help key-notation      _-_for list of keys and their names
+"<-------------------------------------------------------------------------->
+
+
+
+
 

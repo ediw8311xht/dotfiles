@@ -4,6 +4,27 @@
 #
 # Executed by startx (run your window manager from here)
 
+export            MYPRINTER="MYPRINT"
+export           NNN_COPIER="$HOME/nscript/csript"
+export                 DOCS="$HOME/Documents/"
+export                 DESK="$HOME/Desktop/"
+export                 DOWN="$HOME/Downloads/"
+export              MYSTUFF="$HOME/Documents/MyStuff/"
+export               EDITOR="nvim"
+export             NVIMSWAP="$HOME/.local/share/nvim/swap/"
+#export           PYTHONPATH="$PYTHONPATH:/$HOME/MY_PYTHON_MODULES/"
+#export           PYTHONPATH="$PYTHONPATH:/usr/bin/python3"
+export           AUTOBACKUP="/mnt/ed3/"
+export QT_QPA_PLATFORMTHEME=qt5ct
+export      FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export			       LESS=""
+export				   PATH="/usr/bin/:${PATH}"
+#export 				   LESS='-R --use-color -Dd+r$Du+b'
+export 				   PAGER='w3m -o display_lineinfo=TRUE'
+export				   TERM=st
+export		XDG_CONFIG_HOME="$HOME/.config"
+export			DELUGE_PORT="55888"
+export QT_QPA_PLATFORMTHEME="qt5ct"
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
