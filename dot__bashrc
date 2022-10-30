@@ -205,7 +205,6 @@ alias		   acti='    source $HOME/WEBSITE/myproject/myvenv/bin/activate'
 alias		   mrun='    export FLASK_ENV=development; export FLASK_APP="flaskproj.py"; flask run'
 alias		   drun='    export FLASK_APP="flaskproj.py"; flask run --reload --debugger'
 alias		   web='     cd $HOME/WEBSITE/myproject'
-alias		   qs='      ssh tesmond@45.77.222.97'
 #alias          nitroz="cd ~/Pictures/NitroWallpapers/"
 
 # --------------------------------------------------------------------- #
