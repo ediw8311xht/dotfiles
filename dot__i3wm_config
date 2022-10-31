@@ -61,6 +61,11 @@ workspace 			 	1		   	    output		 	$LEFT_MONITOR
 workspace 			 	2		   	    output		 	$LEFT_MONITOR
 workspace 			 	3		   	    output		 	$LEFT_MONITOR
 workspace 			 	4		   	    output		 	$LEFT_MONITOR
+workspace 			 	5		   	    output		 	$RIGHT_MONITOR
+workspace 			 	6		   	    output		 	$RIGHT_MONITOR
+workspace 			 	7		   	    output		 	$RIGHT_MONITOR
+workspace 			 	8		   	    output		 	$RIGHT_MONITOR
+workspace 			 	9		   	    output		 	$RIGHT_MONITOR
 workspace 			 	10		   	    output		 	$RIGHT_MONITOR
 workspace 			 	11		   	    output		 	$RIGHT_MONITOR
 workspace 			 	12		   	    output		 	$RIGHT_MONITOR
@@ -80,8 +85,9 @@ for_window [title="mycv*"]								floating enable, move position 1920 0
 for_window [class="i3*input"]							resize set 1000 1000
 #FOR REFERENCE, class for brave: for_window [class="brave-browser"]
 #for_window [class="brave-browser"]					    font xft:Hack 0
-for_window [class="brave*"]					    border pixel 0
-for_window [class="Brave*"]					    border pixel 0
+for_window [class="brave*"]					       		border pixel 0
+for_window [class="Brave*"]					    		border pixel 0
+for_window [all]					            		border pixel 0
 
 #---------------------------------------------------BINDS----------------------------------------------------------#
 $BindM         a 		      mode freekey;				exec --no-startup-id "sleep 0.2;\

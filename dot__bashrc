@@ -142,8 +142,8 @@ alias		   ysb='      source $HOME/.bashrc'
 alias		   editnv='   nvim $HOME/.config/nvim/init.vim'
 alias		   emime='    nvim $HOME/.config/mimeapps.list'
 
-alias          xgr='      grep -r --exclude=\*.{jpg,jpeg,png,webp,gif,mp4,mkv,m4a,avi,mp3,wav,tar,gz,tgz,zip,iso,exe,au,deb,pyc,elc,bz2,tbz2,xpm,xcf}'
-alias          xxgr='     grep -r -i --exclude=\*.{jpg,jpeg,png,webp,gif,mp4,mkv,m4a,avi,mp3,wav,tar,gz,tgz,zip,iso,exe,au,deb,pyc,elc,bz2,tbz2,xpm,xcf}
+alias          xgr='      grep -r -i --exclude=\*.{jpg,jpeg,png,webp,gif,mp4,mkv,m4a,avi,mp3,wav,tar,gz,tgz,zip,iso,exe,au,deb,pyc,elc,bz2,tbz2,xpm,xcf}'
+alias          xxgr='     grep -r -i --exclude=\*.{jpg,jpeg,png,webp,gif,mp4,mkv,m4a,avi,mp3,wav,tar,gz,tgz,zip,iso,exe,au,deb,pyc,elc,bz2,tbz2,xpm,xcf}\
                                      --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
 alias	       img='      nsxiv -0'
 alias	       nimg='     nsxiv -0 .'

@@ -59,6 +59,7 @@ let g:myFg = [".",    ".",       ".",       ".",       ".",       ".",       "."
 
 "<--------- PLUGINS -------------------------------------------------------->
 call plug#begin()
+"Plug 'bmeneg/coc-perl', {'do': 'yarn install && yarn build'}
 Plug 'agude/vim-eldar'
 Plug 'romgrk/github-light.vim'
 Plug 'rafi/awesome-vim-colorschemes'
