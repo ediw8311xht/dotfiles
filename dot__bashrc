@@ -109,11 +109,6 @@ alias 		   fl="          pacil | grep -A 3 -B 18 'Installed as a dependency for 
 alias 		   fle='         pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
 
 
-
-
-
-
-
 alias		    b='          cd $HOME/bin/'
 alias	        c='          clear'
 alias 		    f='          $HOME/bin/my_find.sh'
@@ -191,37 +186,6 @@ alias		   phone='       aft-mtp-cli'
 alias		   decl='        declare -f'
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 alias          nitroz='      cd $HOME/Pictures/NitroWallpapers/'
 	                         
 
@@ -231,36 +195,19 @@ alias          nitroz='      cd $HOME/Pictures/NitroWallpapers/'
 
 # ------------------------   --------------------------------------------- #
 # MY_WEBSITE			       											#
-
-
-
-
-
-
 #alias          nitroz="cd ~/Pictures/NitroWallpapers/"
 
 # --------------------------------------------------------------------- #
 # EXPORT																#
 # --------------------------------------------------------------------- #
-
-
-
-
-
-
 export               EDITOR="nvim"
 export             NVIMSWAP="$HOME/.local/share/nvim/swap/"
-#export           PYTHONPATH="$PYTHONPATH:/$HOME/MY_PYTHON_MODULES/"
 #export           PYTHONPATH="$PYTHONPATH:/usr/bin/python3"
-
 export      FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-
-
 #export 				   LESS='-R --use-color -Dd+r$Du+b'
 export 				   PAGER='w3m -o display_lineinfo=TRUE'
 export				   TERM=st
 export		XDG_CONFIG_HOME="$HOME/.config"
-
 export QT_QPA_PLATFORMTHEME="qt5ct"
 #    export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
@@ -269,26 +216,11 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 # --------------------------------------------------------------------- #
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 # --------------------------------------------------------------------- #
 # END 																	#
 # --------------------------------------------------------------------- #
 export DISPLAY=:0.0
 set -o vi
-
-
-
 
 
 
