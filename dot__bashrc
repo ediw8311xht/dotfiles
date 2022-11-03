@@ -108,11 +108,11 @@ alias 		   flg="         pacil | grep -A 3 -B 18 'Installed as a dependency for 
 alias 		   fl="          pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
 alias 		   fle='         pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
 
-# CONDA SOLUTION                                                                                                      ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-# https://stackoverflow.co   m/questions/52706888/anaconda-python-causing-slow-terminal-startup-prompt                ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-# CONDA SOLUTION                                                                                                      ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   anaconda='    source ~/.conda.bashrc'                                                                  ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias	       SUMMY='       cd "$HOME/Downloads/ssg"*/'                                                              ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+
+
+
+
+
 
 alias		    b='          cd $HOME/bin/'
 alias	        c='          clear'
@@ -190,37 +190,37 @@ alias		   scim='        sc-im'
 alias		   phone='       aft-mtp-cli'
 alias		   decl='        declare -f'
 
-alias		   codly='       cd "$HOME/Desktop/GOOGLE_TAKEOUT/Takeout/Drive/Code Daily"'    ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   aud='         cd $HOME/Audio/'                                               ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   red='         cd $HOME/CREAD/'                                               ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   desk='        cd $HOME/Desktop/'                                             ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   code='        cd $HOME/Desktop/Coding/'                                      ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   zero='        cd $HOME/Desktop/Coding/EXTENSIONS/CHROME/ZERO_WORD_REPLACER/' ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   docs='        cd $HOME/Documents/'                                           ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   scrap='       cd $HOME/Documents/SCRAPED'                                    ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   notes='       cd $HOME/Documents/Notepad/'                                   ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias	       prof='        cd $HOME/Documents/PROF_AND_WORK/'                             ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias	       down='        cd $HOME/Downloads/'                                           ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias	       pics='        cd $HOME/Pictures/'                                            ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias	       ebay='        cd $HOME/Pictures/PHOTOS_EBAY/'                                ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias	       vids='        cd $HOME/Videos/'                                              ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   gmp='	     cd $HOME/Pictures/my_gimp_stuff/'                              ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-                                                                                            ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   lib='         cd /mnt/ad/'                                                   ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   upl='         cd /mnt/od/'                                                   ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   mud='         cd /mnt/ud/'                                                   ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   med1='        cd /mnt/ed1/'                                                  ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   med1='        cd /mnt/ed1/'                                                  ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   med2='        cd /mnt/ed2/'                                                  ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   med3='        cd /mnt/ed3/'                                                  ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   bravehist='   cd $HOME/.config/BraveSoftware/Brave-Browser/Default/'         ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-# DNSCRYPT                                                                                  ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-                                                                                            ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-                                                                                            ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   cdns='	     cd /etc/dnscrypt-proxy/'                                       ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   cset='	     snv /etc/dnscrypt-proxy/dnscrypt-proxy.toml'                   ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   cban='	     snv /etc/dnscrypt-proxy/blocked-names.txt'                     ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   cfck='	     snv /etc/dnscrypt-proxy/cloaking-rules.txt'                    ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 alias          nitroz='      cd $HOME/Pictures/NitroWallpapers/'
 	                         
@@ -231,54 +231,54 @@ alias          nitroz='      cd $HOME/Pictures/NitroWallpapers/'
 
 # ------------------------   --------------------------------------------- #
 # MY_WEBSITE			       											#
-# ------------------------   --------------------------------------------- #                           ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   acti='        source $HOME/WEBSITE/myproject/myvenv/bin/activate'                       ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   mrun='        export FLASK_ENV=development; export FLASK_APP="flaskproj.py"; flask run' ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   drun='        export FLASK_APP="flaskproj.py"; flask run --reload --debugger'           ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   web='         cd $HOME/WEBSITE/myproject'                                               ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias		   qs='          ssh tesmond@45.77.222.97'                                                 ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+
+
+
+
+
+
 #alias          nitroz="cd ~/Pictures/NitroWallpapers/"
 
 # --------------------------------------------------------------------- #
 # EXPORT																#
 # --------------------------------------------------------------------- #
-export            MYPRINTER="MYPRINT"                                                       ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-export           NNN_COPIER="$HOME/nscript/csript"                                          ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-export                 DOCS="$HOME/Documents/"                                              ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-export                 DESK="$HOME/Desktop/"                                                ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-export                 DOWN="$HOME/Downloads/"                                              ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-export              MYSTUFF="$HOME/Documents/MyStuff/"                                      ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+
+
+
+
+
+
 export               EDITOR="nvim"
 export             NVIMSWAP="$HOME/.local/share/nvim/swap/"
-#export           PYTHONPATH="$PYTHONPATH:/home/maceurt/MY_PYTHON_MODULES/"
+#export           PYTHONPATH="$PYTHONPATH:/$HOME/MY_PYTHON_MODULES/"
 #export           PYTHONPATH="$PYTHONPATH:/usr/bin/python3"
-export           AUTOBACKUP="/mnt/ed3/"                                                     ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+
 export      FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-export			       LESS=""                                                              ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-export				   PATH="/usr/bin/:${PATH}"                                             ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+
+
 #export 				   LESS='-R --use-color -Dd+r$Du+b'
 export 				   PAGER='w3m -o display_lineinfo=TRUE'
 export				   TERM=st
 export		XDG_CONFIG_HOME="$HOME/.config"
-export			DELUGE_PORT="55888"                                                         ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+
 export QT_QPA_PLATFORMTHEME="qt5ct"
 #    export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 # --------------------------------------------------------------------- #
 # PATH																	#
 # --------------------------------------------------------------------- #
-if  [ -d "$HOME/bin/"         			                 ] ;    then PATH="$HOME/bin/:$PATH"        			                             ;	fi          ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-if  [ -d "$HOME/bin/"         			                 ] ;    then PATH="$HOME/.local/bin:$PATH"        			                         ;	fi          ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-if  [ -d "$HOME/bin/i3wm"     			                 ] ;    then PATH="$HOME/bin/i3wm:$PATH"    			                             ; 	fi          ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-if  [ -d "$HOME/bin/personal" 			                 ] ;    then PATH="$HOME/bin/personal:$PATH"			                             ; 	fi          ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-if  [ -d "$HOME/bin/personal" 			                 ] ; 	then PATH="$HOME/bin/personal:$PATH"			                             ; 	fi          ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-if  [ -d "$HOME/bin/FOR_BASHRC"   			             ] ; 	then PATH="$HOME/bin/FOR_BASHRC:$PATH"  		           ; fi                             ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-if  [ -d "$HOME/bin/ufw"      			                 ] ; 	then PATH="$HOME/bin/ufw:$PATH"     			                             ; 	fi          ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-if  [ -d "$HOME/bin/random"   			                 ] ; 	then PATH="$HOME/bin/random:$PATH"  			                             ; 	fi          ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-if  [ -d "$HOME/Desktop/MY_APPS"                   		 ] ; 	then PATH="$HOME/Desktop/MY_APPS:$PATH"                                		 ; 	fi          ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-if  [ -d "$HOME/Desktop/Coding/pyprog"                   ] ; 	then PATH="$HOME/Desktop/Coding/pyprog:$PATH"                                ; 	fi          ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-#if  [ -d "$HOME/Documents/Documentation"                 ] ; 	then PATH="$HOME/Documents/Documentation:$PATH"                               ; 	fi      ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-if  [ -d "/etc/systemd/user" 			                 ] ; 	then PATH="/etc/systemd/user:$PATH"                                          ; 	fi          ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # --------------------------------------------------------------------- #
@@ -287,9 +287,9 @@ if  [ -d "/etc/systemd/user" 			                 ] ; 	then PATH="/etc/systemd/us
 export DISPLAY=:0.0
 set -o vi
 
-alias bash_ref="xdg-open /home/maceurt/Documents/Notepad/bash_quick_reference.sh"         ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias tsop="cd /mnt/ed3/*Sopranos*; vid {Season\ {5,6},BONUS_EXTRAS}"                     ####-!!-!!-!!-IGNORE-!!-!!-!!-####
-alias tl="cd /home/maceurt/tempo_five/; nv -p *"                                          ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+
+
+
 
 
 alias pips="poetry search"
