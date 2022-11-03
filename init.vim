@@ -287,7 +287,7 @@ noremap <leader>zv
 
 "<--------- STATUS LINE ---------------------------------------------------->
 set statusline=\ %f\ \|
-set statusline+=\%l\(%L\)\|%V\ 
+set statusline+=\%l\(%L\)\|%v\ 
 set statusline+=%m\ 
 set statusline+=%=\ %L\ l,\ 
 set statusline+=%{wordcount().words}\ w\ 

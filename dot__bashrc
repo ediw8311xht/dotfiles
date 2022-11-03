@@ -59,17 +59,29 @@ vid() {
 	return 1
 }
 
-pf() 		{   find 		  "${2:-"$HOME"}" | grep -Pi "${1}"   	 ; }
-nifs() 		{ 	IFS=$'\n'   ; printf "IFS=%q" "${IFS}"; echo ""		 ; }
-rifs() 		{ 	IFS=$' \t\n'; printf "IFS=%q" "${IFS}"; echo "" 	 ; }
-ppifs()		{ 	              printf "IFS=%q" "${IFS}"; echo "" 	 ; }
-pifs() 		{ 	              printf     "%q" "${IFS}"; echo ""	     ; }
-pasta()     {   cat              <<< $(pas)			  			     ; }
-kad() 	    {   docker          kill $(docker ps -q) 				 ; }
-rad() 	    {   docker            rm $(docker ps -a -q)				 ; }
+update_pip() { 
+	(IFS=$'\n' 
 
-cop() 	    {   printf '%s' "$@" | xsel -bi;xsel -bo; echo "";          }
-pas() 	    {   xsel -bo; echo "";                                      }
+	zname="$(date +'%Y%m%d')_pipoutdated.txt"
+	pip list outdated > "${zname}"
+	A="$(cat "${zname}")"
+	for i in $A ; do pip install --upgrade "${i}"; done
+
+	return "$?"; )
+}
+
+pf() 			{   find 		  "${2:-"$HOME"}" | grep -Pi "${1}"   	 ; }
+nifs() 			{ 	IFS=$'\n'   ; printf "IFS=%q" "${IFS}"; echo ""		 ; }
+rifs() 			{ 	IFS=$' \t\n'; printf "IFS=%q" "${IFS}"; echo "" 	 ; }
+ppifs()			{ 	              printf "IFS=%q" "${IFS}"; echo "" 	 ; }
+pifs() 			{ 	              printf     "%q" "${IFS}"; echo ""	     ; }
+pasta()     	{   cat              <<< $(pas)			  			     ; }
+kad() 	    	{   docker          kill $(docker ps -q) 				 ; }
+rad() 	    	{   docker            rm $(docker ps -a -q)				 ; }
+
+cop() 	    	{   printf '%s' "$@" | xsel -bi;xsel -bo; echo "";          }
+pas() 	    	{   xsel -bo; echo "";                                      }
+
 
 
 # --------------------------------------------------------------------- #
@@ -84,7 +96,7 @@ alias 		   fle='      pacil | grep -A 3 -B 18 "Installed as a dependency for ano
 # https://stackoverflow.com/questions/52706888/anaconda-python-causing-slow-terminal-startup-prompt
 # CONDA SOLUTION 
 alias		   anaconda=' source ~/.conda.bashrc'
-alias	       SUMMY='        cd "$HOME/Documents/SummertimeSaga-0-20-15-pc"'
+alias	       SUMMY='        cd "$HOME/Downloads/SummertimeSaga"*/'
 
 alias		    b='        cd $HOME/bin/'
 alias	        c='        clear'
@@ -262,7 +274,7 @@ export DISPLAY=:0.0
 set -o vi
 
 alias bash_ref="xdg-open /$HOME/Documents/Notepad/bash_quick_reference.sh"
-alias tsop="cd /mnt/ed3/*Sopranos*; vid {Season\ {4,5,6},BONUS_EXTRAS}"
+alias tsop="cd /mnt/ed3/*Sopranos*; vid {Season\ {5,6},BONUS_EXTRAS}"
 alias tl="cd /$HOME/tempo_five/; nv -p *"
 
 
