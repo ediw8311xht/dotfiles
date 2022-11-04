@@ -115,15 +115,13 @@ $BindM         u		  	  $BORD1;    	            [instance="i3wm_scratchpad_st"] 	
 $BindM         v         		     	                split v
 $BindM         w 		  		     	                layout      	tabbed
 $BindM         y			  $BORD2;
-$BindM_Sh      less    	  		     	                exec 		    "i3-msg 'gaps inner all minus 10'"
-$BindM_Sh      greater    	  		     	            exec 		    "i3-msg 'gaps inner all plus 10'"
 $BindM         semicolon 	  $BORD1
 $BindM         Return	  	  $BORD1;    	            exec 		 	/usr/local/bin/st 
 $BindM         period	  		     	                gaps        	inner    all toggle $INGAPS, 	gaps outer all toggle $OUTGAPS
 $BindM         Super_L	  	  $BORD1;    	            floating    	toggle
 $BindM         space	      $BORD1;                   focus 	     	mode_toggle
-$BindM         Down	  		     	                    exec        	pulseaudio-ctl     down
-$BindM         Up		  		     	                exec        	pulseaudio-ctl     up
+$BindM         Down	  		     	                    exec        	pamixer --decrease 1
+$BindM         Up		  		     	                exec        	pamixer --increase 1 
 $BindM         1		  	  $BORD1;    	            workspace   	1
 $BindM         2		  	  $BORD1;    	            workspace   	2
 $BindM         3		  	  $BORD1;    	            workspace   	3
@@ -139,6 +137,8 @@ $BindM         bracketright   $BORD1;    	            workspace   	12
 #---------------------------------------------------SHIFT-BINDS----------------------------------------------------#
 $BindM_Sh      a 		      $BORD1; 		            focus       	parent
 $BindM_Sh      b		  	  $BORD1;    	            exec 		 	$HOME/bin/ubluetoggle.sh
+$BindM_Sh      less    	  		     	                exec 		    "i3-msg 'gaps inner all minus 10'"
+$BindM_Sh      greater    	  		     	            exec 		    "i3-msg 'gaps inner all plus 10'"
 #              c		  	                                            SPECIAL BIND, DO NOT BIND KEY
 $BindM_Sh      e 		  		     	                exec 		 	"i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
 $BindM_Sh      h		  	  $BORD1;    	            move  	     	left      $XMVSPEED
