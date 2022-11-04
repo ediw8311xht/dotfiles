@@ -12,6 +12,7 @@ export                 DOWN="$HOME/Downloads/"
 export              MYSTUFF="$HOME/Documents/MyStuff/"
 export               EDITOR="nvim"
 export             NVIMSWAP="$HOME/.local/share/nvim/swap/"
+#export           PYTHONPATH="$PYTHONPATH:/$HOME/MY_PYTHON_MODULES/"
 #export           PYTHONPATH="$PYTHONPATH:/usr/bin/python3"
 export           AUTOBACKUP="/mnt/ed3/"
 export QT_QPA_PLATFORMTHEME=qt5ct
