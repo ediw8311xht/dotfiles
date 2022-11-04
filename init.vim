@@ -233,7 +233,7 @@ let g:is_bash      = 1
 
 "<--------- MAPPINGS ------------------------------------------------------->
 nnoremap <lt>                :tabprevious<esc>
-nnoremap <lt><lt>            :tabprevious<esc> 
+"nnoremap <lt><lt>            :tabprevious<esc> 
 nnoremap >                   :tabnext<esc>
 nnoremap <leader>.           :                    NERDTreeToggle<esc>
 nnoremap <leader>1           :                    hi cursorline guibg=NONE guifg=NONE gui=bold cterm=NONE ctermbg=NONE ctermfg=NONE<esc>

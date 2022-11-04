@@ -59,17 +59,17 @@ vid() {
 	return 1
 }
 
-update_pip() { 
+upd_pip_z() { 
 	(IFS=$'\n' 
 
 	zname="$(date +'%Y%m%d')_pipoutdated.txt"
-	pip list outdated > "${zname}"
-	A="$(cat "${zname}")"
+	pip list --outdated > "${zname}"
+	A="$(cat "${zname}" | sed '1,2d' | sed -e 's/[ ][ ]*/ /g' | cut -d' ' -f1)"
 	for i in $A ; do pip install --upgrade "${i}"; done
 
 	return "$?"; )
 }
-fileappend()    {   
+fpend()    {   
 	if [[ "$2" ]] ; then
 		if [[ "$1" =~ ^-[dD](ate)? ]] ; then
 			shift 1
@@ -186,8 +186,6 @@ alias		   phone='       aft-mtp-cli'
 alias		   decl='        declare -f'
 
 
-alias          nitroz='      cd $HOME/Pictures/NitroWallpapers/'
-	                         
 # --------------------------------------------------------------------- #
 # EXPORT																#
 # --------------------------------------------------------------------- #
@@ -196,7 +194,6 @@ export             NVIMSWAP="$HOME/.local/share/nvim/swap/"
 export           PYTHONPATH="${PYTHONPATH}:/$HOME/MY_PYTHON_MODULES/"
 export           PYTHONPATH="${PYTHONPATH}:/usr/bin/python3"
 export      FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-#export 				   LESS='-R --use-color -Dd+r$Du+b'
 export 				   PAGER='w3m -o display_lineinfo=TRUE'
 export				   TERM=st
 export		XDG_CONFIG_HOME="$HOME/.config"
@@ -208,11 +205,10 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 if  [ -d "$HOME/bin/"         			                 ] ;    then PATH="$HOME/bin/:$PATH"        			                             ;	fi
 if  [ -d "$HOME/bin/i3wm"     			                 ] ;    then PATH="$HOME/bin/i3wm:$PATH"    			                             ; 	fi
 if  [ -d "$HOME/bin/personal" 			                 ] ;    then PATH="$HOME/bin/personal:$PATH"			                             ; 	fi 
-if  [ -d "$HOME/bin/personal" 			                 ] ; 	then PATH="$HOME/bin/personal:$PATH"			                             ; 	fi 
 if  [ -d "$HOME/bin/ufw"      			                 ] ; 	then PATH="$HOME/bin/ufw:$PATH"     			                             ; 	fi
 if  [ -d "$HOME/bin/random"   			                 ] ; 	then PATH="$HOME/bin/random:$PATH"  			                             ; 	fi
 if  [ -d "$HOME/Desktop/MY_APPS"                   		 ] ; 	then PATH="$HOME/Desktop/MY_APPS:$PATH"                                		 ; 	fi
-if  [ -d "$HOME/Desktop/Coding/pyprog"                   ] ; 	then PATH="$HOME/Desktop/Coding/pyprog:$PATH"                                ; 	fi
+#if  [ -d "$HOME/Desktop/Coding/pyprog"                   ] ; 	then PATH="$HOME/Desktop/Coding/pyprog:$PATH"                                ; 	fi
 #if  [ -d "$HOME/Documents/Documentation"                 ] ; 	then PATH="$HOME/Documents/Documentation:$PATH"                               ; 	fi
 if  [ -d "/etc/systemd/user" 			                 ] ; 	then PATH="/etc/systemd/user:$PATH"                                          ; 	fi
 
@@ -227,7 +223,11 @@ set -o vi
 
 
 
-alias pips="poetry search"
+#alias pips="poetry search"
 alias nvgr='echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'
 alias chrome_ext='echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'
 alias go_gnu='cd "$HOME/Desktop/Coding/mygnu2/"'
+
+alias cweb='cd "$HOME/WEBSITE/myproject/JABA/8_17_2022/"; nv -p *'
+
+
