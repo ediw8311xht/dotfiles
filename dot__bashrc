@@ -243,3 +243,4 @@ alias sman='man -K --regex'
 #alias decode2='source "$HOME/TEST DIR/pos3.sh"'
 
 
+alias cool='cd "/$HOME/Desktop/Coding/Cool-Linux-Shell-Scripts"'

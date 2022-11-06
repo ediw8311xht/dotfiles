@@ -215,19 +215,19 @@ $EXENI_A        $HOME/.config/polybar/launch.sh
 #---------------------------------------------------MODES----------------------------------------------------------#
 #-<<MOUSE>>-->->->->->->->->->->->->->->->->->->->->
 set $MOUSE_MOVE_BIND \
-		bindsym Shift+h                         exec "xdotool mousemove_relative --polar 270     5"\
-		bindsym Shift+j                         exec "xdotool mousemove_relative --polar 180     5"\
-		bindsym Shift+k                         exec "xdotool mousemove_relative --polar 0       5"\
-                bindsym Shift+l                         exec "xdotool mousemove_relative --polar 90      5"\
-                bindsym h 		                exec "xdotool mousemove_relative --polar 270   100"\
-                bindsym j 		                exec "xdotool mousemove_relative --polar 180   100"\
-                bindsym k 		                exec "xdotool mousemove_relative --polar 0     100"\
-                bindsym l 		                exec "xdotool mousemove_relative --polar 90    100"\
-		bindsym f		                exec "xdotool click 1"\
-		bindsym d		                exec "xdotool click 3"\
-		bindsym s		                exec "xdotool click 2"\
-		bindsym g  	                        exec "xdotool click 4"\
-		bindsym v 		                exec "xdotool click 5"
+		bindsym Shift+h                         "exec xdotool mousemove_relative --polar 270     5"\
+		bindsym Shift+j                         "exec xdotool mousemove_relative --polar 180     5"\
+		bindsym Shift+k                         "exec xdotool mousemove_relative --polar 0       5"\
+                bindsym Shift+l                         "exec xdotool mousemove_relative --polar 90      5"\
+                bindsym h 		                "exec xdotool mousemove_relative --polar 270   100"\
+                bindsym j 		                "exec xdotool mousemove_relative --polar 180   100"\
+                bindsym k 		                "exec xdotool mousemove_relative --polar 0     100"\
+                bindsym l 		                "exec xdotool mousemove_relative --polar 90    100"\
+		bindsym f		                "exec xdotool click 1"\
+		bindsym d		                "exec xdotool click 3"\
+		bindsym s		                "exec xdotool click 2"\
+		bindsym g  	                        "exec xdotool click 4"\
+		bindsym v 		                "exec xdotool click 5"
 mode "mousedown1" { 
 		$MOUSE_MOVE_BIND 
 		bindsym Escape                          exec "xdotool mouseup 1 ; i3-msg 'mode mousemove'"
