@@ -27,8 +27,6 @@ set updatetime=200
 set nowrap
 set textwidth=0
 set formatoptions=tcqrn1
-set tabstop=4
-set shiftwidth=4
 set clipboard=unnamedplus
 set autoindent
 set backup
@@ -45,6 +43,13 @@ set wildmode=longest,list,full
 set foldcolumn=auto:4
 set showmode
 set virtualedit=all
+
+set tabstop=8
+set shiftwidth=4
+set softtabstop=0
+set smarttab
+set expandtab
+
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 "<-------------------------------------------------------------------------->
 
@@ -71,7 +76,7 @@ Plug 'godlygeek/tabular'
 Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 Plug 'dense-analysis/ale'
 Plug 'AndrewRadev/tagalong.vim'
-Plug 'sukima/xmledit'
+"Plug 'sukima/xmledit'
 Plug 'windwp/nvim-autopairs'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'windwp/nvim-ts-autotag'
@@ -245,7 +250,6 @@ nnoremap <leader>c           :set                 nocursorline!<esc>
 nnoremap <leader>e           :set                 cursorcolumn!<esc>
 nnoremap <leader>l           :lua                 require('material.functions').toggle_style()<CR>
 nnoremap <leader>n           :                    cnext<esc>
-nnoremap <leader>q           :                    wq<esc>
 nnoremap <leader>s           :                    %so "${HOME}/.config/nvim/init.vim"<esc>
 nnoremap <leader>w           :                    w<esc>
 nnoremap <leader>x           :                    !%:p<esc>
@@ -270,6 +274,7 @@ nnoremap <silent> <esc>      :noh                 <cr><esc>
 nnoremap <silent><leader>h   :call                ToggleHiddenAll()<CR>
 
 nnoremap x                   "xx
+nnoremap <leader>q @q
 nnoremap <leader>fp /<c-r>0<esc>
 nnoremap <leader>z z
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>

@@ -4,13 +4,19 @@
 #---------------------------------------------------------------------|
 # i3 config file (v4)
 #---------------------------------------------------SET------------------------------------------------------------#
-set $LEFT_MONITOR	    HDMI-A-0
-set $RIGHT_MONITOR	    DVI-D-0
+set $LEFT_MONITOR       HDMI-A-0
+set $RIGHT_MONITOR      DVI-D-0
 set $MOUSEMV_S	    	5
 set $MOUSEMV_L	    	50
-set $BPIX 			    0
-set $INGAPS			    20
-set $OUTGAPS		    -10
+set $BPIX 	        0
+#                       AFFECTS  INNER_OUTER_GAPS
+set $IN_GAPS	       	20
+#                       AFFECTS  OUTER_GAPS_ONLY
+set $OUT_GAPS	        0
+set $TOP_GAPS 	        -7
+set $BOTTOM_GAPS        0
+set $LEFT_GAPS          0
+set $RIGHT_GAPS         0
 #-<<FOR RESIZE>>->->->->->->->->->->->->->->->->->->
 set $X_RE_UNIT_LARGE  	40px
 set $Y_RE_UNIT_LARGE  	20px
@@ -26,342 +32,346 @@ set $pptY_RE_UNIT_SMALL 1ppt
 #-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>
 set $XMVSPEED	    	50px
 set $YMVSPEED	    	30px
-set $WSW     			1400
-set $WSH    			900
-set $WSPX	    		250
-set $WSPY	    		90
-set $mod 			    Mod1
-set $BindM				bindsym		  				        Mod1+
-set $BindM_Sh     		bindsym		  				        Mod1+Shift+
-set $RelM				bindsym		  --release 	        Mod1+ 
-set $RelM_Sh			bindsym		  --release 	        Mod1+Shift+
-set $BORD1 				exec 		  --no-startup-id i3-msg "border pixel 3"
-set $BORD2 				exec 		  " --no-startup-id sleep 0.001; i3-msg   'border pixel 0'"
-set $EXENI				exec 		  --no-startup-id
+set $WSW     		1400
+set $WSH    	       	900
+set $WSPX	       	250
+set $WSPY	       	90
+set $mod 	        Mod1
+set $BindM	        bindsym		  		        Mod1+
+set $BindM_Sh          	bindsym		  		        Mod1+Shift+
+set $RelM	       	bindsym		  --release 	        Mod1+ 
+set $RelM_Sh	       	bindsym		  --release 	        Mod1+Shift+
+set $BORD1 	       	exec 		  --no-startup-id i3-msg "border pixel 3"
+set $BORD2 	       	exec 		  " --no-startup-id sleep 0.001; i3-msg   'border pixel 0'"
+set $EXENI	       	exec 		  --no-startup-id
 set $EXENI_A         	exec_always	  --no-startup-id
 #-----------------------Checks to make sure config file compiles correctly before running 
-bindsym 				$mod+Shift+r  exec --no-startup-id $HOME/bin/i3configcheck.sh		  --3
-bindsym     			$mod+Shift+c  exec --no-startup-id $HOME/bin/i3configcheck.sh --NOASK --0
+bindsym                                 $mod+Shift+r  exec --no-startup-id $HOME/bin/i3configcheck.sh           --3
+bindsym                                 $mod+Shift+c  exec --no-startup-id $HOME/bin/i3configcheck.sh   --NOASK --0
 
 #---------------------------------------------------PARAM----------------------------------------------------------#
-client.unfocused 					#333333 		#333333 		#000000 		#444444   		#040404
-client.focused_inactive 			#000055 		#000055 		#000000 		#444444
-client.focused 						#888888 		#888888 		#000000 		#0080C0
-client.background       			#FF0000
+client.unfocused 			#333333 		#333333 		#000000 		#444444   		#040404
+client.focused_inactive 		#000055 		#000055 		#000000 		#444444
+client.focused 				#888888 		#888888 		#000000 		#0080C0
+client.background       		#FF0000
 #------Class------------------------Border----------Backgro---------Text------------Indicat---------ChildBr--------#
-focus_follows_mouse  	yes
-floating_modifier    	$mod
-gaps			 	 	inner      		0
-gaps				 	outer      		0
+focus_follows_mouse  	                yes
+floating_modifier    	                $mod
+#                                       AFFECTS                 INNER_AND_OUTER
+gaps			 	 	inner      		$IN_GAPS
+#                                       AFFECTS                 OUTER
+gaps 					top 			$TOP_GAPS
+gaps 					bottom			$BOTTOM_GAPS 
+gaps 					left  			$LEFT_GAPS  
+gaps 					right 			$RIGHT_GAPS  
+# gaps				 	outer                   $OUT_GAPS
 
 font pango:Fira Code Retina 8
-default_border			pixel 			0
+default_border pixel 0
 
-workspace 			 	1		   	    output		 	$LEFT_MONITOR
-workspace 			 	2		   	    output		 	$LEFT_MONITOR
-workspace 			 	3		   	    output		 	$LEFT_MONITOR
-workspace 			 	4		   	    output		 	$LEFT_MONITOR
-workspace 			 	5		   	    output		 	$RIGHT_MONITOR
-workspace 			 	6		   	    output		 	$RIGHT_MONITOR
-workspace 			 	7		   	    output		 	$RIGHT_MONITOR
-workspace 			 	8		   	    output		 	$RIGHT_MONITOR
-workspace 			 	9		   	    output		 	$RIGHT_MONITOR
-workspace 			 	10		   	    output		 	$RIGHT_MONITOR
-workspace 			 	11		   	    output		 	$RIGHT_MONITOR
-workspace 			 	12		   	    output		 	$RIGHT_MONITOR
-
-#gaps 				    top -5
-#gaps 				    bottom -5
+workspace 			 	1                       output		 	$LEFT_MONITOR
+workspace 			 	2		   	output		 	$LEFT_MONITOR
+workspace 			 	3		   	output		 	$LEFT_MONITOR
+workspace 			 	4		   	output		 	$LEFT_MONITOR
+workspace 			 	5		   	output		 	$RIGHT_MONITOR
+workspace 			 	6		   	output		 	$RIGHT_MONITOR
+workspace 			 	7		   	output		 	$RIGHT_MONITOR
+workspace 			 	8		   	output		 	$RIGHT_MONITOR
+workspace 			 	9		   	output		 	$RIGHT_MONITOR
+workspace 			 	10		   	output		 	$RIGHT_MONITOR
+workspace 			 	11		   	output		 	$RIGHT_MONITOR
+workspace 			 	12		   	output		 	$RIGHT_MONITOR
 #---------------------------------------------------FOR_WINDOW-----------------------------------------------------#
 #for_window [workspace="7"]								floating enable, move position 1000, 400
 for_window [instance="i3wm_scratchpad_notepad"]			floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
 for_window [instance="i3wm_scratchpad_pavucontrol"]		floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
-for_window [instance="i3wm_scratchpad_st"]				floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
-for_window [class="Tor Browser"]						floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
-for_window [class="hexchat"]							floating enable
-for_window [instance="mycv"]							floating enable, move position 1000 1000
-for_window [class="mycv"]								floating enable, move position 1000 1000
-for_window [title="mycv*"]								floating enable, move position 1920 0
-for_window [class="i3*input"]							resize set 1000 1000
+for_window [instance="i3wm_scratchpad_st"]			floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
+for_window [class="Tor Browser"]				floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
+for_window [class="hexchat"]					floating enable
+for_window [instance="mycv"]					floating enable, move position 1000 1000
+for_window [class="mycv"]					floating enable, move position 1000 1000
+for_window [title="mycv*"]					floating enable, move position 1920 0
+for_window [class="i3*input"]					resize set 1000 1000
+for_window [class="brave*"]					border pixel 0
+for_window [class="Brave*"]					border pixel 0
+for_window [all]					        border pixel 0
 #FOR REFERENCE, class for brave: for_window [class="brave-browser"]
-#for_window [class="brave-browser"]					    font xft:Hack 0
-for_window [class="brave*"]					       		border pixel 0
-for_window [class="Brave*"]					    		border pixel 0
-for_window [all]					            		border pixel 0
-
+#for_window [class="brave-browser"]				font xft:Hack 0
 #---------------------------------------------------BINDS----------------------------------------------------------#
-$BindM         a 		      mode freekey;				exec --no-startup-id "sleep 0.2;\
-                                                                              xdotool key 'alt+v';\
-																			  sleep 0.2;\
-																			  xdotool key 'alt+shift+w'"; 
-$BindM         d         		     	                exec        	dmenu_run -b -nb "#000000" -l 10 -fn "Office Code Pro:pixelsize=20:antialias=true:autohint=true"
-$BindM         e 		  		     	                layout      	toggle   split
-$BindM         f	  	  	  		     	            mode        	"mousemove"
-$BindM         g		  		     	                exec        	gnome-screenshot
-$BindM         h		      $BORD1;  	                focus 	     	left  
-$BindM		   i			  				            exec 			$HOME/bin/dmenu_websearch.sh
-$BindM         j		      $BORD1;  	                focus 	     	down  
-$BindM         k		      $BORD1;  	                focus 	     	up	  
-$BindM         l		      $BORD1;  	                focus 	     	right 
-$BindM         m 		  	  $BORD1;    	            scratchpad  	show
-$BindM         n		  	  $BORD1;    	            [instance="i3wm_scratchpad_notepad"] 	scratchpad show
-$BindM         o	  	  		     	                fullscreen
-$BindM         p   	  		     	                    exec        	dunstctl           close-all
-$BindM         q			  $BORD2;
-$BindM         r	  	  	  		     	            mode        	"resize"
-$BindM         s 		  		     	                layout      	stacking
-$BindM         t		  	  $BORD1;    	            [class="Tor Browser"] 					scratchpad show
-$BindM         u		  	  $BORD1;    	            [instance="i3wm_scratchpad_st"] 		scratchpad show
-$BindM         v         		     	                split v
-$BindM         w 		  		     	                layout      	tabbed
-$BindM         y			  $BORD2;
-$BindM         semicolon 	  $BORD1
-$BindM         Return	  	  $BORD1;    	            exec 		 	/usr/local/bin/st 
-$BindM         period	  		     	                gaps        	inner    all toggle $INGAPS, 	gaps outer all toggle $OUTGAPS
-$BindM         Super_L	  	  $BORD1;    	            floating    	toggle
-$BindM         space	      $BORD1;                   focus 	     	mode_toggle
-$BindM         Down	  		     	                    exec        	pamixer --decrease 1
-$BindM         Up		  		     	                exec        	pamixer --increase 1 
-$BindM         1		  	  $BORD1;    	            workspace   	1
-$BindM         2		  	  $BORD1;    	            workspace   	2
-$BindM         3		  	  $BORD1;    	            workspace   	3
-$BindM         4		  	  $BORD1;    	            workspace   	4
-$BindM         5		  	  $BORD1;    	            workspace   	5
-$BindM         6		  	  $BORD1;    	            workspace   	6
-$BindM         7		  	  $BORD1;    	            workspace   	7
-$BindM         8		  	  $BORD1;    	            workspace   	8
-$BindM         9		  	  $BORD1;    	            workspace   	9
-$BindM         0		  	  $BORD1;    	            workspace   	10
-$BindM         bracketleft    $BORD1;    	            workspace   	11
-$BindM         bracketright   $BORD1;    	            workspace   	12
+$BindM          a                       mode freekey;	exec --no-startup-id "sleep 0.2;\
+                                                        xdotool key 'alt+v';\
+							sleep 0.2;\
+							xdotool key 'alt+shift+w'"; 
+$BindM          d         		     	        exec        	                dmenu_run -b -nb "#000000" -l 10 -fn "Office Code Pro:pixelsize=20:antialias=true:autohint=true"
+$BindM          e 		  		     	layout      	                toggle   split
+$BindM          f	  	  	  		mode        	                "mousemove"
+$BindM          g		  		     	exec        	                gnome-screenshot
+$BindM          h                       $BORD1;  	focus 	     	                left  
+$BindM          i                                       exec 		                	$HOME/bin/dmenu_websearch.sh
+$BindM          j                       $BORD1;  	focus 	     	                down  
+$BindM          k                       $BORD1;  	focus 	     	                up	  
+$BindM          l                       $BORD1;  	focus 	     	                right 
+$BindM          m                       $BORD1;    	scratchpad  	                show
+$BindM          n                       $BORD1;    	[instance="i3wm_s*_notepad"] 	scratchpad show
+$BindM          o                         	     	fullscreen
+$BindM          p                              	        exec                             dunstctl           close-all
+$BindM          q                       $BORD2;
+$BindM          r                           		mode                             "resize"
+$BindM          s                         	     	layout                           stacking
+$BindM          t                       $BORD1;    	[class="Tor Browser"] 					scratchpad show
+$BindM          u                       $BORD1;    	[instance="i3wm_scratchpad_st"] 		scratchpad show
+$BindM          v                              	        split v
+$BindM          w                         	     	layout      	tabbed
+$BindM          y                       $BORD2;
+$BindM          semicolon               $BORD1
+$BindM          Return	  	        $BORD1;    	exec 		 	/usr/local/bin/st 
+$BindM          period	  		     	        gaps        	inner    all     toggle $IN_GAPS,\
+                                                        gaps 			top 	 all     toggle $TOP_GAPS,\
+                                                        gaps 			bottom	 all	 toggle $BOTTOM_GAPS,\
+                                                        gaps   		    left  	 all	 toggle	$LEFT_GAPS,\
+                                                        gaps   		    right 	 all	 toggle	$RIGHT_GAPS
+#$BindM          period	  		     	        gaps        	inner    all toggle $INGAPS, 	gaps outer all toggle $OUTGAPS
+$BindM          Super_L                 $BORD1;    	floating    	toggle
+$BindM          space	                $BORD1;         focus 	     	mode_toggle
+$BindM          Down	  		     	        exec        	pamixer --decrease 1
+$BindM          Up		  		     	exec        	pamixer --increase 1 
+$BindM          1                       $BORD1;    	workspace   	1
+$BindM          2                       $BORD1;    	workspace   	2
+$BindM          3                       $BORD1;    	workspace   	3
+$BindM          4                       $BORD1;    	workspace   	4
+$BindM          5                       $BORD1;    	workspace   	5
+$BindM          6                       $BORD1;    	workspace   	6
+$BindM          7                       $BORD1;    	workspace   	7
+$BindM          8                       $BORD1;    	workspace   	8
+$BindM          9                       $BORD1;    	workspace   	9
+$BindM          0                       $BORD1;    	workspace   	10
+$BindM          bracketleft             $BORD1;    	workspace   	11
+$BindM          bracketright            $BORD1;    	workspace   	12
 #---------------------------------------------------SHIFT-BINDS----------------------------------------------------#
-$BindM_Sh      a 		      $BORD1; 		            focus       	parent
-$BindM_Sh      b		  	  $BORD1;    	            exec 		 	$HOME/bin/ubluetoggle.sh
-$BindM_Sh      less    	  		     	                exec 		    "i3-msg 'gaps inner all minus 10'"
-$BindM_Sh      greater    	  		     	            exec 		    "i3-msg 'gaps inner all plus 10'"
-#              c		  	                                            SPECIAL BIND, DO NOT BIND KEY
-$BindM_Sh      e 		  		     	                exec 		 	"i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
-$BindM_Sh      h		  	  $BORD1;    	            move  	     	left      $XMVSPEED
-$BindM_Sh      i		  	  $BORD1;    	            exec 		 	$HOME/bin/mdmenu.sh
-$BindM_Sh      j		  	  $BORD1;    	            move  	     	down   	  $YMVSPEED
-$BindM_Sh      k		  	  $BORD1;    	            move  	     	up     	  $YMVSPEED
-$BindM_Sh      l		  	  $BORD1;    	            move  	     	right  	  $XMVSPEED
-$BindM_Sh      m 	  	  	  		     	            floating 	 	enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
-$BindM_Sh      n		  	  $BORD1;    	            exec 		 	/usr/local/bin/st -n 'i3wm_scratchpad_notepad' nvim "$HOME/Documents/Notepad/note.txt"
-$BindM_Sh      o 		  		     	                exec 		 	i3lock -f -e -c 333333
-$BindM_Sh      p	  	  	  $BORD1;    	            exec		 	/usr/bin/brave --incognito
-$BindM_Sh      q		  	  $BORD1;    	            kill
-#              r		  	                                            SPECIAL BIND, DO NOT BIND KEY
-#              s		  	                                            SPECIAL BIND, DO NOT BIND KEY
-$BindM_Sh      t		  	  $BORD1;    	            exec 		 	$HOME/.local/opt/tor-browser_en-US/Browser/start-tor-browser; exec sleep 1 && i3-msg '[class="Tor Browser"] scratchpad show'
-$BindM_Sh      u		  	  $BORD1;    	            exec 		 	/usr/local/bin/st -n i3wm_scratchpad_st
-$BindM_Sh      v         		     	                split h
-$BindM_Sh      w         		     	                mode            freekey
-$BindM_Sh      x		  	  $BORD1;    	            exec 		 	$HOME/bin/add_to_clip.sh "DATE" "TIME"
-$BindM_Sh      y		  		     	                exec 		 	$HOME/bin/urxvt_notepad_script.sh   "TMUX"
-$BindM_Sh      z		  	  $BORD1;    	            exec 		 	$HOME/bin/brave-tor.sh
-$BindM_Sh      semicolon 	  		     	            resize 	 		set $WSW $WSH
-$BindM_Sh      Return	  	            	            exec 			/usr/bin/brave
-$BindM_Sh      Up 		  		     	                exec 		 	$HOME/bin/nitrowscript.sh 			"UP"
-$BindM_Sh      Down	  		     	                    exec 		 	$HOME/bin/nitrowscript.sh 			"DOWN"
-$BindM_Sh      Left	  		     	                    exec 		 	$HOME/bin/nitrowscript.sh 			"LEFT"
-$BindM_Sh      Right 	  		     	                exec 		 	$HOME/bin/nitrowscript.sh 			"RIGHT"
-$BindM_Sh      Delete 	  		     	                exec 		 	$HOME/bin/nitrowscript.sh 			"--auto"
-$BindM_Sh      End 	  		     	                    exec 		 	$HOME/bin/nitrowscript.sh 			"--zoom-fill"
-$BindM_Sh      Next  		     	    	            exec 		 	$HOME/bin/nitrowscript.sh 			"--centered"
-$BindM_Sh      Insert 	  		     		            exec 		 	$HOME/bin/nitrowscript.sh 			"--zoom"
-$BindM_Sh      Home     	  		     	            exec 		 	$HOME/bin/nitrowscript.sh 			"--tiled"
-$BindM_Sh      1		  	  $BORD1;    	            move 		 	container to workspace  1; workspace  1
-$BindM_Sh      2		  	  $BORD1;    	            move        	container to workspace  2; workspace  2
-$BindM_Sh      3		  	  $BORD1;    	            move        	container to workspace  3; workspace  3
-$BindM_Sh      4		  	  $BORD1;    	            move        	container to workspace  4; workspace  4
-$BindM_Sh      5		  	  $BORD1;    	            move        	container to workspace  5; workspace  5
-$BindM_Sh      6		  	  $BORD1;    	            move        	container to workspace  6; workspace  6
-$BindM_Sh      7		  	  $BORD1;    	            move        	container to workspace  7; workspace  7
-$BindM_Sh      8		  	  $BORD1;    	            move        	container to workspace  8; workspace  8
-$BindM_Sh      9		  	  $BORD1;    	            move        	container to workspace  9; workspace  9
-$BindM_Sh      0		  	  $BORD1;    	            move        	container to workspace 10; workspace 10
-$BindM_Sh      bracketleft    $BORD1;    	            move        	container to workspace 11; workspace 11
-$BindM_Sh      bracketright   $BORD1;    	            move        	container to workspace 12; workspace 12
+$BindM_Sh       a 		        $BORD1; 	focus       	parent
+$BindM_Sh       b		        $BORD1;    	exec 		$HOME/bin/ubluetoggle.sh
+$BindM_Sh       less    	  		     	exec 		"i3-msg 'gaps inner all minus 10'"
+$BindM_Sh       greater    	  		     	exec 		"i3-msg 'gaps inner all plus 10'"
+#               c		  	SPECIAL BIND
+$BindM_Sh       e 		                  	exec 		"i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
+$BindM_Sh       h		        $BORD1;    	move  	     	left      $XMVSPEED
+$BindM_Sh       i		        $BORD1;    	exec 		$HOME/bin/mdmenu.sh
+$BindM_Sh       j		        $BORD1;    	move  	     	down   	  $YMVSPEED
+$BindM_Sh       k		        $BORD1;    	move  	     	up     	  $YMVSPEED
+$BindM_Sh       l		        $BORD1;    	move  	     	right  	  $XMVSPEED
+$BindM_Sh       m 	  	        		floating 	enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
+$BindM_Sh       n		        $BORD1;    	exec 		/usr/local/bin/st -n 'i3wm_scratchpad_notepad' nvim "$HOME/Documents/Notepad/note.txt"
+$BindM_Sh       o 		                   	exec 		i3lock -f -e -c 333333
+$BindM_Sh       p	  	        $BORD1;    	exec		/usr/bin/brave --incognito
+$BindM_Sh       q		        $BORD1;    	kill
+#               r		        SPECIAL BIND
+#               s		        SPECIAL BIND
+$BindM_Sh       t		        $BORD1;    	exec            $HOME/.local/opt/tor-browser_en-US/Browser/start-tor-browser; exec sleep 1 && i3-msg '[class="Tor Browser"] scratchpad show'
+$BindM_Sh       u		        $BORD1;    	exec            /usr/local/bin/st -n i3wm_scratchpad_st
+$BindM_Sh       v         	           	        split h
+$BindM_Sh       w         	           	        mode            freekey
+$BindM_Sh       x		        $BORD1;    	exec            $HOME/bin/add_to_clip.sh "DATE" "TIME"
+$BindM_Sh       y		                   	exec            $HOME/bin/urxvt_notepad_script.sh   "TMUX"
+$BindM_Sh       z		        $BORD1;    	exec            $HOME/bin/brave-tor.sh
+$BindM_Sh       semicolon 	                  	resize          set $WSW $WSH
+$BindM_Sh       Return	  	         	        exec            /usr/bin/brave
+$BindM_Sh       Up 		                  	exec            $HOME/bin/nitrowscript.sh 			"UP"
+$BindM_Sh       Down	  	          	        exec            $HOME/bin/nitrowscript.sh 			"DOWN"
+$BindM_Sh       Left	  	          	        exec            $HOME/bin/nitrowscript.sh 			"LEFT"
+$BindM_Sh       Right 	  	          	        exec            $HOME/bin/nitrowscript.sh 			"RIGHT"
+$BindM_Sh       Delete 	  	          	        exec            $HOME/bin/nitrowscript.sh 			"--auto"
+$BindM_Sh       End 	  	          	        exec            $HOME/bin/nitrowscript.sh 			"--zoom-fill"
+$BindM_Sh       Next  		         	        exec            $HOME/bin/nitrowscript.sh 			"--centered"
+$BindM_Sh       Insert 	  	          		exec            $HOME/bin/nitrowscript.sh 			"--zoom"
+$BindM_Sh       Home     	                  	exec            $HOME/bin/nitrowscript.sh 			"--tiled"
+$BindM_Sh       1		        $BORD1;    	move            container to workspace  1; workspace  1
+$BindM_Sh       2		        $BORD1;    	move            container to workspace  2; workspace  2
+$BindM_Sh       3		        $BORD1;    	move            container to workspace  3; workspace  3
+$BindM_Sh       4		        $BORD1;    	move            container to workspace  4; workspace  4
+$BindM_Sh       5		        $BORD1;    	move            container to workspace  5; workspace  5
+$BindM_Sh       6		        $BORD1;    	move            container to workspace  6; workspace  6
+$BindM_Sh       7		        $BORD1;    	move            container to workspace  7; workspace  7
+$BindM_Sh       8		        $BORD1;    	move            container to workspace  8; workspace  8
+$BindM_Sh       9		        $BORD1;    	move            container to workspace  9; workspace  9
+$BindM_Sh       0		        $BORD1;    	move            container to workspace 10; workspace 10
+$BindM_Sh       bracketleft             $BORD1;    	move            container to workspace 11; workspace 11
+$BindM_Sh       bracketright            $BORD1;    	move            container to workspace 12; workspace 12
 #---------------------------------------------------SPECIAL-BINDS--------------------------------------------------#
-bindsym 		  Super_L $BORD1; 		sticky toggle; 
+bindsym Super_L   $BORD1; sticky toggle; 
 bindsym --release Super_L $BORD2
-#-----------------------------------------------RELEASE-BINDS--------------------------------------------------#
-$RelM           0		  	  $BORD2
-$RelM           1		  	  $BORD2
-$RelM           2		  	  $BORD2
-$RelM           3		  	  $BORD2
-$RelM           4		  	  $BORD2
-$RelM           5		  	  $BORD2
-$RelM           6		  	  $BORD2
-$RelM           7		  	  $BORD2
-$RelM           8		  	  $BORD2
-$RelM           9		  	  $BORD2
-$RelM 		    a		      $BORD2
-$RelM 		    b		      $BORD2
-$RelM 		    c		      $BORD2
-$RelM 		    d		      $BORD2
-$RelM 		    e		      $BORD2
-$RelM 		    f		      $BORD2
-$RelM 		    g		      $BORD2
-$RelM 		    h		      $BORD2
-$RelM 		    i		      $BORD2
-$RelM 		    j		      $BORD2
-$RelM 		    k		      $BORD2
-$RelM 		    l		      $BORD2
-$RelM 		    m		      $BORD2
-$RelM 		    n		      $BORD2
-$RelM 		    o		      $BORD2
-$RelM 		    p		      $BORD2
-$RelM 		    q		      $BORD2
-$RelM 		    s		      $BORD2
-$RelM 		    t		      $BORD2
-$RelM 		    u		      $BORD2
-$RelM 		    v		      $BORD2
-$RelM 		    x		      $BORD2
-$RelM 		    y		      $BORD2
-$RelM 		    z		      $BORD2
-$RelM 		    semicolon     $BORD2			
-#$RelM 		    Return	      $BORD2
-$RelM 		    Left	      $BORD2
-$RelM 		    Down	      $BORD2
-$RelM 		    Right	      $BORD2
-$RelM 		    comma 	      $BORD2
-$RelM 		    period	      $BORD2
-$RelM 		    Super_L	      $BORD2
-$RelM	    	space     	  $BORD2
-$RelM   	    bracketright  $BORD2
-$RelM   	    bracketleft   $BORD2
-$RelM_Sh        0		  	  $BORD2
-$RelM_Sh        1		  	  $BORD2
-$RelM_Sh        2		  	  $BORD2
-$RelM_Sh        3		  	  $BORD2
-$RelM_Sh        4		  	  $BORD2
-$RelM_Sh        5		  	  $BORD2
-$RelM_Sh        6		  	  $BORD2
-$RelM_Sh        7		  	  $BORD2
-$RelM_Sh        8		  	  $BORD2
-$RelM_Sh        9		  	  $BORD2
-$RelM_Sh	    a		      $BORD2
-$RelM_Sh	    b		      $BORD2
-$RelM_Sh	    c		      $BORD2
-$RelM_Sh	    d		      $BORD2
-$RelM_Sh	    e		      $BORD2
-$RelM_Sh	    f		      $BORD2
-$RelM_Sh	    g		      $BORD2
-$RelM_Sh	    h		      $BORD2
-$RelM_Sh	    i		      $BORD2
-$RelM_Sh	    j		      $BORD2
-$RelM_Sh	    k		      $BORD2
-$RelM_Sh	    l		      $BORD2
-$RelM_Sh	    m		      $BORD2
-$RelM_Sh	    n		      $BORD2
-$RelM_Sh	    o		      $BORD2
-$RelM_Sh	    p		      $BORD2
-$RelM_Sh	    q		      $BORD2
-$RelM_Sh	    s		      $BORD2
-$RelM_Sh	    t		      $BORD2
-$RelM_Sh	    u		      $BORD2
-$RelM_Sh	    v		      $BORD2
-$RelM_Sh	    x		      $BORD2
-$RelM_Sh	    y		      $BORD2
-$RelM_Sh	    z		      $BORD2
-$RelM_Sh	    space     	  $BORD2
-$RelM_Sh	    semicolon     $BORD2
-$RelM_Sh	    Left	      $BORD2
-$RelM_Sh	    Down	      $BORD2
-$RelM_Sh	    Right	      $BORD2
-$RelM_Sh	    comma 	      $BORD2
-$RelM_Sh	    period	      $BORD2
-$RelM_Sh	    Super_L	      $BORD2
-$RelM_Sh	    bracketright  $BORD2
-$RelM_Sh	    bracketleft   $BORD2
-#$RelM_Sh	    Return	      $BORD2
 bindsym --release $mod+Shift+Return exec "sleep 0.2; i3-msg 'border pixel 0'"
 #---------------------------------------------------EXECS----------------------------------------------------------#
-$EXENI  	dunst
-$EXENI_A  	xinput 		  --set-prop 12 "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 0.44 
-$EXENI_A  	xinput 		  --set-prop 12 "libinput Accel Speed" -1 
-$EXENI_A    xmodmap 	  -e 			"keycode 49  = 0x0000 0xffeb 0x0000 0xffeb"
-$EXENI_A    xmodmap 	  -e 			"keycode 133 = 0x007e 0x0060 0x007e 0x0060" 
-$EXENI_A    xset 	 	  s 			off
-$EXENI_A    xset 	 	  -dpms
-$EXENI_A    xset 	 	  r 			rate 200 40
-$EXENI_A    nitrogen      --restore
-$EXENI_A    xcompmgr 	  -C 
-$EXENI_A    $HOME/.config/polybar/launch.sh
+$EXENI          dunst
+$EXENI_A        xinput 		                        --set-prop 12   "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 0.44 
+$EXENI_A        xinput 		                        --set-prop 12   "libinput Accel Speed" -1 
+$EXENI_A        xmodmap 	                        -e              "keycode 49  = 0x0000 0xffeb 0x0000 0xffeb"
+$EXENI_A        xmodmap 	                        -e 	       	"keycode 133 = 0x007e 0x0060 0x007e 0x0060" 
+$EXENI_A        xset 	 	                        -dpms
+$EXENI_A        xset 	 	                        s 	       	off
+$EXENI_A        xset 	 	                        r 	       	rate 200 40
+$EXENI_A        nitrogen                                --restore
+$EXENI_A        xcompmgr 	                        -C 
+$EXENI_A        $HOME/.config/polybar/launch.sh
 #---------------------------------------------------MODES----------------------------------------------------------#
 #-<<MOUSE>>-->->->->->->->->->->->->->->->->->->->->
 set $MOUSE_MOVE_BIND \
-					 bindsym Shift+h "exec  xdotool mousemove_relative --polar 270     5"\
-				     bindsym Shift+j "exec  xdotool mousemove_relative --polar 180     5"\
-					 bindsym Shift+k "exec  xdotool mousemove_relative --polar 0       5"\
-                     bindsym Shift+l "exec  xdotool mousemove_relative --polar 90      5"\
-                     bindsym h 		 "exec  xdotool mousemove_relative --polar 270   100"\
-                     bindsym j 		 "exec  xdotool mousemove_relative --polar 180   100"\
-                     bindsym k 		 "exec  xdotool mousemove_relative --polar 0     100"\
-                     bindsym l 		 "exec  xdotool mousemove_relative --polar 90    100"\
-		             bindsym f		 "exec  xdotool click 1"\
-		             bindsym d		 "exec  xdotool click 3"\
-		             bindsym s		 "exec  xdotool click 2"\
-		             bindsym g  	 "exec  xdotool click 4"\
-		             bindsym v 		 "exec  xdotool click 5"
+		bindsym Shift+h                         exec "xdotool mousemove_relative --polar 270     5"\
+		bindsym Shift+j                         exec "xdotool mousemove_relative --polar 180     5"\
+		bindsym Shift+k                         exec "xdotool mousemove_relative --polar 0       5"\
+                bindsym Shift+l                         exec "xdotool mousemove_relative --polar 90      5"\
+                bindsym h 		                exec "xdotool mousemove_relative --polar 270   100"\
+                bindsym j 		                exec "xdotool mousemove_relative --polar 180   100"\
+                bindsym k 		                exec "xdotool mousemove_relative --polar 0     100"\
+                bindsym l 		                exec "xdotool mousemove_relative --polar 90    100"\
+		bindsym f		                exec "xdotool click 1"\
+		bindsym d		                exec "xdotool click 3"\
+		bindsym s		                exec "xdotool click 2"\
+		bindsym g  	                        exec "xdotool click 4"\
+		bindsym v 		                exec "xdotool click 5"
 mode "mousedown1" { 
-					$MOUSE_MOVE_BIND 
-					bindsym Escape exec "xdotool mouseup 1 ; i3-msg 'mode mousemove'"
-					bindsym $mod+Escape exec "xdotool mouseup 1 ; i3-msg 'mode mousemove'"
-					bindsym $mod+f exec "xdotool mouseup 1 ; i3-msg 'mode default'"
+		$MOUSE_MOVE_BIND 
+		bindsym Escape                          exec "xdotool mouseup 1 ; i3-msg 'mode mousemove'"
+		bindsym $mod+Escape                     exec "xdotool mouseup 1 ; i3-msg 'mode mousemove'"
+		bindsym $mod+f                          exec "xdotool mouseup 1 ; i3-msg 'mode default'"
 }
 mode "mousedown2" {
-					$MOUSE_MOVE_BIND 
-					bindsym Escape exec "xdotool mouseup 2 ; i3-msg 'mode mousemove'"
-					bindsym $mod+Escape exec "xdotool mouseup 2 ; i3-msg 'mode mousemove'"
-					bindsym $mod+f exec "xdotool mouseup 2 ; i3-msg 'mode default'"
+		$MOUSE_MOVE_BIND 
+		bindsym Escape                          exec "xdotool mouseup 2 ; i3-msg 'mode mousemove'"
+		bindsym $mod+Escape                     exec "xdotool mouseup 2 ; i3-msg 'mode mousemove'"
+		bindsym $mod+f                          exec "xdotool mouseup 2 ; i3-msg 'mode default'"
 }
 mode "mousedown3" { 
-					$MOUSE_MOVE_BIND 
-					bindsym Escape exec "xdotool mouseup 3 ; i3-msg 'mode mousemove'"
-					bindsym $mod+Escape exec "xdotool mouseup 3 ; i3-msg 'mode mousemove'"
-					bindsym $mod+f exec "xdotool mouseup 3 ; i3-msg 'mode default'"
+		$MOUSE_MOVE_BIND 
+		bindsym Escape                          exec "xdotool mouseup 3 ; i3-msg 'mode mousemove'"
+		bindsym $mod+Escape                     exec "xdotool mouseup 3 ; i3-msg 'mode mousemove'"
+		bindsym $mod+f                          exec "xdotool mouseup 3 ; i3-msg 'mode default'"
 }
 mode "mousemove" {
        # MOVE
-					 $MOUSE_MOVE_BIND
+		$MOUSE_MOVE_BIND
        # CLICK
-		             bindsym f								     	exec xdotool click 1
-		             bindsym d								     	exec xdotool click 3
-		             bindsym s								     	exec xdotool click 2
+		bindsym f			        exec xdotool click 1
+		bindsym d			        exec xdotool click 3
+		bindsym s			        exec xdotool click 2
        # MODES
-		             bindsym r								   		exec "xdotool mousedown 1; i3-msg 'mode mousedown1'"
-		             bindsym e								   		exec "xdotool mousedown 3; i3-msg 'mode mousedown3'"
-		             bindsym w								   		exec "xdotool mousedown 2; i3-msg 'mode mousedown2'"
+		bindsym r			        exec "xdotool mousedown 1; i3-msg 'mode mousedown1'"
+		bindsym e			        exec "xdotool mousedown 3; i3-msg 'mode mousedown3'"
+		bindsym w			        exec "xdotool mousedown 2; i3-msg 'mode mousedown2'"
        # EXIT
-                     bindsym $mod+f  								 mode "default"
+                bindsym $mod+f  		        mode "default"
  					 
 }
 #-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>
 mode "freekey" {
        # EXIT
-                     bindsym $mod+Shift+w                           mode   "default"
-                     #bindsym Escape                                 mode   "default"
+                bindsym $mod+Shift+w                    mode   "default"
 }
 
 mode "resize" {
        # LEFT RIGHT
-                     bindsym h                                      resize shrink    width  $X_RE_UNIT_LARGE or $pptX_RE_UNIT_LARGE
-                     bindsym l                                      resize grow      width  $X_RE_UNIT_LARGE or $pptX_RE_UNIT_LARGE
-                     bindsym Shift+h                                resize shrink    width  $X_RE_UNIT_SMALL or $pptX_RE_UNIT_SMALL
-                     bindsym Shift+l                                resize grow      width  $X_RE_UNIT_SMALL or $pptX_RE_UNIT_SMALL
+                bindsym h                               resize shrink    width  $X_RE_UNIT_LARGE or $pptX_RE_UNIT_LARGE
+                bindsym l                               resize grow      width  $X_RE_UNIT_LARGE or $pptX_RE_UNIT_LARGE
+                bindsym Shift+h                         resize shrink    width  $X_RE_UNIT_SMALL or $pptX_RE_UNIT_SMALL
+                bindsym Shift+l                         resize grow      width  $X_RE_UNIT_SMALL or $pptX_RE_UNIT_SMALL
        # UP DOWN
-                     bindsym k                                      resize grow      height $Y_RE_UNIT_LARGE or $pptY_RE_UNIT_LARGE
-                     bindsym j                                      resize shrink    height $Y_RE_UNIT_LARGE or $pptY_RE_UNIT_LARGE
-                     bindsym Shift+k                                resize grow      height $Y_RE_UNIT_SMALL or $pptY_RE_UNIT_SMALL
-                     bindsym Shift+j                                resize shrink    height $Y_RE_UNIT_SMALL or $pptY_RE_UNIT_SMALL
+                bindsym k                               resize grow      height $Y_RE_UNIT_LARGE or $pptY_RE_UNIT_LARGE
+                bindsym j                               resize shrink    height $Y_RE_UNIT_LARGE or $pptY_RE_UNIT_LARGE
+                bindsym Shift+k                         resize grow      height $Y_RE_UNIT_SMALL or $pptY_RE_UNIT_SMALL
+                bindsym Shift+j                         resize shrink    height $Y_RE_UNIT_SMALL or $pptY_RE_UNIT_SMALL
        # EXIT
-                     bindsym $mod+r                                 mode   "default"
-                     bindsym Return                                 mode   "default"
-                     bindsym Escape                                 mode   "default"
+                bindsym $mod+r                          mode   "default"
+                bindsym Return                          mode   "default"
+                bindsym Escape                          mode   "default"
 }
 
-#---------------------------------------------------END------------------------------------------------------------#
 
+#-----------------------------------------------RELEASE-BINDS--------------------------------------------------#
+$RelM           0                                       $BORD2
+$RelM           1                                       $BORD2
+$RelM           2                                       $BORD2
+$RelM           3                                       $BORD2
+$RelM           4                                       $BORD2
+$RelM           5                                       $BORD2
+$RelM           6                                       $BORD2
+$RelM           7                                       $BORD2
+$RelM           8                                       $BORD2
+$RelM           9                                       $BORD2
+$RelM           a                                       $BORD2
+$RelM           b                                       $BORD2
+$RelM           c                                       $BORD2
+$RelM           d                                       $BORD2
+$RelM           e                                       $BORD2
+$RelM           f                                       $BORD2
+$RelM           g                                       $BORD2
+$RelM           h                                       $BORD2
+$RelM           i                                       $BORD2
+$RelM           j                                       $BORD2
+$RelM           k                                       $BORD2
+$RelM           l                                       $BORD2
+$RelM           m                                       $BORD2
+$RelM           n                                       $BORD2
+$RelM           o                                       $BORD2
+$RelM           p                                       $BORD2
+$RelM           q                                       $BORD2
+$RelM           s                                       $BORD2
+$RelM           t                                       $BORD2
+$RelM           u                                       $BORD2
+$RelM           v                                       $BORD2
+$RelM           x                                       $BORD2
+$RelM           y                                       $BORD2
+$RelM           z                                       $BORD2
+$RelM           semicolon                               $BORD2			
+$RelM           Left	                                $BORD2
+$RelM           Down	                                $BORD2
+$RelM           Right	                                $BORD2
+$RelM           comma 	                                $BORD2
+$RelM           period	                                $BORD2
+$RelM           Super_L	                                $BORD2
+$RelM           space                                   $BORD2
+$RelM           bracketright                            $BORD2
+$RelM           bracketleft                             $BORD2
+$RelM_Sh        0	         	                $BORD2
+$RelM_Sh        1	         	                $BORD2
+$RelM_Sh        2	         	                $BORD2
+$RelM_Sh        3	         	                $BORD2
+$RelM_Sh        4	         	                $BORD2
+$RelM_Sh        5	         	                $BORD2
+$RelM_Sh        6	         	                $BORD2
+$RelM_Sh        7	         	                $BORD2
+$RelM_Sh        8	         	                $BORD2
+$RelM_Sh        9	         	                $BORD2
+$RelM_Sh        a		                        $BORD2
+$RelM_Sh        b		                        $BORD2
+$RelM_Sh        c		                        $BORD2
+$RelM_Sh        d		                        $BORD2
+$RelM_Sh        e		                        $BORD2
+$RelM_Sh        f		                        $BORD2
+$RelM_Sh        g		                        $BORD2
+$RelM_Sh        h		                        $BORD2
+$RelM_Sh        i		                        $BORD2
+$RelM_Sh        j		                        $BORD2
+$RelM_Sh        k		                        $BORD2
+$RelM_Sh        l		                        $BORD2
+$RelM_Sh        m		                        $BORD2
+$RelM_Sh        n		                        $BORD2
+$RelM_Sh        o		                        $BORD2
+$RelM_Sh        p		                        $BORD2
+$RelM_Sh        q		                        $BORD2
+$RelM_Sh        s		                        $BORD2
+$RelM_Sh        t		                        $BORD2
+$RelM_Sh        u		                        $BORD2
+$RelM_Sh        v		                        $BORD2
+$RelM_Sh        x		                        $BORD2
+$RelM_Sh        y		                        $BORD2
+$RelM_Sh        z		                        $BORD2
+$RelM_Sh        space     	                        $BORD2
+$RelM_Sh        semicolon                               $BORD2
+$RelM_Sh        Left	                                $BORD2
+$RelM_Sh        Down	                                $BORD2
+$RelM_Sh        Right	                                $BORD2
+$RelM_Sh        comma 	                                $BORD2
+$RelM_Sh        period	                                $BORD2
+$RelM_Sh        Super_L	                                $BORD2
+$RelM_Sh        bracketright                            $BORD2
+$RelM_Sh        bracketleft                             $BORD2
+#---------------------------------------------------END------------------------------------------------------------#

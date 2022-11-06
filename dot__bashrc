@@ -86,6 +86,10 @@ fpend()    {
 	return "$?"
 }
 
+addally() {
+	printf 'alias %s='\''cd "%s"'\' "${1}" "$(pwd)" >> "$HOME/.bashrc"
+}
+
 pf() 			{   find 		  "${2:-"$HOME"}" | grep -Pi "${1}"   	 ; }
 nifs() 			{ 	IFS=$'\n'   ; printf "IFS=%q" "${IFS}"; echo ""		 ; }
 rifs() 			{ 	IFS=$' \t\n'; printf "IFS=%q" "${IFS}"; echo "" 	 ; }
@@ -194,7 +198,8 @@ export             NVIMSWAP="$HOME/.local/share/nvim/swap/"
 export           PYTHONPATH="${PYTHONPATH}:/$HOME/MY_PYTHON_MODULES/"
 export           PYTHONPATH="${PYTHONPATH}:/usr/bin/python3"
 export      FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-export 				   PAGER='w3m -o display_lineinfo=TRUE'
+#export 				   PAGER='w3m -o display_lineinfo=TRUE'
+export 				   PAGER='most'
 export				   TERM=st
 export		XDG_CONFIG_HOME="$HOME/.config"
 export QT_QPA_PLATFORMTHEME="qt5ct"
@@ -229,5 +234,12 @@ alias chrome_ext='echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'
 alias go_gnu='cd "$HOME/Desktop/Coding/mygnu2/"'
 
 alias cweb='cd "$HOME/WEBSITE/myproject/JABA/8_17_2022/"; nv -p *'
+
+
+alias ms_core='cd "/usr/share/mscore-3.6/styles"'
+
+#alias decode_url='(read _z; IFS="+"; echo -e ${_z//%/\\x}"") <<< '
+alias sman='man -K --regex'
+#alias decode2='source "$HOME/TEST DIR/pos3.sh"'
 
 
