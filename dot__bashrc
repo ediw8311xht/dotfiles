@@ -202,6 +202,7 @@ export      FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null ||
 export 				   PAGER='most'
 export				   TERM=st
 export		XDG_CONFIG_HOME="$HOME/.config"
+export		XDG_CACHE_HOME="$HOME/.cache"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 #    export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 # --------------------------------------------------------------------- #
@@ -244,3 +245,10 @@ alias sman='man -K --regex'
 
 
 alias cool='cd "/$HOME/Desktop/Coding/Cool-Linux-Shell-Scripts"'
+
+alias webm='cd "/$HOME/WEBSITE/myproject"'
+
+alias rns='cd "/$HOME/WEBSITE/myproject/"; flask run'
+
+
+

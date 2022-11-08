@@ -111,13 +111,13 @@ colorscheme   pop-punk
 highlight     Visual              cterm=NONE        ctermbg=NONE ctermfg=16    gui=NONE         guibg=#333333  guifg=#00FF00
 highlight     StatusLine          cterm=NONE        ctermbg=NONE ctermfg=160   gui=NONE         guibg=#222222  guifg=#009900
 highlight     Normal              cterm=NONE        ctermbg=17   ctermfg=NONE  gui=NONE         guibg=NONE     guifg=#FFFFFF
-highlight     LineNr              cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=NONE         guibg=NONE     guifg=#0088F3
+highlight     LineNr              cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=NONE         guibg=NONE     guifg=#008800
 highlight     NonText             cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=NONE         guibg=NONE     guifg=NONE
 hi            CocSearch           cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=NONE         guibg=NONE     guifg=NONE
 hi            CocMenuSel          cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=NONE         guibg=NONE     guifg=NONE
 hi            MatchParen          cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=NONE         guibg=NONE     guifg=NONE
 hi            MatchParen          cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=bold         guibg=NONE     guifg=NONE 
-hi            cursorline          cterm=bold        ctermfg=NONE ctermbg=18    gui=bold         guibg=darkblue guifg=NONE 
+hi            cursorline          cterm=bold        ctermfg=NONE ctermbg=18    gui=NONE         guibg=#252525  guifg=NONE
 hi            cursorcolumn        cterm=italic,bold ctermfg=NONE ctermbg=NONE  gui=underline    guibg=NONE     guifg=NONE 
 hi            FoldColumn          cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=bold         guibg=NONE     guifg=#00FF00 
 hi            Folded              cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=bold,italic  guibg=NONE     guifg=#888888 
@@ -265,7 +265,7 @@ nnoremap <leader>tf          :                    tabfirst<esc>
 nnoremap <leader>tl          :                    tablast<esc>
 nnoremap <leader>tN          :                    tabmove +1<esc>
 nnoremap <leader>tB          :                    tabmove -1<esc>
-nnoremap <leader>tcc :tabclose<esc>
+nnoremap <leader>tcc         :                    tabclose<esc>
 nnoremap <leader><leader>    :<backspace>
 nnoremap <leader><S-h>       :                    vert helpgrep 
 nnoremap <leader><S-b>       :                    Bracey<esc>
@@ -312,8 +312,4 @@ autocmd BufNewFile,BufRead ~/.config/polybar/config setfiletype dosini
 "                   %<"      _-_is expanded to the name of the current buffer
 "    :help key-notation      _-_for list of keys and their names
 "<-------------------------------------------------------------------------->
-
-
-
-
 
