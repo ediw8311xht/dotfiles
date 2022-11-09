@@ -13,12 +13,13 @@ PS1='[\u \W]\$ '
 # --------------------------------------------------------------------- #
 # FUNCTIONS																#
 # --------------------------------------------------------------------- #
-kn() {
-    z="${IFS}"; IFS=$'\n'
+kn() { 
+    (IFS=$'\n'
     ns=($(echo "$(grep -Pi '^ [0-9]+\K.*'"${1}"'.*$' <<< $(ps ax))"))
     echo "MATCHES GOT: ${#ns[@]}"
     echo "${ns[*]}"
-}
+)}
+
 acheck() {
     while [[ -n "${1}" ]] ; do
         compgen -c  | grep -x "${1}"; shift
@@ -61,14 +62,12 @@ vid() {
 
 upd_pip_z() { 
     (IFS=$'\n' 
-
     zname="$(date +'%Y%m%d')_pipoutdated.txt"
     pip list --outdated > "${zname}"
     A="$(cat "${zname}" | sed '1,2d' | sed -e 's/[ ][ ]*/ /g' | cut -d' ' -f1)"
     for i in $A ; do pip install --upgrade "${i}"; done
-
-    return "$?"; )
-}
+    return "$?"
+)}
 fpend()    {   
     if [[ "$2" ]] ; then
         if [[ "$1" =~ ^-[dD](ate)? ]] ; then
