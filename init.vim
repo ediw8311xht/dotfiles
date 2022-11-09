@@ -57,6 +57,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 let g:myBg = ["NONE", "#000000", "#333333", "#111111", "#220000", "#002200", "#000022", "#FFFFFF"]
 let g:myFg = [".",    ".",       ".",       ".",       ".",       ".",       ".",       "#000000"]
+let g:python3_host_prog="/usr/bin/python"
 
 
 "let g:polyglot_disabled = ['markdown']
@@ -64,7 +65,6 @@ let g:myFg = [".",    ".",       ".",       ".",       ".",       ".",       "."
 
 "<--------- PLUGINS -------------------------------------------------------->
 call plug#begin()
-"Plug 'bmeneg/coc-perl', {'do': 'yarn install && yarn build'}
 Plug 'agude/vim-eldar'
 Plug 'romgrk/github-light.vim'
 Plug 'rafi/awesome-vim-colorschemes'
@@ -76,7 +76,7 @@ Plug 'godlygeek/tabular'
 Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 Plug 'dense-analysis/ale'
 Plug 'AndrewRadev/tagalong.vim'
-"Plug 'sukima/xmledit'
+Plug 'vim-autoformat/vim-autoformat'
 Plug 'windwp/nvim-autopairs'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'windwp/nvim-ts-autotag'
@@ -84,6 +84,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/vim-scripts/restore_view.vim',
 Plug 'bignimbus/pop-punk.vim'
 Plug 'junegunn/vim-easy-align'
+"Plug 'sukima/xmledit'
+"Plug 'bmeneg/coc-perl', {'do': 'yarn install && yarn build'}
 "Plug 'rakr/vim-one'
 "Plug 'sheerun/vim-polyglot'
 call plug#end()
@@ -95,8 +97,8 @@ call plug#end()
 "require("nvim-autopairs").setup {}
 "EOF
 
-let g:ale_fixers                = { 'css': ['stylelint'], }
-let g:ale_linters               = { 'html': ['htmlhint'], 'css': ['stylelint'], }
+let g:ale_fixers                = {  'css': ['stylelint'],                       }
+let g:ale_linters               = { 'html': ['htmlhint' ], 'css': ['stylelint'], }
 let g:html_mode                 = 1
 let g:tagalong_verbose          = 1
 let g:ale_linters_explicit      = 1
@@ -154,10 +156,7 @@ function! ToggleScheme()
                                                  highlight Normal guifg=#000000
     elseif g:colors_name == 'delek'          |   colorscheme morning
                                                  highlight Normal guifg=#000000
-"    elseif g:colors_name == ''        |   let g:material_style = "oceanic"
-"                                                 colorscheme material
-"                                                 highlight Normal guifg=#FFFFFF
-    elseif g:colors_name == 'morning'       |   colorscheme atom
+    elseif g:colors_name == 'morning'        |   colorscheme atom
                                                  highlight Normal guifg=#FFFFFF
     elseif g:colors_name == 'atom'           |   colorscheme one
                                                  highlight Normal guifg=#FFFFFF
@@ -169,8 +168,8 @@ function! ToggleScheme()
         set nocursorcolumn
     end
     echo g:colors_name
-    hi FoldColumn                  guibg=NONE guifg=#00FF00 gui=bold
-    hi Folded                      guibg=NONE guifg=#888888 gui=bold,italic
+    hi FoldColumn guibg=NONE guifg=#00FF00 gui=bold
+    hi Folded     guibg=NONE guifg=#888888 gui=bold,italic
     syntax on
 endfunction
 
@@ -227,20 +226,19 @@ function! GetUrls2()
 endfunction
 
 function! ToggleVirtualEdit()
-	if g:virtualedit == none
-		:set virtualedit=all
-	else
-		:set virtualedit=none
-	end
+    if virtualedit == none
+        :set virtualedit=all
+    else
+        :set virtualedit=none
+    end
 endfunction
 
-let g:is_bash      = 1
+let g:is_bash = 1
 
 "<-------------------------------------------------------------------------->
 
 "<--------- MAPPINGS ------------------------------------------------------->
 nnoremap <lt>                :tabprevious<esc>
-"nnoremap <lt><lt>            :tabprevious<esc> 
 nnoremap >                   :tabnext<esc>
 nnoremap <leader>.           :                    NERDTreeToggle<esc>
 nnoremap <leader>1           :                    hi cursorline guibg=NONE guifg=NONE gui=bold cterm=NONE ctermbg=NONE ctermfg=NONE<esc>
@@ -256,8 +254,8 @@ nnoremap <leader>s           :                    %so "${HOME}/.config/nvim/init
 nnoremap <leader>w           :                    w<esc>
 nnoremap <leader>x           :                    !%:p<esc>
 nnoremap <leader>v           :                    %s/\t/    /g<esc>
-"nnoremap <leader>z           :                    :call ToggleVirtualEdit()<esc>
-nnoremap <leader>cc          :                    call ToggleScheme()<CR>
+nnoremap <leader>m           :                    :call ToggleVirtualEdit()<esc>
+"nnoremap <leader>cc          :                    call ToggleScheme()<CR>
 nnoremap <leader>tt          :                    tabnew<esc>
 nnoremap <leader>tn          :                    tabnext<esc>
 nnoremap <leader>tp          :                    tabprevious<esc>
@@ -305,7 +303,7 @@ set statusline+=%{wordcount().words}\ w\
 
 "<--------- EXTRA ---------------------------------------------------------->
 augroup bashiez
-	au!
+    au!
     autocmd BufNewFile,BufRead *.sh   set syntax=zsh
 augroup END
 

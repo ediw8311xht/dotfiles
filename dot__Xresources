@@ -2,7 +2,7 @@
 !!!!START_1!!!!
 !!!!ON!!!!!!!!!
 !*.alphaOffset: 0.75
-*.alpha:	0.9
+*.alpha:	1
 *.font: 	FiraCode Retina:pixelsize=15:antialias=true
 *.borderpx:     5px
 *.cursorColor:  #999999

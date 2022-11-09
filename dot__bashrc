@@ -102,14 +102,15 @@ alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for anoth
 alias   fl="        pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
 alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
 alias   b='         cd $HOME/bin/'
-alias   c='         clear'
+alias   c='         my_cd'
 alias   f='         $HOME/bin/my_find.sh'
-alias   g='         grep --perl-regexp --ignore-case -r'
+alias   g='         grep --perl-regexp --ignore-case'
 alias   h='         cd $HOME'
 alias   s='         systemctl'
 alias   t='	    trash-put'
 alias   x='         $HOME/bin/FOR_BASHRC/stars_c.sh'
 alias   ac='        acheck'
+alias   cl='         clear'
 alias   cp='        cp -i'
 alias   df='        df -h'
 alias   fo='        xdg-open "$(fzf)"'
@@ -122,7 +123,6 @@ alias   pc='	    clear; neofetch'
 alias   pe='        ps -eo comm=,'
 alias   po='        ps -eo cmd=,'
 alias   rm='        echo "rm has been replaced with this message use trash-put or /bin/rm instead."'
-alias   fcd='       my_cd'
 alias   qread='     zathura  "$(fzf)"'
 alias   sudo='      sudo '
 alias   free='      free -m'
@@ -171,6 +171,7 @@ alias   tres='      ps -eHo euser,ruser,suser,fuser,f,comm,label'
 alias   scim='      sc-im'
 alias   phone='     aft-mtp-cli'
 alias   decl='      declare -f'
+alias   hb='        htop'
 
 #---------------------------------------------------------------------- #
 #-EXPORT							        #
@@ -199,3 +200,4 @@ set -o vi
 #-QUICK-ADDED-ALIASES                                                   #
 #---------------------------------------------------------------------- #
 
+alias nitroz='cd "/$HOME/Pictures/NitroWallpapers"'
