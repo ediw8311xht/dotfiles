@@ -54,11 +54,12 @@ client.background       		#FF0000
 #------Class------------------------Border----------Backgro---------Text------------Indicat---------ChildBr--------#
 focus_follows_mouse  	                yes
 floating_modifier    	                $mod
-gaps			 	 	inner      		$IN_GAPS
-gaps 					top 			$TOP_GAPS
-gaps 					bottom			$BOTTOM_GAPS 
-gaps 					left  			$LEFT_GAPS  
-gaps 					right 			$RIGHT_GAPS  
+#gaps			 	 	0
+#gaps			 	 	inner      		$IN_GAPS
+#gaps 					top 			$TOP_GAPS
+#gaps 					bottom			$BOTTOM_GAPS 
+#gaps 					left  			$LEFT_GAPS  
+#gaps 					right 			$RIGHT_GAPS  
 # gaps				 	outer                   $OUT_GAPS
 
 font pango:Fira Code Retina 8

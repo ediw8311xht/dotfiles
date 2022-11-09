@@ -13,13 +13,30 @@ PS1='[\u \W]\$ '
 #---------------------------------------------------------------------- #
 #-FUNCTIONS								#
 #---------------------------------------------------------------------- #
+walc() {
+   (IFS=$'\n'
+    SWITCH=''
+    for i in ${1:-$(wal --theme)} ; do
+        if   [[ "${i}" =~ Light\ Themes ]] ; then SWITCH='-l'
+        elif [[ "${i}" =~  Dark\ Themes ]] ; then SWITCH=''
+        else
+            z="$(grep -Pio '[- \t]*\K.*' <<< "${i}")"
+            echo "------------------------------------------------${z}"
+            if ! [[ "$(read zfun; echo "${zfun}")" =~ ^[\ \t]*$ ]] ; then
+                wal ${SWITCH} --theme "${z}"
+                sleep 0.5; $TERM & disown
+            fi
+            echo "------------------------------------------------${z}"
+        fi
+    done
+    return "$?"
+)}
 kn() { 
    (IFS=$'\n'
     ns=($(echo "$(grep -Pi '^ [0-9]+\K.*'"${1}"'.*$' <<< $(ps ax))"))
     echo "MATCHES GOT: ${#ns[@]}"
     echo "${ns[*]}"
 )}
-
 acheck() {
     while [[ -n "${1}" ]] ; do
         compgen -c  | grep -x "${1}"; shift
