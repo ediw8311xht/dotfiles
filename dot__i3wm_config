@@ -4,47 +4,45 @@
 #---------------------------------------------------------------------|
 # i3 config file (v4)
 #---------------------------------------------------SET------------------------------------------------------------#
-set $LEFT_MONITOR       HDMI-A-0
-set $RIGHT_MONITOR      DVI-D-0
-set $MOUSEMV_S	    	5
-set $MOUSEMV_L	    	50
-set $BPIX 	        0
-#                       AFFECTS  INNER_OUTER_GAPS
-set $IN_GAPS	       	34
-#                       AFFECTS  OUTER_GAPS_ONLY
-set $OUT_GAPS	        0
-set $TOP_GAPS 	        0
-set $BOTTOM_GAPS        10
-set $LEFT_GAPS          10
-set $RIGHT_GAPS         10
+set $LEFT_MONITOR         HDMI-A-0
+set $RIGHT_MONITOR        DVI-D-0
+set $MOUSEMV_S            5
+set $MOUSEMV_L            50
+set $BPIX                 0
+set $IN_GAPS              34
+set $OUT_GAPS             0
+set $TOP_GAPS             0
+set $BOTTOM_GAPS          10
+set $LEFT_GAPS            10
+set $RIGHT_GAPS           10
 #-<<FOR RESIZE>>->->->->->->->->->->->->->->->->->->
-set $X_RE_UNIT_LARGE  	40px
-set $Y_RE_UNIT_LARGE  	20px
+set $X_RE_UNIT_LARGE      40px
+set $Y_RE_UNIT_LARGE      20px
 
-set $X_RE_UNIT_SMALL    1px
-set $Y_RE_UNIT_SMALL	1px
+set $X_RE_UNIT_SMALL      1px
+set $Y_RE_UNIT_SMALL      1px
 
-set $pptX_RE_UNIT_LARGE 1ppt
-set $pptY_RE_UNIT_LARGE 1ppt
+set $pptX_RE_UNIT_LARGE   1ppt
+set $pptY_RE_UNIT_LARGE   1ppt
 
-set $pptX_RE_UNIT_SMALL 1ppt
-set $pptY_RE_UNIT_SMALL 1ppt
+set $pptX_RE_UNIT_SMALL   1ppt
+set $pptY_RE_UNIT_SMALL   1ppt
 #-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>
-set $XMVSPEED	    	50px
-set $YMVSPEED	    	30px
-set $WSW     		1400
-set $WSH    	       	900
-set $WSPX	       	250
-set $WSPY	       	90
-set $mod 	        Mod1
-set $BM	        bindsym		  		        Mod1+
-set $BSh          	bindsym		  		        Mod1+Shift+
-set $RM	       	bindsym		  --release 	        Mod1+ 
-set $RSh	       	bindsym		  --release 	        Mod1+Shift+
-set $BORD1 	       	exec 		  --no-startup-id i3-msg "border pixel 3"
-set $BORD2 	       	exec 		  " --no-startup-id sleep 0.001; i3-msg   'border pixel 0'"
-set $EXENI	       	exec 		  --no-startup-id
-set $EXENI_A         	exec_always	  --no-startup-id
+set $XMVSPEED             50px
+set $YMVSPEED             30px
+set $WSW                  1400
+set $WSH                  900
+set $WSPX                 250
+set $WSPY                 90
+set $mod                  Mod1
+set $BM                   bindsym      Mod1+
+set $BSh                  bindsym      Mod1+Shift+
+set $RM                   bindsym      --release 	 Mod1+
+set $RSh                  bindsym      --release 	 Mod1+Shift+
+set $BORD1                exec 	       --no-startup-id                i3-msg   "border pixel 3"
+set $BORD2                exec 	       " --no-startup-id sleep 0.001; i3-msg   'border pixel 0'"
+set $EXENI                exec 	       --no-startup-id
+set $EXENI_A              exec_always  --no-startup-id
 #-----------------------Checks to make sure config file compiles correctly before running 
 bindsym                                 $mod+Shift+r  exec --no-startup-id $HOME/bin/i3configcheck.sh           --3
 bindsym                                 $mod+Shift+c  exec --no-startup-id $HOME/bin/i3configcheck.sh   --NOASK --0
@@ -56,9 +54,7 @@ client.background       		#FF0000
 #------Class------------------------Border----------Backgro---------Text------------Indicat---------ChildBr--------#
 focus_follows_mouse  	                yes
 floating_modifier    	                $mod
-#                                       AFFECTS                 INNER_AND_OUTER
 gaps			 	 	inner      		$IN_GAPS
-#                                       AFFECTS                 OUTER
 gaps 					top 			$TOP_GAPS
 gaps 					bottom			$BOTTOM_GAPS 
 gaps 					left  			$LEFT_GAPS  
@@ -100,104 +96,104 @@ for_window [all]					        border pixel 0
 #
 #
 #---------------------------------------------------BINDS----------------------------------------------------------#
-$BM       a                       $BORD1 ; 	focus       	parent
-$BM       d         		     	        exec        	                dmenu_run -b -nb "#000000" -l 10 -fn "Office Code Pro:pixelsize=20:antialias=true:autohint=true"
-$BM       e 		  		     	layout      	                toggle   split
-$BM       f	  	  	  		mode        	                "mousemove"
-$BM       g		  		     	exec        	                gnome-screenshot
-$BM       h                       $BORD1 ;  	focus 	     	                left
-$BM       i                                       exec 		                	$HOME/bin/dmenu_websearch.sh
-$BM       j                       $BORD1 ;  	focus 	     	                down
-$BM       k                       $BORD1 ;  	focus 	     	                up
-$BM       l                       $BORD1 ;  	focus 	     	                right
-$BM       m                       $BORD1 ;    	scratchpad  	                show
-$BM       n                       $BORD1 ;    	[instance="i3s_note"] 	        scratchpad show
-$BM       o                         	     	fullscreen
-$BM       p                              	        exec                            dunstctl           close-all
-$BM       r                           		mode                            "resize"
-$BM       s                         	     	layout                          stacking
-$BM       t                       $BORD1 ;    	[class="Tor Browser"] 	        scratchpad show
-$BM       u                       $BORD1 ;    	[instance="i3s_st"]             scratchpad show
-$BM       v                              	        split v
-$BM       w                         	     	layout      	                tabbed
-$BM       y         	           	        mode                            freekey
-$BM       Return                  $BORD1 ;    	exec 		                 	/usr/local/bin/st
-$BM       period	  		     	        gaps        	                inner    all     toggle $IN_GAPS,\
-                                                        gaps 		                top 	 all     toggle $TOP_GAPS,\
-                                                        gaps 		                bottom	 all	 toggle $BOTTOM_GAPS,\
-                                                        gaps   		                left  	 all	 toggle	$LEFT_GAPS,\
-                                                        gaps   		                right 	 all	 toggle	$RIGHT_GAPS
-$BM       Super_L                 $BORD1 ;    	floating    	                toggle
-$BM       space                   $BORD1 ;         focus 	     	                mode_toggle
-$BM       Down	  		     	        exec        	                pamixer --decrease 1
-$BM       Up		  		     	exec        	                pamixer --increase 1
-$BM       1                       $BORD1 ;    	workspace   	1
-$BM       2                       $BORD1 ;    	workspace   	2
-$BM       3                       $BORD1 ;    	workspace   	3
-$BM       4                       $BORD1 ;    	workspace   	4
-$BM       5                       $BORD1 ;    	workspace   	5
-$BM       6                       $BORD1 ;    	workspace   	6
-$BM       7                       $BORD1 ;    	workspace   	7
-$BM       8                       $BORD1 ;    	workspace   	8
-$BM       9                       $BORD1 ;    	workspace   	9
-$BM       0                       $BORD1 ;    	workspace   	10
-$BM       bracketleft             $BORD1 ;    	workspace   	11
-$BM       bracketright            $BORD1 ;    	workspace   	12
-$BM       semicolon               $BORD1
+$BM       a            $BORD1 ; 	focus       	parent
+$BM       d            exec        	dmenu_run -b -nb "#000000" -l 10 -fn "Office Code Pro:pixelsize=20:antialias=true:autohint=true"
+$BM       e 	       layout      	toggle   split
+$BM       f	       mode        	"mousemove"
+$BM       g	       exec        	gnome-screenshot
+$BM       h            $BORD1 ;  	focus 	     	                left
+$BM       i            exec 		$HOME/bin/dmenu_websearch.sh
+$BM       j            $BORD1 ;  	focus 	     	                down
+$BM       k            $BORD1 ;  	focus 	     	                up
+$BM       l            $BORD1 ;  	focus 	     	                right
+$BM       m            $BORD1 ;    	scratchpad  	                show
+$BM       n            $BORD1 ;    	[instance="i3s_note"] 	        scratchpad show
+$BM       o            fullscreen
+$BM       p            exec             dunstctl           close-all
+$BM       r            mode             "resize"
+$BM       s            layout           stacking
+$BM       t            $BORD1 ;    	[class="Tor Browser"] 	        scratchpad show
+$BM       u            $BORD1 ;    	[instance="i3s_st"]             scratchpad show
+$BM       v            split v
+$BM       w            layout      	tabbed
+$BM       y            mode             freekey
+$BM       Return       $BORD1 ;    	exec 		                 	/usr/local/bin/st
+$BM       period       gaps        	inner    all     toggle $IN_GAPS,\
+                       gaps 		top 	 all     toggle $TOP_GAPS,\
+                       gaps 		bottom	 all	 toggle $BOTTOM_GAPS,\
+                       gaps   		left  	 all	 toggle	$LEFT_GAPS,\
+                       gaps   		right 	 all	 toggle	$RIGHT_GAPS
+$BM       Super_L      $BORD1 ;    	floating    	                toggle
+$BM       space        $BORD1 ;         focus 	     	                mode_toggle
+$BM       Down	       exec        	pamixer --decrease 1
+$BM       Up	       exec        	pamixer --increase 1
+$BM       1            $BORD1 ;    	workspace   	1
+$BM       2            $BORD1 ;    	workspace   	2
+$BM       3            $BORD1 ;    	workspace   	3
+$BM       4            $BORD1 ;    	workspace   	4
+$BM       5            $BORD1 ;    	workspace   	5
+$BM       6            $BORD1 ;    	workspace   	6
+$BM       7            $BORD1 ;    	workspace   	7
+$BM       8            $BORD1 ;    	workspace   	8
+$BM       9            $BORD1 ;    	workspace   	9
+$BM       0            $BORD1 ;    	workspace   	10
+$BM       bracketleft  $BORD1 ;    	workspace   	11
+$BM       bracketright $BORD1 ;    	workspace   	12
+$BM       semicolon    $BORD1
 #---------------------------------------------------SHIFT-BINDS----------------------------------------------------#
-$RSh      a                       mode freekey;	exec --no-startup-id "sleep 0.2;\
-                                                        xdotool key 'alt+v';\
-							sleep 0.4;\
-							xdotool key 'alt+y'"; 
-$BSh      b                       $BORD1 ;    	exec 		$HOME/bin/ubluetoggle.sh
-$BSh      less    	  		     	exec 		"i3-msg 'gaps inner all minus 10'"
-$BSh      greater    	  		     	exec 		"i3-msg 'gaps inner all plus 10'"
-#SPEC     c		       
-$BSh      e 		                  	exec 		"i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
-$BSh      h                       $BORD1 ;    	move  	     	left      $XMVSPEED
-$BSh      i                       $BORD1 ;    	exec 		$HOME/bin/mdmenu.sh
-$BSh      j                       $BORD1 ;    	move  	     	down   	  $YMVSPEED
-$BSh      k                       $BORD1 ;    	move  	     	up     	  $YMVSPEED
-$BSh      l                       $BORD1 ;    	move  	     	right  	  $XMVSPEED
-$BSh      m 	  	        		floating 	enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
-$BSh      n                       $BORD1 ;    	exec 		/usr/local/bin/st -n 'i3s_note' nvim "$HOME/Documents/Notepad/note.txt"
-$BSh      o 		                   	exec 		i3lock -f -e -c 333333
-$BSh      p                       $BORD1 ;    	exec		/usr/bin/brave --incognito
-$BSh      q                       $BORD1 ;    	kill
-#SPEC     r		        
-#SPEC     s		       
-$BSh      t                       $BORD1 ;    	exec            $HOME/.local/opt/tor-browser_en-US/Browser/start-tor-browser; exec sleep 1 && i3-msg '[class="Tor Browser"] scratchpad show'
-$BSh      u                       $BORD1 ;    	exec            /usr/local/bin/st -n 'i3s_st'
-$BSh      v         	           	        split h
-$BSh      w         	           	        mode            freekey
-$BSh      x                       $BORD1 ;    	exec            $HOME/bin/add_to_clip.sh "DATE" "TIME"
-$BSh      y		                   	exec            $HOME/bin/urxvt_notepad_script.sh   "TMUX"
-$BSh      z                       $BORD1 ;    	exec            $HOME/bin/brave-tor.sh
-$BSh      semicolon 	                  	resize          set $WSW $WSH
-$BSh      Return	  	         	        exec            /usr/bin/brave
-$BSh      Up 		                  	exec            $HOME/bin/nitrowscript.sh 			"UP"
-$BSh      Down	  	          	        exec            $HOME/bin/nitrowscript.sh 			"DOWN"
-$BSh      Left	  	          	        exec            $HOME/bin/nitrowscript.sh 			"LEFT"
-$BSh      Right 	  	          	        exec            $HOME/bin/nitrowscript.sh 			"RIGHT"
-$BSh      Delete 	  	          	        exec            $HOME/bin/nitrowscript.sh 			"--auto"
-$BSh      End 	  	          	        exec            $HOME/bin/nitrowscript.sh 			"--zoom-fill"
-$BSh      Next  		         	        exec            $HOME/bin/nitrowscript.sh 			"--centered"
-$BSh      Insert 	  	          		exec            $HOME/bin/nitrowscript.sh 			"--zoom"
-$BSh      Home     	                  	exec            $HOME/bin/nitrowscript.sh 			"--tiled"
-$BSh      1                       $BORD1 ;    	move            container to workspace  1; workspace  1
-$BSh      2                       $BORD1 ;    	move            container to workspace  2; workspace  2
-$BSh      3                       $BORD1 ;    	move            container to workspace  3; workspace  3
-$BSh      4                       $BORD1 ;    	move            container to workspace  4; workspace  4
-$BSh      5                       $BORD1 ;    	move            container to workspace  5; workspace  5
-$BSh      6                       $BORD1 ;    	move            container to workspace  6; workspace  6
-$BSh      7                       $BORD1 ;    	move            container to workspace  7; workspace  7
-$BSh      8                       $BORD1 ;    	move            container to workspace  8; workspace  8
-$BSh      9                       $BORD1 ;    	move            container to workspace  9; workspace  9
-$BSh      0                       $BORD1 ;    	move            container to workspace 10; workspace 10
-$BSh      bracketleft             $BORD1 ;    	move            container to workspace 11; workspace 11
-$BSh      bracketright            $BORD1 ;    	move            container to workspace 12; workspace 12
+$RSh      a            mode freekey;   exec --no-startup-id "sleep 0.2;\
+                                       xdotool key 'alt+v';\
+		                       sleep 0.4;\
+		                       xdotool key 'alt+y'"; 
+$BSh      b            $BORD1 ;        exec 		$HOME/bin/ubluetoggle.sh
+$BSh      less         exec 	       "i3-msg 'gaps inner all minus 10'"
+$BSh      greater      exec 	       "i3-msg 'gaps inner all plus 10'"
+#SPEC     c		
+$BSh      e 	       exec 	       "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
+$BSh      h            $BORD1 ;        move  	     	left      $XMVSPEED
+$BSh      i            $BORD1 ;        exec 		$HOME/bin/mdmenu.sh
+$BSh      j            $BORD1 ;        move  	     	down   	  $YMVSPEED
+$BSh      k            $BORD1 ;        move  	     	up     	  $YMVSPEED
+$BSh      l            $BORD1 ;        move  	     	right  	  $XMVSPEED
+$BSh      m 	       floating        enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
+$BSh      n            $BORD1 ;        exec 		/usr/local/bin/st -n 'i3s_note' nvim "$HOME/Documents/Notepad/note.txt"
+$BSh      o 	       exec 	       i3lock -f -e -c 333333
+$BSh      p            $BORD1 ;        exec		/usr/bin/brave --incognito
+$BSh      q            $BORD1 ;        kill
+#SPEC     r		
+#SPEC     s		
+$BSh      t            $BORD1 ;        exec            $HOME/.local/opt/tor-browser_en-US/Browser/start-tor-browser; exec sleep 1 && i3-msg '[class="Tor Browser"] scratchpad show'
+$BSh      u            $BORD1 ;        exec            /usr/local/bin/st -n 'i3s_st'
+$BSh      v            split h
+$BSh      w            mode            freekey
+$BSh      x            $BORD1 ;        exec            $HOME/bin/add_to_clip.sh "DATE" "TIME"
+$BSh      y	       exec            $HOME/bin/urxvt_notepad_script.sh   "TMUX"
+$BSh      z            $BORD1 ;        exec            $HOME/bin/brave-tor.sh
+$BSh      semicolon    resize          set $WSW $WSH
+$BSh      Return       exec            /usr/bin/brave
+$BSh      Up 	       exec            $HOME/bin/nitrowscript.sh 			"UP"
+$BSh      Down	       exec            $HOME/bin/nitrowscript.sh 			"DOWN"
+$BSh      Left	       exec            $HOME/bin/nitrowscript.sh 			"LEFT"
+$BSh      Right        exec            $HOME/bin/nitrowscript.sh 			"RIGHT"
+$BSh      Delete       exec            $HOME/bin/nitrowscript.sh 			"--auto"
+$BSh      End 	       exec            $HOME/bin/nitrowscript.sh 			"--zoom-fill"
+$BSh      Next         exec            $HOME/bin/nitrowscript.sh 			"--centered"
+$BSh      Insert       exec            $HOME/bin/nitrowscript.sh 			"--zoom"
+$BSh      Home         exec            $HOME/bin/nitrowscript.sh 			"--tiled"
+$BSh      1            $BORD1 ;        move            container to workspace  1; workspace  1
+$BSh      2            $BORD1 ;        move            container to workspace  2; workspace  2
+$BSh      3            $BORD1 ;        move            container to workspace  3; workspace  3
+$BSh      4            $BORD1 ;        move            container to workspace  4; workspace  4
+$BSh      5            $BORD1 ;        move            container to workspace  5; workspace  5
+$BSh      6            $BORD1 ;        move            container to workspace  6; workspace  6
+$BSh      7            $BORD1 ;        move            container to workspace  7; workspace  7
+$BSh      8            $BORD1 ;        move            container to workspace  8; workspace  8
+$BSh      9            $BORD1 ;        move            container to workspace  9; workspace  9
+$BSh      0            $BORD1 ;        move            container to workspace 10; workspace 10
+$BSh      bracketleft  $BORD1 ;        move            container to workspace 11; workspace 11
+$BSh      bracketright $BORD1 ;        move            container to workspace 12; workspace 12
 #---------------------------------------------------SPECIAL-BINDS--------------------------------------------------#
-bindsym Super_L                   $BORD1 ; sticky toggle;
+bindsym Super_L        $BORD1 ; sticky toggle;
 #---------------------------------------------------EXECS----------------------------------------------------------#
 $EXENI    dunst
 $EXENI_A  xinput 		                        --set-prop 12   "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 0.44
@@ -283,94 +279,94 @@ mode "resize" {
                 bindsym Escape                          mode   "default"
 }
 #-----------------------------------------------RELEASE-BINDS--------------------------------------------------#
-$RM       0                       $BORD2
-$RM       1                       $BORD2
-$RM       2                       $BORD2
-$RM       3                       $BORD2
-$RM       4                       $BORD2
-$RM       5                       $BORD2
-$RM       6                       $BORD2
-$RM       7                       $BORD2
-$RM       8                       $BORD2
-$RM       9                       $BORD2
-$RM       a                       $BORD2
-$RM       b                       $BORD2
-$RM       c                       $BORD2
-$RM       d                       $BORD2
-$RM       e                       $BORD2
-$RM       f                       $BORD2
-$RM       g                       $BORD2
-$RM       h                       $BORD2
-$RM       i                       $BORD2
-$RM       j                       $BORD2
-$RM       k                       $BORD2
-$RM       l                       $BORD2
-$RM       m                       $BORD2
-$RM       n                       $BORD2
-$RM       o                       $BORD2
-$RM       p                       $BORD2
-$RM       q                       $BORD2
-$RM       s                       $BORD2
-$RM       t                       $BORD2
-$RM       u                       $BORD2
-$RM       v                       $BORD2
-$RM       x                       $BORD2
-$RM       y                       $BORD2
-$RM       z                       $BORD2
-$RM       semicolon               $BORD2
-$RM       Left                    $BORD2
-$RM       Down                    $BORD2
-$RM       Right                   $BORD2
-$RM       comma                   $BORD2
-$RM       period                  $BORD2
-$RM       Super_L                 $BORD2
-$RM       space                   $BORD2
-$RM       bracketright            $BORD2
-$RM       bracketleft             $BORD2
-$RSh      0                       $BORD2
-$RSh      1                       $BORD2
-$RSh      2                       $BORD2
-$RSh      3                       $BORD2
-$RSh      4                       $BORD2
-$RSh      5                       $BORD2
-$RSh      6                       $BORD2
-$RSh      7                       $BORD2
-$RSh      8                       $BORD2
-$RSh      9                       $BORD2
+$RM       0            $BORD2
+$RM       1            $BORD2
+$RM       2            $BORD2
+$RM       3            $BORD2
+$RM       4            $BORD2
+$RM       5            $BORD2
+$RM       6            $BORD2
+$RM       7            $BORD2
+$RM       8            $BORD2
+$RM       9            $BORD2
+$RM       a            $BORD2
+$RM       b            $BORD2
+$RM       c            $BORD2
+$RM       d            $BORD2
+$RM       e            $BORD2
+$RM       f            $BORD2
+$RM       g            $BORD2
+$RM       h            $BORD2
+$RM       i            $BORD2
+$RM       j            $BORD2
+$RM       k            $BORD2
+$RM       l            $BORD2
+$RM       m            $BORD2
+$RM       n            $BORD2
+$RM       o            $BORD2
+$RM       p            $BORD2
+$RM       q            $BORD2
+$RM       s            $BORD2
+$RM       t            $BORD2
+$RM       u            $BORD2
+$RM       v            $BORD2
+$RM       x            $BORD2
+$RM       y            $BORD2
+$RM       z            $BORD2
+$RM       semicolon    $BORD2
+$RM       Left         $BORD2
+$RM       Down         $BORD2
+$RM       Right        $BORD2
+$RM       comma        $BORD2
+$RM       period       $BORD2
+$RM       Super_L      $BORD2
+$RM       space        $BORD2
+$RM       bracketright $BORD2
+$RM       bracketleft  $BORD2
+$RSh      0            $BORD2
+$RSh      1            $BORD2
+$RSh      2            $BORD2
+$RSh      3            $BORD2
+$RSh      4            $BORD2
+$RSh      5            $BORD2
+$RSh      6            $BORD2
+$RSh      7            $BORD2
+$RSh      8            $BORD2
+$RSh      9            $BORD2
 #$RSh        a		                        $BORD2
-$RSh      b                       $BORD2
-$RSh      c                       $BORD2
-$RSh      d                       $BORD2
-$RSh      e                       $BORD2
-$RSh      f                       $BORD2
-$RSh      g                       $BORD2
-$RSh      h                       $BORD2
-$RSh      i                       $BORD2
-$RSh      j                       $BORD2
-$RSh      k                       $BORD2
-$RSh      l                       $BORD2
-$RSh      m                       $BORD2
-$RSh      n                       $BORD2
-$RSh      o                       $BORD2
-$RSh      p                       $BORD2
-$RSh      q                       $BORD2
-$RSh      s                       $BORD2
-$RSh      t                       $BORD2
-$RSh      u                       $BORD2
-$RSh      v                       $BORD2
-$RSh      x                       $BORD2
-$RSh      y                       $BORD2
-$RSh      z                       $BORD2
-$RSh      space                   $BORD2
-$RSh      semicolon               $BORD2
-$RSh      Left                    $BORD2
-$RSh      Down                    $BORD2
-$RSh      Right                   $BORD2
-$RSh      comma                   $BORD2
-$RSh      period                  $BORD2
-$RSh      Super_L                 $BORD2
-$RSh      bracketright            $BORD2
-$RSh      bracketleft             $BORD2
+$RSh      b            $BORD2
+$RSh      c            $BORD2
+$RSh      d            $BORD2
+$RSh      e            $BORD2
+$RSh      f            $BORD2
+$RSh      g            $BORD2
+$RSh      h            $BORD2
+$RSh      i            $BORD2
+$RSh      j            $BORD2
+$RSh      k            $BORD2
+$RSh      l            $BORD2
+$RSh      m            $BORD2
+$RSh      n            $BORD2
+$RSh      o            $BORD2
+$RSh      p            $BORD2
+$RSh      q            $BORD2
+$RSh      s            $BORD2
+$RSh      t            $BORD2
+$RSh      u            $BORD2
+$RSh      v            $BORD2
+$RSh      x            $BORD2
+$RSh      y            $BORD2
+$RSh      z            $BORD2
+$RSh      space        $BORD2
+$RSh      semicolon    $BORD2
+$RSh      Left         $BORD2
+$RSh      Down         $BORD2
+$RSh      Right        $BORD2
+$RSh      comma        $BORD2
+$RSh      period       $BORD2
+$RSh      Super_L      $BORD2
+$RSh      bracketright $BORD2
+$RSh      bracketleft  $BORD2
 bindsym         --release Super_L $BORD2
 bindsym         --release $mod+Shift+Return exec "sleep 0.2; i3-msg 'border pixel 0'"
 #---------------------------------------------------END------------------------------------------------------------#

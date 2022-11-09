@@ -286,6 +286,7 @@ noremap <leader>zv
 
 vnoremap <Space> zf
 vnoremap ga <Plug>(EasyAlign)
+vnoremap im :s/\%V[ \t]*//<esc>
 
 " <c-r> = ctrl+r
 "nnoremap <leader>y           :                    hi Normal guibg=Transparent<esc>
