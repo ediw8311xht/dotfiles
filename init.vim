@@ -154,9 +154,10 @@ function! ToggleScheme()
                                                  highlight Normal guifg=#000000
     elseif g:colors_name == 'delek'          |   colorscheme morning
                                                  highlight Normal guifg=#000000
-    elseif g:colors_name == 'morning'        |   let g:material_style = "oceanic" | colorscheme material
-                                                 highlight Normal guifg=#FFFFFF
-    elseif g:colors_name == 'material'       |   colorscheme atom
+"    elseif g:colors_name == ''        |   let g:material_style = "oceanic"
+"                                                 colorscheme material
+"                                                 highlight Normal guifg=#FFFFFF
+    elseif g:colors_name == 'morning'       |   colorscheme atom
                                                  highlight Normal guifg=#FFFFFF
     elseif g:colors_name == 'atom'           |   colorscheme one
                                                  highlight Normal guifg=#FFFFFF
