@@ -14,203 +14,205 @@ PS1='[\u \W]\$ '
 # FUNCTIONS																#
 # --------------------------------------------------------------------- #
 kn() {
-	z="${IFS}"; IFS=$'\n'
-	ns=($(echo "$(grep -Pi '^ [0-9]+\K.*'"${1}"'.*$' <<< $(ps ax))"))
-	echo "MATCHES GOT: ${#ns[@]}"
-	echo "${ns[*]}"
+    z="${IFS}"; IFS=$'\n'
+    ns=($(echo "$(grep -Pi '^ [0-9]+\K.*'"${1}"'.*$' <<< $(ps ax))"))
+    echo "MATCHES GOT: ${#ns[@]}"
+    echo "${ns[*]}"
 }
 acheck() {
-	while [[ -n "${1}" ]] ; do
-		compgen -c  | grep -x "${1}"; shift
-	done									 			 			 
+    while [[ -n "${1}" ]] ; do
+        compgen -c  | grep -x "${1}"; shift
+    done									 			 			 
 }
 cg() {
-	if [[ -z "$*" ]] ; then
-		compgen -A function -abck | sort | uniq -c | grep -Pio '.+[0-9]+ \K.*'
-	else 
-		while [[ -n "${1}" ]] ; do
-			compgen -A function -abck | sort | uniq -c | grep -Pio '.+[0-9]+ \K.*' | grep -Pio "${1}"
-			compgen -A function -abck | sort | uniq -c | grep -Pio '\(?=>.+[0-9]+ \).*'; shift
-		done									 			 			 
-	fi
+    if [[ -z "$*" ]] ; then
+        compgen -A function -abck | sort | uniq -c | grep -Pio '.+[0-9]+ \K.*'
+    else 
+        while [[ -n "${1}" ]] ; do
+            compgen -A function -abck | sort | uniq -c | grep -Pio '.+[0-9]+ \K.*' | grep -Pio "${1}"
+            compgen -A function -abck | sort | uniq -c | grep -Pio '\(?=>.+[0-9]+ \).*'; shift
+        done									 			 			 
+    fi
 }
 fzc() {
-	while [[ -n "${1}" ]] ; do
-		compgen -c  | grep -Pi "${1}"; shift
-	done									 			 			 
+    while [[ -n "${1}" ]] ; do
+            compgen -c  | grep -Pi "${1}"; shift
+    done									 			 			 
 }
 my_cd()	{
-	if   [[ "${1}" = '-g' ]] ; then
-		cd '/'; cd "$(find . -type d 2>/dev/null| fzf --preview="ls -1 {}" )"
-	elif [[ -z "$*" 	  ]] ; then
-		cd "$(find . -type d 2>/dev/null| fzf --preview="ls -1 {}" )"
-	else
-		cd "$@" 
-	fi			 	 
+    if   [[ "${1}" = '-g' ]] ; then
+        cd '/'; cd "$(find . -type d 2>/dev/null| fzf --preview="ls -1 {}" )"
+    elif [[ -z "$*" 	  ]] ; then
+        cd "$(find . -type d 2>/dev/null| fzf --preview="ls -1 {}" )"
+    else
+        cd "$@" 
+    fi			 	 
 }
 vid() {
-	AUD="auto"
-	while [[ "${1}" =~ ^- ]] ; do
-		if [[ "${1}" =~ ^-mono ]] ; then AUD="mono"; fi
-		shift
-	done
-	if [[ -n "${1}" ]] ; then mpv --audio-channels="${AUD}" "${@}" & disown; return $?
-	else                      mpv --audio-channels="${AUD}" *	     & disown; return $?; fi
-	return 1
+    AUD="auto"
+    while [[ "${1}" =~ ^- ]] ; do
+        if [[ "${1}" =~ ^-mono ]] ; then AUD="mono"; fi
+        shift
+    done
+    if [[ -n "${1}" ]] ; then mpv --audio-channels="${AUD}" "${@}" & disown; return $?
+    else                      mpv --audio-channels="${AUD}" *	     & disown; return $?; fi
+    return 1
 }
 
 upd_pip_z() { 
-	(IFS=$'\n' 
+    (IFS=$'\n' 
 
-	zname="$(date +'%Y%m%d')_pipoutdated.txt"
-	pip list --outdated > "${zname}"
-	A="$(cat "${zname}" | sed '1,2d' | sed -e 's/[ ][ ]*/ /g' | cut -d' ' -f1)"
-	for i in $A ; do pip install --upgrade "${i}"; done
+    zname="$(date +'%Y%m%d')_pipoutdated.txt"
+    pip list --outdated > "${zname}"
+    A="$(cat "${zname}" | sed '1,2d' | sed -e 's/[ ][ ]*/ /g' | cut -d' ' -f1)"
+    for i in $A ; do pip install --upgrade "${i}"; done
 
-	return "$?"; )
+    return "$?"; )
 }
 fpend()    {   
-	if [[ "$2" ]] ; then
-		if [[ "$1" =~ ^-[dD](ate)? ]] ; then
-			shift 1
-			echo "#$(date)" '  |---|  ' "${1}"
-		  	echo "$(date)" >> "${1}"
-		fi
-		for i in "${@:2}" ; do 
-			echo "${i}" '  |---|  ' "${1}"
-			echo "${i}" >> "${1}" 
-		done 
-	else
-		echo "AT LEAST 2 ARGUMENTS NEEDED, ONLY RECIEVED $#"
-	fi
-	return "$?"
+    if [[ "$2" ]] ; then
+        if [[ "$1" =~ ^-[dD](ate)? ]] ; then
+            shift 1
+            echo "#$(date)" '  |---|  ' "${1}"
+            echo "$(date)" >> "${1}"
+        fi
+        for i in "${@:2}" ; do 
+            echo "${i}" '  |---|  ' "${1}"
+            echo "${i}" >> "${1}" 
+        done 
+    else
+        echo "AT LEAST 2 ARGUMENTS NEEDED, ONLY RECIEVED $#"
+    fi
+    return "$?"
 }
 
 addally() {
-	printf 'alias %s='\''cd "%s"'\' "${1}" "$(pwd)" >> "$HOME/.bashrc"
+    printf 'alias %s='\''cd "%s"'\' "${1}" "$(pwd)" >> "$HOME/.bashrc"
 }
 
-pf() 			{   find 		  "${2:-"$HOME"}" | grep -Pi "${1}"   	 ; }
-nifs() 			{ 	IFS=$'\n'   ; printf "IFS=%q" "${IFS}"; echo ""		 ; }
-rifs() 			{ 	IFS=$' \t\n'; printf "IFS=%q" "${IFS}"; echo "" 	 ; }
-ppifs()			{ 	              printf "IFS=%q" "${IFS}"; echo "" 	 ; }
-pifs() 			{ 	              printf     "%q" "${IFS}"; echo ""	     ; }
-pasta()     	{   cat              <<< $(pas)			  			     ; }
-kad() 	    	{   docker          kill $(docker ps -q) 				 ; }
-rad() 	    	{   docker            rm $(docker ps -a -q)				 ; }
+pf()     {   find 		  "${2:-"$HOME"}" | grep -Pi "${1}" ; }
+nifs()   { 	IFS=$'\n'   ; printf "IFS=%q" "${IFS}"; echo ""     ; }
+rifs()   { 	IFS=$' \t\n'; printf "IFS=%q" "${IFS}"; echo ""     ; }
+ppifs()  { 	              printf "IFS=%q" "${IFS}"; echo ""     ; }
+pifs()   { 	              printf     "%q" "${IFS}"; echo ""     ; }
+pasta()  {   cat              <<< $(pas)                            ; }
+kad()    {   docker          kill $(docker ps -q)                   ; }
+rad()    {   docker            rm $(docker ps -a -q)                ; }
 
-cop() 	    	{   printf '%s' "$@" | xsel -bi;xsel -bo; echo "";          }
-pas() 	    	{   xsel -bo; echo "";                                      }
+cop()    {   printf '%s' "$@" | xsel -bi;xsel -bo; echo "";          }
+pas()    {   xsel -bo; echo "";                                      }
 
 
 
 # --------------------------------------------------------------------- #
 # ALIASES															    #
 # --------------------------------------------------------------------- #
-alias		 kctpv="	     kill $(pidof 'ctpv')"
-alias 		   flg="         pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
-alias 		   fl="          pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
-alias 		   fle='         pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
+alias   kctpv="	     kill $(pidof 'ctpv')"
+alias   flg="         pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
+alias   fl="          pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
+alias   fle='         pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
 
 
-alias		    b='          cd $HOME/bin/'
-alias	        c='          clear'
-alias 		    f='          $HOME/bin/my_find.sh'
-alias	        g='          grep --perl-regexp --ignore-case -r'
-alias	        h='          cd $HOME'
-alias           s='          systemctl'
-alias 		    t='	         trash-put'
-alias 		    x='          $HOME/bin/FOR_BASHRC/stars_c.sh'
+alias   b='          cd $HOME/bin/'
+alias   c='          clear'
+alias   f='          $HOME/bin/my_find.sh'
+alias   g='          grep --perl-regexp --ignore-case -r'
+alias   h='          cd $HOME'
+alias   s='          systemctl'
+alias   t='	         trash-put'
+alias   x='          $HOME/bin/FOR_BASHRC/stars_c.sh'
 
-alias		   ac='		     acheck'
-alias          cp='          cp -i'
-alias          df='          df -h'                         
-alias	       fo='          xdg-open "$(fzf)"'
-alias		   fn='          nvim     "$(fzf --preview="nvim {}")"'
-alias		   gr='		     echo ""; cat $HOME/.bashrc | grep -Pi'
-alias 		   gf='          $HOME/bin/my_find.sh "/"'
-alias	       ic='          clear; imgcat'
-alias	       nv='          nvim'
-alias		   pc='		     clear; neofetch'
-alias		   pe='          ps -eo comm=,'
-alias		   po='          ps -eo cmd=,'
-alias	       rm='          echo "rm has been replaced with this message use trash-put or /bin/rm instead."'
+alias   ac='		     acheck'
+alias   cp='          cp -i'
+alias   df='          df -h'
+alias   fo='          xdg-open "$(fzf)"'
+alias   fn='          nvim     "$(fzf --preview="nvim {}")"'
+alias   gr='		     echo ""; cat $HOME/.bashrc | grep -Pi'
+alias   gf='          $HOME/bin/my_find.sh "/"'
+alias   ic='          clear; imgcat'
+alias   nv='          nvim'
+alias   pc='		     clear; neofetch'
+alias   pe='          ps -eo comm=,'
+alias   po='          ps -eo cmd=,'
+alias   rm='          echo "rm has been replaced with this message use trash-put or /bin/rm instead."'
 
-alias	       fcd='         my_cd'
-alias	       qread='       zathura  "$(fzf)"'
-alias	       sudo='        sudo '
-alias          free='        free -m'                    
-alias	       rmi='         rm -i'
-alias	       pdf='         zathura'
-alias	       i3c='         i3 -C $HOME/.i3/config'
-alias	       tyren='       perl-rename -v -n'
-alias	       doren='       perl-rename -v'
-alias	       quickren="    perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
+alias   fcd='         my_cd'
+alias   qread='       zathura  "$(fzf)"'
+alias   sudo='        sudo '
+alias   free='        free -m'
+alias   rmi='         rm -i'
+alias   pdf='         zathura'
+alias   i3c='         i3 -C $HOME/.i3/config'
+alias   tyren='       perl-rename -v -n'
+alias   doren='       perl-rename -v'
+alias   quickren="    perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
 
-alias	       pacse='       echo ""; pacman -Ss'
-alias	       yayse='       echo ""; yay -Ss'
-alias	       pacsel='      echo ""; pacman -Qs'
-alias	       yaysel='      echo ""; yay -Qs'
-alias	       yayi='        echo ""; yay -Si'
-alias	       paci='        echo ""; pacman -Si'
-alias	       yayil='       echo ""; yay -Qi'
-alias	       pacil='       echo ""; pacman -Qi'
-alias		   pacclean='    echo ""; yay -Scc; yay --clean'
-alias		   up_xrec='     echo ""; xrdb -merge $HOME/.Xresources'
+alias   pacse='       echo ""; pacman -Ss'
+alias   yayse='       echo ""; yay -Ss'
+alias   pacsel='      echo ""; pacman -Qs'
+alias   yaysel='      echo ""; yay -Qs'
+alias   yayi='        echo ""; yay -Si'
+alias   paci='        echo ""; pacman -Si'
+alias   yayil='       echo ""; yay -Qi'
+alias   pacil='       echo ""; pacman -Qi'
+alias   pacclean='    echo ""; yay -Scc; yay --clean'
+alias   up_xrec='     echo ""; xrdb -merge $HOME/.Xresources'
 
 
-alias		   paclast="     echo ''; expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep" 
+alias   paclast="     echo ''; expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
 
-alias	       snv='         sudoedit'
+alias   snv='         sudoedit'
 
-alias		   ebash='       echo "alias ysb, to source ~/.bashrc"; nvim $HOME/.bashrc'
-alias		   ysb='         source $HOME/.bashrc'
-alias		   editnv='      nvim $HOME/.config/nvim/init.vim'
-alias		   emime='       nvim $HOME/.config/mimeapps.list'
+alias   ebash='       echo "alias ysb, to source ~/.bashrc"; nvim $HOME/.bashrc'
+alias   ysb='         source $HOME/.bashrc'
+alias   editnv='      nvim $HOME/.config/nvim/init.vim'
+alias   emime='       nvim $HOME/.config/mimeapps.list'
 
-alias          xgr='         grep -r -i --exclude=\*.{jpg,jpeg,png,webp,gif,mp4,mkv,m4a,avi,mp3,wav,tar,gz,tgz,zip,iso,exe,au,deb,pyc,elc,bz2,tbz2,xpm,xcf}'
-alias          xxgr='        grep -r -i --exclude=\*.{jpg,jpeg,png,webp,gif,mp4,mkv,m4a,avi,mp3,wav,tar,gz,tgz,zip,iso,exe,au,deb,pyc,elc,bz2,tbz2,xpm,xcf}\
+alias   xgr='         grep -r -i --exclude=\*.{jpg,jpeg,png,webp,gif,mp4,mkv,m4a,avi,mp3,wav,tar,gz,tgz,zip,iso,exe,au,deb,pyc,elc,bz2,tbz2,xpm,xcf}'
+alias   xxgr='        grep -r -i --exclude=\*.{jpg,jpeg,png,webp,gif,mp4,mkv,m4a,avi,mp3,wav,tar,gz,tgz,zip,iso,exe,au,deb,pyc,elc,bz2,tbz2,xpm,xcf}\
                                         --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
-alias	       img='         nsxiv -0'
-alias	       nimg='        nsxiv -0 .'
-alias	       ldi='         fdisk -l -o +uuid'
-alias 		   szof='        du -ahc --time --max-depth=1'
-alias 		   bgsz="        sudo szof | grep -P '^[^ ]*G'"
-alias		   lsd='         ls -lh'
-alias		   lst='         ls -ltrh'
-alias		   lsz='         ls -lSrh'
-alias		   psg='         ps ax | grep -Pi'
-alias		   pse='         ps -eo comm=, | grep --ignore-case'
-alias		   pso='         ps -eo cmd=, | grep --ignore-case'
-alias		   tre='         ps -ejH'
-alias		   trev='        ps axjf'
-alias		   tres='        ps -eHo euser,ruser,suser,fuser,f,comm,label'
-alias		   scim='        sc-im'
-alias		   phone='       aft-mtp-cli'
-alias		   decl='        declare -f'
+alias   img='         nsxiv -0'
+alias   nimg='        nsxiv -0 .'
+alias   ldi='         fdisk -l -o +uuid'
+alias   szof='        du -ahc --time --max-depth=1'
+alias   bgsz="        sudo szof | grep -P '^[^ ]*G'"
+alias   lsd='         ls -lh'
+alias   lst='         ls -ltrh'
+alias   lsz='         ls -lSrh'
+alias   psg='         ps ax | grep -Pi'
+alias   pse='         ps -eo comm=, | grep --ignore-case'
+alias   pso='         ps -eo cmd=, | grep --ignore-case'
+alias   tre='         ps -ejH'
+alias   trev='        ps axjf'
+alias   tres='        ps -eHo euser,ruser,suser,fuser,f,comm,label'
+alias   scim='        sc-im'
+alias   phone='       aft-mtp-cli'
+alias   decl='        declare -f'
 
 
 # --------------------------------------------------------------------- #
 # EXPORT																#
 # --------------------------------------------------------------------- #
-export               EDITOR="nvim"
-export             NVIMSWAP="$HOME/.local/share/nvim/swap/"
-export           PYTHONPATH="${PYTHONPATH}:/$HOME/MY_PYTHON_MODULES/"
-export           PYTHONPATH="${PYTHONPATH}:/usr/bin/python3"
-export      FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export  EDITOR="nvim"
+export  NVIMSWAP="$HOME/.local/share/nvim/swap/"
+export  PYTHONPATH="${PYTHONPATH}:/$HOME/MY_PYTHON_MODULES/"
+export  PYTHONPATH="${PYTHONPATH}:/usr/bin/python3"
+export  FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export  PAGER='most'
+export  TERM=st
+export  XDG_CONFIG_HOME="$HOME/.config"
+export  XDG_CACHE_HOME="$HOME/.cache"
+export  QT_QPA_PLATFORMTHEME="qt5ct"
+#export          DB_USERNAME=""
+#export          DB_PASSWORD=""
 #export 				   PAGER='w3m -o display_lineinfo=TRUE'
-export 				   PAGER='most'
-export				   TERM=st
-export		XDG_CONFIG_HOME="$HOME/.config"
-export		XDG_CACHE_HOME="$HOME/.cache"
-export QT_QPA_PLATFORMTHEME="qt5ct"
 #    export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 # --------------------------------------------------------------------- #
 # `PATH`																#
 # --------------------------------------------------------------------- #
 if  [ -d "$HOME/bin/"         			                 ] ;    then PATH="$HOME/bin/:$PATH"        			                             ;	fi
 if  [ -d "$HOME/bin/i3wm"     			                 ] ;    then PATH="$HOME/bin/i3wm:$PATH"    			                             ; 	fi
-if  [ -d "$HOME/bin/personal" 			                 ] ;    then PATH="$HOME/bin/personal:$PATH"			                             ; 	fi 
+if  [ -d "$HOME/bin/personal" 			                 ] ;    then PATH="$HOME/bin/personal:$PATH"			                             ; 	fi
 if  [ -d "$HOME/bin/ufw"      			                 ] ; 	then PATH="$HOME/bin/ufw:$PATH"     			                             ; 	fi
 if  [ -d "$HOME/bin/random"   			                 ] ; 	then PATH="$HOME/bin/random:$PATH"  			                             ; 	fi
 if  [ -d "$HOME/Desktop/MY_APPS"                   		 ] ; 	then PATH="$HOME/Desktop/MY_APPS:$PATH"                                		 ; 	fi
@@ -218,37 +220,33 @@ if  [ -d "$HOME/Desktop/MY_APPS"                   		 ] ; 	then PATH="$HOME/Desk
 #if  [ -d "$HOME/Documents/Documentation"                 ] ; 	then PATH="$HOME/Documents/Documentation:$PATH"                               ; 	fi
 if  [ -d "/etc/systemd/user" 			                 ] ; 	then PATH="/etc/systemd/user:$PATH"                                          ; 	fi
 
-if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+if  test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 
-if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+if  test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # --------------------------------------------------------------------- #
 # END 																	#
 # --------------------------------------------------------------------- #
-export DISPLAY=:0.0
+export  DISPLAY=:0.0
 set -o vi
 
 
 
-#alias pips="poetry search"
-alias nvgr='echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'
-alias chrome_ext='echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'
-alias go_gnu='cd "$HOME/Desktop/Coding/mygnu2/"'
-
-alias cweb='cd "$HOME/WEBSITE/myproject/JABA/8_17_2022/"; nv -p *'
+alias   pips="poetry search"
+alias   nvgr='echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'
+alias   chrome_ext='echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'
+alias   go_gnu='cd "$HOME/Desktop/Coding/mygnu2/"'
 
 
-alias ms_core='cd "/usr/share/mscore-3.6/styles"'
+
+alias   ms_core='cd "/usr/share/mscore-3.6/styles"'
 
 #alias decode_url='(read _z; IFS="+"; echo -e ${_z//%/\\x}"") <<< '
-alias sman='man -K --regex'
+alias   sman='man -K --regex'
 #alias decode2='source "$HOME/TEST DIR/pos3.sh"'
 
+alias   cweb='cd "$HOME/WEBSITE/myproject/"; nv -p *'
 
-alias cool='cd "/$HOME/Desktop/Coding/Cool-Linux-Shell-Scripts"'
 
-alias webm='cd "/$HOME/WEBSITE/myproject"'
-
-alias rns='cd "/$HOME/WEBSITE/myproject/"; flask run'
 
 
 

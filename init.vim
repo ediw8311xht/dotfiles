@@ -71,7 +71,7 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'marko-cerovac/material.nvim'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'VebbNix/lf-vim'
-"Plug 'prettier/vim-prettier'
+Plug 'prettier/vim-prettier'
 Plug 'godlygeek/tabular'
 Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 Plug 'dense-analysis/ale'
@@ -83,6 +83,7 @@ Plug 'windwp/nvim-ts-autotag'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/vim-scripts/restore_view.vim',
 Plug 'bignimbus/pop-punk.vim'
+Plug 'junegunn/vim-easy-align'
 "Plug 'rakr/vim-one'
 "Plug 'sheerun/vim-polyglot'
 call plug#end()
@@ -275,14 +276,16 @@ nnoremap <silent><leader>h   :call                ToggleHiddenAll()<CR>
 
 nnoremap x                   "xx
 nnoremap <leader>q @q
-nnoremap <leader>fp /<c-r>0<esc>
+"nnoremap <leader>fp /<c-r>0<esc>
 nnoremap <leader>z z
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
-vnoremap <Space> zf
 
 noremap <leader>zaf gg/<c-r>0<esc>jVnkzf
 noremap <leader>zv
+
+vnoremap <Space> zf
+vnoremap ga <Plug>(EasyAlign)
 
 " <c-r> = ctrl+r
 "nnoremap <leader>y           :                    hi Normal guibg=Transparent<esc>

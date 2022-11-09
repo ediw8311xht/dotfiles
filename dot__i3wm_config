@@ -100,10 +100,7 @@ for_window [all]					        border pixel 0
 #
 #
 #---------------------------------------------------BINDS----------------------------------------------------------#
-$RelM           a                       mode freekey;	exec --no-startup-id "sleep 0.2;\
-                                                        xdotool key 'alt+v';\
-							sleep 0.4;\
-							xdotool key 'alt+y'"; 
+$BindM          a 		        $BORD1; 	focus       	parent
 $BindM          d         		     	        exec        	                dmenu_run -b -nb "#000000" -l 10 -fn "Office Code Pro:pixelsize=20:antialias=true:autohint=true"
 $BindM          e 		  		     	layout      	                toggle   split
 $BindM          f	  	  	  		mode        	                "mousemove"
@@ -148,7 +145,10 @@ $BindM          bracketleft             $BORD1;    	workspace   	11
 $BindM          bracketright            $BORD1;    	workspace   	12
 $BindM          semicolon               $BORD1
 #---------------------------------------------------SHIFT-BINDS----------------------------------------------------#
-$BindM_Sh       a 		        $BORD1; 	focus       	parent
+$RelM_Sh        a                       mode freekey;	exec --no-startup-id "sleep 0.2;\
+                                                        xdotool key 'alt+v';\
+							sleep 0.4;\
+							xdotool key 'alt+y'"; 
 $BindM_Sh       b		        $BORD1;    	exec 		$HOME/bin/ubluetoggle.sh
 $BindM_Sh       less    	  		     	exec 		"i3-msg 'gaps inner all minus 10'"
 $BindM_Sh       greater    	  		     	exec 		"i3-msg 'gaps inner all plus 10'"
@@ -293,7 +293,7 @@ $RelM           6                                       $BORD2
 $RelM           7                                       $BORD2
 $RelM           8                                       $BORD2
 $RelM           9                                       $BORD2
-#$RelM           a                                       $BORD2
+$RelM           a                                       $BORD2
 $RelM           b                                       $BORD2
 $RelM           c                                       $BORD2
 $RelM           d                                       $BORD2
@@ -337,7 +337,7 @@ $RelM_Sh        6	         	                $BORD2
 $RelM_Sh        7	         	                $BORD2
 $RelM_Sh        8	         	                $BORD2
 $RelM_Sh        9	         	                $BORD2
-$RelM_Sh        a		                        $BORD2
+#$RelM_Sh        a		                        $BORD2
 $RelM_Sh        b		                        $BORD2
 $RelM_Sh        c		                        $BORD2
 $RelM_Sh        d		                        $BORD2
