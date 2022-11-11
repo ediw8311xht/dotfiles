@@ -93,9 +93,6 @@ for_window [all]					        border pixel 0
 #FOR REFERENCE, class for brave: for_window [class="brave-browser"]
 #for_window [class="brave-browser"]				font xft:Hack 0
 #####i3s#####----| i3 scratchpad
-#
-#
-#
 #---------------------------------------------------BINDS----------------------------------------------------------#
 $BM       a            $BORD1 ; 	focus       	parent
 $BM       d            exec        	dmenu_run -b -nb "#000000" -l 10 -fn "Office Code Pro:pixelsize=20:antialias=true:autohint=true"
@@ -197,14 +194,15 @@ $BSh      bracketright $BORD1 ;        move            container to workspace 12
 bindsym Super_L        $BORD1 ; sticky toggle;
 #---------------------------------------------------EXECS----------------------------------------------------------#
 $EXENI    dunst
-$EXENI_A  xinput 		                        --set-prop 12   "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 0.44
-$EXENI_A  xinput 		                        --set-prop 12   "libinput Accel Speed" -1
+$EXENI_A  xinput 		                --set-prop 12   "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 0.44
+$EXENI_A  xinput                                --set-prop 12   "libinput Accel Speed" -1
 $EXENI_A  xmodmap 	                        -e              "keycode 49  = 0x0000 0xffeb 0x0000 0xffeb"
 $EXENI_A  xmodmap 	                        -e 	       	"keycode 133 = 0x007e 0x0060 0x007e 0x0060"
+$EXENI_A  copyq
 $EXENI_A  xset 	 	                        -dpms
 $EXENI_A  xset 	 	                        s 	       	off
 $EXENI_A  xset 	 	                        r 	       	rate 200 40
-$EXENI_A  nitrogen                                --restore
+$EXENI_A  nitrogen                              --restore
 $EXENI_A  xcompmgr 	                        -C
 $EXENI_A  $HOME/.config/polybar/launch.sh
 #---------------------------------------------------MODES----------------------------------------------------------#
@@ -368,6 +366,6 @@ $RSh      period       $BORD2
 $RSh      Super_L      $BORD2
 $RSh      bracketright $BORD2
 $RSh      bracketleft  $BORD2
-bindsym         --release Super_L $BORD2
-bindsym         --release $mod+Shift+Return exec "sleep 0.2; i3-msg 'border pixel 0'"
+bindsym   --release    Super_L $BORD2
+bindsym   --release    $mod+Shift+Return exec "sleep 0.2; i3-msg 'border pixel 0'"
 #---------------------------------------------------END------------------------------------------------------------#

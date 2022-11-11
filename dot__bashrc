@@ -108,8 +108,8 @@ pifs()   {   printf     "%q" "${IFS}"; echo ""                      ; }
 pasta()  {   cat              <<< $(pas)                            ; }
 kad()    {   docker          kill $(docker ps -q)                   ; }
 rad()    {   docker            rm $(docker ps -a -q)                ; }
-cop()    {   printf '%s' "$@" | xsel -bi;xsel -bo; echo ""          ; }
-pas()    {   xsel -bo; echo ""                                      ; }
+cop()    {   printf '%s' "$@" | copyq -copy; copyq clipboard        ; }
+pas()    {   copyq read "${@:-0}" ; echo ""                         ; }
 
 #---------------------------------------------------------------------- #
 #-ALIASES								#
@@ -128,7 +128,7 @@ alias   s='         systemctl'
 alias   t='	    trash-put'
 alias   x='         $HOME/bin/FOR_BASHRC/stars_c.sh'
 alias   ac='        acheck'
-alias   cl='         clear'
+alias   cl='        clear'
 alias   cp='        cp -i'
 alias   df='        df -h'
 alias   fo='        xdg-open "$(fzf)"'
@@ -190,6 +190,16 @@ alias   scim='      sc-im'
 alias   phone='     aft-mtp-cli'
 alias   decl='      declare -f'
 alias   hb='        htop'
+alias   pips='      poetry search'
+
+
+
+alias   nvgr='echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'
+alias   sman='man -K --regex'
+
+
+
+
 
 #---------------------------------------------------------------------- #
 #-EXPORT							        #
@@ -218,4 +228,7 @@ set -o vi
 #-QUICK-ADDED-ALIASES                                                   #
 #---------------------------------------------------------------------- #
 
+
 alias nitroz='cd "/$HOME/Pictures/NitroWallpapers"'
+
+
