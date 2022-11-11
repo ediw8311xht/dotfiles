@@ -97,19 +97,38 @@ fpend() {
     fi
     echo "INCORRENT ARGUMENTS"; return 1
 )}
+
 addally() {
     printf 'alias %s='\''cd "%s"'\' "${1}" "$(pwd)" >> "$HOME/.bashrc"
 }
+
+copyq_getter() { 
+   (readarray -t K < <(grep -Pio '[0-9]*' <<< "${*}")
+    if     [[ "${*}" =~ [0-9]+[l-][0-9]+ ]] ; then
+        if [[ "${K[0]}" -gt "${K[1]}"    ]] ; then RVCE='-1'; fi
+
+        readarray -t K < <(seq "${K[0]}" ${RVCE:-} "${K[1]}")
+    fi
+
+    i='-1'; while [[ ++i -lt "${#K[@]}" ]] ; do
+        if [[ "${*}" =~ [lL] ]] ; then 
+             echo $'\n'"|${K[i]}------------------|"
+             copyq read "${K[i]}"
+             echo $'\n'"|------------------${K[i]}|"$'\n'
+        else copyq read "${K[i]}"; echo $'\n----'; fi
+    done
+)}
+
 pf()     {   find 		  "${2:-"$HOME"}" | grep -Pi "${1}" ; }
 nifs()   {   IFS=$'\n'   ; printf "IFS=%q" "${IFS}"; echo ""        ; }
 rifs()   {   IFS=$' \t\n'; printf "IFS=%q" "${IFS}"; echo ""        ; }
 ppifs()  {   printf "IFS=%q" "${IFS}"; echo ""                      ; }
 pifs()   {   printf     "%q" "${IFS}"; echo ""                      ; }
-pasta()  {   cat              <<< $(pas)                            ; }
+pasta()  {   cat              <<< $(pas '0')                        ; }
 kad()    {   docker          kill $(docker ps -q)                   ; }
 rad()    {   docker            rm $(docker ps -a -q)                ; }
 cop()    {   printf '%s' "$@" | copyq -copy; copyq clipboard        ; }
-pas()    {   copyq read "${@:-0}" ; echo ""                         ; }
+
 
 #---------------------------------------------------------------------- #
 #-ALIASES								#
@@ -140,6 +159,8 @@ alias   nv='        nvim'
 alias   pc='	    clear; neofetch'
 alias   pe='        ps -eo comm=,'
 alias   po='        ps -eo cmd=,'
+alias   clips='     copyq select'
+alias   p='         copyq_getter'
 alias   rm='        echo "rm has been replaced with this message use trash-put or /bin/rm instead."'
 alias   qread='     zathura  "$(fzf)"'
 alias   sudo='      sudo '
@@ -150,7 +171,6 @@ alias   i3c='       i3 -C $HOME/.i3/config'
 alias   tyren='     perl-rename -v -n'
 alias   doren='     perl-rename -v'
 alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
-
 alias   pacse='     echo ""; pacman -Ss'
 alias   yayse='     echo ""; yay -Ss'
 alias   pacsel='    echo ""; pacman -Qs'
@@ -161,8 +181,6 @@ alias   yayil='     echo ""; yay -Qi'
 alias   pacil='     echo ""; pacman -Qi'
 alias   pacclean='  echo ""; yay -Scc; yay --clean'
 alias   up_xrec='   echo ""; xrdb -merge $HOME/.Xresources'
-
-
 alias   paclast="   echo ''; expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
 alias   snv='       sudoedit'
 alias   ebash='     echo "alias ysb, to source ~/.bashrc"; nvim $HOME/.bashrc'
@@ -191,15 +209,9 @@ alias   phone='     aft-mtp-cli'
 alias   decl='      declare -f'
 alias   hb='        htop'
 alias   pips='      poetry search'
-
-
-
-alias   nvgr='echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'
-alias   sman='man -K --regex'
-
-
-
-
+alias   nvgr='      echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'
+alias   sman='      man -K --regex'
+alias   nitroz='    cd "$HOME/Pictures/NitroWallpapers"'
 
 #---------------------------------------------------------------------- #
 #-EXPORT							        #
@@ -229,6 +241,5 @@ set -o vi
 #---------------------------------------------------------------------- #
 
 
-alias nitroz='cd "/$HOME/Pictures/NitroWallpapers"'
 
 

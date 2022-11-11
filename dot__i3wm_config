@@ -89,6 +89,10 @@ for_window [title="mycv*"]					floating enable, move position 1920 0
 for_window [class="i3*input"]					resize set 1000 1000
 for_window [class="brave*"]					border pixel 0
 for_window [class="Brave*"]					border pixel 0
+for_window [class="st*"]					border pixel 0
+for_window [class="st*"]					border pixel 0
+for_window [class="ST*"]					border pixel 0
+for_window [class="St*"]					border pixel 0
 for_window [all]					        border pixel 0
 #FOR REFERENCE, class for brave: for_window [class="brave-browser"]
 #for_window [class="brave-browser"]				font xft:Hack 0
@@ -115,7 +119,7 @@ $BM       u            $BORD1 ;    	[instance="i3s_st"]             scratchpad s
 $BM       v            split v
 $BM       w            layout      	tabbed
 $BM       y            mode             freekey
-$BM       Return       $BORD1 ;    	exec 		                 	/usr/local/bin/st
+$BM       Return                        exec 		                 	/usr/local/bin/st
 $BM       period       gaps        	inner    all     toggle $IN_GAPS,\
                        gaps 		top 	 all     toggle $TOP_GAPS,\
                        gaps 		bottom	 all	 toggle $BOTTOM_GAPS,\
@@ -143,30 +147,30 @@ $RSh      a            mode freekey;   exec --no-startup-id "sleep 0.2;\
                                        xdotool key 'alt+v';\
 		                       sleep 0.4;\
 		                       xdotool key 'alt+y'"; 
-$BSh      b            $BORD1 ;        exec 		$HOME/bin/ubluetoggle.sh
+$BSh      b                            exec 		$HOME/bin/ubluetoggle.sh
 $BSh      less         exec 	       "i3-msg 'gaps inner all minus 10'"
 $BSh      greater      exec 	       "i3-msg 'gaps inner all plus 10'"
 #SPEC     c		
 $BSh      e 	       exec 	       "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
 $BSh      h            $BORD1 ;        move  	     	left      $XMVSPEED
-$BSh      i            $BORD1 ;        exec 		$HOME/bin/mdmenu.sh
+$BSh      i                            exec 		$HOME/bin/mdmenu.sh
 $BSh      j            $BORD1 ;        move  	     	down   	  $YMVSPEED
 $BSh      k            $BORD1 ;        move  	     	up     	  $YMVSPEED
 $BSh      l            $BORD1 ;        move  	     	right  	  $XMVSPEED
 $BSh      m 	       floating        enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
-$BSh      n            $BORD1 ;        exec 		/usr/local/bin/st -n 'i3s_note' nvim "$HOME/Documents/Notepad/note.txt"
+$BSh      n                            exec 		/usr/local/bin/st -n 'i3s_note' nvim "$HOME/Documents/Notepad/note.txt"
 $BSh      o 	       exec 	       i3lock -f -e -c 333333
-$BSh      p            $BORD1 ;        exec		/usr/bin/brave --incognito
-$BSh      q            $BORD1 ;        kill
+$BSh      p                            exec		/usr/bin/brave --incognito
+$BSh      q                            kill
 #SPEC     r		
 #SPEC     s		
-$BSh      t            $BORD1 ;        exec            $HOME/.local/opt/tor-browser_en-US/Browser/start-tor-browser; exec sleep 1 && i3-msg '[class="Tor Browser"] scratchpad show'
-$BSh      u            $BORD1 ;        exec            /usr/local/bin/st -n 'i3s_st'
+$BSh      t                            exec            $HOME/.local/opt/tor-browser_en-US/Browser/start-tor-browser; exec sleep 1 && i3-msg '[class="Tor Browser"] scratchpad show'
+$BSh      u                            exec            /usr/local/bin/st -n 'i3s_st'
 $BSh      v            split h
 $BSh      w            mode            freekey
-$BSh      x            $BORD1 ;        exec            $HOME/bin/add_to_clip.sh "DATE" "TIME"
+$BSh      x                            exec            $HOME/bin/add_to_clip.sh "DATE" "TIME"
 $BSh      y	       exec            $HOME/bin/urxvt_notepad_script.sh   "TMUX"
-$BSh      z            $BORD1 ;        exec            $HOME/bin/brave-tor.sh
+$BSh      z                            exec            $HOME/bin/brave-tor.sh
 $BSh      semicolon    resize          set $WSW $WSH
 $BSh      Return       exec            /usr/bin/brave
 $BSh      Up 	       exec            $HOME/bin/nitrowscript.sh 			"UP"
