@@ -15,13 +15,14 @@ PS1=''
 #----------PS1
 #readarray me_test -d '' 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz0123456789_'
 #for i in 
-INSERT='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g'\'')/'
+INSERT='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g'\'')'
 INSERT2='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g; s/[^ ]/ /g'\'')'
+#PS1+='\[\e[1;37m\]${USER::1}|'
+PS1+='\[\e[1;37m\]['
 PS1+='\[\e[m\]'
-PS1+='\A\[\e[1;37m\] ['
-PS1+='\[\e[1;37m\]${USER::1}|'
-PS1+='\[\e[1;32m\]'"${INSERT}"
-PS1+='\[\e[1;37m\] ]\$ '
+PS1+='\A\[\e[1;37m\]|'
+PS1+='\[\e[1;32m\]'"${INSERT}"'/'
+PS1+='\[\e[1;37m\]]\$ '
 PS1+='\[\e[m\]'
 PS2=''
 PS2+='\[\e[0;33m\]             '"${INSERT2}"
