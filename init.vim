@@ -19,6 +19,7 @@ set splitright
 set t_Co=256
 set nocompatible
 set modelines=0
+set signcolumn=yes:1
 set nu
 set rnu
 set ruler

@@ -4,15 +4,34 @@
 #-
 #-If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-
+#PS1='[\u@\h \W]\$ '
 alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
-PS0='\e[0 q'
-PS1='[\u \W]\$ '
+#echo "$(shopt | grep -Piv '[ ]*\ze[ ]' )"
+#----------PS0
+PS0=''
+PS0+='\e[0 q'
+PS1=''
+#----------PS1
+#readarray me_test -d '' 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz0123456789_'
+#for i in 
+INSERT='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g'\'')/'
+INSERT2='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g; s/[^ ]/ /g'\'')'
+PS1+='\[\e[m\]'
+PS1+='\A\[\e[1;37m\] ['
+PS1+='\[\e[1;37m\]${USER::1}|'
+PS1+='\[\e[1;32m\]'"${INSERT}"
+PS1+='\[\e[1;37m\] ]\$ '
+PS1+='\[\e[m\]'
+PS2=''
+PS2+='\[\e[0;33m\]             '"${INSERT2}"
+#PS1='[\u \W]\$ '
+#export PS1='\[\e\[1;37m\]\][\e\[1;34m\]\u\e[m'
 
 #---------------------------------------------------------------------- #
 #-FUNCTIONS								#
 #---------------------------------------------------------------------- #
+
 walc() {
    (IFS=$'\n'
     SWITCH=''
@@ -103,6 +122,7 @@ addally() {
 }
 
 copyq_getter() { 
+    if ! [[ "${*}" ]] ; then copyq_getter "1"; fi
    (readarray -t K < <(grep -Pio '[0-9]*' <<< "${*}")
     if     [[ "${*}" =~ [0-9]+[l-][0-9]+ ]] ; then
         if [[ "${K[0]}" -gt "${K[1]}"    ]] ; then RVCE='-1'; fi
@@ -110,7 +130,7 @@ copyq_getter() {
         readarray -t K < <(seq "${K[0]}" ${RVCE:-} "${K[1]}")
     fi
 
-    i='-1'; while [[ ++i -lt "${#K[@]}" ]] ; do
+    i='-1'; while [[ $((++i)) -lt "${#K[@]}" ]] ; do
         if [[ "${*}" =~ [lL] ]] ; then 
              echo $'\n'"|${K[i]}------------------|"
              copyq read "${K[i]}"
