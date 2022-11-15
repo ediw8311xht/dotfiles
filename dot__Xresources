@@ -4,7 +4,7 @@
 !*.alphaOffset: 0.75
 *.alpha:	0.90
 *.font: 	FiraCode Retina:pixelsize=15:antialias=true
-*.borderpx:     4px
+*.borderpx:     10px
 *.cursorColor:  #999999
 
 *.color:        #FFFFFF

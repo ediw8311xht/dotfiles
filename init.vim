@@ -1,4 +1,5 @@
 
+
 "<--------- HEADER --------------------------------------------------------->
 "
 "             ----------------------
@@ -121,7 +122,7 @@ hi            CocSearch           cterm=NONE        ctermbg=NONE ctermfg=NONE  g
 hi            CocMenuSel          cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=NONE         guibg=NONE     guifg=NONE
 hi            MatchParen          cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=NONE         guibg=NONE     guifg=NONE
 hi            MatchParen          cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=bold         guibg=NONE     guifg=NONE 
-hi            cursorline          cterm=bold        ctermfg=NONE ctermbg=18    gui=NONE         guibg=#252525  guifg=NONE
+hi            cursorline          cterm=bold        ctermfg=NONE ctermbg=18    gui=NONE         guibg=#440000  guifg=NONE
 hi            cursorcolumn        cterm=italic,bold ctermfg=NONE ctermbg=NONE  gui=underline    guibg=NONE     guifg=NONE 
 hi            FoldColumn          cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=bold         guibg=NONE     guifg=#00FF00 
 hi            Folded              cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=bold,italic  guibg=NONE     guifg=#888888 
@@ -165,7 +166,7 @@ function! ToggleScheme()
                                                  colorscheme pop-punk
                                                  highlight Normal guifg=#FFFFFF guibg=NONE
         set cursorline
-        hi cursorline gui=bold guifg=NONE guibg=darkblue cterm=bold ctermfg=NONE ctermbg=NONE
+        hi cursorline cterm=bold ctermfg=NONE gui=NONE guibg=#440000 guifg=NONE
         set nocursorcolumn
     end
     echo g:colors_name
@@ -295,7 +296,7 @@ vnoremap im :s/\%V[ \t]*//<esc>
 "<-------------------------------------------------------------------------->
 
 "<--------- STATUS LINE ---------------------------------------------------->
-set statusline=\ %f\ \|
+set statusline=\ %F\ \|
 set statusline+=\%l\(%L\)\|%v\ 
 set statusline+=%m\ 
 set statusline+=%=\ %L\ l,\ 
@@ -316,4 +317,5 @@ autocmd BufNewFile,BufRead ~/.config/polybar/config setfiletype dosini
 "                   %<"      _-_is expanded to the name of the current buffer
 "    :help key-notation      _-_for list of keys and their names
 "<-------------------------------------------------------------------------->
+
 

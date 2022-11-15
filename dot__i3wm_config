@@ -197,6 +197,7 @@ $BSh      bracketright $BORD1 ;        move            container to workspace 12
 #---------------------------------------------------SPECIAL-BINDS--------------------------------------------------#
 bindsym Super_L        $BORD1 ; sticky toggle;
 #---------------------------------------------------EXECS----------------------------------------------------------#
+#$EXENI    dunst
 $EXENI_A  xinput 		                --set-prop 12   "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 0.44
 $EXENI_A  xinput                                --set-prop 12   "libinput Accel Speed" -1
 $EXENI_A  xmodmap 	                        -e              "keycode 49  = 0x0000 0xffeb 0x0000 0xffeb"
