@@ -140,28 +140,6 @@ copyq_getter() {
     done
 )}
 
-print_c() {
-# https://askubuntu.com/questions/147462/how-can-i-change-the-tty-colors
-    if [ -n "$TERM" ]; then     echo -en "\e]P0232323" #black
-        echo -en "\e]P82B2B2B" #darkgrey
-        echo -en "\e]P1D75F5F" #darkred
-        echo -en "\e]P9E33636" #red
-        echo -en "\e]P287AF5F" #darkgreen
-        echo -en "\e]PA98E34D" #green
-        echo -en "\e]P3D7AF87" #brown
-        echo -en "\e]PBFFD75F" #yellow
-        echo -en "\e]P48787AF" #darkblue
-        echo -en "\e]PC7373C9" #blue
-        echo -en "\e]P5BD53A5" #darkmagenta
-        echo -en "\e]PDD633B2" #magenta
-        echo -en "\e]P65FAFAF" #darkcyan
-        echo -en "\e]PE44C9C9" #cyan
-        echo -en "\e]P7E5E5E5" #lightgrey
-        echo -en "\e]PFFFFFFF" #white
-        clear #for background artifacting
-    fi
-}
-
 pf()     {   find 		  "${2:-"$HOME"}" | grep -Pi "${1}" ; }
 nifs()   {   IFS=$'\n'   ; printf "IFS=%q" "${IFS}"; echo ""        ; }
 rifs()   {   IFS=$' \t\n'; printf "IFS=%q" "${IFS}"; echo ""        ; }
@@ -180,13 +158,11 @@ alias   kctpv='	    kill "$(pidof "ctpv")"'
 alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
 alias   fl="        pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
 alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
-alias   zathgen='   cop "$(genzathurarc 2>&0)"' 
 alias   b='         cd $HOME/bin/'
 alias   c='         my_cd'
 alias   f='         $HOME/bin/my_find.sh'
 alias   g='         grep --perl-regexp --ignore-case'
 alias   h='         cd $HOME'
-alias   s='         systemctl'
 alias   t='	    trash-put'
 alias   x='         $HOME/bin/FOR_BASHRC/stars_c.sh'
 alias   ac='        acheck'
@@ -196,7 +172,7 @@ alias   df='        df -h'
 alias   fo='        xdg-open "$(fzf)"'
 alias   fn='        nvim     "$(fzf --preview="nvim {}")"'
 alias   gr='	    echo ""; cat $HOME/.bashrc | grep -Pi'
-alias   gf='        $HOME/bin/my_find.sh "/"'
+alias   gf='        find / -iname'
 alias   ic='        clear; imgcat'
 alias   nv='        nvim'
 alias   pc='	    clear; neofetch'
@@ -212,6 +188,7 @@ alias   free='      free -m'
 alias   rmi='       rm -i'
 alias   pdf='       zathura'
 alias   i3c='       i3 -C $HOME/.i3/config'
+alias   i3e='       nvim $HOME/.i3/config'
 alias   tyren='     perl-rename -v -n'
 alias   doren='     perl-rename -v'
 alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
@@ -255,7 +232,14 @@ alias   hb='        htop'
 alias   pips='      poetry search'
 alias   nvgr='      echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'
 alias   sman='      man -K --regex'
+alias   down='      cd $HOME/Downloads/'                                              
+alias   pics='      cd $HOME/Pictures/'                                               
+alias   aud='       cd $HOME/Audio/'                                                  
+alias   docs='      cd $HOME/Documents/'                                              
+alias   desk='      cd $HOME/Desktop/'                                                
+alias   vids='      cd $HOME/Videos/'                                                 
 alias   nitroz='    cd "$HOME/Pictures/NitroWallpapers"'
+alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'                                    
 
 #---------------------------------------------------------------------- #
 #-EXPORT							        #
