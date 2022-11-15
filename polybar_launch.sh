@@ -13,7 +13,6 @@ do
 	MONITOR=$item polybar --reload basicbar & disown
 done
 
-#---------TESTING---IGNORE-------
 # echo $MARR
 # echo ${MARR[1]}
 # polybar --reload basicbar &
