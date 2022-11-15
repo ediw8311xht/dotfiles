@@ -1,0 +1,13 @@
+set window-title-basename "true"
+set selection-clipboard "clipboard"
+
+set default-bg                  "#000000" # Background
+set default-fg                  "#000000" # Foreground
+set recolor-lightcolor          "#101010" # Background
+set recolor-darkcolor           "#00FF00" # Foreground
+
+#
+# Startup options
+#
+set adjust-open width
+set recolor true
