@@ -158,6 +158,12 @@ alias   kctpv='	    kill "$(pidof "ctpv")"'
 alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
 alias   fl="        pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
 alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
+alias   zathgen='   cop "$(genzathurarc 2>&0)"'                                       ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+#-CONDA SOLUTION                                                                      ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+#-stackoverflow: anaconda-python-causing-slow-terminal-startup-prompt                 ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+#-CONDA SOLUTION                                                                      ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   anaconda='  source ~/.conda.bashrc'                                           ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   SUMMY='     cd "$HOME/Downloads/ssg"*/'                                       ####-!!-!!-!!-IGNORE-!!-!!-!!-####
 alias   b='         cd $HOME/bin/'
 alias   c='         my_cd'
 alias   f='         $HOME/bin/my_find.sh'
@@ -240,11 +246,49 @@ alias   desk='      cd $HOME/Desktop/'
 alias   vids='      cd $HOME/Videos/'                                                 
 alias   nitroz='    cd "$HOME/Pictures/NitroWallpapers"'
 alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'                                    
+alias   codly='     cd "$HOME/Desktop/GOOGLE_TAKEOUT/Takeout/Drive/Code Daily"'       ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   red='       cd $HOME/CREAD/'                                                  ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   code='      cd $HOME/Desktop/Coding/'                                         ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   zero='      cd $HOME/Desktop/Coding/EXTENSIONS/CHROME/ZERO_WORD_REPLACER/'    ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   scrap='     cd $HOME/Documents/SCRAPED'                                       ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   notes='     cd $HOME/Documents/Notepad/'                                      ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   prof='      cd $HOME/Documents/PROF_AND_WORK/'                                ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   ebay='      cd $HOME/Pictures/PHOTOS_EBAY/'                                   ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   gmp='       cd $HOME/Pictures/my_gimp_stuff/'                                 ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   lib='       cd /mnt/ad/'                                                      ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   upl='       cd /mnt/od/'                                                      ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   mud='       cd /mnt/ud/'                                                      ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   med1='      cd /mnt/ed1/'                                                     ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   med1='      cd /mnt/ed1/'                                                     ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   med2='      cd /mnt/ed2/'                                                     ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   med3='      cd /mnt/ed3/'                                                     ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   bravehist=' cd $HOME/.config/BraveSoftware/Brave-Browser/Default/'            ####-!!-!!-!!-IGNORE-!!-!!-!!-####
 
 #---------------------------------------------------------------------- #
 #-EXPORT							        #
 #---------------------------------------------------------------------- #
 export  FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export  MYPRINTER="MYPRINT"                                                           ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+export  NNN_COPIER="$HOME/nscript/csript"                                             ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+export  DOCS="$HOME/Documents/"                                                       ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+export  DESK="$HOME/Desktop/"                                                         ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+export  DOWN="$HOME/Downloads/"                                                       ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+export  MYSTUFF="$HOME/Documents/MyStuff/"                                            ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+export  EDITOR="nvim"                                                                 ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+export  NVIMSWAP="$HOME/.local/share/nvim/swap/"                                      ####-!!-!!-!!-IGNORE-!!-!!-!!-####  
+export  PYTHONPATH="${PYTHONPATH}:/home/maceurt/MY_PYTHON_MODULES/"                   ####-!!-!!-!!-IGNORE-!!-!!-!!-#### 
+export  PYTHONPATH="${PYTHONPATH}:/usr/bin/python3"                                   ####-!!-!!-!!-IGNORE-!!-!!-!!-####  
+export  AUTOBACKUP="/mnt/ed3/"                                                        ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+export  LESS=""                                                                       ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+export  PATH="/usr/bin/:${PATH}"                                                      ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+export  PAGER='most'                                                                  ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+export  TERM=st                                                                       ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+export  XDG_CONFIG_HOME="$HOME/.config"                                               ####-!!-!!-!!-IGNORE-!!-!!-!!-####  
+export  XDG_CACHE_HOME="$HOME/.cache"                                                 ####-!!-!!-!!-IGNORE-!!-!!-!!-####  
+export  DELUGE_PORT="55888"                                                           ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+export  QT_QPA_PLATFORMTHEME="qt5ct"                                                  ####-!!-!!-!!-IGNORE-!!-!!-!!-####  
+export  WEB="$HOME/WEBSITE/myproject/"                                                ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+. "$HOME/.secrets"                                                                    ####-!!-!!-!!-IGNORE-!!-!!-!!-####
 #---------------------------------------------------------------------- #
 #-`PATH`								#
 #---------------------------------------------------------------------- #
@@ -267,8 +311,26 @@ set -o vi
 #---------------------------------------------------------------------- #
 #-QUICK-ADDED-ALIASES                                                   #
 #---------------------------------------------------------------------- #
+alias   bash_ref="xdg-open /home/maceurt/Documents/Notepad/bash_quick_reference.sh"                                              ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   tsop='vid /mnt/ed3/The\ Sopranos*Complete*/*Season*{2,3,4,5,6}*'                                                         ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   tl="cd /home/maceurt/tempo_five/; nv -p *"                                                                               ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   nvgr='echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'                                                             ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   i3gr='echo ""; cat "$HOME/.i3/config" | grep -Pi'                                                                        ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   chrome_ext='echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'                                                       ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   go_gnu='cd "$HOME/Desktop/Coding/mygnu2/"'                                                                               ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   ms_core='cd "/usr/share/mscore-3.6/styles"'                                                                              ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   sman='man -K --regex'                                                                                                    ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   cool='cd "/home/maceurt/Desktop/Coding/Cool-Linux-Shell-Scripts"'                                                        ####-!!-!!-!!-IGNORE-!!-!!-!!-####
 
+#WEBSITE                                                                                                                         ####-!!-!!-!!-IGNORE-!!-!!-!!-#### 
+#alias  m='cd "$WEBSITE/myproject/"; find "$(pwd)" -iname '\''*.*'\'' | grep -Pi '\''.*(templates|static).*(html|css)$'\'        ####-!!-!!-!!-IGNORE-!!-!!-!!-####
 alias   git_mt='git log --pretty=format:"%h %s" --graph'
+alias   m='cd "$WEB"'                                                                                                            ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   w='cd "$WEB"'                                                                                                            ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   cw='$HOME/bin/ww_quick.sh; exit'                                                                                         ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+alias   rns='cd "$WEB/"; flask run; cd -'                                                                                        ####-!!-!!-!!-IGNORE-!!-!!-!!-####
 
+alias   qs='ssh tesmond@45.77.222.97'                                                                                            ####-!!-!!-!!-IGNORE-!!-!!-!!-####
+#WEBSITE                                                                                                                         ####-!!-!!-!!-IGNORE-!!-!!-!!-#### 
 
 
