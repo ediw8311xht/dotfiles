@@ -145,7 +145,7 @@ nifs()   {   IFS=$'\n'   ; printf "IFS=%q" "${IFS}"; echo ""        ; }
 rifs()   {   IFS=$' \t\n'; printf "IFS=%q" "${IFS}"; echo ""        ; }
 ppifs()  {   printf "IFS=%q" "${IFS}"; echo ""                      ; }
 pifs()   {   printf     "%q" "${IFS}"; echo ""                      ; }
-pasta()  {   cat              <<< $(pas '0')                        ; }
+#pasta()  {   cat              <<< $(pas '0')                        ; }
 kad()    {   docker          kill $(docker ps -q)                   ; }
 rad()    {   docker            rm $(docker ps -a -q)                ; }
 #cop()    {   printf '%s' "$@" | copyq -copy; copyq clipboard        ; }
@@ -159,7 +159,7 @@ alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for anoth
 alias   fl="        pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
 alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
 alias   b='         cd $HOME/bin/'
-alias   c='         my_cd'
+alias   c='         cd "$(copyq clipboard)"'
 alias   f='         $HOME/bin/my_find.sh'
 alias   g='         grep --perl-regexp --ignore-case'
 alias   h='         cd $HOME'
@@ -169,6 +169,7 @@ alias   ac='        acheck'
 alias   cl='        clear'
 alias   cp='        cp -i'
 alias   df='        df -h'
+alias   fz='         my_cd'    
 alias   fo='        xdg-open "$(fzf)"'
 alias   fn='        nvim     "$(fzf --preview="nvim {}")"'
 alias   gr='	    echo ""; cat $HOME/.bashrc | grep -Pi'

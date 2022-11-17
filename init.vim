@@ -17,6 +17,7 @@ let mapleader = ","
 let maplocalleader = ","
 set termguicolors
 set splitright
+set ignorecase
 set t_Co=256
 set nocompatible
 set modelines=0

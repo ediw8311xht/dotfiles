@@ -62,8 +62,11 @@ floating_modifier    	                $mod
 #gaps 					right 			$RIGHT_GAPS  
 # gaps				 	outer                   $OUT_GAPS
 
+
 font pango:Fira Code Retina 8
-default_border pixel 0
+#default_border pixel 0
+floating_minimum_size 1000 x  800
+floating_maximum_size 1920 x 1080
 
 workspace 			 	1                       output		 	$LEFT_MONITOR
 workspace 			 	2		   	output		 	$LEFT_MONITOR
@@ -82,6 +85,7 @@ workspace 			 	12		   	output		 	$RIGHT_MONITOR
 for_window [instance="i3s_note"]		        	floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
 for_window [instance="i3s_st"]			                floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
 for_window [class="Tor Browser"]				floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
+for_window [class="konqueror"]				        floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
 for_window [class="hexchat"]					floating enable
 for_window [instance="mycv"]					floating enable, move position 1000 1000
 for_window [class="mycv"]					floating enable, move position 1000 1000
@@ -99,6 +103,8 @@ for_window [all]					        border pixel 0
 #####i3s#####----| i3 scratchpad
 #---------------------------------------------------BINDS----------------------------------------------------------#
 $BM       a            $BORD1 ; 	focus       	parent
+$BM       b            $BORD1 ;    	floating    	                toggle
+$BM       c            $BORD1 ;         [class="konqueror"]             scratchpad show
 $BM       d            exec        	dmenu_run -b -nb "#000000" -l 10 -fn "Office Code Pro:pixelsize=20:antialias=true:autohint=true"
 $BM       e 	       layout      	toggle   split
 $BM       f	       mode        	"mousemove"
@@ -125,7 +131,7 @@ $BM       period       gaps        	inner    all     toggle $IN_GAPS,\
                        gaps 		bottom	 all	 toggle $BOTTOM_GAPS,\
                        gaps   		left  	 all	 toggle	$LEFT_GAPS,\
                        gaps   		right 	 all	 toggle	$RIGHT_GAPS
-$BM       Super_L      $BORD1 ;    	floating    	                toggle
+$BM       Super_L      exec             konqueror --open-session "maximilian"
 $BM       space        $BORD1 ;         focus 	     	                mode_toggle
 $BM       Down	       exec        	pamixer --decrease 1
 $BM       Up	       exec        	pamixer --increase 1
@@ -157,7 +163,7 @@ $BSh      i                            exec 		$HOME/bin/mdmenu.sh
 $BSh      j            $BORD1 ;        move  	     	down   	  $YMVSPEED
 $BSh      k            $BORD1 ;        move  	     	up     	  $YMVSPEED
 $BSh      l            $BORD1 ;        move  	     	right  	  $XMVSPEED
-$BSh      m 	       floating        enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
+$BSh      m 	       floating        enable, resize set $WSW $WSH, move scratchpad
 $BSh      n                            exec 		/usr/local/bin/st -n 'i3s_note' nvim "$HOME/Documents/Notepad/note.txt"
 $BSh      o 	       exec 	       i3lock -f -e -c 333333
 $BSh      p                            exec		/usr/bin/brave --incognito
