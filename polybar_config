@@ -35,7 +35,7 @@ offset-y = 0%
 monitor = ${env:MONITOR:}
 padding-left = 2
 padding-right = 2
-height = 15
+height = 17
 
 width = 100%
 border-size = 0
@@ -57,20 +57,20 @@ module-margin-right = 5
 ; (3,4,5) [Date TimeEST_US TimeGMT_UK]
 ; (6,7,8) [temp1 memory cpu] 
 ; (9) 	  [pulseaudio]
-font-0  	=  	Hermit:pixelsize=10;3
-font-1  	=  	Hack:pixelsize=10;3 
-font-2  	=  	Hermit:pixelsize=10;3
-font-3  	=  	Hermit:pixelsize=10;3
-font-4  	=  	Hermit:pixelsize=10;3
-font-5  	=  	Hermit:pixelsize=10;3
-font-6 		=  	Hermit:pixelsize=10;3
-font-7 		=  	Hermit:pixelsize=10;3
-font-8 		=  	Hermit:pixelsize=10;3
-font-9 		=  	Hermit:pixelsize=10;3
-font-10 	=  	Hermit:pixelsize=10;3
-font-11 	=  	Hermit:pixelsize=10;3
-font-12 	=  	"FontAwesome:pixelsize=11;2"
-font-13 	=  	"JoyPixels:scale=11;2;2"
+font-0  	=  	Hermit:pixelsize=12;3
+font-1  	=  	Hack:pixelsize=12;3 
+font-2  	=  	Hermit:pixelsize=12;3
+font-3  	=  	Hermit:pixelsize=12;3
+font-4  	=  	Hermit:pixelsize=12;3
+font-5  	=  	Hermit:pixelsize=12;3
+font-6 		=  	Hermit:pixelsize=12;3
+font-7 		=  	Hermit:pixelsize=12;3
+font-8 		=  	Hermit:pixelsize=12;3
+font-9 		=  	Hermit:pixelsize=12;3
+font-10 	=  	Hermit:pixelsize=12;3
+font-11 	=  	Hermit:pixelsize=12;3
+font-12 	=  	"FontAwesome:pixelsize=15;3"
+font-13 	=  	"JoyPixels:scale=15;2;2"
 font-14 	=  	"octicons:pixelsize=15;3;2"
 ;font-12 	=  	"Linux Biolinum Keyboard O:size=17:antialias=true;0" 
 ;font-13  	=  	JoyPixels:scale=10
@@ -214,7 +214,7 @@ ws-icon-8 = 9;9
 ws-icon-9 = 9;9
 ws-icon-10 = 10;10
 ws-icon-11 = 11;
-ws-icon-12 = 12;
+ws-icon-12 = 12;
 ;ws-icon-LHome = G;LHome
 
 label-separator-padding = 0
