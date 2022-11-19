@@ -71,8 +71,8 @@ floating_maximum_size 1920 x 1080
 
 workspace 			 	1                       output		 	$LEFT_MONITOR
 workspace 			 	2		   	output		 	$LEFT_MONITOR
-workspace 			 	3		   	output		 	$LEFT_MONITOR
-workspace 			 	4		   	output		 	$LEFT_MONITOR
+workspace 			 	3		   	output		 	$RIGHT_MONITOR
+workspace 			 	4		   	output		 	$RIGHT_MONITOR
 workspace 			 	5		   	output		 	$RIGHT_MONITOR
 workspace 			 	6		   	output		 	$RIGHT_MONITOR
 workspace 			 	7		   	output		 	$RIGHT_MONITOR

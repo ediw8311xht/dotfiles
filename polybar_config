@@ -59,7 +59,7 @@ module-margin-right = 5
 ; (9) 	  [pulseaudio]
 font-0  	=  	Hermit:pixelsize=12;3
 font-1  	=  	Hack:pixelsize=12;3 
-font-2  	=  	Hermit:pixelsize=12;3
+font-2  	=  	"HackNerdFont:pixelsize=15;3"
 font-3  	=  	Hermit:pixelsize=12;3
 font-4  	=  	Hermit:pixelsize=12;3
 font-5  	=  	Hermit:pixelsize=12;3
@@ -202,8 +202,9 @@ ramp-foreground = #55
 [module/i3]
 type = internal/i3
 
+#font = 11
 ws-icon-0 = 1;
-ws-icon-1 = 2;
+ws-icon-1 = 2;2
 ws-icon-2 = 3;3
 ws-icon-3 = 4;4
 ws-icon-4 = 5;5
@@ -211,9 +212,9 @@ ws-icon-5 = 6;6
 ws-icon-6 = 7;7
 ws-icon-7 = 8;8
 ws-icon-8 = 9;9
-ws-icon-9 = 9;9
-ws-icon-10 = 10;10
-ws-icon-11 = 11;
+ws-icon-9 = 9;j
+ws-icon-10 = 10;謹
+ws-icon-11 = 11;
 ws-icon-12 = 12;
 ;ws-icon-LHome = G;LHome
 
@@ -249,8 +250,8 @@ pin-workspaces = true
 label-focused-inactive-background = ${colors.background}
 
 label-urgent = %index%
-label-urgent-padding = 1
-;padding = 0
+label-urgent-padding = 0
+padding = 0
 
 
 ;-----------------------memory-------------------------------------------------;
