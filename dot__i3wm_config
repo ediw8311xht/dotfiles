@@ -39,7 +39,7 @@ set $BM                   bindsym      Mod1+
 set $BSh                  bindsym      Mod1+Shift+
 set $RM                   bindsym      --release 	 Mod1+
 set $RSh                  bindsym      --release 	 Mod1+Shift+
-set $BORD1                exec 	       --no-startup-id                i3-msg   "border pixel 3"
+set $BORD1                exec 	       --no-startup-id                i3-msg   "border pixel 1"
 set $BORD2                exec 	       " sleep 0.001; i3-msg   'border pixel 0'"
 #set $LONGER_BORD          exec 	       " 2; i3-msg   'border pixel 0'"
 set $EXENI                exec 	       --no-startup-id
@@ -64,7 +64,7 @@ floating_modifier    	                $mod
 # gaps				 	outer                   $OUT_GAPS
 
 
-font pango:Fira Code Retina 8
+font pango:Fira Code Retina 10
 #default_border pixel 0
 floating_minimum_size 800 x 800
 floating_maximum_size 1920 x 1080
@@ -83,12 +83,12 @@ workspace 			 	11		   	output		 	$RIGHT_MONITOR
 workspace 			 	12		   	output		 	$RIGHT_MONITOR
 #---------------------------------------------------FOR_WINDOW-----------------------------------------------------#
 #for_window [workspace="7"]								floating enable, move position 1000, 400
-#for_window [floating] move position center
-for_window [instance="i3s_note"]		        	floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
-for_window [instance="i3s_st"]			                floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
-for_window [class="Tor Browser"]				floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
-#for_window [class="konqueror"]				        floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
-for_window [class="Emacs"]				        floating enable, move position $WSPX $WSPY, resize set $WSW $WSH, move scratchpad
+#for_window [floating] move position relative center
+for_window [instance="i3s_note"]		        	floating enable, resize set $WSW $WSH, move scratchpad
+for_window [instance="i3s_st"]			                floating enable, resize set $WSW $WSH, move scratchpad
+for_window [class="Tor Browser"]				floating enable, resize set $WSW $WSH, move scratchpad
+for_window [class="konqueror"]				        floating enable, resize set $WSW $WSH, move scratchpad, scratchpad show
+for_window [class="Emacs"]				        floating enable, resize set $WSW $WSH, move scratchpad
 for_window [class="hexchat"]					floating enable
 for_window [instance="mycv"]					floating enable, move position 1000 1000
 for_window [class="mycv"]					floating enable, move position 1000 1000
@@ -107,8 +107,8 @@ for_window [all]					        border pixel 0
 #---------------------------------------------------BINDS----------------------------------------------------------#
 $BM       a            $BORD1 ; 	focus       	parent
 $BM       b            $BORD1 ;    	floating    	                toggle
-#$BM       c            $BORD1 ;         [class="konqueror"]             scratchpad show
-$BM       c            $BORD1 ;         [class="Emacs"]                 scratchpad show
+$BM       c            $BORD1 ;         [class="konqueror"]             scratchpad show
+#$BM       c            $BORD1 ;         [class="Emacs"]                 scratchpad show
 $BM       d            exec        	dmenu_run -b -nb "#000000" -l 10 -fn "Office Code Pro:pixelsize=20:antialias=true:autohint=true"
 $BM       e 	       layout      	toggle   split
 $BM       f	       mode        	"mousemove"
@@ -135,8 +135,8 @@ $BM       period       gaps        	inner    all     toggle $IN_GAPS,\
                        gaps 		bottom	 all	 toggle $BOTTOM_GAPS,\
                        gaps   		left  	 all	 toggle	$LEFT_GAPS,\
                        gaps   		right 	 all	 toggle	$RIGHT_GAPS
-#$BM       Super_L      exec             konqueror --open-session "maximilian"
-$BM       Super_L      exec             emacs     --open-session "maximilian"
+$BM       Super_L      exec             konqueror --open-session "maximilian"
+#$BM       Super_L      exec             emacs     --open-session "maximilian"
 $BM       space        $BORD1 ;         focus 	     	                mode_toggle
 $BM       Down	       exec        	pamixer --decrease 1
 $BM       Up	       exec        	pamixer --increase 1

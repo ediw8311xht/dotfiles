@@ -2,20 +2,20 @@
 ;modules-left = i3 ;modules-right =  temp1 memory cpu pulseaudio ;modules-right = filesystem pulseaudio xkeyboard memory cpu eth battery temperature date powermenu
 
 [colors]
-background 		=	#090909
+background 		=	#000011
 foreground 		=	#AAAAAA
-border-color 	=	#000000
-background-alt 	=	#000000
-foreground-alt 	=	#000000
+border-color 	        =	#1A1A1A
+background-alt 	        =	#000000
+foreground-alt 	        =	#000000
 primary 		=	#0000FF
 secondary 		=	#00FF00
 alert 			=	#FF0000
 
 i3bgl_f_in 		=	#111111
-i3bgl_vis_uf 	= 	#111111 
+i3bgl_vis_uf 	        = 	#111111 
 i3bgl_uf 		=	#111111 
 i3fgl_f_in 		=	#00FF00
-i3fgl_vis_uf 	= 	#FFFFFF
+i3fgl_vis_uf 	        = 	#FFFFFF
 i3fgl_uf 		=	#999999
 
 temp1			=	#EEEEEE
@@ -35,10 +35,11 @@ offset-y = 0%
 monitor = ${env:MONITOR:}
 padding-left = 2
 padding-right = 2
-height = 17
+height = 14
 
 width = 100%
-border-size = 0
+border-size = 3
+border-color = ${colors.border-color}
 fixed-center = true
 
 background = ${colors.background}
@@ -49,8 +50,8 @@ primary = #ffb52a
 secondary = #060033
 alert = #bd2c40
 
-module-margin-left = 1
-module-margin-right = 5
+module-margin-left = 3
+module-margin-right = 3
 
 ;------------------_FONTS_-------------------;
 ; (0,1,2) [i3 (v/f/u)] 
@@ -59,7 +60,7 @@ module-margin-right = 5
 ; (9) 	  [pulseaudio]
 font-0  	=  	Hermit:pixelsize=12;3
 font-1  	=  	Hack:pixelsize=12;3 
-font-2  	=  	"HackNerdFont:pixelsize=15;3"
+font-2  	=  	HackNerdFont:pixelsize=14;3
 font-3  	=  	Hermit:pixelsize=12;3
 font-4  	=  	Hermit:pixelsize=12;3
 font-5  	=  	Hermit:pixelsize=12;3
@@ -69,9 +70,9 @@ font-8 		=  	Hermit:pixelsize=12;3
 font-9 		=  	Hermit:pixelsize=12;3
 font-10 	=  	Hermit:pixelsize=12;3
 font-11 	=  	Hermit:pixelsize=12;3
-font-12 	=  	"FontAwesome:pixelsize=15;3"
-font-13 	=  	"JoyPixels:scale=15;2;2"
-font-14 	=  	"octicons:pixelsize=15;3;2"
+font-12 	=  	FontAwesome:pixelsize=14;3
+font-13 	=  	JoyPixels:scale=14;3
+font-14 	=  	octicons:pixelsizee=14;3
 ;font-12 	=  	"Linux Biolinum Keyboard O:size=17:antialias=true;0" 
 ;font-13  	=  	JoyPixels:scale=10
 
@@ -202,7 +203,6 @@ ramp-foreground = #55
 [module/i3]
 type = internal/i3
 
-#font = 11
 ws-icon-0 = 1;
 ws-icon-1 = 2;2
 ws-icon-2 = 3;3
@@ -213,26 +213,31 @@ ws-icon-6 = 7;7
 ws-icon-7 = 8;8
 ws-icon-8 = 9;9
 ws-icon-9 = 9;j
-ws-icon-10 = 10;謹
-ws-icon-11 = 11;
-ws-icon-12 = 12;
+ws-icon-10 = 10;謹 
+ws-icon-11 = 11; 
+ws-icon-12 = 12; 
 ;ws-icon-LHome = G;LHome
 
-label-separator-padding = 0
+label-font = 15
+label-padding = 1
+#label-separator-padding = 1
 
-label-focused-background = ${colors.i3bgl_f_in}
-label-visible-background = ${colors.i3bgl_vis_uf}
-label-unfocused-background =  ${colors.i3bgl_uf}
+label-focused-background = ${colors.background}
+label-visible-background = ${colors.background} 
+label-unfocused-background =  ${colors.background} 
+label-mode-background = ${colors.background}
+label-focused-inactive-background = ${colors.background}
+
 label-focused-foreground = ${colors.i3fgl_f_in}
 label-visible-foreground = ${colors.i3fgl_vis_uf}
 label-unfocused-foreground =  ${colors.i3fgl_uf}
+label-mode-foreground = #0000FF
+
 label-focused-font = 13
 label-visible-font = 13
 label-unfocused-font = 13
 
 label-mode = %mode%
-label-mode-foreground = #0000FF
-label-mode-background = #222222
 
 label-focused = %icon%
 label-visible = %icon%
@@ -241,17 +246,17 @@ label-unfocused = %icon%
 label-separator = "  "
 
 
-format = <label-state> <label-mode>
+format = <label-state>  <label-mode>
+#margin = 3
 
 index-sort = false
 wrapping-scroll = false
 
 pin-workspaces = true
-label-focused-inactive-background = ${colors.background}
 
 label-urgent = %index%
 label-urgent-padding = 0
-padding = 0
+padding = 3
 
 
 ;-----------------------memory-------------------------------------------------;
@@ -504,7 +509,7 @@ font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
-modules-left = bspwm i3
+modules-left = i3
 modules-center = mpd
 modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
 
