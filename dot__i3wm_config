@@ -37,16 +37,16 @@ set $WSPY                 90
 set $mod                  Mod1
 set $BM                   bindsym      Mod1+
 set $BSh                  bindsym      Mod1+Shift+
-set $RM                   bindsym      --release 	 Mod1+
-set $RSh                  bindsym      --release 	 Mod1+Shift+
+set $RM                   bindsym      --release 	Mod1+
+set $RSh                  bindsym      --release 	Mod1+Shift+
 set $BORD1                exec 	       --no-startup-id                i3-msg   "border pixel 1"
-set $BORD2                exec 	       " sleep 0.001; i3-msg   'border pixel 0'"
+set $BORD2                exec 	       " sleep 0.001;   i3-msg   'border pixel 0'"
 #set $LONGER_BORD          exec 	       " 2; i3-msg   'border pixel 0'"
 set $EXENI                exec 	       --no-startup-id
 set $EXENI_A              exec_always  --no-startup-id
 #-----------------------Checks to make sure config file compiles correctly before running 
-bindsym                                 $mod+Shift+r  exec --no-startup-id $HOME/bin/i3configcheck.sh           --3
-bindsym                                 $mod+Shift+c  exec --no-startup-id $HOME/bin/i3configcheck.sh   --NOASK --0
+bindsym                                 $mod+Shift+r    exec --no-startup-id $HOME/bin/i3configcheck.sh           --3
+bindsym                                 $mod+Shift+c    exec --no-startup-id $HOME/bin/i3configcheck.sh   --NOASK --0
 #---------------------------------------------------PARAM----------------------------------------------------------#
 client.unfocused 			#333333 		#333333 		#000000 		#444444   		#040404
 client.focused_inactive 		#000055 		#000055 		#000000 		#444444
@@ -69,38 +69,38 @@ font pango:Fira Code Retina 10
 floating_minimum_size 800 x 800
 floating_maximum_size 1920 x 1080
 
-workspace 			 	1                       output		 	$LEFT_MONITOR
-workspace 			 	2		   	output		 	$LEFT_MONITOR
-workspace 			 	3		   	output		 	$RIGHT_MONITOR
-workspace 			 	4		   	output		 	$RIGHT_MONITOR
-workspace 			 	5		   	output		 	$RIGHT_MONITOR
-workspace 			 	6		   	output		 	$RIGHT_MONITOR
-workspace 			 	7		   	output		 	$RIGHT_MONITOR
-workspace 			 	8		   	output		 	$RIGHT_MONITOR
-workspace 			 	9		   	output		 	$RIGHT_MONITOR
-workspace 			 	10		   	output		 	$RIGHT_MONITOR
-workspace 			 	11		   	output		 	$RIGHT_MONITOR
-workspace 			 	12		   	output		 	$RIGHT_MONITOR
+workspace 			 	1               output		 	$LEFT_MONITOR
+workspace 			 	2		output		 	$LEFT_MONITOR
+workspace 			 	3		output		 	$RIGHT_MONITOR
+workspace 			 	4		output		 	$RIGHT_MONITOR
+workspace 			 	5		output		 	$RIGHT_MONITOR
+workspace 			 	6		output		 	$RIGHT_MONITOR
+workspace 			 	7		output		 	$RIGHT_MONITOR
+workspace 			 	8		output		 	$RIGHT_MONITOR
+workspace 			 	9		output		 	$RIGHT_MONITOR
+workspace 			 	10		output		 	$RIGHT_MONITOR
+workspace 			 	11		output		 	$RIGHT_MONITOR
+workspace 			 	12		output		 	$RIGHT_MONITOR
 #---------------------------------------------------FOR_WINDOW-----------------------------------------------------#
 #for_window [workspace="7"]								floating enable, move position 1000, 400
 #for_window [floating] move position relative center
-for_window [instance="i3s_note"]		        	floating enable, resize set $WSW $WSH, move scratchpad
-for_window [instance="i3s_st"]			                floating enable, resize set $WSW $WSH, move scratchpad
-for_window [class="Tor Browser"]				floating enable, resize set $WSW $WSH, move scratchpad
-for_window [class="konqueror"]				        floating enable, resize set $WSW $WSH, move scratchpad, scratchpad show
-for_window [class="Emacs"]				        floating enable, resize set $WSW $WSH, move scratchpad
-for_window [class="hexchat"]					floating enable
-for_window [instance="mycv"]					floating enable, move position 1000 1000
-for_window [class="mycv"]					floating enable, move position 1000 1000
-for_window [title="mycv*"]					floating enable, move position 1920 0
-for_window [class="i3*input"]					resize set 1000 1000
-for_window [class="brave*"]					border pixel 0
-for_window [class="Brave*"]					border pixel 0
-for_window [class="st*"]					border pixel 0
-for_window [class="st*"]					border pixel 0
-for_window [class="ST*"]					border pixel 0
-for_window [class="St*"]					border pixel 0
-for_window [all]					        border pixel 0
+for_window [instance="i3s_note"]		        floating enable, resize set $WSW $WSH, move scratchpad
+for_window [instance="i3s_st"]			        floating enable, resize set $WSW $WSH, move scratchpad
+for_window [class="Tor Browser"]			floating enable, resize set $WSW $WSH, move scratchpad, scratchpad show
+for_window [class="konqueror"]				floating enable, resize set $WSW $WSH, move scratchpad, scratchpad show
+for_window [class="Emacs"]				floating enable, resize set $WSW $WSH, move scratchpad, scratchpad show
+for_window [class="hexchat"]				floating enable
+for_window [instance="mycv"]				floating enable, move position 1000 1000
+for_window [class="mycv"]				floating enable, move position 1000 1000
+for_window [title="mycv*"]				floating enable, move position 1920 0
+for_window [class="i3*input"]				resize set 1000 1000
+for_window [class="brave*"]				border pixel 0
+for_window [class="Brave*"]				border pixel 0
+for_window [class="st*"]				border pixel 0
+for_window [class="st*"]				border pixel 0
+for_window [class="ST*"]				border pixel 0
+for_window [class="St*"]				border pixel 0
+for_window [all]					border pixel 0
 #FOR REFERENCE, class for brave: for_window [class="brave-browser"]
 #for_window [class="brave-browser"]				font xft:Hack 0
 #####i3s#####----| i3 scratchpad
@@ -109,37 +109,37 @@ $BM       a            $BORD1 ; 	focus       	parent
 $BM       b            $BORD1 ;    	floating    	                toggle
 $BM       c            $BORD1 ;         [class="konqueror"]             scratchpad show
 #$BM       c            $BORD1 ;         [class="Emacs"]                 scratchpad show
-$BM       d            exec        	dmenu_run -b -nb "#000000" -l 10 -fn "Office Code Pro:pixelsize=20:antialias=true:autohint=true"
-$BM       e 	       layout      	toggle   split
-$BM       f	       mode        	"mousemove"
-$BM       g	       exec        	gnome-screenshot
+$BM       d                             exec        	dmenu_run -b -nb "#000000" -l 10 -fn "Office Code Pro:pixelsize=20:antialias=true:autohint=true"
+$BM       e 	                        layout      	toggle   split
+$BM       f	                        mode        	"mousemove"
+$BM       g	                        exec        	gnome-screenshot
 $BM       h            $BORD1 ;  	focus 	     	                left
-$BM       i            exec 		$HOME/bin/dmenu_websearch.sh
+$BM       i                             exec 		$HOME/bin/dmenu_websearch.sh
 $BM       j            $BORD1 ;  	focus 	     	                down
 $BM       k            $BORD1 ;  	focus 	     	                up
 $BM       l            $BORD1 ;  	focus 	     	                right
 $BM       m            $BORD1 ;    	scratchpad  	                show
 $BM       n            $BORD1 ;    	[instance="i3s_note"] 	        scratchpad show
-$BM       o            fullscreen
-$BM       p            exec             dunstctl           close-all
-$BM       r            mode             "resize"
-$BM       s            layout           stacking
+$BM       o                             fullscreen
+$BM       p                             exec            dunstctl           close-all
+$BM       r                             mode            "resize"
+$BM       s                             layout          stacking
 $BM       t            $BORD1 ;    	[class="Tor Browser"] 	        scratchpad show
 $BM       u            $BORD1 ;    	[instance="i3s_st"]             scratchpad show
-$BM       v            split v
-$BM       w            layout      	tabbed
-$BM       y            mode             freekey
+$BM       v                             split v
+$BM       w                             layout      	tabbed
+$BM       y                             mode            freekey
 $BM       Return                        exec 		                 	/usr/local/bin/st
-$BM       period       gaps        	inner    all     toggle $IN_GAPS,\
-                       gaps 		top 	 all     toggle $TOP_GAPS,\
-                       gaps 		bottom	 all	 toggle $BOTTOM_GAPS,\
-                       gaps   		left  	 all	 toggle	$LEFT_GAPS,\
-                       gaps   		right 	 all	 toggle	$RIGHT_GAPS
-$BM       Super_L      exec             konqueror --open-session "maximilian"
+$BM       period                        gaps        	inner    all     toggle $IN_GAPS,\
+                                        gaps 		top 	 all     toggle $TOP_GAPS,\
+                                        gaps 		bottom	 all	 toggle $BOTTOM_GAPS,\
+                                        gaps   		left  	 all	 toggle	$LEFT_GAPS,\
+                                        gaps   		right 	 all	 toggle	$RIGHT_GAPS
+$BM       Super_L                       exec            konqueror --open-session "maximilian"
 #$BM       Super_L      exec             emacs     --open-session "maximilian"
 $BM       space        $BORD1 ;         focus 	     	                mode_toggle
-$BM       Down	       exec        	pamixer --decrease 1
-$BM       Up	       exec        	pamixer --increase 1
+$BM       Down	                        exec        	pamixer --decrease 1
+$BM       Up	                        exec        	pamixer --increase 1
 $BM       1            $BORD1 ;    	workspace   	1
 $BM       2            $BORD1 ;    	workspace   	2
 $BM       3            $BORD1 ;    	workspace   	3
@@ -154,71 +154,72 @@ $BM       bracketleft  $BORD1 ;    	workspace   	11
 $BM       bracketright $BORD1 ;    	workspace   	12
 $BM       semicolon    $BORD1
 #---------------------------------------------------SHIFT-BINDS----------------------------------------------------#
-$RSh      a            mode freekey;   exec --no-startup-id "sleep 0.2;\
-                                       xdotool key 'alt+v';\
-		                       sleep 0.4;\
-		                       xdotool key 'alt+y'"; 
-$BSh      b                            exec 		$HOME/bin/ubluetoggle.sh
-$BSh      less         exec 	       "i3-msg 'gaps inner all minus 10'"
-$BSh      greater      exec 	       "i3-msg 'gaps inner all plus 10'"
+$RSh      a                             mode freekey;   exec --no-startup-id "sleep 0.2;\
+                                        xdotool key 'alt+v';\
+		                        sleep 0.4;\
+		                        xdotool key 'alt+y'"; 
+$BSh      b                             exec            $HOME/bin/ubluetoggle.sh
+$BSh      less                          exec 	        "i3-msg 'gaps inner all minus 10'"
+$BSh      greater                       exec 	        "i3-msg 'gaps inner all plus 10'"
 #SPEC     c		
-$BSh      e 	       exec 	       "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
-$BSh      h            $BORD1 ;        move  	     	left      $XMVSPEED
-$BSh      i                            exec 		$HOME/bin/mdmenu.sh
-$BSh      j            $BORD1 ;        move  	     	down   	  $YMVSPEED
-$BSh      k            $BORD1 ;        move  	     	up     	  $YMVSPEED
-$BSh      l            $BORD1 ;        move  	     	right  	  $XMVSPEED
-$BSh      m 	       floating        enable, resize set $WSW $WSH, move scratchpad
-$BSh      n                            exec 		/usr/local/bin/st -n 'i3s_note' nvim "$HOME/Documents/Notepad/note.txt"
-$BSh      o 	       exec 	       i3lock -f -e -c 333333
-$BSh      p                            exec		/usr/bin/brave --incognito
-$BSh      q                            kill
+$BSh      d                             exec            dmenu_run -b -nb "#000000" -l 10 -fn "Office Code Pro:pixelsize=20:antialias=true:autohint=true"
+$BSh      e 	                        exec 	        "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
+$BSh      h            $BORD1 ;         move  	        left      $XMVSPEED
+$BSh      i                             exec 	        $HOME/bin/mdmenu.sh
+$BSh      j            $BORD1 ;         move  	        down   	  $YMVSPEED
+$BSh      k            $BORD1 ;         move  	        up     	  $YMVSPEED
+$BSh      l            $BORD1 ;         move  	        right  	  $XMVSPEED
+$BSh      m 	                        floating        enable, resize set $WSW $WSH, move scratchpad
+$BSh      n                             exec 	        /usr/local/bin/st -n 'i3s_note' nvim "$HOME/Documents/Notepad/note.txt"
+$BSh      o 	                        exec 	        i3lock -f -e -c 333333
+$BSh      p                             exec	        /usr/bin/brave --incognito
+$BSh      q                             kill
 #SPEC     r		
 #SPEC     s		
-$BSh      t                            exec            $HOME/.local/opt/tor-browser_en-US/Browser/start-tor-browser; exec sleep 1 && i3-msg '[class="Tor Browser"] scratchpad show'
-$BSh      u                            exec            /usr/local/bin/st -n 'i3s_st'
-$BSh      v            split h
-$BSh      w            mode            freekey
-$BSh      x                            exec            $HOME/bin/add_to_clip.sh "DATE" "TIME"
-$BSh      y	       exec            $HOME/bin/urxvt_notepad_script.sh   "TMUX"
-$BSh      z                            exec            $HOME/bin/brave-tor.sh
-$BSh      semicolon    resize          set $WSW $WSH
-$BSh      Return       exec            /usr/bin/brave
-$BSh      Up 	       exec            $HOME/bin/nitrowscript.sh 			"UP"
-$BSh      Down	       exec            $HOME/bin/nitrowscript.sh 			"DOWN"
-$BSh      Left	       exec            $HOME/bin/nitrowscript.sh 			"LEFT"
-$BSh      Right        exec            $HOME/bin/nitrowscript.sh 			"RIGHT"
-$BSh      Delete       exec            $HOME/bin/nitrowscript.sh 			"--auto"
-$BSh      End 	       exec            $HOME/bin/nitrowscript.sh 			"--zoom-fill"
-$BSh      Next         exec            $HOME/bin/nitrowscript.sh 			"--centered"
-$BSh      Insert       exec            $HOME/bin/nitrowscript.sh 			"--zoom"
-$BSh      Home         exec            $HOME/bin/nitrowscript.sh 			"--tiled"
-$BSh      1            $BORD1 ;        move            container to workspace  1; workspace  1
-$BSh      2            $BORD1 ;        move            container to workspace  2; workspace  2
-$BSh      3            $BORD1 ;        move            container to workspace  3; workspace  3
-$BSh      4            $BORD1 ;        move            container to workspace  4; workspace  4
-$BSh      5            $BORD1 ;        move            container to workspace  5; workspace  5
-$BSh      6            $BORD1 ;        move            container to workspace  6; workspace  6
-$BSh      7            $BORD1 ;        move            container to workspace  7; workspace  7
-$BSh      8            $BORD1 ;        move            container to workspace  8; workspace  8
-$BSh      9            $BORD1 ;        move            container to workspace  9; workspace  9
-$BSh      0            $BORD1 ;        move            container to workspace 10; workspace 10
-$BSh      bracketleft  $BORD1 ;        move            container to workspace 11; workspace 11
-$BSh      bracketright $BORD1 ;        move            container to workspace 12; workspace 12
+$BSh      t                             exec            $HOME/.local/opt/tor-browser_en-US/Browser/start-tor-browser; exec sleep 1 && i3-msg '[class="Tor Browser"] scratchpad show'
+$BSh      u                             exec            /usr/local/bin/st -n 'i3s_st'
+$BSh      v                             split h
+$BSh      w                             mode            freekey
+$BSh      x                             exec            $HOME/bin/add_to_clip.sh "DATE" "TIME"
+$BSh      y	                        exec            $HOME/bin/urxvt_notepad_script.sh "TMUX"
+$BSh      z                             exec            $HOME/bin/brave-tor.sh
+$BSh      semicolon                     resize          set $WSW $WSH
+$BSh      Return                        exec            /usr/bin/brave
+$BSh      Up 	                        exec            $HOME/bin/nitrowscript.sh  "UP"
+$BSh      Down	                        exec            $HOME/bin/nitrowscript.sh  "DOWN"
+$BSh      Left	                        exec            $HOME/bin/nitrowscript.sh  "LEFT"
+$BSh      Right                         exec            $HOME/bin/nitrowscript.sh  "RIGHT"
+$BSh      Delete                        exec            $HOME/bin/nitrowscript.sh  "--auto"
+$BSh      End 	                        exec            $HOME/bin/nitrowscript.sh  "--zoom-fill"
+$BSh      Next                          exec            $HOME/bin/nitrowscript.sh  "--centered"
+$BSh      Insert                        exec            $HOME/bin/nitrowscript.sh  "--zoom"
+$BSh      Home                          exec            $HOME/bin/nitrowscript.sh  "--tiled"
+$BSh      1            $BORD1 ;         move            container to workspace  1; workspace  1
+$BSh      2            $BORD1 ;         move            container to workspace  2; workspace  2
+$BSh      3            $BORD1 ;         move            container to workspace  3; workspace  3
+$BSh      4            $BORD1 ;         move            container to workspace  4; workspace  4
+$BSh      5            $BORD1 ;         move            container to workspace  5; workspace  5
+$BSh      6            $BORD1 ;         move            container to workspace  6; workspace  6
+$BSh      7            $BORD1 ;         move            container to workspace  7; workspace  7
+$BSh      8            $BORD1 ;         move            container to workspace  8; workspace  8
+$BSh      9            $BORD1 ;         move            container to workspace  9; workspace  9
+$BSh      0            $BORD1 ;         move            container to workspace 10; workspace 10
+$BSh      bracketleft  $BORD1 ;         move            container to workspace 11; workspace 11
+$BSh      bracketright $BORD1 ;         move            container to workspace 12; workspace 12
 #---------------------------------------------------SPECIAL-BINDS--------------------------------------------------#
-bindsym Super_L        $BORD1 ; sticky toggle;
+bindsym Super_L        $BORD1 ;         sticky toggle;
 #---------------------------------------------------EXECS----------------------------------------------------------#
 #$EXENI    dunst
-$EXENI_A  xinput 		                --set-prop 12   "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 0.44
-$EXENI_A  xinput                                --set-prop 12   "libinput Accel Speed" -1
-$EXENI_A  xmodmap 	                        -e              "keycode 49  = 0x0000 0xffeb 0x0000 0xffeb"
-$EXENI_A  xmodmap 	                        -e 	       	"keycode 133 = 0x007e 0x0060 0x007e 0x0060"
+$EXENI_A  xinput 		        --set-prop 12   "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 0.44
+$EXENI_A  xinput                        --set-prop 12   "libinput Accel Speed" -1
+$EXENI_A  xmodmap 	                -e              "keycode 49  = 0x0000 0xffeb 0x0000 0xffeb"
+$EXENI_A  xmodmap 	                -e 	       	"keycode 133 = 0x007e 0x0060 0x007e 0x0060"
 $EXENI_A  copyq
-$EXENI_A  xset 	 	                        -dpms
-$EXENI_A  xset 	 	                        s 	       	off
-$EXENI_A  xset 	 	                        r 	       	rate 200 40
-$EXENI_A  nitrogen                              --restore
-$EXENI_A  xcompmgr 	                        -C
+$EXENI_A  xset 	 	                -dpms
+$EXENI_A  xset 	 	                s 	       	off
+$EXENI_A  xset 	 	                r 	       	rate 200 40
+$EXENI_A  nitrogen                      --restore
+$EXENI_A  xcompmgr 	                -C
 $EXENI_A  $HOME/.config/polybar/launch.sh
 #---------------------------------------------------MODES----------------------------------------------------------#
 #-<<MOUSE>>-->->->->->->->->->->->->->->->->->->->->
@@ -273,8 +274,8 @@ mode "mousemove" {
 mode "freekey" {
        # EXIT
                 bindsym $mod+y                          mode "default"
-                bindsym --release $mod+h                          exec xdotool key 'alt+Left'
-                bindsym --release $mod+l                          exec xdotool key 'alt+Right'
+                bindsym --release $mod+h                exec xdotool key 'alt+Left'
+                bindsym --release $mod+l                exec xdotool key 'alt+Right'
 }
 mode "resize" {
        # LEFT RIGHT

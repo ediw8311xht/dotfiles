@@ -241,6 +241,11 @@ alias   desk='      cd $HOME/Desktop/'
 alias   vids='      cd $HOME/Videos/'                                                 
 alias   nitroz='    cd "$HOME/Pictures/NitroWallpapers"'
 alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'                                    
+alias   ure='       ufw reload'
+alias   udi='       ufw disable'
+alias   uen='       ufw enable'
+alias   testr='     . $HOME/test.sh'
+alias   rsync_home='rsync --archive --progress --exclude={".cache","*.so","*.o","trash",".trash",".wine",".wine32","*.iso","*.pyc","*.pyo"} $HOME/ /mnt/od/RSYNC_HOME_BACKUP/'
 
 #---------------------------------------------------------------------- #
 #-EXPORT							        #
