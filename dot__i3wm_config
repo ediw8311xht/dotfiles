@@ -9,12 +9,12 @@ set $RIGHT_MONITOR        DVI-D-0
 set $MOUSEMV_S            5
 set $MOUSEMV_L            50
 set $BPIX                 0
-set $IN_GAPS              34
+set $IN_GAPS              20
 set $OUT_GAPS             0
-set $TOP_GAPS             0
-set $BOTTOM_GAPS          10
-set $LEFT_GAPS            10
-set $RIGHT_GAPS           10
+set $TOP_GAPS             -5
+set $BOTTOM_GAPS          -5
+set $LEFT_GAPS            0
+set $RIGHT_GAPS           0
 #-<<FOR RESIZE>>->->->->->->->->->->->->->->->->->->
 set $X_RE_UNIT_LARGE      40px
 set $Y_RE_UNIT_LARGE      20px
@@ -39,8 +39,9 @@ set $BM                   bindsym      Mod1+
 set $BSh                  bindsym      Mod1+Shift+
 set $RM                   bindsym      --release 	Mod1+
 set $RSh                  bindsym      --release 	Mod1+Shift+
-set $BORD1                exec 	       --no-startup-id                i3-msg   "border pixel 1"
-set $BORD2                exec 	       " sleep 0.001;   i3-msg   'border pixel 0'"
+set $BORD1                exec 	       " i3-msg   'border normal'"
+#; sleep 5; i3-msg border pixel 0"
+set $BORD2                exec 	       " sleep 0.01;   i3-msg   'border pixel 0'"
 #set $LONGER_BORD          exec 	       " 2; i3-msg   'border pixel 0'"
 set $EXENI                exec 	       --no-startup-id
 set $EXENI_A              exec_always  --no-startup-id
@@ -48,24 +49,31 @@ set $EXENI_A              exec_always  --no-startup-id
 bindsym                                 $mod+Shift+r    exec --no-startup-id $HOME/bin/i3configcheck.sh           --3
 bindsym                                 $mod+Shift+c    exec --no-startup-id $HOME/bin/i3configcheck.sh   --NOASK --0
 #---------------------------------------------------PARAM----------------------------------------------------------#
-client.unfocused 			#333333 		#333333 		#000000 		#444444   		#040404
-client.focused_inactive 		#000055 		#000055 		#000000 		#444444
-client.focused 				#888888 		#888888 		#000000 		#0080C0
-client.background       		#FF0000
+#class                                  border                  background              text                    indicator               child_border
+client.unfocused 			#000000 		#000000 		#AAAAAA 		#444444   		#040404
+client.focused_inactive 		#000000 		#000000 		#FF0000 		#444444
+client.focused 				#000000 		#000000 		#00FF00 		#000000
+client.background       		#000000
+
+client.focused_tab_title                #000000                 #000000                 #00FF00                 
 #------Class------------------------Border----------Backgro---------Text------------Indicat---------ChildBr--------#
 focus_follows_mouse  	                yes
 floating_modifier    	                $mod
 #gaps			 	 	0
-#gaps			 	 	inner      		$IN_GAPS
-#gaps 					top 			$TOP_GAPS
-#gaps 					bottom			$BOTTOM_GAPS 
-#gaps 					left  			$LEFT_GAPS  
-#gaps 					right 			$RIGHT_GAPS  
-# gaps				 	outer                   $OUT_GAPS
+gaps			 	 	inner      		$IN_GAPS
+gaps 					top 			$TOP_GAPS
+gaps 					bottom			$BOTTOM_GAPS 
+gaps 					left  			$LEFT_GAPS  
+gaps 					right 			$RIGHT_GAPS  
+gaps				 	outer                   $OUT_GAPS
 
 
-font pango:Fira Code Retina 10
-#default_border pixel 0
+#border title pixel 1
+#default_border 3
+font pango:Hack 7
+for_window [all] title_format "<big><big><big><span background='#000000' rise='7pt'> <small>%title</small> </span></big></big></big>"
+for_window [all] title_window_icon no
+#for_window [all] title_window_icon yes 5px, title_window_icon padding 20px
 floating_minimum_size 800 x 800
 floating_maximum_size 1920 x 1080
 
@@ -84,6 +92,14 @@ workspace 			 	12		output		 	$RIGHT_MONITOR
 #---------------------------------------------------FOR_WINDOW-----------------------------------------------------#
 #for_window [workspace="7"]								floating enable, move position 1000, 400
 #for_window [floating] move position relative center
+for_window [window_role="task_dialog"]                  floating enable
+for_window [window_role="Preferences"]                  floating enable
+for_window [window_role="pop-up"]                       floating enable
+for_window [window_role="bubble"]                       floating enable
+for_window [window_type="dialog"]                       floating enable
+for_window [window_type="popup_menu"]                   floating enable
+for_window [class="Gnome-screenshot"]                   floating enable
+
 for_window [instance="i3s_note"]		        floating enable, resize set $WSW $WSH, move scratchpad
 for_window [instance="i3s_st"]			        floating enable, resize set $WSW $WSH, move scratchpad
 for_window [class="Tor Browser"]			floating enable, resize set $WSW $WSH, move scratchpad, scratchpad show
@@ -101,6 +117,7 @@ for_window [class="st*"]				border pixel 0
 for_window [class="ST*"]				border pixel 0
 for_window [class="St*"]				border pixel 0
 for_window [all]					border pixel 0
+#for_window [__focused__] title_format " <span background='black' size='xx-large'> <span foreground='green' background='black' size='small'>%title</span> </span> "
 #FOR REFERENCE, class for brave: for_window [class="brave-browser"]
 #for_window [class="brave-browser"]				font xft:Hack 0
 #####i3s#####----| i3 scratchpad

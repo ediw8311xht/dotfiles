@@ -68,7 +68,7 @@
     module-margin-right = 1
     module-background-color = ${colors.nbackground}
 ;    ------------------_FONTS_-------------------;
-    font-0  	        =       Hack:pixelsize=9;3
+    font-0  	        =       FiraCodeRetina:pixelsize=9;3
     font-1  	        =  	octicons:pixelsize=12;2
     font-2  	        =  	Hermit:pixelsize=10;3
     font-3  	        =  	FontAwesome:pixelsize=12;3
