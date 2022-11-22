@@ -4,47 +4,49 @@
 #---------------------------------------------------------------------|
 # i3 config file (v4)
 #---------------------------------------------------SET------------------------------------------------------------#
-set $LEFT_MONITOR         HDMI-A-0
-set $RIGHT_MONITOR        DVI-D-0
-set $MOUSEMV_S            5
-set $MOUSEMV_L            50
-set $BPIX                 0
-set $IN_GAPS              20
-set $OUT_GAPS             0
-set $TOP_GAPS             -5
-set $BOTTOM_GAPS          -5
-set $LEFT_GAPS            0
-set $RIGHT_GAPS           0
+set $LEFT_MONITOR               HDMI-A-0
+set $RIGHT_MONITOR              DVI-D-0
+set $MOUSEMV_S                  5
+set $MOUSEMV_L                  50
+set $BPIX                       0
+set $IN_GAPS                    20
+set $OUT_GAPS                   0
+set $TOP_GAPS                   -5
+set $BOTTOM_GAPS                -5
+set $LEFT_GAPS                  0
+set $RIGHT_GAPS                 0
 #-<<FOR RESIZE>>->->->->->->->->->->->->->->->->->->
-set $X_RE_UNIT_LARGE      40px
-set $Y_RE_UNIT_LARGE      20px
+set $X_RE_UNIT_LARGE            40px
+set $Y_RE_UNIT_LARGE            20px
 
-set $X_RE_UNIT_SMALL      1px
-set $Y_RE_UNIT_SMALL      1px
+set $X_RE_UNIT_SMALL            1px
+set $Y_RE_UNIT_SMALL            1px
 
-set $pptX_RE_UNIT_LARGE   1ppt
-set $pptY_RE_UNIT_LARGE   1ppt
+set $pptX_RE_UNIT_LARGE         1ppt
+set $pptY_RE_UNIT_LARGE         1ppt
 
-set $pptX_RE_UNIT_SMALL   1ppt
-set $pptY_RE_UNIT_SMALL   1ppt
+set $pptX_RE_UNIT_SMALL         1ppt
+set $pptY_RE_UNIT_SMALL         1ppt
 #-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>
-set $XMVSPEED             50px
-set $YMVSPEED             30px
-set $WSW                  1400
-set $WSH                  900
-set $WSPX                 250
-set $WSPY                 90
-set $mod                  Mod1
-set $BM                   bindsym      Mod1+
-set $BSh                  bindsym      Mod1+Shift+
-set $RM                   bindsym      --release 	Mod1+
-set $RSh                  bindsym      --release 	Mod1+Shift+
-set $BORD1                exec 	       " i3-msg   'border normal'"
+set $XMVSPEED                   50px
+set $YMVSPEED                   30px
+set $WSW                        1400
+set $WSH                        900
+#set $WSW_M                      
+#set $WSH_M                      
+set $WSPX                       250
+set $WSPY                       90
+set $mod                        Mod1
+set $BM                         bindsym      Mod1+
+set $BSh                        bindsym      Mod1+Shift+
+set $RM                         bindsym      --release 	        Mod1+
+set $RSh                        bindsym      --release 	        Mod1+Shift+
+set $BORD1                      exec 	     " i3-msg           'border normal'"
+set $BORD2                      exec 	     " sleep 0.01;   i3-msg   'border pixel 0'"
+set $EXENI                      exec 	     --no-startup-id
+set $EXENI_A                    exec_always  --no-startup-id
 #; sleep 5; i3-msg border pixel 0"
-set $BORD2                exec 	       " sleep 0.01;   i3-msg   'border pixel 0'"
-#set $LONGER_BORD          exec 	       " 2; i3-msg   'border pixel 0'"
-set $EXENI                exec 	       --no-startup-id
-set $EXENI_A              exec_always  --no-startup-id
+#set $LONGER_BORD          exec 	     " 2; i3-msg   'border pixel 0'"
 #-----------------------Checks to make sure config file compiles correctly before running 
 bindsym                                 $mod+Shift+r    exec --no-startup-id $HOME/bin/i3configcheck.sh           --3
 bindsym                                 $mod+Shift+c    exec --no-startup-id $HOME/bin/i3configcheck.sh   --NOASK --0
@@ -71,7 +73,7 @@ gaps				 	outer                   $OUT_GAPS
 #border title pixel 1
 #default_border 3
 font pango:Hack 7
-for_window [all] title_format "<big><big><big><span background='#000000' rise='7pt'> <small>%title</small> </span></big></big></big>"
+for_window [all] title_format "<big><big><big><span background='#000000' rise='3pt'> <small>%title</small> </span></big></big></big>"
 for_window [all] title_window_icon no
 #for_window [all] title_window_icon yes 5px, title_window_icon padding 20px
 floating_minimum_size 800 x 800
@@ -91,31 +93,25 @@ workspace 			 	11		output		 	$RIGHT_MONITOR
 workspace 			 	12		output		 	$RIGHT_MONITOR
 #---------------------------------------------------FOR_WINDOW-----------------------------------------------------#
 #for_window [workspace="7"]								floating enable, move position 1000, 400
-#for_window [floating] move position relative center
+#for_window [floating] move position center
+for_window [class="Gnome-screenshot"]                   floating enable, move scratchpad
 for_window [window_role="task_dialog"]                  floating enable
 for_window [window_role="Preferences"]                  floating enable
 for_window [window_role="pop-up"]                       floating enable
 for_window [window_role="bubble"]                       floating enable
 for_window [window_type="dialog"]                       floating enable
 for_window [window_type="popup_menu"]                   floating enable
-for_window [class="Gnome-screenshot"]                   floating enable, move scratchpad
-
-for_window [instance="i3s_note"]		        floating enable, resize set $WSW $WSH, move scratchpad
-for_window [instance="i3s_st"]			        floating enable, resize set $WSW $WSH, move scratchpad
-for_window [class="Tor Browser"]			floating enable, resize set $WSW $WSH, move scratchpad, scratchpad show
-for_window [class="konqueror"]				floating enable, resize set $WSW $WSH, move scratchpad, scratchpad show
-for_window [class="Emacs"]				floating enable, resize set $WSW $WSH, move scratchpad, scratchpad show
 for_window [class="hexchat"]				floating enable
-for_window [instance="mycv"]				floating enable, move position 1000 1000
-for_window [class="mycv"]				floating enable, move position 1000 1000
-for_window [title="mycv*"]				floating enable, move position 1920 0
+
+for_window [instance="i3s_note"]		        floating enable, resize set $WSW $WSH, move position center, move scratchpad
+for_window [instance="i3s_st"]			        floating enable, resize set $WSW $WSH, move position center, move scratchpad
+for_window [class="Tor Browser"]			floating enable, resize set $WSW $WSH, move position center, move scratchpad
+for_window [class="konqueror"]				floating enable, resize set $WSW $WSH, move position center, move scratchpad
+for_window [class="Emacs"]				floating enable, resize set $WSW $WSH, move position center, move scratchpad
+for_window [instance="mycv"]				floating enable,                       move position 1000 1000
+for_window [class="mycv"]				floating enable,                       move position 1000 1000
+for_window [title="mycv*"]				floating enable,                       move position 1920 0
 for_window [class="i3*input"]				resize set 1000 1000
-for_window [class="brave*"]				border pixel 0
-for_window [class="Brave*"]				border pixel 0
-for_window [class="st*"]				border pixel 0
-for_window [class="st*"]				border pixel 0
-for_window [class="ST*"]				border pixel 0
-for_window [class="St*"]				border pixel 0
 for_window [all]					border pixel 0
 #for_window [__focused__] title_format " <span background='black' size='xx-large'> <span foreground='green' background='black' size='small'>%title</span> </span> "
 #FOR REFERENCE, class for brave: for_window [class="brave-browser"]
@@ -125,7 +121,6 @@ for_window [all]					border pixel 0
 $BM       a            $BORD1 ; 	focus       	parent
 $BM       b            $BORD1 ;    	floating    	                toggle
 $BM       c            $BORD1 ;         [class="konqueror"]             scratchpad show
-#$BM       c            $BORD1 ;         [class="Emacs"]                 scratchpad show
 $BM       d                             exec        	dmenu_run -b -nb "#000000" -l 10 -fn "Office Code Pro:pixelsize=20:antialias=true:autohint=true"
 $BM       e 	                        layout      	toggle   split
 $BM       f	                        mode        	"mousemove"
@@ -153,7 +148,6 @@ $BM       period                        gaps        	inner    all     toggle $IN
                                         gaps   		left  	 all	 toggle	$LEFT_GAPS,\
                                         gaps   		right 	 all	 toggle	$RIGHT_GAPS
 $BM       Super_L                       exec            konqueror --open-session "maximilian"
-#$BM       Super_L      exec             emacs     --open-session "maximilian"
 $BM       space        $BORD1 ;         focus 	     	                mode_toggle
 $BM       Down	                        exec        	pamixer --decrease 1
 $BM       Up	                        exec        	pamixer --increase 1
@@ -170,14 +164,14 @@ $BM       0            $BORD1 ;    	workspace   	10
 $BM       bracketleft  $BORD1 ;    	workspace   	11
 $BM       bracketright $BORD1 ;    	workspace   	12
 $BM       semicolon    $BORD1
+#$BM       Super_L      exec             emacs
+#$BM      c            $BORD1 ;         [class="Emacs"]                 scratchpad show
 #---------------------------------------------------SHIFT-BINDS----------------------------------------------------#
 $RSh      a                             mode freekey;   exec --no-startup-id "sleep 0.2;\
                                         xdotool key 'alt+v';\
 		                        sleep 0.4;\
 		                        xdotool key 'alt+y'"; 
 $BSh      b                             exec            $HOME/bin/ubluetoggle.sh
-$BSh      less                          exec 	        "i3-msg 'gaps inner all minus 10'"
-$BSh      greater                       exec 	        "i3-msg 'gaps inner all plus 10'"
 #SPEC     c		
 $BSh      d                             exec            dmenu_run -b -nb "#000000" -l 10 -fn "Office Code Pro:pixelsize=20:antialias=true:autohint=true"
 $BSh      e 	                        exec 	        "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -200,17 +194,22 @@ $BSh      w                             mode            freekey
 $BSh      x                             exec            $HOME/bin/add_to_clip.sh "DATE" "TIME"
 $BSh      y	                        exec            $HOME/bin/urxvt_notepad_script.sh "TMUX"
 $BSh      z                             exec            $HOME/bin/brave-tor.sh
-$BSh      semicolon                     resize          set $WSW $WSH
-$BSh      Return                        exec            /usr/bin/brave
+
 $BSh      Up 	                        exec            $HOME/bin/nitrowscript.sh  "UP"
 $BSh      Down	                        exec            $HOME/bin/nitrowscript.sh  "DOWN"
 $BSh      Left	                        exec            $HOME/bin/nitrowscript.sh  "LEFT"
 $BSh      Right                         exec            $HOME/bin/nitrowscript.sh  "RIGHT"
+
+$BSh      semicolon                     resize          set $WSW $WSH
+$BSh      Return                        exec            /usr/bin/brave
 $BSh      Delete                        exec            $HOME/bin/nitrowscript.sh  "--auto"
 $BSh      End 	                        exec            $HOME/bin/nitrowscript.sh  "--zoom-fill"
 $BSh      Next                          exec            $HOME/bin/nitrowscript.sh  "--centered"
 $BSh      Insert                        exec            $HOME/bin/nitrowscript.sh  "--zoom"
 $BSh      Home                          exec            $HOME/bin/nitrowscript.sh  "--tiled"
+$BSh      less                          exec 	        "i3-msg 'gaps inner all minus 10'"
+$BSh      greater                       exec 	        "i3-msg 'gaps inner all plus 10'"
+
 $BSh      1            $BORD1 ;         move            container to workspace  1; workspace  1
 $BSh      2            $BORD1 ;         move            container to workspace  2; workspace  2
 $BSh      3            $BORD1 ;         move            container to workspace  3; workspace  3
@@ -245,10 +244,10 @@ set $MOUSE_MOVE_BIND \
 		bindsym Shift+j                         "exec xdotool mousemove_relative --polar 180     5"\
 		bindsym Shift+k                         "exec xdotool mousemove_relative --polar 0       5"\
                 bindsym Shift+l                         "exec xdotool mousemove_relative --polar 90      5"\
-                bindsym h 		                "exec xdotool mousemove_relative --polar 270   100"\
-                bindsym j 		                "exec xdotool mousemove_relative --polar 180   100"\
-                bindsym k 		                "exec xdotool mousemove_relative --polar 0     100"\
-                bindsym l 		                "exec xdotool mousemove_relative --polar 90    100"\
+                bindsym h 		                "exec xdotool mousemove_relative --polar 270    50"\
+                bindsym j 		                "exec xdotool mousemove_relative --polar 180    50"\
+                bindsym k 		                "exec xdotool mousemove_relative --polar 0      50"\
+                bindsym l 		                "exec xdotool mousemove_relative --polar 90     50"\
 		bindsym f		                "exec xdotool click 1"\
 		bindsym d		                "exec xdotool click 3"\
 		bindsym s		                "exec xdotool click 2"\

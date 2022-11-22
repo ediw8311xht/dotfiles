@@ -257,6 +257,7 @@ alias   ure='       ufw reload'
 alias   udi='       ufw disable'
 alias   uen='       ufw enable'
 alias   testr='     . $HOME/test.sh'
+alias   git_mt='    git log --pretty=format:"%h %s" --graph'
 alias   rsync_home='rsync --archive --progress --exclude={".cache","*.so","*.o","trash",".trash",".wine",".wine32","*.iso","*.pyc","*.pyo"} $HOME/ /mnt/od/RSYNC_HOME_BACKUP/'
 
 #---------------------------------------------------------------------- #
@@ -293,6 +294,5 @@ set -o vi
 #-QUICK-ADDED-ALIASES                                                   #
 #---------------------------------------------------------------------- #
 
-alias   git_mt='git log --pretty=format:"%h %s" --graph'
 
 

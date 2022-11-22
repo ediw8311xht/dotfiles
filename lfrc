@@ -1,4 +1,6 @@
 
+
+
 set shell sh
 set shellopts '-eu'
 
@@ -51,6 +53,20 @@ cmd trash &{{
 	trash-put $fs && sleep 0.5 && lf -remote 'send reload'
 }}
 
+cmd delete &{{
+	trash-put "${f}" && sleep 0.5 && lf -remote 'send reload'
+}}
+
+cmd open &{{
+    case $(file --mime-type -Lb $f) in
+        text/*) lf -remote "send $id \$$EDITOR \$fx";;
+        *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
+    esac
+    &xdg-open "${f}"
+}}
+
+
+
 map     e         np
 map 	H		  set hidden!
 map     TR		  :trash
@@ -65,31 +81,7 @@ map 	J		  :rep "3" "down"
 map 	Q 		  &lf -remote 'send quit'; lf -remote 'quit'
 map     <esc>     clear
 map 	<enter>   shell
-map 	o 		  &xdg-open $f
-map 	O 		  $xdg-open --ask $f
-
-#
-# this open function borrowed from Luke Smith (very cool dude) link below
-# https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc
-#cmd open ${{
-#    case $(file --mime-type "$(readlink -f $f)" -b) in
-#	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
-#	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
-#        text/*|application/json|inode/x-empty) $EDITOR $fx;;
-#	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
-#	image/svg+xml) display -- $f ;;
-#	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" |
-#		setsid -f sxiv -aio 2>/dev/null | while read -r file; do
-#			[ -z "$file" ] && continue
-#			lf -remote "send select \"$file\""
-#			lf -remote "send toggle"
-#		done &
-#		;;
-#	audio/*) mpv --audio-display=no $f ;;
-#	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-#	application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
-#	application/pgp-encrypted) $EDITOR $fx ;;
-#        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
-#    esac
-#}}
+map 	o 		  &xdg-open "${f}"
+map 	O 		  $xdg-open --ask "${f}"
 set sortby name
+
