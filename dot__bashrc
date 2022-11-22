@@ -1,6 +1,7 @@
-#!/bin/bash
-#- ^^^^^^^JUST SO SHELLCHECK DOESN'T SHOW ERROR^^^^^^^^^^
+
+#-
 #- ~/.bashrc
+# shellcheck disable=SC1000-SC9999
 #-
 #-If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -158,18 +159,17 @@ alias   kctpv='	    kill "$(pidof "ctpv")"'
 alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
 alias   fl="        pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
 alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
-alias   b='         cd $HOME/bin/'
+alias   b='         cd "$HOME/bin/"'
 alias   c='         cd "$(copyq clipboard)"'
 alias   f='         $HOME/bin/my_find.sh'
-alias   g='         grep --perl-regexp --ignore-case'
-alias   h='         cd $HOME'
+alias   h='         cd "$HOME"'
 alias   t='	    trash-put'
 alias   x='         $HOME/bin/FOR_BASHRC/stars_c.sh'
 alias   ac='        acheck'
 alias   cl='        clear'
 alias   cp='        cp -i'
 alias   df='        df -h'
-alias   fz='         my_cd'    
+alias   fz='        my_cd'    
 alias   fo='        xdg-open "$(fzf)"'
 alias   fn='        nvim     "$(fzf --preview="nvim {}")"'
 alias   gr='	    echo ""; cat $HOME/.bashrc | grep -Pi'
@@ -188,8 +188,8 @@ alias   sudo='      sudo '
 alias   free='      free -m'
 alias   rmi='       rm -i'
 alias   pdf='       zathura'
-alias   i3c='       i3 -C $HOME/.i3/config'
-alias   i3e='       nvim $HOME/.i3/config'
+alias   i3c='       i3 -C "$HOME/.config/i3/config"'
+alias   i3e='       nvim  "$HOME/.config/i3/config"'
 alias   tyren='     perl-rename -v -n'
 alias   doren='     perl-rename -v'
 alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
@@ -209,9 +209,20 @@ alias   ebash='     echo "alias ysb, to source ~/.bashrc"; nvim $HOME/.bashrc; s
 alias   ysb='       source $HOME/.bashrc'
 alias   editnv='    nvim $HOME/.config/nvim/init.vim'
 alias   emime='     nvim $HOME/.config/mimeapps.list'
-alias   xgr='       grep -r -i --exclude=\*.{jpg,jpeg,png,webp,gif,mp4,mkv,m4a,avi,mp3,wav,tar,gz,tgz,zip,iso,exe,au,deb,pyc,elc,bz2,tbz2,xpm,xcf}'
-alias   xxgr='      grep -r -i --exclude=\*.{jpg,jpeg,png,webp,gif,mp4,mkv,m4a,avi,mp3,wav,tar,gz,tgz,zip,iso,exe,au,deb,pyc,elc,bz2,tbz2,xpm,xcf}\
-                               --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
+
+#GREP
+alias   g='         grep --perl-regexp --ignore-case'
+alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf}\
+                                --exclude=\*.{apk,snap,out,jar,sx,s,bin,o,exe,deb,pyc,pyo}\
+                                --exclude=\*.{jpg,jpeg,png,webp,bmp,gif}\
+                                --exclude=\*.{aac,webm,alac,ape,ogg,mp4,mkv,m4a,mp4a,avi,mp3,wav,flac}'
+
+alias   yg='        xg          --exclude=\*.{rar,tar,gz,tgz,zip,bz2,tbz2}'
+
+alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
+
+alias   gport='     _myfunc() { netstat -lntu | grep -Pi "${@:-""}"; }; _myfunc'
+alias   isport='    (read _z; ss -lp "sport = :${_z}") <<< '
 alias   img='       nsxiv -0'
 alias   nimg='      nsxiv -0 .'
 alias   ldi='       fdisk -l -o +uuid'
@@ -232,15 +243,16 @@ alias   decl='      declare -f'
 alias   hb='        htop'
 alias   pips='      poetry search'
 alias   nvgr='      echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'
+alias   i3gr='      (echo ""; read _z; grep -Pri "${_z}" "$HOME/.config/i3/") <<< '
 alias   sman='      man -K --regex'
-alias   down='      cd $HOME/Downloads/'                                              
-alias   pics='      cd $HOME/Pictures/'                                               
-alias   aud='       cd $HOME/Audio/'                                                  
-alias   docs='      cd $HOME/Documents/'                                              
-alias   desk='      cd $HOME/Desktop/'                                                
-alias   vids='      cd $HOME/Videos/'                                                 
-alias   nitroz='    cd "$HOME/Pictures/NitroWallpapers"'
-alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'                                    
+alias   down='      cd "$HOME/Downloads/"'                                              
+alias   pics='      cd "$HOME/Pictures/"'                                               
+alias   aud='       cd "$HOME/Audio/"'                                                  
+alias   docs='      cd "$HOME/Documents/"'                                              
+alias   desk='      cd "$HOME/Desktop/"'                                                
+alias   vids='      cd "$HOME/Videos/"'                                                 
+alias   nitroz='    cd "$HOME/Pictures/NitroWallpapers""'
+alias   nswp='      cd "$HOME/.mynvim/swapfiles/""'                                    
 alias   ure='       ufw reload'
 alias   udi='       ufw disable'
 alias   uen='       ufw enable'
@@ -250,7 +262,13 @@ alias   rsync_home='rsync --archive --progress --exclude={".cache","*.so","*.o",
 #---------------------------------------------------------------------- #
 #-EXPORT							        #
 #---------------------------------------------------------------------- #
+export  PAGER='most'
+export  TERM=st
+export  EDITOR="nvim"
 export  FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export  XDG_CONFIG_HOME="$HOME/.config"
+export  XDG_CACHE_HOME="$HOME/.cache"
+
 export QT_STYLE_OVERRIDE=kvantum
 #---------------------------------------------------------------------- #
 #-`PATH`								#
@@ -276,6 +294,5 @@ set -o vi
 #---------------------------------------------------------------------- #
 
 alias   git_mt='git log --pretty=format:"%h %s" --graph'
-
 
 
