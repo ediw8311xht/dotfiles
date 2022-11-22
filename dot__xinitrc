@@ -14,7 +14,6 @@ export               EDITOR="nvim"
 export             NVIMSWAP="$HOME/.local/share/nvim/swap/"
 #export           PYTHONPATH="$PYTHONPATH:/$HOME/MY_PYTHON_MODULES/"
 #export           PYTHONPATH="$PYTHONPATH:/usr/bin/python3"
-export           AUTOBACKUP="/mnt/ed3/"
 export QT_QPA_PLATFORMTHEME=qt5ct
 export      FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 export			       LESS=""
