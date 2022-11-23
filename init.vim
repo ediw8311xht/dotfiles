@@ -68,38 +68,50 @@ let g:python3_host_prog="/usr/bin/python"
 
 "<--------- PLUGINS -------------------------------------------------------->
 call plug#begin()
-Plug 'agude/vim-eldar'
-Plug 'romgrk/github-light.vim'
-Plug 'rafi/awesome-vim-colorschemes'
-Plug 'marko-cerovac/material.nvim'
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'VebbNix/lf-vim'
-Plug 'prettier/vim-prettier'
-Plug 'godlygeek/tabular'
-Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
-Plug 'dense-analysis/ale'
-Plug 'AndrewRadev/tagalong.vim'
-Plug 'vim-autoformat/vim-autoformat'
-Plug 'windwp/nvim-autopairs'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'windwp/nvim-ts-autotag'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'https://github.com/vim-scripts/restore_view.vim',
-Plug 'bignimbus/pop-punk.vim'
-Plug 'junegunn/vim-easy-align'
+"-----------COMMENTED-OUT
+"Plug 'vim-autoformat/vim-autoformat'
+"Plug 'junegunn/vim-easy-align'
 "Plug 'sukima/xmledit'
 "Plug 'bmeneg/coc-perl', {'do': 'yarn install && yarn build'}
 "Plug 'rakr/vim-one'
 "Plug 'sheerun/vim-polyglot'
+"Plug 'VebbNix/lf-vim'
+"Plug 'AndrewRadev/tagalong.vim'
+"-----------COLORSCHEMES
+Plug 'bignimbus/pop-punk.vim'
+Plug 'agude/vim-eldar'
+Plug 'romgrk/github-light.vim'
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'marko-cerovac/material.nvim'
+"-----------FORMATTING
+Plug 'godlygeek/tabular'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install --frozen-lockfile --production',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+"-----------SYNTAX
+Plug 'dense-analysis/ale'
+Plug 'PotatoesMaster/i3-vim-syntax'
+"-----------COMPLETION
+"Plug 'windwp/nvim-ts-autotag'
+"Plug 'windwp/nvim-autopairs'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"-----------ETC
+Plug 'https://github.com/vim-scripts/restore_view.vim',
+Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
+Plug 'voldikss/vim-floaterm'
+Plug 'ptzz/lf.vim'
 call plug#end()
 "<-------------------------------------------------------------------------->
 
 "<--------- LUA ------------------------------------------------------------>
 "lua << EOF
 "require('nvim-ts-autotag').setup()
-"require("nvim-autopairs").setup {}
+"require('nvim-autopairs').setup {}
 "EOF
 
+"---------UNBIND_<leader>f_from-:-lf
+let g:lf_map_keys = 0
 let g:ale_fixers                = {  'css': ['stylelint'],                       }
 let g:ale_linters               = { 'html': ['htmlhint' ], 'css': ['stylelint'], }
 let g:html_mode                 = 1
@@ -107,6 +119,8 @@ let g:tagalong_verbose          = 1
 let g:ale_linters_explicit      = 1
 let g:ale_fix_on_save           = 1
 let g:is_bash                   = 1
+let g:lf_width=100
+let g:lf_height=40
 "<-------------------------------------------------------------------------->
 
 "<--------- COLOR SCHEME STUFF --------------------------------------------->
@@ -245,19 +259,19 @@ nnoremap <lt>                :tabprevious<esc>
 nnoremap >                   :tabnext<esc>
 nnoremap <leader>.           :                    NERDTreeToggle<esc>
 nnoremap <leader>1           :                    hi cursorline guibg=NONE guifg=NONE gui=bold cterm=NONE ctermbg=NONE ctermfg=NONE<esc>
+nnoremap <leader>2           :                    PlugInstall<CR>:PlugUpdate<CR>
 nnoremap <leader>a           :call                ToggleCOC()<esc>
 nnoremap <leader>b           :call                CycleBackgroundColor()<CR><esc>
 nnoremap <leader>f           :call                ToggleWrap()<esc>
 nnoremap <leader>j           :call                ToggleScheme()<CR>
 nnoremap <leader>c           :set                 nocursorline!<esc>
 nnoremap <leader>e           :set                 cursorcolumn!<esc>
-nnoremap <leader>l           :lua                 require('material.functions').toggle_style()<CR>
 nnoremap <leader>n           :                    cnext<esc>
 nnoremap <leader>s           :                    %so "${HOME}/.config/nvim/init.vim"<esc>
 nnoremap <leader>w           :                    w<esc>
 nnoremap <leader>x           :                    !%:p<esc>
 nnoremap <leader>v           :                    %s/\t/    /g<esc>
-nnoremap <leader>m           :                    :call ToggleVirtualEdit()<esc>
+"nnoremap <leader>m           :                    :call ToggleVirtualEdit()<esc>
 "nnoremap <leader>cc          :                    call ToggleScheme()<CR>
 nnoremap <leader>tt          :                    tabnew<esc>
 nnoremap <leader>tn          :                    tabnext<esc>
@@ -290,6 +304,7 @@ vnoremap <Space> zf
 vnoremap ga <Plug>(EasyAlign)
 vnoremap im :s/\%V[ \t]*//<esc>
 
+map <leader>l :Lf<CR>
 " <c-r> = ctrl+r
 "nnoremap <leader>y           :                    hi Normal guibg=Transparent<esc>
 "nnoremap <leader>to :tabonly<esc>

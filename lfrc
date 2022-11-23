@@ -50,11 +50,12 @@ cmd rep &{{
 }}
 
 cmd trash &{{
-	trash-put $fs && sleep 0.5 && lf -remote 'send reload'
+	trash-put $fx && sleep 0.5 && lf -remote 'send reload'
 }}
 
 cmd delete &{{
-	trash-put "${f}" && sleep 0.5 && lf -remote 'send reload'
+        for 
+	trash-put $fx && sleep 0.5 && lf -remote 'send reload'
 }}
 
 cmd open &{{

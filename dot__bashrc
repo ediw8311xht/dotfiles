@@ -155,6 +155,7 @@ rad()    {   docker            rm $(docker ps -a -q)                ; }
 #---------------------------------------------------------------------- #
 #-ALIASES								#
 #---------------------------------------------------------------------- #
+alias   sudo='      sudo '
 alias   kctpv='	    kill "$(pidof "ctpv")"'
 alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
 alias   fl="        pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
@@ -184,7 +185,6 @@ alias   p='         copyq_getter'
 alias   co='        copyq copy'
 alias   rm='        echo "rm has been replaced with this message use trash-put or /bin/rm instead."'
 alias   qread='     zathura  "$(fzf)"'
-alias   sudo='      sudo '
 alias   free='      free -m'
 alias   rmi='       rm -i'
 alias   pdf='       zathura'
@@ -193,17 +193,21 @@ alias   i3e='       nvim  "$HOME/.config/i3/config"'
 alias   tyren='     perl-rename -v -n'
 alias   doren='     perl-rename -v'
 alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
+
+#alias   pacman='    pac_func() { pacman "$@" 2>&1 | tee -a "$HOME/PACMAN_LOG.txt"; }; pac_func'
 alias   pacse='     echo ""; pacman -Ss'
-alias   yayse='     echo ""; yay -Ss'
 alias   pacsel='    echo ""; pacman -Qs'
+alias   paci='      echo ""; pacman -Si'
+alias   pacil='     echo ""; pacman -Qi'
+alias   paclast="   echo ''; expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
+alias   pacclean='  echo ""; yay -Scc; yay --clean'
+
+alias   yayse='     echo ""; yay -Ss'
 alias   yaysel='    echo ""; yay -Qs'
 alias   yayi='      echo ""; yay -Si'
-alias   paci='      echo ""; pacman -Si'
 alias   yayil='     echo ""; yay -Qi'
-alias   pacil='     echo ""; pacman -Qi'
-alias   pacclean='  echo ""; yay -Scc; yay --clean'
+
 alias   xr='        echo ""; nvim $HOME/.Xresources; xrdb ~/.Xresources'
-alias   paclast="   echo ''; expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
 alias   snv='       sudoedit'
 alias   ebash='     echo "alias ysb, to source ~/.bashrc"; nvim $HOME/.bashrc; source ~/.bashrc'
 alias   ysb='       source $HOME/.bashrc'
