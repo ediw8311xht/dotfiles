@@ -9,10 +9,10 @@ set $RIGHT_MONITOR              DVI-D-0
 set $MOUSEMV_S                  5
 set $MOUSEMV_L                  50
 set $BPIX                       0
-set $IN_GAPS                    20
+set $IN_GAPS                    30
 set $OUT_GAPS                   0
-set $TOP_GAPS                   -5
-set $BOTTOM_GAPS                -5
+set $TOP_GAPS                   5
+set $BOTTOM_GAPS                5
 set $LEFT_GAPS                  0
 set $RIGHT_GAPS                 0
 #-<<FOR RESIZE>>->->->->->->->->->->->->->->->->->->
@@ -164,6 +164,12 @@ $BM       0            $BORD1 ;    	workspace   	10
 $BM       bracketleft  $BORD1 ;    	workspace   	11
 $BM       bracketright $BORD1 ;    	workspace   	12
 $BM       semicolon    $BORD1
+
+$BM       KP_Begin                       exec            $HOME/bin/move_toggle_polybar.sh "TOGGLE"
+$BM       KP_Up                          exec            $HOME/bin/move_toggle_polybar.sh "UP"
+$BM       KP_Down                        exec            $HOME/bin/move_toggle_polybar.sh "DOWN"
+$BM       KP_Left                        exec            $HOME/bin/move_toggle_polybar.sh "LEFT"
+$BM       KP_Right                       exec            $HOME/bin/move_toggle_polybar.sh "RIGHT"
 #$BM       Super_L      exec             emacs
 #$BM      c            $BORD1 ;         [class="Emacs"]                 scratchpad show
 #---------------------------------------------------SHIFT-BINDS----------------------------------------------------#

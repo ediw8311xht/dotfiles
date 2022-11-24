@@ -9,7 +9,7 @@
 
 *.color:        #FFFFFF
 *.foreground:   #FFFFFF
-*.background:   #000000
+*.background:   #000022
 
 ! black
 *.color0:       #000000
