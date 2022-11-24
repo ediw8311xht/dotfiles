@@ -49,11 +49,15 @@ cmd rep &{{
 	i="$1"; while [[ $((i--)) -gt 0 ]] ; do lf -remote "send $id ${2}"; done
 }}
 
-cmd trash &{{
-        set -f 
-	trash-put $fx
-        #sleep 0.1
-        #lf -remote 'send reload'
+cmd trash ${{
+    if ! [[ -d "$HOME/.Trash" ]] ; then
+        mkdir "$HOME/.Trash"
+    fi
+    if [ -z "$fs" ]; then
+        mv "$f" ~/.Trash
+    else
+        IFS=$'\n'; mv $fs ~/.Trash
+    fi
 }}
 
 cmd delete &{{
