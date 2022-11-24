@@ -85,10 +85,11 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'marko-cerovac/material.nvim'
 "-----------FORMATTING
 Plug 'godlygeek/tabular'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install --frozen-lockfile --production',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+"Plug 'prettier/vim-prettier', {
+"  \ 'do': 'yarn install --frozen-lockfile --production',
+"  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 "-----------SYNTAX
+Plug 'VebbNix/lf-vim'
 Plug 'dense-analysis/ale'
 Plug 'PotatoesMaster/i3-vim-syntax'
 "-----------COMPLETION
@@ -259,7 +260,8 @@ nnoremap <lt>                :tabprevious<esc>
 nnoremap >                   :tabnext<esc>
 nnoremap <leader>.           :                    NERDTreeToggle<esc>
 nnoremap <leader>1           :                    hi cursorline guibg=NONE guifg=NONE gui=bold cterm=NONE ctermbg=NONE ctermfg=NONE<esc>
-nnoremap <leader>2           :                    PlugInstall<CR>:PlugUpdate<CR>
+nnoremap <leader>2           :                    :PlugUpdate<CR>
+nnoremap <leader>3           :                    :PlugInstall<CR>
 nnoremap <leader>a           :call                ToggleCOC()<esc>
 nnoremap <leader>b           :call                CycleBackgroundColor()<CR><esc>
 nnoremap <leader>f           :call                ToggleWrap()<esc>

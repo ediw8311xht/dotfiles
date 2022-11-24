@@ -12,13 +12,13 @@ alias grep='grep --colour=auto'
 #----------PS0
 PS0=''
 PS0+='\e[0 q'
-PS1=''
 #----------PS1
 #readarray me_test -d '' 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz0123456789_'
 #for i in 
 INSERT='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g'\'')'
 INSERT2='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g; s/[^ ]/ /g'\'')'
 #PS1+='\[\e[1;37m\]${USER::1}|'
+PS1=''    
 PS1+='\[\e[1;37m\]['
 PS1+='\[\e[m\]'
 PS1+='\A\[\e[1;37m\]|'
@@ -27,8 +27,6 @@ PS1+='\[\e[1;37m\]]\$ '
 PS1+='\[\e[m\]'
 PS2=''
 PS2+='             '"${INSERT2}"
-#PS1='[\u \W]\$ '
-#export PS1='\[\e\[1;37m\]\][\e\[1;34m\]\u\e[m'
 
 #---------------------------------------------------------------------- #
 #-FUNCTIONS								#
@@ -149,6 +147,15 @@ pifs()   {   printf     "%q" "${IFS}"; echo ""                      ; }
 #pasta()  {   cat              <<< $(pas '0')                        ; }
 kad()    {   docker          kill $(docker ps -q)                   ; }
 rad()    {   docker            rm $(docker ps -a -q)                ; }
+#pagse()  {   
+#    A="$(pacman -Ss "${1}" | grep -Pio '')"
+#
+#    while [[ -n "$2" ]] ; do
+#        A="$(grep -B 1
+#        shift 1
+#    done
+#
+#}
 #cop()    {   printf '%s' "$@" | copyq -copy; copyq clipboard        ; }
 
 
@@ -195,6 +202,7 @@ alias   doren='     perl-rename -v'
 alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
 
 #alias   pacman='    pac_func() { pacman "$@" 2>&1 | tee -a "$HOME/PACMAN_LOG.txt"; }; pac_func'
+alias   pigse='     echo ""; (read _a _b; pacman -Ss "${_a}" | grep -B1 -i "${_b}") <<< '
 alias   pacse='     echo ""; pacman -Ss'
 alias   pacsel='    echo ""; pacman -Qs'
 alias   paci='      echo ""; pacman -Si'
