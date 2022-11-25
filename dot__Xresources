@@ -2,14 +2,16 @@
 !!!!START_1!!!!
 !!!!ON!!!!!!!!!
 !*.alphaOffset: 0.75
-*.alpha:	0.87
+*.alpha:	1
+!st.alpha: 0.95
+!*.alphaOffset: 0.1
 *.font: 	FiraCode Retina:pixelsize=15:antialias=true
 *.borderpx:     10px
 *.cursorColor:  #999999
 
 *.color:        #FFFFFF
 *.foreground:   #FFFFFF
-*.background:   #000022
+*.background:   #000810
 
 ! black
 *.color0:       #000000
@@ -100,7 +102,8 @@
 !
 !!!!FINISH_2!!!
 
-*.shading:			15
+!*.tintColor: cyan
+!*.shading:			100
 URxvt.font:			xft:Courier New:pixelsize=15:antialias=true:autohint=true
 URxvt.boldFont:                 xft:Courier New:pixelsize=15:antialias=true:autohint=true
 URxvt.scrollBar:	        false

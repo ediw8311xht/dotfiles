@@ -62,12 +62,12 @@ client.focused_tab_title                #000000                 #000000         
 focus_follows_mouse  	                yes
 floating_modifier    	                $mod
 #gaps			 	 	0
-gaps			 	 	inner      		$IN_GAPS
-gaps 					top 			$TOP_GAPS
-gaps 					bottom			$BOTTOM_GAPS 
-gaps 					left  			$LEFT_GAPS  
-gaps 					right 			$RIGHT_GAPS  
-gaps				 	outer                   $OUT_GAPS
+#gaps			 	 	inner      		$IN_GAPS
+#gaps 					top 			$TOP_GAPS
+#gaps 					bottom			$BOTTOM_GAPS 
+#gaps 					left  			$LEFT_GAPS  
+#gaps 					right 			$RIGHT_GAPS  
+#gaps				 	outer                   $OUT_GAPS
 
 
 #border title pixel 1

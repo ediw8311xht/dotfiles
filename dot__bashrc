@@ -261,10 +261,11 @@ alias   down='      cd "$HOME/Downloads/"'
 alias   pics='      cd "$HOME/Pictures/"'                                               
 alias   aud='       cd "$HOME/Audio/"'                                                  
 alias   docs='      cd "$HOME/Documents/"'                                              
+alias   spreds='    cd "$HOME/Documents/SPREADSHEETS/"'                                              
 alias   desk='      cd "$HOME/Desktop/"'                                                
 alias   vids='      cd "$HOME/Videos/"'                                                 
 alias   nitroz='    cd "$HOME/Pictures/NitroWallpapers"'
-alias   nswp='      cd "$HOME/.mynvim/swapfiles/""'                                    
+alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'                                    
 alias   ure='       ufw reload'
 alias   udi='       ufw disable'
 alias   uen='       ufw enable'
@@ -300,6 +301,7 @@ if  test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integ
 #---------------------------------------------------------------------- #
 export  DISPLAY=:0.0
 set -o vi
+shopt -s globstar
 
 #---------------------------------------------------------------------- #
 #-QUICK-ADDED-ALIASES                                                   #
@@ -307,3 +309,6 @@ set -o vi
 
 
 
+alias cdb='cd "/$HOME/Desktop/GOOGLE_TAKEOUT/Takeout/Drive/Code Daily/Books"'
+
+alias summy='cd "/$HOME/Desktop/ssg"'

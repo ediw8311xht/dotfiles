@@ -93,8 +93,8 @@ Plug 'VebbNix/lf-vim'
 Plug 'dense-analysis/ale'
 Plug 'PotatoesMaster/i3-vim-syntax'
 "-----------COMPLETION
-"Plug 'windwp/nvim-ts-autotag'
-"Plug 'windwp/nvim-autopairs'
+Plug 'windwp/nvim-ts-autotag'
+Plug 'windwp/nvim-autopairs'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "-----------ETC
@@ -102,16 +102,15 @@ Plug 'https://github.com/vim-scripts/restore_view.vim',
 Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 Plug 'voldikss/vim-floaterm'
 Plug 'ptzz/lf.vim'
+Plug 'martineausimon/nvim-lilypond-suite'
+Plug 'MunifTanjim/nui.nvim'
 call plug#end()
 "<-------------------------------------------------------------------------->
 
 "<--------- LUA ------------------------------------------------------------>
-"lua << EOF
-"require('nvim-ts-autotag').setup()
-"require('nvim-autopairs').setup {}
-"EOF
+lua require('base')
 
-"---------UNBIND_<leader>f_from-:-lf
+"---------_G-VAR_<leader>f_from-:-lf
 let g:lf_map_keys = 0
 let g:ale_fixers                = {  'css': ['stylelint'],                       }
 let g:ale_linters               = { 'html': ['htmlhint' ], 'css': ['stylelint'], }
