@@ -2,16 +2,36 @@
 !!!!START_1!!!!
 !!!!ON!!!!!!!!!
 !*.alphaOffset: 0.75
-*.alpha:	1
+*.alpha:	    0.90
+!*.shading:	   	20
 !st.alpha: 0.95
 !*.alphaOffset: 0.1
-*.font: 	FiraCode Retina:pixelsize=15:antialias=true
+
+#i3wm.focus__TextC:          #00bcc2
+#i3wm.inact__TextC:          #004f98
+#i3wm.unifo__TextC:          #AAAAAA
+#                           
+#i3wm.focus__BordC:          #D7E6FF 
+#i3wm.inact__BordC:          #333333
+#i3wm.unifo__BordC:          #333333
+
+i3wm.back1:  #0060B0 
+i3wm.back2:  #0060B0  
+
+#i3wm.tx1:   #3070FF    
+i3wm.tx2:   #D7E6FF   
+i3wm.tx3:   #888888   
+                      
+i3wm.chi:   #001080    
+
+*.font: 	    FiraCode Retina:pixelsize=15:antialias=true
 *.borderpx:     10px
 *.cursorColor:  #999999
 
+
 *.color:        #FFFFFF
 *.foreground:   #FFFFFF
-*.background:   #000810
+*.background:   #000A1F
 
 ! black
 *.color0:       #000000
@@ -103,7 +123,6 @@
 !!!!FINISH_2!!!
 
 !*.tintColor: cyan
-!*.shading:			100
 URxvt.font:			xft:Courier New:pixelsize=15:antialias=true:autohint=true
 URxvt.boldFont:                 xft:Courier New:pixelsize=15:antialias=true:autohint=true
 URxvt.scrollBar:	        false

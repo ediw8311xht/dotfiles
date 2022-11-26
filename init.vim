@@ -47,11 +47,12 @@ set foldcolumn=auto:4
 set showmode
 set virtualedit=all
 
-set tabstop=8
+" https://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim
+filetype plugin indent on
+set tabstop=4
 set shiftwidth=4
-set softtabstop=0
-set smarttab
 set expandtab
+"set smarttab
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 "<-------------------------------------------------------------------------->
@@ -275,9 +276,9 @@ nnoremap <leader>v           :                    %s/\t/    /g<esc>
 "nnoremap <leader>m           :                    :call ToggleVirtualEdit()<esc>
 "nnoremap <leader>cc          :                    call ToggleScheme()<CR>
 nnoremap <leader>tt          :                    tabnew<esc>
-nnoremap <leader>tn          :                    tabnext<esc>
-nnoremap <leader>tp          :                    tabprevious<esc>
-nnoremap <leader>tb          :                    tabprevious<esc>
+nnoremap <leader>tn          :                    tabmove +1<esc> 
+nnoremap <leader>tp          :                    tabmove -1<esc> 
+nnoremap <leader>tb          :                    tabmove -1<esc>  
 nnoremap <leader>tm          :                    tabmove
 nnoremap <leader>tf          :                    tabfirst<esc>
 nnoremap <leader>tl          :                    tablast<esc>
@@ -327,6 +328,7 @@ augroup bashiez
 augroup END
 
 autocmd BufNewFile,BufRead ~/.config/polybar/config setfiletype dosini
+autocmd BufNewFile,BufRead ~/.config/i3/*           setfiletype i3
 " autocmd BufNewFile,BufRead ~/.config/polybar/config setfiletype dosini
 "<-------------------------------------------------------------------------->
 
