@@ -40,33 +40,32 @@
     set $BORD1                      ;
     set $BORD2                      ;
 
-    set_from_resource $back1 i3wm.back1  #00FF00
-    set_from_resource $back2 i3wm.back2  #00FF00
-    set_from_resource $tx1  i3wm.tx1    #00FF00
-    set_from_resource $tx2  i3wm.tx2    #00FF00
-    set_from_resource $tx3  i3wm.tx3    #00FF00
-    set_from_resource $chi  i3wm.chi    #00FF00
-    #set_from_resource $focus__TextC i3wm.focus__TextC  #00FF00
-    #set_from_resource $inact__TextC i3wm.inact__TextC  #00FF00
-    #set_from_resource $unifo__TextC i3wm.unifo__TextC  #00FF00
-    #                                                 
-    #set_from_resource $focus__BordC i3wm.focus__BordC  #00FF00
-    #set_from_resource $inact__BordC i3wm.inact__BordC  #00FF00
-    #set_from_resource $unifo__BordC i3wm.unifo__BordC  #00FF00
     set $- #000000
 
+    default_border          $BORDER_PIXEL
+    for_window [all]					    border              $BORDER_PIXEL
+
+    focus_follows_mouse  	yes
+    floating_modifier    	$mod
+    font pango:Hack 7
+    floating_maximum_size   1920 x 1080
+    floating_minimum_size   800 x 800
+
+#-------------------------------------------------------INCLUDE-----------#
+    #------FLASH-BORDER-MODE----UNCOMMENT_TO_ENABLE---#
+    #include release_border_i3wm.conf
+    #------BINDINGS-----------------------------------#
+    include       bindings_i3wm.conf
+    #------MODES--------------------------------------#
+    include          modes_i3wm.conf
 
 #---------------------------------------------------------PARAM-----------#
-    #-----------------------Checks to make sure config file compiles correctly before running 
-    #-----------------------Checks to make sure config file compiles correctly before running 
     #class                      border          background      text                    indicator               child_border
-    client.unfocused 			#000000 		#000000 		#888888 		#444444   		#040404
-    client.focused_inactive 	#000000 		#000000 		#FFFFFF 		#444444
-    client.focused 		       	#000000 		#000000 		#00FF00 		#000000
+    client.unfocused 			#333333 		#333333 		#888888 		        #333333   		        #333333
+    client.focused_inactive 	#888888 		#888888 		#FFFFFF 		        #444444                 #888888
     client.background       	#000000
-    client.focused 		        #008800 		#008800 		#00FF00 		#000000
+    client.focused 		        #00FF00 		#00FF00 		#00FF00 		        #00FF00                 #00FF00
     client.focused_tab_title    #000000         #000000         #00FF00                 
-
 
 #------Class------------------------Border----------Backgro---------Text------------Indicat---------ChildBr--------#
     #gaps			 	 	    0
@@ -76,23 +75,6 @@
     gaps 					    left  			$LEFT_GAPS  
     gaps 					    right 			$RIGHT_GAPS  
     gaps				 	    outer           $OUT_GAPS
-    focus_follows_mouse  	yes
-    floating_modifier    	$mod
-    default_border          $BORDER_PIXEL
-    font pango:Hack 7
-    floating_maximum_size   1920 x 1080
-    floating_minimum_size   800 x 800
-
-
-#-------------------------------------------------------INCLUDE-----------#
-    #------FLASH-BORDER-MODE----UNCOMMENT_TO_ENABLE---#
-    include release_border_i3wm.conf
-    for_window [all]					    border              none
-    #------BINDINGS-----------------------------------#
-    include       bindings_i3wm.conf
-    #------MODES--------------------------------------#
-    include          modes_i3wm.conf
-
 #-------------------------------------------------SPECIAL-BINDS-----------#
 bindsym Super_L         $BORD1                  sticky toggle;
 bindsym $mod+Shift+r    exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh           --3"
@@ -135,11 +117,6 @@ bindsym $mod+Shift+a    --release                mode freekey;          exec --n
     for_window [class="mycv"]				floating enable,    move    position    1000 1000
     for_window [title="mycv*"]				floating enable,    move    position    1920 0
     for_window [class="i3*input"]			resize              set                 1000 1000
-    #for_window [workspace="7"]								floating enable, move position 1000, 400
-    #for_window [__focused__] title_format " <span background='black' size='xx-large'> <span foreground='green' background='black' size='small'>%title</span> </span> "
-    #FOR REFERENCE, class for brave: for_window [class="brave-browser"]
-    #for_window [class="brave-browser"]				font xft:Hack 0
-    #####i3s#####----| i3 scratchpad
 
 #---------------------------------------------------------EXECS-----------#
     #$EXENI    dunst
