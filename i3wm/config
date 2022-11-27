@@ -8,7 +8,6 @@
     bindsym Mod1+Shift+r            exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh              --3"
     bindsym Mod1+Shift+c            exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh  --NOASK     --0"
     bindsym Mod1+Shift+a --release  mode                    freekey;                exec --no-startup-id "sleep 0.2; xdotool key 'ctrl+v'; sleep 0.2; xdotool key 'alt+y'"
-
 #-----------------------------------------------------------SET-----------#
         set $LEFT_MONITOR           HDMI-A-0
         set $RIGHT_MONITOR          DVI-D-0
@@ -22,10 +21,10 @@
         set $WSPX                   250
         set $WSPY                   90
         set $mod                    Mod1
-        set $BM                     bindsym      Mod1+
-        set $BSh                    bindsym      Mod1+Shift+
+        set $BM                     bindsym     Mod1+
+        set $BSh                    bindsym     Mod1+Shift+
         set $EXENI                  exec 	    --no-startup-id
-        set $EXENI_A                exec_always  --no-startup-id
+        set $EXENI_A                exec_always --no-startup-id
         set $BORDER_PIXEL           pixel 2
         set $BORD1                  ;
         set $BORD2                  ;
@@ -66,22 +65,22 @@
 #-------------------------------------------------------SETTINGS----------#
         floating_modifier       	$mod
         focus_follows_mouse     	yes
-        floating_minimum_size    800    x    500
-        floating_maximum_size   1920    x   1080
+        #floating_minimum_size       200     x   200
+        floating_maximum_size       1920    x   1080
     #---TEXT------------------------------------------#
-        for_window [all]        title_window_icon   no
-        for_window [all]        title_format        "<big><big><big><span background='#000000' rise='3pt'> <small>%title</small> </span></big></big></big>"
+        for_window [all]            title_window_icon   no
+        for_window [all]            title_format        "<big><big><big><span background='#000000' rise='3pt'> <small>%title</small> </span></big></big></big>"
         font pango:Hack 7
     #---BORDER----------------------------------------#
-        for_window [all]	    border              $BORDER_PIXEL
+        for_window [all]            border          $BORDER_PIXEL
         default_border                              $BORDER_PIXEL
     #---GAPS------------------------------------------#
-        gaps			 	 	    inner      		$IN_GAPS
-        gaps 					    top 			$TOP_GAPS
-        gaps 					    bottom			$BOTTOM_GAPS 
-        gaps 					    left  			$LEFT_GAPS  
-        gaps 					    right 			$RIGHT_GAPS  
-        gaps				 	    outer           $OUT_GAPS
+        gaps			 	        inner      		$IN_GAPS
+        gaps 				        top 			$TOP_GAPS
+        gaps 				        bottom			$BOTTOM_GAPS 
+        gaps 				        left  			$LEFT_GAPS  
+        gaps 				        right 			$RIGHT_GAPS  
+        gaps				        outer           $OUT_GAPS
     #---Class-----------------------Border----------Background------Text------------Indicator-------ChildBorder----#
         client.focused              $focuse_TBAR    $focuse_TBAR    $focuse_TEXT    $focuse_TBAR    $focuse_BORD
         client.focused_inactive 	$inacti_TBAR 	$inacti_TBAR	$inacti_TEXT 	$inacti_TBAR    $inacti_BORD
@@ -124,8 +123,12 @@
         for_window [class="Emacs"]				floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad
         for_window [instance="mycv"]			floating enable,    move    position    1000 1000
         for_window [class="mycv"]				floating enable,    move    position    1000 1000
-        for_window [title="mycv*"]				floating enable,    move    position    1920 0
+        for_window [title="mycv.*"]				floating enable,    move    position    1920 0
         for_window [class="i3*input"]			                    resize  set         1000 1000
+        for_window [class=".*Yad.*"]			floating enable
+        for_window [class=".*yad.*"]			floating enable
+        no_focus [class=".*yad.*"]
+        no_focus [class=".*Yad.*"]
 #---------------------------------------------------------EXECS-----------#
     #---KEYS----------------------------#
         $EXENI_A  xset 	    -dpms

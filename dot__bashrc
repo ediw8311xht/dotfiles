@@ -171,7 +171,7 @@ alias   b='         cd "$HOME/bin/"'
 alias   c='         cd "$(copyq clipboard)"'
 alias   f='         $HOME/bin/my_find.sh'
 alias   h='         cd "$HOME"'
-alias   t='	    trash-put'
+alias   t='	        trash-put'
 alias   x='         $HOME/bin/FOR_BASHRC/stars_c.sh'
 alias   ac='        acheck'
 alias   cl='        clear'
@@ -180,7 +180,6 @@ alias   df='        df -h'
 alias   fz='        my_cd'    
 alias   fo='        xdg-open "$(fzf)"'
 alias   fn='        nvim     "$(fzf --preview="nvim {}")"'
-alias   gr='	    echo ""; cat $HOME/.bashrc | grep -Pi'
 alias   gf='        find / -iname'
 alias   ic='        clear; imgcat'
 alias   nv='        nvim'
@@ -202,40 +201,44 @@ alias   doren='     perl-rename -v'
 alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
 
 #alias   pacman='    pac_func() { pacman "$@" 2>&1 | tee -a "$HOME/PACMAN_LOG.txt"; }; pac_func'
-alias   pigse='     echo ""; (read _a _b; pacman -Ss "${_a}" | grep -B1 -i "${_b}") <<< '
-alias   pig='     echo ""; (read _a _b; pacman -Ss "${_a}" | grep -B1 -i "${_b}") <<< '
+#PAC----------------------------------NON-LOCAL----------#
+alias   pigse='     echo ""; (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
+alias   pig='       echo ""; (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   pacse='     echo ""; pacman -Ss'
-alias   pacsel='    echo ""; pacman -Qs'
 alias   paci='      echo ""; pacman -Si'
+alias   yigse='     echo ""; (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
+alias   yig='       echo ""; (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
+alias   yayse='     echo ""; yay -Ss'
+alias   yayi='      echo ""; yay -Si'
+#--------------------------------------LOCAL-------------#
+alias   pacsel='    echo ""; pacman -Qs'
 alias   pacil='     echo ""; pacman -Qi'
+alias   yaysel='    echo ""; yay -Qs'
+alias   yayil='     echo ""; yay -Qi'
 alias   paclast="   echo ''; expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
 alias   pacclean='  echo ""; yay -Scc; yay --clean'
-
-alias   yayse='     echo ""; yay -Ss'
-alias   yaysel='    echo ""; yay -Qs'
-alias   yayi='      echo ""; yay -Si'
-alias   yayil='     echo ""; yay -Qi'
-alias   yigse='     echo ""; (read _a _b; yay -Ss "${_a}" | grep -B1 -i "${_b}") <<< '
-alias   yig='       echo ""; (read _a _b; yay -Ss "${_a}" | grep -B1 -i "${_b}") <<< '
+#PAC-----------------------------------------------------#
 
 alias   xr='        echo ""; nvim $HOME/.Xresources; xrdb ~/.Xresources'
+alias   ebash='     nvim $HOME/.bashrc; source ~/.bashrc'
 alias   snv='       sudoedit'
-alias   ebash='     echo "alias ysb, to source ~/.bashrc"; nvim $HOME/.bashrc; source ~/.bashrc'
 alias   ysb='       source $HOME/.bashrc'
 alias   editnv='    nvim $HOME/.config/nvim/init.vim'
 alias   emime='     nvim $HOME/.config/mimeapps.list'
 alias   capkey='    xev | grep -Pio '\''(keysym [^)]*)'\'
 
-#GREP
+#-------------------------------------GREP---------------#
 alias   g='         grep --perl-regexp --ignore-case'
 alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf}\
                                 --exclude=\*.{apk,snap,out,jar,sx,s,bin,o,exe,deb,pyc,pyo}\
                                 --exclude=\*.{jpg,jpeg,png,webp,bmp,gif}\
                                 --exclude=\*.{aac,webm,alac,ape,ogg,mp4,mkv,m4a,mp4a,avi,mp3,wav,flac}'
-
 alias   yg='        xg          --exclude=\*.{rar,tar,gz,tgz,zip,bz2,tbz2}'
-
 alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
+alias   gr='        (echo ""; read _z; grep -Pi  "${_z}" "$HOME/.bashrc") <<< '
+alias   nvgr='      (echo ""; read _z; grep -Pri "${_z}" "$HOME/.config/nvim/") <<< '
+alias   i3gr='      (echo ""; read _z; grep -Pri "${_z}" "$HOME/.config/i3/") <<< '
+#-------------------------------------GREP---------------#
 
 alias   gport='     _myfunc() { netstat -lntu | grep -Pi "${@:-""}"; }; _myfunc'
 alias   isport='    (read _z; ss -lp "sport = :${_z}") <<< '
@@ -258,8 +261,6 @@ alias   phone='     aft-mtp-cli'
 alias   decl='      declare -f'
 alias   hb='        htop'
 alias   pips='      poetry search'
-alias   nvgr='      echo ""; cat "$HOME/.config/nvim/init.vim" | grep -Pi'
-alias   i3gr='      (echo ""; read _z; grep -Pri "${_z}" "$HOME/.config/i3/") <<< '
 alias   sman='      man -K --regex'
 alias   down='      cd "$HOME/Downloads/"'                                              
 alias   pics='      cd "$HOME/Pictures/"'                                               
