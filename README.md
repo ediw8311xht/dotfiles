@@ -9,7 +9,6 @@
 - vim (neovim)
 - lf
 
-<img src="images/01.png" alt="desktop" width="1500">
 <img src="images/02.png" alt="desktop" width="1500">
 <img src="images/03.png" alt="desktop" width="1500">
 <img src="images/04.png" alt="desktop" width="900">
