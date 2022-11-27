@@ -19,10 +19,10 @@ export      FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null ||
 export			       LESS=""
 export				   PATH="/usr/bin/:${PATH}"
 #export 				   LESS='-R --use-color -Dd+r$Du+b'
-export 				   PAGER='w3m -o display_lineinfo=TRUE'
+#export 				   PAGER='w3m -o display_lineinfo=TRUE'
 export				   TERM=st
 export		XDG_CONFIG_HOME="$HOME/.config"
-export			DELUGE_PORT="55888"
+export			DELUGE_PORT="599999"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap

@@ -3,132 +3,142 @@
 #----MAXIMILIAN-BALLARD-(MY-i3/CONFIG)--------------------------------|
 #---------------------------------------------------------------------|
 # i3 config file (v4)
-#-----------------------------------------------------------SET-----------#
-    set $LEFT_MONITOR               HDMI-A-0
-    set $RIGHT_MONITOR              DVI-D-0
-    set $MOUSEMV_S                  5
-    set $MOUSEMV_L                  50
-    set $BPIX                       0
-    set $IN_GAPS                    20
-    set $OUT_GAPS                   0
-    set $TOP_GAPS                   0
-    set $BOTTOM_GAPS                0
-    set $LEFT_GAPS                  0
-    set $RIGHT_GAPS                 0
-    set $X_RE_UNIT_LARGE            40px
-    set $Y_RE_UNIT_LARGE            20px
-    set $X_RE_UNIT_SMALL            1px
-    set $Y_RE_UNIT_SMALL            1px
-    set $pptX_RE_UNIT_LARGE         2ppt
-    set $pptY_RE_UNIT_LARGE         2ppt
-    set $pptX_RE_UNIT_SMALL         1ppt
-    set $pptY_RE_UNIT_SMALL         1ppt
-    set $XMVSPEED                   50px
-    set $YMVSPEED                   30px
-    set $WSW                        1400
-    set $WSH                        900
-    #set $WSW_M                      
-    #set $WSH_M                      
-    set $WSPX                       250
-    set $WSPY                       90
-    set $mod                        Mod1
-    set $BM                         bindsym      Mod1+
-    set $BSh                        bindsym      Mod1+Shift+
-    set $EXENI                      exec 	     --no-startup-id
-    set $EXENI_A                    exec_always  --no-startup-id
-    set $BORDER_PIXEL               pixel 1
-    set $BORD1                      ;
-    set $BORD2                      ;
-
-    set $- #000000
-
-    default_border          $BORDER_PIXEL
-    for_window [all]					    border              $BORDER_PIXEL
-
-    focus_follows_mouse  	yes
-    floating_modifier    	$mod
-    font pango:Hack 7
-    floating_maximum_size   1920 x 1080
-    floating_minimum_size   800 x 800
-
-#-------------------------------------------------------INCLUDE-----------#
-    #------FLASH-BORDER-MODE----UNCOMMENT_TO_ENABLE---#
-    #include release_border_i3wm.conf
-    #------BINDINGS-----------------------------------#
-    include       bindings_i3wm.conf
-    #------MODES--------------------------------------#
-    include          modes_i3wm.conf
-
-#---------------------------------------------------------PARAM-----------#
-    #class                      border          background      text                    indicator               child_border
-    client.unfocused 			#333333 		#333333 		#888888 		        #333333   		        #333333
-    client.focused_inactive 	#888888 		#888888 		#FFFFFF 		        #444444                 #888888
-    client.background       	#000000
-    client.focused 		        #00FF00 		#00FF00 		#00FF00 		        #00FF00                 #00FF00
-    client.focused_tab_title    #000000         #000000         #00FF00                 
-
-#------Class------------------------Border----------Backgro---------Text------------Indicat---------ChildBr--------#
-    #gaps			 	 	    0
-    gaps			 	 	    inner      		$IN_GAPS
-    gaps 					    top 			$TOP_GAPS
-    gaps 					    bottom			$BOTTOM_GAPS 
-    gaps 					    left  			$LEFT_GAPS  
-    gaps 					    right 			$RIGHT_GAPS  
-    gaps				 	    outer           $OUT_GAPS
 #-------------------------------------------------SPECIAL-BINDS-----------#
-bindsym Super_L         $BORD1                  sticky toggle;
-bindsym $mod+Shift+r    exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh           --3"
-bindsym $mod+Shift+c    exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh   --NOASK --0"
-bindsym $mod+Shift+a    --release                mode freekey;          exec --no-startup-id    "sleep 0.2              ;\
-    		                                                                                    xdotool key 'alt+y'"    ; 
+    bindsym Super_L                 $BORD1                  sticky toggle
+    bindsym Mod1+Shift+r            exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh              --3"
+    bindsym Mod1+Shift+c            exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh  --NOASK     --0"
+    bindsym Mod1+Shift+a --release  mode                    freekey;                exec --no-startup-id "sleep 0.2; xdotool key 'ctrl+v'; sleep 0.2; xdotool key 'alt+y'"
 
-#----------------------------------------------------WORKSPACES-----------#
-    workspace       1       output		 	$LEFT_MONITOR
-    workspace       2		output		 	$LEFT_MONITOR
-    workspace       3		output		 	$RIGHT_MONITOR
-    workspace       4		output		 	$RIGHT_MONITOR
-    workspace       5		output		 	$RIGHT_MONITOR
-    workspace       6		output		 	$RIGHT_MONITOR
-    workspace       7		output		 	$RIGHT_MONITOR
-    workspace       8		output		 	$RIGHT_MONITOR
-    workspace       9		output		 	$RIGHT_MONITOR
-    workspace       10		output		 	$RIGHT_MONITOR
-    workspace       11		output		 	$RIGHT_MONITOR
-    workspace       12		output		 	$RIGHT_MONITOR
+#-----------------------------------------------------------SET-----------#
+        set $LEFT_MONITOR           HDMI-A-0
+        set $RIGHT_MONITOR          DVI-D-0
+        set $MOUSEMV_S              5
+        set $MOUSEMV_L              50
+        set $BPIX                   0
+        set $XMVSPEED               50px
+        set $YMVSPEED               30px
+        set $WSW                    1400
+        set $WSH                    900
+        set $WSPX                   250
+        set $WSPY                   90
+        set $mod                    Mod1
+        set $BM                     bindsym      Mod1+
+        set $BSh                    bindsym      Mod1+Shift+
+        set $EXENI                  exec 	    --no-startup-id
+        set $EXENI_A                exec_always  --no-startup-id
+        set $BORDER_PIXEL           pixel 2
+        set $BORD1                  ;
+        set $BORD2                  ;
+    #---GAPS------------------------------------------#
+        set $IN_GAPS                20
+        set $OUT_GAPS               0
+        set $TOP_GAPS               0
+        set $BOTTOM_GAPS            0
+        set $LEFT_GAPS              0
+        set $RIGHT_GAPS             0
 
+        set $MOUSEMV_S              5
+        set $MOUSEMV_L              50
+    #---RESIZE-UNITS----------------------------------#
+        set $X_RE_UNIT_SMALL        1px
+        set $X_RE_UNIT_LARGE        40px
+        set $Y_RE_UNIT_SMALL        1px
+        set $Y_RE_UNIT_LARGE        20px
+        set $pptX_RE_UNIT_LARGE     2ppt
+        set $pptY_RE_UNIT_LARGE     2ppt
+        set $pptX_RE_UNIT_SMALL     1ppt
+        set $pptY_RE_UNIT_SMALL     1ppt
+    #---COLORS----------------------------------------#
+        set $-                      #000000
+        set $focuse_TEXT            #FFFFFF
+        set $inacti_TEXT            #888888
+        set $unfocu_TEXT            #888888
 
-#----------------------------------------------------FOR_WINDOW-----------#
-    for_window [all]                        title_format        "<big><big><big><span background='#000000' rise='3pt'> <small>%title</small> </span></big></big></big>"
-    for_window [all]                        title_window_icon   no
-    for_window [class="Gnome-screenshot"]   floating enable,    move    scratchpad
-    for_window [window_role="task_dialog"]  floating enable,    move    position    center
-    for_window [window_role="Preferences"]  floating enable,    move    position    center
-    for_window [window_role="pop-up"]       floating enable,    move    position    center
-    for_window [window_role="bubble"]       floating enable,    move    position    center
-    for_window [window_type="dialog"]       floating enable,    move    position    center
-    for_window [window_type="popup_menu"]   floating enable,    move    position    center
-    for_window [class="hexchat"]			floating enable,    move    position    center
-    for_window [instance="i3s_note"]		floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad
-    for_window [instance="i3s_st"]			floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad
-    for_window [class="Tor Browser"]		floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad
-    for_window [class="konqueror"]			floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad
-    for_window [class="Emacs"]				floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad
-    for_window [instance="mycv"]			floating enable,    move    position    1000 1000
-    for_window [class="mycv"]				floating enable,    move    position    1000 1000
-    for_window [title="mycv*"]				floating enable,    move    position    1920 0
-    for_window [class="i3*input"]			resize              set                 1000 1000
+        set $focuse_BORD            #004f98
+        set $inacti_BORD            #888888
+        set $unfocu_BORD            #333333
 
+        set $focuse_TBAR            #004f98
+        set $inacti_TBAR            #888888
+        set $unfocu_TBAR            #333333
+
+        set $SPEC_TABBED            #000cc2
+#-------------------------------------------------------SETTINGS----------#
+        floating_modifier       	$mod
+        focus_follows_mouse     	yes
+        floating_minimum_size    800    x    500
+        floating_maximum_size   1920    x   1080
+    #---TEXT------------------------------------------#
+        for_window [all]        title_window_icon   no
+        for_window [all]        title_format        "<big><big><big><span background='#000000' rise='3pt'> <small>%title</small> </span></big></big></big>"
+        font pango:Hack 7
+    #---BORDER----------------------------------------#
+        for_window [all]	    border              $BORDER_PIXEL
+        default_border                              $BORDER_PIXEL
+    #---GAPS------------------------------------------#
+        gaps			 	 	    inner      		$IN_GAPS
+        gaps 					    top 			$TOP_GAPS
+        gaps 					    bottom			$BOTTOM_GAPS 
+        gaps 					    left  			$LEFT_GAPS  
+        gaps 					    right 			$RIGHT_GAPS  
+        gaps				 	    outer           $OUT_GAPS
+    #---Class-----------------------Border----------Background------Text------------Indicator-------ChildBorder----#
+        client.focused              $focuse_TBAR    $focuse_TBAR    $focuse_TEXT    $focuse_TBAR    $focuse_BORD
+        client.focused_inactive 	$inacti_TBAR 	$inacti_TBAR	$inacti_TEXT 	$inacti_TBAR    $inacti_BORD
+        client.unfocused 			$unfocu_TBAR    $unfocu_TBAR    $unfocu_TEXT    $unfocu_TBAR    $unfocu_BORD
+        client.focused_tab_title    $-              $-              #000cc2                
+        client.background       	$-     
+#-------------------------------------------------------INCLUDE-----------#
+    #---FLASH-BORDER-MODE----UNCOMMENT_TO_ENABLE---#
+        include release_border_i3wm.conf
+    #---BINDINGS-----------------------------------#
+        include       bindings_i3wm.conf
+    #---MODES--------------------------------------#
+        include          modes_i3wm.conf
+#-------WORKSPACES--------------------------------------------------------#
+        workspace       1           output		 	$LEFT_MONITOR
+        workspace       2		    output		 	$LEFT_MONITOR
+        workspace       3		    output		 	$RIGHT_MONITOR
+        workspace       4		    output		 	$RIGHT_MONITOR
+        workspace       5		    output		 	$RIGHT_MONITOR
+        workspace       6		    output		 	$RIGHT_MONITOR
+        workspace       7		    output		 	$RIGHT_MONITOR
+        workspace       8		    output		 	$RIGHT_MONITOR
+        workspace       9		    output		 	$RIGHT_MONITOR
+        workspace       10		    output		 	$RIGHT_MONITOR
+        workspace       11		    output		 	$RIGHT_MONITOR
+        workspace       12		    output		 	$RIGHT_MONITOR
+#-------FOR_WINDOW--------------------------------------------------------#
+        for_window [class="Gnome-screenshot"]   floating enable,    move    scratchpad
+        for_window [window_role="task_dialog"]  floating enable,    move    position    center
+        for_window [window_role="Preferences"]  floating enable,    move    position    center
+        for_window [window_role="pop-up"]       floating enable,    move    position    center
+        for_window [window_role="bubble"]       floating enable,    move    position    center
+        for_window [window_type="dialog"]       floating enable,    move    position    center
+        for_window [window_type="popup_menu"]   floating enable,    move    position    center
+        for_window [class="hexchat"]			floating enable,    move    position    center
+        for_window [instance="i3s_note"]		floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad
+        for_window [instance="i3s_st"]			floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad
+        for_window [class="Tor Browser"]		floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad
+        for_window [class="konqueror"]			floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad
+        for_window [class="Emacs"]				floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad
+        for_window [instance="mycv"]			floating enable,    move    position    1000 1000
+        for_window [class="mycv"]				floating enable,    move    position    1000 1000
+        for_window [title="mycv*"]				floating enable,    move    position    1920 0
+        for_window [class="i3*input"]			                    resize  set         1000 1000
 #---------------------------------------------------------EXECS-----------#
-    #$EXENI    dunst
-    $EXENI_A  xinput    --set-prop 12   "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 0.44
-    $EXENI_A  xinput    --set-prop 12   "libinput Accel Speed" -1
-    $EXENI_A  xmodmap   -e              "keycode 49  = 0x0000 0xffeb 0x0000 0xffeb"
-    $EXENI_A  xmodmap   -e 	       	    "keycode 133 = 0x007e 0x0060 0x007e 0x0060"
-    $EXENI_A  copyq
-    $EXENI_A  xset 	    -dpms
-    $EXENI_A  xset 	    s 	       	    off
-    $EXENI_A  xset 	    r 	       	    rate 200 40
-    $EXENI_A  nitrogen  --restore
-    $EXENI_A  xcompmgr 	-C
-    $EXENI_A  $HOME/.config/polybar/launch.sh
+    #---KEYS----------------------------#
+        $EXENI_A  xset 	    -dpms
+        $EXENI_A  xset 	    s 	       	    off
+        $EXENI_A  xset 	    r 	       	    rate 200 40
+        $EXENI_A  xinput    --set-prop 12   "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 0.44
+        $EXENI_A  xinput    --set-prop 12   "libinput Accel Speed" -1
+        $EXENI_A  xmodmap   -e              "keycode 49  = 0x0000 0xffeb 0x0000 0xffeb"
+        $EXENI_A  xmodmap   -e 	       	    "keycode 133 = 0x007e 0x0060 0x007e 0x0060"
+    #---DAEMONS-------------------------#
+        $EXENI_A  copyq
+        $EXENI_A  nitrogen  --restore
+        $EXENI_A  xcompmgr 	-C
+        $EXENI_A  $HOME/.config/polybar/launch.sh
+
 

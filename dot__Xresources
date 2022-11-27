@@ -2,7 +2,7 @@
 !!!!START_1!!!!
 !!!!ON!!!!!!!!!
 !*.alphaOffset: 0.75
-*.alpha:	    0.90
+*.alpha:	    1
 !*.shading:	   	20
 !st.alpha: 0.95
 !*.alphaOffset: 0.1

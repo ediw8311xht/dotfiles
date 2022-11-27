@@ -203,6 +203,7 @@ alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
 
 #alias   pacman='    pac_func() { pacman "$@" 2>&1 | tee -a "$HOME/PACMAN_LOG.txt"; }; pac_func'
 alias   pigse='     echo ""; (read _a _b; pacman -Ss "${_a}" | grep -B1 -i "${_b}") <<< '
+alias   pig='     echo ""; (read _a _b; pacman -Ss "${_a}" | grep -B1 -i "${_b}") <<< '
 alias   pacse='     echo ""; pacman -Ss'
 alias   pacsel='    echo ""; pacman -Qs'
 alias   paci='      echo ""; pacman -Si'
@@ -214,6 +215,8 @@ alias   yayse='     echo ""; yay -Ss'
 alias   yaysel='    echo ""; yay -Qs'
 alias   yayi='      echo ""; yay -Si'
 alias   yayil='     echo ""; yay -Qi'
+alias   yigse='     echo ""; (read _a _b; yay -Ss "${_a}" | grep -B1 -i "${_b}") <<< '
+alias   yig='       echo ""; (read _a _b; yay -Ss "${_a}" | grep -B1 -i "${_b}") <<< '
 
 alias   xr='        echo ""; nvim $HOME/.Xresources; xrdb ~/.Xresources'
 alias   snv='       sudoedit'
@@ -221,6 +224,7 @@ alias   ebash='     echo "alias ysb, to source ~/.bashrc"; nvim $HOME/.bashrc; s
 alias   ysb='       source $HOME/.bashrc'
 alias   editnv='    nvim $HOME/.config/nvim/init.vim'
 alias   emime='     nvim $HOME/.config/mimeapps.list'
+alias   capkey='    xev | grep -Pio '\''(keysym [^)]*)'\'
 
 #GREP
 alias   g='         grep --perl-regexp --ignore-case'

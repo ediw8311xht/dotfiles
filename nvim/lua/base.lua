@@ -1,6 +1,6 @@
 
 require('nvim-ts-autotag').setup()
-require('nvim-autopairs').setup {}
+-- require('nvim-autopairs').setup {}
 
 require('nvls').setup({
     lilypond = {
