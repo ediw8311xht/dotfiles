@@ -4,6 +4,8 @@
 #---------------------------------------------------------------------|
 # i3 config file (v4)
 #-------------------------------------------------SPECIAL-BINDS-----------#
+    set $mode_be                    exec killall yad ; mode 
+    set $yad_hd                     exec $HOME/bin/yad_html_dia.sh '<span foreground="red" size="x-large">
     bindsym Super_L                 $BORD1                  sticky toggle
     bindsym Mod1+Shift+r            exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh              --3"
     bindsym Mod1+Shift+c            exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh  --NOASK     --0"
