@@ -1,22 +1,21 @@
-# My Linux Config Files
+# My GNU/Linux Config Files
 
-### My GNU/Linux Configuration Files (Dot Files) 
+**Greetings** im Maximilian Ballard and these are my configuration files for my system.
 
-Hey im Maximilian Ballard and these are my configuration files for my system.
+Software I use (***not all configs included in this repo***):
 
-Software I use (not all configs included in this repo):
-
-Distro:                     Manjaro/Artix
-Display Manager:            ly/sddm
-Window Manager/Desktop:     i3wm/xfce/plasma
-Editor:                     neovim
-Pager:                      most
-File Manager:               lf/Konqueror/Thunar
-Terminal Emulator:          st (Luke Smith's fork: https://github.com/LukeSmithxyz/st)
-Shell:                      Bash
-Compositor:                 xcompmgr
+    Distro:                     Manjaro/Artix
+    Display Manager:            ly/sddm
+    Window Manager/Desktop:     i3wm/xfce/plasma
+    Editor:                     neovim
+    Pager:                      most
+    File Manager:               lf/Konqueror/Thunar
+    Terminal Emulator:          st (Luke Smith's fork: https://github.com/LukeSmithxyz/st)
+    Shell:                      Bash
+    Compositor:                 xcompmgr
 
 Other Cool Software:                      
+
     polybar, nitrogen, mpv, zathura, nsxiv, brave, dmenu, deluge, copyq, clementine, dunst, yad, w3m, kitty
 
 Images of my Desktop:
