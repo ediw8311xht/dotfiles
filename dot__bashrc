@@ -276,7 +276,10 @@ alias   udi='       ufw disable'
 alias   uen='       ufw enable'
 alias   testr='     . $HOME/test.sh'
 alias   git_mt='    git log --pretty=format:"%h %s" --graph'
-
+#---------LIST-COMMANDS---------#
+alias   list_commands='compgen -c'
+alias   lc='        compgen -c'
+alias   slc='       compgen -c | grep -i'
 #---------------------------------------------------------------------- #
 #-EXPORT							        #
 #---------------------------------------------------------------------- #

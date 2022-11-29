@@ -1,6 +1,12 @@
 
-require('nvim-ts-autotag').setup()
+-- require('nvim-ts-autotag').setup()
 -- require('nvim-autopairs').setup {}
+
+vim.g.coq_settings = { 
+    auto_start = "shut-up", 
+}
+
+require("coq")
 
 require('nvls').setup({
     lilypond = {
@@ -66,5 +72,11 @@ vim.api.nvim_create_autocmd('BufEnter', {
   pattern = { '*.ly', '*.ily', '*.tex' }
 })
 
-vim.opt.updatetime = 300
+-- vim.opt.updatetime = 100
+
+-- local lsp = require "lspconfig"
+-- local coq = require "coq" -- add this
+
+-- lsp.<server>.setup(<stuff...>)                              -- before
+-- lsp.<server>.setup(coq.lsp_ensure_capabilities(<stuff...>)) -- after
 

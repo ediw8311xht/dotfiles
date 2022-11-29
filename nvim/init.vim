@@ -34,8 +34,8 @@ set clipboard=unnamedplus
 set autoindent
 set backup
 set undofile
-set undolevels=1000
-set undoreload=10000
+set undolevels=10000000
+set undoreload=1000000
 set dir=~/.mynvim/swapfiles
 set backupdir=~/.mynvim/backupfiles
 set undodir=~/.mynvim/undo_dir
@@ -94,17 +94,34 @@ Plug 'VebbNix/lf-vim'
 Plug 'dense-analysis/ale'
 Plug 'PotatoesMaster/i3-vim-syntax'
 "-----------COMPLETION
-Plug 'windwp/nvim-ts-autotag'
-Plug 'windwp/nvim-autopairs'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'windwp/nvim-ts-autotag'
+"Plug 'windwp/nvim-autopairs'
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "-----------ETC
-Plug 'https://github.com/vim-scripts/restore_view.vim',
+Plug 'https://github.com/vim-scripts/restore_view.vim'
 Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 Plug 'voldikss/vim-floaterm'
 Plug 'ptzz/lf.vim'
 Plug 'martineausimon/nvim-lilypond-suite'
 Plug 'MunifTanjim/nui.nvim'
+Plug 'wbthomason/packer.nvim'
+Plug 'neovim/nvim-lspconfig'
+" https://github.com/ms-jpq/coq_nvim
+" main one
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+" 9000+ Snippets
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+
+" lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
+" Need to **configure separately**
+
+Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+" - shell repl
+" - nvim lua api
+" - scientific calculator
+" - comment banner
+" - etc
 call plug#end()
 "<-------------------------------------------------------------------------->
 
@@ -134,8 +151,8 @@ highlight     StatusLine          cterm=NONE        ctermbg=NONE ctermfg=160   g
 highlight     Normal              cterm=NONE        ctermbg=17   ctermfg=NONE  gui=NONE         guibg=NONE     guifg=#FFFFFF
 highlight     LineNr              cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=NONE         guibg=NONE     guifg=#008800
 highlight     NonText             cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=NONE         guibg=NONE     guifg=NONE
-hi            CocSearch           cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=NONE         guibg=NONE     guifg=NONE
-hi            CocMenuSel          cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=NONE         guibg=NONE     guifg=NONE
+"hi            CocSearch           cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=NONE         guibg=NONE     guifg=NONE
+"hi            CocMenuSel          cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=NONE         guibg=NONE     guifg=NONE
 hi            MatchParen          cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=NONE         guibg=NONE     guifg=NONE
 hi            MatchParen          cterm=NONE        ctermbg=NONE ctermfg=NONE  gui=bold         guibg=NONE     guifg=NONE 
 hi            cursorline          cterm=bold        ctermfg=NONE ctermbg=18    gui=NONE         guibg=#440000  guifg=NONE
@@ -256,6 +273,7 @@ let g:is_bash = 1
 "<-------------------------------------------------------------------------->
 
 "<--------- MAPPINGS ------------------------------------------------------->
+nnoremap /                   /\v
 nnoremap <lt>                :tabprevious<esc>
 nnoremap >                   :tabnext<esc>
 nnoremap <leader>.           :                    NERDTreeToggle<esc>

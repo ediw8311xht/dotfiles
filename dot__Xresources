@@ -7,18 +7,18 @@
 !st.alpha: 0.95
 !*.alphaOffset: 0.1
 
-#i3wm.focus__TextC:          #00bcc2
-#i3wm.inact__TextC:          #004f98
-#i3wm.unifo__TextC:          #AAAAAA
-#                           
-#i3wm.focus__BordC:          #D7E6FF 
-#i3wm.inact__BordC:          #333333
-#i3wm.unifo__BordC:          #333333
+!i3wm.focus__TextC:          #00bcc2
+!i3wm.inact__TextC:          #004f98
+!i3wm.unifo__TextC:          #AAAAAA
+!                           
+!i3wm.focus__BordC:          #D7E6FF 
+!i3wm.inact__BordC:          #333333
+!i3wm.unifo__BordC:          #333333
 
 i3wm.back1:  #0060B0 
 i3wm.back2:  #0060B0  
 
-#i3wm.tx1:   #3070FF    
+!i3wm.tx1:   #3070FF    
 i3wm.tx2:   #D7E6FF   
 i3wm.tx3:   #888888   
                       
@@ -67,62 +67,6 @@ i3wm.chi:   #001080
 
 *.color48:      #FFFFFF
 
-!*.foreground:  #BEBEBE
-!*.background:  #000015
-! special
-!URxvt.keysym.C-7: command:\033]11;#CCCCCC\007\033]10;black\007
-!!!!FINISH_1!!!
-
-!!!!START_2!!!!
-!!!!OFF!!!!!!!!
-!-!*.alpha:				0.80
-!-!*.font: 				Office Code Pro:pixelsize=15:antialias=true:autohint=true
-!!URxvt.keysym.C-7: command:\033]11;#CCCCCC\007\033]10;black\007
-!! special
-!-!*.foreground:  #FFFFFF
-!-!*.background:  #000000
-!-!*.color:	   #FFFFFF
-!-!*.cursorColor: #FFFFFF
-!
-!!URxvt.keysym.C-7: command:\033]11;#CCCCCC\007\033]10;black\007
-!
-!! black
-!-!*.color0: #000000
-!-!*.color8: #2a495d
-!
-!! red
-!-!*.color1: #f12f2c
-!-!*.color9: #d700ff
-!
-!! green
-!-!*.color2: #00FF00
-!-!*.color10: #00FF00
-!
-!! yellow
-!-!*.color3: #e0c500
-!-!*.color11: #f9c400
-!
-!! blue
-!-!*.color4: #2587cc
-!-!*.color12: #2ca2f5
-!
-!! magenta
-!-!*.color5: #898edf
-!-!*.color13: #a0a6f8
-!
-!! cyan
-!-!*.color6: #58ccc3
-!-!*.color14: #63f5ea
-!
-!! white
-!-!*.color7: #FFFFFF
-!-!*.color15: #555555
-!
-!-!.color48: #FFFFFF
-!
-!!!!FINISH_2!!!
-
-!*.tintColor: cyan
 URxvt.font:			xft:Courier New:pixelsize=15:antialias=true:autohint=true
 URxvt.boldFont:                 xft:Courier New:pixelsize=15:antialias=true:autohint=true
 URxvt.scrollBar:	        false
