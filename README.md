@@ -11,7 +11,7 @@ Software I use (***not all configs included in this repo***):
     Pager:                      most
     File Manager:               lf/Konqueror/Thunar
     Terminal Emulator:          st (Luke Smith's fork: https://github.com/LukeSmithxyz/st)
-    Shell:                      Bash
+    Shell:                      bash
     Compositor:                 xcompmgr
 
 Other Cool Software:                      
