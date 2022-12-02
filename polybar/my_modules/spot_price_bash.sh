@@ -38,7 +38,7 @@ while true ; do
 		AX="$(gunzip -k -d "/tmp/${1}.gz" -c | column -t -s ',')"
 		if [[ "$?" = "0" ]] && [[ -n "${AX}" ]]; then
 			echo "${AX}" >> "$HOME/.config/polybar/my_modules/log.txt"
-			awk "{print ${OUT}}" <<< "${AX}"
+            printf '%.*f\n' 1 "$(awk "{print ${OUT}}" <<< "${AX}")"
 			exit 0
 		fi
 	fi
