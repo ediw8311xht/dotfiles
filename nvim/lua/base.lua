@@ -2,11 +2,11 @@
 -- require('nvim-ts-autotag').setup()
 -- require('nvim-autopairs').setup {}
 
-vim.g.coq_settings = { 
-    auto_start = "shut-up", 
-}
-
-require("coq")
+-- vim.g.coq_settings = { 
+--     auto_start = "shut-up", 
+-- }
+-- 
+-- require("coq")
 
 require('nvls').setup({
     lilypond = {

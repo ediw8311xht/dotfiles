@@ -320,3 +320,4 @@ shopt -s globstar
 alias cdb='cd "/$HOME/Desktop/GOOGLE_TAKEOUT/Takeout/Drive/Code Daily/Books"'
 
 alias summy='cd "/$HOME/Desktop/ssg"'
+alias ply='cd "/$HOME/.config/polybar"'
