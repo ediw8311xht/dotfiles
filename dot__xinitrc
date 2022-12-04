@@ -85,6 +85,7 @@ get_session(){
 xset -dpms
 xset r rate 200 40
 xmodmap   -e                "keycode 49  = 0x0000 0xffeb 0x0000 0xffeb" 
+#xmodmap   -e 	       	    "keycode 133 = 0x007e 0x0060 0x007e 0x0060" 
 xmodmap   -e 	       	    "keycode 133 = 0x007e 0x0060 0x007e 0x0060" 
 A="$(xrandr | grep -Po  'HDMI[^ ]+')"
 B="$(xrandr | grep -Po  'DVI[^ ]+')"

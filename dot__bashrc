@@ -122,7 +122,7 @@ addally() {
 }
 
 copyq_getter() { 
-    if ! [[ "${*}" ]] ; then copyq_getter "1"; fi
+    if ! [[ "${*}" ]] ; then copyq_getter '0'; fi
    (readarray -t K < <(grep -Pio '[0-9]*' <<< "${*}")
     if     [[ "${*}" =~ [0-9]+[l-][0-9]+ ]] ; then
         if [[ "${K[0]}" -gt "${K[1]}"    ]] ; then RVCE='-1'; fi
@@ -317,7 +317,13 @@ shopt -s globstar
 
 
 
-alias cdb='cd "/$HOME/Desktop/GOOGLE_TAKEOUT/Takeout/Drive/Code Daily/Books"'
 
 alias summy='cd "/$HOME/Desktop/ssg"'
 alias ply='cd "/$HOME/.config/polybar"'
+alias getkeys_all="xmodmap -pke"
+alias key_spec="evemu-describe"
+alias betterkey="showkey -k"
+
+
+
+
