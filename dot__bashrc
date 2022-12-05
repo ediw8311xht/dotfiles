@@ -291,6 +291,8 @@ export  XDG_CONFIG_HOME="$HOME/.config"
 export  XDG_CACHE_HOME="$HOME/.cache"
 
 export QT_STYLE_OVERRIDE=kvantum
+export  YAD_POS_X="1920"
+export  YAD_POS_Y="1080"
 #---------------------------------------------------------------------- #
 #-`PATH`								#
 #---------------------------------------------------------------------- #
