@@ -118,7 +118,7 @@ fpend() {
 )}
 
 addally() {
-    printf 'alias %s='\''cd "%s"'\' "${1}" "$(pwd)" >> "$HOME/.bashrc"
+    printf 'alias %s='\''cd "%s"'\' "${1}" "${PWD/$HOME/\$HOME}" >> "$HOME/.bashrc"
 }
 
 copyq_getter() { 
@@ -320,12 +320,10 @@ shopt -s globstar
 
 
 
-alias summy='cd "/$HOME/Desktop/ssg"'
-alias ply='cd "/$HOME/.config/polybar"'
-alias getkeys_all="xmodmap -pke"
-alias key_spec="evemu-describe"
-alias betterkey="showkey -k"
 
-
-
+export HISTFILESIZE=
+export HISTSIZE=
+export HISTFILE="$HOME/.bash_history2"
+#-------------- ignorespace + erasedups
+export HISTCONTROL=ignoreboth 
 

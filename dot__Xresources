@@ -1,12 +1,15 @@
 
+
+!!!!!!!!!!!!!!!!!!!!!!!----------------COMMENT-OUT-----!!!!!!!
 !!!!START_1!!!!
 !!!!ON!!!!!!!!!
 !*.alphaOffset: 0.75
-*.alpha:	    1
 !*.shading:	   	20
 !st.alpha: 0.95
 !*.alphaOffset: 0.1
 
+
+!!!!!!!!!!!!!!!!!!!!!!!----------------i3wm------------!!!!!!!
 !i3wm.focus__TextC:          #00bcc2
 !i3wm.inact__TextC:          #004f98
 !i3wm.unifo__TextC:          #AAAAAA
@@ -14,20 +17,20 @@
 !i3wm.focus__BordC:          #D7E6FF 
 !i3wm.inact__BordC:          #333333
 !i3wm.unifo__BordC:          #333333
-
 i3wm.back1:  #0060B0 
 i3wm.back2:  #0060B0  
-
 !i3wm.tx1:   #3070FF    
 i3wm.tx2:   #D7E6FF   
 i3wm.tx3:   #888888   
-                      
 i3wm.chi:   #001080    
 
-*.font: 	    FiraCode Retina:pixelsize=15:antialias=true
+!!!!!!!!!!!!!!!!!!!!!!!----------------REGULAR
+
+*.alpha:	    1
+*.font: 	    FiraCodeNerdFont:style=Retina:pixelsize=15:antialias=true
+                         
 *.borderpx:     10px
 *.cursorColor:  #999999
-
 
 *.color:        #FFFFFF
 *.foreground:   #FFFFFF
@@ -67,46 +70,103 @@ i3wm.chi:   #001080
 
 *.color48:      #FFFFFF
 
-URxvt.font:			xft:Courier New:pixelsize=15:antialias=true:autohint=true
-URxvt.boldFont:                 xft:Courier New:pixelsize=15:antialias=true:autohint=true
+
+!!!!!!!!!!!!!!!!!!!!!!!----------------SPECIAL------(FLOAT)--FROM:-[http://dotshare.it/dots/136/]
+special_float*alpha:	        0.95
+special_float*font: 	        SourceCodePro:style=Medium:pixelsize=15:antialias=true
+special_float*borderpx:         18px
+special_float*cursorColor:      #d4d7d4
+special_float*background:       rgb:00/00/00
+special_float*internalBorder:   5
+special_float*foreground:       #f8f8f2
+special_float*color0:           #1B1D1E
+special_float*color8:           #505354
+special_float*color1:           #ff005f
+special_float*color9:           #ff6767
+special_float*color2:           #afd700
+special_float*color10:          #8ce25d
+special_float*color3:           #ff8f00
+special_float*color11:          #ffb445
+special_float*color4:           #1165e9
+special_float*color12:          #5496ff
+special_float*color5:           #8C54FE
+special_float*color13:          #9E6FFE
+special_float*color6:           #4c8ea1
+special_float*color14:          #6bc1d0
+special_float*color7:           #d2d2d2
+special_float*color15:          #ffffff
+
+
+!!!!!!!!!!!!!!!!!!!!!!!----------------SPECIAL-------(NOTE)
+
+special_note*alpha:	       1
+special_note*font: 	       Mono:pixelsize=18:antialias=true
+special_note*borderpx:     18px
+special_note*foreground:   #d4d7d4
+special_note*background:   #161a20
+special_note*cursorColor:  #d4d7d4
+special_note*color0:       #232b34
+special_note*color8:       #4f5e67
+special_note*color1:       #cd6e42
+special_note*color9:       #b36846
+special_note*color2:       #1dc16f
+special_note*color10:      #48b27d
+special_note*color3:       #d4d7d4
+special_note*color11:      #e3e7e3
+special_note*color4:       #1dc19b
+special_note*color12:      #56ab98
+special_note*color5:       #d4d7d4
+special_note*color13:      #e3e7e3
+special_note*color6:       #23e885
+special_note*color14:      #57c08b
+special_note*color7:       #d4d7d4
+special_note*color15:      #fbfffb
+
+
+!!!!!!!!!!!!!!!!!!!!!!!----------------URXVT-XTERM
+
+xterm*dynamicColors:        true
+urxvt*dynamicColors:        on
+URxvt.font:			        xft:SourceCodePro:pixelsize=15:antialias=true:autohint=true
+URxvt.boldFont:             xft:Courier New:pixelsize=15:antialias=true:autohint=true
 URxvt.scrollBar:	        false
 URxvt.saveLines:	        65535
-URxvt.perl-ext-common:          keyboard-select,url-select,clipboard,font-size
-URxvt.keysym.M-Escape:          perl:keyboard-select:activate
-URxvt.keysym.M-s:               perl:keyboard-select:search
-URxvt.keysym.M-u:               perl:url-select:select_next
-URxvt.keysym.M-c:               perl:clipboard:copy
-URxvt.keysym.M-v:               perl:clipboard:paste
-URxvt.keysym.M-C-v:             perl:clipboard:paste_escaped
-Xft*dpi:                        96
-Xft*antialias:                  True
-Xft*hinting:                    Full
-URxvt.keysym.KP_Add:            +
-URxvt.keysym.KP_Subtract:       -
-URxvt.keysym.KP_Multiply:       *
-URxvt.keysym.KP_Divide  :       /
-URxvt.keysym.KP_Decimal :       .
-URxvt.keysym.KP_Separator :     ,
-URxvt.keysym.KP_1:              1
-URxvt.keysym.KP_2:              2
-URxvt.keysym.KP_3:              3
-URxvt.keysym.KP_4:              4
-URxvt.keysym.KP_5:              5
-URxvt.keysym.KP_6:              6
-URxvt.keysym.KP_7:              7
-URxvt.keysym.KP_8:              8
-URxvt.keysym.KP_9:              9
-URxvt.keysym.KP_0:              0
-URxvt.keysym.C-Up:              font-size:increase 1
-URxvt.keysym.C-Down:            font-size:decrease 1
-URxvt.keysym.C-S-Up:            font-size:incglobal
-URxvt.keysym.C-S-Down:          font-size:decglobal
-URxvt.keysym.C-equal:           font-size:reset
-URxvt.keysym.C-slash:           font-size:show
-URxvt.keysym.C-period:          font-size:hide
-URxvt.keysym.C-bracketleft:     command:\033]720;1\007
-URxvt.keysym.C-bracketright:    command:\033]721;1\007
-*.internalBorder: 0
+URxvt.perl-ext-common:      keyboard-select,url-select,clipboard,font-size
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.keysym.M-c:           perl:clipboard:copy
+URxvt.keysym.M-v:           perl:clipboard:paste
+URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
+Xft*dpi:                    96
+Xft*antialias:              True
+Xft*hinting:                Full
+URxvt.keysym.KP_Add:        +
+URxvt.keysym.KP_Subtract:   -
+URxvt.keysym.KP_Multiply:   *
+URxvt.keysym.KP_Divide  :   /
+URxvt.keysym.KP_Decimal :   .
+URxvt.keysym.KP_Separator : ,
+URxvt.keysym.KP_1:          1
+URxvt.keysym.KP_2:          2
+URxvt.keysym.KP_3:          3
+URxvt.keysym.KP_4:          4
+URxvt.keysym.KP_5:          5
+URxvt.keysym.KP_6:          6
+URxvt.keysym.KP_7:          7
+URxvt.keysym.KP_8:          8
+URxvt.keysym.KP_9:          9
+URxvt.keysym.KP_0:          0
+URxvt.keysym.C-Up:          font-size:increase 1
+URxvt.keysym.C-Down:        font-size:decrease 1
+URxvt.keysym.C-S-Up:        font-size:incglobal
+URxvt.keysym.C-S-Down:      font-size:decglobal
+URxvt.keysym.C-equal:       font-size:reset
+URxvt.keysym.C-slash:       font-size:show
+URxvt.keysym.C-period:      font-size:hide
+URxvt.keysym.C-bracketleft: command:\033]720;1\007
+URxvt.keysym.C-bracketright:command:\033]721;1\007
 !URxvt.iso14755:                false
 !URxvt.iso14755_52:             false
+
 
