@@ -123,6 +123,7 @@
         for_window  [class="Tor Browser"]		floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad
         for_window  [class="konqueror"]			floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad
         for_window  [class="Emacs"]				floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad
+        for_window  [class=".*firefox.*dev.*"]	floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad 
         for_window  [instance="mycv"]			floating enable,    move    position    1000 1000
         for_window  [class="mycv"]				floating enable,    move    position    1000 1000
         for_window  [title="mycv.*"]			floating enable,    move    position    1920 0
