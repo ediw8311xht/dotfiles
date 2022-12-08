@@ -1,7 +1,7 @@
 
+*.alpha:	    0.9
 *.font: 	    Iosevka Custom:style=Medium:pixelsize=15:antialias=true:autohint=true
-!!!!!!!!!!!!!!!!!!!!!!!----------------REGULAR
-*.alpha:	    1
+!!!!!!!!!!!!!!!!!!!!!!!----------------DEFAULT
 *.borderpx:     10px
 *.cursorColor:  #999999
 

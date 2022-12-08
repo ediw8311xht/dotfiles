@@ -11,8 +11,8 @@
     bindsym Mod1+Shift+c            exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh  --NOASK     --0"
     bindsym Mod1+Shift+a --release  mode                    freekey;                exec --no-startup-id "sleep 0.2; xdotool key 'ctrl+v'; sleep 0.2; xdotool key 'alt+y'"
 #-----------------------------------------------------------SET-----------#
-        set $LEFT_MONITOR           DVI-D-0 
-        set $RIGHT_MONITOR          HDMI-A-0
+        set $LEFT_MONITOR           HDMI-A-0 
+        set $RIGHT_MONITOR          DVI-D-0 
         set $WSW                    1200
         set $WSH                    900
         set $mod                    Mod1
@@ -31,8 +31,8 @@
         set $LEFT_GAPS              0
         set $RIGHT_GAPS             0
     #---COLORS----------------------------------------#
-        set $-                      #000000
         set $_                      ;
+        set $-                      #000000
         set $focuse_TEXT            #FFFFFF
         set $inacti_TEXT            #888888
         set $unfocu_TEXT            #888888

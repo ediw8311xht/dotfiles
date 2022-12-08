@@ -14,9 +14,9 @@ syntax on
 let g:mapleader = ","
 let mapleader = ","
 let maplocalleader = ","
+set magic
 set termguicolors
 set splitright
-set ignorecase
 set t_Co=256
 set nocompatible
 set modelines=0
@@ -145,17 +145,15 @@ set guicursor=n:block90,i:ver20
 set cul
 set nocuc
 "<--------- FUNCTIONS ------------------------------------------------------>
+" https://unix.stackexchange.com/questions/140898/vim-hide-status-line-in-the-bottom/140899#140899 " from user - cuonglm - https://unix.stackexchange.com/users/38906/cuonglm
 let s:status_hidden = 0 | function! ToggleHiddenAll()
-  " https://unix.stackexchange.com/questions/140898/vim-hide-status-line-in-the-bottom/140899#140899
-  " from user - cuonglm - https://unix.stackexchange.com/users/38906/cuonglm
-    if s:status_hidden  == 0 "set noshowmode
-        set noruler | set laststatus=0 | let s:status_hidden = 1
-    else "set showmode
-        set ruler   | set laststatus=2 | let s:status_hidden = 0
+    if s:status_hidden  == 0 | set noruler | set laststatus=0 | let s:status_hidden = 1 ""set noshowmode
+    else                     | set ruler   | set laststatus=2 | let s:status_hidden = 0 ""set showmode
     endif
 endfunction
 
 function! ToggleScheme()
+    ""MAKE THIS BETTER MAX
     if     g:colors_name == 'pop-punk'  | colo eldar    | hi Normal guifg=#FFFFFF
     elseif g:colors_name == 'eldar'     | colo elflord  | hi Normal guifg=#FFFFFF
     elseif g:colors_name == 'elflord'   | colo delek    | hi Normal guifg=#000000
@@ -173,66 +171,33 @@ function! ToggleScheme()
 endfunction
 
 function! CycleBackgroundColor()
-    let i = 0
-    let current_background = synIDattr(hlID("Normal"), "bg")  
+    let i = 0 | let current_background = synIDattr(hlID("Normal"), "bg")  
     echo synIDattr(hlID("Normal"), "bg")
     for _ in g:myBg
         if current_background == _
             let j = (i + 1) % len(g:myBg)
             execute "highlight Normal guibg=" . g:myBg[j] . " guifg=" . g:myFg[j]
-            return
-        endif | let i += 1
+        return | endif | let i += 1
     endfor
-    if current_background == ''
-        execute "highlight Normal guibg=" . g:myBg[1] . " guifg=" . g:myFg[1]
-    else
-        execute "highlight Normal guibg=" . g:myBg[0] . " guifg=" . g:myFg[1]
-    endif
-endfunction
-
-function! ToggleWrap()
-    if &wrap == ""
-        ":set colorcolumn=80
-        :set wrap
-    else
-        ":set colorcolumn=
-        :set nowrap
-    end
-    :redraw
+    if current_background == '' | execute "highlight Normal guibg=" . g:myBg[1] . " guifg=" . g:myFg[1]
+    else                        | execute "highlight Normal guibg=" . g:myBg[0] . " guifg=" . g:myFg[1]
+    endif 
 endfunction
 
 function! ToggleCOC()
-    if g:coc_enabled == "0"
-        :CocEnable
-    else
-        :CocDisable
+    if g:coc_enabled == "0" | :CocEnable
+    else                    | :CocDisable
     end
-endfunction
-
-function! GetUrls()
-    :v/\(href\|src\)\(=["][^"]*["\_]\)/d
-    :%s/.*\(href\|src\)\(=["][^"]*["\_]\)/\1\2\r/g
-    :v/\(href\|src\)\(=["][^"]*["\_]\)/d
-    :%s/\(src\)\?[^"]*["]\([^"]*\)/\1 \2/g
-    normal! gv
-    :sort
-    :%s/^[ ]\+\(.*\)/\1/
-endfunction
-
-function! GetUrls2()
-    :%s/\("[^"]*"\)/\r\1\r/g
-    :v/["]\(\(ftp\|http\|https\):[/][/]\|www[.]\)[^"]*"/d
 endfunction
 
 function! ToggleVirtualEdit()
-    if virtualedit == none
-        :set virtualedit=all
-    else
-        :set virtualedit=none
+    if &virtualedit == "all" | set virtualedit=none
+    else                     | set virtualedit=all
     end
 endfunction
 
-let g:is_bash = 1
+
+
 "<--------- MAPPINGS ------------------------------------------------------->
 nnoremap <leader>. :NERDTreeToggle<esc>
 nnoremap <leader>1 :hi cursorline guibg=NONE guifg=NONE gui=bold cterm=NONE ctermbg=NONE ctermfg=NONE<esc>
@@ -243,9 +208,10 @@ nnoremap <leader>b :buffer<space>
 nnoremap <leader>c :set nocursorline!<esc>
 nnoremap <leader>d :buffers<esc>
 nnoremap <leader>e :set cursorcolumn!<esc>
-nnoremap <leader>f :call ToggleWrap()<esc>
+nnoremap <leader>f :set wrap!<esc>
 nnoremap <silent><leader>h :call ToggleHiddenAll()<CR>
 nnoremap <leader>j :call ToggleScheme()<CR>
+nnoremap <leader>m :call ToggleVirtualEdit()<esc>
 nnoremap <leader>n :cnext<esc>
 nnoremap <leader>s :%so "${HOME}/.config/nvim/init.vim"<esc>
 nnoremap <leader>v :%s/\t/    /g<esc>
@@ -253,8 +219,12 @@ nnoremap <leader>w :w<esc>
 nnoremap <leader>x :!%:p<esc>
 nnoremap <leader>y :hi Normal guibg=Transparent<esc>
 nnoremap <leader>z z
-"nnoremap <leader>m         :             :call ToggleVirtualEdit()<esc>
-"nnoremap <leader>cc        :             call ToggleScheme()<CR>
+nnoremap <leader>A :call CycleBackgroundColor()<CR><esc>
+nnoremap <leader>B :Bracey<esc>
+nnoremap <leader>H :vert helpgrep 
+nnoremap <leader>N :cprevious<esc>
+
+
 nnoremap <leader>tt :tabnew<esc>
 nnoremap <leader>tn :tabmove +1<esc> 
 nnoremap <leader>tp :tabmove -1<esc> 
@@ -266,16 +236,10 @@ nnoremap <leader>tN :tabmove +1<esc>
 nnoremap <leader>tB :tabmove -1<esc>
 nnoremap <leader>tcc :tabclose<esc>
 nnoremap <leader><leader> :<backspace>
-nnoremap <leader>A :call CycleBackgroundColor()<CR><esc>
-nnoremap <leader>B :Bracey<esc>
-nnoremap <leader>H :vert helpgrep 
-nnoremap <leader>N :cprevious<esc>
-
 vnoremap <Space> zf
-vnoremap ga <Plug>(EasyAlign)
 vnoremap im :s/\%V[ \t]*//<esc>
 nnoremap <silent> <esc> :noh <cr><esc>
-nnoremap / /\v
+nnoremap / /\v\c
 nnoremap <lt> :tabprevious<esc>
 nnoremap > :tabnext<esc>
 nnoremap x "xx
@@ -283,6 +247,7 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 noremap <leader>zaf gg/<c-r>0<esc>jVnkzf
 noremap <leader>zv
 map <leader>l :Lf<CR>
+"nnoremap <leader>cc        :             call ToggleScheme()<CR>
 "<--------- STATUS LINE ---------------------------------------------------->
 set statusline=\ %F\ \|
 set statusline+=\%l\(%L\)\|%v\ 
@@ -302,4 +267,31 @@ autocmd BufNewFile,BufRead ~/.config/i3/*           setfiletype i3
 "    :help key-notation      _-_for list of keys and their names
 "<-------------------------------------------------------------------------->
 
+""---------------GOOD? YES BUT STUPID
+"function! GetUrls()
+"    :v/\(href\|src\)\(=["][^"]*["\_]\)/d
+"    :%s/.*\(href\|src\)\(=["][^"]*["\_]\)/\1\2\r/g
+"    :v/\(href\|src\)\(=["][^"]*["\_]\)/d
+"    :%s/\(src\)\?[^"]*["]\([^"]*\)/\1 \2/g
+"    normal! gv
+"    :sort
+"    :%s/^[ ]\+\(.*\)/\1/
+"endfunction
+"
+"function! GetUrls2()
+"    :%s/\("[^"]*"\)/\r\1\r/g
+"    :v/["]\(\(ftp\|http\|https\):[/][/]\|www[.]\)[^"]*"/d
+"endfunction
+
+"<--------- COMMENTED OUT -------------------------------------------------->
+
+""""""""""""""""""
+"function! ToggleWrap()
+"    if &wrap == "" | :set wrap "":set colorcolumn=
+"    else           | :set nowrap "":set colorcolumn=80
+"    endif
+"    :redraw
+"endfunction
+"
+"
 

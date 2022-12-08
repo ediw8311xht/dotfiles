@@ -31,6 +31,14 @@ PS2+='             '"${INSERT2}"
 # --------------------------------------------------------------------- #
 #  FUNCTIONS								                            #
 # --------------------------------------------------------------------- #
+# walc
+# kn
+# kn
+# kn
+# kn
+# kn
+# kn
+# kn
 walc() {
    (IFS=$'\n'
     SWITCH=''
@@ -78,7 +86,7 @@ my_cd()	{
 vid() {
    (if [[ "${1}" =~ ^-mono ]] ; then AUD="mono"; shift 1; fi
 
-    mpv --audio-channels="${AUD:-"AUTO"}" ${@:-*} & disown
+    mpv --audio-channels="${AUD:-"auto"}" ${@:-*} & disown
 )}
 upd_pip_z() { 
    (IFS=$'\n' 
@@ -258,7 +266,7 @@ alias   testr='     . $HOME/test.sh'
 alias   git_mt='    git log --pretty=format:"%h %s" --graph'
 alias   mansec='    man -f'
 alias   listman='   man -f'
-alias   men="       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" | ${PAGER}) <<< "
+alias   men='       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" 2>/dev/null | $PAGER) <<< '
 #---------LIST-COMMANDS---------#
 alias   list_commands='compgen -c'
 alias   lc='        compgen -c'
