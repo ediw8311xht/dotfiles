@@ -11,22 +11,15 @@
     bindsym Mod1+Shift+c            exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh  --NOASK     --0"
     bindsym Mod1+Shift+a --release  mode                    freekey;                exec --no-startup-id "sleep 0.2; xdotool key 'ctrl+v'; sleep 0.2; xdotool key 'alt+y'"
 #-----------------------------------------------------------SET-----------#
-        set $LEFT_MONITOR           HDMI-A-0
-        set $RIGHT_MONITOR          DVI-D-0
-        set $MOUSEMV_S              5
-        set $MOUSEMV_L              50
-        set $BPIX                   0
-        set $XMVSPEED               50px
-        set $YMVSPEED               30px
-        set $WSW                    1400
+        set $LEFT_MONITOR           DVI-D-0 
+        set $RIGHT_MONITOR          HDMI-A-0
+        set $WSW                    1200
         set $WSH                    900
-        set $WSPX                   250
-        set $WSPY                   90
         set $mod                    Mod1
         set $BM                     bindsym     Mod1+
         set $BSh                    bindsym     Mod1+Shift+
-        set $EXENI                  exec 	    --no-startup-id
-        set $EXENI_A                exec_always --no-startup-id
+        set $EXC                    exec 	    --no-startup-id
+        set $EXC_A                  exec_always --no-startup-id
         set $BORDER_PIXEL           pixel 2
         set $BORD1                  ;
         set $BORD2                  ;
@@ -37,20 +30,9 @@
         set $BOTTOM_GAPS            0
         set $LEFT_GAPS              0
         set $RIGHT_GAPS             0
-
-        set $MOUSEMV_S              5
-        set $MOUSEMV_L              50
-    #---RESIZE-UNITS----------------------------------#
-        set $X_RE_UNIT_SMALL        1px
-        set $X_RE_UNIT_LARGE        40px
-        set $Y_RE_UNIT_SMALL        1px
-        set $Y_RE_UNIT_LARGE        20px
-        set $pptX_RE_UNIT_LARGE     2ppt
-        set $pptY_RE_UNIT_LARGE     2ppt
-        set $pptX_RE_UNIT_SMALL     1ppt
-        set $pptY_RE_UNIT_SMALL     1ppt
     #---COLORS----------------------------------------#
         set $-                      #000000
+        set $_                      ;
         set $focuse_TEXT            #FFFFFF
         set $inacti_TEXT            #888888
         set $unfocu_TEXT            #888888
@@ -62,13 +44,11 @@
         set $focuse_TBAR            #004f98
         set $inacti_TBAR            #888888
         set $unfocu_TBAR            #333333
-
-        set $SPEC_TABBED            #000cc2
 #-------------------------------------------------------SETTINGS----------#
         floating_modifier       	$mod
         focus_follows_mouse     	yes
-        #floating_minimum_size       200     x   200
-        floating_maximum_size       1500    x   800
+        floating_minimum_size       100     x   100
+        floating_maximum_size       1500    x   1080
     #---TEXT------------------------------------------#
         for_window [all]            title_window_icon   no
         #### Increases FONT SIZE without affecting WINDOW TITLE SIZE; Also adds background to text.
@@ -99,57 +79,46 @@
     #---MODES--------------------------------------#
         include          modes_i3wm.conf
 #-------WORKSPACES--------------------------------------------------------#
+    #---------------------------DECLARE-MONITOR-ORDER-BASED-ON-PRIORITY
+        workspace       10		    output		 	$RIGHT_MONITOR
+        workspace       9		    output		 	$RIGHT_MONITOR
+        workspace       8		    output		 	$RIGHT_MONITOR
+        workspace       7		    output		 	$RIGHT_MONITOR
+        workspace       6		    output		 	$RIGHT_MONITOR
+        workspace       5		    output		 	$RIGHT_MONITOR
+        workspace       4		    output		 	$RIGHT_MONITOR
+        workspace       3		    output		 	$RIGHT_MONITOR
+        workspace       12		    output		 	$RIGHT_MONITOR
+        workspace       11		    output		 	$RIGHT_MONITOR
         workspace       1           output		 	$LEFT_MONITOR
         workspace       2		    output		 	$LEFT_MONITOR
-        workspace       3		    output		 	$RIGHT_MONITOR
-        workspace       4		    output		 	$RIGHT_MONITOR
-        workspace       5		    output		 	$RIGHT_MONITOR
-        workspace       6		    output		 	$RIGHT_MONITOR
-        workspace       7		    output		 	$RIGHT_MONITOR
-        workspace       8		    output		 	$RIGHT_MONITOR
-        workspace       9		    output		 	$RIGHT_MONITOR
-        workspace       10		    output		 	$RIGHT_MONITOR
-        workspace       11		    output		 	$RIGHT_MONITOR
-        workspace       12		    output		 	$RIGHT_MONITOR
 #-------FOR_WINDOW--------------------------------------------------------#
-        #### Hides gnome-screenshot.
-            for_window  [class="Gnome-screenshot"]  floating enable,    move    scratchpad
-        #### Focus scratchpad so that created windows get shown automatically (only for auto scratchpad programs).
-            for_window  [instance="i3s_note"]		floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
-            for_window  [instance="i3s_st"]			floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
-            for_window  [class="Tor Browser"]		floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
-            for_window  [class="konqueror"]			floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
-            for_window  [class="Emacs"]				floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
-            for_window  [class=".*firefox.*dev.*"]	floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
-        #### Window dialogs should not tile, creates issues with visibility.
-            for_window  [window_role="task_dialog"] floating enable,    move    position    center
-            for_window  [window_role="Preferences"] floating enable,    move    position    center
-            for_window  [window_role="pop-up"]      floating enable,    move    position    center
-            for_window  [window_role="bubble"]      floating enable,    move    position    center
-            for_window  [window_type="dialog"]      floating enable,    move    position    center
-            for_window  [window_type="popup_menu"]  floating enable,    move    position    center
-        #### Floating but not scratchpad stuff.
-            for_window  [class="hexchat"]			floating enable,    move    position    center
-            for_window  [class=".*Yad.*"]			floating enable
-        #### Prevent automatic focus on newly created Yad windows
-            no_focus    [class=".*Yad.*"]
-        #for_window  [class="i3*input"]			                    resize  set         1000 1000
+    #### Hides gnome-screenshot.
+        for_window  [class="Gnome-screenshot"]  floating enable,    move    scratchpad
+    #### Focus scratchpad so that created windows get shown automatically (only for auto scratchpad programs).
+        for_window  [instance="i3s_note"]		floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
+        for_window  [instance="i3s_st"]			floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
+        for_window  [class="Tor Browser"]		floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
+        for_window  [class="konqueror"]			floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
+        for_window  [class="Emacs"]				floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
+        for_window  [class=".*firefox.*dev.*"]	floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
+    #### Window dialogs should not tile, creates issues with visibility.
+        for_window  [window_role="task_dialog"] floating enable,    move    position    center
+        for_window  [window_role="Preferences"] floating enable,    move    position    center
+        for_window  [window_role="pop-up"]      floating enable,    move    position    center
+        for_window  [window_role="bubble"]      floating enable,    move    position    center
+        for_window  [window_type="dialog"]      floating enable,    move    position    center
+        for_window  [window_type="popup_menu"]  floating enable,    move    position    center
+    #### Floating but not scratchpad stuff.
+        for_window  [class="hexchat"]			floating enable,    move    position    center
+        for_window  [class=".*Yad.*"]			floating enable
+    #### Prevent automatic focus on newly created Yad windows
+        no_focus    [class=".*Yad.*"]
+    #for_window  [class="i3*input"]			                    resize  set         1000 1000
 #---------------------------------------------------------EXECS-----------#
-    #---KEYS----------------------------#
-        ##### Turn off energy star, prevent monitor sleep; Turns off screensaver
-            $EXENI_A  xset 	    -dpms
-            $EXENI_A  xset 	    s 	       	    off
-        ##### This turns off mouse acceleration 
-            $EXENI_A  xinput    --set-prop 12   "libinput Accel Speed" -1
-        ##### Increases mouse speed, neccesary to adjust this value if you do not want mouse acceleration.
-            $EXENI_A  xinput    --set-prop 12   "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 0.44
-            $EXENI_A  xmodmap   -e              "keycode 49  = 0x0000 0xffeb 0x0000 0xffeb"
-            $EXENI_A  xmodmap   -e 	       	    "keycode 133 = 0x007e 0x0060 0x007e 0x0060"
-            $EXENI_A  xset 	    r 	       	    rate 200 40
-    #---DAEMONS-------------------------#
-        $EXENI_A  copyq
-        $EXENI_A  nitrogen  --restore
-        $EXENI_A  xcompmgr 	-C
-        $EXENI_A  $HOME/.config/polybar/launch.sh
+    $EXC_A  copyq
+    $EXC_A  nitrogen    --restore
+    $EXC_A  xcompmgr 	-C
+    $EXC_A  $HOME/.config/polybar/launch.sh
 
 

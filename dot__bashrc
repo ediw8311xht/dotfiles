@@ -28,10 +28,9 @@ PS1+='\[\e[m\]'
 PS2=''
 PS2+='             '"${INSERT2}"
 
-#---------------------------------------------------------------------- #
-#-FUNCTIONS								#
-#---------------------------------------------------------------------- #
-
+# --------------------------------------------------------------------- #
+#  FUNCTIONS								                            #
+# --------------------------------------------------------------------- #
 walc() {
    (IFS=$'\n'
     SWITCH=''
@@ -53,14 +52,14 @@ walc() {
 kn() { 
    (IFS=$'\n'
     ns=($(echo "$(grep -Pi '^ [0-9]+\K.*'"${1}"'.*$' <<< $(ps ax))"))
-    echo "MATCHES GOT: ${#ns[@]}"
-    echo "${ns[*]}"
+    echo "MATCHES GOT: ${#ns[@]}"; echo "${ns[*]}"
 )}
 acheck() {
+   (if [[ "${1}" =~ ^-.+$ ]] ; then ADD="${1}"; shift 1 ; fi
     while [[ -n "${1}" ]] ; do
-        compgen -c  | grep -x "${1}"; shift
+        compgen -c  | grep ${ADD:--x} "${1}"; shift
     done									 			 			 
-}
+)}
 cg() {
     if [[ -z "$*" ]] ; then
         compgen -A function -abck | sort | uniq -c | grep -Pio '.+[0-9]+ \K.*'
@@ -71,32 +70,18 @@ cg() {
         done									 			 			 
     fi
 }
-fzc() {
-    while [[ -n "${1}" ]] ; do
-            compgen -c  | grep -Pi "${1}"; shift
-    done									 			 			 
-}
 my_cd()	{
-    if   [[ "${1}" = '-g' ]] ; then
-        cd '/'; cd "$(find . -type d 2>/dev/null| fzf --preview="ls -1 {}" )"
-    elif [[ -z "$*" 	  ]] ; then
-        cd "$(find . -type d 2>/dev/null| fzf --preview="ls -1 {}" )"
-    else
-        cd "$@" 
-    fi			 	 
-}
+   (if   [[ "${1}" = '-g' ]] ; then d='/'; shift 1; fi
+
+    cd "${@:-"$(find ${d:-.} -type d | fzf --preview="ls -1 {}" )"}"
+)}
 vid() {
-    AUD="auto"
-    while [[ "${1}" =~ ^- ]] ; do
-        if [[ "${1}" =~ ^-mono ]] ; then AUD="mono"; fi
-        shift
-    done
-    if [[ -n "${1}" ]] ; then mpv --audio-channels="${AUD}" "${@}" & disown; return $?
-    else                      mpv --audio-channels="${AUD}" *	     & disown; return $?; fi
-    return 1
-}
+   (if [[ "${1}" =~ ^-mono ]] ; then AUD="mono"; shift 1; fi
+
+    mpv --audio-channels="${AUD:-"AUTO"}" ${@:-*} & disown
+)}
 upd_pip_z() { 
-    (IFS=$'\n' 
+   (IFS=$'\n' 
     zname="$(date +'%Y%m%d')_pipoutdated.txt"
     pip list --outdated > "${zname}"
     A="$(cat "${zname}" | sed '1,2d' | sed -e 's/[ ][ ]*/ /g' | cut -d' ' -f1)"
@@ -114,31 +99,25 @@ fpend() {
         done 
         return "$?"
     fi
-    echo "INCORRENT ARGUMENTS"; return 1
+    echo "INCORRECT ARGUMENTS"; return 1
 )}
-
 addally() {
     printf 'alias %s='\''cd "%s"'\' "${1}" "${PWD/$HOME/\$HOME}" >> "$HOME/.bashrc"
 }
-
-copyq_getter() { 
-    if ! [[ "${*}" ]] ; then copyq_getter '0'; fi
-   (readarray -t K < <(grep -Pio '[0-9]*' <<< "${*}")
-    if     [[ "${*}" =~ [0-9]+[l-][0-9]+ ]] ; then
-        if [[ "${K[0]}" -gt "${K[1]}"    ]] ; then RVCE='-1'; fi
-
-        readarray -t K < <(seq "${K[0]}" ${RVCE:-} "${K[1]}")
-    fi
-
-    i='-1'; while [[ $((++i)) -lt "${#K[@]}" ]] ; do
-        if [[ "${*}" =~ [lL] ]] ; then 
-             echo $'\n'"|${K[i]}------------------|"
-             copyq read "${K[i]}"
-             echo $'\n'"|------------------${K[i]}|"$'\n'
-        else copyq read "${K[i]}"; echo $'\n----'; fi
-    done
+rep_char() {
+    (z="${1}"; while ((z--)) ; do echo -n "${2}"; done
 )}
-
+copyq_getter() { 
+   (if [[ -z "${@}" ]] ; then 
+        copyq_getter '0'
+    else 
+        for i in ${@} ; do
+            fun="$(copyq read "${i}")"
+            echo -ne "|${i}| "; copyq read "${i}"; echo -e "|${i}|"
+            echo $'\n\n'
+        done
+    fi
+)}
 pf()     {   find 		  "${2:-"$HOME"}" | grep -Pi "${1}" ; }
 nifs()   {   IFS=$'\n'   ; printf "IFS=%q" "${IFS}"; echo ""        ; }
 rifs()   {   IFS=$' \t\n'; printf "IFS=%q" "${IFS}"; echo ""        ; }
@@ -202,21 +181,22 @@ alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
 
 #alias   pacman='    pac_func() { pacman "$@" 2>&1 | tee -a "$HOME/PACMAN_LOG.txt"; }; pac_func'
 #PAC----------------------------------NON-LOCAL----------#
-alias   pigse='     echo ""; (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
-alias   pig='       echo ""; (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
-alias   pacse='     echo ""; pacman -Ss'
-alias   paci='      echo ""; pacman -Si'
-alias   yigse='     echo ""; (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
-alias   yig='       echo ""; (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
-alias   yayse='     echo ""; yay -Ss'
-alias   yayi='      echo ""; yay -Si'
+alias   pigse='     (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
+alias   pig='       (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
+alias   pacse='     pacman -Ss'
+alias   paci='      pacman -Si'
+alias   yigse='     (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
+alias   yig='       (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
+alias   yayse='     yay -Ss'
+alias   yayi='      yay -Si'
 #--------------------------------------LOCAL-------------#
-alias   pacsel='    echo ""; pacman -Qs'
-alias   pacil='     echo ""; pacman -Qi'
-alias   yaysel='    echo ""; yay -Qs'
-alias   yayil='     echo ""; yay -Qi'
-alias   paclast="   echo ''; expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
-alias   pacclean='  echo ""; yay -Scc; yay --clean'
+alias   pacsel='    pacman -Qs'
+alias   pacil='     pacman -Qi'
+alias   yaysel='    yay -Qs'
+alias   yayil='     yay -Qi'
+alias   paclast="   expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
+alias   pacclean='  yay -Scc; yay --clean'
+alias   pacfrom='   pacman -Qo'
 #PAC-----------------------------------------------------#
 
 alias   xr='        echo ""; nvim $HOME/.Xresources; xrdb ~/.Xresources'
@@ -247,7 +227,7 @@ alias   nimg='      nsxiv -0 .'
 alias   ldi='       fdisk -l -o +uuid'
 alias   szof='      du -ahc --time --max-depth=1'
 alias   bgsz="      sudo szof | grep -P '^[^ ]*G'"
-alias   lsd='       ls -lh'
+#alias   lsd='       ls -lh'
 alias   lst='       ls -ltrh'
 alias   lsz='       ls -lSrh'
 alias   psg='       ps ax | grep -Pi'
@@ -276,6 +256,9 @@ alias   udi='       ufw disable'
 alias   uen='       ufw enable'
 alias   testr='     . $HOME/test.sh'
 alias   git_mt='    git log --pretty=format:"%h %s" --graph'
+alias   mansec='    man -f'
+alias   listman='   man -f'
+alias   men="       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" | ${PAGER}) <<< "
 #---------LIST-COMMANDS---------#
 alias   list_commands='compgen -c'
 alias   lc='        compgen -c'
@@ -322,7 +305,7 @@ shopt -s globstar
 
 
 export HISTFILESIZE=
-export HISTSIZE=
+export HISTSIZE=10000000
 export HISTFILE="$HOME/.bash_history2"
 #-------------- ignorespace + erasedups
 export HISTCONTROL=ignoreboth 

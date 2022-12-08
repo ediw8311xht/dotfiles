@@ -1,8 +1,12 @@
 
-"<-------------______________________________________----------------------->
-"               |                                  |
-"               | Vim Config -> Maximilian Ballard |                         
-"<-------------_|__________________________________|_----------------------->
+"<--------------->_________________________________<-------------------------->
+"<------------->_____________________________________<------------------------>
+"<------------->_____________________________________<------------------------>
+"              ||                                   ||
+"              ||  Vim Config -> Maximilian Ballard ||                        
+"<------------>||___________________________________||<----------------------->
+"<------------->_____________________________________<------------------------>
+"<--------------->_________________________________<-------------------------->
 
 "<--------- LET/SET -------------------------------------------------------->
 filetype plugin on
@@ -130,7 +134,7 @@ hi  Normal          cterm=NONE ctermbg=17   ctermfg=NONE gui=NONE       guibg=NO
 hi  LineNr          cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=NONE    guifg=#008800
 hi  NonText         cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=NONE    guifg=NONE
 hi  MatchParen      cterm=NONE ctermbg=NONE ctermfg=NONE gui=bold       guibg=NONE    guifg=NONE 
-hi  cursorline      cterm=bold ctermfg=NONE ctermbg=18   gui=NONE       guibg=#220000 guifg=NONE
+hi  cursorline      cterm=bold ctermfg=NONE ctermbg=18   gui=NONE       guibg=#000077 guifg=NONE
 hi  cursorcolumn    cterm=bold ctermfg=NONE ctermbg=NONE gui=bold       guibg=NONE    guifg=NONE   
 hi  FoldColumn      cterm=NONE ctermbg=NONE ctermfg=NONE gui=bold       guibg=NONE    guifg=#00FF00 
 hi  Folded          cterm=NONE ctermbg=NONE ctermfg=NONE gui=italic     guibg=NONE    guifg=#888888 
@@ -297,4 +301,5 @@ autocmd BufNewFile,BufRead ~/.config/i3/*           setfiletype i3
 "                   %<"      _-_is expanded to the name of the current buffer
 "    :help key-notation      _-_for list of keys and their names
 "<-------------------------------------------------------------------------->
+
 
