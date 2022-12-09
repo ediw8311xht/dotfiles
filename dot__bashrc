@@ -31,14 +31,6 @@ PS2+='             '"${INSERT2}"
 # --------------------------------------------------------------------- #
 #  FUNCTIONS								                            #
 # --------------------------------------------------------------------- #
-# walc
-# kn
-# kn
-# kn
-# kn
-# kn
-# kn
-# kn
 walc() {
    (IFS=$'\n'
     SWITCH=''
@@ -115,17 +107,6 @@ addally() {
 rep_char() {
     (z="${1}"; while ((z--)) ; do echo -n "${2}"; done
 )}
-copyq_getter() { 
-   (if [[ -z "${@}" ]] ; then 
-        copyq_getter '0'
-    else 
-        for i in ${@} ; do
-            fun="$(copyq read "${i}")"
-            echo -ne "|${i}| "; copyq read "${i}"; echo -e "|${i}|"
-            echo $'\n\n'
-        done
-    fi
-)}
 pf()     {   find 		  "${2:-"$HOME"}" | grep -Pi "${1}" ; }
 nifs()   {   IFS=$'\n'   ; printf "IFS=%q" "${IFS}"; echo ""        ; }
 rifs()   {   IFS=$' \t\n'; printf "IFS=%q" "${IFS}"; echo ""        ; }
@@ -143,7 +124,6 @@ rad()    {   docker            rm $(docker ps -a -q)                ; }
 #    done
 #
 #}
-#cop()    {   printf '%s' "$@" | copyq -copy; copyq clipboard        ; }
 
 
 #---------------------------------------------------------------------- #
@@ -155,7 +135,6 @@ alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for anoth
 alias   fl="        pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
 alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
 alias   b='         cd "$HOME/bin/"'
-alias   c='         cd "$(copyq clipboard)"'
 alias   f='         $HOME/bin/my_find.sh'
 alias   h='         cd "$HOME"'
 alias   t='	        trash-put'
@@ -173,9 +152,6 @@ alias   nv='        nvim'
 alias   pc='	    clear; neofetch'
 alias   pe='        ps -eo comm=,'
 alias   po='        ps -eo cmd=,'
-alias   clips='     copyq select'
-alias   p='         copyq_getter'
-alias   co='        copyq copy'
 alias   rm='        echo "rm has been replaced with this message use trash-put or /bin/rm instead."'
 alias   qread='     zathura  "$(fzf)"'
 alias   free='      free -m'
@@ -195,8 +171,10 @@ alias   pacse='     pacman -Ss'
 alias   paci='      pacman -Si'
 alias   yigse='     (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   yig='       (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
-alias   yayse='     yay -Ss'
+alias   yayse='     yay --sortby="votes" -Ss'
+alias   yaysename=' yay --sortby="votes" --searchby="name" -Ss'
 alias   yayi='      yay -Si'
+alias   yayp='      yay -P --stats'
 #--------------------------------------LOCAL-------------#
 alias   pacsel='    pacman -Qs'
 alias   pacil='     pacman -Qi'
@@ -235,9 +213,10 @@ alias   nimg='      nsxiv -0 .'
 alias   ldi='       fdisk -l -o +uuid'
 alias   szof='      du -ahc --time --max-depth=1'
 alias   bgsz="      sudo szof | grep -P '^[^ ]*G'"
-#alias   lsd='       ls -lh'
-alias   lst='       ls -ltrh'
-alias   lsz='       ls -lSrh'
+alias     l="       lsd --icon='never'"
+alias    ll="       lsd -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
+alias   lst='       lsd -ltrh'
+alias   lsz='       lsd -lSrh'
 alias   psg='       ps ax | grep -Pi'
 alias   pse='       ps -eo comm=, | grep --ignore-case'
 alias   pso='       ps -eo cmd=, | grep --ignore-case'
@@ -267,6 +246,7 @@ alias   git_mt='    git log --pretty=format:"%h %s" --graph'
 alias   mansec='    man -f'
 alias   listman='   man -f'
 alias   men='       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" 2>/dev/null | $PAGER) <<< '
+alias   upfonts='   fc-cache && fc-cache-32; echo "return $?"'
 #---------LIST-COMMANDS---------#
 alias   list_commands='compgen -c'
 alias   lc='        compgen -c'
@@ -303,10 +283,12 @@ if  test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integ
 export  DISPLAY=:0.0
 set -o vi
 shopt -s globstar
+shopt -s dotglob
 
 #---------------------------------------------------------------------- #
 #-QUICK-ADDED-ALIASES                                                   #
 #---------------------------------------------------------------------- #
+
 
 
 

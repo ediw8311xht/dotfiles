@@ -1,20 +1,32 @@
 
-*.alpha:	    0.9
-*.font: 	    Iosevka Custom:style=Medium:pixelsize=15:antialias=true:autohint=true
+*.alpha:	    1
+!*.font: 	    Monaco:style=Regular:pixelsize=15:antialias=true:autohint=true
+!*.font: 	    Input Mono:style=Medium:pixelsize=15:antialias=true:autohint=true
+*.font: 	    Fira Code Nerd Font:style=Medium:pixelsize=15:antialias=true:autohint=true
+!*.font: 	    Iosevka Custom:style=Medium:pixelsize=15:antialias=true:autohint=true
+!*.font: 	    SarasaMonoSlabCL:style=Medium:pixelsize=15:antialias=true:autohint=true
+!*.font: 	    Agave:style=Regular:pixelsize=15:antialias=true:autohint=true
+!*.font: 	    Hack:style=Regular:pixelsize=15:antialias=true:autohint=true
+!*.font: 	    Hermit:style=Regular:pixelsize=15:antialias=true:autohint=true
+!*.font: 	    Menlo:style=Regular:pixelsize=15:antialias=true:autohint=true
+!*.font: 	    IBM 3270:style=Regular:pixelsize=15:antialias=true:autohint=true
+!!!!!!!COOL FONTS (my names for ref):
+!!!!!!!IBM 3270, Agave, SarasaMonoSlab, Iosevka Custom, Hack, Hermit, Menlo, Fira Code, Input Mono
 !!!!!!!!!!!!!!!!!!!!!!!----------------DEFAULT
 *.borderpx:     10px
 *.cursorColor:  #999999
 
 *.color:        #FFFFFF
 *.foreground:   #FFFFFF
-*.background:   #000A1F
+*.background:   #000000
 
 ! black
 *.color0:       #000000
 *.color8:       #2a495d
 
 ! red
-*.color1:       #f12f2c
+!*.color1:       #f12f2c
+*.color1:       #FF0000
 *.color9:       #d700ff
 
 ! green
@@ -26,8 +38,9 @@
 *.color11:      #f9c400
 
 ! blue
-*.color4:       #2587cc
-*.color12:      #2ca2f5
+!*.color4:       #2587cc
+*.color4:       #00A0FF
+*.color12:      #0090FF
 
 ! magenta
 *.color5:       #898edf
@@ -38,16 +51,16 @@
 *.color14:      #63f5ea
 
 ! white
-*.color7:       #FFFFFF
-*.color15:      #555555
+*.color7:       #DDDDDD
+*.color15:      #777777
 
 *.color48:      #FFFFFF
 
 
 !!!!!!!!!!!!!!!!!!!!!!!----------------SPECIAL------(FLOAT)--FROM:-[http://dotshare.it/dots/136/]
-!special_float*font: 	        Iosevka Custom:style=regular:pixelsize=17 
+special_float*font: 	        Agave:style=Regular:pixelsize=15:antialias=true:autohint=true
 special_float*alpha:	        1
-special_float*background:       rgb:00/00/00
+special_float*background:       #000011
 special_float*foreground:       #f8f8f2
 special_float*borderpx:         18px
 special_float*cursorColor:      #d4d7d4
@@ -70,9 +83,9 @@ special_float*color7:           #d2d2d2
 special_float*color15:          #ffffff
 
 !!!!!!!!!!!!!!!!!!!!!!!----------------SPECIAL-------(NOTE)
-!special_note*font: 	       Iosevka Custom:style=regular:pixelsize=17
+special_note*font: 	       Agave:style=Regular:pixelsize=15:antialias=true:autohint=true
 special_note*alpha:	       1
-special_note*background:   #111111
+special_note*background:   #000000
 special_note*foreground:   #d4d7d4
 special_note*borderpx:     18px
 special_note*cursorColor:  #d4d7d4
@@ -108,12 +121,14 @@ i3wm.tx2:   #D7E6FF
 i3wm.tx3:   #888888   
 i3wm.chi:   #001080    
 
-!!!!!!!!!!!!!!!!!!!!!!!----------------URXVT-XTERM
+!!!!!!!!!!!!!!!!!!!!!!!----------------URXVT-XTERM-Zutty
 
+
+URxvt.font:			        xft:SourceCodePro:pixelsize=15:antialias=true:autohint=true
+Zutty.font: 	            Hermit
+!URxvt.boldFont:             xft:Courier New:pixelsize=15:antialias=true:autohint=true
 xterm*dynamicColors:        true
 urxvt*dynamicColors:        on
-!URxvt.font:			        xft:SourceCodePro:pixelsize=15:antialias=true:autohint=true
-!URxvt.boldFont:             xft:Courier New:pixelsize=15:antialias=true:autohint=true
 URxvt.scrollBar:	        false
 URxvt.saveLines:	        65535
 URxvt.perl-ext-common:      keyboard-select,url-select,clipboard,font-size
