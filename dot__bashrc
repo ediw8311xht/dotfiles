@@ -247,6 +247,7 @@ alias   mansec='    man -f'
 alias   listman='   man -f'
 alias   men='       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" 2>/dev/null | $PAGER) <<< '
 alias   upfonts='   fc-cache && fc-cache-32; echo "return $?"'
+alias   getfont='   fc-list -v | grep -i '
 #---------LIST-COMMANDS---------#
 alias   list_commands='compgen -c'
 alias   lc='        compgen -c'

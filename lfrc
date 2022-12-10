@@ -1,13 +1,12 @@
 
 
-
 set shell sh
 set shellopts '-eu'
-
+##USE DOUBLE QUOTES FOR 'set ifs "something"'
+set         ifs             "\n" 
 set 		ratios 			1:2:3
 set 		info 			size:time
 set 		scrolloff 		10
-set 		ifs 			'\n'
 set			autoquit
 #set 		drawbox
 set 		dircounts
@@ -21,20 +20,6 @@ set previewer ctpv
 set cleaner ctpvclear
 &ctpv -s $id
 &ctpvquit $id
-#&ctpv -s $id
-#cmd on-quit &{{
-#	#kill $(pidof "ctpv")
-#	ctpv -e "${id}"
-#	PROC="$(ps ax | grep -Po '^[\ ]*[0-9]+(?=\ .+[c]tpv -s '"${id})")"
-#	kill "${PROC}"
-#	if [[ "$?" -ne "0" ]] ; then
-#		notify-send "CTPV NOT CLOSED: $?"
-#		notify-send "PID: ${PROC}"
-#	fi
-#}}
-
-
-#set previewer ~/.config/lf/preview
 
 cmd np &{{
 	if   [[ "$lf_ratios" = "1:2:3" ]] ; then  lf -remote "send $id set nopreview     "
@@ -50,19 +35,18 @@ cmd rep &{{
 }}
 
 cmd trash ${{
-    if ! [[ -d "$HOME/.Trash" ]] ; then
-        mkdir "$HOME/.Trash"
-    fi
+    set -f
     if [ -z "$fs" ]; then
-        mv "$f" ~/.Trash
+        trash-put "${f}" && lf -remote "send $id reload && redraw" &
     else
-        IFS=$'\n'; mv $fs ~/.Trash
+        for f in ${fs} ; do 
+            trash-put "${f}" && lf -remote "send $id reload && redraw" &
+        done
     fi
+    sleep 0.5 && lf -remote "send $id reload && redraw" & 
 }}
 
 cmd delete &{{
-        set -f 
-	trash-put $fx 
 }}
 
 cmd open &{{

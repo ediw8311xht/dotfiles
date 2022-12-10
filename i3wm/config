@@ -5,7 +5,7 @@
 # i3 config file (v4)
 #-------------------------------------------------SPECIAL-BINDS-----------#
     set $mode_be                    exec killall yad ; mode 
-    set $yad_hd                     exec $HOME/bin/yad_html_dia.sh -theme 'AdwaitaAmoled' '<span foreground="#00FF00" size="x-large">
+    set $yad_hd                     exec $HOME/bin/yad_html_dia.sh -theme 'BlackMATE' '<span foreground="#00FF00" size="x-large">
     bindsym Super_L                 $BORD1                  sticky toggle
     bindsym Mod1+Shift+r            exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh              --3"
     bindsym Mod1+Shift+c            exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh  --NOASK     --0"
@@ -45,6 +45,7 @@
         set $inacti_TBAR            #888888
         set $unfocu_TBAR            #333333
 #-------------------------------------------------------SETTINGS----------#
+        border_radius               10
         floating_modifier       	$mod
         focus_follows_mouse     	yes
         floating_minimum_size       100     x   100
@@ -117,8 +118,10 @@
         no_focus    [class=".*Yad.*"]
     #for_window  [class="i3*input"]			                    resize  set         1000 1000
 #---------------------------------------------------------EXECS-----------#
+    $EXC    parcellite
+    $EXC    xcompmgr 	-C
     $EXC_A  nitrogen    --restore
-    $EXC_A  xcompmgr 	-C
     $EXC_A  $HOME/.config/polybar/launch.sh
 
 
+#-------END---------------------------------------------------------------#
