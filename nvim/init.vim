@@ -44,7 +44,7 @@ set ttimeoutlen=0
 set wildmode=longest,list,full
 set foldcolumn=auto:4
 set showmode
-set virtualedit=all
+set virtualedit=none
 
 " https://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim
 filetype plugin indent on
@@ -70,15 +70,17 @@ call plug#begin()
 "Plug 'rakr/vim-one'
 "Plug 'sheerun/vim-polyglot'
 "Plug 'VebbNix/lf-vim'
-"Plug 'AndrewRadev/tagalong.vim'
 "Plug 'prettier/vim-prettier', {
 "  \ 'do': 'yarn install --frozen-lockfile --production',
 "  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 "-----------NEOCLIDE-COMPLETION
+Plug 'andymass/vim-matchup'
+Plug 'AndrewRadev/tagalong.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'windwp/nvim-autopairs'
 "Plug 'windwp/nvim-ts-autotag'
-"Plug 'windwp/nvim-autopairs'
-"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 "-----------COLORSCHEMES
 Plug 'bignimbus/pop-punk.vim'
 Plug 'agude/vim-eldar'
@@ -123,23 +125,50 @@ let g:tagalong_verbose      = 1
 let g:ale_linters_explicit  = 1
 let g:ale_fix_on_save       = 1
 let g:is_bash               = 1
-let g:lf_width=100
-let g:lf_height=40
+let g:lf_width              = 100
+let g:lf_height             = 40
+
 "<--------- COLOR SCHEME STUFF --------------------------------------------->
 colorscheme   pop-punk
 
-hi  Visual          cterm=NONE ctermbg=NONE ctermfg=16   gui=NONE       guibg=#333333 guifg=#00FF00
-hi  StatusLine      cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE       guibg=#222222 guifg=#009900
-hi  Normal          cterm=NONE ctermbg=17   ctermfg=NONE gui=NONE       guibg=NONE    guifg=#FFFFFF
-hi  LineNr          cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=NONE    guifg=#008800
-hi  NonText         cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=NONE    guifg=NONE
-hi  MatchParen      cterm=NONE ctermbg=NONE ctermfg=NONE gui=bold       guibg=NONE    guifg=NONE 
-hi  cursorline      cterm=bold ctermfg=NONE ctermbg=18   gui=NONE       guibg=#000077 guifg=NONE
-hi  cursorcolumn    cterm=bold ctermfg=NONE ctermbg=NONE gui=bold       guibg=NONE    guifg=NONE   
-hi  FoldColumn      cterm=NONE ctermbg=NONE ctermfg=NONE gui=bold       guibg=NONE    guifg=#00FF00 
-hi  Folded          cterm=NONE ctermbg=NONE ctermfg=NONE gui=italic     guibg=NONE    guifg=#888888 
-"hi       CocSearch       cterm=NONE          ctermbg=NONE ctermfg=NONE  gui=NONE         guibg=NONE     guifg=NONE
-"hi       CocMenuSel      cterm=NONE          ctermbg=NONE ctermfg=NONE  gui=NONE         guibg=NONE     guifg=NONE
+"hi htmlTag            gui=reverse   guifg=#90b0d1 guibg=#000033
+"hi htmlSpecialTagName gui=reverse
+"hi html gui=reverse
+"hi htmlTagName        gui=NONE   guifg=#90b0d1 guibg=#000033
+"hi htmlEndTag         gui=NONE   guifg=#000000 guibg=#FFFFFF
+"hi  Visual              cterm=NONE ctermbg=NONE ctermfg=16   gui=NONE       guibg=#333333 guifg=#00FF00
+"hi  StatusLine          cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE       guibg=#222222 guifg=#009900
+"hi  Normal              cterm=NONE ctermbg=17   ctermfg=NONE gui=NONE       guibg=NONE    guifg=#FFFFFF
+"hi  LineNr              cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=NONE    guifg=#008800
+"hi  NonText             cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=NONE    guifg=NONE
+hi  MatchParen          cterm=NONE ctermbg=NONE ctermfg=NONE gui=reverse
+hi  cursorline          cterm=bold ctermfg=NONE ctermbg=18   gui=NONE       guibg=#003153 guifg=NONE
+hi  cursorcolumn        gui=bold,italic,reverse
+hi  FoldColumn          cterm=NONE ctermbg=NONE ctermfg=NONE gui=bold        guibg=NONE    guifg=#00FF00 
+hi  Folded              cterm=NONE ctermbg=NONE ctermfg=NONE gui=italic      guibg=NONE    guifg=#888888 
+"hi  CocSearch           cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=#FF0000 guifg=#000000
+"hi  CocMenuSel          cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=#FF0000 guifg=#000000
+"hi  CocErrorHighlight   cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=#FF0000 guifg=#000000
+"hi  CocErrorSign        cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=#FF0000 guifg=#000000
+"hi  CocWarningSign      cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=#FF0000 guifg=#000000
+"hi  CocInfoSign         cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=#FF0000 guifg=#000000
+"hi  CocHintSign         cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=#FF0000 guifg=#000000
+"
+""<--------- COCSTUFF ------------------------------------------------------->
+"hi default link CocErrorVirtualText         CocErrorSign
+"hi default link CocWarningVirtualText       CocErrorSign
+"hi default link CocInfoVirtualText          CocErrorSign
+"hi default link CocHintVirtualText          CocErrorSign
+"hi default link CocErrorHighlight           CocErrorSign
+"hi default link CocWarningHighlight         CocErrorSign
+"hi default link CocInfoHighlight            CocErrorSign
+"hi default link CocHintHighlight            CocErrorSign
+"hi default link CocErrorFloat               CocErrorSign
+"hi default link CocWarningFloat             CocErrorSign
+"hi default link CocInfoFloat                CocErrorSign
+"hi default link CocHintFloat                CocErrorSign
+"hi default link CocCursorRange              CocErrorSign
+"hi default link CocHoverRange               CocErrorSign
 
 set guicursor=n:block90,i:ver20
 set cul
@@ -166,7 +195,7 @@ function! ToggleScheme()
     echo g:colors_name
     hi FoldColumn guibg=NONE guifg=#00FF00 gui=bold
     hi Folded     guibg=NONE guifg=#888888 gui=italic
-    hi cursorcolumn cterm=bold ctermfg=NONE ctermbg=NONE gui=bold guibg=NONE guifg=NONE
+    "hi cursorcolumn cterm=bold ctermfg=NONE ctermbg=NONE gui=bold guibg=NONE guifg=NONE
     syntax on
 endfunction
 
@@ -199,6 +228,11 @@ endfunction
 
 
 "<--------- MAPPINGS ------------------------------------------------------->
+
+
+nnoremap \ `
+"list keybindings with :help index
+"list user keybindings with :map
 nnoremap <leader>. :NERDTreeToggle<esc>
 nnoremap <leader>1 :hi cursorline guibg=NONE guifg=NONE gui=bold cterm=NONE ctermbg=NONE ctermfg=NONE<esc>
 nnoremap <leader>2 :PlugUpdate<CR>
@@ -223,7 +257,7 @@ nnoremap <leader>A :call CycleBackgroundColor()<CR><esc>
 nnoremap <leader>B :Bracey<esc>
 nnoremap <leader>H :vert helpgrep 
 nnoremap <leader>N :cprevious<esc>
-
+nnoremap <leader>M :messages<esc>
 
 nnoremap <leader>tt :tabnew<esc>
 nnoremap <leader>tn :tabmove +1<esc> 
@@ -236,6 +270,11 @@ nnoremap <leader>tN :tabmove +1<esc>
 nnoremap <leader>tB :tabmove -1<esc>
 nnoremap <leader>tcc :tabclose<esc>
 nnoremap <leader><leader> :<backspace>
+noremap <leader>zaf gg/<c-r>0<esc>jVnkzf
+noremap <leader>zv
+
+map <leader>l :Lf<CR>
+
 vnoremap <Space> zf
 vnoremap im :s/\%V[ \t]*//<esc>
 nnoremap <silent> <esc> :noh <cr><esc>
@@ -244,16 +283,13 @@ nnoremap <lt> :tabprevious<esc>
 nnoremap > :tabnext<esc>
 nnoremap x "xx
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-noremap <leader>zaf gg/<c-r>0<esc>jVnkzf
-noremap <leader>zv
-map <leader>l :Lf<CR>
-"nnoremap <leader>cc        :             call ToggleScheme()<CR>
 "<--------- STATUS LINE ---------------------------------------------------->
 set statusline=\ %F\ \|
 set statusline+=\%l\(%L\)\|%v\ 
 set statusline+=%m\ 
 set statusline+=%=\ %L\ l,\ 
 set statusline+=%{wordcount().words}\ w\ 
+
 "<--------- EXTRA ---------------------------------------------------------->
 augroup bashiez
     au!
@@ -292,6 +328,5 @@ autocmd BufNewFile,BufRead ~/.config/i3/*           setfiletype i3
 "    endif
 "    :redraw
 "endfunction
-"
 "
 

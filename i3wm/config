@@ -45,11 +45,10 @@
         set $inacti_TBAR            #888888
         set $unfocu_TBAR            #333333
 #-------------------------------------------------------SETTINGS----------#
-        border_radius               10
         floating_modifier       	$mod
         focus_follows_mouse     	yes
         floating_minimum_size       100     x   100
-        floating_maximum_size       1500    x   1080
+        floating_maximum_size       1800    x   1080
     #---TEXT------------------------------------------#
         for_window [all]            title_window_icon   no
         #### Increases FONT SIZE without affecting WINDOW TITLE SIZE; Also adds background to text.
@@ -105,15 +104,16 @@
         for_window  [class="Emacs"]				    floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
         for_window  [class=".*icecat.*"]	        floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
     #### Window dialogs should not tile, creates issues with visibility.
-        for_window  [window_role="task_dialog"]     floating enable,    move    position    center
-        for_window  [window_role="Preferences"]     floating enable,    move    position    center
-        for_window  [window_role="pop-up"]          floating enable,    move    position    center
-        for_window  [window_role="bubble"]          floating enable,    move    position    center
-        for_window  [window_type="dialog"]          floating enable,    move    position    center
-        for_window  [window_type="popup_menu"]      floating enable,    move    position    center
+        for_window  [window_role="task_dialog"]     floating enable,    move position center
+        for_window  [window_role="Preferences"]     floating enable,    move position center 
+        for_window  [window_role="pop-up"]          floating enable,    move position center 
+        for_window  [window_role="bubble"]          floating enable,    move position center 
+        for_window  [window_type="dialog"]          floating enable,    move position center 
+        for_window  [window_type="popup_menu"]      floating enable,    move position center 
     #### Floating but not scratchpad stuff.
-        for_window  [class="hexchat"]			    floating enable,    move    position    center
+        for_window  [class="hexchat"]			    floating enable,    move position center 
         for_window  [class=".*Yad.*"]			    floating enable
+        #for_window  [floating]                      resize set $WSW $WSH, move position center
     #### Prevent automatic focus on newly created Yad windows
         no_focus    [class=".*Yad.*"]
     #for_window  [class="i3*input"]			                    resize  set         1000 1000
@@ -122,6 +122,14 @@
     $EXC    xcompmgr 	-C
     $EXC_A  nitrogen    --restore
     $EXC_A  $HOME/.config/polybar/launch.sh
+########Repeating .xinitrc so unplugging keyboard doesn't kemfkmakfej
+    $EXC_A  xset -dpms
+    $EXC_A  xset s off
+    $EXC_A  xset r rate 200 40
+    $EXC_A  xmodmap -e             "keycode 49  = 0x0000 0xffeb 0x0000 0xffeb" 
+    $EXC_A  xmodmap -e 	       	   "keycode 133 = 0x007e 0x0060 0x007e 0x0060" 
+    $EXC_A  xrandr --output "${A}" --left-of "${B}"
+    $EXC_A  xrandr --output "${B}" --primary
 
 
 #-------END---------------------------------------------------------------#

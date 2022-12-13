@@ -102,8 +102,8 @@ fpend() {
     echo "INCORRECT ARGUMENTS"; return 1
 )}
 addally() {
-    printf 'alias %s='\''cd "%s"'\' "${1}" "${PWD/$HOME/\$HOME}" >> "$HOME/.bashrc"
-}
+    printf 'alias %s='\''cd "%s"'\''     %s' "${1}" "${PWD/$HOME/\$HOME}" "${IGNORE_TEXT}" >> "$HOME/.bashrc"
+)}
 rep_char() {
     (z="${1}"; while ((z--)) ; do echo -n "${2}"; done
 )}
@@ -168,6 +168,7 @@ alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
 alias   pigse='     (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   pig='       (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   pacse='     pacman -Ss'
+alias   pasce='     pacman -Ss'
 alias   paci='      pacman -Si'
 alias   yigse='     (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   yig='       (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
@@ -214,9 +215,9 @@ alias   ldi='       fdisk -l -o +uuid'
 alias   szof='      du -ahc --time --max-depth=1'
 alias   bgsz="      sudo szof | grep -P '^[^ ]*G'"
 alias     l="       lsd --icon='never'"
-alias    ll="       lsd -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
-alias   lst='       lsd -ltrh'
-alias   lsz='       lsd -lSrh'
+alias    ll="       lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
+alias   lst="       lsd --icon='never' -ltrh"
+alias   lsz="       lsd --icon='never' -lSrh"
 alias   psg='       ps ax | grep -Pi'
 alias   pse='       ps -eo comm=, | grep --ignore-case'
 alias   pso='       ps -eo cmd=, | grep --ignore-case'
@@ -282,9 +283,14 @@ if  test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integ
 #-END 									#
 #---------------------------------------------------------------------- #
 export  DISPLAY=:0.0
+export HISTFILESIZE=
+export HISTSIZE=10000000
+export HISTFILE="$HOME/.bash_history2"
+export HISTCONTROL=ignoreboth 
+
 set -o vi
-shopt -s globstar
 shopt -s dotglob
+#######shopt -s globstar
 
 #---------------------------------------------------------------------- #
 #-QUICK-ADDED-ALIASES                                                   #
@@ -294,10 +300,4 @@ shopt -s dotglob
 
 
 
-
-export HISTFILESIZE=
-export HISTSIZE=10000000
-export HISTFILE="$HOME/.bash_history2"
-#-------------- ignorespace + erasedups
-export HISTCONTROL=ignoreboth 
 

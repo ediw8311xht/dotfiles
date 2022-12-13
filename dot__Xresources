@@ -1,15 +1,23 @@
 
-*.alpha:	    1
+*.alpha:	    0.84
+!*.font: 	    LektonMono:style=Regular:pixelsize=17:autohint=true:antialias=true
+!*.font: 	    xos4Terminus:style=Regular:pixelsize=15:autohint=true:antialias=true
+!*.font: 	    CascadiaMono:pixelsize=15:antialias=true
+!*.font: 	    RobotoMono:pixelsize=15:antialias=true
+!*.font: 	    Consolas:style=Regular:pixelsize=15:antialias=true:autohint=true
+!*.font: 	    Monoid:style=Regular:pixelsize=15:antialias=true:autohint=true
 !*.font: 	    Monaco:style=Regular:pixelsize=15:antialias=true:autohint=true
 !*.font: 	    Input Mono:style=Medium:pixelsize=15:antialias=true:autohint=true
-*.font: 	    Fira Code Nerd Font:style=Medium:pixelsize=15:antialias=true:autohint=true
+!*.font: 	    Fira Code Nerd Font:style=Medium:pixelsize=15:antialias=true:autohint=true
 !*.font: 	    Iosevka Custom:style=Medium:pixelsize=15:antialias=true:autohint=true
-!*.font: 	    SarasaMonoSlabCL:style=Medium:pixelsize=15:antialias=true:autohint=true
-!*.font: 	    Agave:style=Regular:pixelsize=15:antialias=true:autohint=true
+!*.font: 	    SarasaMonoSlabCL:style=Medium:pixelsize=18:antialias=true:autohint=true
+!*.font: 	    SarasaMonoSCNerd:style=Medium:pixelsize=15:antialias=true:autohint=true
+*.font: 	    AgaveNerdFont:style=Regular:pixelsize=17:antialias=true:autohint=true
 !*.font: 	    Hack:style=Regular:pixelsize=15:antialias=true:autohint=true
 !*.font: 	    Hermit:style=Regular:pixelsize=15:antialias=true:autohint=true
 !*.font: 	    Menlo:style=Regular:pixelsize=15:antialias=true:autohint=true
 !*.font: 	    IBM 3270:style=Regular:pixelsize=15:antialias=true:autohint=true
+!ISSUES in st with SharTechMono only with ('fig' displays incorrectly) ShareTechMono
 !!!!!!!COOL FONTS (my names for ref):
 !!!!!!!IBM 3270, Agave, SarasaMonoSlab, Iosevka Custom, Hack, Hermit, Menlo, Fira Code, Input Mono
 !!!!!!!!!!!!!!!!!!!!!!!----------------DEFAULT
@@ -18,7 +26,7 @@
 
 *.color:        #FFFFFF
 *.foreground:   #FFFFFF
-*.background:   #000000
+*.background:   #090909
 
 ! black
 *.color0:       #000000
@@ -124,8 +132,9 @@ i3wm.chi:   #001080
 !!!!!!!!!!!!!!!!!!!!!!!----------------URXVT-XTERM-Zutty
 
 
-URxvt.font:			        xft:SourceCodePro:pixelsize=15:antialias=true:autohint=true
-Zutty.font: 	            Hermit
+!URxvt.font:			        xft:SourceCodePro:pixelsize=15:antialias=true:autohint=true
+URxvt.font:			        xft:ShareTechMono:pixelsize=15:antialias=true:autohint=true
+!Zutty.font: 	            Hermit
 !URxvt.boldFont:             xft:Courier New:pixelsize=15:antialias=true:autohint=true
 xterm*dynamicColors:        true
 urxvt*dynamicColors:        on
