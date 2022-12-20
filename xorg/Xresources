@@ -1,30 +1,37 @@
 
-*.alpha:	    0.84
-!*.font: 	    LektonMono:style=Regular:pixelsize=17:autohint=true:antialias=true
-!*.font: 	    xos4Terminus:style=Regular:pixelsize=15:autohint=true:antialias=true
-!*.font: 	    CascadiaMono:pixelsize=15:antialias=true
-!*.font: 	    RobotoMono:pixelsize=15:antialias=true
-!*.font: 	    Consolas:style=Regular:pixelsize=15:antialias=true:autohint=true
-!*.font: 	    Monoid:style=Regular:pixelsize=15:antialias=true:autohint=true
-!*.font: 	    Monaco:style=Regular:pixelsize=15:antialias=true:autohint=true
-!*.font: 	    Input Mono:style=Medium:pixelsize=15:antialias=true:autohint=true
-!*.font: 	    Fira Code Nerd Font:style=Medium:pixelsize=15:antialias=true:autohint=true
-!*.font: 	    Iosevka Custom:style=Medium:pixelsize=15:antialias=true:autohint=true
-!*.font: 	    SarasaMonoSlabCL:style=Medium:pixelsize=18:antialias=true:autohint=true
-!*.font: 	    SarasaMonoSCNerd:style=Medium:pixelsize=15:antialias=true:autohint=true
-*.font: 	    AgaveNerdFont:style=Regular:pixelsize=17:antialias=true:autohint=true
-!*.font: 	    Hack:style=Regular:pixelsize=15:antialias=true:autohint=true
-!*.font: 	    Hermit:style=Regular:pixelsize=15:antialias=true:autohint=true
-!*.font: 	    Menlo:style=Regular:pixelsize=15:antialias=true:autohint=true
-!*.font: 	    IBM 3270:style=Regular:pixelsize=15:antialias=true:autohint=true
-!ISSUES in st with SharTechMono only with ('fig' displays incorrectly) ShareTechMono
+*.alpha:	    0.90
+!*.font: 	    ComicMono:size=14:autohint=true:antialias=true
+!*.font: 	    FantasqueSansMono:style=Regular:pixelsize=17:autohint=true:antialias=true
+!*.font: 	    Lekton:size=17:autohint=true:antialias=true
+!*.font: 	    xos4Terminus:size=15:autohint=true:antialias=true
+!*.font: 	    CascadiaMono:size=15:antialias=true
+!*.font: 	    RobotoMono:size=15:antialias=true
+!*.font: 	    Consolas:size=15:antialias=true:autohint=true
+!*.font: 	    Monoid:size=15:antialias=true:autohint=true
+!*.font: 	    Monaco:size=15:antialias=true:autohint=true
+!*.font: 	    InputMono:size=15:antialias=true:autohint=true
+!*.font: 	    FiraCodeNerdFont:size=18:antialias=false:autohint=false
+!*.font: 	    IosevkaCustom:size=15:antialias=true:autohint=true
+!*.font: 	    IosevkaNerdFont:size=15:antialias=true:autohint=true
+!*.font: 	    SarasaMonoSlabCL:pixelsize=15:antialias=true:autohint=true
+!*.font: 	    SarasaMonoSCNerd:size=15:antialias=true:autohint=true
+!*.font: 	    Hack:size=15:antialias=true:autohint=true
+!*.font: 	    Hermit:size=15:antialias=true:autohint=true
+!*.font: 	    Menlo:size=15:antialias=true:autohint=true
+!*.font: 	    IBM 3270:size=19:antialias=true:autohint=true
+!!!!!!!!!!!!!!ISSUES in st with SharTechMono only with ('fig' displays incorrectly) ShareTechMono
+!*.font: 	    ShareTechMono:size=17:autohint=true:antialias=true
 !!!!!!!COOL FONTS (my names for ref):
 !!!!!!!IBM 3270, Agave, SarasaMonoSlab, Iosevka Custom, Hack, Hermit, Menlo, Fira Code, Input Mono
-!!!!!!!!!!!!!!!!!!!!!!!----------------DEFAULT
 *.borderpx:     10px
+*.bordercolor:  red;
 *.cursorColor:  #999999
-
-*.color:        #FFFFFF
+*.internalBorder:   5
+*.border: #990000
+!
+*.font: 	    Agave:style=Regular:pixelsize=17:antialias=true
+!!!!!!!!!!!!!!!!!!!!!!!----------------DEFAULT
+!.color:        #FFFFFF
 *.foreground:   #FFFFFF
 *.background:   #090909
 
@@ -65,8 +72,30 @@
 *.color48:      #FFFFFF
 
 
+!!!!!!!!!!!!!!!!!!!!!!!----------------CYBER-PUNK-NEON
+!*.background:  #000b1e
+!*.background:  #000000
+!*.foreground:  #0abdc6
+!*.color0:  #123e7c
+!*.color1:  #ff0000
+!*.color2:  #d300c4
+!*.color3:  #f57800
+!*.color4:  #123e7c
+!*.color5:  #711c91
+!*.color6:  #0abdc6
+!*.color7:  #d7d7d5
+!*.color8:  #1c61c2
+!*.color9:  #ff0000
+!*.color10:  #d300c4
+!*.color11:  #f57800
+!*.color12:  #0090FF
+!*.color13:  #711c91
+!*.color14:  #0abdc6
+!*.color15:  #888888
+!*.color16:      #FFFFFF
+!*.color48:      #FFFFFF
 !!!!!!!!!!!!!!!!!!!!!!!----------------SPECIAL------(FLOAT)--FROM:-[http://dotshare.it/dots/136/]
-special_float*font: 	        Agave:style=Regular:pixelsize=15:antialias=true:autohint=true
+special_float*font: 	        Agave:size=15:antialias=true:autohint=true
 special_float*alpha:	        1
 special_float*background:       #000011
 special_float*foreground:       #f8f8f2
@@ -91,7 +120,7 @@ special_float*color7:           #d2d2d2
 special_float*color15:          #ffffff
 
 !!!!!!!!!!!!!!!!!!!!!!!----------------SPECIAL-------(NOTE)
-special_note*font: 	       Agave:style=Regular:pixelsize=15:antialias=true:autohint=true
+special_note*font: 	       Agave:size=15:antialias=true:autohint=true
 special_note*alpha:	       1
 special_note*background:   #000000
 special_note*foreground:   #d4d7d4
@@ -132,10 +161,10 @@ i3wm.chi:   #001080
 !!!!!!!!!!!!!!!!!!!!!!!----------------URXVT-XTERM-Zutty
 
 
-!URxvt.font:			        xft:SourceCodePro:pixelsize=15:antialias=true:autohint=true
-URxvt.font:			        xft:ShareTechMono:pixelsize=15:antialias=true:autohint=true
+!URxvt.font:			        xft:SourceCodePro:size=15:antialias=true:autohint=true
+URxvt.font:			        xft:ShareTechMono:size=15:antialias=true:autohint=true
 !Zutty.font: 	            Hermit
-!URxvt.boldFont:             xft:Courier New:pixelsize=15:antialias=true:autohint=true
+!URxvt.boldFont:             xft:Courier New:size=15:antialias=true:autohint=true
 xterm*dynamicColors:        true
 urxvt*dynamicColors:        on
 URxvt.scrollBar:	        false
@@ -147,9 +176,9 @@ URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-c:           perl:clipboard:copy
 URxvt.keysym.M-v:           perl:clipboard:paste
 URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
-!Xft*dpi:                    96
-!Xft*antialias:              True
-!Xft*hinting:                Full
+*dpi:                    96
+!*antialias:              True
+!*hinting:                Full
 URxvt.keysym.KP_Add:        +
 URxvt.keysym.KP_Subtract:   -
 URxvt.keysym.KP_Multiply:   *
@@ -175,17 +204,52 @@ URxvt.keysym.C-slash:       font-size:show
 URxvt.keysym.C-period:      font-size:hide
 URxvt.keysym.C-bracketleft: command:\033]720;1\007
 URxvt.keysym.C-bracketright:command:\033]721;1\007
-!URxvt.iso14755:                false
-!URxvt.iso14755_52:             false
+URxvt.iso14755:                false
+URxvt.iso14755_52:             false
 
+
+!!!!!!!!!!!!!!!!!!!!!!!----------------DMENU-----------!!!!!!!
+
+dmenu.color:        #FFFFFF
+dmenu.foreground:   #FFFFFF
+dmenu.background:   #090909
+
+! black
+dmenu.color0:       #000000
+dmenu.color8:       #2a495d
+
+! red
+dmenu.color1:       #FF0000
+dmenu.color9:       #d700ff
+
+! green
+dmenu.color2:       #00FF00
+dmenu.color10:      #00DD33
+
+! yellow
+dmenu.color3:       #e0c500
+dmenu.color11:      #f9c400
+
+! blue
+dmenu.color4:       #00A0FF
+dmenu.color12:      #0090FF
+! magenta
+dmenu.color5:       #898edf
+dmenu.color13:      #a0a6f8
+
+! cyan
+dmenu.color6:       #58ccc3
+dmenu.color14:      #63f5ea
+
+! white
+dmenu.color7:       #DDDDDD
+dmenu.color15:      #777777
+!
+dmenu.color48:      #FFFFFF
 
 
 !!!!!!!!!!!!!!!!!!!!!!!----------------COMMENT-OUT-----!!!!!!!
 !!!!START_1!!!!
 !!!!ON!!!!!!!!!
-!*.alphaOffset: 0.75
 !*.shading:	   	20
-!st.alpha: 0.95
 !*.alphaOffset: 0.1
-
-

@@ -5,19 +5,12 @@
 #-
 #-If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-#PS1='[\u@\h \W]\$ '
 alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
-#echo "$(shopt | grep -Piv '[ ]*\ze[ ]' )"
-#----------PS0
 PS0=''
 PS0+='\e[0 q'
-#----------PS1
-#readarray me_test -d '' 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz0123456789_'
-#for i in 
 INSERT='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g'\'')'
 INSERT2='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g; s/[^ ]/ /g'\'')'
-#PS1+='\[\e[1;37m\]${USER::1}|'
 PS1=''    
 PS1+='\[\e[1;37m\]['
 PS1+='\[\e[m\]'
@@ -54,27 +47,23 @@ kn() {
     ns=($(echo "$(grep -Pi '^ [0-9]+\K.*'"${1}"'.*$' <<< $(ps ax))"))
     echo "MATCHES GOT: ${#ns[@]}"; echo "${ns[*]}"
 )}
-acheck() {
-   (if [[ "${1}" =~ ^-.+$ ]] ; then ADD="${1}"; shift 1 ; fi
-    while [[ -n "${1}" ]] ; do
-        compgen -c  | grep ${ADD:--x} "${1}"; shift
-    done									 			 			 
-)}
 cg() {
     if [[ -z "$*" ]] ; then
         compgen -A function -abck | sort | uniq -c | grep -Pio '.+[0-9]+ \K.*'
     else 
         while [[ -n "${1}" ]] ; do
-            compgen -A function -abck | sort | uniq -c | grep -Pio '.+[0-9]+ \K.*' | grep -Pio "${1}"
+            compgen -A function -abck | sort | uniq -c | grep -Pio '.+[0-9]+ \K.*' | grep -Pi "${1}"
             compgen -A function -abck | sort | uniq -c | grep -Pio '\(?=>.+[0-9]+ \).*'; shift
         done									 			 			 
     fi
 }
 my_cd()	{
-   (if   [[ "${1}" = '-g' ]] ; then d='/'; shift 1; fi
+    if   [[ "${1}" = '-g' ]] ; then 
+        cd /; shift 1
+    fi
 
-    cd "${@:-"$(find ${d:-.} -type d | fzf --preview="ls -1 {}" )"}"
-)}
+    cd "${@:-"$(find . -type d | fzf --preview="ls -1 {}" )"}"
+}
 vid() {
    (if [[ "${1}" =~ ^-mono ]] ; then AUD="mono"; shift 1; fi
 
@@ -89,9 +78,7 @@ upd_pip_z() {
     return "$?"
 )}
 fpend() {
-   (if [[ "$1" =~ ^-[dD](ate)? ]] ; then shift 1
-                                         MDATE="#$(date)"
-    fi
+   (if [[ "$1" =~ ^-[dD](ate)? ]] ; then shift 1; MDATE="#$(date)"; fi
     if [[ -f "${1}"            ]] ; then
         for i in "${@:2}" "${MDATE:-"_"}"; do 
             echo "${i}" '  |---|  ' "${1}"
@@ -107,23 +94,11 @@ addally() {
 rep_char() {
     (z="${1}"; while ((z--)) ; do echo -n "${2}"; done
 )}
-pf()     {   find 		  "${2:-"$HOME"}" | grep -Pi "${1}" ; }
-nifs()   {   IFS=$'\n'   ; printf "IFS=%q" "${IFS}"; echo ""        ; }
-rifs()   {   IFS=$' \t\n'; printf "IFS=%q" "${IFS}"; echo ""        ; }
-ppifs()  {   printf "IFS=%q" "${IFS}"; echo ""                      ; }
-pifs()   {   printf     "%q" "${IFS}"; echo ""                      ; }
-#pasta()  {   cat              <<< $(pas '0')                        ; }
-kad()    {   docker          kill $(docker ps -q)                   ; }
-rad()    {   docker            rm $(docker ps -a -q)                ; }
-#pagse()  {   
-#    A="$(pacman -Ss "${1}" | grep -Pio '')"
-#
-#    while [[ -n "$2" ]] ; do
-#        A="$(grep -B 1
-#        shift 1
-#    done
-#
-#}
+nifs()   { IFS=$'\n'   ; printf 'IFS=%q\n' "${IFS}" ; }
+rifs()   { IFS=$' \t\n'; printf 'IFS=%q\n' "${IFS}" ; }
+ppifs()  { printf "IFS=%q" "${IFS}"; echo ""        ; }
+pifs()   { printf     "%q" "${IFS}"; echo ""        ; }
+acheck() { compgen -c  | grep -x ${@}               ; }
 
 
 #---------------------------------------------------------------------- #
@@ -135,6 +110,7 @@ alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for anoth
 alias   fl="        pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
 alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
 alias   b='         cd "$HOME/bin/"'
+alias   c='         my_cd'
 alias   f='         $HOME/bin/my_find.sh'
 alias   h='         cd "$HOME"'
 alias   t='	        trash-put'
@@ -147,21 +123,23 @@ alias   fz='        my_cd'
 alias   fo='        xdg-open "$(fzf)"'
 alias   fn='        nvim     "$(fzf --preview="nvim {}")"'
 alias   gf='        find / -iname'
+alias   hf='        find $HOME -iname'
 alias   ic='        clear; imgcat'
 alias   nv='        nvim'
+alias   snv='       sudoedit'
 alias   pc='	    clear; neofetch'
 alias   pe='        ps -eo comm=,'
 alias   po='        ps -eo cmd=,'
-alias   rm='        echo "rm has been replaced with this message use trash-put or /bin/rm instead."'
+alias   conf='      cd "$XDG_CONFIG_HOME"'
 alias   qread='     zathura  "$(fzf)"'
 alias   free='      free -m'
 alias   rmi='       rm -i'
 alias   pdf='       zathura'
 alias   i3c='       i3 -C "$HOME/.config/i3/config"'
-alias   i3e='       nvim -p "$HOME/.config/i3/"*'
 alias   tyren='     perl-rename -v -n'
 alias   doren='     perl-rename -v'
 alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
+alias   ka='        killall'
 
 #alias   pacman='    pac_func() { pacman "$@" 2>&1 | tee -a "$HOME/PACMAN_LOG.txt"; }; pac_func'
 #PAC----------------------------------NON-LOCAL----------#
@@ -176,7 +154,7 @@ alias   yayse='     yay --sortby="votes" -Ss'
 alias   yaysename=' yay --sortby="votes" --searchby="name" -Ss'
 alias   yayi='      yay -Si'
 alias   yayp='      yay -P --stats'
-#--------------------------------------LOCAL-------------#
+#PAC-----------------------------------LOCAL-------------#
 alias   pacsel='    pacman -Qs'
 alias   pacil='     pacman -Qi'
 alias   yaysel='    yay -Qs'
@@ -186,15 +164,15 @@ alias   pacclean='  yay -Scc; yay --clean'
 alias   pacfrom='   pacman -Qo'
 #PAC-----------------------------------------------------#
 
+alias   i3e='       nvim -p "$HOME/.config/i3/"*'
 alias   xr='        echo ""; nvim $HOME/.Xresources; xrdb ~/.Xresources'
 alias   ebash='     nvim $HOME/.bashrc; source ~/.bashrc'
-alias   snv='       sudoedit'
-alias   ysb='       source $HOME/.bashrc'
+alias   einp='      nvim $HOME/.inputrc'
 alias   editnv='    nvim $HOME/.config/nvim/init.vim'
 alias   emime='     nvim $HOME/.config/mimeapps.list'
-alias   capkey='    xev | grep -Pio '\''(keysym [^)]*)'\'
-
 #-------------------------------------GREP---------------#
+alias   ysb='       source $HOME/.bashrc'
+alias   capkey='    xev | grep -Pio '\''(keysym [^)]*)'\'
 alias   g='         grep --perl-regexp --ignore-case'
 alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf}\
                                 --exclude=\*.{apk,snap,out,jar,sx,s,bin,o,exe,deb,pyc,pyo}\
@@ -206,7 +184,6 @@ alias   gr='        (echo ""; read _z; grep -Pi  "${_z}" "$HOME/.bashrc") <<< '
 alias   nvgr='      (echo ""; read _z; grep -Pri "${_z}" "$HOME/.config/nvim/") <<< '
 alias   i3gr='      (echo ""; read _z; grep -Pri "${_z}" "$HOME/.config/i3/") <<< '
 #-------------------------------------GREP---------------#
-
 alias   gport='     _myfunc() { netstat -lntu | grep -Pi "${@:-""}"; }; _myfunc'
 alias   isport='    (read _z; ss -lp "sport = :${_z}") <<< '
 alias   img='       nsxiv -0'
@@ -239,22 +216,24 @@ alias   desk='      cd "$HOME/Desktop/"'
 alias   vids='      cd "$HOME/Videos/"'                                                 
 alias   nitroz='    cd "$HOME/Pictures/NitroWallpapers"'
 alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'                                    
-alias   ure='       ufw reload'
-alias   udi='       ufw disable'
-alias   uen='       ufw enable'
 alias   testr='     . $HOME/test.sh'
 alias   git_mt='    git log --pretty=format:"%h %s" --graph'
 alias   mansec='    man -f'
+alias   sap='       apropos'
 alias   listman='   man -f'
 alias   men='       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" 2>/dev/null | $PAGER) <<< '
 alias   upfonts='   fc-cache && fc-cache-32; echo "return $?"'
 alias   getfont='   fc-list -v | grep -i '
-#---------LIST-COMMANDS---------#
-alias   list_commands='compgen -c'
 alias   lc='        compgen -c'
 alias   slc='       compgen -c | grep -i'
+alias   list_coms=' compgen -c'
 #---------------------------------------------------------------------- #
-#-EXPORT							        #
+#-QUICK-ADDED-ALIASES                                                   #
+#---------------------------------------------------------------------- #
+
+
+#---------------------------------------------------------------------- #
+#-EXPORT							                                    #
 #---------------------------------------------------------------------- #
 export  PAGER='most'
 export  TERM=st
@@ -262,42 +241,37 @@ export  EDITOR="nvim"
 export  FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 export  XDG_CONFIG_HOME="$HOME/.config"
 export  XDG_CACHE_HOME="$HOME/.cache"
-
-export QT_STYLE_OVERRIDE=kvantum
+export  BROWSER="/usr/bin/elinks"
 export  YAD_POS_X="1920"
 export  YAD_POS_Y="1080"
+
+export ATHAME_ENABLED=1
+export ATHAME_SHOW_MODE=1
+export ATHAME_SHOW_COMMAND=1
+export ATHAME_SHOW_ERROR=0
+export ATHAME_VIM_PERSIST=1
+export ATHAME_USE_JOBS=1
+
 #---------------------------------------------------------------------- #
 #-`PATH`								#
 #---------------------------------------------------------------------- #
-if  [ -d "$HOME/bin/"         			                 ] ;    then PATH="$HOME/bin/:$PATH"        			                             ;	fi
-if  [ -d "$HOME/bin/i3wm"     			                 ] ;    then PATH="$HOME/bin/i3wm:$PATH"    			                             ; 	fi
-if  [ -d "$HOME/bin/personal" 			                 ] ;    then PATH="$HOME/bin/personal:$PATH"			                             ; 	fi
-if  [ -d "$HOME/bin/ufw"      			                 ] ; 	then PATH="$HOME/bin/ufw:$PATH"     			                             ; 	fi
-if  [ -d "$HOME/bin/random"   			                 ] ; 	then PATH="$HOME/bin/random:$PATH"  			                             ; 	fi
-if  [ -d "$HOME/Desktop/MY_APPS"                   		 ] ; 	then PATH="$HOME/Desktop/MY_APPS:$PATH"                                		     ; 	fi
-if  [ -d "/etc/systemd/user" 			                 ] ; 	then PATH="/etc/systemd/user:$PATH"                                                  ; 	fi
+if  [ -d "$HOME/bin/"         	 ] ; then PATH="$HOME/bin/:$PATH"        	 ;	fi
+if  [ -d "$HOME/bin/txt2man"     ] ; then PATH="$HOME/bin/txt2man:$PATH"     ;	fi
+if  [ -d "$HOME/bin/i3wm"     	 ] ; then PATH="$HOME/bin/i3wm:$PATH"    	 ; 	fi
+if  [ -d "$HOME/bin/gman"     	 ] ; then PATH="$HOME/bin/gman:$PATH"    	 ; 	fi
+if  [ -d "$HOME/bin/personal" 	 ] ; then PATH="$HOME/bin/personal:$PATH"	 ; 	fi
+if  [ -d "$HOME/bin/ufw"      	 ] ; then PATH="$HOME/bin/ufw:$PATH"     	 ; 	fi
+if  [ -d "$HOME/bin/random"   	 ] ; then PATH="$HOME/bin/random:$PATH"  	 ; 	fi
+if  [ -d "$HOME/Desktop/MY_APPS" ] ; then PATH="$HOME/Desktop/MY_APPS:$PATH" ; 	fi
+if  [ -d "/etc/systemd/user" 	 ] ; then PATH="/etc/systemd/user:$PATH"     ; 	fi
+if  [ -d "/usr/bin"              ] ; then PATH="/usr/bin/:$PATH"             ;  fi
 
 if  test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 if  test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
-#---------------------------------------------------------------------- #
-#-END 									#
-#---------------------------------------------------------------------- #
-export  DISPLAY=:0.0
-export HISTFILESIZE=
-export HISTSIZE=10000000
-export HISTFILE="$HOME/.bash_history2"
-export HISTCONTROL=ignoreboth 
-
 set -o vi
 shopt -s dotglob
 #######shopt -s globstar
-
 #---------------------------------------------------------------------- #
-#-QUICK-ADDED-ALIASES                                                   #
+#-END 									#
 #---------------------------------------------------------------------- #
-
-
-
-
-
 
