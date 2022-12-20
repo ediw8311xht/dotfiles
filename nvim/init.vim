@@ -10,10 +10,8 @@
 
 "<--------- LET/SET -------------------------------------------------------->
 filetype plugin on
+filetype plugin indent on
 syntax on
-let g:mapleader = ","
-let mapleader = ","
-let maplocalleader = ","
 set magic
 set termguicolors
 set splitright
@@ -42,95 +40,129 @@ set timeout
 set timeoutlen=700
 set ttimeoutlen=0
 set wildmode=longest,list,full
-set foldcolumn=auto:4
+set foldcolumn=auto
 set showmode
 set virtualedit=none
-
-" https://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim
-filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
 set expandtab
-"set smarttab
+
+let g:mapleader = ","
+let mapleader = ","
+let maplocalleader = ","
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 "<--------- MY VARS -------------------------------------------------------->
 let g:myBg = ["NONE", "#000000", "#333333", "#111111", "#220000", "#002200", "#000022", "#FFFFFF"]
 let g:myFg = [".",    ".",       ".",       ".",       ".",       ".",       ".",       "#000000"]
 let g:python3_host_prog="/usr/bin/python"
-
-"let g:polyglot_disabled = ['markdown']
 "<--------- PLUGINS -------------------------------------------------------->
 call plug#begin()
-"-----------COMMENTED-OUT
-"Plug 'vim-autoformat/vim-autoformat'
-"Plug 'junegunn/vim-easy-align'
-"Plug 'sukima/xmledit'
-"Plug 'bmeneg/coc-perl', {'do': 'yarn install && yarn build'}
-"Plug 'rakr/vim-one'
-"Plug 'sheerun/vim-polyglot'
-"Plug 'VebbNix/lf-vim'
-"Plug 'prettier/vim-prettier', {
-"  \ 'do': 'yarn install --frozen-lockfile --production',
-"  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
-"-----------NEOCLIDE-COMPLETION
-Plug 'andymass/vim-matchup'
-Plug 'AndrewRadev/tagalong.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'windwp/nvim-autopairs'
-"Plug 'windwp/nvim-ts-autotag'
-
-"-----------COLORSCHEMES
-Plug 'bignimbus/pop-punk.vim'
-Plug 'agude/vim-eldar'
-Plug 'romgrk/github-light.vim'
-Plug 'rafi/awesome-vim-colorschemes'
-Plug 'marko-cerovac/material.nvim'
-"-----------FORMATTING
-Plug 'godlygeek/tabular'
-"-----------SYNTAX
-Plug 'VebbNix/lf-vim'
-Plug 'dense-analysis/ale'
-Plug 'PotatoesMaster/i3-vim-syntax'
-"-----------ETC
-Plug 'https://github.com/vim-scripts/restore_view.vim'
-Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
-Plug 'voldikss/vim-floaterm'
-Plug 'ptzz/lf.vim'
-Plug 'martineausimon/nvim-lilypond-suite'
-Plug 'MunifTanjim/nui.nvim'
-Plug 'wbthomason/packer.nvim'
-Plug 'neovim/nvim-lspconfig'
 "-----------COQ
-"Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-" 9000+ Snippets
-"Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-" lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
-" Need to **configure separately**
-"Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
-" - shell repl
-" - nvim lua api
-" - scientific calculator
-" - comment banner
-" - etc
+Plug 'ms-jpq/coq_nvim',       {'branch':       'coq'} " 9000+ Snippets
+Plug 'ms-jpq/coq.artifacts',  {'branch': 'artifacts'} " lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
+"" Need to **configure separately**
+"Plug 'ms-jpq/coq.thirdparty', {'branch':        '3p'} " - shell repl  - nvim lua api  - scientific calculator  - comment banner  - etc 
+"-----------COQ
+"language server parser
+Plug 'neovim/nvim-lspconfig'
+
+"treesitter, self explanatory
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+"show-all-matching-tags-vim
+Plug 'andymass/vim-matchup'
+
+"autoclose html tags
+Plug 'alvan/vim-closetag'
+
+"autorename html tags
+Plug 'AndrewRadev/tagalong.vim'
+
+"syntax-for-lf
+Plug 'VebbNix/lf-vim'
+
+"syntax-for-i3
+Plug 'PotatoesMaster/i3-vim-syntax'
+
+"auto-save-restore-view :) --best plugin
+Plug 'https://github.com/vim-scripts/restore_view.vim'
+
+"realtime-html-editor
+Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
+
+"showmarks
+Plug 'chentoast/marks.nvim'
+
+"req for lilypond, cool ui stuff
+Plug 'MunifTanjim/nui.nvim'
+
+"lilypondstuff--music-score-creation
+Plug 'martineausimon/nvim-lilypond-suite'
+
+"just for fun record stats about programming
+Plug 'wakatime/vim-wakatime'
+
 call plug#end()
 "<--------_G-VAR_<leader>f_from-:-lf
 lua require('base')
 let g:lf_map_keys           = 0
-let g:ale_fixers            = {  'css': ['stylelint'],                       }
-let g:ale_linters           = { 'html': ['htmlhint' ], 'css': ['stylelint'], }
 let g:html_mode             = 1
-let g:tagalong_verbose      = 1
-let g:ale_linters_explicit  = 1
-let g:ale_fix_on_save       = 1
 let g:is_bash               = 1
-let g:lf_width              = 100
-let g:lf_height             = 40
+"-----------------CLOSETAG
+" filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+" filetypes like xml, html, xhtml, ...
+" These are the file types where this plugin is enabled.
+"
+let g:closetag_filetypes = 'html,xhtml,phtml'
+
+" filetypes like xml, xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+
+" integer value [0|1]
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+"
+let g:closetag_emptyTags_caseSensitive = 1
+
+" dict
+" Disables auto-close if not in a "valid" region (based on filetype)
+"
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ 'typescriptreact': 'jsxRegion,tsxRegion',
+    \ 'javascriptreact': 'jsxRegion',
+    \ }
+
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'
+
 
 "<--------- COLOR SCHEME STUFF --------------------------------------------->
-colorscheme   pop-punk
+colorscheme   elflord
 
+hi  MatchParen          cterm=NONE ctermbg=NONE ctermfg=NONE gui=reverse
+hi  cursorline          cterm=bold ctermfg=NONE ctermbg=18   gui=NONE       guibg=#003153 guifg=NONE
+hi  cursorcolumn        gui=bold,italic,reverse
+hi  FoldColumn          cterm=NONE ctermbg=NONE ctermfg=NONE gui=bold        guibg=NONE    guifg=#00FF00 
+hi  Folded              cterm=NONE ctermbg=NONE ctermfg=NONE gui=italic      guibg=NONE    guifg=#888888 
+"hi  Normal              cterm=NONE ctermbg=17   ctermfg=NONE gui=NONE       guibg=NONE    guifg=#FFFFFF
 "hi htmlTag            gui=reverse   guifg=#90b0d1 guibg=#000033
 "hi htmlSpecialTagName gui=reverse
 "hi html gui=reverse
@@ -138,14 +170,8 @@ colorscheme   pop-punk
 "hi htmlEndTag         gui=NONE   guifg=#000000 guibg=#FFFFFF
 "hi  Visual              cterm=NONE ctermbg=NONE ctermfg=16   gui=NONE       guibg=#333333 guifg=#00FF00
 "hi  StatusLine          cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE       guibg=#222222 guifg=#009900
-"hi  Normal              cterm=NONE ctermbg=17   ctermfg=NONE gui=NONE       guibg=NONE    guifg=#FFFFFF
 "hi  LineNr              cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=NONE    guifg=#008800
 "hi  NonText             cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=NONE    guifg=NONE
-hi  MatchParen          cterm=NONE ctermbg=NONE ctermfg=NONE gui=reverse
-hi  cursorline          cterm=bold ctermfg=NONE ctermbg=18   gui=NONE       guibg=#003153 guifg=NONE
-hi  cursorcolumn        gui=bold,italic,reverse
-hi  FoldColumn          cterm=NONE ctermbg=NONE ctermfg=NONE gui=bold        guibg=NONE    guifg=#00FF00 
-hi  Folded              cterm=NONE ctermbg=NONE ctermfg=NONE gui=italic      guibg=NONE    guifg=#888888 
 "hi  CocSearch           cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=#FF0000 guifg=#000000
 "hi  CocMenuSel          cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=#FF0000 guifg=#000000
 "hi  CocErrorHighlight   cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=#FF0000 guifg=#000000
@@ -187,8 +213,6 @@ function! ToggleScheme()
     elseif g:colors_name == 'eldar'     | colo elflord  | hi Normal guifg=#FFFFFF
     elseif g:colors_name == 'elflord'   | colo delek    | hi Normal guifg=#000000
     elseif g:colors_name == 'delek'     | colo morning  | hi Normal guifg=#000000
-    elseif g:colors_name == 'morning'   | colo atom     | hi Normal guifg=#FFFFFF
-    elseif g:colors_name == 'atom'      | colo one      | hi Normal guifg=#FFFFFF
     else                | colo eldar    | colo pop-punk | hi Normal guifg=#FFFFFF guibg=NONE
                           hi  cursorline gui=NONE guibg=#220000 guifg=NONE
     end
@@ -214,9 +238,9 @@ function! CycleBackgroundColor()
 endfunction
 
 function! ToggleCOC()
-    if g:coc_enabled == "0" | :CocEnable
-    else                    | :CocDisable
-    end
+    "if g:coc_enabled == "0" | :CocEnable
+    "else                    | :CocDisable
+    "end
 endfunction
 
 function! ToggleVirtualEdit()
@@ -225,12 +249,18 @@ function! ToggleVirtualEdit()
     end
 endfunction
 
-
-
 "<--------- MAPPINGS ------------------------------------------------------->
+"   COQ----------->
+let g:coq_settings = { "keymap.recommended": v:false }
 
-
-nnoremap \ `
+" Keybindings
+"ino <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
+"ino <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"
+"ino <silent><expr> <BS>    pumvisible() ? "\<C-e><BS>"  : "\<BS>"
+"ino <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
+"ino <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+"ino <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<BS>"
+"   COQ----------->
 "list keybindings with :help index
 "list user keybindings with :map
 nnoremap <leader>. :NERDTreeToggle<esc>
@@ -240,7 +270,7 @@ nnoremap <leader>3 :PlugInstall<CR>
 nnoremap <leader>a :call ToggleCOC()<esc>
 nnoremap <leader>b :buffer<space>
 nnoremap <leader>c :set nocursorline!<esc>
-nnoremap <leader>d :buffers<esc>
+nnoremap <leader>d :Bracey<esc>
 nnoremap <leader>e :set cursorcolumn!<esc>
 nnoremap <leader>f :set wrap!<esc>
 nnoremap <silent><leader>h :call ToggleHiddenAll()<CR>
@@ -254,7 +284,7 @@ nnoremap <leader>x :!%:p<esc>
 nnoremap <leader>y :hi Normal guibg=Transparent<esc>
 nnoremap <leader>z z
 nnoremap <leader>A :call CycleBackgroundColor()<CR><esc>
-nnoremap <leader>B :Bracey<esc>
+nnoremap <leader>B :buffers<esc>
 nnoremap <leader>H :vert helpgrep 
 nnoremap <leader>N :cprevious<esc>
 nnoremap <leader>M :messages<esc>
@@ -275,13 +305,17 @@ noremap <leader>zv
 
 map <leader>l :Lf<CR>
 
+
 vnoremap <Space> zf
+"REMOVE TABS ON VISUAL SELECTION
 vnoremap im :s/\%V[ \t]*//<esc>
+
 nnoremap <silent> <esc> :noh <cr><esc>
 nnoremap / /\v\c
 nnoremap <lt> :tabprevious<esc>
 nnoremap > :tabnext<esc>
 nnoremap x "xx
+nnoremap \ `
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 "<--------- STATUS LINE ---------------------------------------------------->
 set statusline=\ %F\ \|
@@ -289,44 +323,20 @@ set statusline+=\%l\(%L\)\|%v\
 set statusline+=%m\ 
 set statusline+=%=\ %L\ l,\ 
 set statusline+=%{wordcount().words}\ w\ 
-
 "<--------- EXTRA ---------------------------------------------------------->
-augroup bashiez
-    au!
-    autocmd BufNewFile,BufRead *.sh set syntax=zsh
-augroup END
+"augroup bashiez
+"    au!
+"    autocmd BufNewFile,BufRead *.sh set syntax=zsh
+"augroup END
 
+autocmd BufNewFile,BufRead *.sh                     set syntax=zsh
 autocmd BufNewFile,BufRead ~/.config/polybar/config setfiletype dosini
 autocmd BufNewFile,BufRead ~/.config/i3/*           setfiletype i3
+autocmd BufNewFile,BufRead *athamerc                setfiletype vim
 "<--------- INFO ----------------------------------------------------------->
 "                   %<"      _-_is expanded to the name of the current buffer
 "    :help key-notation      _-_for list of keys and their names
 "<-------------------------------------------------------------------------->
 
-""---------------GOOD? YES BUT STUPID
-"function! GetUrls()
-"    :v/\(href\|src\)\(=["][^"]*["\_]\)/d
-"    :%s/.*\(href\|src\)\(=["][^"]*["\_]\)/\1\2\r/g
-"    :v/\(href\|src\)\(=["][^"]*["\_]\)/d
-"    :%s/\(src\)\?[^"]*["]\([^"]*\)/\1 \2/g
-"    normal! gv
-"    :sort
-"    :%s/^[ ]\+\(.*\)/\1/
-"endfunction
-"
-"function! GetUrls2()
-"    :%s/\("[^"]*"\)/\r\1\r/g
-"    :v/["]\(\(ftp\|http\|https\):[/][/]\|www[.]\)[^"]*"/d
-"endfunction
 
-"<--------- COMMENTED OUT -------------------------------------------------->
-
-""""""""""""""""""
-"function! ToggleWrap()
-"    if &wrap == "" | :set wrap "":set colorcolumn=
-"    else           | :set nowrap "":set colorcolumn=80
-"    endif
-"    :redraw
-"endfunction
-"
 

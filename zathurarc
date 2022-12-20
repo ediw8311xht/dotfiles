@@ -1,0 +1,14 @@
+
+set window-title-basename "true"
+set selection-clipboard "clipboard"
+set adjust-open "best-fit"
+set pages-per-row "1"
+map <C-h> toggle_statusbar
+map ,h toggle_statusbar
+
+#set default-bg                  "#000000" # Background
+#set default-fg                  "#000000" # Foreground
+#set recolor-lightcolor          "#101010" # Background
+#set recolor-darkcolor           "#00FF00" # Foreground
+#set recolor true
+#set adjust-open width

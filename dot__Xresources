@@ -1,0 +1,255 @@
+
+*.alpha:	    0.90
+!*.font: 	    ComicMono:size=14:autohint=true:antialias=true
+!*.font: 	    FantasqueSansMono:style=Regular:pixelsize=17:autohint=true:antialias=true
+!*.font: 	    Lekton:size=17:autohint=true:antialias=true
+!*.font: 	    xos4Terminus:size=15:autohint=true:antialias=true
+!*.font: 	    CascadiaMono:size=15:antialias=true
+!*.font: 	    RobotoMono:size=15:antialias=true
+!*.font: 	    Consolas:size=15:antialias=true:autohint=true
+!*.font: 	    Monoid:size=15:antialias=true:autohint=true
+!*.font: 	    Monaco:size=15:antialias=true:autohint=true
+!*.font: 	    InputMono:size=15:antialias=true:autohint=true
+!*.font: 	    FiraCodeNerdFont:size=18:antialias=false:autohint=false
+!*.font: 	    IosevkaCustom:size=15:antialias=true:autohint=true
+!*.font: 	    IosevkaNerdFont:size=15:antialias=true:autohint=true
+!*.font: 	    SarasaMonoSlabCL:pixelsize=15:antialias=true:autohint=true
+!*.font: 	    SarasaMonoSCNerd:size=15:antialias=true:autohint=true
+!*.font: 	    Hack:size=15:antialias=true:autohint=true
+!*.font: 	    Hermit:size=15:antialias=true:autohint=true
+!*.font: 	    Menlo:size=15:antialias=true:autohint=true
+!*.font: 	    IBM 3270:size=19:antialias=true:autohint=true
+!!!!!!!!!!!!!!ISSUES in st with SharTechMono only with ('fig' displays incorrectly) ShareTechMono
+!*.font: 	    ShareTechMono:size=17:autohint=true:antialias=true
+!!!!!!!COOL FONTS (my names for ref):
+!!!!!!!IBM 3270, Agave, SarasaMonoSlab, Iosevka Custom, Hack, Hermit, Menlo, Fira Code, Input Mono
+*.borderpx:     10px
+*.bordercolor:  red;
+*.cursorColor:  #999999
+*.internalBorder:   5
+*.border: #990000
+!
+*.font: 	    Agave:style=Regular:pixelsize=17:antialias=true
+!!!!!!!!!!!!!!!!!!!!!!!----------------DEFAULT
+!.color:        #FFFFFF
+*.foreground:   #FFFFFF
+*.background:   #090909
+
+! black
+*.color0:       #000000
+*.color8:       #2a495d
+
+! red
+!*.color1:       #f12f2c
+*.color1:       #FF0000
+*.color9:       #d700ff
+
+! green
+*.color2:       #00FF00
+*.color10:      #00DD33
+
+! yellow
+*.color3:       #e0c500
+*.color11:      #f9c400
+
+! blue
+!*.color4:       #2587cc
+*.color4:       #00A0FF
+*.color12:      #0090FF
+
+! magenta
+*.color5:       #898edf
+*.color13:      #a0a6f8
+
+! cyan
+*.color6:       #58ccc3
+*.color14:      #63f5ea
+
+! white
+*.color7:       #DDDDDD
+*.color15:      #777777
+
+*.color48:      #FFFFFF
+
+
+!!!!!!!!!!!!!!!!!!!!!!!----------------CYBER-PUNK-NEON
+!*.background:  #000b1e
+!*.background:  #000000
+!*.foreground:  #0abdc6
+!*.color0:  #123e7c
+!*.color1:  #ff0000
+!*.color2:  #d300c4
+!*.color3:  #f57800
+!*.color4:  #123e7c
+!*.color5:  #711c91
+!*.color6:  #0abdc6
+!*.color7:  #d7d7d5
+!*.color8:  #1c61c2
+!*.color9:  #ff0000
+!*.color10:  #d300c4
+!*.color11:  #f57800
+!*.color12:  #0090FF
+!*.color13:  #711c91
+!*.color14:  #0abdc6
+!*.color15:  #888888
+!*.color16:      #FFFFFF
+!*.color48:      #FFFFFF
+!!!!!!!!!!!!!!!!!!!!!!!----------------SPECIAL------(FLOAT)--FROM:-[http://dotshare.it/dots/136/]
+special_float*font: 	        Agave:size=15:antialias=true:autohint=true
+special_float*alpha:	        1
+special_float*background:       #000011
+special_float*foreground:       #f8f8f2
+special_float*borderpx:         18px
+special_float*cursorColor:      #d4d7d4
+special_float*internalBorder:   5
+special_float*color0:           #1B1D1E
+special_float*color8:           #505354
+special_float*color1:           #ff005f
+special_float*color9:           #ff6767
+special_float*color2:           #afd700
+special_float*color10:          #8ce25d
+special_float*color3:           #ff8f00
+special_float*color11:          #ffb445
+special_float*color4:           #1165e9
+special_float*color12:          #5496ff
+special_float*color5:           #8C54FE
+special_float*color13:          #9E6FFE
+special_float*color6:           #4c8ea1
+special_float*color14:          #6bc1d0
+special_float*color7:           #d2d2d2
+special_float*color15:          #ffffff
+
+!!!!!!!!!!!!!!!!!!!!!!!----------------SPECIAL-------(NOTE)
+special_note*font: 	       Agave:size=15:antialias=true:autohint=true
+special_note*alpha:	       1
+special_note*background:   #000000
+special_note*foreground:   #d4d7d4
+special_note*borderpx:     18px
+special_note*cursorColor:  #d4d7d4
+special_note*color0:       #232b34
+special_note*color8:       #4f5e67
+special_note*color1:       #cd6e42
+special_note*color9:       #b36846
+special_note*color2:       #1dc16f
+special_note*color10:      #48b27d
+special_note*color3:       #d4d7d4
+special_note*color11:      #e3e7e3
+special_note*color4:       #1dc19b
+special_note*color12:      #56ab98
+special_note*color5:       #d4d7d4
+special_note*color13:      #e3e7e3
+special_note*color6:       #23e885
+special_note*color14:      #57c08b
+special_note*color7:       #d4d7d4
+special_note*color15:      #fbfffb
+
+!!!!!!!!!!!!!!!!!!!!!!!----------------i3wm------------!!!!!!!
+!i3wm.focus__TextC:          #00bcc2
+!i3wm.inact__TextC:          #004f98
+!i3wm.unifo__TextC:          #AAAAAA
+!                           
+!i3wm.focus__BordC:          #D7E6FF 
+!i3wm.inact__BordC:          #333333
+!i3wm.unifo__BordC:          #333333
+i3wm.back1:  #0060B0 
+i3wm.back2:  #0060B0  
+!i3wm.tx1:   #3070FF    
+i3wm.tx2:   #D7E6FF   
+i3wm.tx3:   #888888   
+i3wm.chi:   #001080    
+
+!!!!!!!!!!!!!!!!!!!!!!!----------------URXVT-XTERM-Zutty
+
+
+!URxvt.font:			        xft:SourceCodePro:size=15:antialias=true:autohint=true
+URxvt.font:			        xft:ShareTechMono:size=15:antialias=true:autohint=true
+!Zutty.font: 	            Hermit
+!URxvt.boldFont:             xft:Courier New:size=15:antialias=true:autohint=true
+xterm*dynamicColors:        true
+urxvt*dynamicColors:        on
+URxvt.scrollBar:	        false
+URxvt.saveLines:	        65535
+URxvt.perl-ext-common:      keyboard-select,url-select,clipboard,font-size
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.keysym.M-c:           perl:clipboard:copy
+URxvt.keysym.M-v:           perl:clipboard:paste
+URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
+*dpi:                    96
+!*antialias:              True
+!*hinting:                Full
+URxvt.keysym.KP_Add:        +
+URxvt.keysym.KP_Subtract:   -
+URxvt.keysym.KP_Multiply:   *
+URxvt.keysym.KP_Divide  :   /
+URxvt.keysym.KP_Decimal :   .
+URxvt.keysym.KP_Separator : ,
+URxvt.keysym.KP_1:          1
+URxvt.keysym.KP_2:          2
+URxvt.keysym.KP_3:          3
+URxvt.keysym.KP_4:          4
+URxvt.keysym.KP_5:          5
+URxvt.keysym.KP_6:          6
+URxvt.keysym.KP_7:          7
+URxvt.keysym.KP_8:          8
+URxvt.keysym.KP_9:          9
+URxvt.keysym.KP_0:          0
+URxvt.keysym.C-Up:          font-size:increase 1
+URxvt.keysym.C-Down:        font-size:decrease 1
+URxvt.keysym.C-S-Up:        font-size:incglobal
+URxvt.keysym.C-S-Down:      font-size:decglobal
+URxvt.keysym.C-equal:       font-size:reset
+URxvt.keysym.C-slash:       font-size:show
+URxvt.keysym.C-period:      font-size:hide
+URxvt.keysym.C-bracketleft: command:\033]720;1\007
+URxvt.keysym.C-bracketright:command:\033]721;1\007
+URxvt.iso14755:                false
+URxvt.iso14755_52:             false
+
+
+!!!!!!!!!!!!!!!!!!!!!!!----------------DMENU-----------!!!!!!!
+
+dmenu.color:        #FFFFFF
+dmenu.foreground:   #FFFFFF
+dmenu.background:   #090909
+
+! black
+dmenu.color0:       #000000
+dmenu.color8:       #2a495d
+
+! red
+dmenu.color1:       #FF0000
+dmenu.color9:       #d700ff
+
+! green
+dmenu.color2:       #00FF00
+dmenu.color10:      #00DD33
+
+! yellow
+dmenu.color3:       #e0c500
+dmenu.color11:      #f9c400
+
+! blue
+dmenu.color4:       #00A0FF
+dmenu.color12:      #0090FF
+! magenta
+dmenu.color5:       #898edf
+dmenu.color13:      #a0a6f8
+
+! cyan
+dmenu.color6:       #58ccc3
+dmenu.color14:      #63f5ea
+
+! white
+dmenu.color7:       #DDDDDD
+dmenu.color15:      #777777
+!
+dmenu.color48:      #FFFFFF
+
+
+!!!!!!!!!!!!!!!!!!!!!!!----------------COMMENT-OUT-----!!!!!!!
+!!!!START_1!!!!
+!!!!ON!!!!!!!!!
+!*.shading:	   	20
+!*.alphaOffset: 0.1

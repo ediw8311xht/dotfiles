@@ -1,0 +1,79 @@
+
+
+set shell sh
+set shellopts '-eu'
+##USE DOUBLE QUOTES FOR 'set ifs "something"'
+set         ifs             "\n" 
+set 		ratios 			1:2:3
+set 		info 			size:time
+set 		scrolloff 		10
+set			autoquit
+#set 		drawbox
+set 		dircounts
+set 		preview
+set 		number
+set 		ignorecase
+#set 		icons
+set 		relativenumber
+
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv -s $id
+&ctpvquit $id
+
+cmd np &{{
+	if   [[ "$lf_ratios" = "1:2:3" ]] ; then  lf -remote "send $id set nopreview     "
+                                              lf -remote "send $id set ratios 1:3    "
+	elif [[  "$lf_ratios" =  "1:3" ]] ; then  lf -remote "send $id set preview       "
+                                              lf -remote "send $id set ratios 1:1    "
+    else								      lf -remote "send $id set preview       "
+										      lf -remote "send $id set ratios 1:2:3  "; fi
+}}
+
+cmd rep &{{
+	i="$1"; while [[ $((i--)) -gt 0 ]] ; do lf -remote "send $id ${2}"; done
+}}
+
+cmd trash ${{
+    set -f
+    if [ -z "$fs" ]; then
+        trash-put "${f}" && lf -remote "send $id reload && redraw" &
+    else
+        for f in ${fs} ; do 
+            trash-put "${f}" && lf -remote "send $id reload && redraw" &
+        done
+    fi
+    sleep 0.5 && lf -remote "send $id reload && redraw" & 
+}}
+
+cmd delete &{{
+}}
+
+cmd open &{{
+    case $(file --mime-type -Lb $f) in
+        text/*) lf -remote "send $id \$$EDITOR \$fx";;
+        *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
+    esac
+    &xdg-open "${f}"
+}}
+
+
+
+map     e         np
+map 	H		  set hidden!
+map     TR		  :trash
+map 	d  	  	  set dironly!
+map 	r 		  set reverse!
+map     RR        :reload
+map 	RN		  rename
+map 	P		  push :!echo<space>""<left>
+map 	;		  push '' 
+map		K		  :rep "3" "up"
+map 	J		  :rep "3" "down"
+map 	Q 		  &lf -remote 'send quit'; lf -remote 'quit'
+map     <esc>     clear
+map 	<enter>   shell
+map 	o 		  &xdg-open "${f}"
+map 	O 		  $xdg-open --ask "${f}"
+set sortby name
+
