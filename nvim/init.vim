@@ -15,6 +15,8 @@
 "<==========================================================================>
                      
 "<--------- LET/SET -------------------------------------------------------->
+filetype off
+set runtimepath+=/usr/local/share/lilypond/current/vim/
 filetype plugin on
 filetype plugin indent on
 syntax on
@@ -101,11 +103,11 @@ Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 "showmarks
 Plug 'chentoast/marks.nvim'
 
-"req for lilypond, cool ui stuff
-Plug 'MunifTanjim/nui.nvim'
-
 "lilypondstuff--music-score-creation
 Plug 'martineausimon/nvim-lilypond-suite'
+
+"req for lilypond, cool ui stuff
+Plug 'MunifTanjim/nui.nvim'
 
 "just for fun record stats about programming
 Plug 'wakatime/vim-wakatime'

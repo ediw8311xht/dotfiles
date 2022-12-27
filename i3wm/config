@@ -6,7 +6,6 @@
 #-------------------------------------------------SPECIAL-BINDS-----------#
     set $mode_be                    exec killall xmessage ; mode 
     set $xm_hd                      exec $HOME/bin/xmsg_quick.sh 
-    set $xmes_hd                    exec $HOME/bin/xmsg_quick.sh 
     bindsym Super_L                 $BORD1                  sticky toggle
     bindsym Mod1+Shift+r            exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh              --3"
     bindsym Mod1+Shift+c            exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh  --NOASK     --0"
@@ -94,14 +93,11 @@
         workspace       1           output		 	$LEFT_MONITOR
         workspace       2		    output		 	$LEFT_MONITOR
 #-------FOR_WINDOW--------------------------------------------------------#
-    #### Hides gnome-screenshot.
-        for_window  [class="Gnome-screenshot"]      floating enable,    move    scratchpad
     #### Focus scratchpad so that created windows get shown automatically (only for auto scratchpad programs).
         for_window  [instance="i3s_note"]		    floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
         for_window  [instance="i3s_st"]			    floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
         for_window  [class=".*elementary\.term.*"]  floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
         for_window  [class="Tor Browser"]		    floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
-        for_window  [class="konqueror"]			    floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
         for_window  [class="Emacs"]				    floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
         for_window  [class=".*icecat.*"]	        floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
     #### Window dialogs should not tile, creates issues with visibility.
@@ -112,13 +108,9 @@
         for_window  [window_type="dialog"]          floating enable,    move position center 
         for_window  [window_type="popup_menu"]      floating enable,    move position center 
     #### Floating but not scratchpad stuff.
-        for_window  [class="hexchat"]			    floating enable,    move position center 
-        for_window  [class=".*Yad.*"]			    floating enable
         for_window  [class="xmessage"]			    floating enable
         for_window  [class="Xmessage"]			    floating enable
         #for_window  [floating]                      resize set $WSW $WSH, move position center
-    #### Prevent automatic focus on newly created Yad windows
-        no_focus    [class=".*Yad.*"]
         no_focus    [class="xmessage"]
         no_focus    [class="Xmessage"]
     #for_window  [class="i3*input"]			                    resize  set         1000 1000

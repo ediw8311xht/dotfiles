@@ -75,10 +75,13 @@ require('nvls').setup({
         },
         options = {
             pitches_language = "default",
-            output = "pdf",
+            output = "midi",
             main_file = "main.ly",
             main_folder = "%:p:h",
             hyphenation_language = "en_DEFAULT",
+            include_dir = {
+                "$HOME/Documents/LILYPOND_MUSIC_COMP"
+            },
         },
     },
     latex = {
@@ -111,7 +114,7 @@ require('nvls').setup({
             width = "37",
             height = "1",
             border_style = "single",
-            winhighlight = "Normal:Normal,FloatBorder:Normal"
+            winhighlight = "Normal:Normal,FloatBorder:Normal",
         },
     },
 })
