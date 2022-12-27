@@ -1,13 +1,19 @@
+                     
 
-"<--------------->_________________________________<-------------------------->
-"<------------->_____________________________________<------------------------>
-"<------------->_____________________________________<------------------------>
-"              ||                                   ||
-"              ||  Vim Config -> Maximilian Ballard ||                        
-"<------------>||___________________________________||<----------------------->
-"<------------->_____________________________________<------------------------>
-"<--------------->_________________________________<-------------------------->
-
+"<==========================================================================>
+"<==----------------======================================----------------==>
+"<==-----  ||||-----======================================-----  ||||-----==>
+"<==-----  ||||-----==__________________________________==-----  ||||-----==>
+"<==-  ||||||||||||-==                                  ==-  ||||||||||||-==>
+"<==-  ||||||||||||-== Vim Config -> Maximilian Ballard ==-  ||||||||||||-==>
+"<==-----  ||||-----==__________________________________==-----  ||||-----==>
+"<==-----  ||||-----==                                  ==-----  ||||-----==>
+"<==-----  ||||-----======================================-----  ||||-----==>
+"<==-----  ||||-----======================================-----  ||||-----==>
+"<==----------------======================================----------------==>
+"<==========================================================================>
+"<==========================================================================>
+                     
 "<--------- LET/SET -------------------------------------------------------->
 filetype plugin on
 filetype plugin indent on
@@ -46,6 +52,7 @@ set virtualedit=none
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set backspace=2
 
 let g:mapleader = ","
 let mapleader = ","
@@ -59,8 +66,8 @@ let g:python3_host_prog="/usr/bin/python"
 "<--------- PLUGINS -------------------------------------------------------->
 call plug#begin()
 "-----------COQ
-Plug 'ms-jpq/coq_nvim',       {'branch':       'coq'} " 9000+ Snippets
-Plug 'ms-jpq/coq.artifacts',  {'branch': 'artifacts'} " lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
+"Plug 'ms-jpq/coq_nvim',       {'branch':       'coq'} " 9000+ Snippets
+"Plug 'ms-jpq/coq.artifacts',  {'branch': 'artifacts'} " lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
 "" Need to **configure separately**
 "Plug 'ms-jpq/coq.thirdparty', {'branch':        '3p'} " - shell repl  - nvim lua api  - scientific calculator  - comment banner  - etc 
 "-----------COQ
@@ -252,11 +259,13 @@ endfunction
 "<--------- MAPPINGS ------------------------------------------------------->
 "   COQ----------->
 let g:coq_settings = { "keymap.recommended": v:false }
+let g:coq_settings = { "keymap.jump_to_mark": v:null }
 
 " Keybindings
+"ino <silent><expr> <BS>    pumvisible() ? "\<C-e><BS>"  : "\<BS>"
+"ino <silent><expr> <BS>    pumvisible() ? "\<C-BS>"  : "\<BS>"
 "ino <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
 "ino <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"
-"ino <silent><expr> <BS>    pumvisible() ? "\<C-e><BS>"  : "\<BS>"
 "ino <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
 "ino <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 "ino <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<BS>"
@@ -300,11 +309,10 @@ nnoremap <leader>tN :tabmove +1<esc>
 nnoremap <leader>tB :tabmove -1<esc>
 nnoremap <leader>tcc :tabclose<esc>
 nnoremap <leader><leader> :<backspace>
-noremap <leader>zaf gg/<c-r>0<esc>jVnkzf
+noremap <leader>zaf gg/<C-r>0<esc>jVnkzf
 noremap <leader>zv
 
 map <leader>l :Lf<CR>
-
 
 vnoremap <Space> zf
 "REMOVE TABS ON VISUAL SELECTION
@@ -317,6 +325,13 @@ nnoremap > :tabnext<esc>
 nnoremap x "xx
 nnoremap \ `
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+
+" Take last command line command to use to output to neovim
+" BELOW 4 lines do that riff on that
+nnoremap <leader>op  q:<C-p><esc>Iput =execute('<esc>A')<esc>A<C-c>
+nnoremap <leader>oc  q:iput =execute('')<esc>A<C-c>
+nnoremap <leader>out q:iput =execute('<C-r>0')<esc>A<C-c>
+nnoremap <leader>ox  :put   =execute('<C-r>0')<esc>
 "<--------- STATUS LINE ---------------------------------------------------->
 set statusline=\ %F\ \|
 set statusline+=\%l\(%L\)\|%v\ 
@@ -334,8 +349,11 @@ autocmd BufNewFile,BufRead ~/.config/polybar/config setfiletype dosini
 autocmd BufNewFile,BufRead ~/.config/i3/*           setfiletype i3
 autocmd BufNewFile,BufRead *athamerc                setfiletype vim
 "<--------- INFO ----------------------------------------------------------->
-"                   %<"      _-_is expanded to the name of the current buffer
-"    :help key-notation      _-_for list of keys and their names
+"   %<"                             _-_is expanded to the name of the current buffer.
+"   :help key-notation              _-_for list of keys and their names.
+"   :only                           _-_make split only one. 
+"   :let                            _-_list all options and their values. 
+"   :put =Execute("map")            _-_output of command into nvim.  
 "<-------------------------------------------------------------------------->
 
 

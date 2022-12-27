@@ -1,17 +1,18 @@
 
-*.alpha:	    0.90
+*.alpha:	    0.93
+!*.font: 	    xos4Terminus:pixelsize=15:autohint=true:antialias=true
+*.font: 	    Agave:style=Regular:size=12:antialias=true
+!*.font: 	    IosevkaCustom:size=12:antialias=true:autohint=false
+!*.font: 	    Monoid:size=15:antialias=true:autohint=true
+!*.font: 	    FantasqueSansMono:style=Regular:pixelsize=15:autohint=true:antialias=true
 !*.font: 	    ComicMono:size=14:autohint=true:antialias=true
-!*.font: 	    FantasqueSansMono:style=Regular:pixelsize=17:autohint=true:antialias=true
 !*.font: 	    Lekton:size=17:autohint=true:antialias=true
-!*.font: 	    xos4Terminus:size=15:autohint=true:antialias=true
 !*.font: 	    CascadiaMono:size=15:antialias=true
 !*.font: 	    RobotoMono:size=15:antialias=true
 !*.font: 	    Consolas:size=15:antialias=true:autohint=true
-!*.font: 	    Monoid:size=15:antialias=true:autohint=true
 !*.font: 	    Monaco:size=15:antialias=true:autohint=true
 !*.font: 	    InputMono:size=15:antialias=true:autohint=true
 !*.font: 	    FiraCodeNerdFont:size=18:antialias=false:autohint=false
-!*.font: 	    IosevkaCustom:size=15:antialias=true:autohint=true
 !*.font: 	    IosevkaNerdFont:size=15:antialias=true:autohint=true
 !*.font: 	    SarasaMonoSlabCL:pixelsize=15:antialias=true:autohint=true
 !*.font: 	    SarasaMonoSCNerd:size=15:antialias=true:autohint=true
@@ -23,56 +24,45 @@
 !*.font: 	    ShareTechMono:size=17:autohint=true:antialias=true
 !!!!!!!COOL FONTS (my names for ref):
 !!!!!!!IBM 3270, Agave, SarasaMonoSlab, Iosevka Custom, Hack, Hermit, Menlo, Fira Code, Input Mono
-*.borderpx:     10px
-*.bordercolor:  red;
-*.cursorColor:  #999999
-*.internalBorder:   5
-*.border: #990000
-!
-*.font: 	    Agave:style=Regular:pixelsize=17:antialias=true
+!*.borderColor:      #FF0000
+!*.cursorColor:      #999999
+*.internalBorder:   0
+*.borderSize:       0px
+*.border:           0px
+*.borderpx:         10px
 !!!!!!!!!!!!!!!!!!!!!!!----------------DEFAULT
 !.color:        #FFFFFF
 *.foreground:   #FFFFFF
 *.background:   #090909
-
 ! black
 *.color0:       #000000
 *.color8:       #2a495d
-
 ! red
 !*.color1:       #f12f2c
 *.color1:       #FF0000
 *.color9:       #d700ff
-
 ! green
 *.color2:       #00FF00
 *.color10:      #00DD33
-
 ! yellow
 *.color3:       #e0c500
 *.color11:      #f9c400
-
 ! blue
-!*.color4:       #2587cc
-*.color4:       #00A0FF
+*.color4:       #00A0FF 
 *.color12:      #0090FF
-
 ! magenta
 *.color5:       #898edf
 *.color13:      #a0a6f8
-
 ! cyan
 *.color6:       #58ccc3
 *.color14:      #63f5ea
-
 ! white
 *.color7:       #DDDDDD
 *.color15:      #777777
-
+!
 *.color48:      #FFFFFF
-
-
-!!!!!!!!!!!!!!!!!!!!!!!----------------CYBER-PUNK-NEON
+!!------------------------*.color4:       #2587cc
+!!!!!!!!!!!!!!!!!!!!!!!!----------------CYBER-PUNK-NEON
 !*.background:  #000b1e
 !*.background:  #000000
 !*.foreground:  #0abdc6
@@ -95,7 +85,7 @@
 !*.color16:      #FFFFFF
 !*.color48:      #FFFFFF
 !!!!!!!!!!!!!!!!!!!!!!!----------------SPECIAL------(FLOAT)--FROM:-[http://dotshare.it/dots/136/]
-special_float*font: 	        Agave:size=15:antialias=true:autohint=true
+special_float.font: 	    Agave:style=Regular:pixelsize=17:antialias=true
 special_float*alpha:	        1
 special_float*background:       #000011
 special_float*foreground:       #f8f8f2
@@ -118,9 +108,8 @@ special_float*color6:           #4c8ea1
 special_float*color14:          #6bc1d0
 special_float*color7:           #d2d2d2
 special_float*color15:          #ffffff
-
 !!!!!!!!!!!!!!!!!!!!!!!----------------SPECIAL-------(NOTE)
-special_note*font: 	       Agave:size=15:antialias=true:autohint=true
+special_note.font: 	    Agave:style=Regular:pixelsize=17:antialias=true
 special_note*alpha:	       1
 special_note*background:   #000000
 special_note*foreground:   #d4d7d4
@@ -142,12 +131,10 @@ special_note*color6:       #23e885
 special_note*color14:      #57c08b
 special_note*color7:       #d4d7d4
 special_note*color15:      #fbfffb
-
 !!!!!!!!!!!!!!!!!!!!!!!----------------i3wm------------!!!!!!!
 !i3wm.focus__TextC:          #00bcc2
 !i3wm.inact__TextC:          #004f98
 !i3wm.unifo__TextC:          #AAAAAA
-!                           
 !i3wm.focus__BordC:          #D7E6FF 
 !i3wm.inact__BordC:          #333333
 !i3wm.unifo__BordC:          #333333
@@ -157,10 +144,7 @@ i3wm.back2:  #0060B0
 i3wm.tx2:   #D7E6FF   
 i3wm.tx3:   #888888   
 i3wm.chi:   #001080    
-
 !!!!!!!!!!!!!!!!!!!!!!!----------------URXVT-XTERM-Zutty
-
-
 !URxvt.font:			        xft:SourceCodePro:size=15:antialias=true:autohint=true
 URxvt.font:			        xft:ShareTechMono:size=15:antialias=true:autohint=true
 !Zutty.font: 	            Hermit
@@ -206,50 +190,67 @@ URxvt.keysym.C-bracketleft: command:\033]720;1\007
 URxvt.keysym.C-bracketright:command:\033]721;1\007
 URxvt.iso14755:                false
 URxvt.iso14755_52:             false
-
-
 !!!!!!!!!!!!!!!!!!!!!!!----------------DMENU-----------!!!!!!!
-
 dmenu.color:        #FFFFFF
 dmenu.foreground:   #FFFFFF
 dmenu.background:   #090909
-
 ! black
 dmenu.color0:       #000000
 dmenu.color8:       #2a495d
-
 ! red
 dmenu.color1:       #FF0000
 dmenu.color9:       #d700ff
-
 ! green
 dmenu.color2:       #00FF00
 dmenu.color10:      #00DD33
-
 ! yellow
 dmenu.color3:       #e0c500
 dmenu.color11:      #f9c400
-
 ! blue
 dmenu.color4:       #00A0FF
 dmenu.color12:      #0090FF
 ! magenta
 dmenu.color5:       #898edf
 dmenu.color13:      #a0a6f8
-
 ! cyan
 dmenu.color6:       #58ccc3
 dmenu.color14:      #63f5ea
-
 ! white
 dmenu.color7:       #DDDDDD
 dmenu.color15:      #777777
 !
 dmenu.color48:      #FFFFFF
+!!!!!!!!!!!!!!!!!!!!!!!----------------XMESSAGE--------!!!!!!!
+!Xmessage*font: -abode-*-*-r-*-*-*-100-*-*-p-*-*-*
+!Xmessage*font: -*-dejavu sans-medium-r-*-*-40-*-*-*-*-*-*-*
+!xmessage*font: -*-dejavu sans-medium-r-*-*-40-*-*-*-*-*-*-*
+!Xfontsel*font: -*-dejavu sans-medium-r-*-*-40-*-*-*-*-*-*-*
 
-
-!!!!!!!!!!!!!!!!!!!!!!!----------------COMMENT-OUT-----!!!!!!!
+Xmessage*message.Scroll:    Never
+Xmessage*message.Border:    0
+Xmessage*background:        #008fF8
+Xmessage*foreground:        #000000
+Xmessage*geometry:          +5+5
+Xmessage*.*bw:              20
+Xmessage*font:              -bitstream-tahoma-medium-r-normal--30-15-0-0-p-0-ascii-0
+Xmessage*Buttons:
+!!!!!!!!!!!!!!!!!!!!!!!----------------COMMENT-OUT-----!!!!!!!!!!!!!!!!!!!!!!!
 !!!!START_1!!!!
 !!!!ON!!!!!!!!!
 !*.shading:	   	20
 !*.alphaOffset: 0.1
+!!!!!!!!!!!!!!!!!!!!!!!----------------i3-reference----!!!!!!!!!!!!!!!!!!!!!!!
+!set $_                      ;
+!set $-                      #000000
+!set $focuse_TEXT            #FFFFFF
+!set $inacti_TEXT            #888888
+!set $unfocu_TEXT            #888888
+
+!set $focuse_BORD            #004f98
+!set $inacti_BORD            #888888
+!set $unfocu_BORD            #333333
+
+!set $focuse_TBAR            #004f98
+!set $inacti_TBAR            #888888
+!set $unfocu_TBAR            #333333
+

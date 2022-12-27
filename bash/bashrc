@@ -99,6 +99,7 @@ rifs()   { IFS=$' \t\n'; printf 'IFS=%q\n' "${IFS}" ; }
 ppifs()  { printf "IFS=%q" "${IFS}"; echo ""        ; }
 pifs()   { printf     "%q" "${IFS}"; echo ""        ; }
 acheck() { compgen -c  | grep -x ${@}               ; }
+find_b() { find ${2+${1}} -mount ${[@]:1-"${1}"} ; }
 
 
 #---------------------------------------------------------------------- #
@@ -106,12 +107,10 @@ acheck() { compgen -c  | grep -x ${@}               ; }
 #---------------------------------------------------------------------- #
 alias   sudo='      sudo '
 alias   kctpv='	    kill "$(pidof "ctpv")"'
-alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
-alias   fl="        pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
-alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
 alias   b='         cd "$HOME/bin/"'
 alias   c='         my_cd'
-alias   f='         $HOME/bin/my_find.sh'
+alias   comv='      command -V'
+alias   f='         find_b'
 alias   h='         cd "$HOME"'
 alias   t='	        trash-put'
 alias   x='         $HOME/bin/FOR_BASHRC/stars_c.sh'
@@ -140,14 +139,19 @@ alias   tyren='     perl-rename -v -n'
 alias   doren='     perl-rename -v'
 alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
 alias   ka='        killall'
-
 #alias   pacman='    pac_func() { pacman "$@" 2>&1 | tee -a "$HOME/PACMAN_LOG.txt"; }; pac_func'
 #PAC----------------------------------NON-LOCAL----------#
+alias   fl="        pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
+alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
+alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
+alias   reqs='      (read _a ; yay -Qi "${_a}" | grep -Pi "^(Required by:|Optional For:)" | grep -Pi "(Required by|Optional For|[^ \t]+)") <<<'
+alias   rqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "(Required[ ]by[ \t]*[:]|Optional[ ]For[ \t]*[:])" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<<'
 alias   pigse='     (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   pig='       (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   pacse='     pacman -Ss'
 alias   pasce='     pacman -Ss'
 alias   paci='      pacman -Si'
+alias   pacr='      pacman -R'
 alias   yigse='     (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   yig='       (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   yayse='     yay --sortby="votes" -Ss'
@@ -160,7 +164,8 @@ alias   pacil='     pacman -Qi'
 alias   yaysel='    yay -Qs'
 alias   yayil='     yay -Qi'
 alias   paclast="   expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
-alias   pacclean='  yay -Scc; yay --clean'
+alias   pacl='      yay --clean'
+alias   pacln='     yay -Scc; yay --clean'
 alias   pacfrom='   pacman -Qo'
 #PAC-----------------------------------------------------#
 
@@ -191,8 +196,9 @@ alias   nimg='      nsxiv -0 .'
 alias   ldi='       fdisk -l -o +uuid'
 alias   szof='      du -ahc --time --max-depth=1'
 alias   bgsz="      sudo szof | grep -P '^[^ ]*G'"
-alias     l="       lsd --icon='never'"
-alias    ll="       lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
+alias   pcal='      calcurse'
+alias   l='         lsd --icon="never"'
+alias   ll="        lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
 alias   lst="       lsd --icon='never' -ltrh"
 alias   lsz="       lsd --icon='never' -lSrh"
 alias   psg='       ps ax | grep -Pi'
@@ -227,6 +233,7 @@ alias   getfont='   fc-list -v | grep -i '
 alias   lc='        compgen -c'
 alias   slc='       compgen -c | grep -i'
 alias   list_coms=' compgen -c'
+alias   fnsc='      (read _x; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | grep -Pi -- "${_x:-''}")) <<<' 
 #---------------------------------------------------------------------- #
 #-QUICK-ADDED-ALIASES                                                   #
 #---------------------------------------------------------------------- #
@@ -258,7 +265,7 @@ export ATHAME_USE_JOBS=1
 if  [ -d "$HOME/bin/"         	 ] ; then PATH="$HOME/bin/:$PATH"        	 ;	fi
 if  [ -d "$HOME/bin/txt2man"     ] ; then PATH="$HOME/bin/txt2man:$PATH"     ;	fi
 if  [ -d "$HOME/bin/i3wm"     	 ] ; then PATH="$HOME/bin/i3wm:$PATH"    	 ; 	fi
-if  [ -d "$HOME/bin/gman"     	 ] ; then PATH="$HOME/bin/gman:$PATH"    	 ; 	fi
+if  [ -d "$HOME/bin/mentat"      ] ; then PATH="$HOME/bin/mentat:$PATH"    	 ; 	fi
 if  [ -d "$HOME/bin/personal" 	 ] ; then PATH="$HOME/bin/personal:$PATH"	 ; 	fi
 if  [ -d "$HOME/bin/ufw"      	 ] ; then PATH="$HOME/bin/ufw:$PATH"     	 ; 	fi
 if  [ -d "$HOME/bin/random"   	 ] ; then PATH="$HOME/bin/random:$PATH"  	 ; 	fi
@@ -269,9 +276,10 @@ if  [ -d "/usr/bin"              ] ; then PATH="/usr/bin/:$PATH"             ;  
 if  test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 if  test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 set -o vi
-shopt -s dotglob
+#######shopt -s dotglob
 #######shopt -s globstar
 #---------------------------------------------------------------------- #
 #-END 									#
 #---------------------------------------------------------------------- #
+
 

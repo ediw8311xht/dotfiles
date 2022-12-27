@@ -4,9 +4,9 @@
 #---------------------------------------------------------------------|
 # i3 config file (v4)
 #-------------------------------------------------SPECIAL-BINDS-----------#
-    set $mode_be                    exec killall yad ; mode 
-    set $yad_hd                     exec $HOME/bin/yad_html_dia.sh -theme 'BlackMATE' '<span foreground="#00FF00" size="x-large">
-    set $xmes_hd                    exec $HOME/bin/yad_html_dia.sh -theme 'BlackMATE' '<span foreground="#00FF00" size="x-large">
+    set $mode_be                    exec killall xmessage ; mode 
+    set $xm_hd                      exec $HOME/bin/xmsg_quick.sh 
+    set $xmes_hd                    exec $HOME/bin/xmsg_quick.sh 
     bindsym Super_L                 $BORD1                  sticky toggle
     bindsym Mod1+Shift+r            exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh              --3"
     bindsym Mod1+Shift+c            exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh  --NOASK     --0"
@@ -48,7 +48,7 @@
 #-------------------------------------------------------SETTINGS----------#
         floating_modifier       	$mod
         focus_follows_mouse     	yes
-        floating_minimum_size       100     x   100
+        #floating_minimum_size       100     x   100
         floating_maximum_size       1800    x   1080
     #---TEXT------------------------------------------#
         for_window [all]            title_window_icon   no

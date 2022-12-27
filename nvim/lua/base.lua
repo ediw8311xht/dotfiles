@@ -1,12 +1,26 @@
 
-
-
-vim.g.coq_settings = { 
-     auto_start = "shut-up", 
-}
+-- vim.g.coq_settings = { --
+    -- auto_start = "shut-up", --
+    -- clients = {--
+        -- lsp = {--
+            -- enabled = true,--
+            -- resolve_timeout = '0.1',--
+        -- },--
+        -- treesitter = {--
+            -- enabled = true,--
+            -- weight_adjustment = 1,--
+            -- slow_threshold = '0.1',--
+        -- },--
+    -- },--
+    -- display = {--
+        -- icons = {--
+            -- mode = 'none',--
+        -- },--
+    -- },--
+-- }--
 
 local lsp = require "lspconfig"
-local coq = require "coq" 
+-- local coq = require "coq" --
 
 require'marks'.setup {
     -- whether to map keybinds or not. default true
@@ -20,7 +34,7 @@ require'marks'.setup {
     -- how often (in ms) to redraw signs/recompute mark positions. 
     -- higher values will have better performance but may cause visual lag, 
     -- while lower values may cause performance penalties. default 150.
-    refresh_interval = 250,
+    refresh_interval = 450,
     -- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
     -- marks, and bookmarks.
     -- can be either a table with all/none of the keys, or a single number, in which case
@@ -107,7 +121,17 @@ vim.api.nvim_create_autocmd('BufEnter', {
     pattern = { '*.ly', '*.ily', '*.tex' }
 })
 
-vim.opt.updatetime = 100
+-- vim.opt.updatetime = 400 --
+
+-- lsp.bashls.setup{--
+    -- coq.lsp_ensure_capabilities{--
+-- --
+    -- }--
+-- }--
+-- lsp.luau_lsp.setup{--
+    -- coq.lsp_ensure_capabilities{--
+        -- filetypes = { 'lua', 'luau', 'lsp' }--
+    -- }--
+-- }--
 
 
-lsp.bashls.setup{coq.lsp_ensure_capabilities()}

@@ -10,7 +10,7 @@ set convert-meta off
 set output-meta on
 set colored-stats on
 set colored-completion-prefix on
-set mark-modified-lines on
+set mark-modified-lines off
 #set visible-stats on
 set completion-map-case on
 set completion-query-items 300
