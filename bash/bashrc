@@ -158,6 +158,7 @@ alias   yayse='     yay --sortby="votes" -Ss'
 alias   yaysename=' yay --sortby="votes" --searchby="name" -Ss'
 alias   yayi='      yay -Si'
 alias   yayp='      yay -P --stats'
+alias   yayfiles='  pacman -Qql'
 #PAC-----------------------------------LOCAL-------------#
 alias   pacsel='    pacman -Qs'
 alias   pacil='     pacman -Qi'
@@ -167,6 +168,7 @@ alias   paclast="   expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | so
 alias   pacl='      yay --clean'
 alias   pacln='     yay -Scc; yay --clean'
 alias   pacfrom='   pacman -Qo'
+alias   pacfiles='  pacman -Qql'
 #PAC-----------------------------------------------------#
 
 alias   i3e='       nvim -p "$HOME/.config/i3/"*'
@@ -251,6 +253,7 @@ export  XDG_CACHE_HOME="$HOME/.cache"
 export  BROWSER="/usr/bin/elinks"
 export  YAD_POS_X="1920"
 export  YAD_POS_Y="1080"
+export  LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}"
 
 export ATHAME_ENABLED=1
 export ATHAME_SHOW_MODE=1

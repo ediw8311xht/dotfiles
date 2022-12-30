@@ -1,27 +1,4 @@
 
--- vim.g.coq_settings = { --
-    -- auto_start = "shut-up", --
-    -- clients = {--
-        -- lsp = {--
-            -- enabled = true,--
-            -- resolve_timeout = '0.1',--
-        -- },--
-        -- treesitter = {--
-            -- enabled = true,--
-            -- weight_adjustment = 1,--
-            -- slow_threshold = '0.1',--
-        -- },--
-    -- },--
-    -- display = {--
-        -- icons = {--
-            -- mode = 'none',--
-        -- },--
-    -- },--
--- }--
-
-local lsp = require "lspconfig"
--- local coq = require "coq" --
-
 require'marks'.setup {
     -- whether to map keybinds or not. default true
     default_mappings = true,
@@ -124,17 +101,97 @@ vim.api.nvim_create_autocmd('BufEnter', {
     pattern = { '*.ly', '*.ily', '*.tex' }
 })
 
--- vim.opt.updatetime = 400 --
+vim.opt.updatetime = 400 
 
--- lsp.bashls.setup{--
-    -- coq.lsp_ensure_capabilities{--
+
+-- vim.g.coq_settings = { --
+--     auto_start = "shut-up", --
+--     clients = {--
+--         lsp = {--
+--             enabled = true,--
+--             resolve_timeout = '0.1',--
+--         },--
+--         treesitter = {--
+--             enabled = true,--
+--             weight_adjustment = 1,--
+--             slow_threshold = '0.1',--
+--         },--
+--     },--
+--     display = {--
+--         icons = {--
+--             mode = 'none',--
+--         },--
+--     },--
+-- }--
 -- --
-    -- }--
+-- local lsp = require "lspconfig"--
+-- local coq = require "coq" --
+-- --
+-- lsp.cssls.setup{--
+--     coq.lsp_ensure_capabilities{--
+--         filetypes = {},--
+--         cmd = { "vscode-css-language-server", "--stdio" },--
+--         filetypes = { "css", "scss", "less" },--
+--         settings = {--
+--           css = {--
+--             validate = true--
+--           },--
+--           less = {--
+--             validate = true--
+--           },--
+--           scss = {--
+--             validate = true--
+--           }--
+--         },--
+--         single_file_support = true,--
+--     }--
 -- }--
+-- --
+-- lsp.html.setup{--
+--     coq.lsp_ensure_capabilities{--
+--         init_options = {--
+--             configurationSection = { "html", "css", "javascript" },--
+--             embeddedLanguages    = { css = true, javascript = true },--
+--             provideFormatter = true--
+--         },--
+--         cmd = { "vscode-html-language-server", "--stdio" },--
+--         filetypes = { 'html' },--
+--         singe_file_support = true,--
+--     }--
+-- }--
+-- --
+-- lsp.pyright.setup{--
+--     coq.lsp_ensure_capabilities{--
+--         cmd = { "pyright-langserver", "--stdio" },--
+--         filetypes = { "python" },--
+--         settings = {--
+--             python = {--
+--                 analysis = {--
+--                     autoSearchPaths = true,--
+--                     diagnosticMode = "workspace",--
+--                     useLibraryCodeForTypes = true--
+--                 }--
+--             }--
+--         },--
+--         single_file_support = true,--
+--     }--
+-- }--
+-- --
+-- lsp.tsserver.setup{--
+--     coq.lsp_ensure_capabilities{--
+--         filetypes = { 'js'},--
+--     }--
+-- }--
+-- --
 -- lsp.luau_lsp.setup{--
-    -- coq.lsp_ensure_capabilities{--
-        -- filetypes = { 'lua', 'luau', 'lsp' }--
-    -- }--
+--     coq.lsp_ensure_capabilities{--
+--         filetypes = { 'lua', 'luau', 'lsp' }--
+--     }--
 -- }--
-
-
+-- --
+-- lsp.bashls.setup{--
+--     coq.lsp_ensure_capabilities{--
+--     }--
+-- }--
+-- --
+-- --

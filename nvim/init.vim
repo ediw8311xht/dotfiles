@@ -67,14 +67,9 @@ let g:myFg = [".",    ".",       ".",       ".",       ".",       ".",       "."
 let g:python3_host_prog="/usr/bin/python"
 "<--------- PLUGINS -------------------------------------------------------->
 call plug#begin()
-"-----------COQ
-"Plug 'ms-jpq/coq_nvim',       {'branch':       'coq'} " 9000+ Snippets
-"Plug 'ms-jpq/coq.artifacts',  {'branch': 'artifacts'} " lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
-"" Need to **configure separately**
-"Plug 'ms-jpq/coq.thirdparty', {'branch':        '3p'} " - shell repl  - nvim lua api  - scientific calculator  - comment banner  - etc 
-"-----------COQ
-"language server parser
-Plug 'neovim/nvim-lspconfig'
+
+" Use release branch (recommend)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "treesitter, self explanatory
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -164,13 +159,14 @@ let g:closetag_close_shortcut = '<leader>>'
 
 
 "<--------- COLOR SCHEME STUFF --------------------------------------------->
-colorscheme   elflord
+colorscheme   pop-punk
 
 hi  MatchParen          cterm=NONE ctermbg=NONE ctermfg=NONE gui=reverse
-hi  cursorline          cterm=bold ctermfg=NONE ctermbg=18   gui=NONE       guibg=#003153 guifg=NONE
+hi  cursorline          cterm=bold ctermfg=NONE ctermbg=18   gui=bold       guibg=#000044 guifg=NONE
 hi  cursorcolumn        gui=bold,italic,reverse
 hi  FoldColumn          cterm=NONE ctermbg=NONE ctermfg=NONE gui=bold        guibg=NONE    guifg=#00FF00 
 hi  Folded              cterm=NONE ctermbg=NONE ctermfg=NONE gui=italic      guibg=NONE    guifg=#888888 
+hi  StatusLine          cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE       guibg=#222222 guifg=#009900
 "hi  Normal              cterm=NONE ctermbg=17   ctermfg=NONE gui=NONE       guibg=NONE    guifg=#FFFFFF
 "hi htmlTag            gui=reverse   guifg=#90b0d1 guibg=#000033
 "hi htmlSpecialTagName gui=reverse
@@ -178,7 +174,6 @@ hi  Folded              cterm=NONE ctermbg=NONE ctermfg=NONE gui=italic      gui
 "hi htmlTagName        gui=NONE   guifg=#90b0d1 guibg=#000033
 "hi htmlEndTag         gui=NONE   guifg=#000000 guibg=#FFFFFF
 "hi  Visual              cterm=NONE ctermbg=NONE ctermfg=16   gui=NONE       guibg=#333333 guifg=#00FF00
-"hi  StatusLine          cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE       guibg=#222222 guifg=#009900
 "hi  LineNr              cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=NONE    guifg=#008800
 "hi  NonText             cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=NONE    guifg=NONE
 "hi  CocSearch           cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=#FF0000 guifg=#000000
@@ -247,9 +242,9 @@ function! CycleBackgroundColor()
 endfunction
 
 function! ToggleCOC()
-    "if g:coc_enabled == "0" | :CocEnable
-    "else                    | :CocDisable
-    "end
+    if g:coc_enabled == "0" | :CocEnable
+    else                    | :CocDisable
+    end
 endfunction
 
 function! ToggleVirtualEdit()
@@ -259,19 +254,6 @@ function! ToggleVirtualEdit()
 endfunction
 
 "<--------- MAPPINGS ------------------------------------------------------->
-"   COQ----------->
-let g:coq_settings = { "keymap.recommended": v:false }
-let g:coq_settings = { "keymap.jump_to_mark": v:null }
-
-" Keybindings
-"ino <silent><expr> <BS>    pumvisible() ? "\<C-e><BS>"  : "\<BS>"
-"ino <silent><expr> <BS>    pumvisible() ? "\<C-BS>"  : "\<BS>"
-"ino <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
-"ino <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"
-"ino <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
-"ino <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-"ino <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<BS>"
-"   COQ----------->
 "list keybindings with :help index
 "list user keybindings with :map
 nnoremap <leader>. :NERDTreeToggle<esc>

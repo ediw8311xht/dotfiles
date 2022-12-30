@@ -234,6 +234,10 @@ Xmessage*geometry:          +5+5
 Xmessage*.*bw:              20
 Xmessage*font:              -bitstream-tahoma-medium-r-normal--30-15-0-0-p-0-ascii-0
 Xmessage*Buttons:
+Zutty.fontsize:             18
+Zutty.font:                 Agave-Regular-Slashed
+Zutty.title:                Zutty
+Zutty.border:               10
 !!!!!!!!!!!!!!!!!!!!!!!----------------COMMENT-OUT-----!!!!!!!!!!!!!!!!!!!!!!!
 !!!!START_1!!!!
 !!!!ON!!!!!!!!!

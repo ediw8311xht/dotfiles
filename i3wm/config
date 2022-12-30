@@ -117,7 +117,7 @@
 #---------------------------------------------------------EXECS-----------#
     $EXC    parcellite
     $EXC    xcompmgr 	-C
-    $EXC_A  nitrogen    --restore
+    $EXC_A  $HOME/bin/xwallpaperauto.sh  "--restore"
     $EXC_A  $HOME/.config/polybar/launch.sh
 ########Repeating .xinitrc so unplugging keyboard doesn't kemfkmakfej
     $EXC_A  xset -dpms
