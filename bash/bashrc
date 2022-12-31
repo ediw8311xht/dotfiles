@@ -181,6 +181,7 @@ alias   emime='     nvim $HOME/.config/mimeapps.list'
 alias   ysb='       source $HOME/.bashrc'
 alias   capkey='    xev | grep -Pio '\''(keysym [^)]*)'\'
 alias   g='         grep --perl-regexp --ignore-case'
+alias   gri='       grep -ri'
 alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf}\
                                 --exclude=\*.{apk,snap,out,jar,sx,s,bin,o,exe,deb,pyc,pyo}\
                                 --exclude=\*.{jpg,jpeg,png,webp,bmp,gif}\
@@ -222,7 +223,7 @@ alias   docs='      cd "$HOME/Documents/"'
 alias   spreds='    cd "$HOME/Documents/SPREADSHEETS/"'                                              
 alias   desk='      cd "$HOME/Desktop/"'                                                
 alias   vids='      cd "$HOME/Videos/"'                                                 
-alias   nitroz='    cd "$HOME/Pictures/NitroWallpapers"'
+alias   wallz='     cd "$HOME/Pictures/MyWallpapers"'
 alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'                                    
 alias   testr='     . $HOME/test.sh'
 alias   git_mt='    git log --pretty=format:"%h %s" --graph'
@@ -254,6 +255,9 @@ export  BROWSER="/usr/bin/elinks"
 export  YAD_POS_X="1920"
 export  YAD_POS_Y="1080"
 export  LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}"
+
+
+
 
 export ATHAME_ENABLED=1
 export ATHAME_SHOW_MODE=1

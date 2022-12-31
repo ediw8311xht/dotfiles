@@ -115,9 +115,9 @@
         no_focus    [class="Xmessage"]
     #for_window  [class="i3*input"]			                    resize  set         1000 1000
 #---------------------------------------------------------EXECS-----------#
-    $EXC    parcellite
+    $EXC    xcmenu
     $EXC    xcompmgr 	-C
-    $EXC_A  $HOME/bin/xwallpaperauto.sh  "--restore"
+    $EXC    $HOME/bin/xwallpaperauto.sh --silent
     $EXC_A  $HOME/.config/polybar/launch.sh
 ########Repeating .xinitrc so unplugging keyboard doesn't kemfkmakfej
     $EXC_A  xset -dpms

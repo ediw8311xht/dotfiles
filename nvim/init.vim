@@ -17,6 +17,7 @@
 "<--------- LET/SET -------------------------------------------------------->
 filetype off
 set runtimepath+=/usr/local/share/lilypond/current/vim/
+set runtimepath+=$LILYPOND_HOME
 filetype plugin on
 filetype plugin indent on
 syntax on

@@ -54,10 +54,10 @@ require('nvls').setup({
             pitches_language = "default",
             output = "midi",
             main_file = "main.ly",
-            main_folder = "%:p:h",
+            main_folder = "$HOME/Documents/LILYPOND_MUSIC_COMP/",
             hyphenation_language = "en_DEFAULT",
             include_dir = {
-                "$HOME/Documents/LILYPOND_MUSIC_COMP"
+                "$HOME/Documents/LILYPOND_MUSIC_COMP/"
             },
         },
     },
@@ -65,7 +65,6 @@ require('nvls').setup({
         mappings = {
             compile = "<F5>",
             open_pdf = "<F6>",
-            lilypond_syntax = "<F3>"
         },
           options = {
               clean_logs = false
