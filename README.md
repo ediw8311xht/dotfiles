@@ -16,7 +16,7 @@ Software I use (***not all configs included in this repo***):
 
 Other Cool Software:                      
 
-    polybar, nitrogen, mpv, zathura, nsxiv, brave, dmenu, deluge, copyq, xmessage, dunst, w3m, lynx
+    polybar, xwallpaper, mpv, zathura, nsxiv, brave, dmenu, deluge, copyq, xmessage, dunst, w3m, lynx
 
 Images of my Desktop:
 
