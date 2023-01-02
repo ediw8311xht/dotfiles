@@ -105,6 +105,8 @@ alias   fo='        xdg-open "$(fzf)"'
 alias   fn='        nvim     "$(fzf --preview="nvim {}")"'
 alias   gf='        find / -iname'
 alias   hf='        find $HOME -iname'
+alias   mf='        find . -iname'
+alias   pacool='    pacman --color=always -Sl | grep -i installed | grep -i'
 alias   ic='        clear; imgcat'
 alias   nv='        nvim'
 alias   snv='       sudoedit'
@@ -136,6 +138,7 @@ alias   paci='      pacman -Si'
 alias   pacr='      pacman -R'
 alias   yigse='     (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   yig='       (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
+alias   yacool='    yay --color=always -Sl aur | grep "Installed" | grep'
 alias   yayse='     yay --sortby="votes" -Ss'
 alias   yaysename=' yay --sortby="votes" --searchby="name" -Ss'
 alias   yayi='      yay -Si'
@@ -148,12 +151,14 @@ alias   yaysel='    yay -Qs'
 alias   yayil='     yay -Qi'
 alias   pacprog="   pacman -F"
 alias   paclast="   expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
+alias   pacnot='    pacman --color=always -Sl | grep -v "installed" | grep'
 alias   pacl='      yay --clean'
 alias   pacln='     yay -Scc; yay --clean'
 alias   pacfrom='   pacman -Qo'
 alias   pacfiles='  pacman -Qql'
 #PAC-----------------------------------------------------#
 
+alias   tracenet='  strace'
 alias   i3e='       nvim -p "$HOME/.config/i3/"*'
 alias   xr='        echo ""; nvim $HOME/.Xresources; xrdb ~/.Xresources'
 alias   ebash='     nvim $HOME/.bashrc; source ~/.bashrc'
@@ -177,6 +182,8 @@ alias   i3gr='      (echo ""; read _z; grep -Pri "${_z}" "$HOME/.config/i3/") <<
 #-------------------------------------GREP---------------#
 alias   gport='     _myfunc() { netstat -lntu | grep -Pi "${@:-""}"; }; _myfunc'
 alias   isport='    (read _z; ss -lp "sport = :${_z}") <<< '
+alias   xprattach=" nohup /usr/bin/xpra attach :${XPRA_DISPLAY_NUMBER} &"
+alias   xprdet='    pkill -f "^[/]+usr[/]+bin[/]+xpra attach :${XPRA_DISPLAY_NUMBER}[ \$]"'
 alias   img='       nsxiv -0'
 alias   nimg='      nsxiv -0 .'
 alias   ldi='       fdisk -l -o +uuid'
@@ -228,6 +235,7 @@ alias   fnsc='      (read _x; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | gre
 #---------------------------------------------------------------------- #
 #-EXPORT							                                    #
 #---------------------------------------------------------------------- #
+export  NO_AT_BRIDGE=1
 export  PAGER='most'
 export  TERM=st
 export  EDITOR="nvim"
@@ -271,5 +279,6 @@ set -o vi
 #---------------------------------------------------------------------- #
 #-END 									#
 #---------------------------------------------------------------------- #
+
 
 

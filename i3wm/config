@@ -127,6 +127,21 @@
     $EXC_A  xmodmap -e 	       	   "keycode 133 = 0x007e 0x0060 0x007e 0x0060" 
     $EXC_A  xrandr --output "${A}" --left-of "${B}"
     $EXC_A  xrandr --output "${B}" --primary
-
+    #$EXC_A  $HOME/.secret_xinit
+    #bar {
+    #    font pango:ShareTechMono, Nerd Font 12
+    #    position top
+    #    status_command /usr/bin/i3status-rs
+    #    colors {
+    #        separator #666666
+    #        background #222222
+    #        statusline #dddddd
+    #        focused_workspace #0088CC #0088CC #ffffff
+    #        active_workspace #333333 #333333 #ffffff
+    #        inactive_workspace #333333 #333333 #888888
+    #        urgent_workspace #2f343a #900000 #ffffff
+    #    }
+    #}
+    #$EXC_A  i3-msg 'bar' 'mode' 'hide'
 
 #-------END---------------------------------------------------------------#

@@ -97,6 +97,7 @@ xmodmap -e 	       	   "keycode 133 = 0x007e 0x0060 0x007e 0x0060"
 xrandr --output "${A}" --left-of "${B}"
 xrandr --output "${B}" --primary
 deluged
+nohup $HOME/.secret_xinit &
 exec $(get_session "${SESSION}")
 
 
