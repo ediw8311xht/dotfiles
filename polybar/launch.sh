@@ -7,7 +7,7 @@ function monitor_getter() {
     END='[^ \t]+(?=[ \t]*)$'
     if   [[ "${1,,}" =  'primary'   ]] ; then MIDDLE='[*].*[ ]\K'
     elif [[ "${1,,}" =  'secondary' ]] ; then MIDDLE='[^*].*[ ]\K'
-    elif [[ "${1,,}" != 'all'       ]] ; then END='[^ \t]*('"${@}"')[^ \t]*'
+    elif [[ "${1,,}" != 'all'       ]] ; then END='[^ \t]*('"${*}"')[^ \t]*'
     fi
     grep -Po "${START}${MIDDLE}${END}" <<< "$(xrandr --listmonitors)" 
 }
@@ -24,15 +24,19 @@ function handle_args() {
 }
 
 function launch_main() {
-    MARR=()
+    MARR=($(monitor_getter 'all'))
     insert_config=''
 
     killall --quiet 'polybar'
     handle_args "${@}"
-    echo "${MARR[@]}"
-    for item in ${MARR[@]:-$(monitor_getter 'all')}
+
+    for item in "${MARR[@]}"
     do
-        MONITOR="${item}" polybar ${insert_config} --reload basicbar & disown
+        if [[ -f "${insert_config}" ]] ; then 
+            MONITOR="${item}" polybar "${insert_config}" --reload basicbar & disown
+        else
+            MONITOR="${item}" polybar --reload basicbar & disown
+        fi
     done
 }
 

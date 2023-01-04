@@ -57,6 +57,7 @@ set shiftwidth=4
 set expandtab
 set backspace=2
 
+let g:coc_start_at_startup = v:false
 let g:mapleader = ","
 let mapleader = ","
 let maplocalleader = ","
@@ -243,42 +244,48 @@ function! CycleBackgroundColor()
 endfunction
 
 function! ToggleCOC()
-    if g:coc_enabled == "0" | :CocEnable
-    else                    | :CocDisable
+    if g:coc_service_initialized == "0"
+        :CocStart
+    elseif g:coc_enabled == "0"
+        :CocEnable
+    else
+        :CocDisable
     end
 endfunction
 
 function! ToggleVirtualEdit()
     if &virtualedit == "all" | set virtualedit=none
+                               echo "virtualedit=none"
     else                     | set virtualedit=all
+                               echo "virtualedit=all"
     end
 endfunction
 
 "<--------- MAPPINGS ------------------------------------------------------->
+"nnoremap <leader>stupidv :%s/\t/    /g<esc>
 "list keybindings with :help index
 "list user keybindings with :map
-nnoremap <leader>. :NERDTreeToggle<esc>
+"nnoremap <leader>. :NERDTreeToggle<esc>
 nnoremap <leader>1 :hi cursorline guibg=NONE guifg=NONE gui=bold cterm=NONE ctermbg=NONE ctermfg=NONE<esc>
 nnoremap <leader>2 :PlugUpdate<CR>
 nnoremap <leader>3 :PlugInstall<CR>
 nnoremap <leader>a :call ToggleCOC()<esc>
 nnoremap <leader>b :buffer<space>
 nnoremap <leader>c :set nocursorline!<esc>
-nnoremap <leader>d :Bracey<esc>
 nnoremap <leader>e :set cursorcolumn!<esc>
 nnoremap <leader>f :set wrap!<esc>
 nnoremap <silent><leader>h :call ToggleHiddenAll()<CR>
 nnoremap <leader>j :call ToggleScheme()<CR>
-nnoremap <leader>m :call ToggleVirtualEdit()<esc>
+nnoremap <leader>vv :call ToggleVirtualEdit()<esc>
 nnoremap <leader>n :cnext<esc>
 nnoremap <leader>s :%so "${HOME}/.config/nvim/init.vim"<esc>
-nnoremap <leader>v :%s/\t/    /g<esc>
 nnoremap <leader>w :w<esc>
 nnoremap <leader>x :!%:p<esc>
 nnoremap <leader>y :hi Normal guibg=Transparent<esc>
 nnoremap <leader>z z
 nnoremap <leader>A :call CycleBackgroundColor()<CR><esc>
 nnoremap <leader>B :buffers<esc>
+nnoremap <leader>D :Bracey<esc>
 nnoremap <leader>H :vert helpgrep 
 nnoremap <leader>N :cprevious<esc>
 nnoremap <leader>M :messages<esc>
@@ -293,13 +300,36 @@ nnoremap <leader>tl :tablast<esc>
 nnoremap <leader>tN :tabmove +1<esc>
 nnoremap <leader>tB :tabmove -1<esc>
 nnoremap <leader>tcc :tabclose<esc>
+
+nnoremap <leader>vm  :put =eval('<C-r>0')
+nnoremap <leader>vq  :put =eval('<C-r>0')<esc>
+nnoremap <leader>vz  i<C-r>"
+nnoremap <leader>vf  ?<C-r>"<enter>
+nnoremap <leader>var :let maxvar ='<C-r>1<C-r>0'<esc>
+
+"nnoremap <leader>ap :let @+="<C-r>1<C-r>0"
+"1+2                   
+"vnoremap <leader>vq q:o<C-c>put =execute(' <C-R>0')
+"vnoremap <leader>dc :put =execute('dc <C-r>0')<esc>
+
+nnoremap <leader>op  q:<C-p><esc>Iput =execute('<esc>A')<esc>A<C-c>
+nnoremap <leader>oc  q:iput =execute('')<esc>A<C-c>
+nnoremap <leader>out q:iput =execute('<C-r>0')<esc>A<C-c>
+nnoremap <leader>ox  :put   =execute('<C-r>0')<esc>
+
 nnoremap <leader><leader> :<backspace>
 noremap <leader>zaf gg/<C-r>0<esc>jVnkzf
 noremap <leader>zv
 
 map <leader>l :Lf<CR>
 
+"nnoremap <leader>mq :put =execute('echo <c-r>0')<esc>
+vnoremap <leader>$ $h
 vnoremap <Space> zf
+"vnoremap <leader>c c<esc>l:execute "normal! i" . execute("!<C-r>"")<esc>
+vnoremap <leader>x c<esc>l:execute "normal! i" . eval('<C-r>"')<esc>
+
+
 "REMOVE TABS ON VISUAL SELECTION
 vnoremap im :s/\%V[ \t]*//<esc>
 
@@ -313,10 +343,6 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
 " Take last command line command to use to output to neovim
 " BELOW 4 lines do that riff on that
-nnoremap <leader>op  q:<C-p><esc>Iput =execute('<esc>A')<esc>A<C-c>
-nnoremap <leader>oc  q:iput =execute('')<esc>A<C-c>
-nnoremap <leader>out q:iput =execute('<C-r>0')<esc>A<C-c>
-nnoremap <leader>ox  :put   =execute('<C-r>0')<esc>
 "<--------- STATUS LINE ---------------------------------------------------->
 set statusline=\ %F\ \|
 set statusline+=\%l\(%L\)\|%v\ 
