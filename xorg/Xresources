@@ -131,19 +131,6 @@ special_note*color6:       #23e885
 special_note*color14:      #57c08b
 special_note*color7:       #d4d7d4
 special_note*color15:      #fbfffb
-!!!!!!!!!!!!!!!!!!!!!!!----------------i3wm------------!!!!!!!
-!i3wm.focus__TextC:          #00bcc2
-!i3wm.inact__TextC:          #004f98
-!i3wm.unifo__TextC:          #AAAAAA
-!i3wm.focus__BordC:          #D7E6FF 
-!i3wm.inact__BordC:          #333333
-!i3wm.unifo__BordC:          #333333
-i3wm.back1:  #0060B0 
-i3wm.back2:  #0060B0  
-!i3wm.tx1:   #3070FF    
-i3wm.tx2:   #D7E6FF   
-i3wm.tx3:   #888888   
-i3wm.chi:   #001080    
 !!!!!!!!!!!!!!!!!!!!!!!----------------URXVT-XTERM-Zutty
 !URxvt.font:			        xft:SourceCodePro:size=15:antialias=true:autohint=true
 URxvt.font:			        xft:ShareTechMono:size=15:antialias=true:autohint=true
@@ -258,3 +245,41 @@ Zutty.border:               10
 !set $inacti_TBAR            #888888
 !set $unfocu_TBAR            #333333
 
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!----------------i3wm------------!!!!!!!
+!i3wm.monitor
+!i3wm.focus__TextC:          #00bcc2
+!i3wm.inact__TextC:          #004f98
+!i3wm.unifo__TextC:          #AAAAAA
+!i3wm.focus__BordC:          #D7E6FF 
+!i3wm.inact__BordC:          #333333
+!i3wm.unifo__BordC:          #333333
+i3wm.back1:  #0060B0 
+i3wm.back2:  #0060B0  
+i3wm.tx1:    #3070FF    
+i3wm.tx2:    #D7E6FF   
+i3wm.tx3:    #888888   
+i3wm.chi:    #001080    
+
+i3wm.inner_gaps:   200
+
+
+
+
+
+
+
+
+
+
+
+
+i3.monitor1: HDMI-1
+i3.monitor2: DVI-D-1
+i3wm.monitor1: HDMI-1
+i3wm.monitor2: DVI-D-1
+i3wm.monitor1: DVI-D-1
+i3wm.monitor2: HDMI-1

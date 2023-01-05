@@ -87,7 +87,6 @@ acheck() { compgen -c  | grep -x "${@}"             ; }
 #-ALIASES								#
 #---------------------------------------------------------------------- #
 alias   sudo='      sudo '
-alias   kctpv='	    kill "$(pidof "ctpv")"'
 alias   cop='       xcmenu --input --clipboard'
 alias   b='         cd "$HOME/bin/"'
 alias   c='         my_cd'
@@ -118,39 +117,44 @@ alias   free='      free -m'
 alias   rmi='       rm -i'
 alias   pdf='       zathura'
 alias   i3c='       i3 -C "$HOME/.config/i3/config"'
+    #--rename--
 alias   tyren='     perl-rename -v -n'
 alias   doren='     perl-rename -v'
 alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
-alias   ka='        killall'
-#alias   pacman='    pac_func() { pacman "$@" 2>&1 | tee -a "$HOME/PACMAN_LOG.txt"; }; pac_func'
+    #--kill--
+alias          kctpv='kill "$(pidof "ctpv")"'
+alias   kill_at_spi2='killall at-spi2-registryd; killall at-spi2-bus-launcher'
+alias             ka='killall'
+alias         xprdet='pkill -f "^[/]+usr[/]+bin[/]+xpra attach :${XPRA_DISPLAY_NUMBER}[ \$]"'
 #PAC----------------------------------NON-LOCAL----------#
-alias   fl="        pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
-alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
-alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
-alias   reqs='      (read _a ; yay -Qi "${_a}" | grep -Pi "^(Required by:|Optional For:)" | grep -Pi "(Required by|Optional For|[^ \t]+)") <<<'
-alias   rqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "(Required[ ]by[ \t]*[:]|Optional[ ]For[ \t]*[:])" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<<'
+#alias   pacman='    pac_func() { pacman "$@" 2>&1 | tee -a "$HOME/PACMAN_LOG.txt"; }; pac_func'
 alias   pigse='     (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
-alias   pig='       (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
-alias   pacdep='    pacman -T'
 alias   pacreg='    pacman -Sq'
 alias   pacool='    pacman --color=always -Sl | grep -i installed | grep -i'
 alias   pacse='     pacman -Ss'
-alias   pasce='     pacman -Ss'
 alias   paci='      pacman -Si'
-alias   pacr='      pacman -R'
+alias   pacdep='    pacman -T'
+
 alias   yigse='     (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   yig='       (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   yacool='    yay --color=always -Sl aur | grep "Installed" | grep'
 alias   yayse='     yay --sortby="votes" -Ss'
 alias   yaysename=' yay --sortby="votes" --searchby="name" -Ss'
 alias   yayi='      yay -Si'
-alias   yayp='      yay -P --stats'
-alias   yayfiles='  pacman -Qql'
 #PAC-----------------------------------LOCAL-------------#
+alias   fl="        pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
+alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
+alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
+
+alias   yayp='      yay -P --stats'
+alias   yayil='     yay -Qi'
+alias   yayfiles='  pacman -Qql'
+alias   yaysel='    yay -Qs'
+alias   reqs='      (read _a ; yay -Qi "${_a}" | grep -Pi "^(Required by:|Optional For:)" | grep -Pi "(Required by|Optional For|[^ \t]+)") <<<'
+alias   rqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "(Required[ ]by[ \t]*[:]|Optional[ ]For[ \t]*[:])" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<<'
+
 alias   pacsel='    pacman -Qs'
 alias   pacil='     pacman -Qi'
-alias   yaysel='    yay -Qs'
-alias   yayil='     yay -Qi'
 alias   pacprog="   pacman -F"
 alias   paclast="   expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
 alias   pacnot='    pacman --color=always -Sl | grep -v "installed" | grep'
@@ -158,12 +162,23 @@ alias   pacl='      yay --clean'
 alias   pacln='     yay -Scc; yay --clean'
 alias   pacfrom='   pacman -Qo'
 alias   pacfiles='  pacman -Qql'
+
+#PAC-----------------------------------------------------#
+    #--MISSPELL--
+alias   pascel='    pacman -Qs'
+alias   yasyel='    yay -Qs'
+alias   pasce='     pacman -Ss'
+alias   yasye='     yay --sortby="votes" -Ss'
+alias   yasyename=' yay --sortby="votes" --searchby="name" -Ss'
+#-------
+
 #PAC-----------------------------------------------------#
 
 alias   tracenet='  strace'
 alias   i3e='       nvim -p "$HOME/.config/i3/"*'
 alias   xr='        echo ""; nvim $HOME/.Xresources; xrdb ~/.Xresources'
 alias   ebash='     nvim $HOME/.bashrc; source ~/.bashrc'
+alias   hbash='     nvim $HOME/.bash_history2'
 alias   einp='      nvim $HOME/.inputrc'
 alias   editnv='    nvim $HOME/.config/nvim/init.vim'
 alias   emime='     nvim $HOME/.config/mimeapps.list'
@@ -185,7 +200,6 @@ alias   i3gr='      (echo ""; read _z; grep -Pri "${_z}" "$HOME/.config/i3/") <<
 alias   gport='     _myfunc() { netstat -lntu | grep -Pi "${@:-""}"; }; _myfunc'
 alias   isport='    (read _z; ss -lp "sport = :${_z}") <<< '
 alias   xprattach=" nohup /usr/bin/xpra attach :${XPRA_DISPLAY_NUMBER} &"
-alias   xprdet='    pkill -f "^[/]+usr[/]+bin[/]+xpra attach :${XPRA_DISPLAY_NUMBER}[ \$]"'
 alias   img='       nsxiv -0'
 alias   nimg='      nsxiv -0 .'
 alias   ldi='       fdisk -l -o +uuid'
@@ -274,5 +288,4 @@ set -o vi
 #---------------------------------------------------------------------- #
 
 
-alias kill_at_spi2='killall at-spi2-registryd; killall at-spi2-bus-launcher'
 

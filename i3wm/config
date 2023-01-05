@@ -11,8 +11,23 @@
     bindsym Mod1+Shift+c            exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh  --NOASK     --0"
     bindsym Mod1+Shift+a --release  mode                    freekey;                exec --no-startup-id "sleep 0.2; xdotool key 'ctrl+v'; sleep 0.2; xdotool key 'alt+y'"
 #-----------------------------------------------------------SET-----------#
-        set $LEFT_MONITOR           HDMI-A-0 
-        set $RIGHT_MONITOR          DVI-D-0 
+        set_from_resource $MONITOR_1 i3wm.monitor1 DVI-D-1
+        set_from_resource $MONITOR_2 i3wm.monitor2 DVI-D-1
+
+workspace   10	output	$MONITOR_1
+workspace    9	output	$MONITOR_1
+workspace    8	output	$MONITOR_1
+workspace    7	output	$MONITOR_1
+workspace    6	output	$MONITOR_1
+workspace    5	output	$MONITOR_1
+workspace    4	output	$MONITOR_1
+workspace    3	output	$MONITOR_1
+workspace   12	output	$MONITOR_1
+workspace   11	output	$MONITOR_1
+                                        
+workspace    1  output	$MONITOR_2
+workspace    2	output  $MONITOR_2
+
         set $WSW                    1200
         set $WSH                    900
         set $mod                    Mod1
@@ -72,6 +87,8 @@
         client.focused_tab_title    $-              $-              #000cc2                
         client.background       	$-     
 #-------------------------------------------------------INCLUDE-----------#
+    #---WORKSPACES---------------------------------#
+        include          workspaces.conf
     #---FLASH-BORDER-MODE----UNCOMMENT_TO_ENABLE---#
         include release_border_i3wm.conf
     #---BINDINGS-----------------------------------#
@@ -80,18 +97,6 @@
         include          modes_i3wm.conf
 #-------WORKSPACES--------------------------------------------------------#
     #---------------------------DECLARE-MONITOR-ORDER-BASED-ON-PRIORITY
-        workspace       10		    output		 	$RIGHT_MONITOR
-        workspace       9		    output		 	$RIGHT_MONITOR
-        workspace       8		    output		 	$RIGHT_MONITOR
-        workspace       7		    output		 	$RIGHT_MONITOR
-        workspace       6		    output		 	$RIGHT_MONITOR
-        workspace       5		    output		 	$RIGHT_MONITOR
-        workspace       4		    output		 	$RIGHT_MONITOR
-        workspace       3		    output		 	$RIGHT_MONITOR
-        workspace       12		    output		 	$RIGHT_MONITOR
-        workspace       11		    output		 	$RIGHT_MONITOR
-        workspace       1           output		 	$LEFT_MONITOR
-        workspace       2		    output		 	$LEFT_MONITOR
 #-------FOR_WINDOW--------------------------------------------------------#
     #### Focus scratchpad so that created windows get shown automatically (only for auto scratchpad programs).
         for_window  [instance="i3s_note"]		    floating enable,    resize  set         $WSW $WSH, move position center, move scratchpad, scratchpad show
@@ -118,6 +123,7 @@
     $EXC    xcmenu
     $EXC    xcompmgr 	-C
     $EXC    $HOME/bin/xwallpaperauto.sh --silent
+    $EXC    /usr/bin/dunst
     $EXC_A  $HOME/.config/polybar/launch.sh
 ########Repeating .xinitrc so unplugging keyboard doesn't kemfkmakfej
     $EXC_A  xset -dpms

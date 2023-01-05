@@ -21,6 +21,7 @@ set runtimepath+=$LILYPOND_HOME
 filetype plugin on
 filetype plugin indent on
 syntax on
+set colorcolumn=80
 set magic
 set termguicolors
 set splitright
@@ -87,6 +88,8 @@ Plug 'AndrewRadev/tagalong.vim'
 
 "syntax-for-lf
 Plug 'VebbNix/lf-vim'
+
+"Plug 'neovim/nvim-lspconfig'
 
 "syntax-for-i3
 Plug 'PotatoesMaster/i3-vim-syntax'
@@ -201,6 +204,7 @@ hi  StatusLine          cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE       guib
 "hi default link CocHintFloat                CocErrorSign
 "hi default link CocCursorRange              CocErrorSign
 "hi default link CocHoverRange               CocErrorSign
+hi ColorColumn cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=#333333 guifg=NONE
 
 set guicursor=n:block90,i:ver20
 set cul
@@ -261,6 +265,12 @@ function! ToggleVirtualEdit()
     end
 endfunction
 
+function! ToggleColorColumn()
+    if &cc == "0" | set cc=80 
+    else          | set cc=0
+    end
+endfunction
+
 "<--------- MAPPINGS ------------------------------------------------------->
 "nnoremap <leader>stupidv :%s/\t/    /g<esc>
 "list keybindings with :help index
@@ -289,6 +299,10 @@ nnoremap <leader>D :Bracey<esc>
 nnoremap <leader>H :vert helpgrep 
 nnoremap <leader>N :cprevious<esc>
 nnoremap <leader>M :messages<esc>
+nnoremap <leader><C-w>line :call ToggleColorColumn()<esc>
+"map <C-b> nnoremap <leader>bb :buffers<cr>:b<space> 
+"nnoremap <leader><leader> :<backspace>
+nnoremap <leader><leader> <C-^>
 
 nnoremap <leader>tt :tabnew<esc>
 nnoremap <leader>tn :tabmove +1<esc> 
@@ -306,6 +320,7 @@ nnoremap <leader>vq  :put =eval('<C-r>0')<esc>
 nnoremap <leader>vz  i<C-r>"
 nnoremap <leader>vf  ?<C-r>"<enter>
 nnoremap <leader>var :let maxvar ='<C-r>1<C-r>0'<esc>
+nnoremap HEALTH :checkhealth<esc>
 
 "nnoremap <leader>ap :let @+="<C-r>1<C-r>0"
 "1+2                   
@@ -317,7 +332,6 @@ nnoremap <leader>oc  q:iput =execute('')<esc>A<C-c>
 nnoremap <leader>out q:iput =execute('<C-r>0')<esc>A<C-c>
 nnoremap <leader>ox  :put   =execute('<C-r>0')<esc>
 
-nnoremap <leader><leader> :<backspace>
 noremap <leader>zaf gg/<C-r>0<esc>jVnkzf
 noremap <leader>zv
 
