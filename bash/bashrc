@@ -289,3 +289,15 @@ set -o vi
 
 
 
+
+alias nd='nvim $HOME/Documents/NEOVIM_BIG_DOCS.txt'
+alias ndr='cat "$HOME/Documents/NEOVIM_BIG_DOCS.txt" | grep -i -n'
+
+
+
+
+
+
+
+
+

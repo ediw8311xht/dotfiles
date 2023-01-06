@@ -1,7 +1,7 @@
 
 *.alpha:	    0.93
-!*.font: 	    xos4Terminus:pixelsize=15:autohint=true:antialias=true
-*.font: 	    Agave:style=Regular:size=12:antialias=true
+*.font: 	    xos4Terminus:pixelsize=17:autohint=true:antialias=true
+!*.font: 	    Agave:style=Regular:size=12:antialias=true
 !*.font: 	    IosevkaCustom:size=12:antialias=true:autohint=false
 !*.font: 	    Monoid:size=15:antialias=true:autohint=true
 !*.font: 	    FantasqueSansMono:style=Regular:pixelsize=15:autohint=true:antialias=true
@@ -131,7 +131,7 @@ special_note*color6:       #23e885
 special_note*color14:      #57c08b
 special_note*color7:       #d4d7d4
 special_note*color15:      #fbfffb
-!!!!!!!!!!!!!!!!!!!!!!!----------------URXVT-XTERM-Zutty
+!!!!!!!!!!!!!!!!!!!!!!!----------------URXVT-XTERM----!!!!!!!!!!!!!!!!!!!!!!!!!
 !URxvt.font:			        xft:SourceCodePro:size=15:antialias=true:autohint=true
 URxvt.font:			        xft:ShareTechMono:size=15:antialias=true:autohint=true
 !Zutty.font: 	            Hermit
@@ -212,7 +212,6 @@ dmenu.color48:      #FFFFFF
 !Xmessage*font: -*-dejavu sans-medium-r-*-*-40-*-*-*-*-*-*-*
 !xmessage*font: -*-dejavu sans-medium-r-*-*-40-*-*-*-*-*-*-*
 !Xfontsel*font: -*-dejavu sans-medium-r-*-*-40-*-*-*-*-*-*-*
-
 Xmessage*message.Scroll:    Never
 Xmessage*message.Border:    0
 Xmessage*background:        #008fF8
@@ -221,65 +220,19 @@ Xmessage*geometry:          +5+5
 Xmessage*.*bw:              20
 Xmessage*font:              -bitstream-tahoma-medium-r-normal--30-15-0-0-p-0-ascii-0
 Xmessage*Buttons:
+!!!!!!!!!!!!!!!!!!!!!!!----------------Zutty-----------!!!!!!!!!!!!!!!!!!!!!!!
 Zutty.fontsize:             18
 Zutty.font:                 Agave-Regular-Slashed
 Zutty.title:                Zutty
 Zutty.border:               10
+!!!!!!!!!!!!!!!!!!!!!!!----------------i3wm------------!!!!!!!
+i3wm.monitor1: DVI-D-1
+i3wm.monitor2: HDMI-1
 !!!!!!!!!!!!!!!!!!!!!!!----------------COMMENT-OUT-----!!!!!!!!!!!!!!!!!!!!!!!
 !!!!START_1!!!!
 !!!!ON!!!!!!!!!
 !*.shading:	   	20
 !*.alphaOffset: 0.1
-!!!!!!!!!!!!!!!!!!!!!!!----------------i3-reference----!!!!!!!!!!!!!!!!!!!!!!!
-!set $_                      ;
-!set $-                      #000000
-!set $focuse_TEXT            #FFFFFF
-!set $inacti_TEXT            #888888
-!set $unfocu_TEXT            #888888
-
-!set $focuse_BORD            #004f98
-!set $inacti_BORD            #888888
-!set $unfocu_BORD            #333333
-
-!set $focuse_TBAR            #004f98
-!set $inacti_TBAR            #888888
-!set $unfocu_TBAR            #333333
 
 
 
-
-
-!!!!!!!!!!!!!!!!!!!!!!!----------------i3wm------------!!!!!!!
-!i3wm.monitor
-!i3wm.focus__TextC:          #00bcc2
-!i3wm.inact__TextC:          #004f98
-!i3wm.unifo__TextC:          #AAAAAA
-!i3wm.focus__BordC:          #D7E6FF 
-!i3wm.inact__BordC:          #333333
-!i3wm.unifo__BordC:          #333333
-i3wm.back1:  #0060B0 
-i3wm.back2:  #0060B0  
-i3wm.tx1:    #3070FF    
-i3wm.tx2:    #D7E6FF   
-i3wm.tx3:    #888888   
-i3wm.chi:    #001080    
-
-i3wm.inner_gaps:   200
-
-
-
-
-
-
-
-
-
-
-
-
-i3.monitor1: HDMI-1
-i3.monitor2: DVI-D-1
-i3wm.monitor1: HDMI-1
-i3wm.monitor2: DVI-D-1
-i3wm.monitor1: DVI-D-1
-i3wm.monitor2: HDMI-1

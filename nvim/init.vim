@@ -13,6 +13,21 @@
 "<==----------------======================================----------------==>
 "<==========================================================================>
 "<==========================================================================>
+"<--------- MY VARS -------------------------------------------------------->
+let jam="hi FoldColumn gui=bold guibg=NONE guifg=#00ff00"
+let g:myScheme = [ "pop-punk", "eldar", "elflord", "delek", "morning", "cyberpunk-neon" ]
+let g:mySpec   = [        ".",     jam,       ".",     ".",       ".",              "." ]
+
+                   "" ]
+
+let g:myBg     = [ "#000000", "#333333", "#111111", "#220000", "#002200", "#000022", "#ffffff", "blue" ]
+let g:myFg     = [       ".",       ".",       ".",       ".",       ".",       ".", "#000000",    "#dddddd" ]
+
+let g:myBg+=["NONE"] | let g:myFg+=[   "."]
+
+let g:python3_host_prog="/usr/bin/python"
+"<--------- PLUGINS -------------------------------------------------------->
+
                      
 "<--------- LET/SET -------------------------------------------------------->
 filetype off
@@ -21,7 +36,7 @@ set runtimepath+=$LILYPOND_HOME
 filetype plugin on
 filetype plugin indent on
 syntax on
-set colorcolumn=80
+"set colorcolumn=80
 set magic
 set termguicolors
 set splitright
@@ -58,17 +73,14 @@ set shiftwidth=4
 set expandtab
 set backspace=2
 
-let g:coc_start_at_startup = v:false
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+let g:html_dynamic_folds = 1
+let g:coc_start_at_startup = v:true
+let g:coc_enable_at_startup = v:false
 let g:mapleader = ","
 let mapleader = ","
 let maplocalleader = ","
 
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-"<--------- MY VARS -------------------------------------------------------->
-let g:myBg = ["NONE", "#000000", "#333333", "#111111", "#220000", "#002200", "#000022", "#FFFFFF"]
-let g:myFg = [".",    ".",       ".",       ".",       ".",       ".",       ".",       "#000000"]
-let g:python3_host_prog="/usr/bin/python"
-"<--------- PLUGINS -------------------------------------------------------->
 call plug#begin()
 
 " Use release branch (recommend)
@@ -162,23 +174,22 @@ let g:closetag_shortcut = '>'
 "
 let g:closetag_close_shortcut = '<leader>>'
 
-
 "<--------- COLOR SCHEME STUFF --------------------------------------------->
-colorscheme   pop-punk
+colorscheme pop-punk
 
-hi  MatchParen          cterm=NONE ctermbg=NONE ctermfg=NONE gui=reverse
+hi  MatchParen          cterm=NONE ctermbg=NONE ctermfg=NONE gui=reverse    
 hi  cursorline          cterm=bold ctermfg=NONE ctermbg=18   gui=bold       guibg=#000044 guifg=NONE
 hi  cursorcolumn        gui=bold,italic,reverse
-hi  FoldColumn          cterm=NONE ctermbg=NONE ctermfg=NONE gui=bold        guibg=NONE    guifg=#00FF00 
-hi  Folded              cterm=NONE ctermbg=NONE ctermfg=NONE gui=italic      guibg=NONE    guifg=#888888 
+hi  FoldColumn          cterm=NONE ctermbg=NONE ctermfg=NONE gui=bold       guibg=NONE    guifg=#00ff00 
+hi  Folded              cterm=NONE ctermbg=NONE ctermfg=NONE gui=italic     guibg=NONE    guifg=#888888 
 hi  StatusLine          cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE       guibg=#222222 guifg=#009900
-"hi  Normal              cterm=NONE ctermbg=17   ctermfg=NONE gui=NONE       guibg=NONE    guifg=#FFFFFF
+"hi  Normal              cterm=NONE ctermbg=17   ctermfg=NONE gui=NONE      guibg=NONE    guifg=#ffffff
 "hi htmlTag            gui=reverse   guifg=#90b0d1 guibg=#000033
 "hi htmlSpecialTagName gui=reverse
 "hi html gui=reverse
 "hi htmlTagName        gui=NONE   guifg=#90b0d1 guibg=#000033
-"hi htmlEndTag         gui=NONE   guifg=#000000 guibg=#FFFFFF
-"hi  Visual              cterm=NONE ctermbg=NONE ctermfg=16   gui=NONE       guibg=#333333 guifg=#00FF00
+"hi htmlEndTag         gui=NONE   guifg=#000000 guibg=#ffffff
+"hi  Visual              cterm=NONE ctermbg=NONE ctermfg=16   gui=NONE       guibg=#333333 guifg=#00ff00
 "hi  LineNr              cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=NONE    guifg=#008800
 "hi  NonText             cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=NONE    guifg=NONE
 "hi  CocSearch           cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE       guibg=#FF0000 guifg=#000000
@@ -217,52 +228,51 @@ let s:status_hidden = 0 | function! ToggleHiddenAll()
     endif
 endfunction
 
-function! ToggleScheme()
-    ""MAKE THIS BETTER MAX
-    if     g:colors_name == 'pop-punk'  | colo eldar    | hi Normal guifg=#FFFFFF
-    elseif g:colors_name == 'eldar'     | colo elflord  | hi Normal guifg=#FFFFFF
-    elseif g:colors_name == 'elflord'   | colo delek    | hi Normal guifg=#000000
-    elseif g:colors_name == 'delek'     | colo morning  | hi Normal guifg=#000000
-    else                | colo eldar    | colo pop-punk | hi Normal guifg=#FFFFFF guibg=NONE
-                          hi  cursorline gui=NONE guibg=#220000 guifg=NONE
-    end
-    echo g:colors_name
-    hi FoldColumn guibg=NONE guifg=#00FF00 gui=bold
-    hi Folded     guibg=NONE guifg=#888888 gui=italic
-    "hi cursorcolumn cterm=bold ctermfg=NONE ctermbg=NONE gui=bold guibg=NONE guifg=NONE
-    syntax on
-endfunction
-
-function! CycleBackgroundColor()
+function! CycleBackgroundColor(nextprevious)
     let i = 0 | let current_background = synIDattr(hlID("Normal"), "bg")  
-    echo synIDattr(hlID("Normal"), "bg")
+    if current_background == "" 
+        "CATCH NO BACKGROUND (Transparency)
+        let current_background="NONE"
+    endif
+    let lenny = len(g:myBg)
     for _ in g:myBg
-        if current_background == _
-            let j = (i + 1) % len(g:myBg)
-            execute "highlight Normal guibg=" . g:myBg[j] . " guifg=" . g:myFg[j]
-        return | endif | let i += 1
-    endfor
-    if current_background == '' | execute "highlight Normal guibg=" . g:myBg[1] . " guifg=" . g:myFg[1]
-    else                        | execute "highlight Normal guibg=" . g:myBg[0] . " guifg=" . g:myFg[1]
-    endif 
+        if current_background ==? _ 
+            let j = (i + (a:nextprevious)) % lenny
+            execute "highlight Normal guibg=" . g:myBg[j]
+            execute "highlight Normal guifg=" . g:myFg[j]
+            echo j . ' / ' . lenny | syntax on | return
+        endif
+    let i += 1 | endfor
 endfunction
 
-function! ToggleCOC()
-    if g:coc_service_initialized == "0"
-        :CocStart
-    elseif g:coc_enabled == "0"
-        :CocEnable
-    else
-        :CocDisable
-    end
+function! CycleColorscheme(nextprevious)
+    let i = 0 | let current_scheme = g:colors_name
+    let lenny = len(g:myScheme)
+    for _ in g:myScheme
+        if current_scheme ==? _
+            let j = (i + (a:nextprevious)) % lenny
+            echo j . ' / ' . lenny
+            execute "colorscheme " g:myScheme[j]
+            execute g:mySpec[j]
+            syntax on
+        return | endif
+    let i += 1 | endfor
 endfunction
 
-function! ToggleVirtualEdit()
-    if &virtualedit == "all" | set virtualedit=none
-                               echo "virtualedit=none"
-    else                     | set virtualedit=all
-                               echo "virtualedit=all"
-    end
+"function! Toggler(checkvar, do)
+"    if a:checkvar
+"endfunction
+
+function! Cycler(checkarr, cvar, doarr, nextprevious)
+    let lenny = len(a:checkarr)
+    let i = 0
+    while i < lenny
+        if a:checkarr[i] ==? a:cvar
+            let j = (i + (a:nextprevious)) % lenny
+            execute a:doarr[j]
+        return | endif
+        let i += 1
+    endwhile
 endfunction
 
 function! ToggleColorColumn()
@@ -279,21 +289,22 @@ endfunction
 nnoremap <leader>1 :hi cursorline guibg=NONE guifg=NONE gui=bold cterm=NONE ctermbg=NONE ctermfg=NONE<esc>
 nnoremap <leader>2 :PlugUpdate<CR>
 nnoremap <leader>3 :PlugInstall<CR>
-nnoremap <leader>a :call ToggleCOC()<esc>
+nnoremap <leader>a :call Cycler([0, 1], g:coc_enabled, [":CocEnable", ":CocDisable"], 0)<esc>
 nnoremap <leader>b :buffer<space>
 nnoremap <leader>c :set nocursorline!<esc>
 nnoremap <leader>e :set cursorcolumn!<esc>
 nnoremap <leader>f :set wrap!<esc>
 nnoremap <silent><leader>h :call ToggleHiddenAll()<CR>
-nnoremap <leader>j :call ToggleScheme()<CR>
-nnoremap <leader>vv :call ToggleVirtualEdit()<esc>
+nnoremap <leader>j :call CycleColorscheme(+1)<CR>
+nnoremap <leader>J :call CycleColorscheme(-1)<CR>
 nnoremap <leader>n :cnext<esc>
 nnoremap <leader>s :%so "${HOME}/.config/nvim/init.vim"<esc>
 nnoremap <leader>w :w<esc>
 nnoremap <leader>x :!%:p<esc>
 nnoremap <leader>y :hi Normal guibg=Transparent<esc>
 nnoremap <leader>z z
-nnoremap <leader>A :call CycleBackgroundColor()<CR><esc>
+nnoremap <leader>l :call CycleBackgroundColor(+1)<CR>
+nnoremap <leader>L :call CycleBackgroundColor(-1)<CR>
 nnoremap <leader>B :buffers<esc>
 nnoremap <leader>D :Bracey<esc>
 nnoremap <leader>H :vert helpgrep 
@@ -303,7 +314,7 @@ nnoremap <leader><C-w>line :call ToggleColorColumn()<esc>
 "map <C-b> nnoremap <leader>bb :buffers<cr>:b<space> 
 "nnoremap <leader><leader> :<backspace>
 nnoremap <leader><leader> <C-^>
-
+nnoremap <leader>vv :call Cycler(["none", "all", "block"], &ve, ['set ve=all \| echo &ve', 'set ve=block \| echo &ve', "set ve=none \| echo &ve"], 0)<esc>
 nnoremap <leader>tt :tabnew<esc>
 nnoremap <leader>tn :tabmove +1<esc> 
 nnoremap <leader>tp :tabmove -1<esc> 
@@ -335,7 +346,6 @@ nnoremap <leader>ox  :put   =execute('<C-r>0')<esc>
 noremap <leader>zaf gg/<C-r>0<esc>jVnkzf
 noremap <leader>zv
 
-map <leader>l :Lf<CR>
 
 "nnoremap <leader>mq :put =execute('echo <c-r>0')<esc>
 vnoremap <leader>$ $h
@@ -355,6 +365,9 @@ nnoremap x "xx
 nnoremap \ `
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
+set cedit=\<C-c>
+nnoremap <leader>. q:
+"map <leader> :Lf<CR>
 " Take last command line command to use to output to neovim
 " BELOW 4 lines do that riff on that
 "<--------- STATUS LINE ---------------------------------------------------->
@@ -380,6 +393,4 @@ autocmd BufNewFile,BufRead *athamerc                setfiletype vim
 "   :let                            _-_list all options and their values. 
 "   :put =Execute("map")            _-_output of command into nvim.  
 "<-------------------------------------------------------------------------->
-
-
 
