@@ -1,7 +1,7 @@
 
 #-
 #- ~/.bashrc
-# shellcheck disable=SC1000-SC9999
+# \\shellcheck disable=SC1000-SC9999
 #-
 #-If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -49,7 +49,7 @@ my_cd()	{
 vid() {
    (if [[ "${1}" =~ ^-mono ]] ; then AUD="mono"; shift 1; fi
 
-    mpv --audio-channels="${AUD:-"auto"}" ${@:-*} & disown
+    mpv --audio-channels="${AUD:-"auto"}" "${@:-.}" & disown
 )}
 upd_pip_z() { 
    (IFS=$'\n' 
@@ -82,6 +82,15 @@ ppifs()  { printf "IFS=%q" "${IFS}"; echo ""        ; }
 pifs()   { printf     "%q" "${IFS}"; echo ""        ; }
 acheck() { compgen -c  | grep -x "${@}"             ; }
 
+gport_function() { netstat -lntu | grep -Pi "${@:-""}" ; }
+
+bash_history_grab() {
+    if [[ -n "${2}" ]] ; then
+        grep -Pi "${2}" "$HOME/.bash_history2" | tail -n "${1}" 
+    else
+        grep -Pi "${1}" "$HOME/.bash_history2" 
+    fi
+}
 
 #---------------------------------------------------------------------- #
 #-ALIASES								#
@@ -95,6 +104,8 @@ alias   f='         find / -mount'
 alias   h='         cd "$HOME"'
 alias   t='	        trash-put'
 alias   x='         $HOME/bin/FOR_BASHRC/stars_c.sh'
+alias   bgr='       bash_history_grab'
+alias   hb='        nvim $HOME/.bash_history2'
 alias   ac='        acheck'
 alias   cl='        clear'
 alias   cp='        cp -i'
@@ -157,7 +168,7 @@ alias   pacsel='    pacman -Qs'
 alias   pacil='     pacman -Qi'
 alias   pacprog="   pacman -F"
 alias   paclast="   expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
-alias   pacnot='    pacman --color=always -Sl | grep -v "installed" | grep'
+alias   pacnot='    pacman --color=always -Sl | grep -v "installed" | xargs -d $"\n" | grep -P'
 alias   pacl='      yay --clean'
 alias   pacln='     yay -Scc; yay --clean'
 alias   pacfrom='   pacman -Qo'
@@ -178,7 +189,6 @@ alias   tracenet='  strace'
 alias   i3e='       nvim -p "$HOME/.config/i3/"*'
 alias   xr='        echo ""; nvim $HOME/.Xresources; xrdb ~/.Xresources'
 alias   ebash='     nvim $HOME/.bashrc; source ~/.bashrc'
-alias   hbash='     nvim $HOME/.bash_history2'
 alias   einp='      nvim $HOME/.inputrc'
 alias   editnv='    nvim $HOME/.config/nvim/init.vim'
 alias   emime='     nvim $HOME/.config/mimeapps.list'
@@ -197,7 +207,7 @@ alias   gr='        (echo ""; read _z; grep -Pi  "${_z}" "$HOME/.bashrc") <<< '
 alias   nvgr='      (echo ""; read _z; grep -Pri "${_z}" "$HOME/.config/nvim/") <<< '
 alias   i3gr='      (echo ""; read _z; grep -Pri "${_z}" "$HOME/.config/i3/") <<< '
 #-------------------------------------GREP---------------#
-alias   gport='     _myfunc() { netstat -lntu | grep -Pi "${@:-""}"; }; _myfunc'
+alias   gport='     gport_function'
 alias   isport='    (read _z; ss -lp "sport = :${_z}") <<< '
 alias   xprattach=" nohup /usr/bin/xpra attach :${XPRA_DISPLAY_NUMBER} &"
 alias   img='       nsxiv -0'
@@ -211,6 +221,7 @@ alias   ll="        lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%
 alias   lst="       lsd --icon='never' -ltrh"
 alias   lsz="       lsd --icon='never' -lSrh"
 alias   psg='       ps ax | grep -Pi'
+alias   pgr='       pgrep -Pi'
 alias   pse='       ps -eo comm=, | grep --ignore-case'
 alias   pso='       ps -eo cmd=, | grep --ignore-case'
 alias   tre='       ps -ejH'
@@ -219,7 +230,7 @@ alias   tres='      ps -eHo euser,ruser,suser,fuser,f,comm,label'
 alias   scim='      sc-im'
 alias   phone='     aft-mtp-cli'
 alias   decl='      declare -f'
-alias   hb='        htop'
+alias   ht='        htop'
 alias   pips='      poetry search'
 alias   sman='      man -K --regex'
 alias   down='      cd "$HOME/Downloads/"'                                              
@@ -253,17 +264,13 @@ alias   fnsc='      (read _x; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | gre
 #---------------------------------------------------------------------- #
 export  NO_AT_BRIDGE=1
 export  PAGER='most'
-export  TERM=st
-export  EDITOR="nvim"
+export  TERM=st export  EDITOR="nvim"
 export  FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 export  XDG_CONFIG_HOME="$HOME/.config"
 export  XDG_CACHE_HOME="$HOME/.cache"
 export  BROWSER="/usr/bin/elinks"
-export  YAD_POS_X="1920"
-export  YAD_POS_Y="1080"
-export  LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}"
-
-
+#export  LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}"
+export  PYTHONPATH="${PYTHONPATH}:$HOME/.local/python3.10/site-packages"                ####-!!-!!-!!-
 
 
 #---------------------------------------------------------------------- #
@@ -283,15 +290,11 @@ if  [ -d "/usr/bin"              ] ; then PATH="/usr/bin/:$PATH"             ;  
 set -o vi
 #######shopt -s dotglob
 #######shopt -s globstar
+
 #---------------------------------------------------------------------- #
-#-END 									#
+#-END 									                                #
 #---------------------------------------------------------------------- #
 
-
-
-
-alias nd='nvim $HOME/Documents/NEOVIM_BIG_DOCS.txt'
-alias ndr='cat "$HOME/Documents/NEOVIM_BIG_DOCS.txt" | grep -i -n'
 
 
 

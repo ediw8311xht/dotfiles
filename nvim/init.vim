@@ -15,13 +15,13 @@
 "<==========================================================================>
 "<--------- MY VARS -------------------------------------------------------->
 let jam="hi FoldColumn gui=bold guibg=NONE guifg=#00ff00"
-let g:myScheme = [ "pop-punk", "eldar", "elflord", "delek", "morning", "cyberpunk-neon" ]
-let g:mySpec   = [        ".",     jam,       ".",     ".",       ".",              "." ]
+let g:myScheme = [ "pop-punk", "eldar", "elflord", "delek", "morning", "blue", "cyberpunk-neon" ]
+let g:mySpec   = [        ".",     jam,       ".",     ".",       ".",    ".",              "." ]
 
                    "" ]
 
-let g:myBg     = [ "#000000", "#333333", "#111111", "#220000", "#002200", "#000022", "#ffffff", "blue" ]
-let g:myFg     = [       ".",       ".",       ".",       ".",       ".",       ".", "#000000",    "#dddddd" ]
+let g:myBg     = [ "#000000", "#333333", "#111111", "#220000", "#002200", "#000022", "#002244" ]
+let g:myFg     = [       ".",       ".",       ".",       ".",       ".",       ".", "#aaaaaa" ]
 
 let g:myBg+=["NONE"] | let g:myFg+=[   "."]
 
@@ -72,6 +72,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set backspace=2
+"set nomore
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 let g:html_dynamic_folds = 1
@@ -123,6 +124,9 @@ Plug 'MunifTanjim/nui.nvim'
 
 "just for fun record stats about programming
 Plug 'wakatime/vim-wakatime'
+
+" fzf finder
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 "<--------_G-VAR_<leader>f_from-:-lf
@@ -286,11 +290,12 @@ endfunction
 "list keybindings with :help index
 "list user keybindings with :map
 "nnoremap <leader>. :NERDTreeToggle<esc>
+nnoremap <leader>keys :map<esc>
 nnoremap <leader>1 :hi cursorline guibg=NONE guifg=NONE gui=bold cterm=NONE ctermbg=NONE ctermfg=NONE<esc>
 nnoremap <leader>2 :PlugUpdate<CR>
 nnoremap <leader>3 :PlugInstall<CR>
 nnoremap <leader>a :call Cycler([0, 1], g:coc_enabled, [":CocEnable", ":CocDisable"], 0)<esc>
-nnoremap <leader>b :buffer<space>
+nnoremap <leader>b :ls<CR>:b<Space>
 nnoremap <leader>c :set nocursorline!<esc>
 nnoremap <leader>e :set cursorcolumn!<esc>
 nnoremap <leader>f :set wrap!<esc>
@@ -305,12 +310,13 @@ nnoremap <leader>y :hi Normal guibg=Transparent<esc>
 nnoremap <leader>z z
 nnoremap <leader>l :call CycleBackgroundColor(+1)<CR>
 nnoremap <leader>L :call CycleBackgroundColor(-1)<CR>
-nnoremap <leader>B :buffers<esc>
+nnoremap <leader>B :Buffers<esc>
 nnoremap <leader>D :Bracey<esc>
 nnoremap <leader>H :vert helpgrep 
 nnoremap <leader>N :cprevious<esc>
 nnoremap <leader>M :messages<esc>
 nnoremap <leader><C-w>line :call ToggleColorColumn()<esc>
+nnoremap <leader>; :ls<CR>:b<Space>
 "map <C-b> nnoremap <leader>bb :buffers<cr>:b<space> 
 "nnoremap <leader><leader> :<backspace>
 nnoremap <leader><leader> <C-^>
@@ -325,6 +331,7 @@ nnoremap <leader>tl :tablast<esc>
 nnoremap <leader>tN :tabmove +1<esc>
 nnoremap <leader>tB :tabmove -1<esc>
 nnoremap <leader>tcc :tabclose<esc>
+nnoremap <C-p> <C-i>
 
 nnoremap <leader>vm  :put =eval('<C-r>0')
 nnoremap <leader>vq  :put =eval('<C-r>0')<esc>
@@ -374,6 +381,7 @@ nnoremap <leader>. q:
 set statusline=\ %F\ \|
 set statusline+=\%l\(%L\)\|%v\ 
 set statusline+=%m\ 
+set statusline+=%=\ [%n]\ 
 set statusline+=%=\ %L\ l,\ 
 set statusline+=%{wordcount().words}\ w\ 
 "<--------- EXTRA ---------------------------------------------------------->

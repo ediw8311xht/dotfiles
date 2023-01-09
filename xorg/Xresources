@@ -1,8 +1,8 @@
 
 *.alpha:	    0.93
-*.font: 	    xos4Terminus:pixelsize=17:autohint=true:antialias=true
-!*.font: 	    Agave:style=Regular:size=12:antialias=true
-!*.font: 	    IosevkaCustom:size=12:antialias=true:autohint=false
+!*.font: 	    xos4Terminus:pixelsize=18:autohint=true:antialias=true
+*.font: 	    Agave:style=Regular:size=12:antialias=true
+!*.font: 	    IosevkaCustom:pixelsize=14:antialias=true:autohint=false
 !*.font: 	    Monoid:size=15:antialias=true:autohint=true
 !*.font: 	    FantasqueSansMono:style=Regular:pixelsize=15:autohint=true:antialias=true
 !*.font: 	    ComicMono:size=14:autohint=true:antialias=true
@@ -18,7 +18,6 @@
 !*.font: 	    SarasaMonoSCNerd:size=15:antialias=true:autohint=true
 !*.font: 	    Hack:size=15:antialias=true:autohint=true
 !*.font: 	    Hermit:size=15:antialias=true:autohint=true
-!*.font: 	    Menlo:size=15:antialias=true:autohint=true
 !*.font: 	    IBM 3270:size=19:antialias=true:autohint=true
 !!!!!!!!!!!!!!ISSUES in st with SharTechMono only with ('fig' displays incorrectly) ShareTechMono
 !*.font: 	    ShareTechMono:size=17:autohint=true:antialias=true
@@ -226,8 +225,6 @@ Zutty.font:                 Agave-Regular-Slashed
 Zutty.title:                Zutty
 Zutty.border:               10
 !!!!!!!!!!!!!!!!!!!!!!!----------------i3wm------------!!!!!!!
-i3wm.monitor1: DVI-D-1
-i3wm.monitor2: HDMI-1
 !!!!!!!!!!!!!!!!!!!!!!!----------------COMMENT-OUT-----!!!!!!!!!!!!!!!!!!!!!!!
 !!!!START_1!!!!
 !!!!ON!!!!!!!!!
@@ -236,3 +233,5 @@ i3wm.monitor2: HDMI-1
 
 
 
+i3wm.monitor1: DVI-D-1
+i3wm.monitor2: HDMI-1
