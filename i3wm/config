@@ -73,6 +73,8 @@
         client.focused_tab_title    $-              $-              #000cc2                
         client.background       	$-     
 #-------------------------------------------------------INCLUDE-----------#
+    # for_window set border before release_border if you want to include
+    for_window [all] border $BORDER_PIXEL
     # release_border_i3wm.conf needs to be included before others.
     include release_border_i3wm.conf
     include shift_bindings_i3wm.conf
@@ -81,7 +83,6 @@
 #-------FOR_WINDOW--------------------------------------------------------#
     for_window [all] title_window_icon no
     for_window [all] title_format "<big><big><big><span background='#000000' rise='3pt'> <small>%title</small> </span></big></big></big>"
-    for_window [all] border $BORDER_PIXEL
     for_window [instance="i3s_note"]		    floating enable,    resize set $WSW $WSH, move position center, move scratchpad, scratchpad show
     for_window [instance="i3s_st"]			    floating enable,    resize set $WSW $WSH, move position center, move scratchpad, scratchpad show
     for_window [class=".*elementary\.term.*"]   floating enable,    resize set $WSW $WSH, move position center, move scratchpad, scratchpad show
