@@ -240,7 +240,7 @@ alias   docs='      cd "$HOME/Documents/"'
 alias   spreds='    cd "$HOME/Documents/SPREADSHEETS/"'                                              
 alias   desk='      cd "$HOME/Desktop/"'                                                
 alias   vids='      cd "$HOME/Videos/"'                                                 
-alias   wallz='     cd "$HOME/Pictures/MyWallpapers"'
+alias   wallz='     cd "$HOME/Pictures/Wallpapers"'
 alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'                                    
 alias   testr='     . $HOME/test.sh'
 alias   git_mt='    git log --pretty=format:"%h %s" --graph'
@@ -294,13 +294,4 @@ set -o vi
 #---------------------------------------------------------------------- #
 #-END 									                                #
 #---------------------------------------------------------------------- #
-
-
-
-
-
-
-
-
-
 
