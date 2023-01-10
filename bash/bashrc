@@ -1,5 +1,5 @@
 
-#-
+#
 #- ~/.bashrc
 # \\shellcheck disable=SC1000-SC9999
 #-
@@ -24,12 +24,12 @@ PS2+='             '"${INSERT2}"
 # --------------------------------------------------------------------- #
 #  FUNCTIONS								                            #
 # --------------------------------------------------------------------- #
-kn() { 
-   (IFS=$'\n'
-    ns=($(echo "$(grep -Pi '^ [0-9]+\K.*'"${1}"'.*$' <<< $(ps ax))"))
+function kn() { 
+    local IFS=$'\n'
+    local ns=($(echo "$(grep -Pi '^ [0-9]+\K.*'"${1}"'.*$' <<< $(ps ax))"))
     echo "MATCHES GOT: ${#ns[@]}"; echo "${ns[*]}"
-)}
-cg() {
+}
+function cg() {
     if [[ -z "$*" ]] ; then
         compgen -A function -abck | sort | uniq -c | grep -Pio '.+[0-9]+ \K.*'
     else 
@@ -47,20 +47,20 @@ my_cd()	{
     cd "${@:-"$(find . -type d | fzf --preview="ls -1 {}" )"}"
 }
 vid() {
-   (if [[ "${1}" =~ ^-mono ]] ; then AUD="mono"; shift 1; fi
+    if [[ "${1}" =~ ^-mono ]] ; then local AUD="mono"; shift 1; fi
 
     mpv --audio-channels="${AUD:-"auto"}" "${@:-.}" & disown
-)}
+}
 upd_pip_z() { 
-   (IFS=$'\n' 
-    zname="$(date +'%Y%m%d')_pipoutdated.txt"
+    local IFS=$'\n' 
+    local zname="$(date +'%Y%m%d')_pipoutdated.txt"
     pip list --outdated > "${zname}"
-    A="$(cat "${zname}" | sed '1,2d' | sed -e 's/[ ][ ]*/ /g' | cut -d' ' -f1)"
+    local A="$(cat "${zname}" | sed '1,2d' | sed -e 's/[ ][ ]*/ /g' | cut -d' ' -f1)"
     for i in $A ; do pip install --upgrade "${i}"; done
     return "$?"
-)}
+}
 fpend() {
-   (if [[ "$1" =~ ^-[dD](ate)? ]] ; then shift 1; MDATE="#$(date)"; fi
+    if [[ "$1" =~ ^-[dD](ate)? ]] ; then shift 1; local MDATE="#$(date)"; fi
     if [[ -f "${1}"            ]] ; then
         for i in "${@:2}" "${MDATE:-"_"}"; do 
             echo "${i}" '  |---|  ' "${1}"
@@ -69,19 +69,37 @@ fpend() {
         return "$?"
     fi
     echo "INCORRECT ARGUMENTS"; return 1
-)}
+}
 addally() {
-    printf 'alias %s='\''cd "%s"'\''     %s' "${1}" "${PWD/$HOME/\$HOME}" "${IGNORE_TEXT}" >> "$HOME/.bashrc"
-)}
+    printf 'alias %s='\''cd "%s"'\''     %s' \
+        "${1}" "${PWD/$HOME/\$HOME}" "${IGNORE_TEXT}" >> "$HOME/.bashrc"
+}
 rep_char() {
-    (z="${1}"; while ((z--)) ; do echo -n "${2}"; done
-)}
+    local z="${1}"; while ((z--)) ; do echo -n "${2}"; done
+}
 nifs()   { IFS=$'\n'   ; printf 'IFS=%q\n' "${IFS}" ; }
 rifs()   { IFS=$' \t\n'; printf 'IFS=%q\n' "${IFS}" ; }
 ppifs()  { printf "IFS=%q" "${IFS}"; echo ""        ; }
 pifs()   { printf     "%q" "${IFS}"; echo ""        ; }
 acheck() { compgen -c  | grep -x "${@}"             ; }
 
+alias_conflict() {
+    local beg='    '
+    echo "------------------------------"
+    local cvm="$(compgen -c)"
+    for i in $(alias -p | grep -Pio '^[ \t]*alias[ \t]*\K[^=]*') ; do 
+        local wcl="$(grep -x "${i}" <<< "${cvm}" | wc -l)"
+        if [[ "${wcl}" -gt 1 ]] ; then 
+            echo "${wcl} - ${i}" 
+            if [[ "${1,,}" =~ ^[-][-]?f(ull)?$ ]] ; then
+                type -a "${i}" | 
+                    sed 's/^/'"${beg}"'/' |
+                    sed 's/.*is aliased to [`][ \t]*/\n'"${beg}""${beg}"'/'
+            fi
+            echo "------------------------------"
+        fi
+    done
+}
 gport_function() { netstat -lntu | grep -Pi "${@:-""}" ; }
 
 bash_history_grab() {
@@ -106,10 +124,9 @@ alias   t='	        trash-put'
 alias   x='         $HOME/bin/FOR_BASHRC/stars_c.sh'
 alias   bgr='       bash_history_grab'
 alias   hb='        nvim $HOME/.bash_history2'
-alias   ac='        acheck'
 alias   cl='        clear'
-alias   cp='        cp -i'
-alias   df='        df -h'
+alias   cp_='      cp -i'
+alias   df_='      df -h'
 alias   fz='        my_cd'    
 alias   fo='        xdg-open "$(fzf)"'
 alias   fn='        nvim     "$(fzf --preview="nvim {}")"'
@@ -119,20 +136,25 @@ alias   mf='        find . -iname'
 alias   ic='        clear; imgcat'
 alias   nv='        nvim'
 alias   snv='       sudoedit'
+alias   sf='	    clear; screenfetch'
+alias   ac='        acheck'
+alias   alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
+alias   acc='       alias_conflict'
+alias   acf='       alias_conflict --full'
 alias   pc='	    clear; neofetch'
 alias   pe='        ps -eo comm=,'
 alias   po='        ps -eo cmd=,'
 alias   conf='      cd "$XDG_CONFIG_HOME"'
 alias   qread='     zathura  "$(fzf)"'
-alias   free='      free -m'
+alias   free_='     free -m'
 alias   rmi='       rm -i'
 alias   pdf='       zathura'
 alias   i3c='       i3 -C "$HOME/.config/i3/config"'
-    #--rename--
+    #---rename-#
 alias   tyren='     perl-rename -v -n'
 alias   doren='     perl-rename -v'
 alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
-    #--kill--
+    #---kill---#
 alias          kctpv='kill "$(pidof "ctpv")"'
 alias   kill_at_spi2='killall at-spi2-registryd; killall at-spi2-bus-launcher'
 alias             ka='killall'
@@ -227,7 +249,7 @@ alias   pso='       ps -eo cmd=, | grep --ignore-case'
 alias   tre='       ps -ejH'
 alias   trev='      ps axjf'
 alias   tres='      ps -eHo euser,ruser,suser,fuser,f,comm,label'
-alias   scim='      sc-im'
+alias   vcs='      sc-im'
 alias   phone='     aft-mtp-cli'
 alias   decl='      declare -f'
 alias   ht='        htop'

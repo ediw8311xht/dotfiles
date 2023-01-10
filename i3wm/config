@@ -19,8 +19,8 @@
     set_from_resource $BOT_GAPS i3wm.TOP_GAPS 0
     set_from_resource $R_GAPS   i3wm.IN_GAPS  0
     set_from_resource $L_GAPS   i3wm.L_GAPS   0
-    set $WSW    1200
-    set $WSH    900
+    set $WSW    1400
+    set $WSH    950
     set $mod    Mod1
     set $Br     bindsym     Mod1+
     set $SF     bindsym     Mod1+Shift+
@@ -60,12 +60,12 @@
     font pango:Hack 7
     default_border  $BORDER_PIXEL
     #---GAPS------------------------------------------#
-        gaps inner  $IN_GAPS
-        gaps outer  $OUT_GAPS
-        gaps top 	$TOP_GAPS
-        gaps bottom	$BOT_GAPS 
-        gaps right 	$R_GAPS  
-        gaps left  	$L_GAPS  
+        gaps inner  0
+        gaps outer  0
+        gaps top 	0
+        gaps bottom	0
+        gaps right 	0
+        gaps left  	0
     #---Class-----------------------Border----------Background------Text------------Indicator-------ChildBorder----#
         client.focused              $focuse_TBAR    $focuse_TBAR    $focuse_TEXT    $focuse_TBAR    $focuse_BORD
         client.focused_inactive 	$inacti_TBAR 	$inacti_TBAR	$inacti_TEXT 	$inacti_TBAR    $inacti_BORD
@@ -85,7 +85,7 @@
     for_window [all] title_format "<big><big><big><span background='#000000' rise='3pt'> <small>%title</small> </span></big></big></big>"
     for_window [instance="i3s_note"]		    floating enable,    resize set $WSW $WSH, move position center, move scratchpad, scratchpad show
     for_window [instance="i3s_st"]			    floating enable,    resize set $WSW $WSH, move position center, move scratchpad, scratchpad show
-    for_window [class=".*elementary\.term.*"]   floating enable,    resize set $WSW $WSH, move position center, move scratchpad, scratchpad show
+    for_window [class=".*Thunar*"]              floating enable,    resize set $WSW $WSH, move position center, move scratchpad, scratchpad show
     for_window [class="Tor Browser"]		    floating enable,    resize set $WSW $WSH, move position center, move scratchpad, scratchpad show
     for_window [class="Emacs"]				    floating enable,    resize set $WSW $WSH, move position center, move scratchpad, scratchpad show
     for_window [class=".*icecat.*"]	            floating enable,    resize set $WSW $WSH, move position center, move scratchpad, scratchpad show

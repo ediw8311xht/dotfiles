@@ -3,18 +3,19 @@
 set shell sh
 set shellopts '-eu'
 ##USE DOUBLE QUOTES FOR 'set ifs "something"'
-set         ifs             "\n" 
-set 		ratios 			1:2:3
-set 		info 			size:time
-set 		scrolloff 		10
-set			autoquit
-#set 		drawbox
-set 		dircounts
-set 		preview
-set 		number
-set 		ignorecase
-#set 		icons
-set 		relativenumber
+set ifs         "\n" 
+set ratios      1:2:3
+set info        size:time
+set scrolloff   10
+set autoquit
+set drawbox
+set dircounts
+set preview
+set number
+set ignorecase
+set noicons
+set relativenumber
+set sortby ctime
 
 set previewer ctpv
 set cleaner ctpvclear
@@ -37,10 +38,14 @@ cmd rep &{{
 cmd trash ${{
     set -f
     if [ -z "$fs" ]; then
-        trash-put "${f}" && lf -remote "send $id reload && redraw" &
+        trash-put "${f}"
+        lf -remote "send $id reload && redraw"
+        &
     else
         for f in ${fs} ; do 
-            trash-put "${f}" && lf -remote "send $id reload && redraw" &
+            trash-put "${f}"
+            sleep 0.1
+            lf -remote "send $id reload && redraw" &
         done
     fi
     sleep 0.5 && lf -remote "send $id reload && redraw" & 
@@ -57,23 +62,34 @@ cmd open &{{
     &xdg-open "${f}"
 }}
 
+cmd oneforone &{{
+    lf -remote "send $id set nopreview"
+    lf -remote "send $id set ratios 1"
+}}
 
 
-map     e         np
-map 	H		  set hidden!
-map     TR		  :trash
-map 	d  	  	  set dironly!
-map 	r 		  set reverse!
-map     RR        :reload
-map 	RN		  rename
-map 	P		  push :!echo<space>""<left>
-map 	;		  push '' 
-map		K		  :rep "3" "up"
-map 	J		  :rep "3" "down"
-map 	Q 		  &lf -remote 'send quit'; lf -remote 'quit'
-map     <esc>     clear
-map 	<enter>   shell
-map 	o 		  &xdg-open "${f}"
-map 	O 		  $xdg-open --ask "${f}"
-set sortby name
+map e       np
+map <lt>p   set nopreview
+map <lt>0   set ratios 1:2:3
+map <lt>1   set ratios 1:2:1
+map <lt>2   set ratios 1:1
+map <lt>3   set ratios 2:1
+map <lt>4   :oneforone
+map <esc>   clear
+map <enter> shell
+map H		set hidden!
+map d  	  	set dironly!
+map r 		set reverse!
+
+map TR		:trash
+map RR      :reload
+map RN		rename
+map P		push :!echo<space>""<left>
+map ;		push '' 
+map	K		:rep "3" "up"
+map J		:rep "3" "down"
+map Q 		&lf -remote 'send quit'; lf -remote 'quit'
+map o 		&xdg-open "${f}"
+map O 		$xdg-open --ask "${f}"
+
 

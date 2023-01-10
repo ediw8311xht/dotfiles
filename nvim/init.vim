@@ -128,6 +128,8 @@ Plug 'wakatime/vim-wakatime'
 " fzf finder
 Plug 'junegunn/fzf.vim'
 
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+
 call plug#end()
 "<--------_G-VAR_<leader>f_from-:-lf
 lua require('base')
@@ -255,7 +257,7 @@ function! CycleColorscheme(nextprevious)
     for _ in g:myScheme
         if current_scheme ==? _
             let j = (i + (a:nextprevious)) % lenny
-            echo j . ' / ' . lenny
+            echo j . ' / ' . lenny . '  -  ' . _
             execute "colorscheme " g:myScheme[j]
             execute g:mySpec[j]
             syntax on

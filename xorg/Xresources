@@ -233,8 +233,6 @@ Zutty.border:               10
 
 
 
-i3wm.monitor1: DVI-D-1
-i3wm.monitor2: HDMI-1
 
 i3wm.R_GAPS:    0
 i3wm.L_GAPS:    0
@@ -242,3 +240,5 @@ i3wm.IN_GAPS:   20
 i3wm.OUT_GAPS:  0  
 i3wm.TOP_GAPS:  0  
 
+i3wm.monitor1: DVI-D-1
+i3wm.monitor2: HDMI-1
