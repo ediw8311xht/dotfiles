@@ -6,6 +6,7 @@ set pages-per-row "1"
 map <C-h> toggle_statusbar
 map ,h toggle_statusbar
 set sandbox strict
+map b recolor
 
 #set default-bg                  "#000000" # Background
 #set default-fg                  "#000000" # Foreground

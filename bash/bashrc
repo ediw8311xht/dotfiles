@@ -110,13 +110,29 @@ bash_history_grab() {
     fi
 }
 
+killall_loaded() {
+    local jam="${*}"
+    if [[ "${*}" =~ ^-p ]] ; then 
+        if ! local jam="${jam: 2}" || [[ "${#jam}" -lt 1 ]] ; then
+            echo "ERROR"; return 1
+        fi
+        echo "${jam}"
+        sleep 1
+        pkill -u "${USER}" -e "${jam}"
+    else
+        killall "${jam}"
+    fi
+    sleep 1
+    ps ax | grep -P "[${jam:: 1}]${jam: 1}"
+}
+
 #---------------------------------------------------------------------- #
 #-ALIASES								#
 #---------------------------------------------------------------------- #
 alias   sudo='      sudo '
 alias   cop='       xcmenu --input --clipboard'
 alias   b='         cd "$HOME/bin/"'
-alias   c='         my_cd'
+alias   c='         printf "\n%.0s_______________________________" {1..400} ; printf "%.0s\n" {1..500} ; clear '
 alias   comv='      command -V'
 alias   f='         find / -mount'
 alias   h='         cd "$HOME"'
@@ -124,9 +140,9 @@ alias   t='	        trash-put'
 alias   x='         $HOME/bin/FOR_BASHRC/stars_c.sh'
 alias   bgr='       bash_history_grab'
 alias   hb='        nvim $HOME/.bash_history2'
-alias   cl='        clear'
-alias   cp_='      cp -i'
-alias   df_='      df -h'
+alias   cl="        printf '\n%.0s_______________________________' {1..400} ; printf '%.0s\n' {1..500} ; clear; echo ''"
+alias   cp_='       cp -i'
+alias   df_='       df -h'
 alias   fz='        my_cd'    
 alias   fo='        xdg-open "$(fzf)"'
 alias   fn='        nvim     "$(fzf --preview="nvim {}")"'
@@ -157,7 +173,7 @@ alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
     #---kill---#
 alias          kctpv='kill "$(pidof "ctpv")"'
 alias   kill_at_spi2='killall at-spi2-registryd; killall at-spi2-bus-launcher'
-alias             ka='killall'
+alias             ka='killall_loaded'
 alias         xprdet='pkill -f "^[/]+usr[/]+bin[/]+xpra attach :${XPRA_DISPLAY_NUMBER}[ \$]"'
 #PAC----------------------------------NON-LOCAL----------#
 #alias   pacman='    pac_func() { pacman "$@" 2>&1 | tee -a "$HOME/PACMAN_LOG.txt"; }; pac_func'
@@ -264,6 +280,7 @@ alias   desk='      cd "$HOME/Desktop/"'
 alias   vids='      cd "$HOME/Videos/"'                                                 
 alias   wallz='     cd "$HOME/Pictures/Wallpapers"'
 alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'                                    
+alias   ytdl='      youtube-dl -o "$HOME/Videos/%(title)s.%(ext)s" --restrict-filename'
 alias   testr='     . $HOME/test.sh'
 alias   git_mt='    git log --pretty=format:"%h %s" --graph'
 alias   mansec='    man -f'

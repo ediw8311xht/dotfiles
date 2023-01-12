@@ -1,5 +1,4 @@
                      
-
 "<==========================================================================>
 "<==----------------======================================----------------==>
 "<==-----  ||||-----======================================-----  ||||-----==>
@@ -15,7 +14,7 @@
 "<==========================================================================>
 "<--------- MY VARS -------------------------------------------------------->
 let jam="hi FoldColumn gui=bold guibg=NONE guifg=#00ff00"
-let g:myScheme = [ "pop-punk", "eldar", "elflord", "delek", "morning", "blue", "cyberpunk-neon" ]
+let g:myScheme = [ 'pop-punk', 'eldar', 'elflord', 'delek', 'morning', 'blue', 'cyberpunk-neon', 'peachpuff', 'industry' ]
 let g:mySpec   = [        ".",     jam,       ".",     ".",       ".",    ".",              "." ]
 
                    "" ]
@@ -181,14 +180,14 @@ let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
 "<--------- COLOR SCHEME STUFF --------------------------------------------->
-colorscheme pop-punk
+"colorscheme vividchalk
 
-hi  MatchParen          cterm=NONE ctermbg=NONE ctermfg=NONE gui=reverse    
-hi  cursorline          cterm=bold ctermfg=NONE ctermbg=18   gui=bold       guibg=#000044 guifg=NONE
-hi  cursorcolumn        gui=bold,italic,reverse
-hi  FoldColumn          cterm=NONE ctermbg=NONE ctermfg=NONE gui=bold       guibg=NONE    guifg=#00ff00 
-hi  Folded              cterm=NONE ctermbg=NONE ctermfg=NONE gui=italic     guibg=NONE    guifg=#888888 
-hi  StatusLine          cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE       guibg=#222222 guifg=#009900
+"hi  MatchParen          cterm=NONE ctermbg=NONE ctermfg=NONE gui=reverse    
+"hi  cursorline          cterm=bold ctermfg=NONE ctermbg=18   gui=bold       guibg=#000044 guifg=NONE
+"hi  cursorcolumn        gui=bold,italic,reverse
+"hi  FoldColumn          cterm=NONE ctermbg=NONE ctermfg=NONE gui=bold       guibg=NONE    guifg=#00ff00 
+"hi  Folded              cterm=NONE ctermbg=NONE ctermfg=NONE gui=italic     guibg=NONE    guifg=#888888 
+"hi  StatusLine          cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE       guibg=#222222 guifg=#009900
 "hi  Normal              cterm=NONE ctermbg=17   ctermfg=NONE gui=NONE      guibg=NONE    guifg=#ffffff
 "hi htmlTag            gui=reverse   guifg=#90b0d1 guibg=#000033
 "hi htmlSpecialTagName gui=reverse
@@ -376,6 +375,7 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
 set cedit=\<C-c>
 nnoremap <leader>. q:
+nnoremap <leader>/ :Explore<CR>
 "map <leader> :Lf<CR>
 " Take last command line command to use to output to neovim
 " BELOW 4 lines do that riff on that
@@ -395,9 +395,9 @@ set statusline+=%{wordcount().words}\ w\
 autocmd BufNewFile,BufRead *.sh                     set syntax=zsh
 autocmd BufNewFile,BufRead ~/.config/polybar/config setfiletype dosini
 autocmd BufNewFile,BufRead ~/.config/i3/*           setfiletype i3
-autocmd BufNewFile,BufRead *athamerc                setfiletype vim
 "<--------- INFO ----------------------------------------------------------->
 "   %<"                             _-_is expanded to the name of the current buffer.
+
 "   :help key-notation              _-_for list of keys and their names.
 "   :only                           _-_make split only one. 
 "   :let                            _-_list all options and their values. 

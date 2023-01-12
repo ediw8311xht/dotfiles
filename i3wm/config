@@ -84,6 +84,7 @@
     for_window [all] title_window_icon no
     for_window [all] title_format "<big><big><big><span background='#000000' rise='3pt'> <small>%title</small> </span></big></big></big>"
     for_window [instance="i3s_note"]		    floating enable,    resize set $WSW $WSH, move position center, move scratchpad, scratchpad show
+    for_window [class=".*Zathura.*"]            floating enable,    resize set $WSW $WSH, move position center, move scratchpad, scratchpad show
     for_window [instance="i3s_st"]			    floating enable,    resize set $WSW $WSH, move position center, move scratchpad, scratchpad show
     for_window [class=".*Thunar*"]              floating enable,    resize set $WSW $WSH, move position center, move scratchpad, scratchpad show
     for_window [class="Tor Browser"]		    floating enable,    resize set $WSW $WSH, move position center, move scratchpad, scratchpad show

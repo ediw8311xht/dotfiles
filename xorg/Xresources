@@ -1,5 +1,5 @@
 
-*.alpha:	    0.93
+*.alpha:	    1
 !*.font: 	    xos4Terminus:pixelsize=18:autohint=true:antialias=true
 *.font: 	    Agave:style=Regular:size=12:antialias=true
 !*.font: 	    IosevkaCustom:pixelsize=14:antialias=true:autohint=false
@@ -23,16 +23,16 @@
 !*.font: 	    ShareTechMono:size=17:autohint=true:antialias=true
 !!!!!!!COOL FONTS (my names for ref):
 !!!!!!!IBM 3270, Agave, SarasaMonoSlab, Iosevka Custom, Hack, Hermit, Menlo, Fira Code, Input Mono
-!*.borderColor:      #FF0000
-!*.cursorColor:      #999999
-*.internalBorder:   0
-*.borderSize:       0px
-*.border:           0px
-*.borderpx:         10px
+!!*.borderColor:      #FF0000
+!!*.cursorColor:      #999999
+!!*.internalBorder:   0px
+!!*.borderSize:       0px
+!!*.border:           10px
+*.borderpx:         15px
 !!!!!!!!!!!!!!!!!!!!!!!----------------DEFAULT
 !.color:        #FFFFFF
 *.foreground:   #FFFFFF
-*.background:   #090909
+*.background:   #000000
 ! black
 *.color0:       #000000
 *.color8:       #2a495d
@@ -84,35 +84,36 @@
 !*.color16:      #FFFFFF
 !*.color48:      #FFFFFF
 !!!!!!!!!!!!!!!!!!!!!!!----------------SPECIAL------(FLOAT)--FROM:-[http://dotshare.it/dots/136/]
-special_float.font: 	    Agave:style=Regular:pixelsize=17:antialias=true
-special_float*alpha:	        1
-special_float*background:       #000011
-special_float*foreground:       #f8f8f2
-special_float*borderpx:         18px
-special_float*cursorColor:      #d4d7d4
-special_float*internalBorder:   5
-special_float*color0:           #1B1D1E
-special_float*color8:           #505354
-special_float*color1:           #ff005f
-special_float*color9:           #ff6767
-special_float*color2:           #afd700
-special_float*color10:          #8ce25d
-special_float*color3:           #ff8f00
-special_float*color11:          #ffb445
-special_float*color4:           #1165e9
-special_float*color12:          #5496ff
-special_float*color5:           #8C54FE
-special_float*color13:          #9E6FFE
-special_float*color6:           #4c8ea1
-special_float*color14:          #6bc1d0
-special_float*color7:           #d2d2d2
-special_float*color15:          #ffffff
+!!special_float.font: 	    Agave:style=Regular:pixelsize=17:antialias=true
+!!special_float*alpha:	        1
+special_float*background:       #000022
+!!special_float*foreground:       #f8f8f2
+!!special_float*borderpx:         10px
+!!special_float*cursorColor:      #d4d7d4
+!!special_float*internalBorder:   10px
+!!special_float*color0:           #1B1D1E
+!!special_float*color8:           #505354
+!!special_float*color1:           #ff005f
+!!special_float*color9:           #ff6767
+!!special_float*color2:           #afd700
+!!special_float*color10:          #8ce25d
+!!special_float*color3:           #ff8f00
+!!special_float*color11:          #ffb445
+!!special_float*color4:           #1165e9
+!!special_float*color12:          #5496ff
+!!special_float*color5:           #8C54FE
+!!special_float*color13:          #9E6FFE
+!!special_float*color6:           #4c8ea1
+!!special_float*color14:          #6bc1d0
+!!special_float*color7:           #d2d2d2
+!!special_float*color15:          #ffffff
 !!!!!!!!!!!!!!!!!!!!!!!----------------SPECIAL-------(NOTE)
 special_note.font: 	    Agave:style=Regular:pixelsize=17:antialias=true
 special_note*alpha:	       1
 special_note*background:   #000000
 special_note*foreground:   #d4d7d4
-special_note*borderpx:     18px
+special_note*borderpx:     0px
+special_note.internalBorder: 0px
 special_note*cursorColor:  #d4d7d4
 special_note*color0:       #232b34
 special_note*color8:       #4f5e67

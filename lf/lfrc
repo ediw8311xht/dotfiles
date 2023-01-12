@@ -72,9 +72,10 @@ map e       np
 map <lt>p   set nopreview
 map <lt>0   set ratios 1:2:3
 map <lt>1   set ratios 1:2:1
-map <lt>2   set ratios 1:1
-map <lt>3   set ratios 2:1
-map <lt>4   :oneforone
+map <lt>2   set ratios 1:2
+map <lt>3   set ratios 1:1
+map <lt>4   set ratios 2:1
+map <lt>5   :oneforone
 map <esc>   clear
 map <enter> shell
 map H		set hidden!
