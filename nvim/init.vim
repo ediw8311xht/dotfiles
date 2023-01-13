@@ -283,10 +283,10 @@ nn <lt> :tabprevious<esc>
 nn > :tabnext<esc>
 nn x "xx
 nn \ `
-nn dd "Ddd
-nn  D "DD
-nn cc "Ccc
-nn  C "CC
+"nn dd "Ddd
+"nn  D "DD
+"nn cc "Ccc
+"nn  C "CC
 "nn C "Cd
 "map <leader> :Lf<CR>
 " Take last command line command to use to output to neovim
