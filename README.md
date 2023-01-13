@@ -2,7 +2,7 @@
 
 **Greetings** im Maximilian Ballard and these are my configuration files for my system.
 
-Software I use (***not all configs included in this repo***):
+Software I use:
 
     Distro:                     manjaro
     Display Manager:            ly
@@ -14,9 +14,9 @@ Software I use (***not all configs included in this repo***):
     Shell:                      bash
     Compositor:                 xcompmgr
 
-Other Cool Software:                      
+Cool Software:                      
 
-    polybar, xwallpaper, mpv, zathura, nsxiv, brave, dmenu, deluge, copyq, xmessage, dunst, w3m, lynx
+    polybar, xwallpaper, mpv, zathura, lf, nsxiv, dmenu, deluge, xcmenu, xmessage, dunst, w3m, links, lynx, qutebrowser
 
 Images of my Desktop:
 
