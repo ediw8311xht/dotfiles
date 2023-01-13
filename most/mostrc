@@ -1,0 +1,29 @@
+
+
+
+
+
+color normal color12 color8 
+color status color5 color8
+color underline color3 color8
+color overstrike color4 color8
+
+%setkey digit_arg		dig
+%setkey digit_arg		esc dig
+%setkey digit_arg		gold dig
+
+setkey extended_key		":"
+unsetkey  "k"
+unsetkey  "j"
+unsetkey "gg"
+unsetkey  "G"
+unsetkey "^c"
+unsetkey "n"
+
+setkey    "up"   "k"
+setkey  "down"   "j"
+setkey   "bob"  "gg"
+setkey   "eob"   "G"
+setkey "edt_find_next" "n"
+
+setkey suspend			"^Z"
