@@ -85,7 +85,6 @@
     for_window [class=".*icecat.*"]	            floating enable, resize set     $WSW $WSH, move scratchpad, scratchpad show, move position center
     for_window [class="Tor Browser"]		    floating enable, resize set     $WSW $WSH, move scratchpad, scratchpad show, move position center
     for_window [class=".*Thunar*"]              floating enable, resize set     $WSW $WSH, move scratchpad, scratchpad show, move position center
-    for_window [class="Emacs"]				    floating enable, resize set     $WSW $WSH, move scratchpad, scratchpad show, move position center
     for_window [class=".*Zathura.*"]            floating enable, resize set     $WSW $WSH, move scratchpad, scratchpad show, move position center
     for_window [instance="i3s_note"]		    floating enable, resize set     $WSW $WSH, move scratchpad, scratchpad show, move position center
     for_window [instance="i3s_st"]			    floating enable, resize set     $WSW $WSH, move scratchpad, scratchpad show, move position center
@@ -95,6 +94,7 @@
     for_window [window_role="bubble"]           floating enable, move position center 
     for_window [window_type="dialog"]           floating enable, move position center 
     for_window [window_type="popup_menu"]       floating enable, move position center 
+    for_window [class="Emacs"]				    floating enable, move scratchpad
     for_window [class="Xmessage"]			    floating enable
     no_focus   [class="Xmessage"]
     for_window [all] title_window_icon no

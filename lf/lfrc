@@ -35,25 +35,6 @@ cmd rep &{{
 	i="$1"; while [[ $((i--)) -gt 0 ]] ; do lf -remote "send $id ${2}"; done
 }}
 
-cmd trash ${{
-    set -f
-    if [ -z "$fs" ]; then
-        trash-put "${f}"
-        lf -remote "send $id reload && redraw"
-        &
-    else
-        for f in ${fs} ; do 
-            trash-put "${f}"
-            sleep 0.1
-            lf -remote "send $id reload && redraw" &
-        done
-    fi
-    sleep 0.5 && lf -remote "send $id reload && redraw" & 
-}}
-
-cmd delete &{{
-}}
-
 cmd open &{{
     case $(file --mime-type -Lb $f) in
         text/*) lf -remote "send $id \$$EDITOR \$fx";;
@@ -66,6 +47,21 @@ cmd oneforone &{{
     lf -remote "send $id set nopreview"
     lf -remote "send $id set ratios 1"
 }}
+
+cmd openthis &{{
+    for i in $fx ; do xdg-open "${i}" &  done
+}}
+
+cmd trash ${{
+    for i in $fx ; do trash-put "${i}" ;  done
+}}
+
+#---automatically change directories on exit of lf
+cmd autocd ${{
+    echo "${PWD}" > "/tmp/lf${id}"
+    lf -remote "send $id quit"
+}}
+
 
 
 map e       np
@@ -81,7 +77,6 @@ map <enter> shell
 map H		set hidden!
 map d  	  	set dironly!
 map r 		set reverse!
-
 map TR		:trash
 map RR      :reload
 map RN		rename
@@ -89,8 +84,21 @@ map P		push :!echo<space>""<left>
 map ;		push '' 
 map	K		:rep "3" "up"
 map J		:rep "3" "down"
+#-----------CALL WITH THIS function to use autocd------------------#
+#                   
+#function cd_from_lf() {
+#    lf
+#    if a="$(ls -1 -tr /tmp/lf* | tail -1)" 
+#    then 
+#        cd "$(cat "${a}")" || return 1
+#        trash-put "${a}"
+#    fi
+#}
+#
+map q 		:autocd
+map C 		:quit
 map Q 		&lf -remote 'send quit'; lf -remote 'quit'
-map o 		&xdg-open "${f}"
+map o 		:openthis
 map O 		$xdg-open --ask "${f}"
 
 

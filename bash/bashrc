@@ -24,6 +24,14 @@ PS2+='             '"${INSERT2}"
 # --------------------------------------------------------------------- #
 #  FUNCTIONS								                            #
 # --------------------------------------------------------------------- #
+function cd_from_lf() {
+    lf
+    if a="$(ls -1 -tr /tmp/lf* | tail -1)" 
+    then 
+        cd "$(cat "${a}")" || return 1
+        trash-put "${a}"
+    fi
+}
 function kn() { 
     local IFS=$'\n'
     local ns=($(echo "$(grep -Pi '^ [0-9]+\K.*'"${1}"'.*$' <<< $(ps ax))"))
@@ -72,7 +80,6 @@ fpend() {
 }
 addally() {
     printf 'alias %s='\''cd "%s"'\''     %s' \
-        "${1}" "${PWD/$HOME/\$HOME}" "${IGNORE_TEXT}" >> "$HOME/.bashrc"
 }
 rep_char() {
     local z="${1}"; while ((z--)) ; do echo -n "${2}"; done
@@ -131,6 +138,7 @@ killall_loaded() {
 #---------------------------------------------------------------------- #
 alias   sudo='      sudo '
 alias   cop='       xcmenu --input --clipboard'
+alias   l='         cd_from_lf'
 alias   b='         cd "$HOME/bin/"'
 alias   c='         printf "\n%.0s_______________________________" {1..400} ; printf "%.0s\n" {1..500} ; clear '
 alias   comv='      command -V'
@@ -154,6 +162,7 @@ alias   nv='        nvim'
 alias   snv='       sudoedit'
 alias   sf='	    clear; screenfetch 2>/dev/null'
 alias   ac='        acheck'
+alias   gital='     (read _z; git log -S "${_z}" --source --all ) <<<'
 alias   alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
 alias   acc='       alias_conflict'
 alias   acf='       alias_conflict --full'
@@ -254,7 +263,7 @@ alias   ldi='       fdisk -l -o +uuid'
 alias   szof='      du -ahc --time --max-depth=1'
 alias   bgsz="      sudo szof | grep -P '^[^ ]*G'"
 alias   pcal='      calcurse'
-alias   l='         lsd --icon="never"'
+#alias   l='         lsd --icon="never"'
 alias   ll="        lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
 alias   lst="       lsd --icon='never' -ltrh"
 alias   lsz="       lsd --icon='never' -lSrh"
@@ -265,7 +274,7 @@ alias   pso='       ps -eo cmd=, | grep --ignore-case'
 alias   tre='       ps -ejH'
 alias   trev='      ps axjf'
 alias   tres='      ps -eHo euser,ruser,suser,fuser,f,comm,label'
-alias   vcs='      sc-im'
+alias   vcs='       sc-im'
 alias   phone='     aft-mtp-cli'
 alias   decl='      declare -f'
 alias   ht='        htop'
@@ -281,7 +290,7 @@ alias   vids='      cd "$HOME/Videos/"'
 alias   wallz='     cd "$HOME/Pictures/Wallpapers"'
 alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'                                    
 alias   ytdl='      youtube-dl -o "$HOME/Videos/%(title)s.%(ext)s" --restrict-filename'
-alias   testr='     . $HOME/test.sh'
+alias   tst='       . $HOME/test.sh'
 alias   git_mt='    git log --pretty=format:"%h %s" --graph'
 alias   mansec='    man -f'
 alias   sap='       apropos'
@@ -292,7 +301,7 @@ alias   getfont='   fc-list -v | grep -i '
 alias   lc='        compgen -c'
 alias   slc='       compgen -c | grep -i'
 alias   list_coms=' compgen -c'
-alias   fnsc='      (read _x; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | grep -Pi -- "${_x:-''}")) <<<' 
+alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | grep -Pi -- "${_z:-''}")) <<<' 
 #---------------------------------------------------------------------- #
 #-QUICK-ADDED-ALIASES                                                   #
 #---------------------------------------------------------------------- #
