@@ -26,7 +26,7 @@ PS2+='             '"${INSERT2}"
 # --------------------------------------------------------------------- #
 function cd_from_lf() {
     lf
-    if a="$(ls -1 -tr /tmp/lf* | tail -1)" 
+    if a="$(ls -1 -tr /tmp/tmplf* | tail -1)" 
     then 
         cd "$(cat "${a}")" || return 1
         trash-put "${a}"
@@ -47,19 +47,19 @@ function cg() {
         done									 			 			 
     fi
 }
-my_cd()	{
+function my_cd()	{
     if   [[ "${1}" = '-g' ]] ; then 
         cd /; shift 1
     fi
 
     cd "${@:-"$(find . -type d | fzf --preview="ls -1 {}" )"}"
 }
-vid() {
+function vid() {
     if [[ "${1}" =~ ^-mono ]] ; then local AUD="mono"; shift 1; fi
 
     mpv --audio-channels="${AUD:-"auto"}" "${@:-.}" & disown
 }
-upd_pip_z() { 
+function upd_pip_z() { 
     local IFS=$'\n' 
     local zname="$(date +'%Y%m%d')_pipoutdated.txt"
     pip list --outdated > "${zname}"
@@ -67,7 +67,7 @@ upd_pip_z() {
     for i in $A ; do pip install --upgrade "${i}"; done
     return "$?"
 }
-fpend() {
+function fpend() {
     if [[ "$1" =~ ^-[dD](ate)? ]] ; then shift 1; local MDATE="#$(date)"; fi
     if [[ -f "${1}"            ]] ; then
         for i in "${@:2}" "${MDATE:-"_"}"; do 
@@ -78,19 +78,18 @@ fpend() {
     fi
     echo "INCORRECT ARGUMENTS"; return 1
 }
-addally() {
+function addally() {
     printf 'alias %s='\''cd "%s"'\''     %s' \
 }
-rep_char() {
+function rep_char() {
     local z="${1}"; while ((z--)) ; do echo -n "${2}"; done
 }
-nifs()   { IFS=$'\n'   ; printf 'IFS=%q\n' "${IFS}" ; }
-rifs()   { IFS=$' \t\n'; printf 'IFS=%q\n' "${IFS}" ; }
-ppifs()  { printf "IFS=%q" "${IFS}"; echo ""        ; }
-pifs()   { printf     "%q" "${IFS}"; echo ""        ; }
-acheck() { compgen -c  | grep -x "${@}"             ; }
-
-alias_conflict() {
+function nifs()   { IFS=$'\n'   ; printf 'IFS=%q\n' "${IFS}" ; }
+function rifs()   { IFS=$' \t\n'; printf 'IFS=%q\n' "${IFS}" ; }
+function ppifs()  { printf "IFS=%q" "${IFS}"; echo ""        ; }
+function pifs()   { printf     "%q" "${IFS}"; echo ""        ; }
+function acheck() { compgen -c  | grep -x "${@}"             ; }
+function alias_conflict() {
     local beg='    '
     echo "------------------------------"
     local cvm="$(compgen -c)"
@@ -107,9 +106,17 @@ alias_conflict() {
         fi
     done
 }
-gport_function() { netstat -lntu | grep -Pi "${@:-""}" ; }
+function get_alias_fzf() {
+    local prc='grep -Po '
+    local prc+='"^alias[ \t]*"{}"[=].[ \t]*\K.*" '
+    local prc+="$HOME/.bashrc"
+    xcmenu --input --clipboard \
+        "$(fzf --preview="${prc}" < \
+            <(alias -p | grep -Pio '^[ \t]*alias[ \t]*\K[^=]*'))"
+}
+function gport_function() { netstat -lntu | grep -Pi "${@:-""}" ; }
 
-bash_history_grab() {
+function bash_history_grab() {
     if [[ -n "${2}" ]] ; then
         grep -Pi "${2}" "$HOME/.bash_history2" | tail -n "${1}" 
     else
@@ -117,7 +124,7 @@ bash_history_grab() {
     fi
 }
 
-killall_loaded() {
+function killall_loaded() {
     local jam="${*}"
     if [[ "${*}" =~ ^-p ]] ; then 
         if ! local jam="${jam: 2}" || [[ "${#jam}" -lt 1 ]] ; then
@@ -139,6 +146,7 @@ killall_loaded() {
 alias   sudo='      sudo '
 alias   cop='       xcmenu --input --clipboard'
 alias   l='         cd_from_lf'
+alias   a='         get_alias_fzf'
 alias   b='         cd "$HOME/bin/"'
 alias   c='         printf "\n%.0s_______________________________" {1..400} ; printf "%.0s\n" {1..500} ; clear '
 alias   comv='      command -V'
@@ -190,6 +198,7 @@ alias   pigse='     (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t
 alias   pacreg='    pacman -Sq'
 alias   pacool='    pacman --color=always -Sl | grep -i installed | grep -i'
 alias   pacse='     pacman -Ss'
+alias   pz='        pacman -Ss'
 alias   paci='      pacman -Si'
 alias   pacdep='    pacman -T'
 
@@ -197,6 +206,7 @@ alias   yigse='     (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*
 alias   yig='       (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   yacool='    yay --color=always -Sl aur | grep "Installed" | grep'
 alias   yayse='     yay --sortby="votes" -Ss'
+alias   yz='        yay --sortby="votes" -Ss'
 alias   yaysename=' yay --sortby="votes" --searchby="name" -Ss'
 alias   yayi='      yay -Si'
 #PAC-----------------------------------LOCAL-------------#
@@ -220,6 +230,7 @@ alias   pacl='      yay --clean'
 alias   pacln='     yay -Scc; yay --clean'
 alias   pacfrom='   pacman -Qo'
 alias   pacfiles='  pacman -Qql'
+alias   sctl='      journalctl | ccze -m ansi'
 
 #PAC-----------------------------------------------------#
     #--MISSPELL--
@@ -289,7 +300,7 @@ alias   desk='      cd "$HOME/Desktop/"'
 alias   vids='      cd "$HOME/Videos/"'                                                 
 alias   wallz='     cd "$HOME/Pictures/Wallpapers"'
 alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'                                    
-alias   ytdl='      youtube-dl -o "$HOME/Videos/%(title)s.%(ext)s" --restrict-filename'
+alias   ytdl='      yt-dlp -o "$HOME/Videos/%(title)s.%(ext)s" --restrict-filename'
 alias   tst='       . $HOME/test.sh'
 alias   git_mt='    git log --pretty=format:"%h %s" --graph'
 alias   mansec='    man -f'
@@ -302,6 +313,7 @@ alias   lc='        compgen -c'
 alias   slc='       compgen -c | grep -i'
 alias   list_coms=' compgen -c'
 alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | grep -Pi -- "${_z:-''}")) <<<' 
+alias   cz='        ccze -m ansi'
 #---------------------------------------------------------------------- #
 #-QUICK-ADDED-ALIASES                                                   #
 #---------------------------------------------------------------------- #
@@ -310,6 +322,7 @@ alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | gre
 #---------------------------------------------------------------------- #
 #-EXPORT							                                    #
 #---------------------------------------------------------------------- #
+
 export  NO_AT_BRIDGE=1
 export  PAGER='most'
 export  TERM=st export  EDITOR="nvim"

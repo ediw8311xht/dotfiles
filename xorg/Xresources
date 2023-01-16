@@ -1,12 +1,14 @@
 
 *.alpha:	    1
-!*.font: 	    xos4Terminus:pixelsize=18:autohint=true:antialias=true
-*.font: 	    Agave:style=Regular:size=12:antialias=true
+!*.font: 	    Tamsyn:pixelsize=18:autohint=true:antialias=true
+!*.font: 	    TerminessTTF Nerd Font Mono:pixelsize=18:autohint=true:antialias=true
+!*.font: 	    xos4Terminus:pixelsize=18:autohint=false:antialias=true
+*.font: 	    Agave:style=Regular:size=14:antialias=true
 !*.font: 	    IosevkaCustom:pixelsize=14:antialias=true:autohint=false
 !*.font: 	    Monoid:size=15:antialias=true:autohint=true
 !*.font: 	    FantasqueSansMono:style=Regular:pixelsize=15:autohint=true:antialias=true
 !*.font: 	    ComicMono:size=14:autohint=true:antialias=true
-!*.font: 	    Lekton:size=17:autohint=true:antialias=true
+!*.font: 	    Lekton:size=13:style=Medium:autohint=false:antialias=true
 !*.font: 	    CascadiaMono:size=15:antialias=true
 !*.font: 	    RobotoMono:size=15:antialias=true
 !*.font: 	    Consolas:size=15:antialias=true:autohint=true
@@ -20,7 +22,7 @@
 !*.font: 	    Hermit:size=15:antialias=true:autohint=true
 !*.font: 	    IBM 3270:size=19:antialias=true:autohint=true
 !!!!!!!!!!!!!!ISSUES in st with SharTechMono only with ('fig' displays incorrectly) ShareTechMono
-!*.font: 	    ShareTechMono:size=17:autohint=true:antialias=true
+!*.font: 	    ShareTechMono:size=13:style=Regular:autohint=true:antialias=true
 !!!!!!!COOL FONTS (my names for ref):
 !!!!!!!IBM 3270, Agave, SarasaMonoSlab, Iosevka Custom, Hack, Hermit, Menlo, Fira Code, Input Mono
 !!*.borderColor:      #FF0000
@@ -28,7 +30,7 @@
 !!*.internalBorder:   0px
 !!*.borderSize:       0px
 !!*.border:           10px
-*.borderpx:         15px
+*.borderpx:         5px
 !!!!!!!!!!!!!!!!!!!!!!!----------------DEFAULT
 !.color:        #FFFFFF
 *.foreground:   #FFFFFF
@@ -224,7 +226,7 @@ Xmessage*Buttons:
 Zutty.fontsize:             18
 Zutty.font:                 Agave-Regular-Slashed
 Zutty.title:                Zutty
-Zutty.border:               10
+Zutty.border:               5px
 !!!!!!!!!!!!!!!!!!!!!!!----------------i3wm------------!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!!!----------------COMMENT-OUT-----!!!!!!!!!!!!!!!!!!!!!!!
 !!!!START_1!!!!

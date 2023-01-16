@@ -14,7 +14,6 @@
 "<==========================================================================>
 
 "<--------- FUNCTIONS ------------------------------------------------------>
-" https://unix.stackexchange.com/questions/140898/vim-hide-status-line-in-the-bottom/140899#140899 " from user - cuonglm - https://unix.stackexchange.com/users/38906/cuonglm
 fu! CorrectColors()
     hi StatusLine    cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE    guibg=#222222 guifg=#009900
     hi FoldColumn    cterm=NONE ctermbg=NONE ctermfg=NONE gui=ITALIC  guibg=NONE    guifg=#00ff00 
@@ -187,9 +186,9 @@ call plug#end()
 
 "<--------_G-VAR_<leader>f_from-:-lf
 lua require('base')
-let g:lf_map_keys           = 0
-let g:html_mode             = 1
-let g:is_bash               = 1
+let g:lf_map_keys = 0
+let g:html_mode   = 1
+let g:is_bash     = 1
 "-----------------CLOSETAG
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
@@ -247,11 +246,10 @@ cal L( 'M',  ':messages<esc>')
 cal L( ';',  ':ls<CR>:b<Space>')
 cal L( '.',  'q:')
 cal L( '/',  ':Explore<CR>')
-
 cal L( 'op', 'q:<C-p><esc>Iput =execute("<esc>A")<esc>A<C-c>')
 cal L( 'oc', 'q:iput =execute("")<esc>A<C-c>')
 cal L( 'ox', ':put   =execute("<C-r>0")<esc>')
-cal L( 'vv', ':cal Cyc(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<esc>')
+cal L( 'vv', ':cal Cy(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<esc>')
 cal L( 'tt', ':tabnew<esc>')
 cal L( 'tn', ':tabmove +1<esc>')
 cal L( 'tp', ':tabmove -1<esc>')
@@ -265,7 +263,6 @@ cal L( 'vm', ':put =eval("<C-r>0")')
 cal L( 'vq', ':put =eval("<C-r>0")<esc>')
 cal L( 'vz', 'i<C-r>"')
 cal L( 'vf', '?<C-r>"<enter>')
-
 cal L( 'out', 'q:iput =execute("<C-r>0")<esc>A<C-c>')
 cal L( 'tcc', ':tabclose<esc>')
 cal L( 'var', ':let maxvar ="<C-r>1<C-r>0"')
@@ -283,6 +280,7 @@ nn <lt> :tabprevious<esc>
 nn > :tabnext<esc>
 nn x "xx
 nn \ `
+im jk <esc>
 "nn dd "Ddd
 "nn  D "DD
 "nn cc "Ccc

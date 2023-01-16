@@ -58,7 +58,7 @@ cmd trash ${{
 
 #---automatically change directories on exit of lf
 cmd autocd ${{
-    echo "${PWD}" > "/tmp/lf${id}"
+    echo "${PWD}" > "$(mktemp /tmp/tmplf.XXXXXXXX)"
     lf -remote "send $id quit"
 }}
 
