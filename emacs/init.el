@@ -18,7 +18,7 @@
 ;; Enable Evil
 (require 'evil)
 (evil-mode t)
-
+(require 'lilypond)
 
 (add-to-list 'default-frame-alist '(alpha 100))
 (require 'w3m-load)
