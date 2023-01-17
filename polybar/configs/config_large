@@ -1,26 +1,27 @@
 
 ;modules-left = i3 ;modules-right =  temp1 memory cpu pulseaudio ;modules-right = filesystem pulseaudio xkeyboard memory cpu eth battery temperature date powermenu
 [colors]
-    zbackground 	                =	#000044
-    nbackground 	                =	#000044
-    border-color 	                =	#0044DD 
-    foreground 		                =	#000044 
-    background-alt 	                =	#000000
-    foreground-alt 	                =	#000000
-    primary 		                =	#000088
-    secondary 		                =	#00AAFF
-    alert 		                =	#FF0000
-;i3bgl_f_in 	                =	#FF333333
-;i3bgl_vis_uf 	                = 	#FF333333
-;i3bgl_uf 		                =	#FF333333
-    i3fgl_f_in 		                =	#00CCFF
-    i3fgl_vis_uf 	                = 	#FFFFFF
-    i3fgl_uf 		                =	#707070
-    temp1		                =	#EEEEEE
-    temp2		                =	#EEEEEE
-    mem1		                =	#EEEEEE
-    cpu1		                =	#EEEEEE
-    pulse1		                =	#999999
+    urgent           =  #FF0000
+    zbackground 	 =	#000000
+    nbackground 	 =	#000000
+    border-color 	 =	#222222 
+    foreground 		 =	#000044 
+    background-alt 	 =	#000000
+    foreground-alt 	 =	#000000
+    primary 		 =	#000088
+    secondary 		 =	#00AAFF
+    alert 		     =	#FF0000
+;i3bgl_f_in 	     =	#FF333333
+;i3bgl_vis_uf 	     = 	#FF333333
+;i3bgl_uf 		     =	#FF333333
+    i3fgl_f_in 		 =	#00CCFF
+    i3fgl_vis_uf 	 = 	#FFFFFF
+    i3fgl_uf 		 =	#707070
+    temp1		     =	#EEEEEE
+    temp2		     =	#EEEEEE
+    mem1		     =	#EEEEEE
+    cpu1		     =	#EEEEEE
+    pulse1		     =	#999999
 
     time_est_foreground                 =       #DDDDDD
     spot_label_foreground               =       #999999
@@ -124,6 +125,8 @@
     label-focused-foreground = ${colors.i3fgl_f_in}
     label-visible-foreground = ${colors.i3fgl_vis_uf}
     label-unfocused-foreground =  ${colors.i3fgl_uf}
+    label-urgent-foreground =  ${colors.urgent}
+    label-urgent-background =  ${colors.nbackground}
     label-focused-font = 13
     label-visible-font = 13
     label-unfocused-font = 13

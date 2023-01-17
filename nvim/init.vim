@@ -15,7 +15,7 @@
 
 "<--------- FUNCTIONS ------------------------------------------------------>
 fu! CorrectColors()
-    hi StatusLine    cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE    guibg=#222222 guifg=#009900
+    hi StatusLine    cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE    guibg=#000000 guifg=#00DD00
     hi FoldColumn    cterm=NONE ctermbg=NONE ctermfg=NONE gui=ITALIC  guibg=NONE    guifg=#00ff00 
     hi Folded        cterm=NONE ctermbg=NONE ctermfg=NONE gui=ITALIC  guibg=NONE    guifg=#999999
     hi CursorLine    cterm=BOLD ctermfg=NONE ctermbg=18   gui=BOLD    guibg=NONE    guifg=NONE

@@ -143,6 +143,8 @@ function killall_loaded() {
 #---------------------------------------------------------------------- #
 #-ALIASES								#
 #---------------------------------------------------------------------- #
+alias   tma='       tmux attach'
+alias   tmd='       tmux detach'
 alias   sudo='      sudo '
 alias   cop='       xcmenu --input --clipboard'
 alias   l='         cd_from_lf'
@@ -301,6 +303,7 @@ alias   vids='      cd "$HOME/Videos/"'
 alias   wallz='     cd "$HOME/Pictures/Wallpapers"'
 alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'                                    
 alias   ytdl='      yt-dlp -o "$HOME/Videos/%(title)s.%(ext)s" --restrict-filename'
+alias   m='         man'
 alias   tst='       . $HOME/test.sh'
 alias   git_mt='    git log --pretty=format:"%h %s" --graph'
 alias   mansec='    man -f'
@@ -325,7 +328,8 @@ alias   cz='        ccze -m ansi'
 
 export  NO_AT_BRIDGE=1
 export  PAGER='most'
-export  TERM=st export  EDITOR="nvim"
+export  TERM='st-256color'
+export  EDITOR="nvim"
 export  FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 export  XDG_CONFIG_HOME="$HOME/.config"
 export  XDG_CACHE_HOME="$HOME/.cache"

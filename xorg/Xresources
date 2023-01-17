@@ -3,7 +3,7 @@
 !*.font: 	    Tamsyn:pixelsize=18:autohint=true:antialias=true
 !*.font: 	    TerminessTTF Nerd Font Mono:pixelsize=18:autohint=true:antialias=true
 !*.font: 	    xos4Terminus:pixelsize=18:autohint=false:antialias=true
-*.font: 	    Agave:style=Regular:size=14:antialias=true
+*.font: 	    Agave:style=Regular:size=12:antialias=true
 !*.font: 	    IosevkaCustom:pixelsize=14:antialias=true:autohint=false
 !*.font: 	    Monoid:size=15:antialias=true:autohint=true
 !*.font: 	    FantasqueSansMono:style=Regular:pixelsize=15:autohint=true:antialias=true
@@ -242,6 +242,7 @@ i3wm.L_GAPS:    0
 i3wm.IN_GAPS:   20
 i3wm.OUT_GAPS:  0  
 i3wm.TOP_GAPS:  0  
+
 
 i3wm.monitor1: DVI-D-1
 i3wm.monitor2: HDMI-1
