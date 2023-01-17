@@ -45,18 +45,56 @@ config.load_autoconfig(False)
 ## lightness-cielab: Modify colors by converting them to CIELAB color space and inverting the L value. Not available with Qt < 5.14.
 ## lightness-hsl: Modify colors by converting them to the HSL color space and inverting the lightness (i.e. the "L" in HSL).
 ## brightness-rgb: Modify colors by subtracting each of r, g, and b from their maximum value.
+
+## Color gradient end for the tab indicator ## Type: QtColor
+## Background color of the tab bar ## Type: QssColor
+## Color gradient inerpolation system for the tab indicator.
+## rgb, hsv, hsl, none ##Type: ColorSystem
+
 c.colors.webpage.preferred_color_scheme = 'dark'
 
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
 
-## Color gradient end for the tab indicator ## Type: QtColor
+
 c.colors.tabs.indicator.stop = '#00aa00'
-## Background color of the tab bar ## Type: QssColor
 c.colors.tabs.bar.bg = '#000099'
-## Color gradient inerpolation system for the tab indicator.
-## rgb, hsv, hsl, none ##Type: ColorSystem
 c.colors.tabs.indicator.system = 'none'
+
+c.colors.tabs.even.bg = '#444444'
+c.colors.tabs.even.fg = '#000000'
+c.colors.tabs.odd.bg  = '#444444'
+c.colors.tabs.odd.fg  = '#000000'
+
+c.colors.tabs.selected.even.bg = '#000000'
+c.colors.tabs.selected.even.fg = '#00FF00'
+c.colors.tabs.selected.odd.bg = '#000000'
+c.colors.tabs.selected.odd.fg = '#00FF00'
+
+c.colors.tabs.indicator.error = '#ff0000'
+c.colors.tabs.indicator.start = '#0000aa'
+
+c.colors.tabs.pinned.even.bg = 'darkseagreen'
+c.colors.tabs.pinned.even.fg = 'white'
+c.colors.tabs.pinned.odd.bg = 'seagreen'
+c.colors.tabs.pinned.odd.fg = 'white'
+
+c.colors.tabs.pinned.selected.even.bg = 'black'
+c.colors.tabs.pinned.selected.even.fg = 'white'
+c.colors.tabs.pinned.selected.odd.bg = 'black'
+c.colors.tabs.pinned.selected.odd.fg = 'white'
+
+c.colors.webpage.bg = 'black'
+
+c.fonts.default_family = ["Agave", "Terminus", "Sarasa"]
+
+c.fonts.default_size = '11pt'
+c.fonts.downloads = 'default_size default_family'
+
+c.fonts.tabs.selected   = '11pt Agave'
+c.fonts.tabs.unselected = '11pt Agave'
+
+c.fonts.statusbar = '11px Hermit'
 
 #############################################################################################################################
 #############################################################################################################################
@@ -84,13 +122,12 @@ c.auto_save.interval = 50
 c.session.default_name = "Default"
 c.session.lazy_restore = True
 
-c.url.start_pages = ['www.maxballard.com']
+c.url.start_pages = ['www.maxballard.com', 'https://www.pythonanywhere.com/user/maxballard/webapps/#tab_id_www_maxballard_com', '192.168.0.1:5000']
 c.url.default_page = 'https://www.google.com'
 c.url.searchengines = {'DEFAULT': 'https://google.com/?q={}'}
 
 c.scrolling.smooth = True
 c.statusbar.widgets = ['keypress', 'url', 'scroll', 'history', 'tabs', 'progress']
-c.tabs.focus_stack_size = 100
 
 c.content.cookies.accept = 'no-3rdparty'
 c.content.cookies.store = True
@@ -106,6 +143,11 @@ c.search.incremental = True
 
 c.bindings.key_mappings = {'<Ctrl-6>': '<Ctrl-^>', '<Ctrl-M>': '<Return>', '<Ctrl-J>': '<Return>', '<Shift-Return>': '<Return>', '<Enter>': '<Return>', '<Shift-Enter>': '<Return>', '<Ctrl-Enter>': '<Ctrl-Return>'}
 
+c.tabs.focus_stack_size = 100
+c.tabs.favicons.show = 'never'
+c.tabs.indicator.padding = {'top': 0, 'bottom': 0, 'left': 0, 'right': 0}
+c.tabs.indicator.width = 5
+c.tabs.title.format = '[{relative_index}] {current_title}[{index}]{audio}'
 c.tabs.undo_stack_size = -1
 
 config.bind('<Ctrl-i>', 'open -- {clipboard}', mode='insert')
@@ -1315,18 +1357,15 @@ config.bind('<Ctrl-U>', 'scroll-page 0 -0.5')
 ##   - always: Always show favicons.
 ##   - never: Always hide favicons.
 ##   - pinned: Show favicons only on pinned tabs.
-c.tabs.favicons.show = 'never'
 
 ## Maximum stack size to remember for tab switches (-1 for no maximum).
 ## Type: Int
 
 ## Padding (in pixels) for tab indicators.
 ## Type: Padding
-c.tabs.indicator.padding = {'top': 0, 'bottom': 0, 'left': 5, 'right': 5}
 
 ## Width (in pixels) of the progress indicator (0 to disable).
 ## Type: Int
-c.tabs.indicator.width = 20
 
 ## How to behave when the last tab is closed. If the
 ## `tabs.tabs_are_windows` setting is set, this is ignored and the
@@ -1462,7 +1501,6 @@ c.tabs.indicator.width = 20
 ## web page. * `{protocol}`: Protocol (http/https/...) of the current web
 ## page. * `{audio}`: Indicator for audio/mute status.
 ## Type: FormatString
-c.tabs.title.format = ' - {relative_index} - {current_title}[{index}]{audio}'
 
 ## Format to use for the tab title for pinned tabs. The same placeholders
 ## like for `tabs.title.format` are defined.
@@ -2158,15 +2196,6 @@ c.tabs.title.format = ' - {relative_index} - {current_title}[{index}]{audio}'
 ## font setting, it's replaced with the fonts listed here. If set to an
 ## empty value, a system-specific monospace default is used.
 ## Type: List of Font, or Font
-c.fonts.default_family = ["Agave", "Terminus", "Sarasa"]
-
-c.fonts.default_size = '13pt'
-c.fonts.downloads = 'default_size default_family'
-
-c.fonts.tabs.selected   = '13pt Agave'
-c.fonts.tabs.unselected = '13pt Agave'
-
-c.fonts.statusbar = '13px Hermit'
 
 ## Font used for the hints.
 ## Type: Font
@@ -2196,31 +2225,6 @@ c.fonts.statusbar = '13px Hermit'
 #############################################################################################################################
 #############################################################################################################################
 #############################################################################################################################
-
-c.colors.tabs.even.bg = '#444444'
-c.colors.tabs.even.fg = '#000000'
-c.colors.tabs.odd.bg  = '#444444'
-c.colors.tabs.odd.fg  = '#000000'
-
-c.colors.tabs.selected.even.bg = '#000000'
-c.colors.tabs.selected.even.fg = '#00FF00'
-c.colors.tabs.selected.odd.bg = '#000000'
-c.colors.tabs.selected.odd.fg = '#00FF00'
-
-c.colors.tabs.indicator.error = '#ff0000'
-c.colors.tabs.indicator.start = '#0000aa'
-
-c.colors.tabs.pinned.even.bg = 'darkseagreen'
-c.colors.tabs.pinned.even.fg = 'white'
-c.colors.tabs.pinned.odd.bg = 'seagreen'
-c.colors.tabs.pinned.odd.fg = 'white'
-
-c.colors.tabs.pinned.selected.even.bg = 'black'
-c.colors.tabs.pinned.selected.even.fg = 'white'
-c.colors.tabs.pinned.selected.odd.bg = 'black'
-c.colors.tabs.pinned.selected.odd.fg = 'white'
-
-c.colors.webpage.bg = 'black'
 
 #############################################################################################################################
 #############################################################################################################################
