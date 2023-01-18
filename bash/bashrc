@@ -79,7 +79,9 @@ function fpend() {
     echo "INCORRECT ARGUMENTS"; return 1
 }
 function addally() {
-    printf 'alias %s='\''cd "%s"'\''     %s' \
+    echo '#----------ADDALLY----------# '"${ITEXT}"  >> "$HOME/.bashrc"
+    printf 'alias %s='\''cd "%s"'\''     %s\n\n' \
+        "${1}" "${PWD/$HOME/\$HOME}" "${ITEXT}" >> "$HOME/.bashrc"
 }
 function rep_char() {
     local z="${1}"; while ((z--)) ; do echo -n "${2}"; done
