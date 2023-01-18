@@ -23,8 +23,8 @@ fu! CorrectColors()
     hi SignColumn    cterm=NONE ctermbg=NONE ctermfg=NONE gui=ITALIC  guibg=NONE    guifg=#000000
     hi LineNr        cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE    guibg=#000000 guifg=#AAAAAA
     hi LineNrAbove   cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE    guibg=#000000 guifg=#00AAFF
-    hi TabLine                                            gui=NONE    guibg=NONE    guifg=NONE
-    hi TabLineSel                                         gui=NONE    guibg=#000000 guifg=#00FF44
+    hi TabLine                                            gui=NONE    guibg=#222222 guifg=#999999
+    hi TabLineSel                                         gui=BOLD    guibg=#000000 guifg=#00FF00
     hi MarkSignNumHL                                      gui=NONE    guibg=none    guifg=NONE
     hi MarkSignVirtTextHL                                 gui=NONE    guibg=NONE    guifg=#00FF00
 endfu
@@ -84,6 +84,12 @@ fu! Cy(checkarr, cvar, doarr, nextprevious)
         let i += 1
     endwhile
 endfu
+
+
+fu! Web(url)
+    enew
+    call termopen('w3m "www.stackoverflow.com"')
+endfunction
 
 "<--------- MY VARS -------------------------------------------------------->
 let jam="hi FoldColumn gui=bold guibg=NONE guifg=#00ff00"
@@ -230,19 +236,24 @@ cal L( 'f',  ':set wrap!<esc>')
 cal L( 'h',  ':cal Tog(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc>')
 cal L( 'j',  ':cal CyCol(+1)<CR>')
 cal L( 'J',  ':cal CyCol(-1)<CR>')
-cal L( 'n',  ':cnext<esc>')
+cal L( 'n',  ':next<esc>')
+cal L( 'p',  ':previous<esc>')
+
 cal L( 's',  ':%so "${HOME}/.config/nvim/init.vim"<esc>')
 cal L( 'w',  ':w<esc>')
 cal L( 'x',  ':!%:p<esc>')
 cal L( 'y',  ':hi Normal guibg=Transparent<esc>')
 cal L( 'z',  'z')
 cal L( 'l',  ':cal CyBac(+1)<CR>')
+
+cal L( 'N',  ':cnext<esc>')
+cal L( 'P',  ':cprevious<esc>')
 cal L( 'L',  ':cal CyBac(-1)<CR>')
 cal L( 'B',  ':Buffers<esc>')
 cal L( 'D',  ':Bracey<esc>')
 cal L( 'H',  ':vert helpgrep ')
-cal L( 'N',  ':cprevious<esc>')
 cal L( 'M',  ':messages<esc>')
+cal L( 'W',  ':call Web("f")<esc>')
 cal L( ';',  ':ls<CR>:b<Space>')
 cal L( '.',  'q:')
 cal L( '/',  ':Explore<CR>')
@@ -281,6 +292,11 @@ nn > :tabnext<esc>
 nn x "xx
 nn \ `
 im jk <esc>
+inoremap <C-e> <esc>A
+inoremap <C-a> <esc>I
+inoremap <C-b> <left>
+inoremap <C-f> <right>
+
 "nn dd "Ddd
 "nn  D "DD
 "nn cc "Ccc
