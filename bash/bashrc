@@ -335,7 +335,7 @@ export  EDITOR="nvim"
 export  FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 export  XDG_CONFIG_HOME="$HOME/.config"
 export  XDG_CACHE_HOME="$HOME/.cache"
-export  BROWSER="/usr/bin/elinks"
+#export  BROWSER="/usr/bin/elinks"
 #export  LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}"
 export  PYTHONPATH="${PYTHONPATH}:$HOME/.local/python3.10/site-packages"                ####-!!-!!-!!-
 

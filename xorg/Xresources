@@ -3,10 +3,10 @@
 !*.font: 	    Tamsyn:pixelsize=18:autohint=true:antialias=true
 !*.font: 	    TerminessTTF Nerd Font Mono:pixelsize=18:autohint=true:antialias=true
 !*.font: 	    xos4Terminus:pixelsize=18:autohint=false:antialias=true
-*.font: 	    Agave:style=Regular:size=12:antialias=true
+!*.font: 	    Agave:style=Regular:size=12:antialias=true
 !*.font: 	    IosevkaCustom:pixelsize=14:antialias=true:autohint=false
 !*.font: 	    Monoid:size=15:antialias=true:autohint=true
-!*.font: 	    FantasqueSansMono:style=Regular:pixelsize=15:autohint=true:antialias=true
+*.font: 	    FantasqueSansMono:style=Regular:pixelsize=15:autohint=true:antialias=true
 !*.font: 	    ComicMono:size=14:autohint=true:antialias=true
 !*.font: 	    Lekton:size=13:style=Medium:autohint=false:antialias=true
 !*.font: 	    CascadiaMono:size=15:antialias=true
