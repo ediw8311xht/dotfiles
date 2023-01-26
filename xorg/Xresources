@@ -1,12 +1,12 @@
 
 *.alpha:	    1
-!*.font: 	    Tamsyn:pixelsize=18:autohint=true:antialias=true
+!!*.font: 	    Tamsyn:pixelsize=18:autohint=true:antialias=true
 !*.font: 	    TerminessTTF Nerd Font Mono:pixelsize=18:autohint=true:antialias=true
-!*.font: 	    xos4Terminus:pixelsize=18:autohint=false:antialias=true
-!*.font: 	    Agave:style=Regular:size=12:antialias=true
-!*.font: 	    IosevkaCustom:pixelsize=14:antialias=true:autohint=false
+!*.font: 	    xos4Terminus:pixelsize=18:autohint=true:antialias=true
+*.font: 	    Agave:style=Regular:size=12:antialias=true
+!*.font: 	    IosevkaCustom:pixelsize=15:antialias=true:autohint=false
 !*.font: 	    Monoid:size=15:antialias=true:autohint=true
-*.font: 	    FantasqueSansMono:style=Regular:pixelsize=15:autohint=true:antialias=true
+!*.font: 	    FantasqueSansMono:style=Regular:pixelsize=15:autohint=true:antialias=true
 !*.font: 	    ComicMono:size=14:autohint=true:antialias=true
 !*.font: 	    Lekton:size=13:style=Medium:autohint=false:antialias=true
 !*.font: 	    CascadiaMono:size=15:antialias=true
@@ -17,10 +17,10 @@
 !*.font: 	    FiraCodeNerdFont:size=18:antialias=false:autohint=false
 !*.font: 	    IosevkaNerdFont:size=15:antialias=true:autohint=true
 !*.font: 	    SarasaMonoSlabCL:pixelsize=15:antialias=true:autohint=true
-!*.font: 	    SarasaMonoSCNerd:size=15:antialias=true:autohint=true
+!*.font: 	    SarasaMonoSCNerd:pixelsize=15:antialias=true:autohint=true
 !*.font: 	    Hack:size=15:antialias=true:autohint=true
 !*.font: 	    Hermit:size=15:antialias=true:autohint=true
-!*.font: 	    IBM 3270:size=19:antialias=true:autohint=true
+!*.font: 	    IBM 3270:pixelsize=15:antialias=true:autohint=true
 !!!!!!!!!!!!!!ISSUES in st with SharTechMono only with ('fig' displays incorrectly) ShareTechMono
 !*.font: 	    ShareTechMono:size=13:style=Regular:autohint=true:antialias=true
 !!!!!!!COOL FONTS (my names for ref):
@@ -88,9 +88,9 @@
 !!!!!!!!!!!!!!!!!!!!!!!----------------SPECIAL------(FLOAT)--FROM:-[http://dotshare.it/dots/136/]
 !!special_float.font: 	    Agave:style=Regular:pixelsize=17:antialias=true
 !!special_float*alpha:	        1
-special_float*background:       #000022
+special_float*background:       #000011
 !!special_float*foreground:       #f8f8f2
-!!special_float*borderpx:         10px
+!special_float*borderpx:         10px
 !!special_float*cursorColor:      #d4d7d4
 !!special_float*internalBorder:   10px
 !!special_float*color0:           #1B1D1E

@@ -88,7 +88,7 @@ endfu
 
 fu! Web(url)
     enew
-    call termopen('w3m "www.stackoverflow.com"')
+    call termopen('elinks "www.google.com"')
 endfunction
 
 "<--------- MY VARS -------------------------------------------------------->
@@ -96,12 +96,9 @@ let jam="hi FoldColumn gui=bold guibg=NONE guifg=#00ff00"
 let GreatJammy=':call CorrectColors()'
 let g:myScheme = [ 'pop-punk', 'eldar', 'elflord', 'delek', 'morning', 'blue', 'cyberpunk-neon', 'peachpuff', 'industry' ]
 let g:mySpec   = [        ".",     jam,       ".",     ".",       ".",    ".",       GreatJammy,         '.',         '.']
-
 let g:myBg     = [ "#000000", "#333333", "#111111", "#220000", "#002200", "#000022", "#002244" ]
 let g:myFg     = [       ".",       ".",       ".",       ".",       ".",       ".", "#aaaaaa" ]
-
 let g:myBg+=["NONE"] | let g:myFg+=[   "."]
-
 let g:python3_host_prog="/usr/bin/python"
 "<--------- LET/SET -------------------------------------------------------->
 filetype off
@@ -152,9 +149,9 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 let g:html_dynamic_folds = 1
 let g:coc_start_at_startup = v:true
 let g:coc_enable_at_startup = v:false
-let g:mapleader = ","
-let mapleader = ","
-let maplocalleader = ","
+let g:mapleader = " "
+let mapleader = " "
+let maplocalleader = " "
 
 "<--------- PLUGINS -------------------------------------------------------->
 call plug#begin()
@@ -192,6 +189,10 @@ call plug#end()
 
 "<--------_G-VAR_<leader>f_from-:-lf
 lua require('base')
+let g:bracey_refresh_on_save = 1
+let g:bracey_eval_on_save = 1
+let g:bracey_auto_start_browser = 0
+let g:bracey_server_port = 4842
 let g:lf_map_keys = 0
 let g:html_mode   = 1
 let g:is_bash     = 1
@@ -227,75 +228,103 @@ set nocuc
 "list keybindings with :help index
 "list user keybindings with :map
 "nn <leader>. :NERDTreeToggle<esc>
-cal L('<leader>', ' <C-^>')
-cal L( 'a',  ':cal Tog(g:coc_enabled, 0, ":CocEnable", ":CocDisable")<esc>')
-cal L( 'b',  ':ls<CR>:b<Space>')
-cal L( 'c',  ':set nocursorline!<esc>')
-cal L( 'e',  ':set cursorcolumn!<esc>')
-cal L( 'f',  ':set wrap!<esc>')
-cal L( 'h',  ':cal Tog(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc>')
-cal L( 'j',  ':cal CyCol(+1)<CR>')
-cal L( 'J',  ':cal CyCol(-1)<CR>')
-cal L( 'n',  ':next<esc>')
-cal L( 'p',  ':previous<esc>')
+cal L( 'a'    ,   ':cal Tog(g:coc_enabled, 0, ":CocEnable", ":CocDisable")<esc>')
+cal L( 'b'    ,   ':ls<CR>:b<Space>'    )
+cal L( 'c'    ,   ':set nocursorline!<esc>')
+cal L( 'd'    ,   '<C-d>'               )
+cal L( 'e'    ,   ':set cursorcolumn!<esc>')
+cal L( 'f'    ,   ':set wrap!<esc>'     )
+cal L( 'g'    ,   ':enew<esc>'          )
+cal L( 'h'    ,   ':cal Tog(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc>')
+cal L( 'j'    ,   ':cal CyCol(+1)<CR>'  )
+cal L( 'l'    ,   ':cal CyBac(+1)<CR>'  )
+cal L( 'n'    ,   ':next<esc>'          )
+cal L( 'oc'   ,   'q:iput=execute("")<esc>A<C-c>')
+cal L( 'op'   ,   'q:<C-p><esc>Iput =execute("<esc>A")<esc>A<C-c>')
+cal L( 'ox'   ,   ':put   =execute("<C-r>0")<esc>')
+cal L( 'out'  ,   'q:iput =execute("<C-r>0")<esc>A<C-c>')
+cal L( 'p'    ,   ':previous<esc>'      )
+"cal L( 'q'    ,   ''      )
+cal L( 'r'    ,   '<C-w>'               )
+cal L( 's'    ,   ':%so "${HOME}/.config/nvim/init.vim"<esc>')
+cal L( 'tcc'  ,   ':tabclose<esc>'      )
+cal L( 'tt'   ,   ':tabnew<esc>'        )
+cal L( 'tn'   ,   ':tabmove +1<esc>'    )
+cal L( 'tp'   ,   ':tabmove -1<esc>'    )
+cal L( 'tb'   ,   ':tabmove -1<esc>'    )
+cal L( 'tm'   ,   ':tabmove'            )
+cal L( 'tf'   ,   ':tabfirst<esvsplitc>')
+cal L( 'tl'   ,   ':tablast<esc>'       )
+cal L( 'tB'   ,   ':tabmove -1<esc>'    )
+cal L( 'tN'   ,   ':tabmove +1<esc>'    )
+cal L( 'u'    ,   '<C-u>'               )
+cal L( 'var'  ,   ':let maxvar ="<C-r>1<C-r>0"')
+cal L( 'vf'   ,   '?<C-r>"<enter>'      )
+cal L( 'vm'   ,   ':put =eval("<C-r>0")')
+cal L( 'vq'   ,   ':put =eval("<C-r>0")<esc>')
+cal L( 'vv'   ,   ':cal Cy(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<esc>')
+cal L( 'vz'   ,   'i<C-r>"'             )
+cal L( 'w'    ,   ':w<esc>'             )
+cal L( 'x'    ,   ':w<esc>:!%:p<esc>'   )
+cal L( 'y'    ,   ':hi Normal guibg=Transparent<esc>')
+cal L( 'z'    ,   'z'                   )
 
-cal L( 's',  ':%so "${HOME}/.config/nvim/init.vim"<esc>')
-cal L( 'w',  ':w<esc>')
-cal L( 'x',  ':!%:p<esc>')
-cal L( 'y',  ':hi Normal guibg=Transparent<esc>')
-cal L( 'z',  'z')
-cal L( 'l',  ':cal CyBac(+1)<CR>')
+cal L( 'B'    ,    ':Buffers<esc>'      )
+cal L( 'D'    ,    ':Bracey<esc><enter>')
+cal L( 'G'    ,    ':buff term://<esc>iohttp://localhost:4842')
+cal L( 'H'    ,    ':vert helpgrep '    )
+cal L( 'J'    ,    ':cal yCol(-1)<CR>'  )
+cal L( 'L'    ,    ':cal CyBac(-1)<CR>' )
+cal L( 'M'    ,    ':messages<esc>'     )
+cal L( 'N'    ,    ':cnext<esc>'        )
+cal L( 'P'    ,    ':cprevious<esc>'    )
+cal L( 'S'    ,    ':BraceyStop<esc>'   )
+cal L( 'T'    ,    ':buff term://<esc>i')
+cal L( 'W'    ,    ':call Web("f")<esc>i')
 
-cal L( 'N',  ':cnext<esc>')
-cal L( 'P',  ':cprevious<esc>')
-cal L( 'L',  ':cal CyBac(-1)<CR>')
-cal L( 'B',  ':Buffers<esc>')
-cal L( 'D',  ':Bracey<esc>')
-cal L( 'H',  ':vert helpgrep ')
-cal L( 'M',  ':messages<esc>')
-cal L( 'W',  ':call Web("f")<esc>')
-cal L( ';',  ':ls<CR>:b<Space>')
-cal L( '.',  'q:')
-cal L( '/',  ':Explore<CR>')
-cal L( 'op', 'q:<C-p><esc>Iput =execute("<esc>A")<esc>A<C-c>')
-cal L( 'oc', 'q:iput =execute("")<esc>A<C-c>')
-cal L( 'ox', ':put   =execute("<C-r>0")<esc>')
-cal L( 'vv', ':cal Cy(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<esc>')
-cal L( 'tt', ':tabnew<esc>')
-cal L( 'tn', ':tabmove +1<esc>')
-cal L( 'tp', ':tabmove -1<esc>')
-cal L( 'tb', ':tabmove -1<esc>')
-cal L( 'tm', ':tabmove')
-cal L( 'tf', ':tabfirst<esc>')
-cal L( 'tl', ':tablast<esc>')
-cal L( 'tN', ':tabmove +1<esc>')
-cal L( 'tB', ':tabmove -1<esc>')
-cal L( 'vm', ':put =eval("<C-r>0")')
-cal L( 'vq', ':put =eval("<C-r>0")<esc>')
-cal L( 'vz', 'i<C-r>"')
-cal L( 'vf', '?<C-r>"<enter>')
-cal L( 'out', 'q:iput =execute("<C-r>0")<esc>A<C-c>')
-cal L( 'tcc', ':tabclose<esc>')
-cal L( 'var', ':let maxvar ="<C-r>1<C-r>0"')
+cal L( '<leader>' ,  ' <C-^>'           )
+cal L( '<enter>'  ,  ':set paste!<esc>' )
+cal L( ';'        ,  ':ls<CR>:b<Space>' )
+"cal L( '.'        ,  ':bnext<esc>'      )
+cal L( '/'        ,  ':Explore<CR>'     )
+
+cal L( '['        ,  ':bprevious<CR>'   )
+cal L( ']'        ,  ':bnext<CR>'       )
+
 cal L( '<C-w>line', ':cal Tog(&cc, 0, "set cc=80", "set cc=0")<esc>')
-no <leader>zaf gg/<C-r>0<esc>jVnkzf
+
+map <Space> <leader>
+map , <leader>
 vn <leader>x c<esc>l:execute "normal! i" . eval('<C-r>"')<esc>
+vn im :s/\%V[ \t]*//<esc>| "REMOVE TABS ON VISUAL SELECTION
+vn <Enter> zf
+
+nn <leader>q  :bd<esc>
+nn ZC  :bd<esc>
+nn ZG  :bd!<esc>
+no <leader>zaf gg/<C-r>0<esc>jVnkzf
 nn <C-p> <C-i>
 nn HEALTH :checkhealth<esc>
-vn im :s/\%V[ \t]*//<esc>| "REMOVE TABS ON VISUAL SELECTION
-vn <Space> zf
-sil nn <silent><esc> :noh<esc>
-sil nn       <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nn / /\v\c
 nn <lt> :tabprevious<esc>
 nn > :tabnext<esc>
 nn x "xx
 nn \ `
+nn <C-w>n  :new<esc><C-w>L
+sil nn <silent><esc> :noh<esc>
+sil nn       <Enter> @=(foldlevel('.')?'za':"\<Space>")<CR>
+
 im jk <esc>
+
 inoremap <C-e> <esc>A
 inoremap <C-a> <esc>I
 inoremap <C-b> <left>
 inoremap <C-f> <right>
+"Exit Terminal and Change Buffer
+tnoremap <leader><leader> <C-\><C-n>:Buffers<esc>
+tnoremap <leader>. <C-\><C-n>:bnext<esc>
+tnoremap <leader><esc> <C-\><C-n>
+tnoremap <leader>G <C-\><C-n>iohttp://localhost:4842<enter>
 
 "nn dd "Ddd
 "nn  D "DD
@@ -317,13 +346,13 @@ set statusline+=%{wordcount().words}\ w\
 autocmd BufNewFile,BufRead *.sh                     set syntax=zsh
 autocmd BufNewFile,BufRead ~/.config/polybar/config setfiletype dosini
 autocmd BufNewFile,BufRead ~/.config/i3/*           setfiletype i3
-
-"map <C-b> nn <leader>bb :buffers<cr>:b<space> 
+vn <leader>M :!dc<esc>
+vn <leader>m :!bc<esc>
+"map <c-b> nn <leader>bb :buffers<cr>:b<space> 
 "nn <leader><leader> :<backspace>
-"nn <leader>ap :let @+="<C-r>1<C-r>0"
+"nn <leader>ap :let @+="<c-r>1<c-r>0"
 "1+2                   
-"vn <leader>vq q:o<C-c>put =execute(' <C-R>0')
-"vn <leader>dc :put =execute('dc <C-r>0')<esc>
+"vn <leader>vq q:o<c-c>put =execute(' <C-R>0')
 
 "nn <leader>mq :put =execute('echo <c-r>0')<esc>
 "vn <leader>c c<esc>l:execute "normal! i" . execute("!<C-r>"")<esc>
