@@ -146,6 +146,7 @@ function killall_loaded() {
 #-ALIASES								#
 #---------------------------------------------------------------------- #
 alias   tma='       tmux attach'
+alias   tmn='       tmux new-session -t mx'
 alias   tmd='       tmux detach'
 alias   sudo='      sudo '
 alias   cop='       xcmenu --input --clipboard'

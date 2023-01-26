@@ -139,6 +139,7 @@ set wildmode=longest,list,full
 set foldcolumn=auto
 set showmode
 set virtualedit=none
+set softtabstop=8
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -299,6 +300,11 @@ vn <leader>x c<esc>l:execute "normal! i" . eval('<C-r>"')<esc>
 vn im :s/\%V[ \t]*//<esc>| "REMOVE TABS ON VISUAL SELECTION
 vn <Enter> zf
 
+nn <esc>h <C-w>h
+nn <esc>j <C-w>j
+nn <esc>k <C-w>k
+nn <esc>l <C-w>l
+
 nn <leader>q  :bd<esc>
 nn ZC  :bd<esc>
 nn ZG  :bd!<esc>
@@ -346,6 +352,16 @@ set statusline+=%{wordcount().words}\ w\
 autocmd BufNewFile,BufRead *.sh                     set syntax=zsh
 autocmd BufNewFile,BufRead ~/.config/polybar/config setfiletype dosini
 autocmd BufNewFile,BufRead ~/.config/i3/*           setfiletype i3
+
+augroup html_css
+    autocmd!
+    :autocmd FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=4 expandtab
+    :autocmd FileType css  setlocal tabstop=2 shiftwidth=2 softtabstop=4 expandtab
+    :autocmd FileType html nnoremap <buffer> <localleader>c I/*<space><esc><s-a><space>*/<esc>
+    :autocmd FileType css  nnoremap <buffer> <localleader>c I/*<space><esc><s-a><space>*/<esc>
+augroup end
+
+
 vn <leader>M :!dc<esc>
 vn <leader>m :!bc<esc>
 "map <c-b> nn <leader>bb :buffers<cr>:b<space> 
