@@ -1,17 +1,17 @@
                      
-"<==========================================================================>
-"<==----------------======================================----------------==>
-"<==-----  ||||-----======================================-----  ||||-----==>
-"<==-----  ||||-----==__________________________________==-----  ||||-----==>
-"<==-  ||||||||||||-==                                  ==-  ||||||||||||-==>
-"<==-  ||||||||||||-== Vim Config -> Maximilian Ballard ==-  ||||||||||||-==>
-"<==-----  ||||-----==__________________________________==-----  ||||-----==>
-"<==-----  ||||-----==                                  ==-----  ||||-----==>
-"<==-----  ||||-----======================================-----  ||||-----==>
-"<==-----  ||||-----======================================-----  ||||-----==>
-"<==----------------======================================----------------==>
-"<==========================================================================>
-"<==========================================================================>
+"<==============================================================================>
+"<==------------------======================================------------------==>
+"<==-----    ||||-----======================================-----    ||||-----==>
+"<==-----    ||||-----==__________________________________==-----    ||||-----==>
+"<==-    ||||||||||||-==                                  ==-    ||||||||||||-==>
+"<==-    ||||||||||||-== Vim Config -> Maximilian Ballard ==-    ||||||||||||-==>
+"<==-----    ||||-----==__________________________________==-----    ||||-----==>
+"<==-----    ||||-----==                                  ==-----    ||||-----==>
+"<==-----    ||||-----======================================-----    ||||-----==>
+"<==-----    ||||-----======================================-----    ||||-----==>
+"<==------------------======================================------------------==>
+"<==============================================================================>
+"<==============================================================================>
 
 "<--------- FUNCTIONS ------------------------------------------------------>
 fu! CorrectColors()
@@ -38,7 +38,7 @@ fu! L(keys, command, silent="0")
 endfu
 
 fu! CyBac(nextprevious)
-    let i = 0 | let current_background = synIDattr(hlID("Normal"), "bg")  
+    let i = 0 | let current_background = synIDattr(hlID("Normal"), "bg")    
     if current_background == ""
         let current_background="NONE"| "CATCH NO BACKGROUND (Transparency)
     endif
@@ -74,8 +74,7 @@ fu! Tog(c1, c2, r1, r2)
 endfu
 
 fu! Cy(checkarr, cvar, doarr, nextprevious)
-    let lenny = len(a:checkarr)
-    let i = 0
+    let lenny = len(a:checkarr) | let i = 0
     while i < lenny
         if a:checkarr[i] ==? a:cvar
             let j = (i + (a:nextprevious)) % lenny
@@ -85,20 +84,27 @@ fu! Cy(checkarr, cvar, doarr, nextprevious)
     endwhile
 endfu
 
-
 fu! Web(url)
     enew
     call termopen('elinks "www.google.com"')
+endfunction
+
+fu! IndentHalfOrDouble(half_or_double)
+    if a:half_or_double ==? "double"
+        execute ':%s/  /    /g'
+    else
+        execute ':%s/    /  /g'
+    endif
 endfunction
 
 "<--------- MY VARS -------------------------------------------------------->
 let jam="hi FoldColumn gui=bold guibg=NONE guifg=#00ff00"
 let GreatJammy=':call CorrectColors()'
 let g:myScheme = [ 'pop-punk', 'eldar', 'elflord', 'delek', 'morning', 'blue', 'cyberpunk-neon', 'peachpuff', 'industry' ]
-let g:mySpec   = [        ".",     jam,       ".",     ".",       ".",    ".",       GreatJammy,         '.',         '.']
+let g:mySpec     = [        ".",     jam,         ".",     ".",         ".",    ".",         GreatJammy,         '.',         '.']
 let g:myBg     = [ "#000000", "#333333", "#111111", "#220000", "#002200", "#000022", "#002244" ]
-let g:myFg     = [       ".",       ".",       ".",       ".",       ".",       ".", "#aaaaaa" ]
-let g:myBg+=["NONE"] | let g:myFg+=[   "."]
+let g:myFg     = [         ".",         ".",         ".",         ".",         ".",         ".", "#aaaaaa" ]
+let g:myBg+=["NONE"] | let g:myFg+=[     "."]
 let g:python3_host_prog="/usr/bin/python"
 "<--------- LET/SET -------------------------------------------------------->
 filetype off
@@ -139,7 +145,7 @@ set wildmode=longest,list,full
 set foldcolumn=auto
 set showmode
 set virtualedit=none
-set softtabstop=8
+set softtabstop=4
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -195,7 +201,7 @@ let g:bracey_eval_on_save = 1
 let g:bracey_auto_start_browser = 0
 let g:bracey_server_port = 4842
 let g:lf_map_keys = 0
-let g:html_mode   = 1
+let g:html_mode     = 1
 let g:is_bash     = 1
 "-----------------CLOSETAG
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
@@ -229,68 +235,68 @@ set nocuc
 "list keybindings with :help index
 "list user keybindings with :map
 "nn <leader>. :NERDTreeToggle<esc>
-cal L( 'a'    ,   ':cal Tog(g:coc_enabled, 0, ":CocEnable", ":CocDisable")<esc>')
-cal L( 'b'    ,   ':ls<CR>:b<Space>'    )
-cal L( 'c'    ,   ':set nocursorline!<esc>')
-cal L( 'd'    ,   '<C-d>'               )
-cal L( 'e'    ,   ':set cursorcolumn!<esc>')
-cal L( 'f'    ,   ':set wrap!<esc>'     )
-cal L( 'g'    ,   ':enew<esc>'          )
-cal L( 'h'    ,   ':cal Tog(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc>')
-cal L( 'j'    ,   ':cal CyCol(+1)<CR>'  )
-cal L( 'l'    ,   ':cal CyBac(+1)<CR>'  )
-cal L( 'n'    ,   ':next<esc>'          )
-cal L( 'oc'   ,   'q:iput=execute("")<esc>A<C-c>')
-cal L( 'op'   ,   'q:<C-p><esc>Iput =execute("<esc>A")<esc>A<C-c>')
-cal L( 'ox'   ,   ':put   =execute("<C-r>0")<esc>')
-cal L( 'out'  ,   'q:iput =execute("<C-r>0")<esc>A<C-c>')
-cal L( 'p'    ,   ':previous<esc>'      )
-"cal L( 'q'    ,   ''      )
-cal L( 'r'    ,   '<C-w>'               )
-cal L( 's'    ,   ':%so "${HOME}/.config/nvim/init.vim"<esc>')
-cal L( 'tcc'  ,   ':tabclose<esc>'      )
-cal L( 'tt'   ,   ':tabnew<esc>'        )
-cal L( 'tn'   ,   ':tabmove +1<esc>'    )
-cal L( 'tp'   ,   ':tabmove -1<esc>'    )
-cal L( 'tb'   ,   ':tabmove -1<esc>'    )
-cal L( 'tm'   ,   ':tabmove'            )
-cal L( 'tf'   ,   ':tabfirst<esvsplitc>')
-cal L( 'tl'   ,   ':tablast<esc>'       )
-cal L( 'tB'   ,   ':tabmove -1<esc>'    )
-cal L( 'tN'   ,   ':tabmove +1<esc>'    )
-cal L( 'u'    ,   '<C-u>'               )
-cal L( 'var'  ,   ':let maxvar ="<C-r>1<C-r>0"')
-cal L( 'vf'   ,   '?<C-r>"<enter>'      )
-cal L( 'vm'   ,   ':put =eval("<C-r>0")')
-cal L( 'vq'   ,   ':put =eval("<C-r>0")<esc>')
-cal L( 'vv'   ,   ':cal Cy(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<esc>')
-cal L( 'vz'   ,   'i<C-r>"'             )
-cal L( 'w'    ,   ':w<esc>'             )
-cal L( 'x'    ,   ':w<esc>:!%:p<esc>'   )
-cal L( 'y'    ,   ':hi Normal guibg=Transparent<esc>')
-cal L( 'z'    ,   'z'                   )
+cal L( 'a'    ,     ':cal Tog(g:coc_enabled, 0, ":CocEnable", ":CocDisable")<esc>')
+cal L( 'b'    ,     ':ls<CR>:b<Space>'    )
+cal L( 'c'    ,     ':set nocursorline!<esc>')
+cal L( 'd'    ,     '<C-d>'                 )
+cal L( 'e'    ,     ':set cursorcolumn!<esc>')
+cal L( 'f'    ,     ':set wrap!<esc>'     )
+cal L( 'g'    ,     ':enew<esc>'            )
+cal L( 'h'    ,     ':cal Tog(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc>')
+cal L( 'j'    ,     ':cal CyCol(+1)<CR>'    )
+cal L( 'l'    ,     ':cal CyBac(+1)<CR>'    )
+cal L( 'n'    ,     ':next<esc>'            )
+cal L( 'oc'   ,     'q:iput=execute("")<esc>A<C-c>')
+cal L( 'op'   ,     'q:<C-p><esc>Iput =execute("<esc>A")<esc>A<C-c>')
+cal L( 'ox'   ,     ':put     =execute("<C-r>0")<esc>')
+cal L( 'out'  ,     'q:iput =execute("<C-r>0")<esc>A<C-c>')
+cal L( 'p'    ,     ':previous<esc>'        )
+"cal L( 'q'   ,     ''        )
+cal L( 'r'    ,     '<C-w>'                 )
+cal L( 's'    ,     ':%so "${HOME}/.config/nvim/init.vim"<esc>')
+cal L( 'tcc'  ,     ':tabclose<esc>'        )
+cal L( 'tt'   ,     ':tabnew<esc>'        )
+cal L( 'tn'   ,     ':tabmove +1<esc>'    )
+cal L( 'tp'   ,     ':tabmove -1<esc>'    )
+cal L( 'tb'   ,     ':tabmove -1<esc>'    )
+cal L( 'tm'   ,     ':tabmove'            )
+cal L( 'tf'   ,     ':tabfirst<esvsplitc>')
+cal L( 'tl'   ,     ':tablast<esc>'         )
+cal L( 'tB'   ,     ':tabmove -1<esc>'    )
+cal L( 'tN'   ,     ':tabmove +1<esc>'    )
+cal L( 'u'    ,       '<C-u>'                 )
+cal L( 'var'  ,     ':let maxvar ="<C-r>1<C-r>0"')
+cal L( 'vf'   ,     '?<C-r>"<enter>'        )
+cal L( 'vm'   ,     ':put =eval("<C-r>0")')
+cal L( 'vq'   ,     ':put =eval("<C-r>0")<esc>')
+cal L( 'vv'   ,     ':cal Cy(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<esc>')
+cal L( 'vz'   ,     'i<C-r>"'             )
+cal L( 'w'    ,     ':w<esc>'             )
+cal L( 'x'    ,     ':w<esc>:!%:p<esc>'     )
+cal L( 'y'    ,     ':hi Normal guibg=Transparent<esc>')
+cal L( 'z'    ,     'z'                     )
 
-cal L( 'B'    ,    ':Buffers<esc>'      )
+cal L( 'B'    ,    ':Buffers<esc>'        )
 cal L( 'D'    ,    ':Bracey<esc><enter>')
 cal L( 'G'    ,    ':buff term://<esc>iohttp://localhost:4842')
 cal L( 'H'    ,    ':vert helpgrep '    )
-cal L( 'J'    ,    ':cal yCol(-1)<CR>'  )
+cal L( 'J'    ,    ':cal yCol(-1)<CR>'    )
 cal L( 'L'    ,    ':cal CyBac(-1)<CR>' )
 cal L( 'M'    ,    ':messages<esc>'     )
 cal L( 'N'    ,    ':cnext<esc>'        )
 cal L( 'P'    ,    ':cprevious<esc>'    )
-cal L( 'S'    ,    ':BraceyStop<esc>'   )
+cal L( 'S'    ,    ':BraceyStop<esc>'     )
 cal L( 'T'    ,    ':buff term://<esc>i')
 cal L( 'W'    ,    ':call Web("f")<esc>i')
 
-cal L( '<leader>' ,  ' <C-^>'           )
-cal L( '<enter>'  ,  ':set paste!<esc>' )
-cal L( ';'        ,  ':ls<CR>:b<Space>' )
-"cal L( '.'        ,  ':bnext<esc>'      )
-cal L( '/'        ,  ':Explore<CR>'     )
+cal L( '<leader>' ,    ' <C-^>'             )
+cal L( '<enter>'  ,    ':set paste!<esc>' )
+cal L( ';'        ,    ':ls<CR>:b<Space>' )
+"cal L( '.'       ,    ':bnext<esc>'        )
+cal L( '/'        ,    ':Explore<CR>'     )
 
-cal L( '['        ,  ':bprevious<CR>'   )
-cal L( ']'        ,  ':bnext<CR>'       )
+cal L( '['        ,    ':bprevious<CR>'     )
+cal L( ']'        ,    ':bnext<CR>'         )
 
 cal L( '<C-w>line', ':cal Tog(&cc, 0, "set cc=80", "set cc=0")<esc>')
 
@@ -304,10 +310,11 @@ nn <esc>h <C-w>h
 nn <esc>j <C-w>j
 nn <esc>k <C-w>k
 nn <esc>l <C-w>l
+nn <esc><esc> :noh<esc><C-L>
 
-nn <leader>q  :bd<esc>
-nn ZC  :bd<esc>
-nn ZG  :bd!<esc>
+nn <leader>q    :bd<esc>
+nn ZC    :bd<esc>
+nn ZG    :bd!<esc>
 no <leader>zaf gg/<C-r>0<esc>jVnkzf
 nn <C-p> <C-i>
 nn HEALTH :checkhealth<esc>
@@ -316,9 +323,10 @@ nn <lt> :tabprevious<esc>
 nn > :tabnext<esc>
 nn x "xx
 nn \ `
-nn <C-w>n  :new<esc><C-w>L
-sil nn <silent><esc> :noh<esc>
-sil nn       <Enter> @=(foldlevel('.')?'za':"\<Space>")<CR>
+nn <C-w>n    :new<esc><C-w>L
+nn SS :source ~/.config/nvim/init.vim<esc><C-w>L
+"sil nn <silent><esc> :noh<esc>
+sil nn <Enter> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
 im jk <esc>
 
@@ -333,9 +341,9 @@ tnoremap <leader><esc> <C-\><C-n>
 tnoremap <leader>G <C-\><C-n>iohttp://localhost:4842<enter>
 
 "nn dd "Ddd
-"nn  D "DD
+"nn    D "DD
 "nn cc "Ccc
-"nn  C "CC
+"nn    C "CC
 "nn C "Cd
 "map <leader> :Lf<CR>
 " Take last command line command to use to output to neovim
@@ -349,25 +357,19 @@ set statusline+=%=\ [%n]\
 set statusline+=%=\ %L\ l,\ 
 set statusline+=%{wordcount().words}\ w\ 
 
-autocmd BufNewFile,BufRead *.sh                     set syntax=zsh
-autocmd BufNewFile,BufRead ~/.config/polybar/config setfiletype dosini
-autocmd BufNewFile,BufRead ~/.config/i3/*           setfiletype i3
-
-augroup html_css
-    autocmd!
-    :autocmd FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=4 expandtab
-    :autocmd FileType css  setlocal tabstop=2 shiftwidth=2 softtabstop=4 expandtab
-    :autocmd FileType html nnoremap <buffer> <localleader>c I/*<space><esc><s-a><space>*/<esc>
-    :autocmd FileType css  nnoremap <buffer> <localleader>c I/*<space><esc><s-a><space>*/<esc>
-augroup end
-
+autocmd BufNewFile,BufRead *.sh                         set syntax=zsh
+autocmd BufNewFile,BufRead ~/.config/polybar/config     setfiletype dosini
+autocmd BufNewFile,BufRead ~/.config/i3/*               setfiletype i3
+autocmd BufNewFile,BufRead *.html                       setlocal tabstop=2 shiftwidth=2 softtabstop=4 expandtab
+autocmd BufNewFile,BufRead *.css                        setlocal tabstop=2 shiftwidth=2 softtabstop=4 expandtab
+    
 
 vn <leader>M :!dc<esc>
 vn <leader>m :!bc<esc>
 "map <c-b> nn <leader>bb :buffers<cr>:b<space> 
 "nn <leader><leader> :<backspace>
 "nn <leader>ap :let @+="<c-r>1<c-r>0"
-"1+2                   
+"1+2                     
 "vn <leader>vq q:o<c-c>put =execute(' <C-R>0')
 
 "nn <leader>mq :put =execute('echo <c-r>0')<esc>
@@ -378,44 +380,44 @@ vn <leader>m :!bc<esc>
 "    autocmd BufNewFile,BufRead *.sh set syntax=zsh
 "augroup END
 "<--------- INFO ----------------------------------------------------------->
-"   %<"                             _-_is expanded to the name of the current buffer.
+"     %<"                             _-_is expanded to the name of the current buffer.
 
-"   :help key-notation              _-_for list of keys and their names.
-"   :only                           _-_make split only one. 
-"   :let                            _-_list all options and their values. 
-"   :put =Execute("map")            _-_output of command into nvim.  
+"     :help key-notation                _-_for list of keys and their names.
+"     :only                             _-_make split only one. 
+"     :let                            _-_list all options and their values. 
+"     :put =Execute("map")            _-_output of command into nvim.    
 "<-------------------------------------------------------------------------->
 
 
 "hi default link CocErrorVirtualText         CocErrorSign
-"hi default link CocWarningVirtualText       CocErrorSign
-"hi default link CocInfoVirtualText          CocErrorSign
-"hi default link CocHintVirtualText          CocErrorSign
-"hi default link CocErrorHighlight           CocErrorSign
+"hi default link CocWarningVirtualText         CocErrorSign
+"hi default link CocInfoVirtualText            CocErrorSign
+"hi default link CocHintVirtualText            CocErrorSign
+"hi default link CocErrorHighlight             CocErrorSign
 "hi default link CocWarningHighlight         CocErrorSign
 "hi default link CocInfoHighlight            CocErrorSign
 "hi default link CocHintHighlight            CocErrorSign
-"hi default link CocErrorFloat               CocErrorSign
+"hi default link CocErrorFloat                 CocErrorSign
 "hi default link CocWarningFloat             CocErrorSign
 "hi default link CocInfoFloat                CocErrorSign
 "hi default link CocHintFloat                CocErrorSign
-"hi default link CocCursorRange              CocErrorSign
-"hi default link CocHoverRange               CocErrorSign
-"hi MatchParen          cterm=NONE ctermbg=NONE ctermfg=NONE gui=reverse    
+"hi default link CocCursorRange                CocErrorSign
+"hi default link CocHoverRange                 CocErrorSign
+"hi MatchParen            cterm=NONE ctermbg=NONE ctermfg=NONE gui=reverse    
 "hi cursorcolumn        gui=bold,italic,reverse
-"hi Normal              cterm=NONE ctermbg=17   ctermfg=NONE gui=NONE    guibg=NONE    guifg=#ffffff
-"hi Visual              cterm=NONE ctermbg=NONE ctermfg=16   gui=NONE guibg=#333333 guifg=#00ff00
+"hi Normal                cterm=NONE ctermbg=17     ctermfg=NONE gui=NONE    guibg=NONE    guifg=#ffffff
+"hi Visual                cterm=NONE ctermbg=NONE ctermfg=16     gui=NONE guibg=#333333 guifg=#00ff00
 "hi NonText             cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=NONE    guifg=NONE
-"hi CocSearch           cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=#FF0000 guifg=#000000
-"hi CocMenuSel          cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=#FF0000 guifg=#000000
-"hi CocErrorHighlight   cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=#FF0000 guifg=#000000
+"hi CocSearch             cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=#FF0000 guifg=#000000
+"hi CocMenuSel            cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=#FF0000 guifg=#000000
+"hi CocErrorHighlight     cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=#FF0000 guifg=#000000
 "hi CocErrorSign        cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=#FF0000 guifg=#000000
-"hi CocWarningSign      cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=#FF0000 guifg=#000000
+"hi CocWarningSign        cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=#FF0000 guifg=#000000
 "hi CocInfoSign         cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=#FF0000 guifg=#000000
 "hi CocHintSign         cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=#FF0000 guifg=#000000
-"hi htmlTag                                                  gui=reverse guifg=#90b0d1 guibg=#000033
-"hi htmlSpecialTagName                                       gui=reverse
+"hi htmlTag                                                    gui=reverse guifg=#90b0d1 guibg=#000033
+"hi htmlSpecialTagName                                         gui=reverse
 "hi html gui=reverse
-"hi htmlTagName                                              gui=NONE guifg=#90b0d1 guibg=#000033
-"hi htmlEndTag                                               gui=NONE guifg=#000000 guibg=#ffffff
+"hi htmlTagName                                                gui=NONE guifg=#90b0d1 guibg=#000033
+"hi htmlEndTag                                                 gui=NONE guifg=#000000 guibg=#ffffff
 "
