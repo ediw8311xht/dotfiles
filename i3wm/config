@@ -7,8 +7,8 @@
     #sticky toggle
     set $mode_be          exec killall xmessage ; mode 
     set $xm_hd            exec $HOME/bin/xmsg_quick.sh 
-    bindsym Mod1+Shift+r  exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh              --3"
-    bindsym Mod1+Shift+c  exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh  --NOASK     --0"
+    bindsym Mod1+Shift+r  exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3wm_config_check.sh              --3"
+    bindsym Mod1+Shift+c  exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3wm_config_check.sh  --NOASK     --0"
     bindsym Mod1+Shift+a --release  mode                    freekey;                exec --no-startup-id "sleep 0.2; xdotool key 'ctrl+v'; sleep 0.2; xdotool key 'alt+y'"
 #-------------------------------------------------SET---------------------#
     set $WSW    1400px
