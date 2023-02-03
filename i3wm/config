@@ -10,15 +10,7 @@
     bindsym Mod1+Shift+r  exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh              --3"
     bindsym Mod1+Shift+c  exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3configcheck.sh  --NOASK     --0"
     bindsym Mod1+Shift+a --release  mode                    freekey;                exec --no-startup-id "sleep 0.2; xdotool key 'ctrl+v'; sleep 0.2; xdotool key 'alt+y'"
-#-----------------------------------------------------------SET-----------#
-    set_from_resource $MON_1    i3wm.monitor1 DVI-D-1
-    set_from_resource $MON_2    i3wm.monitor2 DVI-D-1
-    set_from_resource $IN_GAPS  i3wm.IN_GAPS  0
-    set_from_resource $OUT_GAPS i3wm.OUT_GAPS 0
-    set_from_resource $TOP_GAPS i3wm.TOP_GAPS 0
-    set_from_resource $BOT_GAPS i3wm.TOP_GAPS 0
-    set_from_resource $R_GAPS   i3wm.IN_GAPS  0
-    set_from_resource $L_GAPS   i3wm.L_GAPS   0
+#-------------------------------------------------SET---------------------#
     set $WSW    1400px
     set $WSH    950px
     set $mod    Mod1
@@ -40,19 +32,38 @@
     set $focuse_TBAR  #004f98
     set $inacti_TBAR  #888888
     set $unfocu_TBAR  #333333
+#-------------------------------------------------RESOURCES---------------#
+    #-----LEFT_MONITOR-----------------------------------#
+        set_from_resource $MON_1    i3wm.monitor1 DVI-D-1
+    #---CENTER_MONITOR-----------------------------------#
+        set_from_resource $MON_2    i3wm.monitor2 DVI-D-1
+    #----RIGHT_MONITOR-----------------------------------#
+        set_from_resource $MON_3    i3wm.monitor3 DVI-D-1
+    #----GAPS--------------------------------------------#
+        set_from_resource $IN_GAPS  i3wm.IN_GAPS  0
+        set_from_resource $OUT_GAPS i3wm.OUT_GAPS 0
+        set_from_resource $TOP_GAPS i3wm.TOP_GAPS 0
+        set_from_resource $BOT_GAPS i3wm.TOP_GAPS 0
+        set_from_resource $R_GAPS   i3wm.IN_GAPS  0
+        set_from_resource $L_GAPS   i3wm.L_GAPS   0
 #-------WORKSPACES--------------------------------------------------------#
-    workspace    3	output	$MON_1
-    workspace    4	output	$MON_1
-    workspace    5	output	$MON_1
-    workspace    6	output	$MON_1
-    workspace    7	output	$MON_1
-    workspace    8	output	$MON_1
-    workspace    9	output	$MON_1
-    workspace   10	output	$MON_1
-    workspace   11	output	$MON_1
-    workspace   12	output	$MON_1
-    workspace    1  output	$MON_2
-    workspace    2	output  $MON_2
+    #-------------------------------LEFT--------#
+        workspace    1  output	$MON_1
+        workspace    2	output  $MON_1
+        workspace    3	output	$MON_1
+        workspace    4	output	$MON_1
+        workspace    5	output	$MON_1
+    #-------------------------------CENTER------#
+        workspace    6	output	$MON_2
+        workspace    7	output	$MON_2
+        workspace    8	output	$MON_2
+        workspace    9	output	$MON_2
+        workspace   10	output	$MON_2
+        workspace   11	output	$MON_2
+        workspace   12	output	$MON_2
+    #-------------------------------RIGHT-------#
+        workspace   13	output	$MON_3
+        workspace   14	output	$MON_3
 #-------------------------------------------------------SETTINGS----------#
     floating_modifier     $mod
     focus_follows_mouse   yes
@@ -105,7 +116,8 @@
     $EXC    xcompmgr 	-C
     $EXC    $HOME/bin/xwallpaperauto.sh --silent
     $EXC    /usr/bin/dunst
-    $EXC_A  $HOME/.config/polybar/launch.sh
+    $EXC    unclutter --timeout 2 --fork
+    $EXC_A  /$HOME/.config/polybar/launch.sh
     $EXC_A  xset -dpms
     $EXC_A  xset s off
     $EXC_A  xset r rate 200 40

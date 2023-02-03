@@ -1,7 +1,7 @@
 
 #
 #- ~/.bashrc
-# \\shellcheck disable=SC1000-SC9999
+# shellcheck disable=SC1000-SC9999
 #-
 #-If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -145,10 +145,10 @@ function killall_loaded() {
 #---------------------------------------------------------------------- #
 #-ALIASES								#
 #---------------------------------------------------------------------- #
+alias   sudo='      sudo -v; sudo'
 alias   tma='       tmux attach'
 alias   tmn='       tmux new-session -t mx'
 alias   tmd='       tmux detach'
-alias   sudo='      sudo '
 alias   cop='       xcmenu --input --clipboard'
 alias   l='         cd_from_lf'
 alias   a='         get_alias_fzf'
@@ -367,5 +367,9 @@ set -o vi
 #---------------------------------------------------------------------- #
 
 
+
+
+
+alias pacdneed='pacman -Qet'
 
 

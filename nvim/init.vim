@@ -13,6 +13,14 @@
 "<==============================================================================>
 "<==============================================================================>
 
+"<--------- MY VARS -------------------------------------------------------->
+let jam        = 'hi FoldColumn gui=bold guibg=NONE guifg=#00ff00'
+let GreatJammy = ':call CorrectColors()'
+let g:myScheme = [ 'pop-punk', 'eldar', 'elflord', 'delek', 'morning', 'blue', 'peachpuff', 'industry'] + [ 'cyberpunk-neon' ]
+let g:mySpec   = [        ".",     jam,       ".",     ".",       ".",    ".",         '.',        '.'] + [ GreatJammy ]
+let g:myBg     = [ "#000000", "#333333", "#111111", "#220000", "#002200", "#000022", "#002244" ] + [ "NONE" ] 
+let g:myFg     = [         ".",         ".",         ".",         ".",         ".",         ".", "#aaawaa" ] + [ "." ]
+let g:python3_host_prog="/usr/bin/python"
 "<--------- FUNCTIONS ------------------------------------------------------>
 fu! CorrectColors()
     hi StatusLine    cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE    guibg=#000000 guifg=#00DD00
@@ -97,15 +105,6 @@ fu! IndentHalfOrDouble(half_or_double)
     endif
 endfunction
 
-"<--------- MY VARS -------------------------------------------------------->
-let jam="hi FoldColumn gui=bold guibg=NONE guifg=#00ff00"
-let GreatJammy=':call CorrectColors()'
-let g:myScheme = [ 'pop-punk', 'eldar', 'elflord', 'delek', 'morning', 'blue', 'cyberpunk-neon', 'peachpuff', 'industry' ]
-let g:mySpec     = [        ".",     jam,         ".",     ".",         ".",    ".",         GreatJammy,         '.',         '.']
-let g:myBg     = [ "#000000", "#333333", "#111111", "#220000", "#002200", "#000022", "#002244" ]
-let g:myFg     = [         ".",         ".",         ".",         ".",         ".",         ".", "#aaaaaa" ]
-let g:myBg+=["NONE"] | let g:myFg+=[     "."]
-let g:python3_host_prog="/usr/bin/python"
 "<--------- LET/SET -------------------------------------------------------->
 filetype off
 set runtimepath+=/usr/local/share/lilypond/current/vim/
@@ -236,67 +235,64 @@ set nocuc
 "list user keybindings with :map
 "nn <leader>. :NERDTreeToggle<esc>
 cal L( 'a'    ,     ':cal Tog(g:coc_enabled, 0, ":CocEnable", ":CocDisable")<esc>')
-cal L( 'b'    ,     ':ls<CR>:b<Space>'    )
-cal L( 'c'    ,     ':set nocursorline!<esc>')
-cal L( 'd'    ,     '<C-d>'                 )
-cal L( 'e'    ,     ':set cursorcolumn!<esc>')
-cal L( 'f'    ,     ':set wrap!<esc>'     )
-cal L( 'g'    ,     ':enew<esc>'            )
+cal L( 'b'    ,     ':ls<CR>:b<Space>'                          )
+cal L( 'c'    ,     ':set nocursorline!<esc>'                   )
+cal L( 'd'    ,     '<C-d>'                                     )
+cal L( 'e'    ,     ':set cursorcolumn!<esc>'                   )
+cal L( 'f'    ,     ':set wrap!<esc>'                           )
+cal L( 'g'    ,     ':enew<esc>'                                )
 cal L( 'h'    ,     ':cal Tog(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc>')
-cal L( 'j'    ,     ':cal CyCol(+1)<CR>'    )
-cal L( 'l'    ,     ':cal CyBac(+1)<CR>'    )
-cal L( 'n'    ,     ':next<esc>'            )
-cal L( 'oc'   ,     'q:iput=execute("")<esc>A<C-c>')
+cal L( 'j'    ,     ':cal CyCol(+1)<CR>'                        )
+cal L( 'l'    ,     ':cal CyBac(+1)<CR>'                        )
+cal L( 'n'    ,     ':next<esc>'                                )
+cal L( 'oc'   ,     'q:iput=execute("")<esc>A<C-c>'             )
 cal L( 'op'   ,     'q:<C-p><esc>Iput =execute("<esc>A")<esc>A<C-c>')
-cal L( 'ox'   ,     ':put     =execute("<C-r>0")<esc>')
-cal L( 'out'  ,     'q:iput =execute("<C-r>0")<esc>A<C-c>')
-cal L( 'p'    ,     ':previous<esc>'        )
+cal L( 'ox'   ,     ':put     =execute("<C-r>0")<esc>'          )
+cal L( 'out'  ,     'q:iput =execute("<C-r>0")<esc>A<C-c>'      )
+cal L( 'p'    ,     ':previous<esc>'                            )
 "cal L( 'q'   ,     ''        )
-cal L( 'r'    ,     '<C-w>'                 )
-cal L( 's'    ,     ':%so "${HOME}/.config/nvim/init.vim"<esc>')
-cal L( 'tcc'  ,     ':tabclose<esc>'        )
-cal L( 'tt'   ,     ':tabnew<esc>'        )
-cal L( 'tn'   ,     ':tabmove +1<esc>'    )
-cal L( 'tp'   ,     ':tabmove -1<esc>'    )
-cal L( 'tb'   ,     ':tabmove -1<esc>'    )
-cal L( 'tm'   ,     ':tabmove'            )
-cal L( 'tf'   ,     ':tabfirst<esvsplitc>')
-cal L( 'tl'   ,     ':tablast<esc>'         )
-cal L( 'tB'   ,     ':tabmove -1<esc>'    )
-cal L( 'tN'   ,     ':tabmove +1<esc>'    )
-cal L( 'u'    ,       '<C-u>'                 )
-cal L( 'var'  ,     ':let maxvar ="<C-r>1<C-r>0"')
-cal L( 'vf'   ,     '?<C-r>"<enter>'        )
-cal L( 'vm'   ,     ':put =eval("<C-r>0")')
-cal L( 'vq'   ,     ':put =eval("<C-r>0")<esc>')
+cal L( 'r'    ,     '<C-w>'                                     )
+cal L( 's'    ,     ':%so "${HOME}/.config/nvim/init.vim"<esc>' )
+cal L( 'tcc'  ,     ':tabclose<esc>'                            )
+cal L( 'tt'   ,     ':tabnew<esc>'                              )
+cal L( 'tn'   ,     ':tabmove +1<esc>'                          )
+cal L( 'tp'   ,     ':tabmove -1<esc>'                          )
+cal L( 'tb'   ,     ':tabmove -1<esc>'                          )
+cal L( 'tm'   ,     ':tabmove'                                  )
+cal L( 'tf'   ,     ':tabfirst<esvsplitc>'                      )
+cal L( 'tl'   ,     ':tablast<esc>'                             )
+cal L( 'tB'   ,     ':tabmove -1<esc>'                          )
+cal L( 'tN'   ,     ':tabmove +1<esc>'                          )
+cal L( 'u'    ,       '<C-u>'                                   )
+cal L( 'var'  ,     ':let maxvar ="<C-r>1<C-r>0"'               )
+cal L( 'vf'   ,     '?<C-r>"<enter>'                            )
+cal L( 'vm'   ,     ':put =eval("<C-r>0")'                      )
+cal L( 'vq'   ,     ':put =eval("<C-r>0")<esc>'                 )
 cal L( 'vv'   ,     ':cal Cy(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<esc>')
-cal L( 'vz'   ,     'i<C-r>"'             )
-cal L( 'w'    ,     ':w<esc>'             )
-cal L( 'x'    ,     ':w<esc>:!%:p<esc>'     )
-cal L( 'y'    ,     ':hi Normal guibg=Transparent<esc>')
-cal L( 'z'    ,     'z'                     )
-
-cal L( 'B'    ,    ':Buffers<esc>'        )
-cal L( 'D'    ,    ':Bracey<esc><enter>')
-cal L( 'G'    ,    ':buff term://<esc>iohttp://localhost:4842')
-cal L( 'H'    ,    ':vert helpgrep '    )
-cal L( 'J'    ,    ':cal yCol(-1)<CR>'    )
-cal L( 'L'    ,    ':cal CyBac(-1)<CR>' )
-cal L( 'M'    ,    ':messages<esc>'     )
-cal L( 'N'    ,    ':cnext<esc>'        )
-cal L( 'P'    ,    ':cprevious<esc>'    )
-cal L( 'S'    ,    ':BraceyStop<esc>'     )
-cal L( 'T'    ,    ':buff term://<esc>i')
-cal L( 'W'    ,    ':call Web("f")<esc>i')
-
-cal L( '<leader>' ,    ' <C-^>'             )
-cal L( '<enter>'  ,    ':set paste!<esc>' )
-cal L( ';'        ,    ':ls<CR>:b<Space>' )
-"cal L( '.'       ,    ':bnext<esc>'        )
-cal L( '/'        ,    ':Explore<CR>'     )
-
-cal L( '['        ,    ':bprevious<CR>'     )
-cal L( ']'        ,    ':bnext<CR>'         )
+cal L( 'vz'   ,     'i<C-r>"'                                   )
+cal L( 'w'    ,     ':w<esc>'                                   )
+cal L( 'x'    ,     ':w<esc>:!%:p<esc>'                         )
+cal L( 'y'    ,     ':hi Normal guibg=Transparent<esc>'         )
+cal L( 'z'    ,     'z'                                         )
+cal L( 'B'    ,    ':Buffers<esc>'                              )
+cal L( 'D'    ,    ':Bracey<esc><enter>'                        )
+cal L( 'G'    ,    ':buff term://<esc>iohttp://localhost:4842'  )
+cal L( 'H'    ,    ':vert helpgrep '                            )
+cal L( 'J'    ,    ':cal CyCol(-1)<CR>'                         )
+cal L( 'L'    ,    ':cal CyBac(-1)<CR>'                         )
+cal L( 'M'    ,    ':messages<esc>'                             )
+cal L( 'N'    ,    ':cnext<esc>'                                )
+cal L( 'P'    ,    ':cprevious<esc>'                            )
+cal L( 'S'    ,    ':BraceyStop<esc>'                           )
+cal L( 'T'    ,    ':buff term://<esc>i'                        )
+cal L( 'W'    ,    ':call Web("f")<esc>i'                       )
+cal L( '<leader>' ,    ' <C-^>'                                 )
+cal L( '<enter>'  ,    ':set paste!<esc>'                       )
+cal L( ';'        ,    ':ls<CR>:b<Space>'                       )
+"cal L( '.'       ,    ':bnext<esc>'        )-----------------------
+cal L( '/'        ,    ':Explore<CR>'                           )
+cal L( '['        ,    ':bprevious<CR>'                         )
+cal L( ']'        ,    ':bnext<CR>'                             )
 
 cal L( '<C-w>line', ':cal Tog(&cc, 0, "set cc=80", "set cc=0")<esc>')
 
