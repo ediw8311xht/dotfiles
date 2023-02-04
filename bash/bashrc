@@ -158,7 +158,6 @@ alias   comv='      command -V'
 alias   f='         find / -mount'
 alias   h='         cd "$HOME"'
 alias   t='	        trash-put'
-alias   x='         $HOME/bin/FOR_BASHRC/stars_c.sh'
 alias   bgr='       bash_history_grab'
 alias   hb='        nvim $HOME/.bash_history2'
 alias   cl="        printf '\n%.0s_______________________________' {1..400} ; printf '%.0s\n' {1..500} ; clear; echo ''"
@@ -310,7 +309,6 @@ alias   wallz='     cd "$HOME/Pictures/Wallpapers"'
 alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'                                    
 alias   ytdl='      yt-dlp -o "$HOME/Videos/%(title)s.%(ext)s" --restrict-filename'
 alias   m='         men'
-alias   tst='       . $HOME/test.sh'
 alias   git_mt='    git log --pretty=format:"%h %s" --graph'
 alias   mansec='    man -f'
 alias   sap='       apropos'
@@ -332,18 +330,20 @@ alias   cz='        ccze -m ansi'
 #-EXPORT							                                    #
 #---------------------------------------------------------------------- #
 
-export  NO_AT_BRIDGE=1
+export  PYTHONPATH="${PYTHONPATH}:$HOME/.local/python3.10/site-packages"                ####-!!-!!-!!-
+
 export  PAGER='most'
 export  TERM='st-256color'
 export  EDITOR="nvim"
+export 	LESS='-R --use-color -Dd+r$Du+b'
+export  GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export  FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 export  XDG_CONFIG_HOME="$HOME/.config"
 export  XDG_CACHE_HOME="$HOME/.cache"
+export  NO_AT_BRIDGE=1
+
 #export  BROWSER="/usr/bin/elinks"
 #export  LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}"
-export  PYTHONPATH="${PYTHONPATH}:$HOME/.local/python3.10/site-packages"                ####-!!-!!-!!-
-
-
 #---------------------------------------------------------------------- #
 #-`PATH`								#
 #---------------------------------------------------------------------- #
@@ -359,8 +359,6 @@ if  [ -d "/etc/systemd/user" 	 ] ; then PATH="/etc/systemd/user:$PATH"     ; 	fi
 if  [ -d "/usr/bin"              ] ; then PATH="/usr/bin/:$PATH"             ;  fi
 
 set -o vi
-#######shopt -s dotglob
-#######shopt -s globstar
 
 #---------------------------------------------------------------------- #
 #-END 									                                #
