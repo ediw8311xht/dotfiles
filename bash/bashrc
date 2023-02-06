@@ -28,7 +28,10 @@ function cd_from_lf() {
     lf
     if a="$(ls -1 -tr /tmp/tmplf* | tail -1)" 
     then 
-        cd "$(cat "${a}")" || return 1
+        z="$(cat "${a}")"
+        if [[ "${PWD}" != "${a}" ]] ; then
+            cd "$(cat "${a}")" || return 1
+        fi
         trash-put "${a}"
     fi
 }
@@ -157,6 +160,8 @@ alias   c='         printf "\n%.0s_______________________________" {1..400} ; pr
 alias   comv='      command -V'
 alias   f='         find / -mount'
 alias   h='         cd "$HOME"'
+alias   i='         iex'
+alias   j='         flask run --cert="$HOME/ADD_TO_TRUSTED/mykey.crt" --key="$HOME/.cretse_ridi/mykey.pem"'
 alias   t='	        trash-put'
 alias   bgr='       bash_history_grab'
 alias   hb='        nvim $HOME/.bash_history2'
@@ -172,6 +177,7 @@ alias   mf='        find . -iname'
 alias   ic='        clear; imgcat'
 alias   nv='        nvim'
 alias   nvp='       nvim -p'
+alias   vn='        nvim -o'
 alias   nvo='       nvim -O'
 alias   snv='       sudoedit'
 alias   sf='	    clear; screenfetch 2>/dev/null'
@@ -189,6 +195,11 @@ alias   free='      free -h'
 alias   rmi='       rm -i'
 alias   pdf='       zathura'
 alias   i3c='       i3 -C "$HOME/.config/i3/config"'
+alias   lke='       cd $HOME/Notebooks/REFERENCE_SHEETS/;           lf ; cd -'
+alias   lookup='    cd $HOME/Notebooks/REFERENCE_SHEETS/MARKDOWN/;  lf ; cd -'
+alias   lookpdf='   cd $HOME/Notebooks/REFERENCE_SHEETS/PDF/;       lf ; cd -'
+alias   lookmd='    cd $HOME/Notebooks/REFERENCE_SHEETS/MARKDOWN/;  lf ; cd -'
+alias   stack='    cd $HOME/Notebooks/REFERENCE_SHEETS/MARKDOWN/;  lf ; cd -'
     #---rename-#
 alias   tyren='     perl-rename -v -n'
 alias   doren='     perl-rename -v'
@@ -367,7 +378,11 @@ set -o vi
 
 
 
+alias jay_z="echo '$HOME/Downloads'"
 
 alias pacdneed='pacman -Qet'
+
+
+
 
 

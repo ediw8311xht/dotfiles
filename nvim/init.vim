@@ -23,18 +23,20 @@ let g:myFg     = [         ".",         ".",         ".",         ".",         "
 let g:python3_host_prog="/usr/bin/python"
 "<--------- FUNCTIONS ------------------------------------------------------>
 fu! CorrectColors()
-    hi StatusLine    cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE    guibg=#000000 guifg=#00DD00
-    hi FoldColumn    cterm=NONE ctermbg=NONE ctermfg=NONE gui=ITALIC  guibg=NONE    guifg=#00ff00 
-    hi Folded        cterm=NONE ctermbg=NONE ctermfg=NONE gui=ITALIC  guibg=NONE    guifg=#999999
-    hi CursorLine    cterm=BOLD ctermfg=NONE ctermbg=18   gui=BOLD    guibg=NONE    guifg=NONE
-    hi CursorLineNr  cterm=BOLD ctermfg=NONE ctermbg=18   gui=NONE    guibg=NONE    guifg=#FFFF00
-    hi SignColumn    cterm=NONE ctermbg=NONE ctermfg=NONE gui=ITALIC  guibg=NONE    guifg=#000000
-    hi LineNr        cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE    guibg=#000000 guifg=#AAAAAA
-    hi LineNrAbove   cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE    guibg=#000000 guifg=#00AAFF
-    hi TabLine                                            gui=NONE    guibg=#222222 guifg=#999999
-    hi TabLineSel                                         gui=BOLD    guibg=#000000 guifg=#00FF00
-    hi MarkSignNumHL                                      gui=NONE    guibg=none    guifg=NONE
-    hi MarkSignVirtTextHL                                 gui=NONE    guibg=NONE    guifg=#00FF00
+    hi Normal       ctermbg=black guibg=#000000
+    hi StatusLine   cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE    guibg=#000000 guifg=#00DD00
+    hi StatusLineNC cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE    guibg=#000000 guifg=#FFFFFF
+    hi FoldColumn   cterm=NONE ctermbg=NONE ctermfg=NONE gui=ITALIC  guibg=NONE    guifg=#00ff00 
+    hi Folded       cterm=NONE ctermbg=NONE ctermfg=NONE gui=ITALIC  guibg=NONE    guifg=#999999
+    hi CursorLine   cterm=BOLD ctermfg=NONE ctermbg=18   gui=BOLD    guibg=NONE    guifg=NONE
+    hi CursorLineNr cterm=BOLD ctermfg=NONE ctermbg=18   gui=NONE    guibg=NONE    guifg=#FFFF00
+    hi SignColumn   cterm=NONE ctermbg=NONE ctermfg=NONE gui=ITALIC  guibg=NONE    guifg=#000000
+    hi LineNr       cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE    guibg=#000000 guifg=#AAAAAA
+    hi LineNrAbove  cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE    guibg=#000000 guifg=#00AAFF
+    hi TabLine                                           gui=NONE    guibg=#222222 guifg=#999999
+    hi TabLineSel                                        gui=BOLD    guibg=#000000 guifg=#00FF00
+    hi MarkSignNumHL                                     gui=NONE    guibg=none    guifg=NONE
+    hi MarkSignVirtTextHL                                gui=NONE    guibg=NONE    guifg=#00FF00
 endfu
 
 fu! L(keys, command, silent="0")
