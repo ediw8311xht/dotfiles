@@ -109,8 +109,8 @@ endfunction
 
 "<--------- LET/SET -------------------------------------------------------->
 filetype off
-set runtimepath+=/usr/local/share/lilypond/current/vim/
-set runtimepath+=$LILYPOND_HOME
+"set runtimepath+=/usr/local/share/lilypond/current/vim/
+"set runtimepath+=$LILYPOND_HOME
 filetype plugin on
 filetype plugin indent on
 syntax on
@@ -185,11 +185,12 @@ Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 "showmarks
 Plug 'chentoast/marks.nvim'
 "lilypondstuff--music-score-creation
-Plug 'martineausimon/nvim-lilypond-suite'
+"Plug 'martineausimon/nvim-lilypond-suite'
 "req for lilypond, cool ui stuff
 Plug 'MunifTanjim/nui.nvim'
 "just for fun record stats about programming
 Plug 'wakatime/vim-wakatime'
+Plug 'ActivityWatch/aw-watcher-vim'
 " fzf finder
 Plug 'junegunn/fzf.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }

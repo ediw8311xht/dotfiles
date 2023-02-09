@@ -1,9 +1,12 @@
 
 *.alpha:	    1
+*.borderpx:     10px
+*.font: 	    Agave:style=Regular:size=14:antialias=true
+!*.font: 	    Courier:style=Medium:size=13:antialias=false
+!*.font: 	    ProggyCleanTT Nerd Font:style=Medium:size=13:antialias=false
 !*.font: 	    Tamzen:pixelsize=13:autohint=true:antialias=true
 !*.font: 	    TerminessTTF Nerd Font Mono:pixelsize=13:autohint=true:antialias=true
 !*.font: 	    xos4Terminus:pixelsize=15:autohint=true:antialias=true
-!*.font: 	    Agave:style=Regular:size=13:antialias=true
 !*.font: 	    IosevkaCustom:pixelsize=13:antialias=true:autohint=false
 !*.font: 	    Monoid:size=13:antialias=true:autohint=true
 !*.font: 	    FantasqueSansMono:style=Regular:pixelsize=13:autohint=true:antialias=true
@@ -14,7 +17,7 @@
 !*.font: 	    Consolas:size=13:antialias=true:autohint=true
 !*.font: 	    Monaco:size=13:antialias=true:autohint=true
 !*.font: 	    InputMono:size=13:antialias=true:autohint=true
-*.font: 	    IosevkaNerdFont:size=13:antialias=true:autohint=true
+!*.font: 	    IosevkaNerdFont:size=13:antialias=true:autohint=true
 !*.font: 	    FiraCode:size=13:antialias=true:autohint=true
 !*.font: 	    ShureTechMonoNerdFontMono:style=Regular:size=13:antialias=true:autohint=true
 !*.font: 	    SarasaMonoSlabCL:pixelsize=13:antialias=true:autohint=true
@@ -33,7 +36,7 @@
 !!*.cursorColor:      #999999
 !!*.internalBorder:   0px
 !!*.borderSize:       0px
-*.border:           10px
+!*.border:           10px
 !!!!!!!!!!!!!!!!!!!!!!!!!----------------DEFAULT
 !!!.color:        #FFFFFF
 *.foreground:   #FFFFFF

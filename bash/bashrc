@@ -278,9 +278,9 @@ alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf}\
                                 --exclude=\*.{aac,webm,alac,ape,ogg,mp4,mkv,m4a,mp4a,avi,mp3,wav,flac}'
 alias   yg='        xg          --exclude=\*.{rar,tar,gz,tgz,zip,bz2,tbz2}'
 alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
-alias   gr='        (echo ""; read _z; grep -Pi  "${_z}" "$HOME/.bashrc") <<< '
-alias   nvgr='      (echo ""; read _z; grep -Pri "${_z}" "$HOME/.config/nvim/") <<< '
-alias   i3gr='      (echo ""; read _z; grep -Pri "${_z}" "$HOME/.config/i3/") <<< '
+alias   gr='        (echo ""; read -r _z; grep -Pi  "${_z}" "$HOME/.bashrc") <<< '
+alias   nvgr='      (echo ""; read -r _z; grep -Pri "${_z}" "$HOME/.config/nvim/") <<< '
+alias   i3gr='      (echo ""; read -r _z; grep -Pri "${_z}" "$HOME/.config/i3/") <<< '
 #-------------------------------------GREP---------------#
 alias   gport='     gport_function'
 alias   isport='    (read _z; ss -lp "sport = :${_z}") <<< '
@@ -386,3 +386,8 @@ alias pacdneed='pacman -Qet'
 
 
 
+
+
+
+
+alias jweb="/usr/lib/jvm/java-19-openjdk/bin/jwebserver"

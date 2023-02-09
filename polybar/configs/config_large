@@ -90,19 +90,21 @@
     background = ${colors.nbackground}
     type = internal/i3
 ;NO ICON
-    ws-icon-0  =  0;0
-    ws-icon-1  =  1;1
-    ws-icon-2  =  2;2
-    ws-icon-3  =  3;3
-    ws-icon-4  =  4;4
-    ws-icon-5  =  5;5
-    ws-icon-6  =  6;6
-    ws-icon-7  =  7;7
-    ws-icon-8  =  8;8
-    ws-icon-9  =  9;9
-    ws-icon-10 = 10;10
-    ws-icon-11 = 11;11
-    ws-icon-12 = 12;12
+    ws-icon-0 = 1;1
+    ws-icon-1 = 2;2
+    ws-icon-2 = 3;3
+    ws-icon-3 = 4;4
+    ws-icon-4 = 5;5
+    ws-icon-5 = 6;6
+    ws-icon-6 = 7;7
+    ws-icon-7 = 8;8
+    ws-icon-8 = 9;9
+    ws-icon-9 = 9;9
+    ws-icon-10 = 10;0
+    ws-icon-11 = 11;[
+    ws-icon-12 = 12;]
+    ws-icon-13 = 13;a
+    ws-icon-14 = 14;b
 ;;;;;;;;;;;;;;;;;;;;;YES ICON
 ;;;;;;;;;;;;;;;;;;;;    ;ws-icon-0 = 1;
 ;;;;;;;;;;;;;;;;;;;;    ;ws-icon-2 = 3;
@@ -161,7 +163,7 @@
 [module/silver_spot]   
     type = custom/script
     format-prefix = "[ag]"
-    exec = /usr/bin/bash $HOME/.config/polybar/my_modules/spot_price_bash.sh "AG"
+    exec = /usr/bin/bash $HOME/.config/polybar/my_modules/polybar_spot_price.sh "AG"
     interval = 1800
     tail = true
 
@@ -171,7 +173,7 @@
 [module/gold_spot]
     type = custom/script
     format-prefix = "[au]"
-    exec = /usr/bin/bash $HOME/.config/polybar/my_modules/spot_price_bash.sh "AU"
+    exec = /usr/bin/bash $HOME/.config/polybar/my_modules/polybar_spot_price.sh "AU"
     interval = 1800
     tail = true
 

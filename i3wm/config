@@ -8,7 +8,7 @@
     set $mode_be          exec killall xmessage ; mode 
     set $xm_hd            exec $HOME/bin/xmsg_quick.sh 
     bindsym Mod1+Shift+r  exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3wm_config_check.sh              --3"
-    bindsym Mod1+Shift+c  exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3wm_config_check.sh  --NOASK     --0"
+    bindsym Mod1+Shift+c  exec --no-startup-id    "$HOME/.secret_xinit; xrdb ~/.Xresources;    $HOME/bin/i3wm_config_check.sh  --NOASK     --0"
     bindsym Mod1+Shift+a --release  mode                    freekey;                exec --no-startup-id "sleep 0.2; xdotool key 'ctrl+v'; sleep 0.2; xdotool key 'alt+y'"
 #-------------------------------------------------SET---------------------#
     set $WSW    1400px
@@ -114,14 +114,14 @@
 #---------------------------------------------------------EXECS-----------#
     $EXC    xcmenu
     $EXC    xcompmgr 	-C
-    $EXC    $HOME/bin/xwallpaperauto.sh --silent
     $EXC    /usr/bin/dunst
     $EXC    unclutter --timeout 2 --fork
     $EXC_A  $HOME/.config/polybar/launch.sh
-    $EXC_A  $HOME/bin/auto_monitor.sh
-    $EXC_A  xset -dpms
-    $EXC_A  xset s off
-    $EXC_A  xset r rate 200 40
+    #$EXC_A  $HOME/bin/auto_monitor.sh
+    #$EXC_A  xset -dpms
+    #$EXC_A  xset s off
+    #$EXC_A  xset r rate 200 40
+    #$EXC_A  $HOME/bin/xwallpaperauto.sh --silent
 #-------END---------------------------------------------------------------#
 #for_window  [floating]                      resize set $WSW $WSH, move position center
 #for_window  [class="i3*input"]			                    resize  set         1000 1000

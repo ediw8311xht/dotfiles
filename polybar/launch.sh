@@ -1,5 +1,22 @@
 #!/bin/bash
 
+#---------------DON'T-------USE
+function handle_args() {
+    while [[ -n "${1}" ]] ; do
+        [[ "${1}" =~ -c=.* ]]           \
+            && insert_config="${1}"     \
+            || MONS+=("$(monitor_getter "${1}")")
+        shift 1
+    done
+}
+#---------------DON'T-------USE
+
+function real_kill() {
+    local i
+    while [[ $((++i)) -le 10 ]] ; do
+        killall --quiet "${1}" || break
+    done
+}
 
 function monitor_getter() {
     START='^[ \t]*[0-9]+[:][ \t]*[+]'
@@ -9,28 +26,18 @@ function monitor_getter() {
     elif [[ "${1,,}" =  'secondary' ]] ; then MIDDLE='[^*].*[ ]\K'
     elif [[ "${1,,}" != 'all'       ]] ; then END='[^ \t]*('"${*}"')[^ \t]*'
     fi
-    grep -Po "${START}${MIDDLE}${END}" <<< "$(xrandr --listmonitors)" 
+    grep -PZo "${START}${MIDDLE}${END}" <<< "$(xrandr --listmonitors)" 
 }
 
-function handle_args() {
-    while [[ -n "${1}" ]] ; do
-        if [[ "${1}" =~ -c=.* ]] ; then
-            insert_config="${1}"
-        else
-            MARR+=("$(monitor_getter "${1}")")
-        fi
-        shift 1
-    done
-}
 
 function launch_main() {
-    MARR=($(monitor_getter 'all'))
+    mapfile -t MONS < <(monitor_getter 'all')
     insert_config=''
 
-    killall --quiet 'polybar'
-    handle_args "${@}"
+    real_kill 'polybar'
+    #handle_args "${@}"
 
-    for item in "${MARR[@]}"
+    for item in "${MONS[@]}"
     do
         if [[ -f "${insert_config}" ]] ; then 
             MONITOR="${item}" polybar "${insert_config}" --reload basicbar & disown
