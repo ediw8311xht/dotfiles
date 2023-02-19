@@ -3,24 +3,24 @@
 *.borderpx:     10px
 *.font: 	    Agave:style=Regular:size=14:antialias=true
 !*.font: 	    Courier:style=Medium:size=13:antialias=false
-!*.font: 	    ProggyCleanTT Nerd Font:style=Medium:size=13:antialias=false
+!*.font: 	    ProggyCleanTT Nerd Font:pixelsize=23
 !*.font: 	    Tamzen:pixelsize=13:autohint=true:antialias=true
-!*.font: 	    TerminessTTF Nerd Font Mono:pixelsize=13:autohint=true:antialias=true
+!*.font: 	    TerminessTTF Nerd Font Mono:pixelsize=18:autohint=false:antialias=false
 !*.font: 	    xos4Terminus:pixelsize=15:autohint=true:antialias=true
 !*.font: 	    IosevkaCustom:pixelsize=13:antialias=true:autohint=false
-!*.font: 	    Monoid:size=13:antialias=true:autohint=true
+!*.font: 	    Monoid:size=13:antialias=true:autohint=false
 !*.font: 	    FantasqueSansMono:style=Regular:pixelsize=13:autohint=true:antialias=true
 !*.font: 	    ComicMono:size=13:autohint=true:antialias=true
-!*.font: 	    LektonNerdFontMono:style=Medium:size=13:autohint=false:antialias=true
+!*.font: 	    LektonNerdFontMono:style=Medium:size=13:autohint=true:antialias=true
 !*.font: 	    CascadiaMono:size=13:antialias=true
 !*.font: 	    RobotoMono:size=13:antialias=true
 !*.font: 	    Consolas:size=13:antialias=true:autohint=true
 !*.font: 	    Monaco:size=13:antialias=true:autohint=true
 !*.font: 	    InputMono:size=13:antialias=true:autohint=true
+!*.font: 	    IosevkaCustom:size=13:antialias=true:autohint=true
 !*.font: 	    IosevkaNerdFont:size=13:antialias=true:autohint=true
 !*.font: 	    FiraCode:size=13:antialias=true:autohint=true
 !*.font: 	    ShureTechMonoNerdFontMono:style=Regular:size=13:antialias=true:autohint=true
-!*.font: 	    SarasaMonoSlabCL:pixelsize=13:antialias=true:autohint=true
 !*.font: 	    SarasaMonoNerdFont:pixelsize=13:antialias=true:autohint=true
 !*.font: 	    Hack:size=13:antialias=true:autohint=true
 !*.font: 	    Hermit:size=13:antialias=true:autohint=true

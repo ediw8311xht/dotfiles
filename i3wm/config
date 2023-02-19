@@ -117,6 +117,8 @@
     $EXC    /usr/bin/dunst
     $EXC    unclutter --timeout 2 --fork
     $EXC_A  $HOME/.config/polybar/launch.sh
+    $EXC_A  aw-server
+    $EXC_A  aw-watcher-window
     #$EXC_A  $HOME/bin/auto_monitor.sh
     #$EXC_A  xset -dpms
     #$EXC_A  xset s off

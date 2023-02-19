@@ -3,6 +3,8 @@
 #- ~/.bashrc
 # shellcheck disable=SC1000-SC9999
 #-
+#
+
 #-If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 alias ls='ls --color=auto'
@@ -148,7 +150,7 @@ function killall_loaded() {
 #---------------------------------------------------------------------- #
 #-ALIASES								#
 #---------------------------------------------------------------------- #
-alias   sudo='      sudo -v; sudo'
+alias   sudo='      sudo -v; sudo '
 alias   tma='       tmux attach'
 alias   tmn='       tmux new-session -t mx'
 alias   tmd='       tmux detach'
@@ -332,6 +334,8 @@ alias   slc='       compgen -c | grep -i'
 alias   list_coms=' compgen -c'
 alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | grep -Pi -- "${_z:-''}")) <<<' 
 alias   cz='        ccze -m ansi'
+alias   fm='        worker'
+alias   filemanager='worker'
 #---------------------------------------------------------------------- #
 #-QUICK-ADDED-ALIASES                                                   #
 #---------------------------------------------------------------------- #

@@ -189,8 +189,8 @@ Plug 'chentoast/marks.nvim'
 "req for lilypond, cool ui stuff
 Plug 'MunifTanjim/nui.nvim'
 "just for fun record stats about programming
-Plug 'wakatime/vim-wakatime'
-Plug 'ActivityWatch/aw-watcher-vim'
+"Plug 'wakatime/vim-wakatime'
+"Plug 'ActivityWatch/aw-watcher-vim'
 " fzf finder
 Plug 'junegunn/fzf.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }

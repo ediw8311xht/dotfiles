@@ -80,6 +80,7 @@ map r 		set reverse!
 map TR		:trash
 map RR      :reload
 map RN		rename
+map RF	    push :rename<enter><c-a><c-k>
 map P		push :!echo<space>""<left>
 map ;		push '' 
 map	K		:rep "3" "up"
