@@ -150,6 +150,13 @@ function killall_loaded() {
 #---------------------------------------------------------------------- #
 #-ALIASES								#
 #---------------------------------------------------------------------- #
+alias   rml='       rmlint --no-followlinks     \ 
+                           --keep-all-tagged    \ 
+                           --no-crossdev        \
+                           --paranoid           \
+                           --progress           \
+                           --types="duplicates"'
+alias   m='         mv --no-clobber --verbose'
 alias   sudo='      sudo -v; sudo '
 alias   tma='       tmux attach'
 alias   tmn='       tmux new-session -t mx'
@@ -321,7 +328,6 @@ alias   vids='      cd "$HOME/Videos/"'
 alias   wallz='     cd "$HOME/Pictures/Wallpapers"'
 alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'                                    
 alias   ytdl='      yt-dlp -o "$HOME/Videos/%(title)s.%(ext)s" --restrict-filename'
-alias   m='         men'
 alias   git_mt='    git log --pretty=format:"%h %s" --graph'
 alias   mansec='    man -f'
 alias   sap='       apropos'

@@ -1,15 +1,30 @@
 
+URxvt*font: xft:TerminessTTF Nerd Font Mono:pixelsize=18:style=Bold:autohint=false:antialias=false
+xterm*font: xft:TerminessTTF Nerd Font Mono:pixelsize=18:style=Medium:autohint=false:antialias=false
+
+!!!!!!!!!!!!!!!!!!!!!!!!! -----------------_FONTS
 *.alpha:	    1
 *.borderpx:     10px
-*.font: 	    Agave:style=Regular:size=14:antialias=true
-!*.font: 	    Courier:style=Medium:size=13:antialias=false
-!*.font: 	    ProggyCleanTT Nerd Font:pixelsize=23
-!*.font: 	    Tamzen:pixelsize=13:autohint=true:antialias=true
+
+!!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTS
+*.font: 	    Agave:style=Medium:size=14:antialias=true:autohint=true
+!*.font:        TerminessTTF Nerd Font Mono:pixelsize=18:style=Medium:autohint=false:antialias=false
+!*.font: 	    MononokiNerdFontMono:style=Medium:pixelsize=15:antialias=true:autohint=true
+!*.font: 	    IosevkaCustom:size=13:antialias=true:autohint=true
+!*.font: 	    Hack:size=13:antialias=true:autohint=true
+!*.font: 	    Hermit:size=13:antialias=true:autohint=true
 !*.font: 	    TerminessTTF Nerd Font Mono:pixelsize=18:autohint=false:antialias=false
+!*.font: 	    ShareTechMono:pixelsize=13:style=Regular:autohint=true:antialias=true
+!*.font: 	    Courier:style=Medium:size=13:antialias=false
+!*.font: 	    FantasqueSansMono:style=Regular:pixelsize=13:autohint=true:antialias=true
+!*.font: 	    FiraCode:size=13:antialias=true:autohint=true
+
+!!!!!!!!!!!!!!!!!!!!!!!!!! REALLY COOL FONTS
+!*.font: 	    ProggyCleanTT Nerd Font:pixelsize=23
+!*.font: 	    Tamzen:size=13:style=Regular:autohint=false:antialias=false
 !*.font: 	    xos4Terminus:pixelsize=15:autohint=true:antialias=true
 !*.font: 	    IosevkaCustom:pixelsize=13:antialias=true:autohint=false
 !*.font: 	    Monoid:size=13:antialias=true:autohint=false
-!*.font: 	    FantasqueSansMono:style=Regular:pixelsize=13:autohint=true:antialias=true
 !*.font: 	    ComicMono:size=13:autohint=true:antialias=true
 !*.font: 	    LektonNerdFontMono:style=Medium:size=13:autohint=true:antialias=true
 !*.font: 	    CascadiaMono:size=13:antialias=true
@@ -17,19 +32,13 @@
 !*.font: 	    Consolas:size=13:antialias=true:autohint=true
 !*.font: 	    Monaco:size=13:antialias=true:autohint=true
 !*.font: 	    InputMono:size=13:antialias=true:autohint=true
-!*.font: 	    IosevkaCustom:size=13:antialias=true:autohint=true
 !*.font: 	    IosevkaNerdFont:size=13:antialias=true:autohint=true
-!*.font: 	    FiraCode:size=13:antialias=true:autohint=true
+!!!!!!!!!!!!!! ISSUES in st with SharTechMono :(   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !*.font: 	    ShureTechMonoNerdFontMono:style=Regular:size=13:antialias=true:autohint=true
 !*.font: 	    SarasaMonoNerdFont:pixelsize=13:antialias=true:autohint=true
-!*.font: 	    Hack:size=13:antialias=true:autohint=true
-!*.font: 	    Hermit:size=13:antialias=true:autohint=true
 !*.font: 	    IBM 3270:style=Medium:pixelsize=13:antialias=true:autohint=true
 !*.font: 	    IBMPlexMono:style=Medium:pixelsize=13:antialias=true:autohint=true
-!*.font: 	    MononokiNerdFontMono:style=Regular:pixelsize=13:antialias=true:autohint=true
-!!!!!!!!!!!!!!ISSUES in st with SharTechMono only with ('fig' displays incorrectly) ShareTechMono
 !*.font: 	    SourceCodePro:size=13:style=Regular:autohint=true:antialias=true
-!*.font: 	    ShareTechMono:pixelsize=13:style=Regular:autohint=true:antialias=true
 !!!!!!!COOL FONTS (my names for ref):
 !!!!!!!IBM 3270, Agave, SarasaMonoSlab, Iosevka Custom, Hack, Hermit, Menlo, Fira Code, Input Mono
 !!*.borderColor:      #FF0000
@@ -144,10 +153,8 @@
 !!special_note*color15:      #fbfffb
 !!!!!!!!!!!!!!!!!!!!!!!----------------URXVT-XTERM----!!!!!!!!!!!!!!!!!!!!!!!!!
 !URxvt.font:			        xft:SourceCodePro:size=15:antialias=true:autohint=true
-URxvt.font:			        xft:ShareTechMono:size=15:antialias=true:autohint=true
 !Zutty.font: 	            Hermit
 !URxvt.boldFont:             xft:Courier New:size=15:antialias=true:autohint=true
-xterm*dynamicColors:        true
 urxvt*dynamicColors:        on
 URxvt.scrollBar:	        false
 URxvt.saveLines:	        65535
@@ -158,7 +165,7 @@ URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-c:           perl:clipboard:copy
 URxvt.keysym.M-v:           perl:clipboard:paste
 URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
-*dpi:                       96
+*dpi:                       97
 !*antialias:              True
 !*hinting:                Full
 URxvt.keysym.KP_Add:        +
@@ -189,7 +196,7 @@ URxvt.keysym.C-bracketright:command:\033]721;1\007
 URxvt.iso14755:                false
 URxvt.iso14755_52:             false
 !!!!!!!!!!!!!!!!!!!!!!!----------------DMENU-----------!!!!!!!
-dmenu*font: -*-tamsyn-medium-r-normal--15-0-96-96-*-109-iso8859-1
+dmenu*font: -*-tamzen-medium-r-normal--15-0-96-96-*-109-iso8859-1
 dmenu.color:        #FFFFFF
 dmenu.foreground:   #FFFFFF
 dmenu.background:   #090909
@@ -223,7 +230,9 @@ dmenu.color48:      #FFFFFF
 !Xmessage*font: -abode-*-*-r-*-*-*-100-*-*-p-*-*-*
 !Xmessage*font: -*-dejavu sans-medium-r-*-*-40-*-*-*-*-*-*-*
 !xmessage*font: -*-dejavu sans-medium-r-*-*-40-*-*-*-*-*-*-*
-xfontsel*font: -*-tamzen-medium-r-normal--15-0-96-96-*-109-iso8859-1
+!misc-fira code medium-*-r-normal-*-32-94-0-0-m-98-iso8859-15
+!xofontsel*font: -misc-fira code medium-*-r-normal-*-32-94-0-0-m-98-iso8859-15
+xfontsel*font: -*-inputmono-*-r-*-*-17-*-*-*-*-*-*-*
 Xmessage*message.Scroll:    Never
 Xmessage*message.Border:    0
 Xmessage*background:        #008fF8
@@ -231,9 +240,9 @@ Xmessage*foreground:        #000000
 Xmessage*geometry:          +20+20
 Xmessage*.*bw:              20
 Xmessage*renderFont:        true
-Xmessage*faceName:          Hack
+!Xmessage*faceName:          xos4Terminus
 Xmessage*faceSize:          20
-Xmessage*font:              -*-tamsyn-*-*-*-*-55-*-*-*-*-*-*-*
+Xmessage*font:              -*-clean-*-*-*-*-45-*-*-*-*-*-*-*
 Xmessage*Buttons:           
 !!!!!!!!!!!!!!!!!!!!!!!----------------Zutty-----------!!!!!!!!!!!!!!!!!!!!!!!
 Zutty.fontsize:             18
@@ -247,18 +256,11 @@ Zutty.border:               5px
 !*.shading:	   	20
 !*.alphaOffset: 0.1
 
-
-
-
 i3wm.R_GAPS:    0
 i3wm.L_GAPS:    0
 i3wm.IN_GAPS:   20
 i3wm.OUT_GAPS:  0  
 i3wm.TOP_GAPS:  0  
-
-
-
-
 
 i3wm.monitor1: DP-1
 i3wm.monitor2: DVI-D-1
