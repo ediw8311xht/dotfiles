@@ -7,7 +7,7 @@ xterm*font: xft:TerminessTTF Nerd Font Mono:pixelsize=18:style=Medium:autohint=f
 *.borderpx:     10px
 
 !!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTS
-*.font: 	    Agave:style=Medium:size=14:antialias=true:autohint=true
+*.font: 	    Agave:style=Medium:size=14:antialias=false:autohint=false
 !*.font:        TerminessTTF Nerd Font Mono:pixelsize=18:style=Medium:autohint=false:antialias=false
 !*.font: 	    MononokiNerdFontMono:style=Medium:pixelsize=15:antialias=true:autohint=true
 !*.font: 	    IosevkaCustom:size=13:antialias=true:autohint=true

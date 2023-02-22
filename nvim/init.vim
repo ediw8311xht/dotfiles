@@ -23,10 +23,11 @@ let g:myFg     = [         ".",         ".",         ".",         ".",         "
 let g:python3_host_prog="/usr/bin/python"
 "<--------- FUNCTIONS ------------------------------------------------------>
 fu! CorrectColors()
+    hi ExtraWhiteSpace cterm=NONE ctermbg=gray ctermfg=NONE  gui=NONE guibg=#0000FF
     hi Normal       ctermbg=black guibg=#000000
     hi StatusLine   cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE    guibg=#000000 guifg=#00DD00
     hi StatusLineNC cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE    guibg=#000000 guifg=#FFFFFF
-    hi FoldColumn   cterm=NONE ctermbg=NONE ctermfg=NONE gui=ITALIC  guibg=NONE    guifg=#00ff00 
+    hi FoldColumn   cterm=NONE ctermbg=NONE ctermfg=NONE gui=ITALIC  guibg=NONE    guifg=#00ff00
     hi Folded       cterm=NONE ctermbg=NONE ctermfg=NONE gui=ITALIC  guibg=NONE    guifg=#999999
     hi CursorLine   cterm=BOLD ctermfg=NONE ctermbg=18   gui=BOLD    guibg=NONE    guifg=NONE
     hi CursorLineNr cterm=BOLD ctermfg=NONE ctermbg=18   gui=NONE    guibg=NONE    guifg=#FFFF00
@@ -39,8 +40,9 @@ fu! CorrectColors()
     hi MarkSignVirtTextHL                                gui=NONE    guibg=NONE    guifg=#00FF00
 endfu
 
+match ExtraWhiteSpace /[^ ]\s\+\zs$/
 fu! L(keys, command, silent="0")
-    if a:silent ==? '1' 
+    if a:silent ==? '1'
         execute 'sil nn <leader>'.a:keys.' '.a:command
     else
         execute 'nn <leader>'.a:keys.' '.a:command
@@ -48,13 +50,13 @@ fu! L(keys, command, silent="0")
 endfu
 
 fu! CyBac(nextprevious)
-    let i = 0 | let current_background = synIDattr(hlID("Normal"), "bg")    
+    let i = 0 | let current_background = synIDattr(hlID("Normal"), "bg")
     if current_background == ""
         let current_background="NONE"| "CATCH NO BACKGROUND (Transparency)
     endif
     let lenny = len(g:myBg)
     for _ in g:myBg
-        if current_background ==? _ 
+        if current_background ==? _
             let j = (i + (a:nextprevious)) % lenny
             execute "highlight Normal guibg=" . g:myBg[j]
             execute "highlight Normal guifg=" . g:myFg[j]
@@ -78,7 +80,7 @@ fu! CyCol(nextprevious)
 endfu
 
 fu! Tog(c1, c2, r1, r2)
-    if a:c1 == a:c2 
+    if a:c1 == a:c2
     execute a:r1 | return | endif
     execute a:r2
 endfu
@@ -365,10 +367,10 @@ autocmd BufNewFile,BufRead *.css                        setlocal tabstop=2 shift
 
 vn <leader>M :!dc<esc>
 vn <leader>m :!bc<esc>
-"map <c-b> nn <leader>bb :buffers<cr>:b<space> 
+"map <c-b> nn <leader>bb :buffers<cr>:b<space>
 "nn <leader><leader> :<backspace>
 "nn <leader>ap :let @+="<c-r>1<c-r>0"
-"1+2                     
+"1+2
 "vn <leader>vq q:o<c-c>put =execute(' <C-R>0')
 
 "nn <leader>mq :put =execute('echo <c-r>0')<esc>
@@ -382,9 +384,9 @@ vn <leader>m :!bc<esc>
 "     %<"                             _-_is expanded to the name of the current buffer.
 
 "     :help key-notation                _-_for list of keys and their names.
-"     :only                             _-_make split only one. 
-"     :let                            _-_list all options and their values. 
-"     :put =Execute("map")            _-_output of command into nvim.    
+"     :only                             _-_make split only one.
+"     :let                            _-_list all options and their values.
+"     :put =Execute("map")            _-_output of command into nvim.
 "<-------------------------------------------------------------------------->
 
 
@@ -402,7 +404,7 @@ vn <leader>m :!bc<esc>
 "hi default link CocHintFloat                CocErrorSign
 "hi default link CocCursorRange                CocErrorSign
 "hi default link CocHoverRange                 CocErrorSign
-"hi MatchParen            cterm=NONE ctermbg=NONE ctermfg=NONE gui=reverse    
+"hi MatchParen            cterm=NONE ctermbg=NONE ctermfg=NONE gui=reverse
 "hi cursorcolumn        gui=bold,italic,reverse
 "hi Normal                cterm=NONE ctermbg=17     ctermfg=NONE gui=NONE    guibg=NONE    guifg=#ffffff
 "hi Visual                cterm=NONE ctermbg=NONE ctermfg=16     gui=NONE guibg=#333333 guifg=#00ff00
