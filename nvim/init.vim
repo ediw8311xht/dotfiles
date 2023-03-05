@@ -18,7 +18,7 @@ let jam        = 'hi FoldColumn gui=bold guibg=NONE guifg=#00ff00'
 let GreatJammy = ':call CorrectColors()'
 let g:myScheme = [ 'pop-punk', 'eldar', 'elflord', 'delek', 'morning', 'blue', 'peachpuff', 'industry'] + [ 'cyberpunk-neon' ]
 let g:mySpec   = [        ".",     jam,       ".",     ".",       ".",    ".",         '.',        '.'] + [ GreatJammy ]
-let g:myBg     = [ "#000000", "#333333", "#111111", "#220000", "#002200", "#000022", "#002244" ] + [ "NONE" ] 
+let g:myBg     = [ "#000000", "#333333", "#111111", "#220000", "#002200", "#000022", "#002244" ] + [ "NONE" ]
 let g:myFg     = [         ".",         ".",         ".",         ".",         ".",         ".", "#aaawaa" ] + [ "." ]
 let g:python3_host_prog="/usr/bin/python"
 "<--------- FUNCTIONS ------------------------------------------------------>
@@ -246,7 +246,7 @@ cal L( 'd'    ,     '<C-d>'                                     )
 cal L( 'e'    ,     ':set cursorcolumn!<esc>'                   )
 cal L( 'f'    ,     ':set wrap!<esc>'                           )
 cal L( 'g'    ,     ':enew<esc>'                                )
-cal L( 'h'    ,     ':cal Tog(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc>')
+cal L( 'h'    ,     ':cal Tog(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc><C-L>')
 cal L( 'j'    ,     ':cal CyCol(+1)<CR>'                        )
 cal L( 'l'    ,     ':cal CyBac(+1)<CR>'                        )
 cal L( 'n'    ,     ':next<esc>'                                )
@@ -255,7 +255,7 @@ cal L( 'op'   ,     'q:<C-p><esc>Iput =execute("<esc>A")<esc>A<C-c>')
 cal L( 'ox'   ,     ':put     =execute("<C-r>0")<esc>'          )
 cal L( 'out'  ,     'q:iput =execute("<C-r>0")<esc>A<C-c>'      )
 cal L( 'p'    ,     ':previous<esc>'                            )
-"cal L( 'q'   ,     ''        )
+"cal L( 'q'   ,     ''                                          )
 cal L( 'r'    ,     '<C-w>'                                     )
 cal L( 's'    ,     ':%so "${HOME}/.config/nvim/init.vim"<esc>' )
 cal L( 'tcc'  ,     ':tabclose<esc>'                            )
@@ -268,7 +268,7 @@ cal L( 'tf'   ,     ':tabfirst<esvsplitc>'                      )
 cal L( 'tl'   ,     ':tablast<esc>'                             )
 cal L( 'tB'   ,     ':tabmove -1<esc>'                          )
 cal L( 'tN'   ,     ':tabmove +1<esc>'                          )
-cal L( 'u'    ,       '<C-u>'                                   )
+cal L( 'u'    ,     '<C-u>'                                     )
 cal L( 'var'  ,     ':let maxvar ="<C-r>1<C-r>0"'               )
 cal L( 'vf'   ,     '?<C-r>"<enter>'                            )
 cal L( 'vm'   ,     ':put =eval("<C-r>0")'                      )
@@ -280,7 +280,7 @@ cal L( 'x'    ,     ':w<esc>:!%:p<esc>'                         )
 cal L( 'y'    ,     ':hi Normal guibg=Transparent<esc>'         )
 cal L( 'z'    ,     'z'                                         )
 cal L( 'B'    ,    ':Buffers<esc>'                              )
-cal L( 'D'    ,    ':Bracey<esc><enter>'                        )
+cal L( 'D'    ,    ':bdelete<esc><enter>'                       )
 cal L( 'G'    ,    ':buff term://<esc>iohttp://localhost:4842'  )
 cal L( 'H'    ,    ':vert helpgrep '                            )
 cal L( 'J'    ,    ':cal CyCol(-1)<CR>'                         )
@@ -288,7 +288,7 @@ cal L( 'L'    ,    ':cal CyBac(-1)<CR>'                         )
 cal L( 'M'    ,    ':messages<esc>'                             )
 cal L( 'N'    ,    ':cnext<esc>'                                )
 cal L( 'P'    ,    ':cprevious<esc>'                            )
-cal L( 'S'    ,    ':BraceyStop<esc>'                           )
+"cal L( 'S'    ,    ':BraceyStop<esc>'                           )
 cal L( 'T'    ,    ':buff term://<esc>i'                        )
 cal L( 'W'    ,    ':call Web("f")<esc>i'                       )
 cal L( '<leader>' ,    ' <C-^>'                                 )
@@ -307,10 +307,7 @@ vn <leader>x c<esc>l:execute "normal! i" . eval('<C-r>"')<esc>
 vn im :s/\%V[ \t]*//<esc>| "REMOVE TABS ON VISUAL SELECTION
 vn <Enter> zf
 
-nn <esc>h <C-w>h
-nn <esc>j <C-w>j
-nn <esc>k <C-w>k
-nn <esc>l <C-w>l
+nn <esc> <C-w>
 nn <esc><esc> :noh<esc><C-L>
 
 nn <leader>q    :bd<esc>
@@ -364,7 +361,6 @@ autocmd BufNewFile,BufRead ~/.config/i3/*               setfiletype i3
 autocmd BufNewFile,BufRead *.html                       setlocal tabstop=2 shiftwidth=2 softtabstop=4 expandtab
 autocmd BufNewFile,BufRead *.css                        setlocal tabstop=2 shiftwidth=2 softtabstop=4 expandtab
     
-
 vn <leader>M :!dc<esc>
 vn <leader>m :!bc<esc>
 "map <c-b> nn <leader>bb :buffers<cr>:b<space>

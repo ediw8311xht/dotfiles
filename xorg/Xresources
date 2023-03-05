@@ -1,9 +1,9 @@
 
-URxvt*font: xft:TerminessTTF Nerd Font Mono:pixelsize=18:style=Bold:autohint=false:antialias=false
-xterm*font: xft:TerminessTTF Nerd Font Mono:pixelsize=18:style=Medium:autohint=false:antialias=false
+URxvt*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Bold:autohint=false:antialias=false
+xterm*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Medium:autohint=false:antialias=false
 
 !!!!!!!!!!!!!!!!!!!!!!!!! -----------------_FONTS
-*.alpha:	    1
+*.alpha:	    0.87
 *.borderpx:     10px
 
 !!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTS
@@ -243,7 +243,7 @@ Xmessage*renderFont:        true
 !Xmessage*faceName:          xos4Terminus
 Xmessage*faceSize:          20
 Xmessage*font:              -*-clean-*-*-*-*-45-*-*-*-*-*-*-*
-Xmessage*Buttons:           
+Xmessage*Buttons:
 !!!!!!!!!!!!!!!!!!!!!!!----------------Zutty-----------!!!!!!!!!!!!!!!!!!!!!!!
 Zutty.fontsize:             18
 Zutty.font:                 Agave-Regular-Slashed
@@ -256,11 +256,13 @@ Zutty.border:               5px
 !*.shading:	   	20
 !*.alphaOffset: 0.1
 
-i3wm.R_GAPS:    0
-i3wm.L_GAPS:    0
+i3wm.R_GAPS:     0
+i3wm.L_GAPS:     0
 i3wm.IN_GAPS:   20
-i3wm.OUT_GAPS:  0  
-i3wm.TOP_GAPS:  0  
+i3wm.OUT_GAPS:   0
+i3wm.TOP_GAPS:   0
+i3wm.BOP_GAPS:   0
+
 
 i3wm.monitor1: DP-1
 i3wm.monitor2: DVI-D-1

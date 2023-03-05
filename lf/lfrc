@@ -3,7 +3,7 @@
 set shell sh
 set shellopts '-eu'
 ##USE DOUBLE QUOTES FOR 'set ifs "something"'
-set ifs         "\n" 
+set ifs         "\n"
 set ratios      1:8:5
 set info        size:time
 set scrolloff   10
@@ -72,6 +72,7 @@ map <lt>2   set ratios 1:2
 map <lt>3   set ratios 1:1
 map <lt>4   set ratios 2:1
 map <lt>5   :oneforone
+map <lt>7   set ratios 1:7
 map <esc>   clear
 map <enter> shell
 map H		set hidden!
@@ -82,15 +83,15 @@ map RR      :reload
 map RN		rename
 map RF	    push :rename<enter><c-a><c-k>
 map P		push :!echo<space>""<left>
-map ;		push '' 
+map ;		push ''
 map	K		:rep "3" "up"
 map J		:rep "3" "down"
 #-----------CALL WITH THIS function to use autocd------------------#
-#                   
+#
 #function cd_from_lf() {
 #    lf
-#    if a="$(ls -1 -tr /tmp/lf* | tail -1)" 
-#    then 
+#    if a="$(ls -1 -tr /tmp/lf* | tail -1)"
+#    then
 #        cd "$(cat "${a}")" || return 1
 #        trash-put "${a}"
 #    fi

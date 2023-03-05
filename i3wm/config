@@ -5,8 +5,8 @@
 # i3 config file (v4)
 #-------------------------------------------------SPECIAL-BINDS-----------#
     #sticky toggle
-    set $mode_be          exec killall xmessage ; mode 
-    set $xm_hd            exec $HOME/bin/xmsg_quick.sh 
+    set $mode_be          exec killall xmessage ; mode
+    set $xm_hd            exec $HOME/bin/xmsg_quick.sh
     bindsym Mod1+Shift+r  exec --no-startup-id    "xrdb ~/.Xresources;    $HOME/bin/i3wm_config_check.sh              --3"
     bindsym Mod1+Shift+c  exec --no-startup-id    "$HOME/.secret_xinit; xrdb ~/.Xresources;    $HOME/bin/i3wm_config_check.sh  --NOASK     --0"
     bindsym Mod1+Shift+a --release  mode                    freekey;                exec --no-startup-id "sleep 0.2; xdotool key 'ctrl+v'; sleep 0.2; xdotool key 'alt+y'"
@@ -27,6 +27,7 @@
     set $inacti_TEXT  #888888
     set $unfocu_TEXT  #888888
     set $focuse_BORD  #004f98
+    #set $focuse_BORD  #0088FF
     set $inacti_BORD  #888888
     set $unfocu_BORD  #333333
     set $focuse_TBAR  #004f98
@@ -43,8 +44,8 @@
         set_from_resource $IN_GAPS  i3wm.IN_GAPS  0
         set_from_resource $OUT_GAPS i3wm.OUT_GAPS 0
         set_from_resource $TOP_GAPS i3wm.TOP_GAPS 0
-        set_from_resource $BOT_GAPS i3wm.TOP_GAPS 0
-        set_from_resource $R_GAPS   i3wm.IN_GAPS  0
+        set_from_resource $BOT_GAPS i3wm.BOP_GAPS 0
+        set_from_resource $R_GAPS   i3wm.R_GAPS   0
         set_from_resource $L_GAPS   i3wm.L_GAPS   0
 #-------WORKSPACES--------------------------------------------------------#
     #-------------------------------LEFT--------#
@@ -65,10 +66,11 @@
         workspace   13	output	$MON_3
         workspace   14	output	$MON_3
 #-------------------------------------------------------SETTINGS----------#
+    smart_gaps on
     floating_modifier     $mod
     focus_follows_mouse   yes
     floating_maximum_size 1800 x 1080
-    font pango:Hack 7
+    font pango:Hack 8
     default_border  $BORDER_PIXEL
     #---GAPS------------------------------------------#
         gaps inner  0
@@ -81,13 +83,13 @@
         client.focused              $focuse_TBAR    $focuse_TBAR    $focuse_TEXT    $focuse_TBAR    $focuse_BORD
         client.focused_inactive 	$inacti_TBAR 	$inacti_TBAR	$inacti_TEXT 	$inacti_TBAR    $inacti_BORD
         client.unfocused 			$unfocu_TBAR    $unfocu_TBAR    $unfocu_TEXT    $unfocu_TBAR    $unfocu_BORD
-        client.focused_tab_title    $-              $-              #000cc2                
-        client.background       	$-     
+        client.focused_tab_title    $-              $-              #000cc2
+        client.background       	$-
 #-------------------------------------------------------INCLUDE-----------#
     # for_window set border before release_border if you want to include
     for_window [all] border $BORDER_PIXEL
-    # release_border_i3wm.conf needs to be included before others.
-    include release_border_i3wm.conf
+    # --------- ("release_border_i3wm.conf") needs to be included before others.
+    #include release_border_i3wm.conf
     include shift_bindings_i3wm.conf
     include regular_bindings_i3wm.conf
     include modes_i3wm.conf
@@ -100,11 +102,11 @@
     for_window [instance="i3s_note"]		    floating enable, resize set     $WSW $WSH, move scratchpad, scratchpad show, move position center
     for_window [instance="i3s_st"]			    floating enable, resize set     $WSW $WSH, move scratchpad, scratchpad show, move position center
     for_window [window_role="task_dialog"]      floating enable, move position center
-    for_window [window_role="Preferences"]      floating enable, move position center 
-    for_window [window_role="pop-up"]           floating enable, move position center 
-    for_window [window_role="bubble"]           floating enable, move position center 
-    for_window [window_type="dialog"]           floating enable, move position center 
-    for_window [window_type="popup_menu"]       floating enable, move position center 
+    for_window [window_role="Preferences"]      floating enable, move position center
+    for_window [window_role="pop-up"]           floating enable, move position center
+    for_window [window_role="bubble"]           floating enable, move position center
+    for_window [window_type="dialog"]           floating enable, move position center
+    for_window [window_type="popup_menu"]       floating enable, move position center
     for_window [class="Emacs"]				    floating enable, move scratchpad
     for_window [class="Xmessage"]			    floating enable
     no_focus   [class="Xmessage"]
