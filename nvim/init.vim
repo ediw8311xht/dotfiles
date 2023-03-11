@@ -123,7 +123,7 @@ set splitright
 set t_Co=256
 set nocompatible
 set modelines=0
-set signcolumn=yes:1
+set signcolumn=no
 set nu
 set rnu
 set ruler
@@ -141,7 +141,7 @@ set undoreload=1000000
 set dir=~/.mynvim/swapfiles
 set backupdir=~/.mynvim/backupfiles
 set undodir=~/.mynvim/undo_dir
-set timeout 
+set timeout
 set timeoutlen=700
 set ttimeoutlen=0
 set wildmode=longest,list,full
@@ -200,13 +200,13 @@ call plug#end()
 
 "<--------_G-VAR_<leader>f_from-:-lf
 lua require('base')
-let g:bracey_refresh_on_save = 1
-let g:bracey_eval_on_save = 1
+let g:bracey_refresh_on_save    = 1
+let g:bracey_eval_on_save       = 1
 let g:bracey_auto_start_browser = 0
-let g:bracey_server_port = 4842
-let g:lf_map_keys = 0
+let g:bracey_server_port        = 4842
+let g:lf_map_keys   = 0
 let g:html_mode     = 1
-let g:is_bash     = 1
+let g:is_bash       = 1
 "-----------------CLOSETAG
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
@@ -214,8 +214,8 @@ let g:closetag_filetypes = 'html,xhtml,phtml'
 let g:closetag_xhtml_filetypes = 'xhtml,jsx'
 let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_regions = {
-    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
-    \ 'javascript.jsx': 'jsxRegion',
+    \ 'typescript.tsx' : 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx' : 'jsxRegion',
     \ 'typescriptreact': 'jsxRegion,tsxRegion',
     \ 'javascriptreact': 'jsxRegion',
     \ }
@@ -227,6 +227,8 @@ let g:closetag_close_shortcut = '<leader>>'
 "<--------- COLOR SCHEME STUFF --------------------------------------------->
 colorscheme pop-punk
 :call CorrectColors()
+
+hi Normal       ctermbg=black guibg=Transparent
 
 ""<--------- COCSTUFF ------------------------------------------------------->
 hi ColorColumn cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=#333333 guifg=NONE

@@ -8,11 +8,13 @@
 [[ $- != *i* ]] && return
 alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
-PS0=''
-PS0+='\e[0 q'
+#PS0='$(pwd)\n'
+#PS0+='\e[0 q'
 INSERT='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g'\'')'
 INSERT2='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g; s/[^ ]/ /g'\'')'
+PS0='\e[0 q\[\e[0m\]'
 PS1='>'
+PS2='\e[0 q\[\e[0m\]'
 #PS1=''
 #PS1+='\[\e[1;37m\]['
 #PS1+='\[\e[m\]'
@@ -20,23 +22,25 @@ PS1='>'
 #PS1+='\[\e[1;32m\]'"${INSERT}"'/'
 #PS1+='\[\e[1;37m\]]\$ '
 #PS1+='\[\e[m\]'
-PS2=''
 #PS2+='             '"${INSERT2}"
 # --------------------------------------------------------------------- #
 #  FUNCTIONS								                            #
 # --------------------------------------------------------------------- #
 mps() {
-	local a='\[\e[00;01;07;34m\]' ; local e='\[\e[00;01m\]' ; local j='\[\e[00;01;34m\]'
+	local a='\[\e[00;01;07;34m\]' ; local e='\[\e[00;01m\]' ; local j='\[\e[00;01;34m\]' ; local n='\[\e[00;01;33m\]'
 	local b='\D{%F}'              ; local d='\D{%T}'        ; local m='\D{%s}'
 	local f=':\w/:>'              ; local h='-\$'		    ; local i=':\W/:>'
-	local k='\D{%d-%m-%y}'        ; local l='\D{%H%M}'
-	if   [[ "${1,,}" =~ l ]] ; then PROMPT_DIRTRIM="2"; PS1="${a} ${b} | ${d} ${e} ${f} "
-	elif [[ "${1,,}" =~ m ]] ; then PROMPT_DIRTRIM="1"; PS1="${a} ${k} ${l} ${e} ${i} "
-	elif [[ "${1,,}" =~ x ]] ; then return 1 #PS1='$(xspec)'
-	elif [[ "${1,,}" =~ s ]] ; then PS1=" ${m} ${h} "
+	local k='\D{%d-%m-%y}'        ; local l='\D{%H%M}'      ; local c='\D{%Y%m%d}'
+    PS0=''
+	if   [[ "${1,,}"  =  'l' ]] ; then PROMPT_DIRTRIM="2"; PS1="$a $b | $d $e $f "
+	elif [[ "${1,,}"  =  'm' ]] ; then PROMPT_DIRTRIM="1"; PS1="$a $k $l $e $i "
+	elif [[ "${1,,}"  =  's' ]] ; then PS1=" $m $h "
+    elif [[ "${1,,}"  = 'xs' ]] ; then PS1="${n} :\w:$ ${e} "
+        #PS0="${a} ${PWD} | ${b} | ${d} \n"'\e[0 q\[\e[0m\]'
+	elif [[ "${1,,}"  =  'x' ]] ; then return 1 #PS1='$(xspec)'
 	else return 2 ; fi
     PS1+='\[\e[0m\]'
-} ; mps 'L'
+} ; mps 'xs'
 
 kup() {
     killall 'kiwix-serve'
@@ -276,6 +280,7 @@ alias   spreds='    cd "$HOME/Documents/SPREADSHEETS/"'
 alias   desk='      cd "$HOME/Desktop/"'
 alias   wallz='     cd "$HOME/Pictures/Wallpapers"'
 alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'
+alias   p='         pwd'
 alias   git_mt='    git log --pretty=format:"%h %s" --graph'
 alias   mansec='    man -f'
 alias   sap='       apropos'

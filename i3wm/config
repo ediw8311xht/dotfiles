@@ -89,7 +89,7 @@
     # for_window set border before release_border if you want to include
     for_window [all] border $BORDER_PIXEL
     # --------- ("release_border_i3wm.conf") needs to be included before others.
-    #include release_border_i3wm.conf
+    include release_border_i3wm.conf
     include shift_bindings_i3wm.conf
     include regular_bindings_i3wm.conf
     include modes_i3wm.conf
