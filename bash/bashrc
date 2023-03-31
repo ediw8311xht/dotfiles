@@ -35,7 +35,7 @@ mps() {
 	if   [[ "${1,,}"  =  'l' ]] ; then PROMPT_DIRTRIM="2"; PS1="$a $b | $d $e $f "
 	elif [[ "${1,,}"  =  'm' ]] ; then PROMPT_DIRTRIM="1"; PS1="$a $k $l $e $i "
 	elif [[ "${1,,}"  =  's' ]] ; then PS1=" $m $h "
-    elif [[ "${1,,}"  = 'xs' ]] ; then PS1="${n} :\w:$ ${e} "
+    elif [[ "${1,,}"  = 'xs' ]] ; then PS1="${n} :\w:$ ${e}"
         #PS0="${a} ${PWD} | ${b} | ${d} \n"'\e[0 q\[\e[0m\]'
 	elif [[ "${1,,}"  =  'x' ]] ; then return 1 #PS1='$(xspec)'
 	else return 2 ; fi
@@ -175,6 +175,7 @@ killall_loaded() {
 #---------------------------------------------------------------------- #
 #-ALIASES								#
 #---------------------------------------------------------------------- #
+alias   sudo='      sudo -v; sudo '
 alias   rml=' rmlint --no-followlinks --keep-all-tagged --no-crossdev --paranoid --progress --types="duplicates"'
 alias   r='         run_flask'
 alias   z='         zim'
@@ -202,7 +203,6 @@ alias   hf='        find $HOME -iname'
 alias   mf='        find . -iname'
 alias   ic='        clear; imgcat'
 alias   nv='        nvim'
-alias   sudo='      sudo -v; sudo'
 alias   tma='       tmux attach'
 alias   tmn='       tmux new-session -t mx'
 alias   tmd='       tmux detach'
@@ -312,6 +312,7 @@ export  DOWN="$HOME/Downloads/"
 export  PYTHONPATH="${PYTHONPATH}:$HOME/.local/python3.10/site-packages"
 
 export  PAGER='most'
+
 export  TERM='st-256color'
 export  EDITOR="nvim"
 export  HISTSIZE=10000
@@ -353,5 +354,6 @@ alias pacdneed='pacman -Qet'
 
 
 
-#alias   reqs='      (read _a ; yay -Qi "${_a}" | grep -Pi "^(Required by:|Optional For:)" | grep -Pi "(Required by|Optional For|[^ \t]+)") <<<'
+alias   reqs='      (read _a ; yay -Qi "${_a}" | grep -Pi "^(Required by:|Optional For:)" | grep -Pi "(Required by|Optional For|[^ \t]+)") <<<'
+alias   pg='        $PAGER'
 
