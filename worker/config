@@ -1,4 +1,4 @@
-workerconfig 4.11.0;
+workerconfig 4.12.1;
 global {
 	lang = "builtin";
 	rows = 4;
@@ -38,7 +38,7 @@ global {
 			}
 		}
 	}
-	terminal = "xterm -e /bin/sh %s";
+	terminal = "st -e xdg-open %s";
 	ownerstyle = style1;
 	usestringfordirsize = false;
 	timesets {
@@ -64,9 +64,9 @@ global {
 		11 = 255,30,120;
 	}
 	layout {
-		buttonsvertical = false;
+		buttonsvertical = true;
 		listviewsvertical = false;
-		listviewweight = 5;
+		listviewweight = 7;
 		weighttoactive = false;
 	}
 	mouseconf {
@@ -227,12 +227,13 @@ fonts {
 	statebarfont = "fixed";
 }
 xftfonts {
-	globalfont = "Sans-10";
-	buttonfont = "Sans-10";
-	leftfont = "Mono-11";
-	rightfont = "Sans-10";
+	globalfont = "Mono-14";
+	buttonfont = "Mono-12";
+	leftfont = "Mono-12";
+	rightfont = "Mono-12";
 	textviewfont = "Mono-10";
-	statebarfont = "Sans-10";
+	statebarfont = "Mono-12";
+	textviewaltfont = "Mono-12";
 }
 clockbarsets {
 	modus = timespace;
@@ -1680,6 +1681,32 @@ buttons {
 		}
 	}
 	button {
+		position = 31;
+		title = "Go to prev dir";
+		color = 1,0;
+		shortkeys {
+			normal {
+				key = "BackSpace";
+			}
+		}
+		commands {
+			ScriptOp {
+				type = evalcommand;
+				pushuseoutput = false;
+				dodebug = false;
+				wpurecursive = false;
+				wputakedirs = false;
+				stacknr = 0;
+				wintype = leave;
+				changeprogress = false;
+				changetext = false;
+				progressuseoutput = false;
+				wintextuseoutput = false;
+				commandstring = "go_to_previous_dir";
+			}
+		}
+	}
+	button {
 		position = 32;
 		title = "Symlink";
 		color = 1,0;
@@ -1901,27 +1928,28 @@ buttons {
 	}
 	button {
 		position = 52;
-		title = "Go to prev dir";
+		title = "MY_XDG_OPEN";
 		color = 1,0;
 		shortkeys {
-			normal {
-				key = "BackSpace";
+			double {
+				key = "O";
+				mod = shift;
+				key = "O";
+				mod = shift;
 			}
 		}
 		commands {
-			ScriptOp {
-				type = evalcommand;
-				pushuseoutput = false;
-				dodebug = false;
-				wpurecursive = false;
-				wputakedirs = false;
-				stacknr = 0;
-				wintype = leave;
-				changeprogress = false;
-				changetext = false;
-				progressuseoutput = false;
-				wintextuseoutput = false;
-				commandstring = "go_to_previous_dir";
+			OwnOp {
+				separateeachentry = false;
+				recursive = false;
+				start = normal;
+				com = "/home/maceurt/.local/bin/xterm -n 'z' -e 'xdg-open' '{A}'";
+				viewstr = "";
+				inbackground = false;
+				takedirs = false;
+				dontcd = false;
+				usevirtualtempcopies = false;
+				flagsarerelativetobasedir = false;
 			}
 		}
 	}
