@@ -1,5 +1,4 @@
 
-
 set shell sh
 set shellopts '-eu'
 ##USE DOUBLE QUOTES FOR 'set ifs "something"'
@@ -65,7 +64,7 @@ cmd autocd ${{
 
 
 map e       np
-map <lt>p   set nopreview
+map <lt>p   set preview!
 map <lt>0   set ratios 1:2:3
 map <lt>1   set ratios 1:2:1
 map <lt>2   set ratios 1:2

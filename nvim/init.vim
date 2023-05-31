@@ -123,7 +123,7 @@ set splitright
 set t_Co=256
 set nocompatible
 set modelines=0
-set signcolumn=no
+"set signcolumn=no
 set nu
 set rnu
 set ruler
@@ -223,9 +223,11 @@ let g:closetag_regions = {
 let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
 let g:closetag_close_shortcut = '<leader>>'
+"<hi> >
 
 "<--------- COLOR SCHEME STUFF --------------------------------------------->
 colorscheme pop-punk
+"colorscheme cyberpunk-neon
 :call CorrectColors()
 
 hi Normal       ctermbg=black guibg=Transparent
@@ -241,67 +243,69 @@ set nocuc
 "list keybindings with :help index
 "list user keybindings with :map
 "nn <leader>. :NERDTreeToggle<esc>
-cal L( 'a'    ,     ':cal Tog(g:coc_enabled, 0, ":CocEnable", ":CocDisable")<esc>')
-cal L( 'b'    ,     ':ls<CR>:b<Space>'                          )
-cal L( 'c'    ,     ':set nocursorline!<esc>'                   )
-cal L( 'd'    ,     '<C-d>'                                     )
-cal L( 'e'    ,     ':set cursorcolumn!<esc>'                   )
-cal L( 'f'    ,     ':set wrap!<esc>'                           )
-cal L( 'g'    ,     ':enew<esc>'                                )
-cal L( 'h'    ,     ':cal Tog(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc><C-L>')
-cal L( 'j'    ,     ':cal CyCol(+1)<CR>'                        )
-cal L( 'l'    ,     ':cal CyBac(+1)<CR>'                        )
-cal L( 'n'    ,     ':next<esc>'                                )
-cal L( 'oc'   ,     'q:iput=execute("")<esc>A<C-c>'             )
-cal L( 'op'   ,     'q:<C-p><esc>Iput =execute("<esc>A")<esc>A<C-c>')
-cal L( 'ox'   ,     ':put     =execute("<C-r>0")<esc>'          )
-cal L( 'out'  ,     'q:iput =execute("<C-r>0")<esc>A<C-c>'      )
-cal L( 'p'    ,     ':previous<esc>'                            )
-"cal L( 'q'   ,     ''                                          )
-cal L( 'r'    ,     '<C-w>'                                     )
-cal L( 's'    ,     ':%so "${HOME}/.config/nvim/init.vim"<esc>' )
-cal L( 'tcc'  ,     ':tabclose<esc>'                            )
-cal L( 'tt'   ,     ':tabnew<esc>'                              )
-cal L( 'tn'   ,     ':tabmove +1<esc>'                          )
-cal L( 'tp'   ,     ':tabmove -1<esc>'                          )
-cal L( 'tb'   ,     ':tabmove -1<esc>'                          )
-cal L( 'tm'   ,     ':tabmove'                                  )
-cal L( 'tf'   ,     ':tabfirst<esvsplitc>'                      )
-cal L( 'tl'   ,     ':tablast<esc>'                             )
-cal L( 'tB'   ,     ':tabmove -1<esc>'                          )
-cal L( 'tN'   ,     ':tabmove +1<esc>'                          )
-cal L( 'u'    ,     '<C-u>'                                     )
-cal L( 'var'  ,     ':let maxvar ="<C-r>1<C-r>0"'               )
-cal L( 'vf'   ,     '?<C-r>"<enter>'                            )
-cal L( 'vm'   ,     ':put =eval("<C-r>0")'                      )
-cal L( 'vq'   ,     ':put =eval("<C-r>0")<esc>'                 )
-cal L( 'vv'   ,     ':cal Cy(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<esc>')
-cal L( 'vz'   ,     'i<C-r>"'                                   )
-cal L( 'w'    ,     ':w<esc>'                                   )
-cal L( 'x'    ,     ':w<esc>:!%:p<esc>'                         )
-cal L( 'y'    ,     ':hi Normal guibg=Transparent<esc>'         )
-cal L( 'z'    ,     'z'                                         )
-cal L( 'B'    ,    ':Buffers<esc>'                              )
-cal L( 'D'    ,    ':bdelete<esc><enter>'                       )
-cal L( 'G'    ,    ':buff term://<esc>iohttp://localhost:4842'  )
-cal L( 'H'    ,    ':vert helpgrep '                            )
-cal L( 'J'    ,    ':cal CyCol(-1)<CR>'                         )
-cal L( 'L'    ,    ':cal CyBac(-1)<CR>'                         )
-cal L( 'M'    ,    ':messages<esc>'                             )
-cal L( 'N'    ,    ':cnext<esc>'                                )
-cal L( 'P'    ,    ':cprevious<esc>'                            )
-"cal L( 'S'    ,    ':BraceyStop<esc>'                           )
-cal L( 'T'    ,    ':buff term://<esc>i'                        )
-cal L( 'W'    ,    ':call Web("f")<esc>i'                       )
-cal L( '<leader>' ,    ' <C-^>'                                 )
-cal L( '<enter>'  ,    ':set paste!<esc>'                       )
-cal L( ';'        ,    ':ls<CR>:b<Space>'                       )
-"cal L( '.'       ,    ':bnext<esc>'        )-----------------------
-cal L( '/'        ,    ':Explore<CR>'                           )
-cal L( '['        ,    ':bprevious<CR>'                         )
-cal L( ']'        ,    ':bnext<CR>'                             )
+call L( 'a'    ,     ':call Tog(g:coc_enabled, 0, ":CocEnable", ":CocDisable")<esc>')
+call L( 'b'    ,     ':ls<CR>:b<Space>')
+call L( 'c'    ,     ':set nocursorline!<esc>')
+call L( 'd'    ,     '<C-d>')
+call L( 'e'    ,     ':set cursorcolumn!<esc>')
+call L( 'f'    ,     ':set wrap!<esc>')
+call L( 'g'    ,     ':enew<esc>')
+call L( 'h'    ,     ':call Tog(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc><C-L>')
+call L( 'j'    ,     ':call CyCol(+1)<CR>')
+call L( 'k'    ,     ':call CorrectColors()<CR>')
+call L( 'l'    ,     ':call CyBac(+1)<CR>')
+call L( 'n'    ,     ':next<esc>')
+call L( 'oc'   ,     'q:iput=execute("")<esc>A<C-c>')
+call L( 'op'   ,     'q:<C-p><esc>Iput =execute("<esc>A")<esc>A<C-c>')
+call L( 'ox'   ,     ':put     =execute("<C-r>0")<esc>')
+call L( 'out'  ,     'q:iput =execute("<C-r>0")<esc>A<C-c>')
+call L( 'p'    ,     ':previous<esc>')
+"call L( 'q'   ,     '')
+call L( 'r'    ,     '<C-w>')
+call L( 's'    ,     ':%so "${HOME}/.config/nvim/init.vim"<esc>')
+call L( 'tcc'  ,     ':tabclose<esc>')
+call L( 'tt'   ,     ':tabnew<esc>')
+call L( 'tn'   ,     ':tabmove +1<esc>')
+call L( 'tp'   ,     ':tabmove -1<esc>')
+call L( 'tb'   ,     ':tabmove -1<esc>')
+call L( 'tm'   ,     ':tabmove')
+call L( 'tf'   ,     ':tabfirst<esvsplitc>')
+call L( 'tl'   ,     ':tablast<esc>')
+call L( 'tB'   ,     ':tabmove -1<esc>')
+call L( 'tN'   ,     ':tabmove +1<esc>')
+call L( 'u'    ,     '<C-u>')
+call L( 'var'  ,     ':let maxvar ="<C-r>1<C-r>0"')
+call L( 'vf'   ,     '?<C-r>"<enter>')
+call L( 'vm'   ,     ':put =eval("<C-r>0")')
+call L( 'vq'   ,     ':put =eval("<C-r>0")<esc>')
+call L( 'vv'   ,     ':call Cy(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<esc>')
+call L( 'vz'   ,     'i<C-r>"')
+call L( 'w'    ,     ':w<esc>')
+call L( 'x'    ,     ':w<esc>:!%:p<esc>')
+call L( 'y'    ,     ':hi Normal guibg=Transparent<esc>')
+call L( 'z'    ,     'z')
+call L( 'B'    ,    ':Buffers<esc>')
+call L( 'D'    ,    ':bdelete<esc><enter>')
+call L( 'G'    ,    ':buff term://<esc>iohttp://localhost:4842')
+call L( 'H'    ,    ':vert helpgrep ')
+call L( 'J'    ,    ':call CyCol(-1)<CR>')
+call L( 'L'    ,    ':call CyBac(-1)<CR>')
+call L( 'M'    ,    ':messages<esc>')
+call L( 'N'    ,    ':cnext<esc>')
+call L( 'P'    ,    ':cprevious<esc>')
+"call L( 'S'    ,    ':BraceyStop<esc>')
+call L( 'T'    ,    ':buff term://<esc>i')
+call L( 'W'    ,    ':call Web("f")<esc>i')
+call L( '<leader>' ,    ' <C-^>')
+call L( '<enter>'  ,    ':set paste!<esc>')
+call L( ';'        ,    ':ls<CR>:b<Space>')
+"call L( '.'       ,    ':bnext<esc>')-----------------------
+call L( '/'        ,    ':Explore<CR>')
+call L( '['        ,    ':bprevious<CR>')
+call L( ']'        ,    ':bnext<CR>')
 
-cal L( '<C-w>line', ':cal Tog(&cc, 0, "set cc=80", "set cc=0")<esc>')
+call L( '<C-w>line', ':call Tog(&cc, 0, "set cc=80", "set cc=0")<esc>')
+
 
 map <Space> <leader>
 map , <leader>
@@ -365,6 +369,7 @@ autocmd BufNewFile,BufRead *.css                        setlocal tabstop=2 shift
     
 vn <leader>M :!dc<esc>
 vn <leader>m :!bc<esc>
+
 "map <c-b> nn <leader>bb :buffers<cr>:b<space>
 "nn <leader><leader> :<backspace>
 "nn <leader>ap :let @+="<c-r>1<c-r>0"

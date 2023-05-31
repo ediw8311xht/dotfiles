@@ -1943,7 +1943,7 @@ buttons {
 				separateeachentry = false;
 				recursive = false;
 				start = normal;
-				com = "/home/maceurt/.local/bin/xterm -n 'z' -e 'xdg-open' '{A}'";
+				com = "/$HOME/.local/bin/xterm -n 'z' -e 'xdg-open' '{A}'";
 				viewstr = "";
 				inbackground = false;
 				takedirs = false;

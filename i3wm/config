@@ -66,10 +66,10 @@
         workspace   13	output	$MON_3
         workspace   14	output	$MON_3
 #-------------------------------------------------------SETTINGS----------#
-    smart_gaps on
-    floating_modifier     $mod
+    smart_gaps off
+    floating_modifier     $mod+Ctrl
     focus_follows_mouse   yes
-    floating_maximum_size 1800 x 1080
+    floating_maximum_size 1920 x 1080
     font pango:Hack 8
     default_border  $BORDER_PIXEL
     #---GAPS------------------------------------------#

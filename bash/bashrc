@@ -1,7 +1,7 @@
 
 #
 #- ~/.bashrc
-# shellcheck disable=SC1000-SC9999
+## shellcheck disable=SC1000-SC9999
 #-
 #
 #-If not running interactively, don't do anything
@@ -10,8 +10,8 @@ alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
 #PS0='$(pwd)\n'
 #PS0+='\e[0 q'
-INSERT='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g'\'')'
-INSERT2='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g; s/[^ ]/ /g'\'')'
+#INSERT='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g'\'')'
+#INSERT2='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g; s/[^ ]/ /g'\'')'
 PS0='\e[0 q\[\e[0m\]'
 PS1='>'
 PS2='\e[0 q\[\e[0m\]'
@@ -50,9 +50,10 @@ kup() {
     kiwix-serve *.zim --verbose --daemon --nodatealiases --address="127.0.0.1" --port="${KIWIX_PORT}"
 }
 run_flask() {
-    cd "$MYWEB"
-    flask run --cert "${CERT_LOCALHOST}" --key "${KEY_LOCALHOST}"
-    cd -
+    if cd "$MYWEB" ; then
+        #flask run --cert "${CERT_LOCALHOST}" --key "${KEY_LOCALHOST}"
+        cd - || echo "issue returning back to original dir" && return 1
+    fi
 }
 cd_from_lf() {
     lf
@@ -64,11 +65,6 @@ cd_from_lf() {
         fi
         trash-put "${a}"
     fi
-}
-kn() {
-    local IFS=$'\n'
-    local ns=($(echo "$(grep -Pi '^ [0-9]+\K.*'"${1}"'.*$' <<< $(ps ax))"))
-    echo "MATCHES GOT: ${#ns[@]}"; echo "${ns[*]}"
 }
 cg() {
     if [[ -z "$*" ]] ; then
@@ -87,7 +83,7 @@ my_cd()	{
 
     cd "${@:-"$(find . -type d | fzf --preview="ls -1 {}" )"}"
 }
-vid() {
+open_mpv() {
     if [[ "${1}" =~ ^-mono ]] ; then local AUD="mono"; shift 1; fi
 
     mpv --audio-channels="${AUD:-"auto"}" "${@:-.}" & disown
@@ -175,6 +171,10 @@ killall_loaded() {
 #---------------------------------------------------------------------- #
 #-ALIASES								#
 #---------------------------------------------------------------------- #
+alias   listaudio="   find . -type f -iregex '.*[.]\(mp3\|flac\)'"
+alias   listpics="    find . -type f -iregex '.*[.]\(jp[e]?g\|png\|tiff\|webp\|bmp\|avif\)'"
+alias   listvids="    find . -type f -iregex '.*[.]\(mov\|m4v\|mkv\|mp[e]?[4vg]\|gif[v]?\|webm\|avi\|amv\)'"
+alias   listmedia="   listaudio; listpics; listvids"
 alias   sudo='      sudo -v; sudo '
 alias   rml=' rmlint --no-followlinks --keep-all-tagged --no-crossdev --paranoid --progress --types="duplicates"'
 alias   r='         run_flask'
@@ -186,6 +186,7 @@ alias   b='         cd "$HOME/bin/"'
 alias   c='         printf "\n%.0s_______________________________" {1..400} ; printf "%.0s\n" {1..500} ; clear '
 alias   f='         find / -mount'
 alias   h='         cd "$HOME"'
+alias   bhis='      cd "$HOME/Documents/BASH_HISTORY"'
 alias   i='         iex'
 alias   j='         flask run --cert="$HOME/ADD_TO_TRUSTED/mykey.crt" --key="$HOME/.cretse_ridi/mykey.pem"'
 alias   t='	        trash-put'
@@ -214,7 +215,7 @@ alias   nvo='       nvim -O'
 alias   snv='       sudoedit'
 alias   sf='	    clear; screenfetch 2>/dev/null'
 alias   ac='        acheck'
-alias   gital='     (read _z; git log -S "${_z}" --source --all ) <<<'
+alias   gital='     git log --source --all -S'
 alias   alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
 alias   acc='       alias_conflict'
 alias   acf='       alias_conflict --full'
@@ -233,14 +234,14 @@ alias   lookpdf='   cd $HOME/Notebooks/REFERENCE_SHEETS/PDF/;       lf ; cd -'
 alias   lookmd='    cd $HOME/Notebooks/REFERENCE_SHEETS/MARKDOWN/;  lf ; cd -'
 alias   stack='     cd $HOME/Notebooks/REFERENCE_SHEETS/MARKDOWN/;  lf ; cd -'
 # Rename
-alias   tyren='     perl-rename -v -n'
+alias   testren='   perl-rename -v -n'
 alias   doren='     perl-rename -v'
 alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
 # Kill
-alias   kctpv='         kill "$(pidof "ctpv")"'
-alias   kill_at_spi2='  killall at-spi2-registryd; killall at-spi2-bus-launcher'
-alias   ka='            killall_loaded'
-alias   xprdet='        pkill -f "^[/]+usr[/]+bin[/]+xpra attach :${XPRA_DISPLAY_NUMBER}[ \$]"'
+alias   kctpv='     kill "$(pidof "ctpv")"'
+alias   k_at_spi2=' killall at-spi2-registryd; killall at-spi2-bus-launcher'
+alias   ka='        killall_loaded'
+alias   xprdet='    pkill -f "^[/]+usr[/]+bin[/]+xpra attach :${XPRA_DISPLAY_NUMBER}[ \$]"'
 alias   tracenet='  strace'
 alias   g='         grep --perl-regexp --ignore-case'
 alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf}\
@@ -249,15 +250,20 @@ alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf}\
                                 --exclude=\*.{aac,webm,alac,ape,ogg,mp4,mkv,m4a,mp4a,avi,mp3,wav,flac}'
 alias   yg='        xg          --exclude=\*.{rar,tar,gz,tgz,zip,bz2,tbz2}'
 alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
+alias   tarlist='   tar -tf'
+alias   tl='        tar -tf'
+alias   bt='        bsdtar'
+alias   btc='       bsdtar -cf'
 #-------------------------------------GREP---------------#
 alias   gport='     gport_function'
 alias   isport='    (read _z; ss -lp "sport = :${_z}") <<< '
-alias   xprattach=" nohup /usr/bin/xpra attach :${XPRA_DISPLAY_NUMBER} &"
+alias   xprattach=' nohup /usr/bin/xpra attach :${XPRA_DISPLAY_NUMBER} &'
 alias   img='       nsxiv -0'
 alias   nimg='      nsxiv -0 .'
 alias   ldi='       fdisk -l -o +uuid'
 alias   pcal='      calcurse'
 alias   ll="        lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
+alias   n="         lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
 alias   lst="       lsd --icon='never' -ltrh"
 alias   lsz="       lsd --icon='never' -lSrh"
 alias   psg='       ps ax | grep -Pi'
@@ -275,12 +281,16 @@ alias   sman='      man -K --regex'
 alias   down='      cd "$HOME/Downloads/"'
 alias   pics='      cd "$HOME/Pictures/"'
 alias   aud='       cd "$HOME/Audio/"'
+alias   rec='       cd "$HOME/Audio/Recordings"'
 alias   docs='      cd "$HOME/Documents/"'
 alias   spreds='    cd "$HOME/Documents/SPREADSHEETS/"'
 alias   desk='      cd "$HOME/Desktop/"'
 alias   wallz='     cd "$HOME/Pictures/Wallpapers"'
 alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'
 alias   p='         pwd'
+alias   grab_dir='  xcmenu --input --clipboard "$(pwd)"'
+alias   gd='        xcmenu --input --clipboard "$(pwd)"'
+alias   pd='        cd "$(xcmenu --clipboard)"'
 alias   git_mt='    git log --pretty=format:"%h %s" --graph'
 alias   mansec='    man -f'
 alias   sap='       apropos'
@@ -305,14 +315,12 @@ alias   fm='        worker'
 #---------------------------------------------------------------------- #
 #-EXPORT							                                    #
 #---------------------------------------------------------------------- #
-export  MYKIWIX="$HOME/.local/share/kiwix"
+
+export  PYTHONPATH="${PYTHONPATH}:$HOME/.local/python3.10/site-packages"
 export  DOCS="$HOME/Documents/"
 export  DESK="$HOME/Desktop/"
 export  DOWN="$HOME/Downloads/"
-export  PYTHONPATH="${PYTHONPATH}:$HOME/.local/python3.10/site-packages"
-
 export  PAGER='most'
-
 export  TERM='st-256color'
 export  EDITOR="nvim"
 export  HISTSIZE=10000
@@ -325,7 +333,6 @@ export  XDG_CONFIG_HOME="$HOME/.config"
 export  XDG_CACHE_HOME="$HOME/.cache"
 export  NO_AT_BRIDGE=1
 export  QT_QPA_PLATFORMTHEME="qt5ct"
-
 #---------------------------------------------------------------------- #
 #-`PATH`								                                #
 #---------------------------------------------------------------------- #
@@ -356,4 +363,16 @@ alias pacdneed='pacman -Qet'
 
 alias   reqs='      (read _a ; yay -Qi "${_a}" | grep -Pi "^(Required by:|Optional For:)" | grep -Pi "(Required by|Optional For|[^ \t]+)") <<<'
 alias   pg='        $PAGER'
+alias   vid='       open_mpv'
+
+alias   pyac='        source *env*/bin/activate'
+alias   pyde='       deactivate'
+
+
+
+
+
+
+
+
 
