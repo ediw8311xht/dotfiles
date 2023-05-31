@@ -313,8 +313,8 @@ vn <leader>x c<esc>l:execute "normal! i" . eval('<C-r>"')<esc>
 vn im :s/\%V[ \t]*//<esc>| "REMOVE TABS ON VISUAL SELECTION
 vn <Enter> zf
 
-nn <esc> <C-w>
-nn <esc><esc> :noh<esc><C-L>
+"nn <esc> <C-w>
+nn <esc> :noh<esc><C-L>
 
 nn <leader>q    :bd<esc>
 nn ZC    :bd<esc>
