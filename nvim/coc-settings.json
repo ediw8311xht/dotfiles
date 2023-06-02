@@ -3,6 +3,7 @@
 	"coc.preferences.useQuickfixForLocations": true,
 	"coc.preferences.extensionUpdateCheck": "never",
 	"diagnostic.checkCurrentLine": true,
+
     "languageserver": {
         "ccls": {
             "command": "ccls",
@@ -13,7 +14,26 @@
                     "directory": "/tmp/ccls"
                 }
             }
+        },
+        "haskell": {
+            "command": "haskell-language-server-wrapper",
+            "args": ["--lsp"],
+            "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+            "filetypes": ["haskell", "lhaskell"],
+            // Settings are optional, here are some example values
+            "settings": {
+                "haskell": {
+                    "checkParents": "CheckOnSave",
+                    "checkProject": true,
+                    "maxCompletions": 40,
+                    "formattingProvider": "ormolu",
+                    "plugin": {
+                        "stan": { "globalOn": true }
+                    }
+                }
+            }
         }
     }
+
 }
 
