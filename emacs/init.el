@@ -42,7 +42,7 @@
 
 ;;---------------------------------------------------------------------    EVIL    ------------------;;
 (evil-mode t)
-(evil-set-leader 'normal (kbd "<space>"))
+(evil-set-leader 'normal (kbd "SPC"))
 (evil-set-leader 'normal (kbd ","))
 
 ;;--THREE-MODE--;;
@@ -58,6 +58,7 @@
 (define-key evil-normal-state-map (kbd "<leader>[") 'bs-cycle-previous)
 (define-key evil-normal-state-map (kbd "<leader>x") 'eval-buffer      )
 (define-key evil-normal-state-map (kbd "<leader>w") 'evil-write       )
+(define-key evil-normal-state-map (kbd "<leader>z") 'kill-buffer      )
 
 (define-key evil-normal-state-map (kbd "C-h")       'evil-window-left)
 (define-key evil-normal-state-map (kbd "C-j")       'evil-window-down)
@@ -105,4 +106,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Agave" :antialias true :slant normal :weight normal :height 105 :width normal)))))
+ '(default ((t (:family "Agave" :antialias true :slant normal :weight medium :height 105 :width normal)))))
