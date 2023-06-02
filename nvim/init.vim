@@ -314,6 +314,11 @@ vn im :s/\%V[ \t]*//<esc>| "REMOVE TABS ON VISUAL SELECTION
 vn <Enter> zf
 
 "nn <esc> <C-w>
+nn <C-h> <C-w>h
+nn <C-j> <C-w>j
+nn <C-k> <C-w>k
+nn <C-l> <C-w>l
+
 nn <esc> :noh<esc><C-L>
 
 nn <leader>q    :bd<esc>
