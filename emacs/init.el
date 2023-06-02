@@ -19,36 +19,41 @@
 (require 'slime)
 ;; (require 'lilypond)
 
+;;---------------------------------------------------------------------    SETTINGS    --------------;;
 (setq scroll-step            1
       scroll-conservatively  10000)
 
-(setq display-line-numbers-mode 1)
+(global-display-line-numbers-mode)
 
-
-(defun evil_all_mode_map (x y)
+;;---------------------------------------------------------------------    FUNCTIONS    -------------;;
+(defun evil_three_mode_map (x y)
   "Bind for all modes"
-  (x y)
-  )
+  (define-key evil-normal-state-map x y)
+  (define-key evil-insert-state-map x y)
+  (define-key evil-visual-state-map x y))
+
 ;;---------------------------------------------------------------------    EVIL    ------------------;;
 (evil-mode t)
 
 ;;--SETTINGS--;;
 (evil-set-leader 'normal (kbd "SPC"))
 
-;;--GLOBAL--;;
-;;(define-key evil-normal-state-map (kbd "<leader>]")     'next-buffer)
+;;--THREE-MODE--;;
+(evil_three_mode_map (kbd  "C-\-")      'text-scale-decrease)
+(evil_three_mode_map (kbd  "C-\=")      'text-scale-increase)
+;(evil_three_mode_map (kbd  "C-\+")      'text-scale-increase)
 
 ;;--NORMAL--;;
 (define-key evil-normal-state-map (kbd "<leader>]")     'next-buffer)
 (define-key evil-normal-state-map (kbd "<leader>[") 'previous-buffer)
-(define-key evil-normal-state-map (kbd "<leader>x") 'eval-buffer)
-(define-key evil-normal-state-map (kbd "<leader>w") 'eval-buffer)
+(define-key evil-normal-state-map (kbd "<leader>x")     'eval-buffer)
+(define-key evil-normal-state-map (kbd "<leader>w")     'eval-buffer)
 
 ;;--INSERT--;;
-(define-key evil-insert-state-map (kbd "<tab>") "  ")
+(define-key evil-insert-state-map (kbd         "<tab>")      "  ")
 (define-key evil-insert-state-map (kbd "C-<backspace>") (kbd "<backspace><backspace>")) 
 
-;;---------------------------------------------------------------------    EVIL    ------------------;;
+;;---------------------------------------------------------------------    ETC    -------------------;;
 
 (add-to-list 'default-frame-alist '(alpha 100))
 (add-hook 'lisp-mode-hook          (lambda () (slime-mode t)))
@@ -63,4 +68,4 @@
  '(package-selected-packages '(slime evil-visual-mark-mode evil)))
 
 (custom-set-faces
- '(default ((t (:family "Iosevka" :antialias true :slant normal :weight normal :height 90 :width normal)))))
+ '(default ((t (:family "FiraCode" :antialias true :slant normal :weight normal :height  95 :width normal)))))
