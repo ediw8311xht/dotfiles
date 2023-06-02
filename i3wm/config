@@ -114,15 +114,13 @@
     no_focus   [class="Xmessage"]
     for_window [all] title_window_icon no
     for_window [all] title_format "<big><big><big><span background='#000000' rise='3pt'> <small>%title</small> </span></big></big></big>"
-    #focus_on_window_activation focus
+    focus_on_window_activation focus
 #---------------------------------------------------------EXECS-----------#
     $EXC    xcmenu
     $EXC    xcompmgr 	-C
     $EXC    /usr/bin/dunst
     $EXC    unclutter --timeout 2 --fork
     $EXC_A  $HOME/.config/polybar/launch.sh
-    $EXC_A  aw-server
-    $EXC_A  aw-watcher-window
     #$EXC_A  $HOME/bin/auto_monitor.sh
     #$EXC_A  xset -dpms
     #$EXC_A  xset s off
