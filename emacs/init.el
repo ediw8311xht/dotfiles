@@ -46,9 +46,12 @@
 (evil-set-leader 'normal (kbd ","))
 
 ;;--THREE-MODE--;;
-(evil_three_mode_map (kbd  "C-\-")      'text-scale-decrease)
-(evil_three_mode_map (kbd  "C-\=")      'text-scale-increase)
-;(evil_three_mode_map (kbd  "C-\+")      'text-scale-increase)
+(evil_three_mode_map (kbd  "C-\-") 'text-scale-decrease)
+(evil_three_mode_map (kbd  "C-\=") 'text-scale-increase)
+;-----------------------(evil_three_mode_map (kbd "C-\+") 'text-scale-increase)
+
+(evil_three_mode_map (kbd  "C-:")  'backward-sexp)
+(evil_three_mode_map (kbd  "C-;")  'forward-sexp)
 
 ;;--NORMAL--;;
 (define-key evil-normal-state-map (kbd "<leader>]") 'bs-cycle-next    )
