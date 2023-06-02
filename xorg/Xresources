@@ -232,6 +232,12 @@ dmenu.color48:      #FFFFFF
 !xmessage*font: -*-dejavu sans-medium-r-*-*-40-*-*-*-*-*-*-*
 !misc-fira code medium-*-r-normal-*-32-94-0-0-m-98-iso8859-15
 !xofontsel*font: -misc-fira code medium-*-r-normal-*-32-94-0-0-m-98-iso8859-15
+Xft.antialias:  1
+Xft.hinting:    1
+Xft.hintstyle:  hintfull
+Xft.lcdfilter:  lcddefault
+Xft.rgba:       rgb
+
 xfontsel*font: -*-inputmono-*-r-*-*-17-*-*-*-*-*-*-*
 Xmessage*message.Scroll:    Never
 Xmessage*message.Border:    0

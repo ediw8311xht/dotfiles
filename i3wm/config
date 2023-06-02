@@ -11,13 +11,15 @@
     bindsym Mod1+Shift+c  exec --no-startup-id    "$HOME/.secret_xinit; xrdb ~/.Xresources;    $HOME/bin/i3wm_config_check.sh  --NOASK     --0"
     bindsym Mod1+Shift+a --release  mode                    freekey;                exec --no-startup-id "sleep 0.2; xdotool key 'ctrl+v'; sleep 0.2; xdotool key 'alt+y'"
 #-------------------------------------------------SET---------------------#
-    set $WSW    1400px
-    set $WSH    950px
-    set $mod    Mod1
-    set $Br     bindsym     Mod1+
-    set $SF     bindsym     Mod1+Shift+
-    set $EXC    exec 	    --no-startup-id
-    set $EXC_A  exec_always --no-startup-id
+    set $WSW        1400px
+    set $WSH        950px
+    set $mod        Mod1
+    set $Br         bindsym     Mod1+
+    set $Br_CTRL    bindsym     Mod1+Ctrl
+    set $SF         bindsym     Mod1+Shift+
+    set $SF_CTRL    bindsym     Mod1+Shift+Ctrl
+    set $EXC        exec 	    --no-startup-id
+    set $EXC_A      exec_always --no-startup-id
     set $BORDER_PIXEL pixel 2
     set $B1 ;
     set $B2 ;

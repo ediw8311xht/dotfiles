@@ -9,7 +9,6 @@
 (package-refresh-contents)
 
 (unless (package-installed-p  'evil) (package-install 'evil))
-
 (unless (package-installed-p 'slime) (package-install 'slime))
 
 (setq inhibit-splash-screen t)
@@ -23,6 +22,13 @@
 (setq scroll-step            1
       scroll-conservatively  10000)
 
+(setq display-line-numbers-mode 1)
+
+
+(defun evil_all_mode_map (x y)
+  "Bind for all modes"
+  (x y)
+  )
 ;;---------------------------------------------------------------------    EVIL    ------------------;;
 (evil-mode t)
 
@@ -36,6 +42,7 @@
 (define-key evil-normal-state-map (kbd "<leader>]")     'next-buffer)
 (define-key evil-normal-state-map (kbd "<leader>[") 'previous-buffer)
 (define-key evil-normal-state-map (kbd "<leader>x") 'eval-buffer)
+(define-key evil-normal-state-map (kbd "<leader>w") 'eval-buffer)
 
 ;;--INSERT--;;
 (define-key evil-insert-state-map (kbd "<tab>") "  ")
@@ -56,4 +63,4 @@
  '(package-selected-packages '(slime evil-visual-mark-mode evil)))
 
 (custom-set-faces
- '(default ((t (:family "Agave" :antialias true :slant normal :weight normal :height 140 :width normal)))))
+ '(default ((t (:family "Iosevka" :antialias true :slant normal :weight normal :height 90 :width normal)))))
