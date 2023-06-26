@@ -59,6 +59,9 @@
 (define-key evil-normal-state-map (kbd "<leader>x") 'eval-buffer      )
 (define-key evil-normal-state-map (kbd "<leader>w") 'evil-write       )
 (define-key evil-normal-state-map (kbd "<leader>z") 'kill-buffer      )
+(define-key evil-normal-state-map (kbd "<leader>y") 'execute-extended-command )
+;(define-key evil-normal-state-map (kbd "<leader>qe") (find-file "~/Desktop/Coding/LISP/"))
+
 
 (define-key evil-normal-state-map (kbd "C-h")       'evil-window-left)
 (define-key evil-normal-state-map (kbd "C-j")       'evil-window-down)
@@ -70,9 +73,9 @@
 
 (define-key evil-normal-state-map (kbd "C-d")       'evil-scroll-down)
 (define-key evil-normal-state-map (kbd "C-u")       'evil-scroll-up  )
-(define-key evil-normal-state-map (kbd "C-x")       'execute-extended-command )
 
 (define-key evil-normal-state-map (kbd "<leader>ed") 'edit_config_file)
+(define-key evil-normal-state-map (kbd "<leader>sl") 'slime)
 
 ;;; DESCRIBE KEY COMMAND describe-key
 
@@ -85,6 +88,7 @@
 (add-to-list 'default-frame-alist '(alpha 100))
 (add-hook 'lisp-mode-hook          (lambda () (slime-mode t)))
 (add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
+(evil-set-undo-system 'undo-redo)
 (setq evil-want-fine-undo t)
 (setq inferior-lisp-program "sbcl")
 (setq w3m-default-display-inline-images t)
@@ -106,4 +110,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Agave" :antialias true :slant normal :weight medium :height 105 :width normal)))))
+ '(default ((t (:family "Agave" :antialias true :slant normal :weight medium :height 140 :width normal)))))

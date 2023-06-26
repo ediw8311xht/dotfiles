@@ -88,6 +88,9 @@ open_mpv() {
 
     mpv --audio-channels="${AUD:-"auto"}" "${@:-.}" & disown
 }
+open_prog() {
+    xdg-open "${1}" & disown
+}
 upd_pip_z() {
     local IFS=$'\n'
     local zname="$(date +'%Y%m%d')_pipoutdated.txt"
@@ -171,29 +174,40 @@ killall_loaded() {
 #---------------------------------------------------------------------- #
 #-ALIASES								#
 #---------------------------------------------------------------------- #
-alias   listaudio="   find . -type f -iregex '.*[.]\(mp3\|flac\)'"
-alias   listpics="    find . -type f -iregex '.*[.]\(jp[e]?g\|png\|tiff\|webp\|bmp\|avif\)'"
-alias   listvids="    find . -type f -iregex '.*[.]\(mov\|m4v\|mkv\|mp[e]?[4vg]\|gif[v]?\|webm\|avi\|amv\)'"
-alias   listmedia="   listaudio; listpics; listvids"
+alias   listaudio=" find . -type f -iregex '.*[.]\(mp3\|flac\)'"
+alias   listpics="  find . -type f -iregex '.*[.]\(jp[e]?g\|png\|tiff\|webp\|bmp\|avif\)'"
+alias   listvids="  find . -type f -iregex '.*[.]\(mov\|m4v\|mkv\|mp[e]?[4vg]\|gif[v]?\|webm\|avi\|amv\)'"
+alias   listmedia=" listaudio; listpics; listvids"
 alias   sudo='      sudo -v; sudo '
-alias   rml=' rmlint --no-followlinks --keep-all-tagged --no-crossdev --paranoid --progress --types="duplicates"'
-alias   r='         run_flask'
-alias   z='         zim'
-alias   m='         mv --no-clobber --verbose'
-alias   l='         cd_from_lf'
+alias   rml='       rmlint --no-followlinks --keep-all-tagged --no-crossdev --paranoid --progress --types="duplicates"'
+# ONE LETTER
 alias   a='         get_alias_fzf'
 alias   b='         cd "$HOME/bin/"'
 alias   c='         printf "\n%.0s_______________________________" {1..400} ; printf "%.0s\n" {1..500} ; clear '
 alias   f='         find / -mount'
+alias   g='         grep --perl-regexp --ignore-case'
 alias   h='         cd "$HOME"'
-alias   bhis='      cd "$HOME/Documents/BASH_HISTORY"'
 alias   i='         iex'
 alias   j='         flask run --cert="$HOME/ADD_TO_TRUSTED/mykey.crt" --key="$HOME/.cretse_ridi/mykey.pem"'
+alias   k='         kiwix-desktop'
+alias   l='         cd_from_lf'
+alias   m='         mv --no-clobber --verbose'
+alias   n="         lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
+alias   o='         open_prog'
+alias   p='         pwd'
+alias   r='         run_flask'
 alias   t='	        trash-put'
+alias   x='         xdg-open'
+alias   z='         zim'
+# ----- ONE LETTER <CAPITAL>
+# ----- TWO LETTER
+alias   sf='	    clear; screenfetch 2>/dev/null'
+alias   ac='        acheck'
+alias   pc='	    clear; neofetch'
+alias   pe='        ps -eo comm=,'
+alias   po='        ps -eo cmd=,'
 alias   hb='        nvim $HOME/.bash_history2'
 alias   cl="        printf '\n%.0s_______________________________' {1..400} ; printf '%.0s\n' {1..500} ; clear; echo ''"
-alias   k='         kiwix-desktop'
-alias   kgo='       . "$HOME/.secrets"; cd "${KIWIX_DIRECTORY}"'
 alias   cp='        cp -i'
 alias   df='        df -h'
 alias   fz='        my_cd'
@@ -204,31 +218,63 @@ alias   hf='        find $HOME -iname'
 alias   mf='        find . -iname'
 alias   ic='        clear; imgcat'
 alias   nv='        nvim'
+alias   vn='        nvim -o'
+alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf}\
+                                --exclude=\*.{apk,snap,out,jar,sx,s,bin,o,exe,deb,pyc,pyo}\
+                                --exclude=\*.{jpg,jpeg,png,webp,bmp,gif}\
+                                --exclude=\*.{aac,webm,alac,ape,ogg,mp4,mkv,m4a,mp4a,avi,mp3,wav,flac}'
+alias   yg='        xg          --exclude=\*.{rar,tar,gz,tgz,zip,bz2,tbz2}'
+alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
+alias   tl='        tar -tf'
+alias   bt='        bsdtar'
+alias   ll="        lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
+alias   ht='        htop'
+alias   gd='        xcmenu --input --clipboard "$(pwd)"'
+alias   pd='        cd "$(xcmenu --clipboard)"'
+alias   lc='        compgen -c'
+alias   cz='        ccze -m ansi'
+alias   fm='        worker'
+alias   ka='        killall_loaded'
+alias   pg='        $PAGER'
+# THREE LETTER
+alias   kgo='       . "$HOME/.secrets"; cd "${KIWIX_DIRECTORY}"'
 alias   tma='       tmux attach'
 alias   tmn='       tmux new-session -t mx'
 alias   tmd='       tmux detach'
 alias   cop='       xcmenu --input --clipboard'
 alias   comv='      command -V'
 alias   nvp='       nvim -p'
-alias   vn='        nvim -o'
 alias   nvo='       nvim -O'
 alias   snv='       sudoedit'
-alias   sf='	    clear; screenfetch 2>/dev/null'
-alias   ac='        acheck'
-alias   gital='     git log --source --all -S'
-alias   alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
-alias   acc='       alias_conflict'
-alias   acf='       alias_conflict --full'
-alias   pc='	    clear; neofetch'
-alias   pe='        ps -eo comm=,'
-alias   po='        ps -eo cmd=,'
-alias   conf='      cd "$XDG_CONFIG_HOME"'
-alias   qread='     zathura  "$(fzf)"'
-alias   free='      free -h'
 alias   rmi='       rm -i'
 alias   pdf='       zathura'
 alias   i3c='       i3 -C "$HOME/.config/i3/config"'
 alias   lke='       cd $HOME/Notebooks/REFERENCE_SHEETS/;           lf ; cd -'
+alias   acc='       alias_conflict'
+alias   acf='       alias_conflict --full'
+alias   btc='       bsdtar -cf'
+alias   img='       nsxiv -0'
+alias   ldi='       fdisk -l -o +uuid'
+alias   lst="       lsd --icon='never' -ltrh"
+alias   lsz="       lsd --icon='never' -lSrh"
+alias   psg='       ps ax | grep -Pi'
+alias   pgr='       pgrep -Pi'
+alias   pse='       ps -eo comm=, | grep --ignore-case'
+alias   pso='       ps -eo cmd=, | grep --ignore-case'
+alias   tre='       ps -ejH'
+alias   aud='       cd "$HOME/Audio/"'
+alias   rec='       cd "$HOME/Audio/Recordings"'
+alias   vcs='       sc-im'
+alias   men='       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" 2>/dev/null | $PAGER) <<< '
+alias   sap='       apropos'
+alias   slc='       compgen -c | grep -i'
+
+alias   gital='     git log --source --all -S'
+alias   alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
+alias   conf='      cd "$XDG_CONFIG_HOME"'
+alias   qread='     zathura  "$(fzf)"'
+alias   free='      free -h'
+alias   bhis='      cd "$HOME/Documents/BASH_HISTORY"'
 alias   lookup='    cd $HOME/Notebooks/REFERENCE_SHEETS/MARKDOWN/;  lf ; cd -'
 alias   lookpdf='   cd $HOME/Notebooks/REFERENCE_SHEETS/PDF/;       lf ; cd -'
 alias   lookmd='    cd $HOME/Notebooks/REFERENCE_SHEETS/MARKDOWN/;  lf ; cd -'
@@ -240,70 +286,35 @@ alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
 # Kill
 alias   kctpv='     kill "$(pidof "ctpv")"'
 alias   k_at_spi2=' killall at-spi2-registryd; killall at-spi2-bus-launcher'
-alias   ka='        killall_loaded'
 alias   xprdet='    pkill -f "^[/]+usr[/]+bin[/]+xpra attach :${XPRA_DISPLAY_NUMBER}[ \$]"'
 alias   tracenet='  strace'
-alias   g='         grep --perl-regexp --ignore-case'
-alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf}\
-                                --exclude=\*.{apk,snap,out,jar,sx,s,bin,o,exe,deb,pyc,pyo}\
-                                --exclude=\*.{jpg,jpeg,png,webp,bmp,gif}\
-                                --exclude=\*.{aac,webm,alac,ape,ogg,mp4,mkv,m4a,mp4a,avi,mp3,wav,flac}'
-alias   yg='        xg          --exclude=\*.{rar,tar,gz,tgz,zip,bz2,tbz2}'
-alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
 alias   tarlist='   tar -tf'
-alias   tl='        tar -tf'
-alias   bt='        bsdtar'
-alias   btc='       bsdtar -cf'
 #-------------------------------------GREP---------------#
-alias   gport='     gport_function'
-alias   isport='    (read _z; ss -lp "sport = :${_z}") <<< '
-alias   xprattach=' nohup /usr/bin/xpra attach :${XPRA_DISPLAY_NUMBER} &'
-alias   img='       nsxiv -0'
 alias   nimg='      nsxiv -0 .'
-alias   ldi='       fdisk -l -o +uuid'
 alias   pcal='      calcurse'
-alias   ll="        lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
-alias   n="         lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
-alias   lst="       lsd --icon='never' -ltrh"
-alias   lsz="       lsd --icon='never' -lSrh"
-alias   psg='       ps ax | grep -Pi'
-alias   pgr='       pgrep -Pi'
-alias   pse='       ps -eo comm=, | grep --ignore-case'
-alias   pso='       ps -eo cmd=, | grep --ignore-case'
-alias   tre='       ps -ejH'
 alias   trev='      ps axjf'
 alias   tres='      ps -eHo euser,ruser,suser,fuser,f,comm,label'
-alias   vcs='       sc-im'
 alias   decl='      declare -f'
-alias   ht='        htop'
 alias   pips='      poetry search'
 alias   sman='      man -K --regex'
 alias   down='      cd "$HOME/Downloads/"'
 alias   pics='      cd "$HOME/Pictures/"'
-alias   aud='       cd "$HOME/Audio/"'
-alias   rec='       cd "$HOME/Audio/Recordings"'
 alias   docs='      cd "$HOME/Documents/"'
 alias   spreds='    cd "$HOME/Documents/SPREADSHEETS/"'
 alias   desk='      cd "$HOME/Desktop/"'
 alias   wallz='     cd "$HOME/Pictures/Wallpapers"'
 alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'
-alias   p='         pwd'
+alias   gport='     gport_function'
+alias   isport='    (read _z; ss -lp "sport = :${_z}") <<< '
+alias   xprattach=' nohup /usr/bin/xpra attach :${XPRA_DISPLAY_NUMBER} &'
 alias   grab_dir='  xcmenu --input --clipboard "$(pwd)"'
-alias   gd='        xcmenu --input --clipboard "$(pwd)"'
-alias   pd='        cd "$(xcmenu --clipboard)"'
 alias   git_mt='    git log --pretty=format:"%h %s" --graph'
 alias   mansec='    man -f'
-alias   sap='       apropos'
 alias   listman='   man -f'
-alias   men='       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" 2>/dev/null | $PAGER) <<< '
 alias   upfonts='   fc-cache && fc-cache-32; echo "return $?"'
 alias   getfont='   fc-list -v | grep -i '
-alias   lc='        compgen -c'
-alias   slc='       compgen -c | grep -i'
 alias   list_coms=' compgen -c'
 alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | grep -Pi -- "${_z:-''}")) <<<'
-alias   cz='        ccze -m ansi'
-alias   fm='        worker'
 #---------------------------------------------------------------------- #
 #-QUICK-ADDED-ALIASES                                                   #
 #---------------------------------------------------------------------- #
@@ -362,11 +373,18 @@ alias pacdneed='pacman -Qet'
 
 
 alias   reqs='      (read _a ; yay -Qi "${_a}" | grep -Pi "^(Required by:|Optional For:)" | grep -Pi "(Required by|Optional For|[^ \t]+)") <<<'
-alias   pg='        $PAGER'
 alias   vid='       open_mpv'
 
 alias   pyac='        source *env*/bin/activate'
 alias   pyde='       deactivate'
+
+
+
+
+
+
+
+
 
 
 

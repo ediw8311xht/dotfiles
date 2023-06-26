@@ -303,6 +303,7 @@ call L( ';'        ,    ':ls<CR>:b<Space>')
 call L( '/'        ,    ':Explore<CR>')
 call L( '['        ,    ':bprevious<CR>')
 call L( ']'        ,    ':bnext<CR>')
+call L( 'dm'       ,    ':delmark')
 
 call L( '<C-w>line', ':call Tog(&cc, 0, "set cc=80", "set cc=0")<esc>')
 
