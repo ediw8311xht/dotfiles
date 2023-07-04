@@ -26,12 +26,12 @@ function monitor_getter() {
     elif [[ "${1,,}" =  'secondary' ]] ; then MIDDLE='[^*].*[ ]\K'
     elif [[ "${1,,}" != 'all'       ]] ; then END='[^ \t]*('"${*}"')[^ \t]*'
     fi
-    grep -PZo "${START}${MIDDLE}${END}" <<< "$(xrandr --listmonitors)" 
+    grep -PZo "${START}${MIDDLE}${END}" <<< "$(xrandr --listmonitors)"
 }
 
 
 function launch_main() {
-    mapfile -t MONS < <(monitor_getter 'all')
+    mapfile -t MONS < <(monitor_getter "${@:-all}")
     insert_config=''
 
     real_kill 'polybar'
@@ -39,7 +39,7 @@ function launch_main() {
 
     for item in "${MONS[@]}"
     do
-        if [[ -f "${insert_config}" ]] ; then 
+        if [[ -f "${insert_config}" ]] ; then
             MONITOR="${item}" polybar "${insert_config}" --reload basicbar & disown
         else
             MONITOR="${item}" polybar --reload basicbar & disown

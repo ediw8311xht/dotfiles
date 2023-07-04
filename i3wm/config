@@ -30,10 +30,10 @@
     set $unfocu_TEXT  #888888
     set $focuse_BORD  #004f98
     #set $focuse_BORD  #0088FF
-    set $inacti_BORD  #888888
+    set $inacti_BORD  #000000
     set $unfocu_BORD  #333333
     set $focuse_TBAR  #004f98
-    set $inacti_TBAR  #888888
+    set $inacti_TBAR  #000000
     set $unfocu_TBAR  #333333
 #-------------------------------------------------RESOURCES---------------#
     #-----LEFT_MONITOR-----------------------------------#
@@ -91,7 +91,7 @@
     # for_window set border before release_border if you want to include
     for_window [all] border $BORDER_PIXEL
     # --------- ("release_border_i3wm.conf") needs to be included before others.
-    include release_border_i3wm.conf
+    #include release_border_i3wm.conf
     include shift_bindings_i3wm.conf
     include regular_bindings_i3wm.conf
     include modes_i3wm.conf

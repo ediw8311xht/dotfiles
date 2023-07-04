@@ -196,6 +196,7 @@ Plug 'MunifTanjim/nui.nvim'
 " fzf finder
 Plug 'junegunn/fzf.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 "<--------_G-VAR_<leader>f_from-:-lf

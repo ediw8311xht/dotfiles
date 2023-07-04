@@ -50,13 +50,13 @@ kup() {
     kiwix-serve *.zim --verbose --daemon --nodatealiases --address="127.0.0.1" --port="${KIWIX_PORT}"
 }
 run_flask() {
-    if cd "$MYWEB" ; then
+    if cd "${MYWEB}" ; then
         #flask run --cert "${CERT_LOCALHOST}" --key "${KEY_LOCALHOST}"
         cd - || echo "issue returning back to original dir" && return 1
     fi
 }
 cd_from_lf() {
-    lf
+    lf -log="${HOME}/LOG/LF_LOGS/$(date +'%s')_LF_LOG.txt"
     if a="$(ls -1 -tr /tmp/tmplf* | tail -1)"
     then
         z="$(cat "${a}")"
@@ -181,23 +181,30 @@ alias   listmedia=" listaudio; listpics; listvids"
 alias   sudo='      sudo -v; sudo '
 alias   rml='       rmlint --no-followlinks --keep-all-tagged --no-crossdev --paranoid --progress --types="duplicates"'
 # ONE LETTER
+alias   djs='       cj; python manage.py runserver; cd -'
+alias   tjs='       cj; python manage.py test'
 alias   a='         get_alias_fzf'
 alias   b='         cd "$HOME/bin/"'
-alias   c='         printf "\n%.0s_______________________________" {1..400} ; printf "%.0s\n" {1..500} ; clear '
-alias   f='         find / -mount'
+#alias   c='         printf "\n%.0s_______________________________" {1..400} ; printf "%.0s\n" {1..500} ; clear '
+alias   c='         cd ..'
+alias   d='         deactivate'
+alias   f='         pip freeze'
 alias   g='         grep --perl-regexp --ignore-case'
 alias   h='         cd "$HOME"'
 alias   i='         iex'
 alias   j='         flask run --cert="$HOME/ADD_TO_TRUSTED/mykey.crt" --key="$HOME/.cretse_ridi/mykey.pem"'
 alias   k='         kiwix-desktop'
 alias   l='         cd_from_lf'
-alias   m='         mv --no-clobber --verbose'
+#alias   m='         mv --no-clobber --verbose'
+alias   m='         ./manage.py'
 alias   n="         lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
 alias   o='         open_prog'
 alias   p='         pwd'
 alias   r='         run_flask'
+alias   s='         cd - >/dev/null'
 alias   t='	        trash-put'
 alias   x='         xdg-open'
+alias   y='         source .venv/bin/activate'
 alias   z='         zim'
 # ----- ONE LETTER <CAPITAL>
 # ----- TWO LETTER
@@ -207,7 +214,7 @@ alias   pc='	    clear; neofetch'
 alias   pe='        ps -eo comm=,'
 alias   po='        ps -eo cmd=,'
 alias   hb='        nvim $HOME/.bash_history2'
-alias   cl="        printf '\n%.0s_______________________________' {1..400} ; printf '%.0s\n' {1..500} ; clear; echo ''"
+alias   cl="        printf '\n%.0s_______________________________' {1..400} ; printf '%.0s\n' {1..500} ; clear"
 alias   cp='        cp -i'
 alias   df='        df -h'
 alias   fz='        my_cd'
@@ -278,7 +285,7 @@ alias   bhis='      cd "$HOME/Documents/BASH_HISTORY"'
 alias   lookup='    cd $HOME/Notebooks/REFERENCE_SHEETS/MARKDOWN/;  lf ; cd -'
 alias   lookpdf='   cd $HOME/Notebooks/REFERENCE_SHEETS/PDF/;       lf ; cd -'
 alias   lookmd='    cd $HOME/Notebooks/REFERENCE_SHEETS/MARKDOWN/;  lf ; cd -'
-alias   stack='     cd $HOME/Notebooks/REFERENCE_SHEETS/MARKDOWN/;  lf ; cd -'
+#alias   stack='     cd $HOME/Notebooks/REFERENCE_SHEETS/MARKDOWN/;  lf ; cd -'
 # Rename
 alias   testren='   perl-rename -v -n'
 alias   doren='     perl-rename -v'
@@ -287,6 +294,7 @@ alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
 alias   kctpv='     kill "$(pidof "ctpv")"'
 alias   k_at_spi2=' killall at-spi2-registryd; killall at-spi2-bus-launcher'
 alias   xprdet='    pkill -f "^[/]+usr[/]+bin[/]+xpra attach :${XPRA_DISPLAY_NUMBER}[ \$]"'
+alias   pfk='       pkill -f'
 alias   tracenet='  strace'
 alias   tarlist='   tar -tf'
 #-------------------------------------GREP---------------#
@@ -366,27 +374,11 @@ set -o vi
 alias jweb="/usr/lib/jvm/java-19-openjdk/bin/jwebserver"
 alias pacdneed='pacman -Qet'
 
-
-
-
-
-
-
 alias   reqs='      (read _a ; yay -Qi "${_a}" | grep -Pi "^(Required by:|Optional For:)" | grep -Pi "(Required by|Optional For|[^ \t]+)") <<<'
 alias   vid='       open_mpv'
 
 alias   pyac='        source *env*/bin/activate'
 alias   pyde='       deactivate'
-
-
-
-
-
-
-
-
-
-
 
 
 
