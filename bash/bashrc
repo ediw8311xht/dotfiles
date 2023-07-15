@@ -254,7 +254,7 @@ alias   nvp='       nvim -p'
 alias   nvo='       nvim -O'
 alias   snv='       sudoedit'
 alias   rmi='       rm -i'
-alias   pdf='       zathura'
+alias   pdf='       (read _a; zathura "${_a}" & disown) <<< '
 alias   i3c='       i3 -C "$HOME/.config/i3/config"'
 alias   lke='       cd $HOME/Notebooks/REFERENCE_SHEETS/;           lf ; cd -'
 alias   acc='       alias_conflict'
@@ -262,6 +262,7 @@ alias   acf='       alias_conflict --full'
 alias   btc='       bsdtar -cf'
 alias   img='       nsxiv -0'
 alias   ldi='       fdisk -l -o +uuid'
+alias   lsn="       lsd --icon='never' -l"
 alias   lst="       lsd --icon='never' -ltrh"
 alias   lsz="       lsd --icon='never' -lSrh"
 alias   psg='       ps ax | grep -Pi'
@@ -279,7 +280,7 @@ alias   slc='       compgen -c | grep -i'
 alias   gital='     git log --source --all -S'
 alias   alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
 alias   conf='      cd "$XDG_CONFIG_HOME"'
-alias   qread='     zathura  "$(fzf)"'
+alias   qread='     zathura  --fork "$(fzf)"'
 alias   free='      free -h'
 alias   bhis='      cd "$HOME/Documents/BASH_HISTORY"'
 alias   lookup='    cd $HOME/Notebooks/REFERENCE_SHEETS/MARKDOWN/;  lf ; cd -'
@@ -379,6 +380,17 @@ alias   vid='       open_mpv'
 
 alias   pyac='        source *env*/bin/activate'
 alias   pyde='       deactivate'
+
+
+
+
+
+
+
+
+
+
+
 
 
 

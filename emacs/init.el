@@ -3,11 +3,13 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
 (setq package-enable-at-startup nil)
 (package-initialize)
 (package-refresh-contents)
 
+(unless (package-installed-p 'evil-org)    (package-install 'evil-org))
 (unless (package-installed-p 'evil)        (package-install 'evil))
 (unless (package-installed-p 'slime)       (package-install 'slime))
 (unless (package-installed-p 'evil-escape) (package-install 'evil-escape))
@@ -15,6 +17,7 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
+(require 'evil-org)
 (require 'evil)
 (require 'w3m-load)
 (require 'slime)

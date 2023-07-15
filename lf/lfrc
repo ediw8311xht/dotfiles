@@ -14,7 +14,7 @@ set number
 set ignorecase
 set noicons
 set relativenumber
-set sortby ctime
+set sortby atime
 
 set previewer ctpv
 set cleaner ctpvclear
