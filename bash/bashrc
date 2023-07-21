@@ -378,7 +378,9 @@ alias pacdneed='pacman -Qet'
 alias   reqs='      (read _a ; yay -Qi "${_a}" | grep -Pi "^(Required by:|Optional For:)" | grep -Pi "(Required by|Optional For|[^ \t]+)") <<<'
 alias   vid='       open_mpv'
 
-alias   pyac='        source *env*/bin/activate'
+alias   pipsl='      pip list | grep -i'
+alias   pip3sl='     pip3 list | grep -i'
+alias   pyac='       source *env*/bin/activate'
 alias   pyde='       deactivate'
 
 
