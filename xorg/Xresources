@@ -7,12 +7,12 @@ xterm*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Medium:autohint=f
 *.borderpx:     8px
 
 !!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTS
-*.font: 	    MononokiNerdFontMono:style=Medium:pixelsize=15:antialias=true:autohint=true
-!*.font: 	    IBMPlexMono:style=Medium:size=11:antialias=true:autohint=true
-!*.font: 	    IBM 3270:style=Medium:size=13:antialias=true:autohint=true
-!*.font: 	    Consolas:size=13:antialias=true:autohint=true
-!*.font: 	    Agave:style=Medium:size=13:antialias=false:autohint=false
-!*.font:        TerminessTTF Nerd Font Mono:size=14:style=Medium:autohint=false:antialias=false
+!*.font: 	    MononokiNerdFontMono:style=Medium:pixelsize=15:antialias=true:autohint=true
+!*.font: 	    IBMPlexMono:style=Medium:size=10:antialias=true:autohint=false
+!*.font: 	    IBM 3270:style=Medium:size=11:antialias=true:autohint=true
+!*.font: 	    Consolas:size=11:antialias=true:autohint=true
+*.font: 	    Agave:style=Medium:size=11:antialias=false:autohint=false
+!*.font:        TerminessTTF Nerd Font Mono:size=12:style=Medium:autohint=false:antialias=false
 !*.font: 	    IosevkaCustom:style=Medium:size=11:antialias=true:autohint=true
 !*.font: 	    Hack:size=13:antialias=false:autohint=false
 !*.font: 	    Hermit:size=13:antialias=true:autohint=true
@@ -20,7 +20,7 @@ xterm*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Medium:autohint=f
 !*.font: 	    ShareTechMono:pixelsize=13:style=Regular:autohint=true:antialias=true
 !*.font: 	    Courier:style=Medium:size=13:antialias=false
 !*.font: 	    FantasqueSansMono:style=Regular:pixelsize=13:autohint=true:antialias=true
-!*.font: 	    FiraCode:size=13:antialias=true:autohint=true
+!*.font: 	    FiraCode:size=11:antialias=true:autohint=true
 
 !!!!!!!!!!!!!!!!!!!!!!!!!! REALLY COOL FONTS
 !*.font: 	    ProggyCleanTT Nerd Font:pixelsize=23

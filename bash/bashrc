@@ -6,8 +6,8 @@
 #
 #-If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-alias ls='ls --color=auto'
-alias grep='grep --colour=auto'
+alias ls='ls --color="auto" '
+alias grep='grep --colour="auto" '
 #PS0='$(pwd)\n'
 #PS0+='\e[0 q'
 #INSERT='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g'\'')'
@@ -251,6 +251,7 @@ alias   tmd='       tmux detach'
 alias   cop='       xcmenu --input --clipboard'
 alias   comv='      command -V'
 alias   nvp='       nvim -p'
+alias   nvr='       nvim -R'
 alias   nvo='       nvim -O'
 alias   snv='       sudoedit'
 alias   rmi='       rm -i'
@@ -293,7 +294,7 @@ alias   doren='     perl-rename -v'
 alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
 # Kill
 alias   kctpv='     kill "$(pidof "ctpv")"'
-alias   k_at_spi2=' killall at-spi2-registryd; killall at-spi2-bus-launcher'
+alias   k_at_spi2=' killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher'
 alias   xprdet='    pkill -f "^[/]+usr[/]+bin[/]+xpra attach :${XPRA_DISPLAY_NUMBER}[ \$]"'
 alias   pfk='       pkill -f'
 alias   tracenet='  strace'
@@ -306,13 +307,6 @@ alias   tres='      ps -eHo euser,ruser,suser,fuser,f,comm,label'
 alias   decl='      declare -f'
 alias   pips='      poetry search'
 alias   sman='      man -K --regex'
-alias   down='      cd "$HOME/Downloads/"'
-alias   pics='      cd "$HOME/Pictures/"'
-alias   docs='      cd "$HOME/Documents/"'
-alias   spreds='    cd "$HOME/Documents/SPREADSHEETS/"'
-alias   desk='      cd "$HOME/Desktop/"'
-alias   wallz='     cd "$HOME/Pictures/Wallpapers"'
-alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'
 alias   gport='     gport_function'
 alias   isport='    (read _z; ss -lp "sport = :${_z}") <<< '
 alias   xprattach=' nohup /usr/bin/xpra attach :${XPRA_DISPLAY_NUMBER} &'
@@ -324,6 +318,9 @@ alias   upfonts='   fc-cache && fc-cache-32; echo "return $?"'
 alias   getfont='   fc-list -v | grep -i '
 alias   list_coms=' compgen -c'
 alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | grep -Pi -- "${_z:-''}")) <<<'
+alias   spac='      expac -HM "%m %n" | sort -n'
+alias   pgspac='    expac -HM "%m %n" | sort -n | $PAGER'
+alias   grspac='    expac -HM "%m %n" | sort -n | grep -i'
 #---------------------------------------------------------------------- #
 #-QUICK-ADDED-ALIASES                                                   #
 #---------------------------------------------------------------------- #
@@ -333,13 +330,24 @@ alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | gre
 # '{ ControlMask,          XK_k,                   kscrollup,      {.i = -1} },
 # '{ ControlMask,          XK_s,                   externalpipe,   {.v = copyoutput } }
 #---------------------------------------------------------------------- #
-#-EXPORT							                                    #
+# - CD -                                                                #
 #---------------------------------------------------------------------- #
-
-export  PYTHONPATH="${PYTHONPATH}:$HOME/.local/python3.10/site-packages"
-export  DOCS="$HOME/Documents/"
-export  DESK="$HOME/Desktop/"
-export  DOWN="$HOME/Downloads/"
+alias   down='      cd "$HOME/Downloads/"'
+alias   pics='      cd "$HOME/Pictures/"'
+alias   docs='      cd "$HOME/Documents/"'
+alias   spreds='    cd "$HOME/Documents/SPREADSHEETS/"'
+alias   desk='      cd "$HOME/Desktop/"'
+alias   wallz='     cd "$HOME/Pictures/Wallpapers"'
+alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'
+alias   clne='      cd "$CLONED"'
+#---------------------------------------------------------------------- #
+# - EXPORT -					                                        #
+#---------------------------------------------------------------------- #
+export  DOCUMENTS="$HOME/Documents/"
+export  DESKTOP="$HOME/Desktop/"
+export  DOWNLOADS="$HOME/Downloads/"
+export  CODING="$DESKTOP/Coding/"
+export  CLONED="$DESKTOP/CLONED/"
 export  PAGER='most'
 export  TERM='st-256color'
 export  EDITOR="nvim"
@@ -353,6 +361,13 @@ export  XDG_CONFIG_HOME="$HOME/.config"
 export  XDG_CACHE_HOME="$HOME/.cache"
 export  NO_AT_BRIDGE=1
 export  QT_QPA_PLATFORMTHEME="qt5ct"
+
+#------------------------------------------------------------------------------------------------------------------------------------------------ #
+#####################   Fixes colored man pages when using `most`, for some reason, TY https://stackoverflow.com/users/26449/bill                 #
+export  GROFF_NO_SGR=1 ### https://stackoverflow.com/a/32456403                                                                                   #
+#####################   https://stackoverflow.com/questions/32384644/color-setting-works-for-only-for-help-tab-in-man-page-dosent-work-for-the-en #
+#------------------------------------------------------------------------------------------------------------------------------------------------ #
+
 #---------------------------------------------------------------------- #
 #-`PATH`								                                #
 #---------------------------------------------------------------------- #
@@ -375,13 +390,13 @@ set -o vi
 alias jweb="/usr/lib/jvm/java-19-openjdk/bin/jwebserver"
 alias pacdneed='pacman -Qet'
 
-alias   reqs='      (read _a ; yay -Qi "${_a}" | grep -Pi "^(Required by:|Optional For:)" | grep -Pi "(Required by|Optional For|[^ \t]+)") <<<'
+
 alias   vid='       open_mpv'
 
-alias   pipsl='      pip list | grep -i'
-alias   pip3sl='     pip3 list | grep -i'
-alias   pyac='       source *env*/bin/activate'
-alias   pyde='       deactivate'
+alias   pipsl='     pip list | grep -i'
+alias   pip3sl='    pip3 list | grep -i'
+alias   pyac='      source *env*/bin/activate'
+alias   pyde='      deactivate'
 
 
 
@@ -393,6 +408,14 @@ alias   pyde='       deactivate'
 
 
 
+
+
+
+
+
+
+
+alias killun='killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher; killall tumblerd'
 
 
 
