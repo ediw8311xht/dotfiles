@@ -72,7 +72,7 @@
     floating_modifier     $mod+Ctrl
     focus_follows_mouse   yes
     floating_maximum_size 1920 x 1080
-    font pango:Hack 8
+    font pango:Monospace 7
     default_border  $BORDER_PIXEL
     #---GAPS------------------------------------------#
         gaps inner  0
@@ -114,7 +114,7 @@
     for_window [class="Xmessage"]			    floating enable
     no_focus   [class="Xmessage"]
     for_window [all] title_window_icon no
-    for_window [all] title_format "<big><big><big><span background='#000000' rise='3pt'> <small>%title</small> </span></big></big></big>"
+    for_window [all] title_format "<big><big><big><span background='#000000' rise='7pt'> <small><small>%title</small></small> </span></big></big></big>"
     #focus_on_window_activation focus
 #---------------------------------------------------------EXECS-----------#
     $EXC    xcmenu

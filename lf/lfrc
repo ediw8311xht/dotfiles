@@ -37,6 +37,7 @@ cmd rep &{{
 cmd open &{{
     case $(mimetype -Lb $f) in
         text/*) lf -remote "send $id \$$EDITOR \$fx";;
+        application/x-shellscript) lf -remote "send $id \$$EDITOR \$fx";;
         *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
     &xdg-open "${f}"

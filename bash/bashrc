@@ -50,10 +50,10 @@ kup() {
     kiwix-serve *.zim --verbose --daemon --nodatealiases --address="127.0.0.1" --port="${KIWIX_PORT}"
 }
 run_flask() {
-    if cd "${MYWEB}" ; then
+    #if cd "${MYWEB}" ; then
         #flask run --cert "${CERT_LOCALHOST}" --key "${KEY_LOCALHOST}"
-        cd - || echo "issue returning back to original dir" && return 1
-    fi
+        #cd - || echo "issue returning back to original dir" && return 1
+    #fi
 }
 cd_from_lf() {
     lf -log="${HOME}/LOG/LF_LOGS/$(date +'%s')_LF_LOG.txt"
@@ -84,9 +84,17 @@ my_cd()	{
     cd "${@:-"$(find . -type d | fzf --preview="ls -1 {}" )"}"
 }
 open_mpv() {
-    if [[ "${1}" =~ ^-mono ]] ; then local AUD="mono"; shift 1; fi
+    if   [[ "${1,,}" =~ ^-m(ono)? ]]  ; then
+        local AUD="mono"; open_mpv "${@:2}"
+    elif [[ "${1,,}" =~ ^-c(lose)? ]] ; then
+        local CLOSE="mono"; open_mpv "${@:2}"
+    fi
 
     mpv --audio-channels="${AUD:-"auto"}" "${@:-.}" & disown
+
+    if [[ -n "${CLOSE}" ]] ; then
+        exit
+    fi
 }
 open_prog() {
     xdg-open "${1}" & disown
@@ -321,6 +329,7 @@ alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | gre
 alias   spac='      expac -HM "%m %n" | sort -n'
 alias   pgspac='    expac -HM "%m %n" | sort -n | $PAGER'
 alias   grspac='    expac -HM "%m %n" | sort -n | grep -i'
+alias   sct='       nohup scrcpy & disown'
 #---------------------------------------------------------------------- #
 #-QUICK-ADDED-ALIASES                                                   #
 #---------------------------------------------------------------------- #
@@ -392,6 +401,7 @@ alias pacdneed='pacman -Qet'
 
 
 alias   vid='       open_mpv'
+alias   vic='       open_mpv -close'
 
 alias   pipsl='     pip list | grep -i'
 alias   pip3sl='    pip3 list | grep -i'
@@ -417,10 +427,13 @@ alias   pyde='      deactivate'
 
 alias killun='killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher; killall tumblerd'
 
+alias sop='cd "$HOME/Videos/The_Sopranos_123456ab_Extras/"'
 
 
 
 
 
 
+
+alias flip_images='mogrify -rotate 180 *.jpg'
 

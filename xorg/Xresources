@@ -7,12 +7,12 @@ xterm*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Medium:autohint=f
 *.borderpx:     8px
 
 !!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTS
+*.font: 	    Agave:style=Medium:size=12:antialias=false:autohint=false
 !*.font: 	    MononokiNerdFontMono:style=Medium:pixelsize=15:antialias=true:autohint=true
 !*.font: 	    IBMPlexMono:style=Medium:size=10:antialias=true:autohint=false
 !*.font: 	    IBM 3270:style=Medium:size=11:antialias=true:autohint=true
 !*.font: 	    Consolas:size=11:antialias=true:autohint=true
-*.font: 	    Agave:style=Medium:size=11:antialias=false:autohint=false
-!*.font:        TerminessTTF Nerd Font Mono:size=12:style=Medium:autohint=false:antialias=false
+!*.font:        TerminessTTF Nerd Font Mono:size=12:style=Medium:autohint=true:antialias=true
 !*.font: 	    IosevkaCustom:style=Medium:size=11:antialias=true:autohint=true
 !*.font: 	    Hack:size=13:antialias=false:autohint=false
 !*.font: 	    Hermit:size=13:antialias=true:autohint=true
@@ -108,7 +108,8 @@ xterm*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Medium:autohint=f
 !*.color16:      #FFFFFF
 !*.color48:      #FFFFFF
 
-special_float*background:       #000000
+special_float*alpha:            1
+special_float*background:      #0A0A0A
 !!special_float*background:    #000000
 !!special_float*foreground:    #0abdc6
 !!special_float*color0:        #123e7c
