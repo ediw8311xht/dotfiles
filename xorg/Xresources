@@ -274,5 +274,5 @@ i3wm.BOP_GAPS:   0
 
 
 i3wm.monitor1: DP-1
-i3wm.monitor2: DVI-D-1
-i3wm.monitor3: HDMI-1
+i3wm.monitor2: HDMI-1
+i3wm.monitor3: DVI-D-1

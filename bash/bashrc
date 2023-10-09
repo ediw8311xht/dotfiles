@@ -329,7 +329,7 @@ alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | gre
 alias   spac='      expac -HM "%m %n" | sort -n'
 alias   pgspac='    expac -HM "%m %n" | sort -n | $PAGER'
 alias   grspac='    expac -HM "%m %n" | sort -n | grep -i'
-alias   sct='       nohup scrcpy & disown'
+alias   sct='       nohup scrcpy & disown; exit'
 #---------------------------------------------------------------------- #
 #-QUICK-ADDED-ALIASES                                                   #
 #---------------------------------------------------------------------- #
