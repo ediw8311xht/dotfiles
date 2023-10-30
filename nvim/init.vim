@@ -1,4 +1,4 @@
-                     
+
 "<==============================================================================>
 "<==------------------======================================------------------==>
 "<==-----    ||||-----======================================-----    ||||-----==>
@@ -25,19 +25,21 @@ let g:python3_host_prog="/usr/bin/python"
 fu! CorrectColors()
     hi ExtraWhiteSpace cterm=NONE ctermbg=gray ctermfg=NONE  gui=NONE guibg=#0000FF
     hi Normal       ctermbg=black guibg=#000000
-    hi StatusLine   cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE    guibg=#000000 guifg=#00DD00
-    hi StatusLineNC cterm=NONE ctermbg=NONE ctermfg=160  gui=NONE    guibg=#000000 guifg=#FFFFFF
-    hi FoldColumn   cterm=NONE ctermbg=NONE ctermfg=NONE gui=ITALIC  guibg=NONE    guifg=#00ff00
-    hi Folded       cterm=NONE ctermbg=NONE ctermfg=NONE gui=ITALIC  guibg=NONE    guifg=#999999
-    hi CursorLine   cterm=BOLD ctermfg=NONE ctermbg=18   gui=BOLD    guibg=NONE    guifg=NONE
-    hi CursorLineNr cterm=BOLD ctermfg=NONE ctermbg=18   gui=NONE    guibg=NONE    guifg=#FFFF00
-    hi SignColumn   cterm=NONE ctermbg=NONE ctermfg=NONE gui=ITALIC  guibg=NONE    guifg=#000000
-    hi LineNr       cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE    guibg=#000000 guifg=#AAAAAA
-    hi LineNrAbove  cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE    guibg=#000000 guifg=#00AAFF
-    hi TabLine                                           gui=NONE    guibg=#222222 guifg=#999999
-    hi TabLineSel                                        gui=BOLD    guibg=#000000 guifg=#00FF00
-    hi MarkSignNumHL                                     gui=NONE    guibg=none    guifg=NONE
-    hi MarkSignVirtTextHL                                gui=NONE    guibg=NONE    guifg=#00FF00
+    hi StatusLine   cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#000000 guifg=#00DD00
+    hi StatusLineNC cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#000000 guifg=#FFFFFF
+    hi FoldColumn   cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#00ff00
+    hi Folded       cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#999999
+    hi CursorLine   cterm=BOLD ctermfg=NONE ctermbg=18      gui=BOLD    guibg=NONE    guifg=NONE
+    hi CursorLineNr cterm=BOLD ctermfg=NONE ctermbg=18      gui=NONE    guibg=NONE    guifg=#FFFF00
+    hi SignColumn   cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#000000
+    hi LineNr       cterm=NONE ctermbg=NONE ctermfg=NONE    gui=NONE    guibg=#000000 guifg=#AAAAAA
+    hi LineNrAbove  cterm=NONE ctermbg=NONE ctermfg=NONE    gui=NONE    guibg=#000000 guifg=#00AAFF
+    hi TabLine                                              gui=NONE    guibg=#222222 guifg=#999999
+    hi TabLineSel                                           gui=BOLD    guibg=#000000 guifg=#00FF00
+    hi MarkSignNumHL                                        gui=NONE    guibg=none    guifg=NONE
+    hi MarkSignVirtTextHL                                   gui=NONE    guibg=NONE    guifg=#00FF00
+    hi IncSearch    cterm=NONE ctermbg=white ctermfg=black  gui=NONE    guibg=#FF0000 guifg=#000000
+    hi Search       cterm=NONE ctermbg=white ctermfg=black  gui=NONE    guibg=#FFFFFF guifg=#000000
 endfu
 
 match ExtraWhiteSpace /[^ ]\s\+\zs$/
@@ -305,6 +307,7 @@ call L( '/'        ,    ':Explore<CR>')
 call L( '['        ,    ':bprevious<CR>')
 call L( ']'        ,    ':bnext<CR>')
 call L( 'dm'       ,    ':delmark')
+call L( 'df'       ,    ':%s/\s\+\ze$//gc<esc>')
 
 call L( '<C-w>line', ':call Tog(&cc, 0, "set cc=80", "set cc=0")<esc>')
 
@@ -330,6 +333,7 @@ no <leader>zaf gg/<C-r>0<esc>jVnkzf
 nn <C-p> <C-i>
 nn HEALTH :checkhealth<esc>
 nn / /\v\c
+nn ? ?\v\c
 nn <lt> :tabprevious<esc>
 nn > :tabnext<esc>
 nn x "xx
@@ -432,3 +436,4 @@ vn <leader>m :!bc<esc>
 "hi htmlTagName                                                gui=NONE guifg=#90b0d1 guibg=#000033
 "hi htmlEndTag                                                 gui=NONE guifg=#000000 guibg=#ffffff
 "
+

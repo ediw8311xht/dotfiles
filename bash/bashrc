@@ -179,6 +179,32 @@ killall_loaded() {
     sleep 1
     ps ax | grep -P "[${jam:: 1}]${jam: 1}"
 }
+function super_cd() {
+    mode='m'
+
+    if   [[ "${1}" =~ '-help' ]] ; then
+        echo 'Options:'
+        echo $'\t-s(tart)   | * added to start of every directory.'
+        echo $'\t-e(nd)     | * added to   end of every directory.'
+        echo $'\t-m(ulti)   | * added to start & end of every directory.'
+        return 0
+    elif [[ "${1:0:1}" = '-' ]] ; then
+        mode="${1:1:1}" && shift 1
+    fi
+
+    [[ "${1::1}" = '/' ]] && cd '/' && echo "HELLO"
+
+    while read -r -d '/' i ; do
+        if [[ -n "${i}" ]] ; then
+            case "${mode}" in
+                s) cd *"${i}"
+            ;;  e) cd  "${i}"*
+            ;;  m) cd *"${i}"*
+            ;;  *) "Invalid mode argument" >&2 && return 1
+            ;; esac
+        fi
+    done <<< "${*}/"
+}
 #---------------------------------------------------------------------- #
 #-ALIASES								#
 #---------------------------------------------------------------------- #
@@ -195,6 +221,7 @@ alias   a='         get_alias_fzf'
 alias   b='         cd "$HOME/bin/"'
 #alias   c='         printf "\n%.0s_______________________________" {1..400} ; printf "%.0s\n" {1..500} ; clear '
 alias   c='         cd ..'
+alias   C='         super_cd'
 alias   d='         deactivate'
 alias   f='         pip freeze'
 alias   g='         grep --perl-regexp --ignore-case'
@@ -209,6 +236,7 @@ alias   n="         lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%
 alias   o='         open_prog'
 alias   p='         pwd'
 alias   r='         run_flask'
+alias   R='         function R_alias() { cd **"${1}"** }; R_alias'
 alias   s='         cd - >/dev/null'
 alias   t='	        trash-put'
 alias   x='         xdg-open'
@@ -275,7 +303,9 @@ alias   lsn="       lsd --icon='never' -l"
 alias   lst="       lsd --icon='never' -ltrh"
 alias   lsz="       lsd --icon='never' -lSrh"
 alias   psg='       ps ax | grep -Pi'
+alias   bsg='       ps ax | grep -Pv "/[^ ]*brave" | grep -Pi'
 alias   pgr='       pgrep -Pi'
+alias   inx='       inxi'
 alias   pse='       ps -eo comm=, | grep --ignore-case'
 alias   pso='       ps -eo cmd=, | grep --ignore-case'
 alias   tre='       ps -ejH'
@@ -399,7 +429,52 @@ set -o vi
 alias jweb="/usr/lib/jvm/java-19-openjdk/bin/jwebserver"
 alias pacdneed='pacman -Qet'
 
+alias   szof="      du -axhc --time --max-depth=1 | grep -Pv '^0[ \t]' | sort -h"
+alias   szofall='   du -ahc --time --max-depth=1'
+alias   bgsz="      sudo szof | grep -P '^[^ ]*G'"
+alias   pigse='     (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
+alias   pacreg='    pacman -Sq --color=always'
+alias   pacool='    pacman --color=always -Sl | grep -i installed | grep -i'
+alias   pacse='     pacman -Ss --color=always'
+alias   paci='      pacman -Si --color=always'
+alias   pacdep='    pacman -T  --color=always'
+alias   yigse='     (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
+alias   yig='       (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
+alias   paclocal='  pacman -Qm'
+alias   yacool='    yay --color=always -Sl aur | grep "Installed" | grep'
+alias   yayse='     yay --sortby="votes" -Ss'
+alias   yaysename=' yay --sortby="votes" --searchby="name" -Ss'
+alias   yayi='      yay -Si'
+alias   yayp='      yay -P --stats'
+alias   yayil='     yay -Qi'
+alias   yayfiles='  pacman -Qql'
+alias   yaysel='    yay -Qs'
+alias   yayfrom='   yay -Qo'
 
+alias   pacsel='    pacman -Qs'
+alias   pacil='     pacman -Qi'
+alias   pacprog="   pacman -F"
+alias   paclast="   expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
+alias   pacnot='    pacman --color=always -Sl | grep -v "installed" | xargs -d $"\n" | grep -P'
+alias   pacl='      yay --clean'
+alias   pacln='     yay -Scc; yay --clean'
+alias   pacfrom='   pacman -Qo'
+alias   pacfiles='  pacman -Qql'
+alias   sctl='      journalctl | ccze -m ansi'
+alias   pascel='    pacman -Qs'
+alias   yasyel='    yay -Qs'
+alias   pasce='     pacman -Ss'
+alias   yasye='     yay --sortby="votes" -Ss'
+alias   yasyename=' yay --sortby="votes" --searchby="name" -Ss'
+alias   i3e='       nvim -p "$HOME/.config/i3/"*'                                                      #
+alias   ebash='     nvim $HOME/.bashrc; source ~/.bashrc'
+alias   einp='      nvim $HOME/.inputrc'
+alias   editnv='    nvim $HOME/.config/nvim/init.vim'
+alias   emime='     nvim $HOME/.config/mimeapps.list'
+alias   ysb='       source $HOME/.bashrc'
+alias   capkey='    xev | grep -Pio '\''(keysym [^)]*)'\'
+alias   nvgr='      (echo ""; read -r _z; grep -Pri "${_z}" "$HOME/.config/nvim/") <<< '
+alias   i3gr='      (echo ""; read -r _z; grep -Pri "${_z}" "$HOME/.config/i3/") <<< '
 alias   vid='       open_mpv'
 alias   vic='       open_mpv -close'
 
@@ -436,4 +511,7 @@ alias sop='cd "$HOME/Videos/The_Sopranos_123456ab_Extras/"'
 
 
 alias flip_images='mogrify -rotate 180 *.jpg'
+
+
+
 

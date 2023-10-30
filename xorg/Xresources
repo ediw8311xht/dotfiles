@@ -108,8 +108,8 @@ xterm*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Medium:autohint=f
 !*.color16:      #FFFFFF
 !*.color48:      #FFFFFF
 
-special_float*alpha:            1
-special_float*background:      #0A0A0A
+special_float*alpha:            0.95
+special_float*background:       #000000
 !!special_float*background:    #000000
 !!special_float*foreground:    #0abdc6
 !!special_float*color0:        #123e7c

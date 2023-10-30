@@ -22,12 +22,12 @@ set cleaner ctpvclear
 &ctpvquit $id
 
 cmd np &{{
-	if   [[ "$lf_ratios" = "1:2:3" ]] ; then  lf -remote "send $id set nopreview     "
-                                              lf -remote "send $id set ratios 1:3    "
-	elif [[  "$lf_ratios" =  "1:3" ]] ; then  lf -remote "send $id set preview       "
-                                              lf -remote "send $id set ratios 1:1    "
-    else								      lf -remote "send $id set preview       "
-										      lf -remote "send $id set ratios 1:2:3  "; fi
+	if   [[ "$lf_ratios" = "1:2:3" ]] ; then  lf -remote "send ${id} set nopreview     "
+                                              lf -remote "send ${id} set ratios 1:3    "
+	elif [[  "$lf_ratios" =  "1:3" ]] ; then  lf -remote "send ${id} set preview       "
+                                              lf -remote "send ${id} set ratios 1:1    "
+    else								      lf -remote "send ${id} set preview       "
+										      lf -remote "send ${id} set ratios 1:2:3  "; fi
 }}
 
 cmd rep &{{
@@ -35,17 +35,18 @@ cmd rep &{{
 }}
 
 cmd open &{{
-    case $(mimetype -Lb $f) in
+    case "$(mimetype -Lb ${f})" in
         text/*) lf -remote "send $id \$$EDITOR \$fx";;
         application/x-shellscript) lf -remote "send $id \$$EDITOR \$fx";;
-        *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
+        application/x-wine-extension-ini) echo "HERE"; lf -remote "send $id \$$EDITOR \$fx";;
+        *) for f in $fx; do $OPENER "${f}" > /dev/null 2> /dev/null & done;;
     esac
     &xdg-open "${f}"
 }}
 
 cmd oneforone &{{
-    lf -remote "send $id set nopreview"
-    lf -remote "send $id set ratios 1"
+    lf -remote "send ${id} set nopreview"
+    lf -remote "send ${id} set ratios 1"
 }}
 
 cmd openthis &{{
