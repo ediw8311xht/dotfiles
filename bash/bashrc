@@ -442,15 +442,21 @@ alias   yigse='     (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*
 alias   yig='       (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   paclocal='  pacman -Qm'
 alias   yacool='    yay --color=always -Sl aur | grep "Installed" | grep'
+alias   yaycool='   yay --color=always -Sl aur | grep "Installed" | grep'
 alias   yayse='     yay --sortby="votes" -Ss'
 alias   yaysename=' yay --sortby="votes" --searchby="name" -Ss'
 alias   yayi='      yay -Si'
+alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
+alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
 alias   yayp='      yay -P --stats'
 alias   yayil='     yay -Qi'
 alias   yayfiles='  pacman -Qql'
 alias   yaysel='    yay -Qs'
 alias   yayfrom='   yay -Qo'
 
+alias   rqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*(Required[ \t]*By|Optional[ \t]*For)" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
+alias   pqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*Depends[ \t]*On" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
+alias   opqs='      (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*Optional[ \t]Deps*" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
 alias   pacsel='    pacman -Qs'
 alias   pacil='     pacman -Qi'
 alias   pacprog="   pacman -F"
