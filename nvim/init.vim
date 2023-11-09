@@ -246,8 +246,11 @@ set nocuc
 "list keybindings with :help index
 "list user keybindings with :map
 "nn <leader>. :NERDTreeToggle<esc>
-call L( 'a'    ,     ':call Tog(g:coc_enabled, 0, ":CocEnable", ":CocDisable")<esc>')
-call L( 'b'    ,     ':ls<CR>:b<Space>')
+
+" -- TOGGLE COC
+    call L( 'a'    ,     ':call Tog(g:coc_enabled, 0, ":CocEnable", ":CocDisable")<esc>')
+" -- LIST AND GO TO BUFFER
+    call L( 'b'    ,     ':ls<CR>:b<Space>')
 call L( 'c'    ,     ':set nocursorline!<esc>')
 call L( 'd'    ,     '<C-d>')
 call L( 'e'    ,     ':set cursorcolumn!<esc>')
@@ -263,7 +266,8 @@ call L( 'op'   ,     'q:<C-p><esc>Iput =execute("<esc>A")<esc>A<C-c>')
 call L( 'ox'   ,     ':put     =execute("<C-r>0")<esc>')
 call L( 'out'  ,     'q:iput =execute("<C-r>0")<esc>A<C-c>')
 call L( 'p'    ,     ':previous<esc>')
-"call L( 'q'   ,     '')
+" -- DELETE BUFFER
+    call L( 'q'   ,      ':bd')
 call L( 'r'    ,     '<C-w>')
 call L( 's'    ,     ':%so "${HOME}/.config/nvim/init.vim"<esc>')
 call L( 'tcc'  ,     ':tabclose<esc>')
@@ -287,6 +291,10 @@ call L( 'w'    ,     ':w<esc>')
 call L( 'x'    ,     ':w<esc>:!%:p<esc>')
 call L( 'y'    ,     ':hi Normal guibg=Transparent<esc>')
 call L( 'z'    ,     'z')
+" -- DELETE BUFFER
+    call L( 'ZC'   ,     ':bd<esc>')
+" -- DELETE BUFFER
+    call L( 'ZG'   ,     ':bd!<esc>')
 call L( 'B'    ,    ':Buffers<esc>')
 call L( 'D'    ,    ':bdelete<esc><enter>')
 call L( 'G'    ,    ':buff term://<esc>iohttp://localhost:4842')
@@ -297,17 +305,28 @@ call L( 'M'    ,    ':messages<esc>')
 call L( 'N'    ,    ':cnext<esc>')
 call L( 'P'    ,    ':cprevious<esc>')
 "call L( 'S'    ,    ':BraceyStop<esc>')
-call L( 'T'    ,    ':buff term://<esc>i')
-call L( 'W'    ,    ':call Web("f")<esc>i')
-call L( '<leader>' ,    ' <C-^>')
-call L( '<enter>'  ,    ':set paste!<esc>')
-call L( ';'        ,    ':ls<CR>:b<Space>')
+" -- OPEN TERMINAL
+    call L( 'T'    ,    ':buff term://<esc>i')
+" -- OPEN WEB BROWSER
+    call L( 'W'    ,    ':call Web("f")<esc>i')
+" -- QUICK SWITCH BETWEEN ALTERNATE FILE
+    call L( '<leader>' ,    '<C-^>')
+    call L( ',' ,           '<C-^>')
+" --
+    call L( '<enter>'  ,    ':set paste!<esc>')
+" -- LIST AND OPEN BUFFER QUICK
+    call L( ';'        ,    ':ls<CR>:b<Space>')
 "call L( '.'       ,    ':bnext<esc>')-----------------------
-call L( '/'        ,    ':Explore<CR>')
-call L( '['        ,    ':bprevious<CR>')
-call L( ']'        ,    ':bnext<CR>')
-call L( 'dm'       ,    ':delmark')
-call L( 'df'       ,    ':%s/\s\+\ze$//gc<esc>')
+" -- OPEN FILE EXPLORER
+    call L( '/'        ,    ':Explore<CR>')
+" -- GO PREVIOUS BUFFER
+    call L( '['        ,    ':bprevious<CR>:noh<esc><C-L>')
+" -- GO NEXT BUFFER
+    call L( ']'        ,    ':bnext<CR>:noh<esc><C-L>')
+" -- DELETE MARK
+    call L( 'dm'       ,    ':delmark')
+" -- DELETE WHITESPACE
+    call L( 'df'       ,    ':%s/\s\+\ze$//gc<esc>')
 
 call L( '<C-w>line', ':call Tog(&cc, 0, "set cc=80", "set cc=0")<esc>')
 
@@ -319,16 +338,15 @@ vn im :s/\%V[ \t]*//<esc>| "REMOVE TABS ON VISUAL SELECTION
 vn <Enter> zf
 
 "nn <esc> <C-w>
-nn <C-h> <C-w>h
-nn <C-j> <C-w>j
-nn <C-k> <C-w>k
-nn <C-l> <C-w>l
+" -- MOVE BETWEEN PANELS
+    nn <C-h> <C-w>h
+    nn <C-j> <C-w>j
+    nn <C-k> <C-w>k
+    nn <C-l> <C-w>l
 
-nn <esc> :noh<esc><C-L>
+" -- ESCAPE CLEAR BARTHINGEY --
+    nn <esc> :noh<esc><C-L>
 
-nn <leader>q    :bd<esc>
-nn ZC    :bd<esc>
-nn ZG    :bd!<esc>
 no <leader>zaf gg/<C-r>0<esc>jVnkzf
 nn <C-p> <C-i>
 nn HEALTH :checkhealth<esc>

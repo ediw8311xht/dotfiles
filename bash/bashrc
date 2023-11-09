@@ -205,6 +205,12 @@ function super_cd() {
         fi
     done <<< "${*}/"
 }
+function sup_copy() {
+    "${@}" | xcmenu --input --clipboard
+}
+function R_alias() {
+    cd **"${1}"**
+}
 #---------------------------------------------------------------------- #
 #-ALIASES								#
 #---------------------------------------------------------------------- #
@@ -214,35 +220,50 @@ alias   listvids="  find . -type f -iregex '.*[.]\(mov\|m4v\|mkv\|mp[e]?[4vg]\|g
 alias   listmedia=" listaudio; listpics; listvids"
 alias   sudo='      sudo -v; sudo '
 alias   rml='       rmlint --no-followlinks --keep-all-tagged --no-crossdev --paranoid --progress --types="duplicates"'
-# ONE LETTER
 alias   djs='       cj; python manage.py runserver; cd -'
 alias   tjs='       cj; python manage.py test'
-alias   a='         get_alias_fzf'
-alias   b='         cd "$HOME/bin/"'
-#alias   c='         printf "\n%.0s_______________________________" {1..400} ; printf "%.0s\n" {1..500} ; clear '
-alias   c='         cd ..'
-alias   C='         super_cd'
-alias   d='         deactivate'
-alias   f='         pip freeze'
-alias   g='         grep --perl-regexp --ignore-case'
-alias   h='         cd "$HOME"'
-alias   i='         iex'
-alias   j='         flask run --cert="$HOME/ADD_TO_TRUSTED/mykey.crt" --key="$HOME/.cretse_ridi/mykey.pem"'
-alias   k='         kiwix-desktop'
-alias   l='         cd_from_lf'
-#alias   m='         mv --no-clobber --verbose'
-alias   m='         ./manage.py'
-alias   n="         lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
-alias   o='         open_prog'
-alias   p='         pwd'
-alias   r='         run_flask'
-alias   R='         function R_alias() { cd **"${1}"** }; R_alias'
-alias   s='         cd - >/dev/null'
-alias   t='	        trash-put'
-alias   x='         xdg-open'
-alias   y='         source .venv/bin/activate'
-alias   z='         zim'
-# ----- ONE LETTER <CAPITAL>
+
+# -----------------------------------------------------------
+# ----- ONE LETTER <LOWER>
+# -----------------------------------------------------------
+alias       a='         get_alias_fzf'
+alias       b='         cd "$HOME/bin/"'
+alias       c='         cd ..'
+alias       d='         deactivate'
+alias       e='         xcmenu --input --clipboard'
+alias       f='         (read _x; find . -iname "*${_x}*") <<< '
+alias       g='         grep --perl-regexp --ignore-case'
+alias       h='         cd "$HOME"'
+alias       i='         iex'
+alias       j='         flask run --cert="$HOME/ADD_TO_TRUSTED/mykey.crt" --key="$HOME/.cretse_ridi/mykey.pem"'
+alias       k='         kiwix-desktop'
+alias       l='         cd_from_lf'
+alias       m='         ./manage.py'
+alias       n="         lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
+alias       o='         open_prog'
+alias       p='         pwd'
+#           q
+alias       r='         run_flask'
+alias       s='         cd - >/dev/null'
+alias       t='	        trash-put'
+#           u
+alias       v='         sc-im'
+#           w           RESERVED
+alias       x='         xdg-open'
+alias       y='         source .venv/bin/activate'
+alias       z='         zim'
+# -----------------------------------------------------------
+# ----- ONE LETTER <UPPER>
+# -----------------------------------------------------------
+alias       C='         super_cd'
+alias       E='         xcmenuctrl'
+alias       P='         readlink -f' # get full path of file
+alias       R='         _R_alias'
+#           X           RESERVED
+# -----------------------------------------------------------
+# -----------------------------------------------------------
+# -----------------------------------------------------------
+
 # ----- TWO LETTER
 alias   sf='	    clear; screenfetch 2>/dev/null'
 alias   ac='        acheck'
@@ -262,10 +283,8 @@ alias   mf='        find . -iname'
 alias   ic='        clear; imgcat'
 alias   nv='        nvim'
 alias   vn='        nvim -o'
-alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf}\
-                                --exclude=\*.{apk,snap,out,jar,sx,s,bin,o,exe,deb,pyc,pyo}\
-                                --exclude=\*.{jpg,jpeg,png,webp,bmp,gif}\
-                                --exclude=\*.{aac,webm,alac,ape,ogg,mp4,mkv,m4a,mp4a,avi,mp3,wav,flac}'
+alias   rg='        rg --pcre2' #USE RIP GREP WITH PCRE2, BETTER PERL REGEX
+alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf,apk,snap,out,jar,sx,s,bin,o,exe,deb,pyc,pyo,aac,webm,alac,ape,ogg,mp4,mkv,m4a,mp4a,avi,mp3,wav,flac}'
 alias   yg='        xg          --exclude=\*.{rar,tar,gz,tgz,zip,bz2,tbz2}'
 alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
 alias   tl='        tar -tf'
@@ -285,6 +304,7 @@ alias   tma='       tmux attach'
 alias   tmn='       tmux new-session -t mx'
 alias   tmd='       tmux detach'
 alias   cop='       xcmenu --input --clipboard'
+alias   copg='      sup_copy' #copy command
 alias   comv='      command -V'
 alias   nvp='       nvim -p'
 alias   nvr='       nvim -R'
@@ -315,7 +335,6 @@ alias   vcs='       sc-im'
 alias   men='       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" 2>/dev/null | $PAGER) <<< '
 alias   sap='       apropos'
 alias   slc='       compgen -c | grep -i'
-
 alias   gital='     git log --source --all -S'
 alias   alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
 alias   conf='      cd "$XDG_CONFIG_HOME"'
@@ -338,12 +357,14 @@ alias   pfk='       pkill -f'
 alias   tracenet='  strace'
 alias   tarlist='   tar -tf'
 #-------------------------------------GREP---------------#
+alias   gclone='    cd "${CLONED}"; git clone'
 alias   nimg='      nsxiv -0 .'
 alias   pcal='      calcurse'
 alias   trev='      ps axjf'
 alias   tres='      ps -eHo euser,ruser,suser,fuser,f,comm,label'
 alias   decl='      declare -f'
 alias   pips='      poetry search'
+alias   pipf='      pip freeze'
 alias   sman='      man -K --regex'
 alias   gport='     gport_function'
 alias   isport='    (read _z; ss -lp "sport = :${_z}") <<< '
@@ -446,6 +467,7 @@ alias   yaycool='   yay --color=always -Sl aur | grep "Installed" | grep'
 alias   yayse='     yay --sortby="votes" -Ss'
 alias   yaysename=' yay --sortby="votes" --searchby="name" -Ss'
 alias   yayi='      yay -Si'
+alias   yaysalt='   yay --color=always -Sl | grep -Pio ".*(?=\[installed\])"'
 alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
 alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
 alias   yayp='      yay -P --stats'
@@ -517,6 +539,10 @@ alias sop='cd "$HOME/Videos/The_Sopranos_123456ab_Extras/"'
 
 
 alias flip_images='mogrify -rotate 180 *.jpg'
+
+
+
+
 
 
 

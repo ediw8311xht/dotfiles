@@ -3,7 +3,7 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
 (setq package-enable-at-startup nil)
 (package-initialize)
@@ -20,6 +20,7 @@
 (require 'evil-org)
 (require 'evil)
 (require 'w3m-load)
+(evil-mode t)
 (require 'slime)
 (require 'evil-escape)
 ;; (require 'lilypond)
@@ -84,7 +85,7 @@
 
 ;;--INSERT--;;
 (define-key evil-insert-state-map (kbd         "<tab>")      "  ")
-(define-key evil-insert-state-map (kbd "C-<backspace>") (kbd "<backspace><backspace>")) 
+(define-key evil-insert-state-map (kbd "C-<backspace>") (kbd "<backspace><backspace>"))
 
 ;;---------------------------------------------------------------------    ETC    -------------------;;
 
@@ -94,7 +95,7 @@
 (evil-set-undo-system 'undo-redo)
 (setq evil-want-fine-undo t)
 (setq inferior-lisp-program "sbcl")
-(setq w3m-default-display-inline-images t)
+;(setq w3m-default-display-inline-images t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -103,8 +104,10 @@
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
  '(custom-enabled-themes '(modus-vivendi))
+ '(display-line-numbers-type 'relative)
  '(global-display-line-numbers-mode t)
  '(package-selected-packages '(evil-escape slime evil-visual-mark-mode evil))
+ '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
  '(tooltip-mode nil))
 
@@ -113,4 +116,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Agave" :antialias true :slant normal :weight medium :height 140 :width normal)))))
+ '(default ((t (:family "agave Nerd Font Mono" :antialias true :slant normal :weight regular :height 140 :width normal :foundry "PfEd")))))
