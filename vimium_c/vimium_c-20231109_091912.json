@@ -1,7 +1,7 @@
 {
 	"name": "Vimium C",
-	"@time": "11/9/2023, 9:19:12 AM",
-	"time": 1699539552990,
+	"@time": "11/9/2023, 10:11:39 AM",
+	"time": 1699542699087,
 	"environment": {
 		"extension": "1.99.994",
 		"platform": "linux",
@@ -74,7 +74,7 @@
 		"map <c-u> scrollPageUp",
 		"unmap R",
 		"map R reload hard",
-		"map P togglePinTab",
+		"map <c-s-p> togglePinTab",
 		""
 	],
 	"keyupTime": 50,

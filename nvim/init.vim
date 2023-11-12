@@ -352,6 +352,7 @@ nn <C-p> <C-i>
 nn HEALTH :checkhealth<esc>
 nn / /\v\c
 nn ? ?\v\c
+nn <C-_> /\V\c
 nn <lt> :tabprevious<esc>
 nn > :tabnext<esc>
 nn x "xx

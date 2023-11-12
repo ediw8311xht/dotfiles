@@ -208,9 +208,6 @@ function super_cd() {
 function sup_copy() {
     "${@}" | xcmenu --input --clipboard
 }
-function R_alias() {
-    cd **"${1}"**
-}
 #---------------------------------------------------------------------- #
 #-ALIASES								#
 #---------------------------------------------------------------------- #
@@ -243,7 +240,7 @@ alias       n="         lsd --icon='never' -rt --permission='octal'  --date=+'[%
 alias       o='         open_prog'
 alias       p='         pwd'
 #           q
-alias       r='         run_flask'
+alias       r='         \rg --pcre2 -i'
 alias       s='         cd - >/dev/null'
 alias       t='	        trash-put'
 #           u
@@ -256,9 +253,9 @@ alias       z='         zim'
 # ----- ONE LETTER <UPPER>
 # -----------------------------------------------------------
 alias       C='         super_cd'
+alias       F='         grep -F'
 alias       E='         xcmenuctrl'
 alias       P='         readlink -f' # get full path of file
-alias       R='         _R_alias'
 #           X           RESERVED
 # -----------------------------------------------------------
 # -----------------------------------------------------------
@@ -283,7 +280,9 @@ alias   mf='        find . -iname'
 alias   ic='        clear; imgcat'
 alias   nv='        nvim'
 alias   vn='        nvim -o'
-alias   rg='        rg --pcre2' #USE RIP GREP WITH PCRE2, BETTER PERL REGEX
+alias   rf='        run_flask'
+alias   rgt='       \rg --hidden --ignore-file="$XDG_CONFIG_HOME/rg/rg.gitignore" --pcre2 -i'
+alias   rgh='       \rg --hidden -g '"'!*.html~'"' -g '"'!*.html'"' --ignore-file="$XDG_CONFIG_HOME/rg/rg.gitignore" --pcre2 -i'
 alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf,apk,snap,out,jar,sx,s,bin,o,exe,deb,pyc,pyo,aac,webm,alac,ape,ogg,mp4,mkv,m4a,mp4a,avi,mp3,wav,flac}'
 alias   yg='        xg          --exclude=\*.{rar,tar,gz,tgz,zip,bz2,tbz2}'
 alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
@@ -340,7 +339,7 @@ alias   alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
 alias   conf='      cd "$XDG_CONFIG_HOME"'
 alias   qread='     zathura  --fork "$(fzf)"'
 alias   free='      free -h'
-alias   bhis='      cd "$HOME/Documents/BASH_HISTORY"'
+alias   bhagr='     cd "$BASH_HISTORY_ARCHIVE"; rg 2>/dev/null'
 alias   lookup='    cd $HOME/Notebooks/REFERENCE_SHEETS/MARKDOWN/;  lf ; cd -'
 alias   lookpdf='   cd $HOME/Notebooks/REFERENCE_SHEETS/PDF/;       lf ; cd -'
 alias   lookmd='    cd $HOME/Notebooks/REFERENCE_SHEETS/MARKDOWN/;  lf ; cd -'
@@ -403,6 +402,7 @@ alias   clne='      cd "$CLONED"'
 #---------------------------------------------------------------------- #
 # - EXPORT -					                                        #
 #---------------------------------------------------------------------- #
+export  BASH_HISTORY_ARCHIVE="$HOME/Documents/BASH_HISTORY/"
 export  DOCUMENTS="$HOME/Documents/"
 export  DESKTOP="$HOME/Desktop/"
 export  DOWNLOADS="$HOME/Downloads/"
@@ -421,6 +421,7 @@ export  XDG_CONFIG_HOME="$HOME/.config"
 export  XDG_CACHE_HOME="$HOME/.cache"
 export  NO_AT_BRIDGE=1
 export  QT_QPA_PLATFORMTHEME="qt5ct"
+export  npm_config_prefix="$HOME/.local"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------ #
 #####################   Fixes colored man pages when using `most`, for some reason, TY https://stackoverflow.com/users/26449/bill                 #
@@ -434,7 +435,7 @@ export  GROFF_NO_SGR=1 ### https://stackoverflow.com/a/32456403                 
 if  [ -d "$HOME/bin/"         	 ] ; then PATH="$HOME/bin/:$PATH"        	 ;	fi
 if  [ -d "$HOME/bin/txt2man"     ] ; then PATH="$HOME/bin/txt2man:$PATH"     ;	fi
 if  [ -d "$HOME/bin/i3wm"     	 ] ; then PATH="$HOME/bin/i3wm:$PATH"    	 ; 	fi
-if  [ -d "$HOME/bin/mentat"      ] ; then PATH="$HOME/bin/mentat:$PATH"    	 ; 	fi
+#if  [ -d "$HOME/bin/mentat"      ] ; then PATH="$HOME/bin/mentat:$PATH"    	 ; 	fi
 if  [ -d "$HOME/bin/personal" 	 ] ; then PATH="$HOME/bin/personal:$PATH"	 ; 	fi
 if  [ -d "$HOME/bin/ufw"      	 ] ; then PATH="$HOME/bin/ufw:$PATH"     	 ; 	fi
 if  [ -d "$HOME/bin/random"   	 ] ; then PATH="$HOME/bin/random:$PATH"  	 ; 	fi
@@ -475,6 +476,7 @@ alias   yayil='     yay -Qi'
 alias   yayfiles='  pacman -Qql'
 alias   yaysel='    yay -Qs'
 alias   yayfrom='   yay -Qo'
+alias   springmr='  mvn spring-boot:run'
 
 alias   rqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*(Required[ \t]*By|Optional[ \t]*For)" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
 alias   pqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*Depends[ \t]*On" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
@@ -539,6 +541,11 @@ alias sop='cd "$HOME/Videos/The_Sopranos_123456ab_Extras/"'
 
 
 alias flip_images='mogrify -rotate 180 *.jpg'
+
+
+
+
+
 
 
 
