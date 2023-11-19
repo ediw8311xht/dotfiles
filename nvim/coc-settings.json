@@ -5,6 +5,16 @@
 	"diagnostic.checkCurrentLine": true,
 
     "languageserver": {
+        "java": {
+            "command": "ccls",
+            "filetypes": [".java"],
+            "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/java"
+                }
+            }
+        },
         "ccls": {
             "command": "ccls",
             "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],

@@ -25,8 +25,8 @@ let g:python3_host_prog="/usr/bin/python"
 fu! CorrectColors()
     hi ExtraWhiteSpace cterm=NONE ctermbg=gray ctermfg=NONE  gui=NONE guibg=#0000FF
     hi Normal       ctermbg=black guibg=#000000
-    hi StatusLine   cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#000000 guifg=#00DD00
-    hi StatusLineNC cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#000000 guifg=#FFFFFF
+    hi StatusLine   cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#102040 guifg=#00BB00
+    hi StatusLineNC cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#222222 guifg=#999999
     hi FoldColumn   cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#00ff00
     hi Folded       cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#999999
     hi CursorLine   cterm=BOLD ctermfg=NONE ctermbg=18      gui=BOLD    guibg=NONE    guifg=NONE
@@ -247,132 +247,144 @@ set nocuc
 "list user keybindings with :map
 "nn <leader>. :NERDTreeToggle<esc>
 
-" -- TOGGLE COC
-    call L( 'a'    ,     ':call Tog(g:coc_enabled, 0, ":CocEnable", ":CocDisable")<esc>')
-" -- LIST AND GO TO BUFFER
-    call L( 'b'    ,     ':ls<CR>:b<Space>')
-call L( 'c'    ,     ':set nocursorline!<esc>')
-call L( 'd'    ,     '<C-d>')
-call L( 'e'    ,     ':set cursorcolumn!<esc>')
-call L( 'f'    ,     ':set wrap!<esc>')
-call L( 'g'    ,     ':enew<esc>')
-call L( 'h'    ,     ':call Tog(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc><C-L>')
-call L( 'j'    ,     ':call CyCol(+1)<CR>')
-call L( 'k'    ,     ':call CorrectColors()<CR>')
-call L( 'l'    ,     ':call CyBac(+1)<CR>')
-call L( 'n'    ,     ':next<esc>')
-call L( 'oc'   ,     'q:iput=execute("")<esc>A<C-c>')
-call L( 'op'   ,     'q:<C-p><esc>Iput =execute("<esc>A")<esc>A<C-c>')
-call L( 'ox'   ,     ':put     =execute("<C-r>0")<esc>')
-call L( 'out'  ,     'q:iput =execute("<C-r>0")<esc>A<C-c>')
-call L( 'p'    ,     ':previous<esc>')
-" -- DELETE BUFFER
-    call L( 'q'   ,      ':bd')
-call L( 'r'    ,     '<C-w>')
-call L( 's'    ,     ':%so "${HOME}/.config/nvim/init.vim"<esc>')
-call L( 'tcc'  ,     ':tabclose<esc>')
-call L( 'tt'   ,     ':tabnew<esc>')
-call L( 'tn'   ,     ':tabmove +1<esc>')
-call L( 'tp'   ,     ':tabmove -1<esc>')
-call L( 'tb'   ,     ':tabmove -1<esc>')
-call L( 'tm'   ,     ':tabmove')
-call L( 'tf'   ,     ':tabfirst<esvsplitc>')
-call L( 'tl'   ,     ':tablast<esc>')
-call L( 'tB'   ,     ':tabmove -1<esc>')
-call L( 'tN'   ,     ':tabmove +1<esc>')
-call L( 'u'    ,     '<C-u>')
-call L( 'var'  ,     ':let maxvar ="<C-r>1<C-r>0"')
-call L( 'vf'   ,     '?<C-r>"<enter>')
-call L( 'vm'   ,     ':put =eval("<C-r>0")')
-call L( 'vq'   ,     ':put =eval("<C-r>0")<esc>')
-call L( 'vv'   ,     ':call Cy(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<esc>')
-call L( 'vz'   ,     'i<C-r>"')
-call L( 'w'    ,     ':w<esc>')
-call L( 'x'    ,     ':w<esc>:!%:p<esc>')
-call L( 'y'    ,     ':hi Normal guibg=Transparent<esc>')
-call L( 'z'    ,     'z')
-" -- DELETE BUFFER
-    call L( 'ZC'   ,     ':bd<esc>')
-" -- DELETE BUFFER
-    call L( 'ZG'   ,     ':bd!<esc>')
-call L( 'B'    ,    ':Buffers<esc>')
-call L( 'D'    ,    ':bdelete<esc><enter>')
-call L( 'G'    ,    ':buff term://<esc>iohttp://localhost:4842')
-call L( 'H'    ,    ':vert helpgrep ')
-call L( 'J'    ,    ':call CyCol(-1)<CR>')
-call L( 'L'    ,    ':call CyBac(-1)<CR>')
-call L( 'M'    ,    ':messages<esc>')
-call L( 'N'    ,    ':cnext<esc>')
-call L( 'P'    ,    ':cprevious<esc>')
-"call L( 'S'    ,    ':BraceyStop<esc>')
-" -- OPEN TERMINAL
-    call L( 'T'    ,    ':buff term://<esc>i')
-" -- OPEN WEB BROWSER
-    call L( 'W'    ,    ':call Web("f")<esc>i')
-" -- QUICK SWITCH BETWEEN ALTERNATE FILE
-    call L( '<leader>' ,    '<C-^>')
-    call L( ',' ,           '<C-^>')
-" --
-    call L( '<enter>'  ,    ':set paste!<esc>')
-" -- LIST AND OPEN BUFFER QUICK
-    call L( ';'        ,    ':ls<CR>:b<Space>')
-"call L( '.'       ,    ':bnext<esc>')-----------------------
-" -- OPEN FILE EXPLORER
-    call L( '/'        ,    ':Explore<CR>')
-" -- GO PREVIOUS BUFFER
-    call L( '['        ,    ':bprevious<CR>:noh<esc><C-L>')
-" -- GO NEXT BUFFER
-    call L( ']'        ,    ':bnext<CR>:noh<esc><C-L>')
-" -- DELETE MARK
-    call L( 'dm'       ,    ':delmark')
-" -- DELETE WHITESPACE
-    call L( 'df'       ,    ':%s/\s\+\ze$//gc<esc>')
-
-call L( '<C-w>line', ':call Tog(&cc, 0, "set cc=80", "set cc=0")<esc>')
-
-
-map <Space> <leader>
-map , <leader>
-vn <leader>x c<esc>l:execute "normal! i" . eval('<C-r>"')<esc>
-vn im :s/\%V[ \t]*//<esc>| "REMOVE TABS ON VISUAL SELECTION
-vn <Enter> zf
-
-"nn <esc> <C-w>
-" -- MOVE BETWEEN PANELS
-    nn <C-h> <C-w>h
-    nn <C-j> <C-w>j
-    nn <C-k> <C-w>k
-    nn <C-l> <C-w>l
-
-" -- ESCAPE CLEAR BARTHINGEY --
-    nn <esc> :noh<esc><C-L>
-
-no <leader>zaf gg/<C-r>0<esc>jVnkzf
-nn <C-p> <C-i>
-nn HEALTH :checkhealth<esc>
-nn / /\v\c
-nn ? ?\v\c
-nn <C-_> /\V\c
-nn <lt> :tabprevious<esc>
-nn > :tabnext<esc>
-nn x "xx
-nn \ `
-nn <C-w>n    :new<esc><C-w>L
-nn SS :source ~/.config/nvim/init.vim<esc><C-w>L
-"sil nn <silent><esc> :noh<esc>
-sil nn <Enter> @=(foldlevel('.')?'za':"\<Space>")<CR>
-
-im jk <esc>
-
-inoremap <C-e> <esc>A
-inoremap <C-a> <esc>I
-inoremap <C-b> <left>
-inoremap <C-f> <right>
-"Exit Terminal and Change Buffer
-tnoremap <leader><leader> <C-\><C-n>:Buffers<esc>
-tnoremap <leader>. <C-\><C-n>:bnext<esc>
-tnoremap <leader><esc> <C-\><C-n>
-tnoremap <leader>G <C-\><C-n>iohttp://localhost:4842<enter>
+"----------------------------------
+"-- Leader Bindings              --
+"----------------------------------
+    " -- TOGGLE COC
+        call L( 'a'    ,     ':call Tog(g:coc_enabled, 0, ":CocEnable", ":CocDisable")<esc>')
+    " -- LIST AND GO TO BUFFER
+        call L( 'b'    ,     ':ls<CR>:b<Space>')
+    call L( 'c'    ,     ':set nocursorline!<esc>')
+    call L( 'd'    ,     '<C-d>')
+    call L( 'e'    ,     ':set cursorcolumn!<esc>')
+    call L( 'f'    ,     ':set wrap!<esc>')
+    call L( 'g'    ,     ':enew<esc>')
+    call L( 'h'    ,     ':call Tog(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc><C-L>')
+    call L( 'j'    ,     ':call CyCol(+1)<CR>')
+    call L( 'k'    ,     ':call CorrectColors()<CR>')
+    call L( 'l'    ,     ':call CyBac(+1)<CR>')
+    call L( 'n'    ,     ':next<esc>')
+    call L( 'oc'   ,     'q:iput=execute("")<esc>A<C-c>')
+    call L( 'op'   ,     'q:<C-p><esc>Iput =execute("<esc>A")<esc>A<C-c>')
+    call L( 'ox'   ,     ':put     =execute("<C-r>0")<esc>')
+    call L( 'out'  ,     'q:iput =execute("<C-r>0")<esc>A<C-c>')
+    call L( 'p'    ,     ':previous<esc>')
+    " -- DELETE BUFFER
+        call L( 'q'   ,      ':bd')
+    call L( 'r'    ,     '<C-w>')
+    call L( 's'    ,     ':%so "${HOME}/.config/nvim/init.vim"<esc>')
+    " -- Tab Stuff
+        call L( 'tcc'  ,     ':tabclose<esc>')
+        call L( 'tt'   ,     ':tabnew<esc>')
+        call L( 'tn'   ,     ':tabmove +1<esc>')
+        call L( 'tp'   ,     ':tabmove -1<esc>')
+        call L( 'tb'   ,     ':tabmove -1<esc>')
+        call L( 'tm'   ,     ':tabmove')
+        call L( 'tf'   ,     ':tabfirst<esc>')
+        call L( 'tl'   ,     ':tablast<esc>')
+        call L( 'tB'   ,     ':tabmove -1<esc>')
+        call L( 'tN'   ,     ':tabmove +1<esc>')
+    call L( 'u'    ,     '<C-u>')
+    call L( 'var'  ,     ':let maxvar ="<C-r>1<C-r>0"')
+    call L( 'vf'   ,     '?<C-r>"<enter>')
+    call L( 'vm'   ,     ':put =eval("<C-r>0")')
+    call L( 'vq'   ,     ':put =eval("<C-r>0")<esc>')
+    call L( 'vv'   ,     ':call Cy(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<esc>')
+    call L( 'vz'   ,     'i<C-r>"')
+    call L( 'w'    ,     ':w<esc>')
+    call L( 'x'    ,     ':w<esc>:!%:p<esc>')
+    call L( 'y'    ,     ':hi Normal guibg=Transparent<esc>')
+    call L( 'z'    ,     'z')
+    " -- DELETE BUFFER
+        call L( 'ZC'   ,     ':bd<esc>')
+    " -- DELETE BUFFER
+        call L( 'ZG'   ,     ':bd!<esc>')
+    call L( 'B'    ,    ':Buffers<esc>')
+    call L( 'D'    ,    ':bdelete<esc><enter>')
+    call L( 'G'    ,    ':buff term://<esc>iohttp://localhost:4842')
+    call L( 'H'    ,    ':vert helpgrep ')
+    call L( 'J'    ,    ':call CyCol(-1)<CR>')
+    call L( 'L'    ,    ':call CyBac(-1)<CR>')
+    call L( 'M'    ,    ':messages<esc>')
+    call L( 'N'    ,    ':cnext<esc>')
+    call L( 'P'    ,    ':cprevious<esc>')
+    call L( '<C-w>line', ':call Tog(&cc, 0, "set cc=80", "set cc=0")<esc>')
+    "call L( 'S'    ,    ':BraceyStop<esc>')
+    " -- OPEN TERMINAL
+        call L( 'T'    ,    ':buff term://<esc>i')
+    " -- OPEN WEB BROWSER
+        call L( 'W'    ,    ':call Web("f")<esc>i')
+    " -- QUICK SWITCH BETWEEN ALTERNATE FILE
+        call L( '<leader>' ,    '<C-^>')
+        call L( ',' ,           '<C-^>')
+    " --
+        call L( '<enter>'  ,    ':set paste!<esc>')
+    " -- LIST AND OPEN BUFFER QUICK
+        call L( ';'        ,    ':ls<CR>:b<Space>')
+        "call L( '.'       ,    ':bnext<esc>')-----------------------
+    " -- OPEN FILE EXPLORER
+        call L( '/'        ,    ':Explore<CR>')
+    " -- GO PREVIOUS BUFFER
+        call L( '['        ,    ':bprevious<CR>:noh<esc><C-L>')
+    " -- GO NEXT BUFFER
+        call L( ']'        ,    ':bnext<CR>:noh<esc><C-L>')
+    " -- DELETE MARK
+        call L( 'dm'       ,    ':delmark')
+    " -- DELETE WHITESPACE
+        call L( 'df'       ,    ':%s/\s\+\ze$//gc<esc>')
+"---------------------------------------------------
+"-- Map  (Normal, Visual, Select, OperatorPending --
+"---------------------------------------------------
+    map <Space> <leader>
+    map , <leader>
+    map + g_
+"----------------------------------
+"-- Visual                       --
+"----------------------------------
+    vn <leader>x c<esc>l:execute "normal! i" . eval('<C-r>"')<esc>
+    vn im :s/\%V[ \t]*//<esc>| "REMOVE TABS ON VISUAL SELECTION
+    vn <Enter> zf
+"----------------------------------
+"-- Normal                       --
+"----------------------------------
+    "nn <esc> <C-w>
+    " -- MOVE BETWEEN PANELS
+        nn <C-h> <C-w>h
+        nn <C-j> <C-w>j
+        nn <C-k> <C-w>k
+        nn <C-l> <C-w>l
+    " -- ESCAPE CLEAR STATUSLINE -- "
+        nn <esc> :noh<esc><C-L>
+    no <leader>zaf gg/<C-r>0<esc>jVnkzf
+    nn <C-p> <C-i>
+    nn HEALTH :checkhealth<esc>
+    nn / /\v\c
+    nn ? ?\v\c
+    nn <C-_> /\V\c
+    nn <lt> :tabprevious<esc>
+    nn > :tabnext<esc>
+    nn x "xx
+    nn \ `
+    nn <C-w>n    :new<esc><C-w>L
+    nn SS :source ~/.config/nvim/init.vim<esc><C-w>L
+    "sil nn <silent><esc> :noh<esc>
+    sil nn <Enter> @=(foldlevel('.')?'za':"\<Space>")<CR>
+"----------------------------------
+"-- Insert                       --
+"----------------------------------
+    inoremap    jk <esc>
+    inoremap <C-e> <esc>A
+    inoremap <C-a> <esc>I
+    inoremap <C-b> <left>
+    inoremap <C-f> <right>
+"----------------------------------
+"-- Terminal                     --
+"----------------------------------
+    "Exit Terminal and Change Buffer
+    tnoremap <leader><leader> <C-\><C-n>:Buffers<esc>
+    tnoremap <leader>. <C-\><C-n>:bnext<esc>
+    tnoremap <leader><esc> <C-\><C-n>
+    tnoremap <leader>G <C-\><C-n>iohttp://localhost:4842<enter>
 
 "nn dd "Ddd
 "nn    D "DD
@@ -399,6 +411,10 @@ autocmd BufNewFile,BufRead *.css                        setlocal tabstop=2 shift
     
 vn <leader>M :!dc<esc>
 vn <leader>m :!bc<esc>
+
+" -----------------REMEMBER-----------------
+" & is repeat last substitution
+
 
 "map <c-b> nn <leader>bb :buffers<cr>:b<space>
 "nn <leader><leader> :<backspace>

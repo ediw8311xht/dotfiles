@@ -3,11 +3,11 @@ URxvt*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Bold:autohint=fal
 xterm*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Medium:autohint=false:antialias=false
 
 !!!!!!!!!!!!!!!!!!!!!!!!! -----------------_FONTS
-*.alpha:	    0.91
-*.borderpx:     8px
+*.alpha:	    0.90
+*.borderpx:     10px
 
 !!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTS
-*.font: 	    Agave:style=Medium:size=12:antialias=false:autohint=false
+*.font: 	    Agave:style=Medium:size=11:antialias=false:autohint=false
 !*.font: 	    MononokiNerdFontMono:style=Medium:pixelsize=15:antialias=true:autohint=true
 !*.font: 	    IBMPlexMono:style=Medium:size=10:antialias=true:autohint=false
 !*.font: 	    IBM 3270:style=Medium:size=11:antialias=true:autohint=true
@@ -84,32 +84,32 @@ xterm*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Medium:autohint=f
 !!special_float*alpha:	        1
 
 !!!!!!!!!!!!!!!!!!!!!!!!----------------CYBER-PUNK-NEON
-!!special_note*background:    #000000
-!!special_float.font:         Agave:style=Regular:pixelsize=17:antialias=true
-!*.borderpx:     10px
-!*.background:   #00090e
-!*.foreground:   #0abdc6
-!*.color0:       #123e7c
-!*.color1:       #ff0000
-!*.color2:       #d300c4
-!*.color3:       #f57800
-!*.color4:       #123e7c
-!*.color5:       #711c91
-!*.color6:       #0abdc6
-!*.color7:       #d7d7d5
-!*.color8:       #1c61c2
-!*.color9:       #ff0000
-!*.color10:      #d300c4
-!*.color11:      #f57800
-!*.color12:      #0090FF
-!*.color13:      #711c91
-!*.color14:      #0abdc6
-!*.color15:      #888888
-!*.color16:      #FFFFFF
-!*.color48:      #FFFFFF
+!special_note*background:    #000000
+special_float*alpha:        0.94
+special_float*font:         IosevkaNerdFont:style=Regular:pixelsize=14:antialias=true
+special_float*borderpx:     10px
+special_float*background:   #00090e
+special_float*foreground:   #0abdc6
+special_float*color0:       #123e7c
+special_float*color1:       #ff0000
+special_float*color2:       #d300c4
+special_float*color3:       #f57800
+special_float*color4:       #123e7c
+special_float*color5:       #711c91
+special_float*color6:       #0abdc6
+special_float*color7:       #d7d7d5
+special_float*color8:       #1c61c2
+special_float*color9:       #ff0000
+special_float*color10:      #d300c4
+special_float*color11:      #f57800
+special_float*color12:      #0090FF
+special_float*color13:      #711c91
+special_float*color14:      #0abdc6
+special_float*color15:      #888888
+special_float*color16:      #FFFFFF
+special_float*color48:      #FFFFFF
 
-special_float*alpha:            0.95
-special_float*background:       #000000
+!special_float*background:       #000000
 !!special_float*background:    #000000
 !!special_float*foreground:    #0abdc6
 !!special_float*color0:        #123e7c
@@ -265,14 +265,15 @@ Zutty.border:               5px
 !*.shading:	   	20
 !*.alphaOffset: 0.1
 
-i3wm.R_GAPS:     0
-i3wm.L_GAPS:     0
-i3wm.IN_GAPS:   20
-i3wm.OUT_GAPS:   0
+i3wm.IN_GAPS:   10
+i3wm.OUT_GAPS:   5
 i3wm.TOP_GAPS:   0
 i3wm.BOP_GAPS:   0
+i3wm.R_GAPS:     0
+i3wm.L_GAPS:     0
 
 
-i3wm.monitor1: DP-1
-i3wm.monitor2: HDMI-1
-i3wm.monitor3: DVI-D-1
+
+i3wm.monitor1: DisplayPort-0
+i3wm.monitor2: HDMI-A-0
+i3wm.monitor3: DVI-D-0

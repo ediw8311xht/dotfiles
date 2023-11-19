@@ -2,10 +2,11 @@
 set shell sh
 set shellopts '-eu'
 ##USE DOUBLE QUOTES FOR 'set ifs "something"'
+#set period 1
 set ifs         "\n"
-set ratios      1:8:5
+set ratios      1:3:5
 set info        size:time
-set scrolloff   10
+set scrolloff   8
 set autoquit
 set drawbox
 set dircounts
@@ -15,6 +16,7 @@ set ignorecase
 set noicons
 set relativenumber
 set sortby atime
+set sixel true
 
 set previewer ctpv
 set cleaner ctpvclear
@@ -63,22 +65,38 @@ cmd autocd ${{
     lf -remote "send $id quit"
 }}
 
+cmd toggle_info ${{
+    if [[ -n "$lf_info" ]] ; then
+        lf -remote "send ${id} set info"
+    else
+        lf -remote "send ${id} set info ${1}"
+    fi
+}}
 
 
-map e       np
-map <lt>p   set preview!
-map <lt>0   set ratios 1:2:3
-map <lt>1   set ratios 1:2:1
-map <lt>2   set ratios 1:2
-map <lt>3   set ratios 1:1
-map <lt>4   set ratios 2:1
-map <lt>5   :oneforone
-map <lt>7   set ratios 1:7
-map <esc>   clear
-map <enter> shell
+
+map e           np
+map <lt>p       set preview!
+map <lt><lt>    set ratios 1:3:5
+map <lt>0       set ratios 1:2:3
+map <lt>1       set ratios 1:2:1
+map <lt>2       set ratios 1:2
+map <lt>3       set ratios 1:1
+map <lt>4       set ratios 2:1
+map <lt>5       :oneforone
+map <lt>6       set ratios 1:6
+map <lt>7       set ratios 1:7
+map <lt>8       set ratios 1:8
+map <lt>9       set ratios 1:9
+map <esc>       clear
+map <enter>     shell
+
+map I       :toggle_info "size:atime"
+
 map H		set hidden!
 map d  	  	set dironly!
 map r 		set reverse!
+map U       :unselect; clear
 map TR		:trash
 map RR      :reload
 map RN		rename
@@ -87,6 +105,8 @@ map P		push :!echo<space>""<left>
 map ;		push ''
 map	K		:rep "3" "up"
 map J		:rep "3" "down"
+map VG		invert-below
+map Vg		:invert-below; invert
 #-----------CALL WITH THIS function to use autocd------------------#
 #
 #function cd_from_lf() {

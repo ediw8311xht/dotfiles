@@ -41,14 +41,6 @@ mps() {
 	else return 2 ; fi
     PS1+='\[\e[0m\]'
 } ; mps 'xs'
-
-kup() {
-    killall 'kiwix-serve'
-    sleep 3
-    cd "${KIWIX_DIRECTORY}"
-    ls
-    kiwix-serve *.zim --verbose --daemon --nodatealiases --address="127.0.0.1" --port="${KIWIX_PORT}"
-}
 run_flask() {
     #if cd "${MYWEB}" ; then
         #flask run --cert "${CERT_LOCALHOST}" --key "${KEY_LOCALHOST}"
@@ -164,21 +156,6 @@ bash_history_grab() {
         grep -Pi "${1}" "$HOME/.bash_history2"
     fi
 }
-killall_loaded() {
-    local jam="${*}"
-    if [[ "${*}" =~ ^-p ]] ; then
-        if ! local jam="${jam: 2}" || [[ "${#jam}" -lt 1 ]] ; then
-            echo "ERROR"; return 1
-        fi
-        echo "${jam}"
-        sleep 1
-        pkill -u "${USER}" -e "${jam}"
-    else
-        killall "${jam}"
-    fi
-    sleep 1
-    ps ax | grep -P "[${jam:: 1}]${jam: 1}"
-}
 function super_cd() {
     mode='m'
 
@@ -223,6 +200,7 @@ alias   tjs='       cj; python manage.py test'
 # -----------------------------------------------------------
 # ----- ONE LETTER <LOWER>
 # -----------------------------------------------------------
+alias       systemctl='systemctl --no-pager'
 alias       a='         get_alias_fzf'
 alias       b='         cd "$HOME/bin/"'
 alias       c='         cd ..'
@@ -255,6 +233,7 @@ alias       z='         zim'
 alias       C='         super_cd'
 alias       F='         grep -F'
 alias       E='         xcmenuctrl'
+alias       pgr='         $PAGER'
 alias       P='         readlink -f' # get full path of file
 #           X           RESERVED
 # -----------------------------------------------------------
@@ -262,6 +241,7 @@ alias       P='         readlink -f' # get full path of file
 # -----------------------------------------------------------
 
 # ----- TWO LETTER
+alias   loc='       locate'
 alias   sf='	    clear; screenfetch 2>/dev/null'
 alias   ac='        acheck'
 alias   pc='	    clear; neofetch'
@@ -280,9 +260,10 @@ alias   mf='        find . -iname'
 alias   ic='        clear; imgcat'
 alias   nv='        nvim'
 alias   vn='        nvim -o'
-alias   rf='        run_flask'
-alias   rgt='       \rg --hidden --ignore-file="$XDG_CONFIG_HOME/rg/rg.gitignore" --pcre2 -i'
-alias   rgh='       \rg --hidden -g '"'!*.html~'"' -g '"'!*.html'"' --ignore-file="$XDG_CONFIG_HOME/rg/rg.gitignore" --pcre2 -i'
+alias   frun='      run_flask'
+alias   rt='        \rg --hidden --ignore-file="$XDG_CONFIG_HOME/rg/rg_basic.gitignore" --pcre2 -i'
+alias   rh='        \rg --hidden --ignore-file="$XDG_CONFIG_HOME/rg/rg_html_web.gitignore" --pcre2 -i'
+alias   ro='        \rg --hidden --ignore-file="$XDG_CONFIG_HOME/rg/rg_html_web.gitignore" --one-file-system --pcre2 -i'
 alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf,apk,snap,out,jar,sx,s,bin,o,exe,deb,pyc,pyo,aac,webm,alac,ape,ogg,mp4,mkv,m4a,mp4a,avi,mp3,wav,flac}'
 alias   yg='        xg          --exclude=\*.{rar,tar,gz,tgz,zip,bz2,tbz2}'
 alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
@@ -295,8 +276,7 @@ alias   pd='        cd "$(xcmenu --clipboard)"'
 alias   lc='        compgen -c'
 alias   cz='        ccze -m ansi'
 alias   fm='        worker'
-alias   ka='        killall_loaded'
-alias   pg='        $PAGER'
+alias   ka='        killall'
 # THREE LETTER
 alias   kgo='       . "$HOME/.secrets"; cd "${KIWIX_DIRECTORY}"'
 alias   tma='       tmux attach'
@@ -322,8 +302,7 @@ alias   lsn="       lsd --icon='never' -l"
 alias   lst="       lsd --icon='never' -ltrh"
 alias   lsz="       lsd --icon='never' -lSrh"
 alias   psg='       ps ax | grep -Pi'
-alias   bsg='       ps ax | grep -Pv "/[^ ]*brave" | grep -Pi'
-alias   pgr='       pgrep -Pi'
+alias   bsg='       ps ax | grep -Pv "/usr/lib/brave" | grep -Pi'
 alias   inx='       inxi'
 alias   pse='       ps -eo comm=, | grep --ignore-case'
 alias   pso='       ps -eo cmd=, | grep --ignore-case'
@@ -331,25 +310,19 @@ alias   tre='       ps -ejH'
 alias   aud='       cd "$HOME/Audio/"'
 alias   rec='       cd "$HOME/Audio/Recordings"'
 alias   vcs='       sc-im'
-alias   men='       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" 2>/dev/null | $PAGER) <<< '
-alias   sap='       apropos'
 alias   slc='       compgen -c | grep -i'
 alias   gital='     git log --source --all -S'
+alias   gitc='      cd $CLONED; git clone'
 alias   alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
 alias   conf='      cd "$XDG_CONFIG_HOME"'
 alias   qread='     zathura  --fork "$(fzf)"'
 alias   free='      free -h'
 alias   bhagr='     cd "$BASH_HISTORY_ARCHIVE"; rg 2>/dev/null'
-alias   lookup='    cd $HOME/Notebooks/REFERENCE_SHEETS/MARKDOWN/;  lf ; cd -'
-alias   lookpdf='   cd $HOME/Notebooks/REFERENCE_SHEETS/PDF/;       lf ; cd -'
-alias   lookmd='    cd $HOME/Notebooks/REFERENCE_SHEETS/MARKDOWN/;  lf ; cd -'
-#alias   stack='     cd $HOME/Notebooks/REFERENCE_SHEETS/MARKDOWN/;  lf ; cd -'
 # Rename
 alias   testren='   perl-rename -v -n'
 alias   doren='     perl-rename -v'
 alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
 # Kill
-alias   kctpv='     kill "$(pidof "ctpv")"'
 alias   k_at_spi2=' killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher'
 alias   xprdet='    pkill -f "^[/]+usr[/]+bin[/]+xpra attach :${XPRA_DISPLAY_NUMBER}[ \$]"'
 alias   pfk='       pkill -f'
@@ -364,22 +337,27 @@ alias   tres='      ps -eHo euser,ruser,suser,fuser,f,comm,label'
 alias   decl='      declare -f'
 alias   pips='      poetry search'
 alias   pipf='      pip freeze'
+#--------MAN PAGES
+alias   men='       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" 2>/dev/null | $PAGER) <<< '
+alias   sap='       apropos'
+alias   manlist='   man -f'
 alias   sman='      man -K --regex'
 alias   gport='     gport_function'
 alias   isport='    (read _z; ss -lp "sport = :${_z}") <<< '
 alias   xprattach=' nohup /usr/bin/xpra attach :${XPRA_DISPLAY_NUMBER} &'
 alias   grab_dir='  xcmenu --input --clipboard "$(pwd)"'
 alias   git_mt='    git log --pretty=format:"%h %s" --graph'
-alias   mansec='    man -f'
-alias   listman='   man -f'
 alias   upfonts='   fc-cache && fc-cache-32; echo "return $?"'
 alias   getfont='   fc-list -v | grep -i '
 alias   list_coms=' compgen -c'
 alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | grep -Pi -- "${_z:-''}")) <<<'
-alias   spac='      expac -HM "%m %n" | sort -n'
-alias   pgspac='    expac -HM "%m %n" | sort -n | $PAGER'
-alias   grspac='    expac -HM "%m %n" | sort -n | grep -i'
+alias   spac='      expac -HM "%m %n" | sort -n'           # Size of packages pacman
+alias   pgspac='    expac -HM "%m %n" | sort -n | $PAGER'  # Size of packages pacman
+alias   grspac='    expac -HM "%m %n" | sort -n | grep -i' # Size of packages pacman
 alias   sct='       nohup scrcpy & disown; exit'
+alias   ezchmod='   chmod og-rwx -R .'
+alias   csq='       mount | grep -i squash; mount | grep -i overlay'
+
 #---------------------------------------------------------------------- #
 #-QUICK-ADDED-ALIASES                                                   #
 #---------------------------------------------------------------------- #
@@ -402,6 +380,7 @@ alias   clne='      cd "$CLONED"'
 #---------------------------------------------------------------------- #
 # - EXPORT -					                                        #
 #---------------------------------------------------------------------- #
+export  BACKUP="${HOME}/BACKUP_FILES"
 export  BASH_HISTORY_ARCHIVE="$HOME/Documents/BASH_HISTORY/"
 export  DOCUMENTS="$HOME/Documents/"
 export  DESKTOP="$HOME/Desktop/"
@@ -411,10 +390,7 @@ export  CLONED="$DESKTOP/CLONED/"
 export  PAGER='most'
 export  TERM='st-256color'
 export  EDITOR="nvim"
-export  HISTSIZE=10000
-export  HISTFILE="$HOME/.bash_history2"
-export  HISTCONTROL=ignoreboth
-export 	LESS='-R --use-color -Dd+r$Du+b'
+#export 	LESS='-R --use-color -Dd+r$Du+b'
 export  GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export  FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 export  XDG_CONFIG_HOME="$HOME/.config"
@@ -422,6 +398,9 @@ export  XDG_CACHE_HOME="$HOME/.cache"
 export  NO_AT_BRIDGE=1
 export  QT_QPA_PLATFORMTHEME="qt5ct"
 export  npm_config_prefix="$HOME/.local"
+export  HISTSIZE=10000
+export  HISTFILE="$HOME/.bash_history2"
+export  HISTCONTROL=ignoreboth
 
 #------------------------------------------------------------------------------------------------------------------------------------------------ #
 #####################   Fixes colored man pages when using `most`, for some reason, TY https://stackoverflow.com/users/26449/bill                 #
@@ -435,7 +414,7 @@ export  GROFF_NO_SGR=1 ### https://stackoverflow.com/a/32456403                 
 if  [ -d "$HOME/bin/"         	 ] ; then PATH="$HOME/bin/:$PATH"        	 ;	fi
 if  [ -d "$HOME/bin/txt2man"     ] ; then PATH="$HOME/bin/txt2man:$PATH"     ;	fi
 if  [ -d "$HOME/bin/i3wm"     	 ] ; then PATH="$HOME/bin/i3wm:$PATH"    	 ; 	fi
-#if  [ -d "$HOME/bin/mentat"      ] ; then PATH="$HOME/bin/mentat:$PATH"    	 ; 	fi
+#if  [ -d "$HOME/bin/mentat"      ] ; then PATH="$HOME/bin/mentat:$PATH"     ; 	fi
 if  [ -d "$HOME/bin/personal" 	 ] ; then PATH="$HOME/bin/personal:$PATH"	 ; 	fi
 if  [ -d "$HOME/bin/ufw"      	 ] ; then PATH="$HOME/bin/ufw:$PATH"     	 ; 	fi
 if  [ -d "$HOME/bin/random"   	 ] ; then PATH="$HOME/bin/random:$PATH"  	 ; 	fi
@@ -463,6 +442,7 @@ alias   pacdep='    pacman -T  --color=always'
 alias   yigse='     (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   yig='       (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   paclocal='  pacman -Qm'
+alias   yz='        yay --sortby="votes" -Ss'
 alias   yacool='    yay --color=always -Sl aur | grep "Installed" | grep'
 alias   yaycool='   yay --color=always -Sl aur | grep "Installed" | grep'
 alias   yayse='     yay --sortby="votes" -Ss'
@@ -528,8 +508,6 @@ alias   pyde='      deactivate'
 
 
 
-
-
 alias killun='killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher; killall tumblerd'
 
 alias sop='cd "$HOME/Videos/The_Sopranos_123456ab_Extras/"'
@@ -541,6 +519,9 @@ alias sop='cd "$HOME/Videos/The_Sopranos_123456ab_Extras/"'
 
 
 alias flip_images='mogrify -rotate 180 *.jpg'
+
+
+
 
 
 
