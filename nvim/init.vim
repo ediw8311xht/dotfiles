@@ -29,7 +29,7 @@ fu! CorrectColors()
     hi StatusLineNC cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#222222 guifg=#999999
     hi FoldColumn   cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#00ff00
     hi Folded       cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#999999
-    hi CursorLine   cterm=BOLD ctermfg=NONE ctermbg=18      gui=BOLD    guibg=NONE    guifg=NONE
+    hi CursorLine   cterm=BOLD ctermfg=NONE ctermbg=18      gui=BOLD    guibg=#000040 guifg=NONE
     hi CursorLineNr cterm=BOLD ctermfg=NONE ctermbg=18      gui=NONE    guibg=NONE    guifg=#FFFF00
     hi SignColumn   cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#000000
     hi LineNr       cterm=NONE ctermbg=NONE ctermfg=NONE    gui=NONE    guibg=#000000 guifg=#AAAAAA

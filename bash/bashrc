@@ -6,8 +6,11 @@
 #
 #-If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-alias ls='ls --color="auto" '
-alias grep='grep --colour="auto" '
+
+#-SPECIAL
+alias        ls='ls --color="auto" '
+alias      grep='grep --colour="auto" '
+alias systemctl='systemctl --no-pager'
 #PS0='$(pwd)\n'
 #PS0+='\e[0 q'
 #INSERT='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g'\'')'
@@ -200,7 +203,7 @@ alias   tjs='       cj; python manage.py test'
 # -----------------------------------------------------------
 # ----- ONE LETTER <LOWER>
 # -----------------------------------------------------------
-alias       systemctl='systemctl --no-pager'
+alias       ptc='       pactree --color' #Pacman Dependencies
 alias       a='         get_alias_fzf'
 alias       b='         cd "$HOME/bin/"'
 alias       c='         cd ..'
@@ -361,6 +364,8 @@ alias   grspac='    expac -HM "%m %n" | sort -n | grep -i' # Size of packages pa
 alias   sct='       nohup scrcpy & disown; exit'
 alias   ezchmod='   chmod og-rwx -R .'
 alias   csq='       mount | grep -i squash; mount | grep -i overlay'
+alias   jweb="/usr/lib/jvm/java-19-openjdk/bin/jwebserver"
+alias   pacdneed='pacman -Qet'
 
 #---------------------------------------------------------------------- #
 #-QUICK-ADDED-ALIASES                                                   #
@@ -431,8 +436,6 @@ set -o vi
 #---------------------------------------------------------------------- #
 #-END 									                                #
 #---------------------------------------------------------------------- #
-alias jweb="/usr/lib/jvm/java-19-openjdk/bin/jwebserver"
-alias pacdneed='pacman -Qet'
 
 alias   szof="      du -axhc --time --max-depth=1 | grep -Pv '^0[ \t]' | sort -h"
 alias   szofall='   du -ahc --time --max-depth=1'
@@ -461,7 +464,6 @@ alias   yayfiles='  pacman -Qql'
 alias   yaysel='    yay -Qs'
 alias   yayfrom='   yay -Qo'
 alias   springmr='  mvn spring-boot:run'
-
 alias   rqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*(Required[ \t]*By|Optional[ \t]*For)" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
 alias   pqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*Depends[ \t]*On" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
 alias   opqs='      (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*Optional[ \t]Deps*" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
@@ -491,51 +493,12 @@ alias   nvgr='      (echo ""; read -r _z; grep -Pri "${_z}" "$HOME/.config/nvim/
 alias   i3gr='      (echo ""; read -r _z; grep -Pri "${_z}" "$HOME/.config/i3/") <<< '
 alias   vid='       open_mpv'
 alias   vic='       open_mpv -close'
-
 alias   pipsl='     pip list | grep -i'
 alias   pip3sl='    pip3 list | grep -i'
 alias   pyac='      source *env*/bin/activate'
 alias   pyde='      deactivate'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-alias killun='killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher; killall tumblerd'
-
-
-
-
-
-
-
-
-alias flip_images='mogrify -rotate 180 *.jpg'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+alias   flip_img='  mogrify -rotate 180 *.jpg'
+alias   killun='    killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher; killall tumblerd'
 
 
 
