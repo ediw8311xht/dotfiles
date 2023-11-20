@@ -100,6 +100,8 @@
     #include bar_bar.conf
     include regular_bindings_i3wm.conf
     include modes_i3wm.conf
+#-------ASSIGN------------------------------------------------------------#
+    assign [class=".*Deluge.*"]             workspace 12
 #-------FOR_WINDOW--------------------------------------------------------#
     for_window [class=".*qutebrowser.*"]        floating enable, resize set 1400px 1000px, move scratchpad, scratchpad show, move position center
     for_window [class=".*icecat.*"]	            floating enable, resize set    $WSW  $WSH, move scratchpad, scratchpad show, move position center
@@ -116,12 +118,17 @@
     for_window [window_role="bubble"]           floating enable, move position center
     for_window [window_type="dialog"]           floating enable, move position center
     for_window [window_type="popup_menu"]       floating enable, move position center
+    #-------SPECIAL-XMESSAGE-----------#
     for_window [class="Xmessage"]			    floating enable
     no_focus   [class="Xmessage"]
-    for_window [all]        title_window_icon no
-    for_window [all]        title_format "<big><big><big><span background='#000000' rise='7pt'> <small><small>%title</small></small> </span></big></big></big>"
-    for_window [tiling]     border $BORDER_PIXEL_TILING
-    for_window [floating]   border $BORDER_PIXEL_FLOATING
+    #-------TITLE----------------------#
+    for_window [all]            title_window_icon no
+    for_window [all]            title_format "<big><big><big><span background='#000000' rise='7pt'> <small><small>%title</small></small> </span></big></big></big>"
+    #-------BORDER---------------------#
+    for_window [tiling]         border $BORDER_PIXEL_TILING
+    for_window [floating]       border $BORDER_PIXEL_FLOATING
+    floating_minimum_size       100 x 100
+    #focus_on_window_activation focus
     #for_window [scratchpad]   border $BORDER_PIXEL_FLOATING
     #for_window [scratchpad]   border pixel $BORDER_PIXEL_SCRATCHPAD
 #---------------------------------------------------------EXECS-----------#
@@ -138,4 +145,4 @@
 #-------END---------------------------------------------------------------#
 #for_window  [floating]                      resize set $WSW $WSH, move position center
 #for_window  [class="i3*input"]			                    resize  set         1000 1000
-#floating_minimum_size       100     x   100
+

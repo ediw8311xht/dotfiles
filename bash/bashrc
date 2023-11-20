@@ -209,12 +209,12 @@ alias       e='         xcmenu --input --clipboard'
 alias       f='         (read _x; find . -iname "*${_x}*") <<< '
 alias       g='         grep --perl-regexp --ignore-case'
 alias       h='         cd "$HOME"'
-alias       i='         iex'
+alias       i='         iex' # elixir
 alias       j='         flask run --cert="$HOME/ADD_TO_TRUSTED/mykey.crt" --key="$HOME/.cretse_ridi/mykey.pem"'
 alias       k='         kiwix-desktop'
 alias       l='         cd_from_lf'
 alias       m='         ./manage.py'
-alias       n="         lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
+alias       n="         lsd --icon='never' -rt --permission='octal'  --date=+'  %_H:%M  %y  %b  %_d  ' --blocks='permission,user,date,name'"
 alias       o='         open_prog'
 alias       p='         pwd'
 #           q
@@ -270,6 +270,7 @@ alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,az
 alias   tl='        tar -tf'
 alias   bt='        bsdtar'
 alias   ll="        lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
+alias   lla='       ll -a'
 alias   ht='        htop'
 alias   gd='        xcmenu --input --clipboard "$(pwd)"'
 alias   pd='        cd "$(xcmenu --clipboard)"'
@@ -301,9 +302,12 @@ alias   ldi='       fdisk -l -o +uuid'
 alias   lsn="       lsd --icon='never' -l"
 alias   lst="       lsd --icon='never' -ltrh"
 alias   lsz="       lsd --icon='never' -lSrh"
+alias   lsna='      lsn -a'
+alias   lsta='      lst -a'
+alias   lsza='       lsz -a'
 alias   psg='       ps ax | grep -Pi'
 alias   bsg='       ps ax | grep -Pv "/usr/lib/brave" | grep -Pi'
-alias   inx='       inxi'
+alias   inx='       inxi' # Computer stats, hardware
 alias   pse='       ps -eo comm=, | grep --ignore-case'
 alias   pso='       ps -eo cmd=, | grep --ignore-case'
 alias   tre='       ps -ejH'
@@ -510,7 +514,6 @@ alias   pyde='      deactivate'
 
 alias killun='killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher; killall tumblerd'
 
-alias sop='cd "$HOME/Videos/The_Sopranos_123456ab_Extras/"'
 
 
 
@@ -519,6 +522,7 @@ alias sop='cd "$HOME/Videos/The_Sopranos_123456ab_Extras/"'
 
 
 alias flip_images='mogrify -rotate 180 *.jpg'
+
 
 
 
