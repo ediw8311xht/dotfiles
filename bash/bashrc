@@ -271,6 +271,7 @@ alias   frun='      run_flask'
 alias   rt='        \rg --hidden --ignore-file="$XDG_CONFIG_HOME/rg/rg_basic.gitignore" --pcre2 -i'
 alias   rh='        \rg --hidden --ignore-file="$XDG_CONFIG_HOME/rg/rg_html_web.gitignore" --pcre2 -i'
 alias   ro='        \rg --hidden --ignore-file="$XDG_CONFIG_HOME/rg/rg_html_web.gitignore" --one-file-system --pcre2 -i'
+alias   gg='        grep -r -i'
 alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf,apk,snap,out,jar,sx,s,bin,o,exe,deb,pyc,pyo,aac,webm,alac,ape,ogg,mp4,mkv,m4a,mp4a,avi,mp3,wav,flac}'
 alias   yg='        xg          --exclude=\*.{rar,tar,gz,tgz,zip,bz2,tbz2}'
 alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
@@ -285,6 +286,8 @@ alias   lc='        compgen -c'
 alias   cz='        ccze -m ansi'
 alias   fm='        worker'
 alias   ka='        killall'
+alias   gf='        grep --file="-" -Fi "$HOME/.bashrc" <<<'
+alias   gr='        grep --file="-" -Pi "$HOME/.bashrc" <<<'
 # THREE LETTER
 alias   kgo='       . "$HOME/.secrets"; cd "${KIWIX_DIRECTORY}"'
 alias   tma='       tmux attach'
@@ -362,7 +365,7 @@ alias   git_mt='    git log --pretty=format:"%h %s" --graph'
 alias   upfonts='   fc-cache && fc-cache-32; echo "return $?"'
 alias   getfont='   fc-list -v | grep -i '
 alias   list_coms=' compgen -c'
-alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | grep -Pi -- "${_z:-''}")) <<<'
+#alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | grep -Pi -- "${_z:-''}")) <<<'
 alias   spac='      expac -HM "%m %n" | sort -n'           # Size of packages pacman
 alias   pgspac='    expac -HM "%m %n" | sort -n | $PAGER'  # Size of packages pacman
 alias   grspac='    expac -HM "%m %n" | sort -n | grep -i' # Size of packages pacman
@@ -402,6 +405,7 @@ export  DESKTOP="$HOME/Desktop/"
 export  DOWNLOADS="$HOME/Downloads/"
 export  CODING="$DESKTOP/Coding/"
 export  CLONED="$DESKTOP/CLONED/"
+export  LOCAL_BIN="$HOME/.local/bin" # By default this is in path (set by os, not by me) (just so i remember)
 #------------------------------------------------------------#
 #export 	LESS='-R --use-color -Dd+r$Du+b'
 #-----------------------------------------------APPLICATIONS-#
@@ -503,8 +507,8 @@ alias   editnv='    nvim $HOME/.config/nvim/init.vim'
 alias   emime='     nvim $HOME/.config/mimeapps.list'
 alias   ysb='       source $HOME/.bashrc'
 alias   capkey='    xev | grep -Pio '\''(keysym [^)]*)'\'
-alias   nvgr='      (echo ""; read -r _z; grep -Pri "${_z}" "$HOME/.config/nvim/") <<< '
-alias   i3gr='      (echo ""; read -r _z; grep -Pri "${_z}" "$HOME/.config/i3/") <<< '
+alias   nvgr='      grep --file="-" -Pri "$HOME/.config/nvim/" <<< '
+alias   i3gr='      grep --file="-" -Pri "$HOME/.config/i3/"   <<< '
 alias   vid='       open_mpv'
 alias   vic='       open_mpv -close'
 alias   pipsl='     pip list | grep -i'
