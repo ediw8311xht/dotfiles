@@ -90,7 +90,7 @@ special_float*font:         IosevkaNerdFont:style=Regular:pixelsize=14:antialias
 special_float*borderpx:     10px
 special_float*background:   #00090e
 special_float*foreground:   #0abdc6
-special_float*color0:       #123e7c
+special_float*color0:       #000000
 special_float*color1:       #ff0000
 special_float*color2:       #d300c4
 special_float*color3:       #f57800

@@ -8,9 +8,10 @@
 [[ $- != *i* ]] && return
 
 #-SPECIAL
-alias        ls='ls --color="auto" '
-alias      grep='grep --colour="auto" '
-alias systemctl='systemctl --no-pager'
+alias          ls='ls --color="auto" '
+alias        grep='grep --colour="auto" '
+alias   systemctl='systemctl --no-pager'
+alias        info='info --vi-keys'
 #PS0='$(pwd)\n'
 #PS0+='\e[0 q'
 #INSERT='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g'\'')'
@@ -188,6 +189,9 @@ function super_cd() {
 function sup_copy() {
     "${@}" | xcmenu --input --clipboard
 }
+function rg_with_p() {
+    rg "${@}" | $PAGER
+}
 #---------------------------------------------------------------------- #
 #-ALIASES								#
 #---------------------------------------------------------------------- #
@@ -236,7 +240,7 @@ alias       z='         zim'
 alias       C='         super_cd'
 alias       F='         grep -F'
 alias       E='         xcmenuctrl'
-alias       pgr='         $PAGER'
+alias       pgr='       $PAGER'
 alias       P='         readlink -f' # get full path of file
 #           X           RESERVED
 # -----------------------------------------------------------
@@ -345,6 +349,7 @@ alias   decl='      declare -f'
 alias   pips='      poetry search'
 alias   pipf='      pip freeze'
 #--------MAN PAGES
+alias   yayremove=' yay -Yc --noconfirm; yay -Sc --noconfirm; yay -Scc --noconfirm'
 alias   men='       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" 2>/dev/null | $PAGER) <<< '
 alias   sap='       apropos'
 alias   manlist='   man -f'
@@ -389,6 +394,7 @@ alias   clne='      cd "$CLONED"'
 #---------------------------------------------------------------------- #
 # - EXPORT -					                                        #
 #---------------------------------------------------------------------- #
+#-------------------------------------------------------MINE-#
 export  BACKUP="${HOME}/BACKUP_FILES"
 export  BASH_HISTORY_ARCHIVE="$HOME/Documents/BASH_HISTORY/"
 export  DOCUMENTS="$HOME/Documents/"
@@ -396,20 +402,28 @@ export  DESKTOP="$HOME/Desktop/"
 export  DOWNLOADS="$HOME/Downloads/"
 export  CODING="$DESKTOP/Coding/"
 export  CLONED="$DESKTOP/CLONED/"
-export  PAGER='most'
-export  TERM='st-256color'
-export  EDITOR="nvim"
+#------------------------------------------------------------#
 #export 	LESS='-R --use-color -Dd+r$Du+b'
-export  GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-export  FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-export  XDG_CONFIG_HOME="$HOME/.config"
-export  XDG_CACHE_HOME="$HOME/.cache"
+#-----------------------------------------------APPLICATIONS-#
 export  NO_AT_BRIDGE=1
 export  QT_QPA_PLATFORMTHEME="qt5ct"
 export  npm_config_prefix="$HOME/.local"
+export  GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+export  FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+#-----------------------------------------------------SYSTEM-#
+export  PAGER='most'
+export  TERM='st-256color'
+export  EDITOR="nvim"
+#------------------------------------------------XDG-STUFF---#
+export  XDG_CONFIG_HOME="$HOME/.config"
+export  XDG_CACHE_HOME="$HOME/.cache"
+#export  XDG_STATE_HOME="$HOME/.local/state/" # Have to fix dirs first
+#export  XDG_DATA_HOME="$HOME/.local/data/"   # Have to fix dirs first
+#-----------------------------------------------BASH-HISTORY-#
 export  HISTSIZE=10000
 export  HISTFILE="$HOME/.bash_history2"
 export  HISTCONTROL=ignoreboth
+#------------------------------------------------------------#
 
 #------------------------------------------------------------------------------------------------------------------------------------------------ #
 #####################   Fixes colored man pages when using `most`, for some reason, TY https://stackoverflow.com/users/26449/bill                 #
@@ -499,6 +513,8 @@ alias   pyac='      source *env*/bin/activate'
 alias   pyde='      deactivate'
 alias   flip_img='  mogrify -rotate 180 *.jpg'
 alias   killun='    killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher; killall tumblerd'
+
+
 
 
 
