@@ -4,19 +4,19 @@
 
 Software I use:
 
-    Distro:                     manjaro
+    Distro:                     manjaro, artix
     Display Manager:            ly
     Window Manager/Desktop:     i3wm
     Editor:                     neovim
     Pager:                      most
-    File Manager:               lf/thunar
+    File Manager:               lf/thunar/worker
     Terminal Emulator:          st (Luke Smith's fork: https://github.com/LukeSmithxyz/st)
     Shell:                      bash
     Compositor:                 xcompmgr
 
-Cool Software:                      
+Cool Software:
 
-    polybar, xwallpaper, mpv, zathura, lf, nsxiv, dmenu, deluge, xcmenu, xmessage, dunst, w3m, links, lynx, qutebrowser
+    polybar, xwallpaper, mpv, zathura, lf, nsxiv, dmenu, deluge, xcmenu, xmessage, dunst, w3m, links, lynx, qutebrowser, worker
 
 Images of my Desktop:
 
@@ -26,12 +26,6 @@ Images of my Desktop:
 <img src="images/03.png"    alt="desktop">
 <img src="images/04.png"    alt="desktop">
 <img src="images/05.png"    alt="desktop">
+<img src="images/06.png"    alt="desktop">
 <img src="images/07.png"    alt="desktop">
-<img src="images/08.png"    alt="desktop">
-<img src="images/09.png"    alt="desktop">
-<img src="images/10.png"    alt="desktop">
-<img src="images/11.png"    alt="desktop">
-<img src="images/12.png"    alt="desktop">
-<img src="images/13.png"    alt="desktop">
-<img src="images/14.png"    alt="desktop">
 <img src="images/00.png"    alt="desktop">

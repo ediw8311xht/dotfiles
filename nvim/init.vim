@@ -27,8 +27,8 @@ fu! CorrectColors()
     hi Normal       ctermbg=black guibg=#000000
     hi StatusLine   cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#102040 guifg=#00BB00
     hi StatusLineNC cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#222222 guifg=#999999
-    hi FoldColumn   cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#00ff00
-    hi Folded       cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#999999
+    hi FoldColumn   cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#00FF00
+    hi Folded       cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#444444
     hi CursorLine   cterm=BOLD ctermfg=NONE ctermbg=18      gui=BOLD    guibg=#000040 guifg=NONE
     hi CursorLineNr cterm=BOLD ctermfg=NONE ctermbg=18      gui=NONE    guibg=NONE    guifg=#FFFF00
     hi SignColumn   cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#000000
@@ -51,7 +51,7 @@ fu! L(keys, command, silent="0")
     end
 endfu
 
-fu! CyBac(nextprevious)
+fu! CycleBackground(nextprevious)
     let i = 0 | let current_background = synIDattr(hlID("Normal"), "bg")
     if current_background == ""
         let current_background="NONE"| "CATCH NO BACKGROUND (Transparency)
@@ -67,7 +67,7 @@ fu! CyBac(nextprevious)
     let i += 1 | endfor
 endfu
 
-fu! CyCol(nextprevious)
+fu! CycleColor(nextprevious)
     let i = 0 | let current_scheme = g:colors_name
     let lenny = len(g:myScheme)
     for _ in g:myScheme
@@ -81,13 +81,13 @@ fu! CyCol(nextprevious)
     let i += 1 | endfor
 endfu
 
-fu! Tog(c1, c2, r1, r2)
+fu! Toggle(c1, c2, r1, r2)
     if a:c1 == a:c2
     execute a:r1 | return | endif
     execute a:r2
 endfu
 
-fu! Cy(checkarr, cvar, doarr, nextprevious)
+fu! Cycle(checkarr, cvar, doarr, nextprevious)
     let lenny = len(a:checkarr) | let i = 0
     while i < lenny
         if a:checkarr[i] ==? a:cvar
@@ -167,38 +167,38 @@ let maplocalleader = " "
 
 "<--------- PLUGINS -------------------------------------------------------->
 call plug#begin()
-" Use release branch (recommend)
+" Language Servers. Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"treesitter, self explanatory
+" Treesitter, self explanatory
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-"show-all-matching-tags-vim
+" Show-all-matching-tags-vim
 Plug 'andymass/vim-matchup'
-"autoclose html tags
+" Autoclose html tags
 Plug 'alvan/vim-closetag'
-"autorename html tags
+" Autorename html tags
 Plug 'AndrewRadev/tagalong.vim'
-"syntax-for-lf
+" Syntax-for-lf
 Plug 'VebbNix/lf-vim'
-"Plug 'neovim/nvim-lspconfig'
-"syntax-for-i3
+" Syntax-for-i3
 Plug 'PotatoesMaster/i3-vim-syntax'
-"auto-save-restore-view :) --best plugin
+" Auto-save-restore-view :) --best plugin
 Plug 'https://github.com/vim-scripts/restore_view.vim'
-"realtime-html-editor
+" Real-time HTML/CSS/JS Editor
 Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
-"showmarks
+" Showmarks/ Better marks
 Plug 'chentoast/marks.nvim'
-"lilypondstuff--music-score-creation
-"Plug 'martineausimon/nvim-lilypond-suite'
-"req for lilypond, cool ui stuff
 Plug 'MunifTanjim/nui.nvim'
-"just for fun record stats about programming
-"Plug 'wakatime/vim-wakatime'
-"Plug 'ActivityWatch/aw-watcher-vim'
-" fzf finder
+" Fzf Finder
 Plug 'junegunn/fzf.vim'
+" Markdown Preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+" Semantic Highlighting for Python
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
+"-----------------NOT USED--------------------"
+""""Plug 'neovim/nvim-lspconfig'
+""""lilypondstuff--music-score-creation
+""""Plug 'martineausimon/nvim-lilypond-suite'
+"""" Required for lilypond, cool ui stuff
 call plug#end()
 
 "<--------_G-VAR_<leader>f_from-:-lf
@@ -223,21 +223,16 @@ let g:closetag_regions = {
     \ 'javascriptreact': 'jsxRegion',
     \ }
 " Shortcut for closing tags, default is '>'
-let g:closetag_shortcut = '>'
+"let g:closetag_shortcut = '<leader>'
 " Add > at current position without closing the current tag, default is ''
-let g:closetag_close_shortcut = '<leader>>'
+"let g:closetag_close_shortcut = ''
 "<hi> >
 
 "<--------- COLOR SCHEME STUFF --------------------------------------------->
 colorscheme pop-punk
-"colorscheme cyberpunk-neon
 :call CorrectColors()
-
 hi Normal       ctermbg=black guibg=Transparent
-
-""<--------- COCSTUFF ------------------------------------------------------->
 hi ColorColumn cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=#333333 guifg=NONE
-
 set guicursor=n:block90,i:ver20
 set cul
 set nocuc
@@ -250,30 +245,35 @@ set nocuc
 "----------------------------------
 "-- Leader Bindings              --
 "----------------------------------
-    " -- TOGGLE COC
-        call L( 'a'    ,     ':call Tog(g:coc_enabled, 0, ":CocEnable", ":CocDisable")<esc>')
-    " -- LIST AND GO TO BUFFER
+    " -- Toggle COC -- "
+        call L( 'a'    ,     ':call Toggle(g:coc_enabled, 0, ":CocEnable", ":CocDisable")<esc>')
+    " -- List and Go to Buffer -- "
         call L( 'b'    ,     ':ls<CR>:b<Space>')
     call L( 'c'    ,     ':set nocursorline!<esc>')
     call L( 'd'    ,     '<C-d>')
     call L( 'e'    ,     ':set cursorcolumn!<esc>')
     call L( 'f'    ,     ':set wrap!<esc>')
     call L( 'g'    ,     ':enew<esc>')
-    call L( 'h'    ,     ':call Tog(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc><C-L>')
-    call L( 'j'    ,     ':call CyCol(+1)<CR>')
+    call L( 'h'    ,     ':call Toggle(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc><C-L>')
+    call L( 'j'    ,     ':call CycleColor(+1)<CR>')
     call L( 'k'    ,     ':call CorrectColors()<CR>')
-    call L( 'l'    ,     ':call CyBac(+1)<CR>')
+    call L( 'l'    ,     ':call CycleBackground(+1)<CR>')
     call L( 'n'    ,     ':next<esc>')
     call L( 'oc'   ,     'q:iput=execute("")<esc>A<C-c>')
     call L( 'op'   ,     'q:<C-p><esc>Iput =execute("<esc>A")<esc>A<C-c>')
     call L( 'ox'   ,     ':put     =execute("<C-r>0")<esc>')
     call L( 'out'  ,     'q:iput =execute("<C-r>0")<esc>A<C-c>')
     call L( 'p'    ,     ':previous<esc>')
-    " -- DELETE BUFFER
+    " -- Delete Buffer (Pick) -- "
         call L( 'q'   ,      ':bd')
+    " -- Delete Current Buffer -- "
+        call L( 'D'    ,    ':bdelete<esc><enter>')
+        call L( 'ZC'   ,     ':bd<esc>')
+    " -- Delete Current Buffer (Don't Save) -- "
+        call L( 'ZG'   ,     ':bd!<esc>')
     call L( 'r'    ,     '<C-w>')
     call L( 's'    ,     ':%so "${HOME}/.config/nvim/init.vim"<esc>')
-    " -- Tab Stuff
+    " -- Tab Stuff -- "
         call L( 'tcc'  ,     ':tabclose<esc>')
         call L( 'tt'   ,     ':tabnew<esc>')
         call L( 'tn'   ,     ':tabmove +1<esc>')
@@ -284,32 +284,39 @@ set nocuc
         call L( 'tl'   ,     ':tablast<esc>')
         call L( 'tB'   ,     ':tabmove -1<esc>')
         call L( 'tN'   ,     ':tabmove +1<esc>')
-    call L( 'u'    ,     '<C-u>')
-    call L( 'var'  ,     ':let maxvar ="<C-r>1<C-r>0"')
-    call L( 'vf'   ,     '?<C-r>"<enter>')
-    call L( 'vm'   ,     ':put =eval("<C-r>0")')
-    call L( 'vq'   ,     ':put =eval("<C-r>0")<esc>')
-    call L( 'vv'   ,     ':call Cy(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<esc>')
-    call L( 'vz'   ,     'i<C-r>"')
-    call L( 'w'    ,     ':w<esc>')
-    call L( 'x'    ,     ':w<esc>:!%:p<esc>')
-    call L( 'y'    ,     ':hi Normal guibg=Transparent<esc>')
-    call L( 'z'    ,     'z')
-    " -- DELETE BUFFER
-        call L( 'ZC'   ,     ':bd<esc>')
-    " -- DELETE BUFFER
-        call L( 'ZG'   ,     ':bd!<esc>')
-    call L( 'B'    ,    ':Buffers<esc>')
-    call L( 'D'    ,    ':bdelete<esc><enter>')
+    " -- Half Page Up -- "
+        call L( 'u'    ,     '<C-u>')
+    " -- Search with Register -- "
+        call L( 'vf'   ,     '?<C-r>"<enter>')
+    " -- Eval Register -- "
+        call L( 'vm'   ,     ':put =eval("<C-r>0")')
+    " -- Eval Register (Automatic)-- "
+        call L( 'vq'   ,     ':put =eval("<C-r>0")<esc>')
+    " -- Virtual Edit Cycle -- "
+        call L( 'vv'   ,     ':call Cycle(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<esc>')
+    " -- Save -- "
+        call L( 'w'    ,     ':w<esc>')
+    " -- Execute -- "
+        call L( 'x'    ,     ':w<esc>:!%:p<esc>')
+    " -- Toggle Transparency -- "
+        call L( 'y'    ,    ':hi Normal guibg=Transparent<esc>')
+    " -- z does tons of stuff.... -- "
+        call L( 'z'    ,    'z')
+    " -- Show Buffers in Pane -- "
+        call L( 'B'    ,    ':Buffers<esc>')
     call L( 'G'    ,    ':buff term://<esc>iohttp://localhost:4842')
-    call L( 'H'    ,    ':vert helpgrep ')
-    call L( 'J'    ,    ':call CyCol(-1)<CR>')
-    call L( 'L'    ,    ':call CyBac(-1)<CR>')
+    " -- Help Grep -- "
+        call L( 'H'    ,    ':vert helpgrep ')
+    call L( 'J'    ,    ':call CycleColor(-1)<CR>')
+    call L( 'L'    ,    ':call CycleBackground(-1)<CR>')
     call L( 'M'    ,    ':messages<esc>')
     call L( 'N'    ,    ':cnext<esc>')
     call L( 'P'    ,    ':cprevious<esc>')
-    call L( '<C-w>line', ':call Tog(&cc, 0, "set cc=80", "set cc=0")<esc>')
-    "call L( 'S'    ,    ':BraceyStop<esc>')
+    call L( '<C-w>line', ':call Toggle(&cc, 0, "set cc=80", "set cc=0")<esc>')
+    " -- Start Bracy -- "
+        call L( 'WW'    ,   ':Bracey<esc>')
+    " -- Stop Bracy -- "
+        call L( 'S'    ,    ':BraceyStop<esc>')
     " -- OPEN TERMINAL
         call L( 'T'    ,    ':buff term://<esc>i')
     " -- OPEN WEB BROWSER

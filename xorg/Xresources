@@ -3,7 +3,7 @@ URxvt*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Bold:autohint=fal
 xterm*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Medium:autohint=false:antialias=false
 
 !!!!!!!!!!!!!!!!!!!!!!!!! -----------------_FONTS
-*.alpha:	    1
+*.alpha:	    0.94
 *.borderpx:     10px
 
 !!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTS
@@ -88,7 +88,7 @@ xterm*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Medium:autohint=f
 special_float*alpha:        1
 special_float*font:         IosevkaNerdFont:style=Regular:pixelsize=14:antialias=true
 special_float*borderpx:     10px
-special_float*background:   #00090e
+special_float*background:   #00070C
 special_float*foreground:   #0abdc6
 special_float*color0:       #000000
 special_float*color1:       #ff0000

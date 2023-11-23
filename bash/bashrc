@@ -7,26 +7,11 @@
 #-If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-#-SPECIAL
-alias          ls='ls --color="auto" '
-alias        grep='grep --colour="auto" '
-alias   systemctl='systemctl --no-pager'
-alias        info='info --vi-keys'
-#PS0='$(pwd)\n'
-#PS0+='\e[0 q'
-#INSERT='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g'\'')'
-#INSERT2='$(echo "${PWD/~/\~}" | perl -pe '\''s/^(\/[^\/]*|~)[\/]\K.*(?=\/[^\/]*$)/../g; s/[^ ]/ /g'\'')'
+set -o vi
+umask 077
 PS0='\e[0 q\[\e[0m\]'
 PS1='>'
 PS2='\e[0 q\[\e[0m\]'
-#PS1=''
-#PS1+='\[\e[1;37m\]['
-#PS1+='\[\e[m\]'
-#PS1+='\A\[\e[1;37m\]|'
-#PS1+='\[\e[1;32m\]'"${INSERT}"'/'
-#PS1+='\[\e[1;37m\]]\$ '
-#PS1+='\[\e[m\]'
-#PS2+='             '"${INSERT2}"
 # --------------------------------------------------------------------- #
 #  FUNCTIONS								                            #
 # --------------------------------------------------------------------- #
@@ -195,19 +180,18 @@ function rg_with_p() {
 #---------------------------------------------------------------------- #
 #-ALIASES								#
 #---------------------------------------------------------------------- #
-alias   listaudio=" find . -type f -iregex '.*[.]\(mp3\|flac\)'"
-alias   listpics="  find . -type f -iregex '.*[.]\(jp[e]?g\|png\|tiff\|webp\|bmp\|avif\)'"
-alias   listvids="  find . -type f -iregex '.*[.]\(mov\|m4v\|mkv\|mp[e]?[4vg]\|gif[v]?\|webm\|avi\|amv\)'"
-alias   listmedia=" listaudio; listpics; listvids"
-alias   sudo='      sudo -v; sudo '
-alias   rml='       rmlint --no-followlinks --keep-all-tagged --no-crossdev --paranoid --progress --types="duplicates"'
-alias   djs='       cj; python manage.py runserver; cd -'
-alias   tjs='       cj; python manage.py test'
 
 # -----------------------------------------------------------
-# ----- ONE LETTER <LOWER>
+# ----- SPECIAL
 # -----------------------------------------------------------
-alias       ptc='       pactree --color' #Pacman Dependencies
+alias          ls='ls --color="auto" '
+alias        grep='grep --colour="auto" '
+alias   systemctl='systemctl --no-pager'
+alias        info='info --vi-keys'
+alias        sudo='sudo -v; sudo '
+# ----------------------------------------------------------#
+#  ONE LETTER <LOWER>                                       #
+# ----------------------------------------------------------#
 alias       a='         get_alias_fzf'
 alias       b='         cd "$HOME/bin/"'
 alias       c='         cd ..'
@@ -234,21 +218,18 @@ alias       v='         sc-im'
 alias       x='         xdg-open'
 alias       y='         source .venv/bin/activate'
 alias       z='         zim'
-# -----------------------------------------------------------
-# ----- ONE LETTER <UPPER>
-# -----------------------------------------------------------
+# ----------------------------------------------------------#
+#  ONE LETTER <UPPER>                                       #
+# ----------------------------------------------------------#
 alias       C='         super_cd'
 alias       F='         grep -F'
 alias       E='         xcmenuctrl'
-alias       pgr='       $PAGER'
 alias       P='         readlink -f' # get full path of file
+alias       W='         cd "${MYWEB}"'
 #           X           RESERVED
-# -----------------------------------------------------------
-# -----------------------------------------------------------
-# -----------------------------------------------------------
-
-# ----- TWO LETTER
-alias   loc='       locate'
+# ----------------------------------------------------------#
+#  TWO LETTER <UPPER>                                       #
+# ----------------------------------------------------------#
 alias   sf='	    clear; screenfetch 2>/dev/null'
 alias   ac='        acheck'
 alias   pc='	    clear; neofetch'
@@ -267,11 +248,11 @@ alias   mf='        find . -iname'
 alias   ic='        clear; imgcat'
 alias   nv='        nvim'
 alias   vn='        nvim -o'
-alias   frun='      run_flask'
 alias   rt='        \rg --hidden --ignore-file="$XDG_CONFIG_HOME/rg/rg_basic.gitignore" --pcre2 -i'
 alias   rh='        \rg --hidden --ignore-file="$XDG_CONFIG_HOME/rg/rg_html_web.gitignore" --pcre2 -i'
 alias   ro='        \rg --hidden --ignore-file="$XDG_CONFIG_HOME/rg/rg_html_web.gitignore" --one-file-system --pcre2 -i'
-alias   gg='        grep -r -i'
+alias   gg='        grep -P -r -i'
+alias   ee='        subdl -i --username "${SUBDL_USERNAME}" --password "${SUBDL_PASSWORD}"'
 alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf,apk,snap,out,jar,sx,s,bin,o,exe,deb,pyc,pyo,aac,webm,alac,ape,ogg,mp4,mkv,m4a,mp4a,avi,mp3,wav,flac}'
 alias   yg='        xg          --exclude=\*.{rar,tar,gz,tgz,zip,bz2,tbz2}'
 alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
@@ -288,14 +269,19 @@ alias   fm='        worker'
 alias   ka='        killall'
 alias   gf='        grep --file="-" -Fi "$HOME/.bashrc" <<<'
 alias   gr='        grep --file="-" -Pi "$HOME/.bashrc" <<<'
-# THREE LETTER
-alias   kgo='       . "$HOME/.secrets"; cd "${KIWIX_DIRECTORY}"'
+# ----------------------------------------------------------#
+#  THREE LETTER                                             #
+# ----------------------------------------------------------#
+alias   rml='       rmlint --no-followlinks --keep-all-tagged --no-crossdev --paranoid --progress --types="duplicates"'
+alias   djs='       python manage.py runserver'
+alias   tjs='       python manage.py test'
+alias   ptc='       pactree --color' #Pacman Dependencies
+alias   pgr='       $PAGER'
+alias   loc='       locate'
 alias   tma='       tmux attach'
 alias   tmn='       tmux new-session -t mx'
 alias   tmd='       tmux detach'
 alias   cop='       xcmenu --input --clipboard'
-alias   copg='      sup_copy' #copy command
-alias   comv='      command -V'
 alias   nvp='       nvim -p'
 alias   nvr='       nvim -R'
 alias   nvo='       nvim -O'
@@ -312,9 +298,6 @@ alias   ldi='       fdisk -l -o +uuid'
 alias   lsn="       lsd --icon='never' -l"
 alias   lst="       lsd --icon='never' -ltrh"
 alias   lsz="       lsd --icon='never' -lSrh"
-alias   lsna='      lsn -a'
-alias   lsta='      lst -a'
-alias   lsza='       lsz -a'
 alias   psg='       ps ax | grep -Pi'
 alias   bsg='       ps ax | grep -Pv "/usr/lib/brave" | grep -Pi'
 alias   inx='       inxi' # Computer stats, hardware
@@ -325,6 +308,16 @@ alias   aud='       cd "$HOME/Audio/"'
 alias   rec='       cd "$HOME/Audio/Recordings"'
 alias   vcs='       sc-im'
 alias   slc='       compgen -c | grep -i'
+alias   frun='      run_flask'
+alias   copg='      sup_copy' #copy command
+alias   comv='      command -V'
+alias   lsna='      lsn -a'
+alias   lsta='      lst -a'
+alias   lsza='       lsz -a'
+alias   listaudio=" find . -type f -iregex '.*[.]\(mp3\|flac\)'"
+alias   listpics="  find . -type f -iregex '.*[.]\(jp[e]?g\|png\|tiff\|webp\|bmp\|avif\)'"
+alias   listvids="  find . -type f -iregex '.*[.]\(mov\|m4v\|mkv\|mp[e]?[4vg]\|gif[v]?\|webm\|avi\|amv\)'"
+alias   listmedia=" listaudio; listpics; listvids"
 alias   gital='     git log --source --all -S'
 alias   gitc='      cd $CLONED; git clone'
 alias   alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
@@ -332,17 +325,14 @@ alias   conf='      cd "$XDG_CONFIG_HOME"'
 alias   qread='     zathura  --fork "$(fzf)"'
 alias   free='      free -h'
 alias   bhagr='     cd "$BASH_HISTORY_ARCHIVE"; rg 2>/dev/null'
-# Rename
 alias   testren='   perl-rename -v -n'
 alias   doren='     perl-rename -v'
 alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
-# Kill
 alias   k_at_spi2=' killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher'
 alias   xprdet='    pkill -f "^[/]+usr[/]+bin[/]+xpra attach :${XPRA_DISPLAY_NUMBER}[ \$]"'
 alias   pfk='       pkill -f'
 alias   tracenet='  strace'
 alias   tarlist='   tar -tf'
-#-------------------------------------GREP---------------#
 alias   gclone='    cd "${CLONED}"; git clone'
 alias   nimg='      nsxiv -0 .'
 alias   pcal='      calcurse'
@@ -351,7 +341,6 @@ alias   tres='      ps -eHo euser,ruser,suser,fuser,f,comm,label'
 alias   decl='      declare -f'
 alias   pips='      poetry search'
 alias   pipf='      pip freeze'
-#--------MAN PAGES
 alias   yayremove=' yay -Yc --noconfirm; yay -Sc --noconfirm; yay -Scc --noconfirm'
 alias   men='       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" 2>/dev/null | $PAGER) <<< '
 alias   sap='       apropos'
@@ -374,15 +363,79 @@ alias   ezchmod='   chmod og-rwx -R .'
 alias   csq='       mount | grep -i squash; mount | grep -i overlay'
 alias   jweb="/usr/lib/jvm/java-19-openjdk/bin/jwebserver"
 alias   pacdneed='pacman -Qet'
-
+alias   pigse='     (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
+alias   pacreg='    pacman -Sq --color=always'
+alias   pacool='    pacman --color=always -Sl | grep -i installed | grep -i'
+alias   pacse='     pacman -Ss --color=always'
+alias   paci='      pacman -Si --color=always'
+alias   pacdep='    pacman -T  --color=always'
+alias   yigse='     (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
+alias   yig='       (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
+alias   paclocal='  pacman -Qm'
+alias   yz='        yay --sortby="votes" -Ss'
+alias   yacool='    yay --color=always -Sl aur | grep "Installed" | grep'
+alias   yaycool='   yay --color=always -Sl aur | grep "Installed" | grep'
+alias   yayse='     yay --sortby="votes" -Ss'
+alias   yaysename=' yay --sortby="votes" --searchby="name" -Ss'
+alias   yayi='      yay -Si'
+alias   yaysalt='   yay --color=always -Sl | grep -Pio ".*(?=\[installed\])"'
+alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
+alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
+alias   yayp='      yay -P --stats'
+alias   yayil='     yay -Qi'
+alias   yayfiles='  pacman -Qql'
+alias   yaysel='    yay -Qs'
+alias   yayfrom='   yay -Qo'
+alias   springmr='  mvn spring-boot:run'
+alias   rqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*(Required[ \t]*By|Optional[ \t]*For)" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
+alias   pqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*Depends[ \t]*On" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
+alias   opqs='      (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*Optional[ \t]Deps*" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
+alias   pacsel='    pacman -Qs'
+alias   pacil='     pacman -Qi'
+alias   pacprog="   pacman -F"
+alias   paclast="   expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
+alias   pacnot='    pacman --color=always -Sl | grep -v "installed" | xargs -d $"\n" | grep -P'
+alias   pacl='      yay --clean'
+alias   pacln='     yay -Scc; yay --clean'
+alias   pacfrom='   pacman -Qo'
+alias   pacfiles='  pacman -Qql'
+alias   sctl='      journalctl | ccze -m ansi'
+alias   pascel='    pacman -Qs'
+alias   yasyel='    yay -Qs'
+alias   pasce='     pacman -Ss'
+alias   yasye='     yay --sortby="votes" -Ss'
+alias   yasyename=' yay --sortby="votes" --searchby="name" -Ss'
+alias   i3e='       nvim -p "$HOME/.config/i3/"*'
+alias   ebash='     nvim $HOME/.bashrc; source ~/.bashrc'
+alias   einp='      nvim $HOME/.inputrc'
+alias   editnv='    nvim $HOME/.config/nvim/init.vim'
+alias   emime='     nvim $HOME/.config/mimeapps.list'
+alias   ysb='       source $HOME/.bashrc'
+alias   capkey='    xev | grep -Pio '\''(keysym [^)]*)'\'
+alias   nvgr='      grep --file="-" -Pri "$HOME/.config/nvim/" <<< '
+alias   i3gr='      grep --file="-" -Pri "$HOME/.config/i3/"   <<< '
+alias   vid='       open_mpv'
+alias   vic='       open_mpv -close'
+alias   pipsl='     pip list | grep -i'
+alias   pip3sl='    pip3 list | grep -i'
+alias   pyac='      source *env*/bin/activate'
+alias   pyde='      deactivate'
+alias   flip_img='  mogrify -rotate 180 *.jpg'
+alias   killun='    killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher; killall tumblerd'
+alias   szof="      du -axhc --time --max-depth=1 | grep -Pv '^0[ \t]' | sort -h"
+alias   szofall='   du -ahc  --time --max-depth=1'
+alias   bgsz="      szof | grep -P '^[^ ]*G'"
+alias   vids='      cd "$HOME/Videos/"'
 #---------------------------------------------------------------------- #
-#-QUICK-ADDED-ALIASES                                                   #
+# - CODING -                                                            #
 #---------------------------------------------------------------------- #
-# '{ ControlMask,          XK_q,                   clipcopy,       {.i =  0} },
-# '{ ControlMask,          XK_i,                   clippaste,      {.i =  0} },
-# '{ ControlMask,          XK_j,                   kscrolldown,    {.i = -1} },
-# '{ ControlMask,          XK_k,                   kscrollup,      {.i = -1} },
-# '{ ControlMask,          XK_s,                   externalpipe,   {.v = copyoutput } }
+alias   cde='       cd "$CODING"'
+alias   Zhtml='     cd "$CODING/HTML"'
+alias   Zpy='       cd "$CODING/PYTHON"'
+alias   Zhask='     cd "$CODING/HASKELL"'
+alias   Zlisp='     cd "$CODING/LISP"'
+alias   Zjs='       cd "$CODING/JS"'
+alias   Zjava='     cd "$HOME/Desktop/Coding/JAVA"'
 #---------------------------------------------------------------------- #
 # - CD -                                                                #
 #---------------------------------------------------------------------- #
@@ -448,77 +501,7 @@ if  [ -d "$HOME/bin/random"   	 ] ; then PATH="$HOME/bin/random:$PATH"  	 ; 	fi
 if  [ -d "$HOME/Desktop/MY_APPS" ] ; then PATH="$HOME/Desktop/MY_APPS:$PATH" ; 	fi
 if  [ -d "/etc/systemd/user" 	 ] ; then PATH="/etc/systemd/user:$PATH"     ; 	fi
 if  [ -d "/usr/bin"              ] ; then PATH="/usr/bin/:$PATH"             ;  fi
-
-set -o vi
-
 #---------------------------------------------------------------------- #
 #-END 									                                #
 #---------------------------------------------------------------------- #
-
-alias   szof="      du -axhc --time --max-depth=1 | grep -Pv '^0[ \t]' | sort -h"
-alias   szofall='   du -ahc --time --max-depth=1'
-alias   bgsz="      sudo szof | grep -P '^[^ ]*G'"
-alias   pigse='     (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
-alias   pacreg='    pacman -Sq --color=always'
-alias   pacool='    pacman --color=always -Sl | grep -i installed | grep -i'
-alias   pacse='     pacman -Ss --color=always'
-alias   paci='      pacman -Si --color=always'
-alias   pacdep='    pacman -T  --color=always'
-alias   yigse='     (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
-alias   yig='       (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
-alias   paclocal='  pacman -Qm'
-alias   yz='        yay --sortby="votes" -Ss'
-alias   yacool='    yay --color=always -Sl aur | grep "Installed" | grep'
-alias   yaycool='   yay --color=always -Sl aur | grep "Installed" | grep'
-alias   yayse='     yay --sortby="votes" -Ss'
-alias   yaysename=' yay --sortby="votes" --searchby="name" -Ss'
-alias   yayi='      yay -Si'
-alias   yaysalt='   yay --color=always -Sl | grep -Pio ".*(?=\[installed\])"'
-alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
-alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
-alias   yayp='      yay -P --stats'
-alias   yayil='     yay -Qi'
-alias   yayfiles='  pacman -Qql'
-alias   yaysel='    yay -Qs'
-alias   yayfrom='   yay -Qo'
-alias   springmr='  mvn spring-boot:run'
-alias   rqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*(Required[ \t]*By|Optional[ \t]*For)" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
-alias   pqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*Depends[ \t]*On" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
-alias   opqs='      (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*Optional[ \t]Deps*" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
-alias   pacsel='    pacman -Qs'
-alias   pacil='     pacman -Qi'
-alias   pacprog="   pacman -F"
-alias   paclast="   expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
-alias   pacnot='    pacman --color=always -Sl | grep -v "installed" | xargs -d $"\n" | grep -P'
-alias   pacl='      yay --clean'
-alias   pacln='     yay -Scc; yay --clean'
-alias   pacfrom='   pacman -Qo'
-alias   pacfiles='  pacman -Qql'
-alias   sctl='      journalctl | ccze -m ansi'
-alias   pascel='    pacman -Qs'
-alias   yasyel='    yay -Qs'
-alias   pasce='     pacman -Ss'
-alias   yasye='     yay --sortby="votes" -Ss'
-alias   yasyename=' yay --sortby="votes" --searchby="name" -Ss'
-alias   i3e='       nvim -p "$HOME/.config/i3/"*'                                                      #
-alias   ebash='     nvim $HOME/.bashrc; source ~/.bashrc'
-alias   einp='      nvim $HOME/.inputrc'
-alias   editnv='    nvim $HOME/.config/nvim/init.vim'
-alias   emime='     nvim $HOME/.config/mimeapps.list'
-alias   ysb='       source $HOME/.bashrc'
-alias   capkey='    xev | grep -Pio '\''(keysym [^)]*)'\'
-alias   nvgr='      grep --file="-" -Pri "$HOME/.config/nvim/" <<< '
-alias   i3gr='      grep --file="-" -Pri "$HOME/.config/i3/"   <<< '
-alias   vid='       open_mpv'
-alias   vic='       open_mpv -close'
-alias   pipsl='     pip list | grep -i'
-alias   pip3sl='    pip3 list | grep -i'
-alias   pyac='      source *env*/bin/activate'
-alias   pyde='      deactivate'
-alias   flip_img='  mogrify -rotate 180 *.jpg'
-alias   killun='    killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher; killall tumblerd'
-
-
-
-
 

@@ -4,7 +4,6 @@
 #---------------------------------------------------------------------|
 # i3 config file (v4)
 #-------------------------------------------------SPECIAL-BINDS-----------#
-    #set $focuse_BORD  #004f98
     #sticky toggle
     set $mode_be          exec killall xmessage ; mode
     set $xm_hd            exec $HOME/bin/xmsg_quick.sh
@@ -21,10 +20,7 @@
     set $SF_CTRL    bindsym     Mod1+Shift+Ctrl
     set $EXC        exec 	    --no-startup-id
     set $EXC_A      exec_always --no-startup-id
-    set $BORDER_PIXEL_DEFAULT     pixel 2
-    set $BORDER_PIXEL_TILING      pixel 2
-    set $BORDER_PIXEL_FLOATING    pixel 2
-    set $BORDER_PIXEL_SCRATCHPAD  pixel 2
+    set $BORDER_PIXEL pixel 2
     set $B1 ;
     set $B2 ;
     set $_  ;
@@ -32,15 +28,13 @@
     set $focuse_TEXT  #FFFFFF
     set $inacti_TEXT  #888888
     set $unfocu_TEXT  #888888
-    #set $focuse_BORD  #005500
-
-    set $focuse_BORD  #004f98
-    set $inacti_BORD  #999999
-    set $unfocu_BORD  #444444
-
+    #set $focuse_BORD  #004f98
+    set $focuse_BORD  #0088FF
+    set $inacti_BORD  #000000
+    set $unfocu_BORD  #333333
     set $focuse_TBAR  #004f98
-    set $inacti_TBAR  #999999
-    set $unfocu_TBAR  #444444
+    set $inacti_TBAR  #000000
+    set $unfocu_TBAR  #333333
 #-------------------------------------------------RESOURCES---------------#
     #-----LEFT_MONITOR-----------------------------------#
         set_from_resource $MON_1    i3wm.monitor1 DVI-D-1
@@ -49,12 +43,12 @@
     #----RIGHT_MONITOR-----------------------------------#
         set_from_resource $MON_3    i3wm.monitor3 DVI-D-1
     #----GAPS--------------------------------------------#
-        set_from_resource  $IN_GAPS   i3wm.IN_GAPS   10
-        set_from_resource $OUT_GAPS  i3wm.OUT_GAPS    5
-        set_from_resource $TOP_GAPS  i3wm.TOP_GAPS    0
-        set_from_resource $BOT_GAPS  i3wm.BOP_GAPS    0
-        set_from_resource   $R_GAPS    i3wm.R_GAPS    0
-        set_from_resource   $L_GAPS    i3wm.L_GAPS    0
+        set_from_resource $IN_GAPS  i3wm.IN_GAPS  0
+        set_from_resource $OUT_GAPS i3wm.OUT_GAPS 0
+        set_from_resource $TOP_GAPS i3wm.TOP_GAPS 0
+        set_from_resource $BOT_GAPS i3wm.BOP_GAPS 0
+        set_from_resource $R_GAPS   i3wm.R_GAPS   0
+        set_from_resource $L_GAPS   i3wm.L_GAPS   0
 #-------WORKSPACES--------------------------------------------------------#
     #-------------------------------LEFT--------#
         workspace    1  output	$MON_1
@@ -79,24 +73,25 @@
     focus_follows_mouse   yes
     floating_maximum_size 1920 x 1080
     font pango:Monospace 7
-    #default_border  $BORDER_PIXEL_DEFAULT
+    default_border  $BORDER_PIXEL
     #---GAPS------------------------------------------#
-        gaps inner   $IN_GAPS  
-        gaps outer  $OUT_GAPS 
-        gaps top 	$TOP_GAPS 
-        gaps bottom	$BOT_GAPS 
-        gaps right 	  $R_GAPS   
-        gaps left  	  $L_GAPS   
+        gaps inner  0
+        gaps outer  0
+        gaps top 	0
+        gaps bottom	0
+        gaps right 	0
+        gaps left  	0
     #---Class-----------------------Border----------Background------Text------------Indicator-------ChildBorder----#
-        client.focused              $focuse_TBAR    $focuse_TBAR    $focuse_TEXT    $focuse_BORD    $focuse_BORD
-        client.focused_inactive 	$inacti_TBAR 	$inacti_TBAR	$inacti_TEXT 	$inacti_BORD    $inacti_BORD
-        client.unfocused 			$unfocu_TBAR    $unfocu_TBAR    $unfocu_TEXT    $unfocu_BORD    $unfocu_BORD
+        client.focused              $focuse_TBAR    $focuse_TBAR    $focuse_TEXT    $focuse_TBAR    $focuse_BORD
+        client.focused_inactive 	$inacti_TBAR 	$inacti_TBAR	$inacti_TEXT 	$inacti_TBAR    $inacti_BORD
+        client.unfocused 			$unfocu_TBAR    $unfocu_TBAR    $unfocu_TEXT    $unfocu_TBAR    $unfocu_BORD
         client.focused_tab_title    $-              $-              #000cc2
         client.background       	$-
 #-------------------------------------------------------INCLUDE-----------#
     # for_window set border before release_border if you want to include
+    #for_window [all] border $BORDER_PIXEL
     # --------- ("release_border_i3wm.conf") needs to be included before others.
-    #include release_border_i3wm.conf
+    include release_border_i3wm.conf
     #include bar_bar.conf
     include regular_bindings_i3wm.conf
     include modes_i3wm.conf
@@ -122,15 +117,9 @@
     for_window [class="Xmessage"]			    floating enable
     no_focus   [class="Xmessage"]
     #-------TITLE----------------------#
-    for_window [all]            title_window_icon no
-    for_window [all]            title_format "<big><big><big><span background='#000000' rise='7pt'> <small><small>%title</small></small> </span></big></big></big>"
-    #-------BORDER---------------------#
-    for_window [tiling]         border $BORDER_PIXEL_TILING
-    for_window [floating]       border $BORDER_PIXEL_FLOATING
-    floating_minimum_size       100 x 100
-    #focus_on_window_activation focus
-    #for_window [scratchpad]   border $BORDER_PIXEL_FLOATING
-    #for_window [scratchpad]   border pixel $BORDER_PIXEL_SCRATCHPAD
+    for_window [all] title_window_icon no
+    for_window [all] title_format "<big><big><big><span background='#000000' rise='7pt'> <small><small>%title</small></small> </span></big></big></big>"
+    #floating_minimum_size       100 x 100 #focus_on_window_activation focus
 #---------------------------------------------------------EXECS-----------#
     $EXC    xcmenu
     $EXC    xcompmgr 	-C
@@ -145,4 +134,3 @@
 #-------END---------------------------------------------------------------#
 #for_window  [floating]                      resize set $WSW $WSH, move position center
 #for_window  [class="i3*input"]			                    resize  set         1000 1000
-

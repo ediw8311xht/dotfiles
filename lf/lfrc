@@ -73,8 +73,19 @@ cmd toggle_info ${{
     fi
 }}
 
-
-
+map C 		:quit
+map Q 		&lf -remote 'send quit'; lf -remote 'quit'
+map o 		:openthis
+map O 		$xdg-open --ask "${f}"
+map m       push :!mkdir<space>
+map m       push :!mkdir<space>
+map <gt>h   cd ~/
+map <gt>b   cd ~/bin/
+map <gt>c   cd ~/Desktop/Coding/
+map <gt>d   cd ~/Desktop/
+map <gt>D   cd ~/Downloads/
+map <gt>p   cd ~/Pictures/
+map <gt>v   cd ~/Videos/
 map e           np
 map <lt>p       set preview!
 map <lt><lt>    set ratios 1:3:5
@@ -90,9 +101,7 @@ map <lt>8       set ratios 1:8
 map <lt>9       set ratios 1:9
 map <esc>       clear
 map <enter>     shell
-
 map I       :toggle_info "size:atime"
-
 map H		set hidden!
 map d  	  	set dironly!
 map r 		set reverse!
@@ -107,21 +116,20 @@ map	K		:rep "3" "up"
 map J		:rep "3" "down"
 map VG		invert-below
 map Vg		:invert-below; invert
+#------------------------------------------------------------------#
 #-----------CALL WITH THIS function to use autocd------------------#
-#
-#function cd_from_lf() {
-#    lf
-#    if a="$(ls -1 -tr /tmp/lf* | tail -1)"
-#    then
-#        cd "$(cat "${a}")" || return 1
-#        trash-put "${a}"
-#    fi
-#}
-#
+#------------------------------------------------------------------#
 map q 		:autocd
-map C 		:quit
-map Q 		&lf -remote 'send quit'; lf -remote 'quit'
-map o 		:openthis
-map O 		$xdg-open --ask "${f}"
+#
+#   function cd_from_lf() {
+#       lf
+#       if a="$(ls -1 -tr /tmp/lf* | tail -1)"
+#       then
+#           cd "$(cat "${a}")" || return 1
+#           trash-put "${a}"
+#       fi
+#   }
+#
+
 
 
