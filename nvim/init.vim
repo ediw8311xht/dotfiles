@@ -167,48 +167,52 @@ let maplocalleader = " "
 "<--------- PLUGINS -------------------------------------------------------->
 call plug#begin()
 " Language Servers. Use release branch (recommend)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Treesitter, self explanatory
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Treesitter, extra stuff
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 " Show-all-matching-tags-vim
-Plug 'andymass/vim-matchup'
+    Plug 'andymass/vim-matchup'
 " Autoclose HTML tags
-Plug 'alvan/vim-closetag'
+    Plug 'alvan/vim-closetag'
 " Autorename HTML tags
-Plug 'AndrewRadev/tagalong.vim'
+    Plug 'AndrewRadev/tagalong.vim'
 " Syntax-for-lf
-Plug 'VebbNix/lf-vim'
+    Plug 'VebbNix/lf-vim'
 " Syntax-for-i3
-Plug 'PotatoesMaster/i3-vim-syntax'
+    Plug 'PotatoesMaster/i3-vim-syntax'
 " Auto-save-restore-view :) --best plugin
-Plug 'https://github.com/vim-scripts/restore_view.vim'
+    Plug 'https://github.com/vim-scripts/restore_view.vim'
 " Real-time HTML/CSS/JS Editor
-Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
+    Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 " Showmarks/ Better marks
-Plug 'chentoast/marks.nvim'
+    Plug 'chentoast/marks.nvim'
 " Requirements for lilypond (not using anymore), cool ui stuff
-Plug 'MunifTanjim/nui.nvim'
+    Plug 'MunifTanjim/nui.nvim'
 " Fzf Finder
-Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf.vim'
 " Markdown Preview
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " Semantic Highlighting for Python
-Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
+    Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
+" For lf.vim
+    Plug 'ptzz/lf.vim'
+    Plug 'voldikss/vim-floaterm'
 "-----------------NOT USED--------------------"
-""""Plug 'neovim/nvim-lspconfig'
-""""lilypondstuff--music-score-creation
-""""Plug 'martineausimon/nvim-lilypond-suite'
-"""" Required for lilypond, cool ui stuff
+    """"Plug 'neovim/nvim-lspconfig'
+    """"lilypondstuff--music-score-creation
+    """"Plug 'martineausimon/nvim-lilypond-suite'
+    """" Required for lilypond, cool ui stuff
 call plug#end()
 
 "<--------_G-VAR_<leader>f_from-:-lf
 lua require('base')
-let g:bracey_refresh_on_save    = 1
-let g:bracey_eval_on_save       = 1
-let g:bracey_auto_start_browser = 0
-let g:bracey_server_port        = 4842
+"---- Bracey Settings ----"
+    let g:bracey_refresh_on_save    = 1
+    let g:bracey_eval_on_save       = 1
+    let g:bracey_auto_start_browser = 0
+    let g:bracey_server_port        = 4842
 let g:lf_map_keys   = 0
 let g:html_mode     = 1
 let g:is_bash       = 1
