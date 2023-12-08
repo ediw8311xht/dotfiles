@@ -199,11 +199,6 @@ call plug#begin()
 " For lf.vim
     Plug 'ptzz/lf.vim'
     Plug 'voldikss/vim-floaterm'
-"-----------------NOT USED--------------------"
-    """"Plug 'neovim/nvim-lspconfig'
-    """"lilypondstuff--music-score-creation
-    """"Plug 'martineausimon/nvim-lilypond-suite'
-    """" Required for lilypond, cool ui stuff
 call plug#end()
 
 "<--------_G-VAR_<leader>f_from-:-lf
@@ -213,7 +208,8 @@ lua require('base')
     let g:bracey_eval_on_save       = 1
     let g:bracey_auto_start_browser = 0
     let g:bracey_server_port        = 4842
-let g:lf_map_keys   = 0
+"---- For 'ptzz/lf.vim' ----"
+    let g:lf_map_keys   = 0
 let g:html_mode     = 1
 let g:is_bash       = 1
 "-----------------CLOSETAG
@@ -246,7 +242,6 @@ set nocuc
 "nn <leader>stupidv :%s/\t/    /g<esc>
 "list keybindings with :help index
 "list user keybindings with :map
-"nn <leader>. :NERDTreeToggle<esc>
 
 "----------------------------------
 "-- Leader Bindings              --
@@ -264,8 +259,8 @@ set nocuc
         call L( 'c'        ,     ':set nocursorline!<esc>')
     " -- Toggle Cursorcolumn -- "
         call L( 'e'        ,     ':set cursorcolumn!<esc>')
-    " -- Half Page Up -- "
-        call L( 'u'        ,     '<C-u>')
+    " -- Open LF -- "
+        call L( 'u'        ,     ':Lf<esc>')
     " -- Half Page Down -- "
         call L( 'd'        ,     '<C-d>')
     " -- Toggle Word Wrap -- "
