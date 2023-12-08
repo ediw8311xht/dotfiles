@@ -65,11 +65,21 @@ my_cd()	{
     cd "${@:-"$(fd -H -t d 2>/dev/null | fzf --preview="ls -1 {}")"}"
 }
 open_mpv() {
-    local AUD CLOSE
-    [[ "${1,,}" =~ ^-m(ono)?  ]] && AUD="mono"     && shift 1
-    [[ "${1,,}" =~ ^-c(lose)? ]] && CLOSE="close"  && shift 1
+    local AUD CLOSE FILE_FZF
+    while [[ "${1,,}" =~ ^-[-?].*$ ]] ; do
+        [[ "${1,,}" =~ ^-m(ono)?      ]] && AUD="mono"
+        [[ "${1,,}" =~ ^(-c|--close)$ ]] && CLOSE="close"
+        [[ "${1,,}" =~ ^(-f|--fzf)$   ]] && \
+            FILE_FZF="$(fd --hidden "[.](mp4|mkv|avi|mpeg|mpeg4|mpv|mpv4|m4v|mpg|m4p|mov|wmv|webm)$" | fzf --preview="ctpv {}")"
+            [[ ! -f "${FILE_FZF}" ]] && return 1
+        shift 1
+    done
 
-    mpv --audio-channels="${AUD:-"auto"}" "${@:-.}" & disown
+    if [[ -n "${FILE_FZF}" ]] ; then
+        mpv --audio-channels="${AUD:-"auto"}" "${FILE_FZF}" & disown
+    else
+        mpv --audio-channels="${AUD:-"auto"}" "${@:-.}" & disown
+    fi
     [[ "${CLOSE}" = 'close' ]] && exit
 }
 open_prog() {
@@ -359,6 +369,7 @@ alias   capkey='    xev | grep -Pio '\''(keysym [^)]*)'\'
 alias   nvgr='      grep --file="-" -Pri "$HOME/.config/nvim/" <<< '
 alias   i3gr='      grep --file="-" -Pri "$HOME/.config/i3/"   <<< '
 alias   vid='       open_mpv'
+alias   fvid='      open_mpv --fzf'
 alias   flip_img='  mogrify -rotate 180 *.jpg'
 alias   killun='    killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher; killall tumblerd'
 alias   szof="      du -axhc --time --max-depth=1 | grep -Pv '^0[ \t]' | sort -h"
