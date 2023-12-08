@@ -272,7 +272,7 @@ alias   listmedia=" listaudio; listpics; listvids"
 alias   gital='     git log --source --all -S'
 alias   alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
 alias   conf='      cd "$XDG_CONFIG_HOME"'
-alias   fread='     find . -iregex ".*[.]\(pdf\|epub\|mobi\|azw2\|djvu\)" | fzf --preview="ctpv {}" --print0 | xargs -0 -r -o zathura'
+alias   fread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --preview="ctpv {}" --print0 | xargs -0 -r -o zathura --fork'
 alias   bhagr='     cd "$BASH_HISTORY_ARCHIVE"; rg 2>/dev/null'
 alias   testren='   perl-rename -v -n'
 alias   doren='     perl-rename -v'
