@@ -217,7 +217,7 @@ alias   po='        ps -eo cmd=,'
 alias   hb='        nvim $HOME/.bash_history2'
 alias   cl="        printf '\n%.0s_______________________________' {1..400} ; printf '%.0s\n' {1..500} ; clear"
 alias   fz='        my_cd'
-alias   nx='        xdg-open "$(fzf --preview="ctpv {}")"'
+alias   xf='        xdg-open "$(fzf --preview="ctpv {}")"'
 alias   nf='        rg --ignore-file="$XDG_CONFIG_HOME/rg/code.rg" --hidden --files . 2>/dev/null | fzf --preview="highlight -O ansi -l {} 2>/dev/null" --print0 | xargs -0 -r -o nvim'
 alias   hf='        find $HOME -iname'
 alias   ic='        clear; imgcat'
@@ -272,7 +272,7 @@ alias   listmedia=" listaudio; listpics; listvids"
 alias   gital='     git log --source --all -S'
 alias   alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
 alias   conf='      cd "$XDG_CONFIG_HOME"'
-alias   qread='     zathura  --fork "$(fzf)"'
+alias   fread='     find . -iregex ".*[.]\(pdf\|epub\|mobi\|azw2\|djvu\)" | fzf --preview="ctpv {}" --print0 | xargs -0 -r -o zathura'
 alias   bhagr='     cd "$BASH_HISTORY_ARCHIVE"; rg 2>/dev/null'
 alias   testren='   perl-rename -v -n'
 alias   doren='     perl-rename -v'
@@ -401,6 +401,7 @@ alias   clne='      cd "$CLONED"'
 #-----------------------------------------------------------------------#
 #########################################################################
 #-----------------------------------------------------SYSTEM-#
+export  FZF_DEFAULT_COMMAND='fd -u'
 export  FZF_DEFAULT_OPTS='--bind ctrl-u:half-page-up
                           --bind ctrl-d:half-page-down
                           --bind ctrl-g:preview-half-page-down
@@ -450,4 +451,3 @@ if  [ -d "$HOME/bin/random"   	 ] ; then PATH="$HOME/bin/random:$PATH"  	 ; 	fi
 if  [ -d "$HOME/Desktop/MY_APPS" ] ; then PATH="$HOME/Desktop/MY_APPS:$PATH" ; 	fi
 if  [ -d "/etc/systemd/user" 	 ] ; then PATH="/etc/systemd/user:$PATH"     ; 	fi
 if  [ -d "/usr/bin"              ] ; then PATH="/usr/bin/:$PATH"             ;  fi
-

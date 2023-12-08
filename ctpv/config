@@ -1,0 +1,21 @@
+#!/usr/bin/bash
+
+#set forceueberzug
+set shell "/usr/bin/bash"
+
+preview myepub .epub {{
+    gname="/tmp/gnome_epub_$(date +%9N).png"
+    a="$((w*h))"
+    [[ "${a}" -gt 500 ]] && a="500"
+    gnome-epub-thumbnailer -s "${a}" "${f}" "${gname}"
+    setup_image
+    send_image "${gname}"
+}}
+
+#preview myepub .epub {{
+#    gnome-epub-thumbnailer "${f}" "/tmp/abcd.png"
+#    declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
+#        [x]="$x" [y]="$y" [width]="$w" [height]="$h" \
+#        [path]="/tmp/abcd.png") \
+#        > "$FIFO_UEBERZUG"
+#}}
