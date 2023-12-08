@@ -218,7 +218,7 @@ alias   hb='        nvim $HOME/.bash_history2'
 alias   cl="        printf '\n%.0s_______________________________' {1..400} ; printf '%.0s\n' {1..500} ; clear"
 alias   fz='        my_cd'
 alias   nx='        xdg-open "$(fzf --preview="ctpv {}")"'
-alias   nf='        fzf --preview="highlight -O ansi -l {} 2>/dev/null" --print0 | xargs -0 -r -o nvim'
+alias   nf='        rg --ignore-file="$XDG_CONFIG_HOME/rg/code.rg" --hidden --files . 2>/dev/null | fzf --preview="highlight -O ansi -l {} 2>/dev/null" --print0 | xargs -0 -r -o nvim'
 alias   hf='        find $HOME -iname'
 alias   ic='        clear; imgcat'
 alias   nv='        nvim'
