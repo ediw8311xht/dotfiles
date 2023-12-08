@@ -1,5 +1,5 @@
 
-set shell sh
+set shell bash
 set shellopts '-eu'
 ##USE DOUBLE QUOTES FOR 'set ifs "something"'
 #set period 1
@@ -37,13 +37,15 @@ cmd rep &{{
 }}
 
 cmd open &{{
-    case "$(mimetype -Lb ${f})" in
-        text/*) lf -remote "send $id \$$EDITOR \$fx";;
-        application/x-shellscript) lf -remote "send $id \$$EDITOR \$fx";;
-        application/x-wine-extension-ini) echo "HERE"; lf -remote "send $id \$$EDITOR \$fx";;
-        *) for f in $fx; do $OPENER "${f}" > /dev/null 2> /dev/null & done;;
-    esac
-    &xdg-open "${f}"
+    for i in ${fx[@]} ; do
+        zz="$(xdg-mime query default "$(mimetype -Lb "${i}")")"
+        if ! [[ "${zz}" = "${EDITOR}.desktop" ]] ; then
+            for j in ${fx[@]}; do
+                mimeopen "${j}" &>/dev/null & disown
+            done && return
+        fi
+    done
+    lf -remote "send $id \$$EDITOR \$fx"
 }}
 
 cmd oneforone &{{
@@ -51,15 +53,12 @@ cmd oneforone &{{
     lf -remote "send ${id} set ratios 1"
 }}
 
-cmd openthis &{{
-    for i in $fx ; do xdg-open "${i}" &  done
-}}
-
 cmd trash ${{
-    for i in $fx ; do trash-put "${i}" ;  done
+    for i in ${fx[@]} ; do
+        trash-put "${i}"
+    done
 }}
 
-#---automatically change directories on exit of lf
 cmd autocd ${{
     echo "${PWD}" > "$(mktemp /tmp/tmplf.XXXXXXXX)"
     lf -remote "send $id quit"

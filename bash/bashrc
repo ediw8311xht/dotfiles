@@ -462,3 +462,4 @@ if  [ -d "$HOME/bin/random"   	 ] ; then PATH="$HOME/bin/random:$PATH"  	 ; 	fi
 if  [ -d "$HOME/Desktop/MY_APPS" ] ; then PATH="$HOME/Desktop/MY_APPS:$PATH" ; 	fi
 if  [ -d "/etc/systemd/user" 	 ] ; then PATH="/etc/systemd/user:$PATH"     ; 	fi
 if  [ -d "/usr/bin"              ] ; then PATH="/usr/bin/:$PATH"             ;  fi
+

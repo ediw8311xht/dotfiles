@@ -25,8 +25,8 @@ let g:python3_host_prog="/usr/bin/python"
 fu! CorrectColors()
     hi ExtraWhiteSpace cterm=NONE ctermbg=gray ctermfg=NONE  gui=NONE guibg=#0000FF
     hi Normal       ctermbg=black guibg=#000000
-    hi StatusLine   cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#102040 guifg=#00BB00
-    hi StatusLineNC cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#222222 guifg=#999999
+    hi StatusLine   cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#000033 guifg=#00FF00
+    hi StatusLineNC cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#444444 guifg=#000000
     hi FoldColumn   cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#00FF00
     hi Folded       cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#444444
     hi CursorLine   cterm=BOLD ctermfg=NONE ctermbg=18      gui=BOLD    guibg=#000040 guifg=NONE
@@ -197,10 +197,11 @@ call plug#begin()
 " Semantic Highlighting for Python
     Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 " For lf.vim
-    Plug 'ptzz/lf.vim'
     Plug 'voldikss/vim-floaterm'
+    Plug 'ptzz/lf.vim'
+" Elixir
+    Plug 'elixir-editors/vim-elixir'
 call plug#end()
-
 "<--------_G-VAR_<leader>f_from-:-lf
 lua require('base')
 "---- Bracey Settings ----"
@@ -436,11 +437,11 @@ set nocuc
 " BELOW 4 lines do that riff on that
 set cedit=\<C-c>
 "<--------- STATUS LINE ---------------------------------------------------->
-set statusline=\ %F\ \|
-set statusline+=\%l\(%L\)\|%v\ 
+set statusline=\ [%n]\ 
+set statusline+=\ %F\ 
 set statusline+=%m\ 
-set statusline+=%=\ [%n]\ 
-set statusline+=%=\ %L\ l,\ 
+"set statusline+=%=\ %L\ l,\ 
+set statusline+=%=\(%l\/%L\)\ (%v\)\ 
 set statusline+=%{wordcount().words}\ w\ 
 
 autocmd BufNewFile,BufRead *.sh                         set syntax=zsh

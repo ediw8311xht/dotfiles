@@ -3,8 +3,13 @@
 	"coc.preferences.useQuickfixForLocations": true,
 	"coc.preferences.extensionUpdateCheck": "never",
 	"diagnostic.checkCurrentLine": true,
+    "codeLens.enable": true,
 
     "languageserver": {
+        "elixirLS": {
+            "command": "/usr/lib/elixir-ls/language_server.sh",
+            "filetypes": ["elixir", "eelixir"]
+        },
         "java": {
             "command": "ccls",
             "filetypes": [".java"],
