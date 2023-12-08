@@ -50,6 +50,12 @@ Trash-1000/
 Trash-0/
 wheel/
 virtualenv/
+SoftMaker/
+Library/
+Audio/
+Videos/
+BACKUP_FILES/
+LOG/
 
 .emacs.d/elpa/
 .emacs.d/auto-save-list/
@@ -74,6 +80,7 @@ virtualenv/
 
 *.flac
 *.mp3
+*.mp4a
 
 *.svg
 *.jpg
@@ -81,6 +88,7 @@ virtualenv/
 *.gif
 *.png
 *.webp
+*.ico
 
 *.pdf
 *.epub
@@ -99,5 +107,10 @@ virtualenv/
 *.cache
 *.data
 *.db
+*.torrent
+*.docx
+*.osp
+*.odp
+*.kdbx
 
 

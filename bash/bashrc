@@ -401,6 +401,11 @@ alias   clne='      cd "$CLONED"'
 #-----------------------------------------------------------------------#
 #########################################################################
 #-----------------------------------------------------SYSTEM-#
+export  FZF_DEFAULT_OPTS='--bind ctrl-u:half-page-up
+                          --bind ctrl-d:half-page-down
+                          --bind ctrl-g:preview-half-page-down
+                          --bind ctrl-h:preview-half-page-up
+                          --bind ctrl-space:toggle-preview'
 export  PAGER='most'
 export  TERM='st-256color'
 export  TERMINAL='/usr/local/bin/st'
