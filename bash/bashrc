@@ -6,15 +6,23 @@
 #
 #-If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-
+#########################################################################
 set -o vi
 umask 077
+#########################################################################
 PS0='\e[0 q\[\e[0m\]'
 PS1='>'
 PS2='\e[0 q\[\e[0m\]'
-# --------------------------------------------------------------------- #
+#########################################################################
+#-----------------------------------------------------------------------#
 #  FUNCTIONS								                            #
-# --------------------------------------------------------------------- #
+#-----------------------------------------------------------------------#
+#########################################################################
+git_clone() {
+    cd "${CLONED}"
+    git clone "${@}"
+    #tee
+}
 mps() {
 	local a='\[\e[00;01;07;34m\]' ; local e='\[\e[00;01m\]' ; local j='\[\e[00;01;34m\]' ; local n='\[\e[00;01;33m\]'
 	local b='\D{%F}'              ; local d='\D{%T}'        ; local m='\D{%s}'
@@ -30,17 +38,11 @@ mps() {
 	else return 2 ; fi
     PS1+='\[\e[0m\]'
 } ; mps 'xs'
-run_flask() {
-    #if cd "${MYWEB}" ; then
-        #flask run --cert "${CERT_LOCALHOST}" --key "${KEY_LOCALHOST}"
-        #cd - || echo "issue returning back to original dir" && return 1
-    #fi
-}
+#########################################################################
 cd_from_lf() {
     lf -log="${HOME}/LOG/LF_LOGS/$(date +'%s')_LF_LOG.txt"
-    if a="$(ls -1 -tr /tmp/tmplf* | tail -1)"
+    if a="$(find /tmp/ -name 'tmplf*' 2>/dev/null | tail -1)"
     then
-        z="$(cat "${a}")"
         if [[ "${PWD}" != "${a}" ]] ; then
             cd "$(cat "${a}")" || return 1
         fi
@@ -58,38 +60,32 @@ cg() {
     fi
 }
 my_cd()	{
-    if   [[ "${1}" = '-g' ]] ; then
-        cd /; shift 1
-    fi
+    [[ "${1}" = '-g' ]] && cd / && shift 1
 
-    cd "${@:-"$(find . -type d | fzf --preview="ls -1 {}" )"}"
+    cd "${@:-"$(fd -H -t d 2>/dev/null | fzf --preview="ls -1 {}")"}"
 }
 open_mpv() {
-    if   [[ "${1,,}" =~ ^-m(ono)? ]]  ; then
-        local AUD="mono"; open_mpv "${@:2}"
-    elif [[ "${1,,}" =~ ^-c(lose)? ]] ; then
-        local CLOSE="mono"; open_mpv "${@:2}"
-    fi
+    local AUD CLOSE
+    [[ "${1,,}" =~ ^-m(ono)?  ]] && AUD="mono"     && shift 1
+    [[ "${1,,}" =~ ^-c(lose)? ]] && CLOSE="close"  && shift 1
 
     mpv --audio-channels="${AUD:-"auto"}" "${@:-.}" & disown
-
-    if [[ -n "${CLOSE}" ]] ; then
-        exit
-    fi
+    [[ "${CLOSE}" = 'close' ]] && exit
 }
 open_prog() {
     xdg-open "${1}" & disown
 }
 upd_pip_z() {
+    local A zname
     local IFS=$'\n'
-    local zname="$(date +'%Y%m%d')_pipoutdated.txt"
+    zname="$(date +'%Y%m%d')_pipoutdated.txt"
     pip list --outdated > "${zname}"
-    local A="$(cat "${zname}" | sed '1,2d' | sed -e 's/[ ][ ]*/ /g' | cut -d' ' -f1)"
+    A="$(cat "${zname}" | sed '1,2d' | sed -e 's/[ ][ ]*/ /g' | cut -d' ' -f1)"
     for i in $A ; do pip install --upgrade "${i}"; done
     return "$?"
 }
 fpend() {
-    if [[ "$1" =~ ^-[dD](ate)? ]] ; then shift 1; local MDATE="#$(date)"; fi
+    if [[ "$1" =~ ^-[dD](ate)? ]] ; then shift 1; local MDATE; MDATE="#$(date)"; fi
     if [[ -f "${1}"            ]] ; then
         for i in "${@:2}" "${MDATE:-"_"}"; do
             echo "${i}" '  |---|  ' "${1}"
@@ -101,24 +97,21 @@ fpend() {
 }
 addally() {
     echo '#----------ADDALLY----------# '"${ITEXT}"  >> "$HOME/.bashrc"
-    printf 'alias %s='\''cd "%s"'\''     %s\n\n' \
+    printf 'alias %s='\''cd "%s"'\'' %s\n' \
         "${1}" "${PWD/$HOME/\$HOME}" "${ITEXT}" >> "$HOME/.bashrc"
 }
-rep_char() {
-    local z="${1}"; while ((z--)) ; do echo -n "${2}"; done
-}
-nifs()   { IFS=$'\n'   ; printf 'IFS=%q\n' "${IFS}" ; }
 rifs()   { IFS=$' \t\n'; printf 'IFS=%q\n' "${IFS}" ; }
 ppifs()  { printf "IFS=%q" "${IFS}"; echo ""        ; }
 pifs()   { printf     "%q" "${IFS}"; echo ""        ; }
 acheck() { compgen -c  | grep -x "${@}"             ; }
 gport_function() { netstat -lntu | grep -Pi "${@:-""}" ; }
 alias_conflict() {
-    local beg='    '
+    local beg cvm wcl
+    beg='    '
     echo "------------------------------"
-    local cvm="$(compgen -c)"
+    cvm="$(compgen -c)"
     for i in $(alias -p | grep -Pio '^[ \t]*alias[ \t]*\K[^=]*') ; do
-        local wcl="$(grep -x "${i}" <<< "${cvm}" | wc -l)"
+        wcl="$(grep -x "${i}" <<< "${cvm}" | wc -l)"
         if [[ "${wcl}" -gt 1 ]] ; then
             echo "${wcl} - ${i}"
             if [[ "${1,,}" =~ ^[-][-]?f(ull)?$ ]] ; then
@@ -145,149 +138,114 @@ bash_history_grab() {
         grep -Pi "${1}" "$HOME/.bash_history2"
     fi
 }
-function super_cd() {
-    mode='m'
-
-    if   [[ "${1}" =~ '-help' ]] ; then
-        echo 'Options:'
-        echo $'\t-s(tart)   | * added to start of every directory.'
-        echo $'\t-e(nd)     | * added to   end of every directory.'
-        echo $'\t-m(ulti)   | * added to start & end of every directory.'
-        return 0
-    elif [[ "${1:0:1}" = '-' ]] ; then
-        mode="${1:1:1}" && shift 1
-    fi
-
-    [[ "${1::1}" = '/' ]] && cd '/' && echo "HELLO"
-
-    while read -r -d '/' i ; do
-        if [[ -n "${i}" ]] ; then
-            case "${mode}" in
-                s) cd *"${i}"
-            ;;  e) cd  "${i}"*
-            ;;  m) cd *"${i}"*
-            ;;  *) "Invalid mode argument" >&2 && return 1
-            ;; esac
-        fi
-    done <<< "${*}/"
-}
 function sup_copy() {
     "${@}" | xcmenu --input --clipboard
 }
 function rg_with_p() {
     rg "${@}" | $PAGER
 }
-#---------------------------------------------------------------------- #
-#-ALIASES								#
-#---------------------------------------------------------------------- #
-
-# -----------------------------------------------------------
-# ----- SPECIAL
-# -----------------------------------------------------------
+#########################################################################
+#-----------------------------------------------------------------------#
+#  ALIASES								                                #
+#-----------------------------------------------------------------------#
+#########################################################################
+#---------------------------------------#
+#                              SPECIAL  #
+#---------------------------------------#
+alias        anyr='anyremote'
 alias          ls='ls --color="auto" '
 alias        grep='grep --colour="auto" '
 alias   systemctl='systemctl --no-pager'
 alias        info='info --vi-keys'
 alias        sudo='sudo -v; sudo '
-# ----------------------------------------------------------#
-#  ONE LETTER <LOWER>                                       #
-# ----------------------------------------------------------#
-alias       a='         get_alias_fzf'
-alias       b='         cd "$HOME/bin/"'
-alias       c='         cd ..'
-alias       d='         deactivate'
-alias       e='         xcmenu --input --clipboard'
-alias       f='         (read _x; find . -iname "*${_x}*") <<< '
-alias       g='         grep --perl-regexp --ignore-case'
-alias       h='         cd "$HOME"'
-alias       i='         iex' # elixir
-alias       j='         flask run --cert="$HOME/ADD_TO_TRUSTED/mykey.crt" --key="$HOME/.cretse_ridi/mykey.pem"'
-alias       k='         kiwix-desktop'
-alias       l='         cd_from_lf'
-alias       m='         ./manage.py'
-alias       n="         lsd --icon='never' -rt --permission='octal'  --date=+'  %_H:%M  %y  %b  %_d  ' --blocks='permission,user,date,name'"
-alias       o='         open_prog'
-alias       p='         pwd'
-#           q
-alias       r='         \rg --pcre2 -i'
-alias       s='         cd - >/dev/null'
-alias       t='	        trash-put'
-#           u
-alias       v='         sc-im'
-#           w           RESERVED
-alias       x='         xdg-open'
-alias       y='         source .venv/bin/activate'
-alias       z='         zim'
-# ----------------------------------------------------------#
-#  ONE LETTER <UPPER>                                       #
-# ----------------------------------------------------------#
-alias       C='         super_cd'
-alias       F='         grep -F'
-alias       E='         xcmenuctrl'
-alias       P='         readlink -f' # get full path of file
-alias       W='         cd "${MYWEB}"'
-#           X           RESERVED
-# ----------------------------------------------------------#
-#  TWO LETTER <UPPER>                                       #
-# ----------------------------------------------------------#
-alias   sf='	    clear; screenfetch 2>/dev/null'
+alias          df='df -h'
+alias          cp='cp -i'
+alias        free='free -h'
+#---------------------------------------#
+#                   ONE LETTER <LOWER>  #
+#---------------------------------------#
+alias    a='         get_alias_fzf'
+alias    b='         cd "$HOME/bin/"'
+alias    c='         cd ..'
+alias    d='         deactivate' # For python virtualenv
+alias    e='         xcmenu --input --primary'
+alias    f='         /usr/bin/fd'
+alias    g='         grep -Pi'
+#alias   i='         iex' # elixir
+#alias   j='         flask run --cert="$HOME/ADD_TO_TRUSTED/mykey.crt" --key="$HOME/.cretse_ridi/mykey.pem"'
+#alias   k='         kiwix-desktop'
+alias    l='         cd_from_lf' # my lf, so it cd's shell after exiting lf
+alias    m='         mimetype'
+alias    n='         lsd --icon="never" -rt --permission="octal"  --date=+"  %_H:%M  %y  %b  %_d  " --blocks="permission,user,date,name"'
+#-       o           #-
+alias    p='         pwd'
+#-       q           #-
+alias    r='         \rg --pcre2 -i'
+alias    s='         cd - >/dev/null'
+alias    t='	     trash-put'
+#-       u           #-
+alias    v='         sc-im'
+#-       w           RESERVED
+alias    x='         xdg-open'
+alias    y='         source .venv/bin/activate'
+alias    z='         zim'
+#---------------------------------------#
+#                   ONE LETTER <UPPER>  #
+#---------------------------------------#
+alias    C='         my_cd'
+alias    E='         xcmenuctrl'
+alias    F='         grep -F'
+alias    H='         cd "$HOME"'
+alias    M='         ./manage.py'
+alias    O='         open_prog'
+alias    P='         readlink -f' # get full path of file
+alias    W='         whereis'
+#        X           RESERVED
+#---------------------------------------#
+#                   TWO LETTER <UPPER>  #
+#---------------------------------------#
+alias   ufwd='      ufw delete'
+alias   ufws='      ufw status verbose'
+alias   ufwn='      ufw status numbered'
+alias   cnf='       cd "${XDG_CONFIG_HOME}"; cd "$(find -maxdepth 1 -type d -printf "%f\n" | fzf --preview="ls {}")"'
+alias   cde='       cd "${CODING}"; cd "$(find . -maxdepth 3 -type d | grep -Fv "[.]git" | sort -n | fzf --preview="ls {}")"'
+alias   nvcode='    cd "${CODING}"; nf'
+alias   ww='        cd "${MYWEB}"'
 alias   ac='        acheck'
-alias   pc='	    clear; neofetch'
 alias   pe='        ps -eo comm=,'
 alias   po='        ps -eo cmd=,'
 alias   hb='        nvim $HOME/.bash_history2'
 alias   cl="        printf '\n%.0s_______________________________' {1..400} ; printf '%.0s\n' {1..500} ; clear"
-alias   cp='        cp -i'
-alias   df='        df -h'
 alias   fz='        my_cd'
-alias   fo='        xdg-open "$(fzf)"'
-alias   fn='        nvim     "$(fzf --preview="nvim {}")"'
-alias   gf='        find / -iname'
+alias   nx='        xdg-open "$(fzf --preview="ctpv {}")"'
+alias   nf='        fzf --preview="highlight -O ansi -l {} 2>/dev/null" --print0 | xargs -0 -r -o nvim'
 alias   hf='        find $HOME -iname'
-alias   mf='        find . -iname'
 alias   ic='        clear; imgcat'
 alias   nv='        nvim'
-alias   vn='        nvim -o'
 alias   rt='        \rg --hidden --ignore-file="$XDG_CONFIG_HOME/rg/rg_basic.gitignore" --pcre2 -i'
 alias   rh='        \rg --hidden --ignore-file="$XDG_CONFIG_HOME/rg/rg_html_web.gitignore" --pcre2 -i'
 alias   ro='        \rg --hidden --ignore-file="$XDG_CONFIG_HOME/rg/rg_html_web.gitignore" --one-file-system --pcre2 -i'
 alias   gg='        grep -P -r -i'
-alias   ee='        subdl -i --username "${SUBDL_USERNAME}" --password "${SUBDL_PASSWORD}"'
 alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf,apk,snap,out,jar,sx,s,bin,o,exe,deb,pyc,pyo,aac,webm,alac,ape,ogg,mp4,mkv,m4a,mp4a,avi,mp3,wav,flac}'
 alias   yg='        xg          --exclude=\*.{rar,tar,gz,tgz,zip,bz2,tbz2}'
 alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
-alias   tl='        tar -tf'
-alias   bt='        bsdtar'
+alias   tl='        tar --list --file'
 alias   ll="        lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
 alias   lla='       ll -a'
-alias   ht='        htop'
 alias   gd='        xcmenu --input --clipboard "$(pwd)"'
-alias   pd='        cd "$(xcmenu --clipboard)"'
 alias   lc='        compgen -c'
 alias   cz='        ccze -m ansi'
-alias   fm='        worker'
-alias   ka='        killall'
 alias   gf='        grep --file="-" -Fi "$HOME/.bashrc" <<<'
 alias   gr='        grep --file="-" -Pi "$HOME/.bashrc" <<<'
-# ----------------------------------------------------------#
-#  THREE LETTER                                             #
-# ----------------------------------------------------------#
+#----------------------------------------#
+#                         THREE LETTER   #
+#----------------------------------------#
 alias   rml='       rmlint --no-followlinks --keep-all-tagged --no-crossdev --paranoid --progress --types="duplicates"'
-alias   djs='       python manage.py runserver'
-alias   tjs='       python manage.py test'
-alias   ptc='       pactree --color' #Pacman Dependencies
 alias   pgr='       $PAGER'
 alias   loc='       locate'
-alias   tma='       tmux attach'
-alias   tmn='       tmux new-session -t mx'
-alias   tmd='       tmux detach'
 alias   cop='       xcmenu --input --clipboard'
-alias   nvp='       nvim -p'
-alias   nvr='       nvim -R'
-alias   nvo='       nvim -O'
 alias   snv='       sudoedit'
-alias   rmi='       rm -i'
-alias   pdf='       (read _a; zathura "${_a}" & disown) <<< '
+alias   pdf='       zathura --fork'
 alias   i3c='       i3 -C "$HOME/.config/i3/config"'
 alias   lke='       cd $HOME/Notebooks/REFERENCE_SHEETS/;           lf ; cd -'
 alias   acc='       alias_conflict'
@@ -304,48 +262,36 @@ alias   inx='       inxi' # Computer stats, hardware
 alias   pse='       ps -eo comm=, | grep --ignore-case'
 alias   pso='       ps -eo cmd=, | grep --ignore-case'
 alias   tre='       ps -ejH'
-alias   aud='       cd "$HOME/Audio/"'
-alias   rec='       cd "$HOME/Audio/Recordings"'
-alias   vcs='       sc-im'
 alias   slc='       compgen -c | grep -i'
-alias   frun='      run_flask'
 alias   copg='      sup_copy' #copy command
 alias   comv='      command -V'
-alias   lsna='      lsn -a'
-alias   lsta='      lst -a'
-alias   lsza='       lsz -a'
 alias   listaudio=" find . -type f -iregex '.*[.]\(mp3\|flac\)'"
 alias   listpics="  find . -type f -iregex '.*[.]\(jp[e]?g\|png\|tiff\|webp\|bmp\|avif\)'"
 alias   listvids="  find . -type f -iregex '.*[.]\(mov\|m4v\|mkv\|mp[e]?[4vg]\|gif[v]?\|webm\|avi\|amv\)'"
 alias   listmedia=" listaudio; listpics; listvids"
 alias   gital='     git log --source --all -S'
-alias   gitc='      cd $CLONED; git clone'
 alias   alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
 alias   conf='      cd "$XDG_CONFIG_HOME"'
 alias   qread='     zathura  --fork "$(fzf)"'
-alias   free='      free -h'
 alias   bhagr='     cd "$BASH_HISTORY_ARCHIVE"; rg 2>/dev/null'
 alias   testren='   perl-rename -v -n'
 alias   doren='     perl-rename -v'
 alias   quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g' *"
 alias   k_at_spi2=' killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher'
-alias   xprdet='    pkill -f "^[/]+usr[/]+bin[/]+xpra attach :${XPRA_DISPLAY_NUMBER}[ \$]"'
-alias   pfk='       pkill -f'
 alias   tracenet='  strace'
-alias   tarlist='   tar -tf'
 alias   gclone='    cd "${CLONED}"; git clone'
 alias   nimg='      nsxiv -0 .'
 alias   pcal='      calcurse'
 alias   trev='      ps axjf'
 alias   tres='      ps -eHo euser,ruser,suser,fuser,f,comm,label'
 alias   decl='      declare -f'
-alias   pips='      poetry search'
-alias   pipf='      pip freeze'
-alias   yayremove=' yay -Yc --noconfirm; yay -Sc --noconfirm; yay -Scc --noconfirm'
-alias   men='       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" 2>/dev/null | $PAGER) <<< '
+alias   ezchmod='   chmod og-rwx -R .'
+#--------------------------------------------------------MAN-#
 alias   sap='       apropos'
+alias   men='       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" 2>/dev/null | $PAGER) <<< '
 alias   manlist='   man -f'
 alias   sman='      man -K --regex'
+#------------------------------------------------------------#
 alias   gport='     gport_function'
 alias   isport='    (read _z; ss -lp "sport = :${_z}") <<< '
 alias   xprattach=' nohup /usr/bin/xpra attach :${XPRA_DISPLAY_NUMBER} &'
@@ -355,56 +301,54 @@ alias   upfonts='   fc-cache && fc-cache-32; echo "return $?"'
 alias   getfont='   fc-list -v | grep -i '
 alias   list_coms=' compgen -c'
 #alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | grep -Pi -- "${_z:-''}")) <<<'
+#------------------------------------------------------EXPAC-#
 alias   spac='      expac -HM "%m %n" | sort -n'           # Size of packages pacman
 alias   pgspac='    expac -HM "%m %n" | sort -n | $PAGER'  # Size of packages pacman
-alias   grspac='    expac -HM "%m %n" | sort -n | grep -i' # Size of packages pacman
-alias   sct='       nohup scrcpy & disown; exit'
-alias   ezchmod='   chmod og-rwx -R .'
-alias   csq='       mount | grep -i squash; mount | grep -i overlay'
-alias   jweb="/usr/lib/jvm/java-19-openjdk/bin/jwebserver"
-alias   pacdneed='pacman -Qet'
-alias   pigse='     (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
-alias   pacreg='    pacman -Sq --color=always'
-alias   pacool='    pacman --color=always -Sl | grep -i installed | grep -i'
-alias   pacse='     pacman -Ss --color=always'
-alias   paci='      pacman -Si --color=always'
-alias   pacdep='    pacman -T  --color=always'
-alias   yigse='     (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
-alias   yig='       (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
-alias   paclocal='  pacman -Qm'
+alias   paclast="   expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
+#--------------------------------------------------------YAY-#
 alias   yz='        yay --sortby="votes" -Ss'
+alias   yasyel='    yay -Qs'
+alias   yasye='     yay --sortby="votes" -Ss'
+alias   yasyename=' yay --sortby="votes" --searchby="name" -Ss'
+alias   yayremove=' yay -Yc --noconfirm; yay -Sc --noconfirm; yay -Scc --noconfirm'
 alias   yacool='    yay --color=always -Sl aur | grep "Installed" | grep'
 alias   yaycool='   yay --color=always -Sl aur | grep "Installed" | grep'
 alias   yayse='     yay --sortby="votes" -Ss'
 alias   yaysename=' yay --sortby="votes" --searchby="name" -Ss'
 alias   yayi='      yay -Si'
 alias   yaysalt='   yay --color=always -Sl | grep -Pio ".*(?=\[installed\])"'
-alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
-alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
 alias   yayp='      yay -P --stats'
 alias   yayil='     yay -Qi'
-alias   yayfiles='  pacman -Qql'
 alias   yaysel='    yay -Qs'
 alias   yayfrom='   yay -Qo'
-alias   springmr='  mvn spring-boot:run'
+alias   yayfiles='  yay -Qql'
+alias   yig='       (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
+alias   yigse='     (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   rqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*(Required[ \t]*By|Optional[ \t]*For)" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
 alias   pqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*Depends[ \t]*On" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
 alias   opqs='      (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*Optional[ \t]Deps*" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
+#-----------------------------------------------------PACMAN-#
+alias   ptc='       pactree --color' #Pacman Dependencies
+alias   pacneed='   pacman -Qet'
+alias   pacreg='    pacman -Sq --color=always'
+alias   pacool='    pacman --color=always -Sl | grep -i installed | grep -i'
+alias   pacse='     pacman -Ss --color=always'
+alias   paci='      pacman -Si --color=always'
+alias   pacdep='    pacman -T  --color=always'
+alias   paclocal='  pacman -Qm'
 alias   pacsel='    pacman -Qs'
 alias   pacil='     pacman -Qi'
 alias   pacprog="   pacman -F"
-alias   paclast="   expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
 alias   pacnot='    pacman --color=always -Sl | grep -v "installed" | xargs -d $"\n" | grep -P'
-alias   pacl='      yay --clean'
-alias   pacln='     yay -Scc; yay --clean'
 alias   pacfrom='   pacman -Qo'
 alias   pacfiles='  pacman -Qql'
-alias   sctl='      journalctl | ccze -m ansi'
 alias   pascel='    pacman -Qs'
-alias   yasyel='    yay -Qs'
 alias   pasce='     pacman -Ss'
-alias   yasye='     yay --sortby="votes" -Ss'
-alias   yasyename=' yay --sortby="votes" --searchby="name" -Ss'
+alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
+alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
+alias   pigse='     (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
+#------------------------------------------------------------#
+alias   sctl='      journalctl | ccze -m ansi'
 alias   i3e='       nvim -p "$HOME/.config/i3/"*'
 alias   ebash='     nvim $HOME/.bashrc; source ~/.bashrc'
 alias   einp='      nvim $HOME/.inputrc'
@@ -415,30 +359,34 @@ alias   capkey='    xev | grep -Pio '\''(keysym [^)]*)'\'
 alias   nvgr='      grep --file="-" -Pri "$HOME/.config/nvim/" <<< '
 alias   i3gr='      grep --file="-" -Pri "$HOME/.config/i3/"   <<< '
 alias   vid='       open_mpv'
-alias   vic='       open_mpv -close'
-alias   pipsl='     pip list | grep -i'
-alias   pip3sl='    pip3 list | grep -i'
-alias   pyac='      source *env*/bin/activate'
-alias   pyde='      deactivate'
 alias   flip_img='  mogrify -rotate 180 *.jpg'
 alias   killun='    killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher; killall tumblerd'
 alias   szof="      du -axhc --time --max-depth=1 | grep -Pv '^0[ \t]' | sort -h"
 alias   szofall='   du -ahc  --time --max-depth=1'
-alias   bgsz="      szof | grep -P '^[^ ]*G'"
-alias   vids='      cd "$HOME/Videos/"'
-#---------------------------------------------------------------------- #
+alias   bgsz='      szof | grep -P "^[^ ]*G"'
+alias   getkeys_all='   xmodmap -pke'
+alias   key_spec='      evemu-describe'
+alias   betterkey='     showkey -k'
+#alias   tma='       tmux attach'
+#alias   tmn='       tmux new-session -t mx'
+#alias   tmd='       tmux detach'
+#-----------------------------------------------------------------------#
 # - CODING -                                                            #
-#---------------------------------------------------------------------- #
-alias   cde='       cd "$CODING"'
-alias   Zhtml='     cd "$CODING/HTML"'
-alias   Zpy='       cd "$CODING/PYTHON"'
-alias   Zhask='     cd "$CODING/HASKELL"'
-alias   Zlisp='     cd "$CODING/LISP"'
-alias   Zjs='       cd "$CODING/JS"'
-alias   Zjava='     cd "$HOME/Desktop/Coding/JAVA"'
-#---------------------------------------------------------------------- #
+#-----------------------------------------------------------------------#
+#alias   jweb="/usr/lib/jvm/java-19-openjdk/bin/jwebserver"
+alias   springmr='  mvn spring-boot:run'
+#-----------------------------------------------------DJANGO-#
+alias   djs='       python manage.py runserver'
+alias   tjs='       python manage.py test'
+#--------------------------------------------------------PIP-#
+alias   pips='      poetry search'
+alias   pipf='      pip freeze'
+alias   pipsl='     pip list | grep -i'
+alias   pip3sl='    pip3 list | grep -i'
+#-----------------------------------------------------------------------#
 # - CD -                                                                #
-#---------------------------------------------------------------------- #
+#-----------------------------------------------------------------------#
+alias   vids='      cd "$HOME/Videos/"'
 alias   down='      cd "$HOME/Downloads/"'
 alias   pics='      cd "$HOME/Pictures/"'
 alias   docs='      cd "$HOME/Documents/"'
@@ -447,31 +395,17 @@ alias   desk='      cd "$HOME/Desktop/"'
 alias   wallz='     cd "$HOME/Pictures/Wallpapers"'
 alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'
 alias   clne='      cd "$CLONED"'
-#---------------------------------------------------------------------- #
-# - EXPORT -					                                        #
-#---------------------------------------------------------------------- #
-#-------------------------------------------------------MINE-#
-export  BACKUP="${HOME}/BACKUP_FILES"
-export  BASH_HISTORY_ARCHIVE="$HOME/Documents/BASH_HISTORY/"
-export  DOCUMENTS="$HOME/Documents/"
-export  DESKTOP="$HOME/Desktop/"
-export  DOWNLOADS="$HOME/Downloads/"
-export  CODING="$DESKTOP/Coding/"
-export  CLONED="$DESKTOP/CLONED/"
-export  LOCAL_BIN="$HOME/.local/bin" # By default this is in path (set by os, not by me) (just so i remember)
-#------------------------------------------------------------#
-#export 	LESS='-R --use-color -Dd+r$Du+b'
-#-----------------------------------------------APPLICATIONS-#
-export  NO_AT_BRIDGE=1
-export  QT_QPA_PLATFORMTHEME="qt5ct"
-export  npm_config_prefix="$HOME/.local"
-export  GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-export  FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+#########################################################################
+#-----------------------------------------------------------------------#
+#  EXPORT   					                                        #
+#-----------------------------------------------------------------------#
+#########################################################################
 #-----------------------------------------------------SYSTEM-#
 export  PAGER='most'
 export  TERM='st-256color'
+export  TERMINAL='/usr/local/bin/st'
 export  EDITOR="nvim"
-#------------------------------------------------XDG-STUFF---#
+#--------------------------------------------------XDG-STUFF-#
 export  XDG_CONFIG_HOME="$HOME/.config"
 export  XDG_CACHE_HOME="$HOME/.cache"
 #export  XDG_STATE_HOME="$HOME/.local/state/" # Have to fix dirs first
@@ -480,28 +414,35 @@ export  XDG_CACHE_HOME="$HOME/.cache"
 export  HISTSIZE=10000
 export  HISTFILE="$HOME/.bash_history2"
 export  HISTCONTROL=ignoreboth
-#------------------------------------------------------------#
-
+#-------------------------------------------------------MINE-#
+export  BACKUP="$HOME/BACKUP_FILES"
+export  BASH_HISTORY_ARCHIVE="$HOME/Documents/BASH_HISTORY/"
+export  DOCUMENTS="$HOME/Documents/"
+export  DESKTOP="$HOME/Desktop/"
+export  DOWNLOADS="$HOME/Downloads/"
+export  CODING="$DESKTOP/Coding/"
+export  CLONED="$DESKTOP/CLONED/"
+export  LOCAL_BIN="$HOME/.local/bin" # By default this is in path (set by os, not by me) (just so i remember)
+#-----------------------------------------------APPLICATIONS-#
+export  NO_AT_BRIDGE=1
+export  QT_QPA_PLATFORMTHEME="qt5ct"
+export  npm_config_prefix="$HOME/.local"
+export  GTK2_RC_FILES="/usr/share/themes/Midnight/gtk-2.0/gtkrc"
 #------------------------------------------------------------------------------------------------------------------------------------------------ #
 #####################   Fixes colored man pages when using `most`, for some reason, TY https://stackoverflow.com/users/26449/bill                 #
 export  GROFF_NO_SGR=1 ### https://stackoverflow.com/a/32456403                                                                                   #
 #####################   https://stackoverflow.com/questions/32384644/color-setting-works-for-only-for-help-tab-in-man-page-dosent-work-for-the-en #
 #------------------------------------------------------------------------------------------------------------------------------------------------ #
-
 #---------------------------------------------------------------------- #
 #-`PATH`								                                #
 #---------------------------------------------------------------------- #
 if  [ -d "$HOME/bin/"         	 ] ; then PATH="$HOME/bin/:$PATH"        	 ;	fi
 if  [ -d "$HOME/bin/txt2man"     ] ; then PATH="$HOME/bin/txt2man:$PATH"     ;	fi
 if  [ -d "$HOME/bin/i3wm"     	 ] ; then PATH="$HOME/bin/i3wm:$PATH"    	 ; 	fi
-#if  [ -d "$HOME/bin/mentat"      ] ; then PATH="$HOME/bin/mentat:$PATH"     ; 	fi
 if  [ -d "$HOME/bin/personal" 	 ] ; then PATH="$HOME/bin/personal:$PATH"	 ; 	fi
 if  [ -d "$HOME/bin/ufw"      	 ] ; then PATH="$HOME/bin/ufw:$PATH"     	 ; 	fi
 if  [ -d "$HOME/bin/random"   	 ] ; then PATH="$HOME/bin/random:$PATH"  	 ; 	fi
 if  [ -d "$HOME/Desktop/MY_APPS" ] ; then PATH="$HOME/Desktop/MY_APPS:$PATH" ; 	fi
 if  [ -d "/etc/systemd/user" 	 ] ; then PATH="/etc/systemd/user:$PATH"     ; 	fi
 if  [ -d "/usr/bin"              ] ; then PATH="/usr/bin/:$PATH"             ;  fi
-#---------------------------------------------------------------------- #
-#-END 									                                #
-#---------------------------------------------------------------------- #
 
