@@ -18,9 +18,6 @@ x-scheme-handler/webcal=userapp-Thunderbird-7NX7D2.desktop;
 x-scheme-handler/webcals=userapp-Thunderbird-7NX7D2.desktop;
 
 [Default Applications]
-#--------------------------------------------------------#
-#--- VIDEO ----------------------------------------------#
-#--------------------------------------------------------#
 video/vnd.avi=mpv.desktop
 video/avi=mpv.desktop
 video/mp2t=mpv.desktop
@@ -41,9 +38,6 @@ video/vnd.rn-realvideo=mpv.desktop
 video/3gpp2=mpv.desktop
 video/mpeg=mpv.desktop
 video/x-theora+ogg=mpv.desktop
-#--------------------------------------------------------#
-#--- IMAGE ----------------------------------------------#
-#--------------------------------------------------------#
 image/jpeg=nsxiv.desktop
 image/heif=nsxiv.desktop
 image/x-portable-anymap=nsxiv.desktop
@@ -61,9 +55,7 @@ image/x-tga=nsxiv.desktop
 image/jxl=nsxiv.desktop
 image/gif=nsxiv.desktop
 image/x-portable-bitmap=nsxiv.desktop
-#--------------------------------------------------------#
-#--- AUDIO ----------------------------------------------#
-#--------------------------------------------------------#
+inode/directory=thunar.desktop
 audio/x-scpls=mpv.desktop
 audio/vnd.dts.hd=mpv.desktop
 audio/vnd.rn-realaudio=mpv.desktop
@@ -90,9 +82,6 @@ audio/x-ms-asx=mpv.desktop
 audio/x-adpcm=mpv.desktop
 audio/webm=mpv.desktop
 audio/x-mpegurl=mpv.desktop
-#--------------------------------------------------------#
-#--- TEXT -----------------------------------------------#
-#--------------------------------------------------------#
 text/python=nvim.desktop
 text/javascript=nvim.desktop
 text/cpp=nvim.desktop
@@ -100,7 +89,7 @@ text/css=nvim.desktop
 text/plain=nvim.desktop
 text/csv=nvim.desktop
 text/spreadsheet=nvim.desktop
-text/html=brave-browser.desktop
+text/html=nvim.desktop
 text/tab-separated-values=nvim.desktop
 text/tcl=nvim.desktop
 text/vbscript=nvim.desktop
@@ -111,6 +100,7 @@ text/x-makefile=nvim.desktop
 text/x-csrc=nvim.desktop
 text/x-google-video-pointer=nvim.desktop
 text/x-chdr=nvim.desktop
+text/x-elixir=nvim.desktop
 text/x-pascal=nvim.desktop
 text/x-java=nvim.desktop
 text/x-moc=nvim.desktop
@@ -119,13 +109,12 @@ text/x-markdown=nvim.desktop
 text/x-python=nvim.desktop
 text/x-javascript=nvim.desktop
 text/x-shellscript=nvim.desktop
-#--------------------------------------------------------#
-#--- APPLICATION ----------------------------------------#
-#--------------------------------------------------------#
+application/xml=nvim.desktop;
 application/pdf=zathura.desktop
 application/epub=zathura.desktop
 application/mobi=zathura.desktop
 application/epub+zip=org.pwmt.zathura-pdf-mupdf.desktop;
+application/json=nvim.desktop
 application/schema+json=nvim.desktop
 application/xhtml+xml=nvim.desktop
 application/x-mobipocket-ebook=zathura.desktop
@@ -139,9 +128,6 @@ application/x-extension-htm=brave-browser.desktop
 application/x-extension-html=nvim.desktop
 application/x-extension-shtml=nvim.desktop
 application/x-extension-xhtml=nvim.desktop
-#--------------------------------------------------------#
-#--- X-SCHEME-HANDLER -----------------------------------#
-#--------------------------------------------------------#
 x-scheme-handler/http=brave-browser.desktop
 x-scheme-handler/https=brave-browser.desktop
 x-scheme-handler/about=brave-browser.desktop
@@ -153,12 +139,5 @@ x-scheme-handler/mid=userapp-Thunderbird-ZWB6D2.desktop
 x-scheme-handler/webcal=userapp-Thunderbird-7NX7D2.desktop
 x-scheme-handler/webcals=userapp-Thunderbird-7NX7D2.desktop
 x-scheme-handler/gitkraken=GitKraken.desktop
-#--------------------------------------------------------#
-#--- OTHER ----------------------------------------------#
-#--------------------------------------------------------#
 message/rfc822=userapp-Thunderbird-ZWB6D2.desktop
 text/calendar=userapp-Thunderbird-7NX7D2.desktop
-#--------------------------------------------------------#
-#--------------------------------------------------------#
-#--------------------------------------------------------#
-

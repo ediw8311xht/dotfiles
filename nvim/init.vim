@@ -179,7 +179,7 @@ call plug#begin()
 " Autorename HTML tags
     Plug 'AndrewRadev/tagalong.vim'
 " Syntax-for-lf
-    Plug 'VebbNix/lf-vim'
+    Plug 'camnw/lf-vim'
 " Syntax-for-i3
     Plug 'PotatoesMaster/i3-vim-syntax'
 " Auto-save-restore-view :) --best plugin

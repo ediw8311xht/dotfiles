@@ -4,12 +4,9 @@
 	"coc.preferences.extensionUpdateCheck": "never",
 	"diagnostic.checkCurrentLine": true,
     "codeLens.enable": true,
+    "elixir.pathToElixirLS": "/usr/lib/elixir-ls/language_server.sh",
 
     "languageserver": {
-        "elixirLS": {
-            "command": "/usr/lib/elixir-ls/language_server.sh",
-            "filetypes": ["elixir", "eelixir"]
-        },
         "java": {
             "command": "ccls",
             "filetypes": [".java"],
@@ -35,7 +32,6 @@
             "args": ["--lsp"],
             "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
             "filetypes": ["haskell", "lhaskell"],
-            // Settings are optional, here are some example values
             "settings": {
                 "haskell": {
                     "checkParents": "CheckOnSave",
