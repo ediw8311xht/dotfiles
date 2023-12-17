@@ -1,26 +1,26 @@
 
-URxvt*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Bold:autohint=false:antialias=false
-xterm*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Medium:autohint=false:antialias=false
+!URxvt*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Medium:autohint=false:antialias=false
+!xterm*font: xft:Agave:style=Medium:size=11:antialias=false:autohint=false
 
 !!!!!!!!!!!!!!!!!!!!!!!!! -----------------_FONTS
 *.alpha:	    0.94
 *.borderpx:     10px
 
-!!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTS
-*.font: 	    Agave:style=Medium:size=11:antialias=false:autohint=false
+!!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTSHH
+!*.font: 	    FiraCode:style=Medium:pixelsize=13:antialias=true:autohint=false
+!*.font: 	    Agave:style=Medium:pixelsize=15:antialias=false:autohint=false
+!*.font: 	    Iosevka:style=Medium:pixelsize=11:antialias=true:autohint=true
+*.font: 	    IosevkaCustom:style=Medium:pixelsize=13:antialias=false:autohint=false
 !*.font: 	    MononokiNerdFontMono:style=Medium:pixelsize=15:antialias=true:autohint=true
 !*.font: 	    IBMPlexMono:style=Medium:size=10:antialias=true:autohint=false
 !*.font: 	    IBM 3270:style=Medium:size=11:antialias=true:autohint=true
 !*.font: 	    Consolas:size=11:antialias=true:autohint=true
 !*.font:        TerminessTTF Nerd Font Mono:size=12:style=Medium:autohint=true:antialias=true
-!*.font: 	    IosevkaCustom:style=Medium:size=11:antialias=true:autohint=true
-!*.font: 	    Hack:size=13:antialias=false:autohint=false
+!*.font: 	    Hack:style=Medium:pixelsize=14:antialias=true:autohint=true
 !*.font: 	    Hermit:size=13:antialias=true:autohint=true
-!*.font: 	    TerminessTTF Nerd Font Mono:pixelsize=18:autohint=false:antialias=true
 !*.font: 	    ShareTechMono:pixelsize=13:style=Regular:autohint=true:antialias=true
 !*.font: 	    Courier:style=Medium:size=13:antialias=false
 !*.font: 	    FantasqueSansMono:style=Regular:pixelsize=13:autohint=true:antialias=true
-!*.font: 	    FiraCode:size=11:antialias=true:autohint=true
 
 !!!!!!!!!!!!!!!!!!!!!!!!!! REALLY COOL FONTS
 !*.font: 	    ProggyCleanTT Nerd Font:pixelsize=23
@@ -33,14 +33,14 @@ xterm*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Medium:autohint=f
 !*.font: 	    CascadiaMono:size=13:antialias=true
 !*.font: 	    RobotoMono:size=13:antialias=true
 !*.font: 	    Consolas:size=13:antialias=true:autohint=true
-!*.font: 	    Monaco:size=13:antialias=true:autohint=true
+!*.font: 	    Monaco:pixelsize=13:antialias=true:autohint=true
 !*.font: 	    InputMono:size=13:antialias=true:autohint=true
 !*.font: 	    IosevkaNerdFont:size=13:antialias=true:autohint=true
 !!!!!!!!!!!!!! ISSUES in st with ShareTechMono :(  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !*.font: 	    ShureTechMonoNerdFontMono:style=Regular:size=13:antialias=true:autohint=true
 !*.font: 	    SarasaMonoNerdFont:pixelsize=13:antialias=true:autohint=true
 !*.font: 	    IBM 3270:style=Medium:pixelsize=13:antialias=true:autohint=true
-!*.font: 	    SourceCodePro:size=13:style=Regular:autohint=true:antialias=true
+!*.font: 	    SourceCodePro:pixelsize=13:style=Medium:autohint=true:antialias=true
 !!!!!!!COOL FONTS (my names for ref):
 !!!!!!!IBM 3270, Agave, SarasaMonoSlab, Iosevka Custom, Hack, Hermit, Menlo, Fira Code, Input Mono
 !!*.borderColor:      #FF0000
@@ -80,15 +80,15 @@ xterm*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Medium:autohint=f
 !
 *.color48:      #FFFFFF
 !!------------------------*.color4:       #2587cc
-!!!!!!!!!!!!!!!!!!!!!!!----------------SPECIAL------(FLOAT)--FROM:-[http://dotshare.it/dots/136/]
+!!!!!!!!!!!!!!!!!!!!!!!----------------SPECIAL------(FLOAT)--FROM:-[http://dotshare.it/dots/136/]H
 !!special_float*alpha:	        1
 
 !!!!!!!!!!!!!!!!!!!!!!!!----------------CYBER-PUNK-NEON
 !special_note*background:    #000000
-special_float*alpha:        0.94
+special_float*alpha:        0.98
 !special_float*font:         IosevkaNerdFont:style=Regular:pixelsize=14:antialias=true
 special_float*borderpx:     10px
-special_float*background:   #00070C
+special_float*background:   #000000
 special_float*foreground:   #0abdc6
 special_float*color0:       #000000
 special_float*color1:       #ff0000
@@ -233,7 +233,7 @@ dmenu.color48:      #FFFFFF
 !Xmessage*font: -abode-*-*-r-*-*-*-100-*-*-p-*-*-*
 !Xmessage*font: -*-dejavu sans-medium-r-*-*-40-*-*-*-*-*-*-*
 !xmessage*font: -*-dejavu sans-medium-r-*-*-40-*-*-*-*-*-*-*
-!misc-fira code medium-*-r-normal-*-32-94-0-0-m-98-iso8859-15
+!-misc-fira code medium-*-r-normal-*-32-94-0-0-m-98-iso8859-15
 !xofontsel*font: -misc-fira code medium-*-r-normal-*-32-94-0-0-m-98-iso8859-15
 Xft.antialias:  1
 Xft.hinting:    1

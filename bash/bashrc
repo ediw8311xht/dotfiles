@@ -7,38 +7,46 @@
 #-If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 #########################################################################
+#- USE VI KEYS -#
 set -o vi
+#- DEFAULT FILE/DIR PERMISSIONS -#
 umask 077
-#########################################################################
+#- DEFAULT PS0,PS1,PS3 IF mps() DOESNT RUN -#
 PS0='\e[0 q\[\e[0m\]'
-PS1='>'
+PS1=':\w/:> '
 PS2='\e[0 q\[\e[0m\]'
 #########################################################################
-#-----------------------------------------------------------------------#
 #  FUNCTIONS								                            #
-#-----------------------------------------------------------------------#
 #########################################################################
-git_clone() {
-    cd "${CLONED}"
-    git clone "${@}"
-    #tee
-}
 mps() {
-	local a='\[\e[00;01;07;34m\]' ; local e='\[\e[00;01m\]' ; local j='\[\e[00;01;34m\]' ; local n='\[\e[00;01;33m\]'
-	local b='\D{%F}'              ; local d='\D{%T}'        ; local m='\D{%s}'
-	local f=':\w/:>'              ; local h='-\$'		    ; local i=':\W/:>'
-	local k='\D{%d-%m-%y}'        ; local l='\D{%H%M}'      ; local c='\D{%Y%m%d}'
+    local h1 h2 h3 h4
+    local d1 d2 d3 d4 d6
+    local s1 s2 s3
+    #- SET -#
+    h1='\[\e[00;01;07;34m\]' ; h2='\[\e[00;01m\]' ; h3='\[\e[00;01;34m\]' ; h4='\[\e[00;01;33m\]'
+    d1='\D{%F}'              ; d2='\D{%T}'        ; d3='\D{%s}'           ; d4='\D{%d-%m-%y}'     ; d5='\D{%H%M}' ; d6='\D{%Y%m%d}'
+    s1=':\w/:>'              ; s2='-\$'           ; s3=':\W/:>'
+    #- INITIALIZE -#
     PS0=''
-	if   [[ "${1,,}"  =  'l' ]] ; then PROMPT_DIRTRIM="2"; PS1="$a $b | $d $e $f "
-	elif [[ "${1,,}"  =  'm' ]] ; then PROMPT_DIRTRIM="1"; PS1="$a $k $l $e $i "
-	elif [[ "${1,,}"  =  's' ]] ; then PS1=" $m $h "
-    elif [[ "${1,,}"  = 'xs' ]] ; then PS1="${n} :\w:$ ${e}"
-        #PS0="${a} ${PWD} | ${b} | ${d} \n"'\e[0 q\[\e[0m\]'
-	elif [[ "${1,,}"  =  'x' ]] ; then return 1 #PS1='$(xspec)'
-	else return 2 ; fi
+    PROMPT_DIRTRIM='0'
+    case "${1,,}" in
+             l) PROMPT_DIRTRIM='2'; PS1="$h1 $d1 | $d2 $h2 $s1 "
+        ;;   m) PROMPT_DIRTRIM='1'; PS1="$h1 $d4 $d5 $h2 $s3 "
+        ;;   s) PROMPT_DIRTRIM='0'; PS1=" $d3 $s2 "
+        ;;  xs) PROMPT_DIRTRIM='5'; PS1="${h4} :\w:$ ${h2}"
+                #PS0="${h1} ${PWD} | ${d1} | ${d2} \n"'\e[0 q\[\e[0m\]'
+        ;;   x) PROMPT_DIRTRIM='5'; PS1="${h3} |${d6}|\w:$ "
+        ;;   *) return 2
+    esac
     PS1+='\[\e[0m\]'
 } ; mps 'xs'
 #########################################################################
+#########################################################################
+#########################################################################
+git_clone() {
+    cd "${CLONED}" ||  return 1
+    git clone "${@}"
+}
 cd_from_lf() {
     lf -log="${HOME}/LOG/LF_LOGS/$(date +'%s')_LF_LOG.txt"
     if a="$(find /tmp/ -name 'tmplf*' 2>/dev/null | tail -1)"
@@ -49,20 +57,9 @@ cd_from_lf() {
         trash-put "${a}"
     fi
 }
-cg() {
-    if [[ -z "$*" ]] ; then
-        compgen -A -abck | sort | uniq -c | grep -Pio '.+[0-9]+ \K.*'
-    else
-        while [[ -n "${1}" ]] ; do
-            compgen -A -abck | sort | uniq -c | grep -Pio '.+[0-9]+ \K.*' | grep -Pi "${1}"
-            compgen -A -abck | sort | uniq -c | grep -Pio '\(?=>.+[0-9]+ \).*'; shift
-        done
-    fi
-}
 my_cd()	{
     [[ "${1}" = '-g' ]] && cd / && shift 1
-
-    cd "${@:-"$(fd -H -t d 2>/dev/null | fzf --preview="ls -1 {}")"}"
+    cd "${@:-"$(fd -H -t d 2>/dev/null | fzf --preview="ls -1 {}")"}" || return 1
 }
 open_mpv() {
     local AUD CLOSE FILE_FZF
@@ -121,7 +118,7 @@ alias_conflict() {
     echo "------------------------------"
     cvm="$(compgen -c)"
     for i in $(alias -p | grep -Pio '^[ \t]*alias[ \t]*\K[^=]*') ; do
-        wcl="$(grep -x "${i}" <<< "${cvm}" | wc -l)"
+        wcl="$(grep -c -x "${i}" <<< "${cvm}")"
         if [[ "${wcl}" -gt 1 ]] ; then
             echo "${wcl} - ${i}"
             if [[ "${1,,}" =~ ^[-][-]?f(ull)?$ ]] ; then
@@ -155,9 +152,7 @@ function rg_with_p() {
     rg "${@}" | $PAGER
 }
 #########################################################################
-#-----------------------------------------------------------------------#
 #  ALIASES								                                #
-#-----------------------------------------------------------------------#
 #########################################################################
 #---------------------------------------#
 #                              SPECIAL  #
@@ -171,6 +166,8 @@ alias        sudo='sudo -v; sudo '
 alias          df='df -h'
 alias          cp='cp -i'
 alias        free='free -h'
+alias      pacman='pacman --color="always"'
+alias         yay='yay --color="always"'
 #---------------------------------------#
 #                   ONE LETTER <LOWER>  #
 #---------------------------------------#
@@ -246,6 +243,7 @@ alias   lla='       ll -a'
 alias   gd='        xcmenu --input --clipboard "$(pwd)"'
 alias   lc='        compgen -c'
 alias   cz='        ccze -m ansi'
+alias   xr='        echo ""; nvim $HOME/.Xresources; xrdb ~/.Xresources'
 alias   gf='        grep --file="-" -Fi "$HOME/.bashrc" <<<'
 alias   gr='        grep --file="-" -Pi "$HOME/.bashrc" <<<'
 #----------------------------------------#
@@ -310,53 +308,43 @@ alias   isport='    (read _z; ss -lp "sport = :${_z}") <<< '
 alias   xprattach=' nohup /usr/bin/xpra attach :${XPRA_DISPLAY_NUMBER} &'
 alias   grab_dir='  xcmenu --input --clipboard "$(pwd)"'
 alias   git_mt='    git log --pretty=format:"%h %s" --graph'
-alias   upfonts='   fc-cache && fc-cache-32; echo "return $?"'
+alias   upfonts='   fc-cache; echo "return $?"'
 alias   getfont='   fc-list -v | grep -i '
 alias   list_coms=' compgen -c'
 #alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | grep -Pi -- "${_z:-''}")) <<<'
 #------------------------------------------------------EXPAC-#
-alias   spac='      expac -HM "%m %n" | sort -n'           # Size of packages pacman
-alias   pgspac='    expac -HM "%m %n" | sort -n | $PAGER'  # Size of packages pacman
-alias   paclast="   expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
+alias   exspace='   expac -HM "%m %n" | sort -n'           # Size of packages pacman
+alias   exlast="    expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
+alias   exopt='     expac -Qv -l "\n\t" "%n:\n\t%O"'
+alias   exdep='     expac -Qv -l "\n\t" "%n:\n\t%D"'
 #--------------------------------------------------------YAY-#
-alias   yz='        yay --sortby="votes" -Ss'
-alias   yasyel='    yay -Qs'
-alias   yasye='     yay --sortby="votes" -Ss'
-alias   yasyename=' yay --sortby="votes" --searchby="name" -Ss'
 alias   yayremove=' yay -Yc --noconfirm; yay -Sc --noconfirm; yay -Scc --noconfirm'
-alias   yacool='    yay --color=always -Sl aur | grep "Installed" | grep'
-alias   yaycool='   yay --color=always -Sl aur | grep "Installed" | grep'
-alias   yayse='     yay --sortby="votes" -Ss'
-alias   yaysename=' yay --sortby="votes" --searchby="name" -Ss'
+alias   yayse='     yay -Ss'
 alias   yayi='      yay -Si'
-alias   yaysalt='   yay --color=always -Sl | grep -Pio ".*(?=\[installed\])"'
 alias   yayp='      yay -P --stats'
 alias   yayil='     yay -Qi'
 alias   yaysel='    yay -Qs'
 alias   yayfrom='   yay -Qo'
 alias   yayfiles='  yay -Qql'
-alias   yig='       (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
+alias   yaycool='   yay -Sl aur | grep "Installed" | grep'
+alias   yaysalt='   yay -Sl | grep -Pio ".*(?=\[installed\])"'
 alias   yigse='     (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   rqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*(Required[ \t]*By|Optional[ \t]*For)" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
-alias   pqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*Depends[ \t]*On" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
-alias   opqs='      (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*Optional[ \t]Deps*" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
 #-----------------------------------------------------PACMAN-#
 alias   ptc='       pactree --color' #Pacman Dependencies
+alias   pacse='     pacman -Ss'
+alias   paci='      pacman -Si'
+alias   pacdep='    pacman -T'
 alias   pacneed='   pacman -Qet'
-alias   pacreg='    pacman -Sq --color=always'
-alias   pacool='    pacman --color=always -Sl | grep -i installed | grep -i'
-alias   pacse='     pacman -Ss --color=always'
-alias   paci='      pacman -Si --color=always'
-alias   pacdep='    pacman -T  --color=always'
+alias   pacprog="   pacman -F"
 alias   paclocal='  pacman -Qm'
 alias   pacsel='    pacman -Qs'
 alias   pacil='     pacman -Qi'
-alias   pacprog="   pacman -F"
-alias   pacnot='    pacman --color=always -Sl | grep -v "installed" | xargs -d $"\n" | grep -P'
 alias   pacfrom='   pacman -Qo'
 alias   pacfiles='  pacman -Qql'
-alias   pascel='    pacman -Qs'
-alias   pasce='     pacman -Ss'
+alias   pacool='    pacman -Sl | grep -Fi  "[installed]" | grep -i'
+alias   pacnot='    pacman -Sl | grep -vFi "[installed]" | grep -i'
+alias   fl="        pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
 alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
 alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
 alias   pigse='     (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
@@ -431,7 +419,7 @@ export  XDG_CACHE_HOME="$HOME/.cache"
 #export  XDG_STATE_HOME="$HOME/.local/state/" # Have to fix dirs first
 #export  XDG_DATA_HOME="$HOME/.local/data/"   # Have to fix dirs first
 #-----------------------------------------------BASH-HISTORY-#
-export  HISTSIZE=10000
+export  HISTSIZE=10000000
 export  HISTFILE="$HOME/.bash_history2"
 export  HISTCONTROL=ignoreboth
 #-------------------------------------------------------MINE-#
