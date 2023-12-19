@@ -178,6 +178,7 @@ alias    d='         deactivate' # For python virtualenv
 alias    e='         xcmenu --input --primary'
 alias    f='         /usr/bin/fd'
 alias    g='         grep -Pi'
+alias    h='         cd "$HOME"'
 #alias   i='         iex' # elixir
 #alias   j='         flask run --cert="$HOME/ADD_TO_TRUSTED/mykey.crt" --key="$HOME/.cretse_ridi/mykey.pem"'
 #alias   k='         kiwix-desktop'
@@ -202,7 +203,6 @@ alias    z='         zim'
 alias    C='         my_cd'
 alias    E='         xcmenuctrl'
 alias    F='         grep -F'
-alias    H='         cd "$HOME"'
 alias    M='         ./manage.py'
 alias    O='         open_prog'
 alias    P='         readlink -f' # get full path of file
@@ -366,6 +366,7 @@ alias   killun='    killall at-spi2-registryd; killall at-spi2-bus-launcher; kil
 alias   szof="      du -axhc --time --max-depth=1 | grep -Pv '^0[ \t]' | sort -h"
 alias   szofall='   du -ahc  --time --max-depth=1'
 alias   bgsz='      szof | grep -P "^[^ ]*G"'
+alias   ydl='       cd $VIDEOS; yt-dlp -o "%(title)s.%(ext)s" --restrict-filename'
 alias   getkeys_all='   xmodmap -pke'
 alias   key_spec='      evemu-describe'
 alias   betterkey='     showkey -k'
@@ -430,6 +431,7 @@ export  DESKTOP="$HOME/Desktop/"
 export  DOWNLOADS="$HOME/Downloads/"
 export  CODING="$DESKTOP/Coding/"
 export  CLONED="$DESKTOP/CLONED/"
+export  VIDEOS="$HOME/Videos/"
 export  LOCAL_BIN="$HOME/.local/bin" # By default this is in path (set by os, not by me) (just so i remember)
 #-----------------------------------------------APPLICATIONS-#
 export  NO_AT_BRIDGE=1
