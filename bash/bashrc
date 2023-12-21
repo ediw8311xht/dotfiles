@@ -176,15 +176,16 @@ alias    b='         cd "$HOME/bin/"'
 alias    c='         cd ..'
 alias    d='         deactivate' # For python virtualenv
 alias    e='         xcmenu --input --primary'
-alias    f='         /usr/bin/fd'
+alias    f='         /usr/bin/fd --unrestricted'
 alias    g='         grep -Pi'
 alias    h='         cd "$HOME"'
+alias    mf='        mix format'
 #alias   i='         iex' # elixir
 #alias   j='         flask run --cert="$HOME/ADD_TO_TRUSTED/mykey.crt" --key="$HOME/.cretse_ridi/mykey.pem"'
 #alias   k='         kiwix-desktop'
 alias    l='         cd_from_lf' # my lf, so it cd's shell after exiting lf
 alias    m='         mimetype'
-alias    n='         lsd --icon="never" -rt --permission="octal"  --date=+"  %_H:%M  %y  %b  %_d  " --blocks="permission,user,date,name"'
+alias    n='         lsd --group-dirs="first" -t -r --icon="never" --permission="octal"  --date=+" %l:%M%P %y %m %_d " --blocks="permission,user,date,size,name"'
 #-       o           #-
 alias    p='         pwd'
 #-       q           #-
@@ -227,7 +228,7 @@ alias   fz='        my_cd'
 alias   xf='        xdg-open "$(fzf --preview="ctpv {}")"'
 alias   nf='        rg --ignore-file="$XDG_CONFIG_HOME/rg/code.rg" --hidden --files . 2>/dev/null | fzf --preview="highlight -O ansi -l {} 2>/dev/null" --print0 | xargs -0 -r -o nvim'
 alias   hfi='       fd --search-path "$HOME" --exclude ".mynvim" --exclude ".local" --hidden'
-alias   gfi='       fd --search-path "/"     --hidden --mount'
+alias   gfi='       fd --search-path "/" --unrestricted --mount'
 alias   ic='        clear; imgcat'
 alias   nv='        nvim'
 alias   rt='        \rg --hidden --ignore-file="$XDG_CONFIG_HOME/rg/rg_basic.gitignore" --pcre2 -i'
@@ -318,7 +319,7 @@ alias   exlast="    expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | so
 alias   exopt='     expac -Qv -l "\n\t" "%n:\n\t%O"'
 alias   exdep='     expac -Qv -l "\n\t" "%n:\n\t%D"'
 #--------------------------------------------------------YAY-#
-alias   yayremove=' yay -Yc --noconfirm; yay -Sc --noconfirm; yay -Scc --noconfirm'
+alias   yayremove=' yay -Yc --noconfirm; yay -Scc --noconfirm'
 alias   yayse='     yay -Ss'
 alias   yayi='      yay -Si'
 alias   yayp='      yay -P --stats'
@@ -409,6 +410,7 @@ export  FZF_DEFAULT_OPTS='--bind ctrl-u:half-page-up
                           --bind ctrl-d:half-page-down
                           --bind ctrl-g:preview-half-page-down
                           --bind ctrl-h:preview-half-page-up
+                          --bind ctrl-K:clear-query
                           --bind ctrl-space:toggle-preview'
 export  PAGER='most'
 export  TERM='st-256color'

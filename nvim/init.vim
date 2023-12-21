@@ -21,16 +21,20 @@ let g:mySpec   = [        ".",     jam,       ".",     ".",       ".",    ".",  
 let g:myBg     = [ "#000000", "#333333", "#111111", "#220000", "#002200", "#000022", "#002244" ] + [ "NONE" ]
 let g:myFg     = [         ".",         ".",         ".",         ".",         ".",         ".", "#aaawaa" ] + [ "." ]
 let g:python3_host_prog="/usr/bin/python"
+
+" Color superfluous whitespace at end of lines "
+match ExtraWhiteSpace /[^\s]\s\+\zs$/
+
 "<--------- FUNCTIONS ------------------------------------------------------>
 fu! CorrectColors()
-    hi ExtraWhiteSpace  cterm=NONE ctermbg=gray ctermfg=NONE    gui=NONE    guibg=#0000FF
+    hi ExtraWhiteSpace  cterm=NONE ctermbg=gray ctermfg=NONE    gui=NONE    guibg=#0099FF
     hi Normal                                   ctermbg=black   gui=NONE    guibg=#000000
-    hi Comment                                                  gui=NONE    guibg=#444444 guifg=#000000
+    hi Comment                                                  gui=BOLD    guibg=#404040 guifg=#000000
     hi StatusLine       cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#000033 guifg=#00FF00
     hi StatusLineNC     cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#444444 guifg=#000000
     hi FoldColumn       cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#00FF00
     hi Folded           cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#444444
-    hi CursorLine       cterm=BOLD ctermfg=NONE ctermbg=18      gui=BOLD    guibg=#000044 guifg=NONE
+    hi CursorLine       cterm=BOLD ctermfg=NONE ctermbg=18      gui=BOLD    guibg=#111111 guifg=NONE
     hi CursorLineNr     cterm=BOLD ctermfg=NONE ctermbg=18      gui=NONE    guibg=NONE    guifg=#FFFF00
     hi SignColumn       cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#000000
     hi LineNr           cterm=NONE ctermbg=NONE ctermfg=NONE    gui=NONE    guibg=#000000 guifg=#AAAAAA
@@ -42,15 +46,13 @@ fu! CorrectColors()
     hi IncSearch        cterm=NONE ctermbg=white ctermfg=black  gui=NONE    guibg=#FF0000 guifg=#000000
     hi Search           cterm=NONE ctermbg=white ctermfg=black  gui=NONE    guibg=#FFFFFF guifg=#000000
     "<--------------------------------COC----------------------------------->
-    hi CocWarningHighlight      gui=underline
-    hi CocHintHighlight         gui=NONE    guibg=#00AAAA guifg=#000000
-    hi CocInfoHighlight         gui=NONE    guibg=#00AA00 guifg=#000000
-    hi CocDeprecatedHighlight   gui=NONE    guibg=#333333 guifg=#999900
-    hi CocFadeOut               gui=NONE    guibg=#888888 guifg=#000000
+    hi CocWarningHighlight      gui=UNDERLINE
+    hi CocHintHighlight         gui=NONE        guibg=#00FFFF guifg=#000000
+    hi CocInfoHighlight         gui=NONE        guibg=#00AA00 guifg=#000000
+    hi CocDeprecatedHighlight   gui=NONE        guibg=#333333 guifg=#999900
+    hi CocFadeOut               gui=NONE        guibg=#888888 guifg=#000000
 endfu
 
-
-match ExtraWhiteSpace /[^ ]\s\+\zs$/
 fu! L(keys, command, silent="0")
     if a:silent ==? '1'
         execute 'sil nn <leader>'.a:keys.' '.a:command
@@ -423,10 +425,11 @@ set nocuc
     " -- Edit Normal Mode -- "
         inoremap    jk <esc>
     " -- Emacs Like Bindings for Insert Mode -- "
-        inoremap <C-e> <esc>A
         inoremap <C-a> <esc>I
         inoremap <C-b> <left>
+        inoremap <C-e> <esc>A
         inoremap <C-f> <right>
+        inoremap <C-K> <esc>lCi
 "----------------------------------
 "-- Terminal                     --
 "----------------------------------
