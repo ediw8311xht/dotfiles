@@ -59,7 +59,7 @@ cd_from_lf() {
 }
 my_cd()	{
     [[ "${1}" = '-g' ]] && cd / && shift 1
-    cd "${@:-"$(fd -H -t d 2>/dev/null | fzf --preview="ls -1 {}")"}" || return 1
+    cd "${@:-"$(fd -H -t d 2>/dev/null | fzf --preview="${LS_PREVIEW} {}")"}" || return 1
 }
 open_mpv() {
     local AUD CLOSE FILE_FZF
@@ -67,7 +67,7 @@ open_mpv() {
         [[ "${1,,}" =~ ^-m(ono)?      ]] && AUD="mono"
         [[ "${1,,}" =~ ^(-c|--close)$ ]] && CLOSE="close"
         [[ "${1,,}" =~ ^(-f|--fzf)$   ]] && \
-            FILE_FZF="$(fd --hidden "[.](mp4|mkv|avi|mpeg|mpeg4|mpv|mpv4|m4v|mpg|m4p|mov|wmv|webm)$" | fzf --preview="ctpv {}")"
+            FILE_FZF="$(fd -H "[.](mp4|mkv|avi|mpeg|mpeg4|mpv|mpv4|m4v|mpg|m4p|mov|wmv|webm)$" | fzf --preview="ctpv {}")"
             [[ ! -f "${FILE_FZF}" ]] && return 1
         shift 1
     done
@@ -215,8 +215,8 @@ alias    W='         whereis'
 alias   ufwd='      ufw delete'
 alias   ufws='      ufw status verbose'
 alias   ufwn='      ufw status numbered'
-alias   cnf='       cd "${XDG_CONFIG_HOME}"; cd "$(find -maxdepth 1 -type d -printf "%f\n" | fzf --preview="ls {}")"'
-alias   cde='       cd "${CODING}"; cd "$(find . -maxdepth 3 -type d | grep -Fv "[.]git" | sort -n | fzf --preview="ls {}")"'
+alias   cnf='       cd "${XDG_CONFIG_HOME}"; cd "$(fd -H --maxdepth 1 -t d | fzf --preview="${LS_PREVIEW} {}")"'
+alias   cde='       cd "${CODING}"; cd "$(fd --maxdepth 3 -t d | sort -n | fzf --preview="${LS_PREVIEW} {}")"'
 alias   nvcode='    cd "${CODING}"; nf'
 alias   ww='        cd "${MYWEB}"'
 alias   ac='        acheck'
@@ -228,7 +228,7 @@ alias   fz='        my_cd'
 alias   xf='        xdg-open "$(fzf --preview="ctpv {}")"'
 alias   nf='        rg --ignore-file="$XDG_CONFIG_HOME/rg/code.rg" --hidden --files . 2>/dev/null | fzf --preview="highlight -O ansi -l {} 2>/dev/null" --print0 | xargs -0 -r -o nvim'
 alias   hfi='       fd --search-path "$HOME" --exclude ".mynvim" --exclude ".local" --hidden'
-alias   gfi='       fd --search-path "/" --unrestricted --mount'
+alias   gfi='       fd --search-path "/" -u --mount'
 alias   ic='        clear; imgcat'
 alias   nv='        nvim'
 alias   rt='        \rg --hidden --ignore-file="$XDG_CONFIG_HOME/rg/rg_basic.gitignore" --pcre2 -i'
@@ -398,20 +398,25 @@ alias   spreds='    cd "$HOME/Documents/SPREADSHEETS/"'
 alias   desk='      cd "$HOME/Desktop/"'
 alias   wallz='     cd "$HOME/Pictures/Wallpapers"'
 alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'
-alias   clne='      cd "$CLONED"'
+alias   clne='      cd "$CLONED"; cd "$(fd --maxdepth 1 -t d --color=always | sort -n | fzf --ansi --preview="${LS_PREVIEW} {}")"'
 #########################################################################
 #-----------------------------------------------------------------------#
 #  EXPORT   					                                        #
 #-----------------------------------------------------------------------#
 #########################################################################
 #-----------------------------------------------------SYSTEM-#
+export  LS_PREVIEW='lsd --color=always --group-dirs="first" -t -r --icon="never" --permission="octal" --date=+"%y%m%_d" --blocks="permission,user,date,name"'
 export  FZF_DEFAULT_COMMAND='fd -u'
-export  FZF_DEFAULT_OPTS='--bind ctrl-u:half-page-up
+export  FZF_DEFAULT_OPTS='
+                          --bind ctrl-a:first
+                          --bind ctrl-e:last
+                          --bind ctrl-u:half-page-up
                           --bind ctrl-d:half-page-down
                           --bind ctrl-g:preview-half-page-down
                           --bind ctrl-h:preview-half-page-up
                           --bind ctrl-K:clear-query
-                          --bind ctrl-space:toggle-preview'
+                          --bind ctrl-space:toggle-preview
+                          '
 export  PAGER='most'
 export  TERM='st-256color'
 export  TERMINAL='/usr/local/bin/st'
