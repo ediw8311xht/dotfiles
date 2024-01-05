@@ -1,4 +1,44 @@
-
+-- require'nvim-treesitter.configs'.setup {
+--   -- A list of parser names, or "all" (the five listed parsers should always be installed)
+--   ensure_installed = { "json", "elixir", "c", "lua", "vim", "vimdoc", "query" },
+--
+--   -- Install parsers synchronously (only applied to `ensure_installed`)
+--   sync_install = false,
+--
+--   -- Automatically install missing parsers when entering buffer
+--   -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+--   auto_install = true,
+--
+--   -- List of parsers to ignore installing (or "all")
+--   ignore_install = { "javascript" },
+--
+--   ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+--   -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+--
+--   highlight = {
+--     enable = true,
+--
+--     -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+--     -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+--     -- the name of the parser)
+--     -- list of language that will be disabled
+--     disable = { "c", "rust", "vim", "vimdoc", "lua" },
+--     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+--     disable = function(lang, buf)
+--         local max_filesize = 100 * 1024 -- 100 KB
+--         local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+--         if ok and stats and stats.size > max_filesize then
+--             return true
+--         end
+--     end,
+--
+--     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+--     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+--     -- Using this option may slow down your editor, and you may see some duplicate highlights.
+--     -- Instead of true it can also be a list of languages
+--     additional_vim_regex_highlighting = false,
+--   },
+-- }
 require'marks'.setup {
     -- whether to map keybinds or not. default true
     default_mappings = true,
@@ -8,8 +48,8 @@ require'marks'.setup {
     cyclic = true,
     -- whether the shada file is updated after modifying uppercase marks. default false
     force_write_shada = false,
-    -- how often (in ms) to redraw signs/recompute mark positions. 
-    -- higher values will have better performance but may cause visual lag, 
+    -- how often (in ms) to redraw signs/recompute mark positions.
+    -- higher values will have better performance but may cause visual lag,
     -- while lower values may cause performance penalties. default 150.
     refresh_interval = 450,
     -- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
@@ -33,7 +73,7 @@ require'marks'.setup {
     },
     mappings = {}
 }
-
+vim.opt.updatetime = 400
 -- require('nvls').setup({
 --     lilypond = {
 --         mappings = {
@@ -94,13 +134,12 @@ require'marks'.setup {
 --         },
 --     },
 -- })
--- 
--- vim.api.nvim_create_autocmd('BufEnter', { 
+--
+-- vim.api.nvim_create_autocmd('BufEnter', {
 --     command = "syntax sync fromstart",
 --     pattern = { '*.ly', '*.ily', '*.tex' }
 -- })
--- 
-vim.opt.updatetime = 400 
+--
 
 
 -- vim.g.coq_settings = { --

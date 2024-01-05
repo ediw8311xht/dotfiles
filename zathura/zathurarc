@@ -2,6 +2,9 @@
 #---------------------------------------#
 #----SETTINGS---------------------------#
 #---------------------------------------#
+    #set sandbox strict
+    set sandbox                 none
+    set guioptions              s
     set zoom-step               4
     set show-hidden             true
     set continuous-hist-save    true
@@ -12,7 +15,7 @@
     set window-title-home-tilde true
     set statusbar-home-tilde    true
     set n-completion-items      -1
-        # set sandbox strict
+# status bar and scrollbar
 #---------------------------------------#
 #----MAPPINGS----------------UNSET------#
 #---------------------------------------#
@@ -28,11 +31,15 @@
 #---------------------------------------#
 #----MAPPINGS----------------COMMA------#
 #---------------------------------------#
-    map  ,h     toggle_statusbar
+    #map  ,h     toggle_statusbar
 #---------------------------------------#
 #----MAPPINGS----------------REGULAR----#
 #---------------------------------------#
     map  b      recolor
+    map  B      focus_inputbar ':bmark '
+    map  e      set 'guioptions sv' # show vertical scrollbar
+    map  E      set 'guioptions s'  # hide vertical scrollbar
+    map  l      focus_inputbar ':blist '
     map  =      zoom in
 #---------------------------------------#
 #---APPEARANCE--------------------------#
@@ -43,8 +50,19 @@
     set statusbar-v-padding 10
     set statusbar-bg        "#222222"
     set statusbar-fg        "#00AA00"
-    set highlight-fg        "#000000"
-    set highlight-color     "#F5D769"
+    #set highlight-fg        "#000000"
+    #set highlight-color     "#F5D769"
+    set highlight-color         "#F0C080"
+    set highlight-active-color  "#5FA0C0"
+
+    set completion-highlight-fg "#151515"
+    set completion-highlight-bg "#90A050"
+
+    set completion-bg           "#333333"
+    set completion-fg           "#DDDDDD"
+
+    set notification-bg         "#222222"
+    set notification-fg         "#0099FF"
     # set recolor         true
     # set default-bg                  "#000000" # Background
     # set default-fg                  "#000000" # Foreground

@@ -12,10 +12,3 @@ preview myepub .epub {{
     send_image "${gname}"
 }}
 
-#preview myepub .epub {{
-#    gnome-epub-thumbnailer "${f}" "/tmp/abcd.png"
-#    declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
-#        [x]="$x" [y]="$y" [width]="$w" [height]="$h" \
-#        [path]="/tmp/abcd.png") \
-#        > "$FIFO_UEBERZUG"
-#}}

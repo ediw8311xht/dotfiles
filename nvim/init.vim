@@ -179,10 +179,10 @@ let maplocalleader = " "
 call plug#begin()
 " Language Servers. Use release branch (recommend)
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Treesitter, self explanatory
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Treesitter
+"    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Treesitter, extra stuff
-    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+"    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 " Show-all-matching-tags-vim
     Plug 'andymass/vim-matchup'
 " Autoclose HTML tags

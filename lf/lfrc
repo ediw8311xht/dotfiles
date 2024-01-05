@@ -42,7 +42,8 @@ cmd open &{{
         if ! [[ "${zz}" = "${EDITOR}.desktop" ]] ; then
             for j in ${fx[@]}; do
                 mimeopen "${j}" &>/dev/null & disown
-            done && return
+            done
+            return
         fi
     done
     lf -remote "send $id \$$EDITOR \$fx"
