@@ -14,7 +14,7 @@
     set pages-per-row           1
     set window-title-home-tilde true
     set statusbar-home-tilde    true
-    set n-completion-items      -1
+    set n-completion-items      20
 # status bar and scrollbar
 #---------------------------------------#
 #----MAPPINGS----------------UNSET------#
@@ -23,11 +23,12 @@
 #---------------------------------------#
 #----MAPPINGS----------------CTRL-------#
 #---------------------------------------#
-    map  <C-h>   toggle_statusbar
-    map  <C-->   zoom out
-    map  <C-=>   zoom in
-    map  <C-_>   adjust_window best-fit
-    map  <C-+>   adjust_window width
+    map  <C-h>  toggle_statusbar
+    map  <C-->  zoom out
+    map  <C-=>  zoom in
+    map  <C-_>  adjust_window best-fit
+    map  <C-+>  adjust_window width
+    map  <C-l>  focus_inputbar ':blist '
 #---------------------------------------#
 #----MAPPINGS----------------COMMA------#
 #---------------------------------------#
@@ -39,7 +40,6 @@
     map  B      focus_inputbar ':bmark '
     map  e      set 'guioptions sv' # show vertical scrollbar
     map  E      set 'guioptions s'  # hide vertical scrollbar
-    map  l      focus_inputbar ':blist '
     map  =      zoom in
 #---------------------------------------#
 #---APPEARANCE--------------------------#

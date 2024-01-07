@@ -105,6 +105,7 @@ text/x-moc=nvim.desktop
 text/x-pascal=nvim.desktop
 text/x-python=nvim.desktop
 text/x-readme=nvim.desktop
+text/x-rst=nvim.desktop
 text/x-scala=sc-im.desktop
 text/x-shellscript=nvim.desktop
 text/x-tex=nvim.desktop

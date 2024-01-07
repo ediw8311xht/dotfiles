@@ -147,9 +147,6 @@ bash_history_grab() {
         grep -Pi "${1}" "$HOME/.bash_history2"
     fi
 }
-function sup_copy() {
-    "${@}" | xcmenu --input --clipboard
-}
 function rg_with_p() {
     rg "${@}" | $PAGER
 }
@@ -227,7 +224,6 @@ alias   hb='        nvim $HOME/.bash_history2'
 alias   ic='        clear; imgcat'
 alias   lc='        compgen -c'
 alias   ll="        lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
-alias   mf='        mix format'
 alias   nf='        rg --ignore-file="${XDG_CONFIG_HOME}/rg/code.rg" --hidden --files . 2>/dev/null | fzf --preview="highlight -O ansi -l {} 2>/dev/null" --print0 | xargs -0 -r -o nvim'
 alias   nv='        nvim'
 alias   pe='        ps -eo comm=,'
@@ -245,6 +241,7 @@ alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,az
 #                         THREE LETTER   #
 #----------------------------------------#
 #------------------------------------------------------------#
+alias   mixf='      mix format'
 alias   gfi='       fd --search-path "/" -u --mount'
 alias   hfi='       fd --search-path "$HOME" --exclude ".mynvim" --exclude ".local" --hidden'
 alias   lla='       ll -a'
@@ -253,7 +250,6 @@ alias   acf='       alias_conflict --full'
 alias   alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
 alias   bsg='       ps ax | grep -Pv "/usr/lib/brave" | grep -Pi'
 alias   comv='      command -V'
-alias   copg='      sup_copy' #copy command
 alias   cop='       xcmenu --input --clipboard'
 alias   decl='      declare -f'
 alias   doren='     perl-rename -v'
@@ -272,11 +268,11 @@ alias   inx='       inxi' # Computer stats, hardware
 alias   isport='    (read _z; ss -lp "sport = :${_z}") <<< '
 alias   k_at_spi2=' killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher'
 alias   ldi='       fdisk -l -o +uuid'
-alias   listaudio=" find . -type f -iregex '.*[.]\(mp3\|flac\)'"
 alias   list_coms=' compgen -c'
+alias   listaudio=" find . -type f -iregex '.*[.]\(mp3\|flac\)'"
+alias   listpics="  find . -type f -iregex '.*[.]\(jp[e]?g\|png\|tiff\|webp\|bmp\|avif\|ico\|gif[v]?\)'"
+alias   listvids="  find . -type f -iregex '.*[.]\(mov\|m4v\|mkv\|mp[e]?[4vg]\|webm\|avi\|amv\)'"
 alias   listmedia=" listaudio; listpics; listvids"
-alias   listpics="  find . -type f -iregex '.*[.]\(jp[e]?g\|png\|tiff\|webp\|bmp\|avif\)'"
-alias   listvids="  find . -type f -iregex '.*[.]\(mov\|m4v\|mkv\|mp[e]?[4vg]\|gif[v]?\|webm\|avi\|amv\)'"
 alias   loc='       locate'
 alias   lsn="       lsd --icon='never' -l"
 alias   lst="       lsd --icon='never' -ltrh"
@@ -395,8 +391,7 @@ alias   desk='      cd "${DESKTOP}"'
 alias   infs='      cd "${INFORMATION}"'
 alias   spred='     cd "${SPREADSHEETS}"'
 alias   wallz='     cd "${WALLPAPERS}"'
-
-alias   lke='       cd "$HOME/Notebooks/REFERENCE_SHEETS/"'
+alias   lke='       cd "${HOME}/Notebooks/REFERENCE_SHEETS/"'
 alias   lib='       cd "${LIBRARY}"; cd_from_lf'
 alias   ww='        cd "${MYWEB}"'
 alias   cnf='       cd "${XDG_CONFIG_HOME}"; cd "$(fd -H --maxdepth 1 -t d | fzf --preview="${LS_PREVIEW} {}")"'
@@ -411,48 +406,55 @@ alias   clne='      cd "${CLONED}"; cd "$(fd --maxdepth 1 -t d --color=always | 
 #  EXPORT   					                                        #
 #-----------------------------------------------------------------------#
 #########################################################################
-#-----------------------------------------------------SYSTEM-#
-export  LS_PREVIEW='lsd --color=always --group-dirs="first" -t -r --icon="never" --permission="octal" --date=+"%y%m%_d" --blocks="permission,user,date,name"'
+#------------------XDG-----------------#
+export  XDG_CONFIG_HOME="${HOME}/.config"
+export  XDG_CACHE_HOME="${HOME}/.cache"
+#------------------FZF-----------------#
 export  FZF_DEFAULT_COMMAND='fd -u'
-export  FZF_DEFAULT_OPTS='
-                          --bind ctrl-a:first
+export  FZF_DEFAULT_OPTS='--bind ctrl-a:first
                           --bind ctrl-e:last
                           --bind ctrl-u:half-page-up
                           --bind ctrl-d:half-page-down
                           --bind ctrl-g:preview-half-page-down
                           --bind ctrl-h:preview-half-page-up
                           --bind ctrl-K:clear-query
-                          --bind ctrl-space:toggle-preview
-                          '
+                          --bind ctrl-space:toggle-preview'
+export  LS_PREVIEW='lsd   --color=always        \
+                          --group-dirs="first"  \
+                          --timesort            \
+                          --reverse             \
+                          --icon="never"        \
+                          --permission="octal"  \
+                          --date=+"%y%m%_d"     \
+                          --blocks="permission,user,date,name"'
+#------------------SYSTEM--------------#
 export  SUDO_EDITOR='vim'
+export  TERM='st-256color'
+export  TERMINAL='/usr/local/bin/st'
+export  EDITOR="nvim"
+#export  XDG_STATE_HOME="$HOME/.local/state/" # Have to fix dirs first
+#export  XDG_DATA_HOME="$HOME/.local/data/"   # Have to fix dirs first
+#------------------BASH-HISTORY--------#
+export  HISTSIZE=10000000
+export  HISTFILE="$HOME/.bash_history2"
+export  HISTCONTROL=ignoreboth
+#------------------MINE----------------#
+export  BACKUP="${HOME}/BACKUP_FILES"
+export  BIN="${HOME}/bin"
+export  BROWSER="/usr/bin/brave"
+export  DESKTOP="${HOME}/Desktop/"
+export  DOCUMENTS="${HOME}/Documents/"
+export  DOWNLOADS="${HOME}/Downloads/"
+export  LIBRARY="${HOME}/Library/"
+export  LOCAL_BIN="${HOME}/.local/bin" # By default this is in path (set by os, not by me) (just so i remember)
+export  PICTURES="${HOME}/Pictures/"
+export  VIDEOS="${HOME}/Videos/"
+#------------------PAGER---------------#
 export  MOST_INITFILE="${XDG_CONFIG_HOME}/most/most.rc"
 export  MOST_EDITOR='nvim'
 export  PAGER='most'
 export  LESSOPEN='|pygmentize -g %s'
 export  LESS='-R'
-export  TERM='st-256color'
-export  TERMINAL='/usr/local/bin/st'
-export  EDITOR="nvim"
-#--------------------------------------------------XDG-STUFF-#
-export  XDG_CONFIG_HOME="$HOME/.config"
-export  XDG_CACHE_HOME="$HOME/.cache"
-#export  XDG_STATE_HOME="$HOME/.local/state/" # Have to fix dirs first
-#export  XDG_DATA_HOME="$HOME/.local/data/"   # Have to fix dirs first
-#-----------------------------------------------BASH-HISTORY-#
-export  HISTSIZE=10000000
-export  HISTFILE="$HOME/.bash_history2"
-export  HISTCONTROL=ignoreboth
-#-------------------------------------------------------MINE-#
-#------------------BASIC---------------#
-export  BACKUP="$HOME/BACKUP_FILES"
-export  BIN="$HOME/bin"
-export  BROWSER="/usr/bin/brave"
-export  DESKTOP="$HOME/Desktop/"
-export  DOCUMENTS="$HOME/Documents/"
-export  DOWNLOADS="$HOME/Downloads/"
-export  LIBRARY="$HOME/Library/"
-export  LOCAL_BIN="$HOME/.local/bin" # By default this is in path (set by os, not by me) (just so i remember)
-export  VIDEOS="$HOME/Videos/"
 #------------------MULTI-LEVEL---------#
 export  BASH_HISTORY_ARCHIVE="${DOCUMENTS}/BASH_HISTORY_ARCHIVE"
 export           INFORMATION="${DOCUMENTS}/INFORMATION"
@@ -463,7 +465,7 @@ export                CLONED="${DESKTOP}/CLONED/"
 #-----------------------------------------------APPLICATIONS-#
 export  NO_AT_BRIDGE=1
 export  QT_QPA_PLATFORMTHEME="qt5ct"
-export  npm_config_prefix="$HOME/.local"
+export  npm_config_prefix="${HOME}/.local"
 export  GTK2_RC_FILES="/usr/share/themes/Midnight/gtk-2.0/gtkrc"
 #------------------------------------------------------------------------------------------------------------------------------------------------ #
 #####################   Fixes colored man pages when using `most`, for some reason, TY https://stackoverflow.com/users/26449/bill                 #
@@ -473,13 +475,12 @@ export  GROFF_NO_SGR=1 ### https://stackoverflow.com/a/32456403                 
 #---------------------------------------------------------------------- #
 #-`PATH`								                                #
 #---------------------------------------------------------------------- #
-if  [ -d "$HOME/bin/"         	 ] ; then PATH="$HOME/bin/:$PATH"        	 ;	fi
-if  [ -d "$HOME/bin/txt2man"     ] ; then PATH="$HOME/bin/txt2man:$PATH"     ;	fi
-if  [ -d "$HOME/bin/i3wm"     	 ] ; then PATH="$HOME/bin/i3wm:$PATH"    	 ; 	fi
-if  [ -d "$HOME/bin/personal" 	 ] ; then PATH="$HOME/bin/personal:$PATH"	 ; 	fi
-if  [ -d "$HOME/bin/ufw"      	 ] ; then PATH="$HOME/bin/ufw:$PATH"     	 ; 	fi
-if  [ -d "$HOME/bin/random"   	 ] ; then PATH="$HOME/bin/random:$PATH"  	 ; 	fi
-if  [ -d "$HOME/Desktop/MY_APPS" ] ; then PATH="$HOME/Desktop/MY_APPS:$PATH" ; 	fi
-if  [ -d "/etc/systemd/user" 	 ] ; then PATH="/etc/systemd/user:$PATH"     ; 	fi
-if  [ -d "/usr/bin"              ] ; then PATH="/usr/bin/:$PATH"             ;  fi
-
+if  [ -d "${HOME}/bin/"         	 ] ; then PATH="${HOME}/bin/:$PATH"        	 ;	fi
+if  [ -d "${HOME}/bin/txt2man"       ] ; then PATH="${HOME}/bin/txt2man:$PATH"     ;	fi
+if  [ -d "${HOME}/bin/i3wm"     	 ] ; then PATH="${HOME}/bin/i3wm:$PATH"    	 ; 	fi
+if  [ -d "${HOME}/bin/personal" 	 ] ; then PATH="${HOME}/bin/personal:$PATH"	 ; 	fi
+if  [ -d "${HOME}/bin/ufw"      	 ] ; then PATH="${HOME}/bin/ufw:$PATH"     	 ; 	fi
+if  [ -d "${HOME}/bin/random"   	 ] ; then PATH="${HOME}/bin/random:$PATH"  	 ; 	fi
+if  [ -d "${HOME}/Desktop/MY_APPS"   ] ; then PATH="${HOME}/Desktop/MY_APPS:$PATH" ; 	fi
+if  [ -d "/etc/systemd/user" 	     ] ; then PATH="/etc/systemd/user:$PATH"     ; 	fi
+if  [ -d "/usr/bin"                  ] ; then PATH="/usr/bin/:$PATH"             ;  fi
