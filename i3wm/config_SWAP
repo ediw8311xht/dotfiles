@@ -101,7 +101,7 @@
     include regular_bindings_i3wm.conf
     include modes_i3wm.conf
 #-------ASSIGN------------------------------------------------------------#
-    #assign [class=".*Deluge.*"]             workspace 12
+    assign [class=".*Deluge.*"]             workspace 12
 #-------FOR_WINDOW--------------------------------------------------------#
     for_window [class=".*qutebrowser.*"]        floating enable, resize set 1400px 1000px, move scratchpad, scratchpad show, move position center
     for_window [class=".*icecat.*"]	            floating enable, resize set    $WSW  $WSH, move scratchpad, scratchpad show, move position center

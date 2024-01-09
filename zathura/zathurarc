@@ -3,44 +3,58 @@
 #----SETTINGS---------------------------#
 #---------------------------------------#
     #set sandbox strict
-    set sandbox                 none
-    set guioptions              s
-    set zoom-step               4
-    set show-hidden             true
-    set continuous-hist-save    true
-    set window-title-basename   true
-    set selection-clipboard     clipboard
     set adjust-open             best-fit
-    set pages-per-row           1
-    set window-title-home-tilde true
+    set smooth-reload           true
+    set continuous-hist-save    true
+    set guioptions              s
+    set sandbox                 none
+    set selection-clipboard     clipboard
+    set show-hidden             true
     set statusbar-home-tilde    true
+    set vertical-center         true
+    set window-title-basename   true
+    set window-title-home-tilde true
     set n-completion-items      20
+    set pages-per-row           1
+    set scroll-step             10
+    set zoom-step               4
 # status bar and scrollbar
 #---------------------------------------#
 #----MAPPINGS----------------UNSET------#
 #---------------------------------------#
     unmap =
+    unmap -
 #---------------------------------------#
 #----MAPPINGS----------------CTRL-------#
 #---------------------------------------#
     map  <C-h>  toggle_statusbar
-    map  <C-->  zoom out
-    map  <C-=>  zoom in
     map  <C-_>  adjust_window best-fit
+    map  <C-->  adjust_window best-fit
     map  <C-+>  adjust_window width
+    map  <C-=>  adjust_window width
     map  <C-l>  focus_inputbar ':blist '
 #---------------------------------------#
 #----MAPPINGS----------------COMMA------#
 #---------------------------------------#
-    #map  ,h     toggle_statusbar
+    map  ,,     set 'scroll-step 1'
+    map  ..     set 'scroll-step 10'
+    map  <<     set 'scroll-step 50'
+    map  >>     set 'scroll-step 100'
 #---------------------------------------#
 #----MAPPINGS----------------REGULAR----#
 #---------------------------------------#
     map  b      recolor
     map  B      focus_inputbar ':bmark '
-    map  e      set 'guioptions sv' # show vertical scrollbar
-    map  E      set 'guioptions s'  # hide vertical scrollbar
-    map  =      zoom in
+    map  k      scroll    'up'
+    map  j      scroll    'down'
+    map  K      navigate  'previous'
+    map  J      navigate  'next'
+    map  e      set       'guioptions sv' # show vertical scrollbar
+    map  E      set       'guioptions s'  # hide vertical scrollbar
+    map  _      zoom      'out'
+    map  -      zoom      'out'
+    map  =      zoom      'in'
+    map  +      zoom      'in'
 #---------------------------------------#
 #---APPEARANCE--------------------------#
 #---------------------------------------#
@@ -69,3 +83,4 @@
     # set recolor-lightcolor          "#101010" # Background
     # set recolor-darkcolor           "#00FF00" # Foreground
     # set adjust-open width
+

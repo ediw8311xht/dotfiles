@@ -392,7 +392,7 @@ alias   infs='      cd "${INFORMATION}"'
 alias   spred='     cd "${SPREADSHEETS}"'
 alias   wallz='     cd "${WALLPAPERS}"'
 alias   lke='       cd "${HOME}/Notebooks/REFERENCE_SHEETS/"'
-alias   lib='       cd "${LIBRARY}"; cd_from_lf'
+alias   lib='       cd "${MYLIBRARY}"; cd_from_lf'
 alias   ww='        cd "${MYWEB}"'
 alias   cnf='       cd "${XDG_CONFIG_HOME}"; cd "$(fd -H --maxdepth 1 -t d | fzf --preview="${LS_PREVIEW} {}")"'
 alias   bhagr='     cd "${BASH_HISTORY_ARCHIVE}"; rg 2>/dev/null'
@@ -445,7 +445,7 @@ export  BROWSER="/usr/bin/brave"
 export  DESKTOP="${HOME}/Desktop/"
 export  DOCUMENTS="${HOME}/Documents/"
 export  DOWNLOADS="${HOME}/Downloads/"
-export  LIBRARY="${HOME}/Library/"
+export  MYLIBRARY="${HOME}/Library/"
 export  LOCAL_BIN="${HOME}/.local/bin" # By default this is in path (set by os, not by me) (just so i remember)
 export  PICTURES="${HOME}/Pictures/"
 export  VIDEOS="${HOME}/Videos/"
