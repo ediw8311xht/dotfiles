@@ -11,16 +11,24 @@
     bindsym Mod1+Shift+c  exec --no-startup-id    "$HOME/.secret_xinit ;     xrdb ~/.Xresources; $HOME/bin/i3wm_config_check.sh --NOASK --0"
     #bindsym Mod1+Shift+a  --release mode          freekey              ;     exec --no-startup-id "sleep 0.2; xdotool key 'ctrl+v'; sleep 0.2; xdotool key 'alt+y'"
 #-------------------------------------------------SET---------------------#
-    set $WSW        1400px
-    set $WSH        950px
-    set $mod        Mod1
-    set $Br         bindsym     Mod1+
-    set $Br_CTRL    bindsym     Mod1+Ctrl
-    set $SF         bindsym     Mod1+Shift+
-    set $SF_CTRL    bindsym     Mod1+Shift+Ctrl
-    set $EXC        exec 	    --no-startup-id
-    set $EXC_A      exec_always --no-startup-id
-    set $BORDER_PIXEL pixel 2
+    set $DefaultSize   1400px 950px
+    set $DefaultWidth  1400px
+    set $DefaultHeight  950px
+    set $SmallSize      850px  750px
+    set $SmallWidth     850px
+    set $SmallHeight    750px
+    set $mod           Mod1
+    set $Br            bindsym     Mod1+
+    set $Br_CTRL       bindsym     Mod1+Ctrl
+    set $SF            bindsym     Mod1+Shift+
+    set $SF_CTRL       bindsym     Mod1+Shift+Ctrl
+    set $EXC           exec 	   --no-startup-id
+    set $EXC_A         exec_always --no-startup-id
+    set $BORDER_PIXEL_DEFAULT     pixel 2
+    set $BORDER_PIXEL_TILING      pixel 2
+    set $BORDER_PIXEL_FLOATING    pixel 2
+    set $BORDER_PIXEL_SCRATCHPAD  pixel 2
+    set $BORDER_PIXEL             pixel 2
     set $B1 ;
     set $B2 ;
     set $_  ;
@@ -28,27 +36,29 @@
     set $focuse_TEXT  #FFFFFF
     set $inacti_TEXT  #888888
     set $unfocu_TEXT  #888888
-    #set $focuse_BORD  #004f98
-    set $focuse_BORD  #0088FF
-    set $inacti_BORD  #000000
-    set $unfocu_BORD  #333333
-    set $focuse_TBAR  #004f98
-    set $inacti_TBAR  #000000
-    set $unfocu_TBAR  #333333
 #-------------------------------------------------RESOURCES---------------#
     #-----LEFT_MONITOR-----------------------------------#
-        set_from_resource $MON_1    i3wm.monitor1 DVI-D-1
+        set_from_resource $BORDER_FILE i3wm.BORDER_FILE border_flash.conf
+        set_from_resource $MON_1       i3wm.monitor1 DVI-D-1
     #---CENTER_MONITOR-----------------------------------#
-        set_from_resource $MON_2    i3wm.monitor2 DVI-D-1
+        set_from_resource $MON_2       i3wm.monitor2 DVI-D-1
     #----RIGHT_MONITOR-----------------------------------#
-        set_from_resource $MON_3    i3wm.monitor3 DVI-D-1
+        set_from_resource $MON_3       i3wm.monitor3 DVI-D-1
     #----GAPS--------------------------------------------#
-        set_from_resource $IN_GAPS  i3wm.IN_GAPS  0
-        set_from_resource $OUT_GAPS i3wm.OUT_GAPS 0
-        set_from_resource $TOP_GAPS i3wm.TOP_GAPS 0
-        set_from_resource $BOT_GAPS i3wm.BOP_GAPS 0
-        set_from_resource $R_GAPS   i3wm.R_GAPS   0
-        set_from_resource $L_GAPS   i3wm.L_GAPS   0
+        set_from_resource $IN_GAPS     i3wm.IN_GAPS  0
+        set_from_resource $OUT_GAPS    i3wm.OUT_GAPS 0
+        set_from_resource $TOP_GAPS    i3wm.TOP_GAPS 0
+        set_from_resource $BOT_GAPS    i3wm.BOT_GAPS 0
+        set_from_resource $R_GAPS      i3wm.R_GAPS   0
+        set_from_resource $L_GAPS      i3wm.L_GAPS   0
+#-------------------------------------------------------INCLUDE-----------#
+    # for_window set border before release_border if you want to include
+    #for_window [all] border $BORDER_PIXEL
+    # --------- ("release_border_i3wm.conf") needs to be included before others.
+    #include bar_bar.conf
+    include $BORDER_FILE
+    include regular_bindings_i3wm.conf
+    include modes_i3wm.conf
 #-------WORKSPACES--------------------------------------------------------#
     #-------------------------------LEFT--------#
         workspace    1  output	$MON_1
@@ -72,41 +82,19 @@
     floating_modifier     $mod+Ctrl
     focus_follows_mouse   yes
     floating_maximum_size 1920 x 1080
-    font pango:Monospace 7
-    default_border  $BORDER_PIXEL
-    #---GAPS------------------------------------------#
-        gaps inner  0
-        gaps outer  0
-        gaps top 	0
-        gaps bottom	0
-        gaps right 	0
-        gaps left  	0
-    #---Class-----------------------Border----------Background------Text------------Indicator-------ChildBorder----#
-        client.focused              $focuse_TBAR    $focuse_TBAR    $focuse_TEXT    $focuse_TBAR    $focuse_BORD
-        client.focused_inactive 	$inacti_TBAR 	$inacti_TBAR	$inacti_TEXT 	$inacti_TBAR    $inacti_BORD
-        client.unfocused 			$unfocu_TBAR    $unfocu_TBAR    $unfocu_TEXT    $unfocu_TBAR    $unfocu_BORD
-        client.focused_tab_title    $-              $-              #000cc2
-        client.background       	$-
-#-------------------------------------------------------INCLUDE-----------#
-    # for_window set border before release_border if you want to include
-    #for_window [all] border $BORDER_PIXEL
-    # --------- ("release_border_i3wm.conf") needs to be included before others.
-    include release_border_i3wm.conf
-    #include bar_bar.conf
-    include regular_bindings_i3wm.conf
-    include modes_i3wm.conf
+    font pango:Hermit 7
 #-------ASSIGN------------------------------------------------------------#
-    assign [class=".*Deluge.*"]             workspace 12
+    #assign [class=".*Deluge.*"]             workspace 12
 #-------FOR_WINDOW--------------------------------------------------------#
-    for_window [class=".*qutebrowser.*"]        floating enable, resize set 1400px 1000px, move scratchpad, scratchpad show, move position center
-    for_window [class=".*icecat.*"]	            floating enable, resize set    $WSW  $WSH, move scratchpad, scratchpad show, move position center
-    for_window [class="Tor Browser"]		    floating enable, resize set    $WSW  $WSH, move scratchpad, scratchpad show, move position center
-    for_window [class=".*Thunar.*"]             floating enable, resize set    $WSW  $WSH, move scratchpad, scratchpad show, move position center
-    for_window [class=".*Xsane.*"]              floating enable, resize set    $WSW  $WSH, move scratchpad, scratchpad show, move position center
-    #for_window [class=".*Zathura.*"]            floating enable, resize set    $WSW  $WSH, move scratchpad, scratchpad show, move position center
-    for_window [instance="i3s_note"]		    floating enable, resize set    $WSW  $WSH, move scratchpad, scratchpad show, move position center
-    for_window [instance="i3s_st"]			    floating enable, resize set    $WSW  $WSH, move scratchpad, scratchpad show, move position center
-    for_window [class="Emacs"]				    floating enable, resize set    $WSW 900px, move scratchpad, scratchpad show, move position center
+    for_window [class=".*qutebrowser.*"]        floating enable, resize set    $DefaultSize, move scratchpad, scratchpad show, move position center
+    for_window [class=".*icecat.*"]	            floating enable, resize set    $DefaultSize, move scratchpad, scratchpad show, move position center
+    for_window [class="Tor Browser"]		    floating enable, resize set    $DefaultSize, move scratchpad, scratchpad show, move position center
+    for_window [class=".*Thunar.*"]             floating enable, resize set    $DefaultSize, move scratchpad, scratchpad show, move position center
+    for_window [class=".*Xsane.*"]              floating enable, resize set    $DefaultSize, move scratchpad, scratchpad show, move position center
+    #for_window [class=".*Zathura.*"]            floating enable, resize set    $DefaultSize, move scratchpad, scratchpad show, move position center
+    for_window [instance="i3s_note"]		    floating enable, resize set    $DefaultSize, move scratchpad, scratchpad show, move position center
+    for_window [instance="i3s_st"]			    floating enable, resize set    $DefaultSize, move scratchpad, scratchpad show, move position center
+    for_window [class="Emacs"]				    floating enable, resize set    $DefaultWidth 900px, move scratchpad, scratchpad show, move position center
     for_window [window_role="task_dialog"]      floating enable, move position center
     for_window [window_role="Preferences"]      floating enable, move position center
     for_window [window_role="pop-up"]           floating enable, move position center
@@ -132,5 +120,5 @@
     #$EXC_A  xset r rate 200 40
     #$EXC_A  $HOME/bin/xwallpaperauto.sh --silent
 #-------END---------------------------------------------------------------#
-#for_window  [floating]                      resize set $WSW $WSH, move position center
+#for_window  [floating]                      resize set $DefaultSize, move position center
 #for_window  [class="i3*input"]			                    resize  set         1000 1000

@@ -16,6 +16,7 @@
     set window-title-home-tilde true
     set n-completion-items      20
     set pages-per-row           1
+    set page-padding            0
     set scroll-step             10
     set zoom-step               4
 # status bar and scrollbar
@@ -37,9 +38,13 @@
 #----MAPPINGS----------------COMMA------#
 #---------------------------------------#
     map  ,,     set 'scroll-step 1'
-    map  ..     set 'scroll-step 10'
-    map  <<     set 'scroll-step 50'
-    map  >>     set 'scroll-step 100'
+    map  ..     set 'scroll-step 5'
+    map  ,.     set 'scroll-step 10'
+    map  .,     set 'scroll-step 20'
+    map  <<     set 'scroll-step 40'
+    map  >>     set 'scroll-step 80'
+    map  <>     set 'scroll-step 160'
+    map  ><     set 'scroll-step 320'
 #---------------------------------------#
 #----MAPPINGS----------------REGULAR----#
 #---------------------------------------#

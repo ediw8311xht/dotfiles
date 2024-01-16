@@ -88,7 +88,9 @@
 !!special_float*alpha:        0.98
 !!!special_float*font:         IosevkaNerdFont:style=Regular:pixelsize=14:antialias=true
 !!special_float*borderpx:     10px
-!!special_float*background:   #000000
+special_float*alpha:	    1
+special_note*background:    #000000
+special_float*background:   #010101
 !!special_float*foreground:   #0abdc6
 !!special_float*color0:       #000000
 !!special_float*color1:       #ff0000
@@ -264,6 +266,7 @@ Zutty.border:               5px
 !!!!ON!!!!!!!!!
 !*.shading:	   	20
 !*.alphaOffset: 0.1
+i3wm.BORDER_FILE: border_regular.conf
 
 i3wm.IN_GAPS:   10
 i3wm.OUT_GAPS:   5
@@ -277,3 +280,4 @@ i3wm.L_GAPS:     0
 i3wm.monitor1: DisplayPort-0
 i3wm.monitor2: HDMI-A-0
 i3wm.monitor3: DVI-D-0
+
