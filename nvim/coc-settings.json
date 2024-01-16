@@ -1,6 +1,6 @@
 
 {
-    "diagnostic.enable": false,
+    "diagnostic.enable": true,
 	"coc.preferences.useQuickfixForLocations": true,
 	"coc.preferences.extensionUpdateCheck": "never",
 	"diagnostic.checkCurrentLine": true,

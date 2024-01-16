@@ -38,7 +38,7 @@
     set $unfocu_TEXT  #888888
 #-------------------------------------------------RESOURCES---------------#
     #-----LEFT_MONITOR-----------------------------------#
-        set_from_resource $BORDER_FILE i3wm.BORDER_FILE border_flash.conf
+        set_from_resource $BORDER_FILE i3wm.BORDER_FILE borders/border_flash.conf
         set_from_resource $MON_1       i3wm.monitor1 DVI-D-1
     #---CENTER_MONITOR-----------------------------------#
         set_from_resource $MON_2       i3wm.monitor2 DVI-D-1
