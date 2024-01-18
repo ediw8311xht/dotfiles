@@ -5,11 +5,13 @@
 # i3 config file (v4)
 #-------------------------------------------------SPECIAL-BINDS-----------#
     #sticky toggle
-    set $mode_be          exec killall xmessage ; mode
-    set $xm_hd            exec $HOME/bin/xmsg_quick.sh
-    bindsym Mod1+Shift+r  exec --no-startup-id    "xrdb ~/.Xresources  ;     $HOME/bin/i3wm_config_check.sh --3"
-    bindsym Mod1+Shift+c  exec --no-startup-id    "$HOME/.secret_xinit ;     xrdb ~/.Xresources; $HOME/bin/i3wm_config_check.sh --NOASK --0"
-    #bindsym Mod1+Shift+a  --release mode          freekey              ;     exec --no-startup-id "sleep 0.2; xdotool key 'ctrl+v'; sleep 0.2; xdotool key 'alt+y'"
+    set $mode_be            exec killall xmessage ; mode
+    set $mode_be_default    exec killall xmessage ; mode "default"
+    set $scratchpad_default floating enable, move scratchpad, scratchpad show, move position center
+    set $floating_default   floating enable, move position center
+    set $xm_hd              exec $HOME/bin/xmsg_quick.sh
+    bindsym Mod1+Shift+r    exec --no-startup-id    "xrdb ~/.Xresources  ;     $HOME/bin/i3wm_config_check.sh --3"
+    bindsym Mod1+Shift+c    exec --no-startup-id    "$HOME/.secret_xinit ;     xrdb ~/.Xresources; $HOME/bin/i3wm_config_check.sh --NOASK --0"
 #-------------------------------------------------SET---------------------#
     set $DefaultSize   1400px 950px
     set $DefaultWidth  1400px
@@ -24,11 +26,6 @@
     set $SF_CTRL       bindsym     Mod1+Shift+Ctrl
     set $EXC           exec 	   --no-startup-id
     set $EXC_A         exec_always --no-startup-id
-    set $BORDER_PIXEL_DEFAULT     pixel 2
-    set $BORDER_PIXEL_TILING      pixel 2
-    set $BORDER_PIXEL_FLOATING    pixel 2
-    set $BORDER_PIXEL_SCRATCHPAD  pixel 2
-    set $BORDER_PIXEL             pixel 2
     set $B1 ;
     set $B2 ;
     set $_  ;
@@ -37,8 +34,9 @@
     set $inacti_TEXT  #888888
     set $unfocu_TEXT  #888888
 #-------------------------------------------------RESOURCES---------------#
-    #-----LEFT_MONITOR-----------------------------------#
+    #-----BORDER_FILE------------------------------------#
         set_from_resource $BORDER_FILE i3wm.BORDER_FILE borders/border_flash.conf
+    #-----LEFT_MONITOR-----------------------------------#
         set_from_resource $MON_1       i3wm.monitor1 DVI-D-1
     #---CENTER_MONITOR-----------------------------------#
         set_from_resource $MON_2       i3wm.monitor2 DVI-D-1
@@ -52,10 +50,6 @@
         set_from_resource $R_GAPS      i3wm.R_GAPS   0
         set_from_resource $L_GAPS      i3wm.L_GAPS   0
 #-------------------------------------------------------INCLUDE-----------#
-    # for_window set border before release_border if you want to include
-    #for_window [all] border $BORDER_PIXEL
-    # --------- ("release_border_i3wm.conf") needs to be included before others.
-    #include bar_bar.conf
     include $BORDER_FILE
     include regular_bindings_i3wm.conf
     include modes_i3wm.conf
@@ -63,7 +57,6 @@
     #-------------------------------LEFT--------#
         workspace    1  output	$MON_1
         workspace    2	output  $MON_1
-        workspace    3	output	$MON_1
     #-------------------------------CENTER------#
         workspace    7	output	$MON_2
         workspace    8	output	$MON_2
@@ -71,6 +64,7 @@
         workspace   10	output	$MON_2
         workspace   11	output	$MON_2
         workspace   12	output	$MON_2
+        workspace    3	output	$MON_2
         workspace    4	output	$MON_2
         workspace    5	output	$MON_2
         workspace    6	output	$MON_2
@@ -83,27 +77,27 @@
     focus_follows_mouse   yes
     floating_maximum_size 1920 x 1080
     font pango:Hermit 7
+    show_marks yes
 #-------ASSIGN------------------------------------------------------------#
     #assign [class=".*Deluge.*"]             workspace 12
 #-------FOR_WINDOW--------------------------------------------------------#
-    for_window [class=".*qutebrowser.*"]        floating enable, resize set    $DefaultSize, move scratchpad, scratchpad show, move position center
-    for_window [class=".*icecat.*"]	            floating enable, resize set    $DefaultSize, move scratchpad, scratchpad show, move position center
-    for_window [class="Tor Browser"]		    floating enable, resize set    $DefaultSize, move scratchpad, scratchpad show, move position center
-    for_window [class=".*Thunar.*"]             floating enable, resize set    $DefaultSize, move scratchpad, scratchpad show, move position center
-    for_window [class=".*Xsane.*"]              floating enable, resize set    $DefaultSize, move scratchpad, scratchpad show, move position center
-    #for_window [class=".*Zathura.*"]            floating enable, resize set    $DefaultSize, move scratchpad, scratchpad show, move position center
-    for_window [instance="i3s_note"]		    floating enable, resize set    $DefaultSize, move scratchpad, scratchpad show, move position center
-    for_window [instance="i3s_st"]			    floating enable, resize set    $DefaultSize, move scratchpad, scratchpad show, move position center
-    for_window [class="Emacs"]				    floating enable, resize set    $DefaultWidth 900px, move scratchpad, scratchpad show, move position center
-    for_window [window_role="task_dialog"]      floating enable, move position center
-    for_window [window_role="Preferences"]      floating enable, move position center
-    for_window [window_role="pop-up"]           floating enable, move position center
-    for_window [window_role="bubble"]           floating enable, move position center
-    for_window [window_type="dialog"]           floating enable, move position center
-    for_window [window_type="popup_menu"]       floating enable, move position center
+    for_window [instance="(i3s_note|i3s_st)"]   $scratchpad_default
+    for_window [class=".*qutebrowser.*"]        $scratchpad_default
+    for_window [class=".*icecat.*"]	            $scratchpad_default
+    for_window [class="Tor Browser"]		    $scratchpad_default
+    for_window [class=".*Thunar.*"]             $scratchpad_default
+    for_window [class=".*Xsane.*"]              $scratchpad_default
+    for_window [class="Emacs"]				    $scratchpad_default
+    for_window [window_role="task_dialog"]      $floating_default
+    for_window [window_role="Preferences"]      $floating_default
+    for_window [window_role="pop-up"]           $floating_default
+    for_window [window_role="bubble"]           $floating_default
+    for_window [window_type="dialog"]           $floating_default
+    for_window [window_type="popup_menu"]       $floating_default
     #-------SPECIAL-XMESSAGE-----------#
     for_window [class="Xmessage"]			    floating enable
     no_focus   [class="Xmessage"]
+    for_window [class="^(?!Xmessage$)" floating] resize set $DefaultSize, move position center
     #-------TITLE----------------------#
     for_window [all] title_window_icon no
     for_window [all] title_format "<big><big><big><span background='#000000' rise='7pt'> <small><small>%title</small></small> </span></big></big></big>"
@@ -120,5 +114,3 @@
     #$EXC_A  xset r rate 200 40
     #$EXC_A  $HOME/bin/xwallpaperauto.sh --silent
 #-------END---------------------------------------------------------------#
-#for_window  [floating]                      resize set $DefaultSize, move position center
-#for_window  [class="i3*input"]			                    resize  set         1000 1000

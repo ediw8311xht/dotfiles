@@ -29,7 +29,7 @@ match ExtraWhiteSpace /[^\s]\s\+\zs$/
 fu! CorrectColors()
     hi ExtraWhiteSpace  cterm=NONE ctermbg=gray ctermfg=NONE    gui=NONE    guibg=#0099FF
     hi Normal                                   ctermbg=black   gui=NONE    guibg=#000000
-    hi Comment                                                  gui=BOLD    guibg=#404040 guifg=#000000
+    hi Comment          cterm=NONE ctermbg=NONE ctermfg=NONE    gui=BOLD    guibg=#404040 guifg=#000000
     hi StatusLine       cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#000033 guifg=#00FF00
     hi StatusLineNC     cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#444444 guifg=#000000
     hi FoldColumn       cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#00FF00
@@ -44,7 +44,7 @@ fu! CorrectColors()
     hi MarkSignNumHL                                            gui=NONE    guibg=none    guifg=NONE
     hi MarkSignVirtTextHL                                       gui=NONE    guibg=NONE    guifg=#00FF00
     hi IncSearch        cterm=NONE ctermbg=white ctermfg=black  gui=NONE    guibg=#FF0000 guifg=#000000
-    hi Search           cterm=NONE ctermbg=white ctermfg=black  gui=NONE    guibg=#FFFFFF guifg=#000000
+    hi Search           cterm=NONE ctermbg=white ctermfg=black  gui=NONE    guibg=#000099 guifg=#FFFFFF
     "<--------------------------------COC----------------------------------->
     hi CocWarningHighlight      gui=UNDERLINE
     hi CocHintHighlight         gui=NONE        guibg=#00FFFF guifg=#000000
@@ -121,8 +121,17 @@ fu! IndentHalfOrDouble(half_or_double)
     endif
 endfunction
 
+fu! GetMappings()
+    :redir! > /tmp/nvim_mappings.txt
+    :silent imap
+    :silent nmap
+    :silent vmap
+    :redir END
+    :e /tmp/nvim_mappings.txt
+endfunction
+
 "<--------- LET/SET -------------------------------------------------------->
-filetype off
+filetype on
 "set runtimepath+=/usr/local/share/lilypond/current/vim/
 "set runtimepath+=$LILYPOND_HOME
 filetype plugin on
@@ -344,13 +353,14 @@ set nocuc
     " -- Start Bracy -- "
         call L( 'WW'       ,   ':Bracey<esc>')
     " -- Stop Bracy -- "
-        call L( 'S'        ,    ':BraceyStop<esc>')
+        "call L( 'S'        ,    ':BraceyStop<esc>')
     " -- OPEN TERMINAL -- "
         call L( 'T'        ,    ':buff term://<esc>i')
     " -- OPEN WEB BROWSER -- "
         call L( 'W'        ,    ':call Web("f")<esc>i')
         " -- Go to 'https://localhost:4842' -- "
-            call L( 'G'    ,    ':buff term://<esc>iohttp://localhost:4842')
+        "call L( 'G'    ,    ':buff term://<esc>iohttp://localhost:4842')
+        call L( 'Gm'    ,    ':call GetMappings()<CR>')
     " -- QUICK SWITCH BETWEEN ALTERNATE FILE -- "
         call L( '<leader>' ,    '<C-^>')
         call L( ',' ,           '<C-^>')
@@ -370,7 +380,14 @@ set nocuc
     " --  Run Healthchecks -- "
         call L( 'CH'       ,    ':checkhealth<esc>')
     " -- -- "
-        call L( '<enter>'  ,    ':set paste!<esc>')
+        "call L( '<enter>'  ,    ':set paste!<esc>')
+
+        " -- Subshell Stuff
+let g:subshell_begin=join(['####################', '( #-START-SUBSHELL-#', '####################'], "\n")
+let g:subshell_end=join(  ['####################', ') #---END-SUBSHELL-#', '####################'], "\n")
+        call L( 'Sb'       ,    ':put =subshell_begin<esc>')
+        call L( 'Se'       ,    ':put =subshell_end<esc>')
+
 "---------------------------------------------------
 "-- Map  (Normal, Visual, Select, OperatorPending --
 "---------------------------------------------------
@@ -402,6 +419,8 @@ set nocuc
     nn / /\v\c
     nn ? ?\v\c
     nn <C-_> /\V\c
+    nn \| /\V
+    nn <C-\> /\V\c
     nn <lt> :tabprevious<esc>
     nn > :tabnext<esc>
     nn x "xx
@@ -456,7 +475,7 @@ set statusline+=%m\
 set statusline+=%=\(%l\/%L\)\ (%v\)\ 
 set statusline+=%{wordcount().words}\ w\ 
 
-autocmd BufNewFile,BufRead *.sh                         set syntax=zsh
+autocmd BufNewFile,BufRead *.sh                         set syntax=bash
 autocmd BufNewFile,BufRead ~/.config/polybar/config     setfiletype dosini
 autocmd BufNewFile,BufRead ~/.config/i3/*               setfiletype i3
 autocmd BufNewFile,BufRead *.html                       setlocal tabstop=2 shiftwidth=2 softtabstop=4 expandtab

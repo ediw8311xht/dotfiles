@@ -3,7 +3,7 @@
 !xterm*font: xft:Agave:style=Medium:size=11:antialias=false:autohint=false
 
 !!!!!!!!!!!!!!!!!!!!!!!!! -----------------_FONTS
-*.alpha:	    0.94
+*.alpha:	    0.85
 *.borderpx:     10px
 
 !!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTSHH
@@ -266,7 +266,7 @@ Zutty.border:               5px
 !!!!ON!!!!!!!!!
 !*.shading:	   	20
 !*.alphaOffset: 0.1
-i3wm.BORDER_FILE: borders/border_regular.conf
+i3wm.BORDER_FILE: borders/border_flash.conf
 
 i3wm.IN_GAPS:   10
 i3wm.OUT_GAPS:   5
@@ -277,7 +277,7 @@ i3wm.L_GAPS:     0
 
 
 
+
 i3wm.monitor1: DisplayPort-0
 i3wm.monitor2: HDMI-A-0
 i3wm.monitor3: DVI-D-0
-

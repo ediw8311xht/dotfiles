@@ -85,14 +85,13 @@ open_mpv() {
 open_prog() {
     xdg-open "${1}" & disown
 }
-upd_pip_z() {
-    local A zname
+get_outdated_pip() {
+    local zfile
     local IFS=$'\n'
-    zname="$(date +'%Y%m%d')_pipoutdated.txt"
-    pip list --outdated > "${zname}"
-    A="$(cat "${zname}" | sed '1,2d' | sed -e 's/[ ][ ]*/ /g' | cut -d' ' -f1)"
-    for i in $A ; do pip install --upgrade "${i}"; done
-    return "$?"
+    zfile="$(mktemp /tmp/get_outdated_pip_XXXXXXXX.txt)"
+    trap "trash-put '${zfile}'" SIGINT SIGHUP EXIT RETURN
+    pip list --outdated > "${zfile}"
+    nvim "${zfile}"
 }
 fpend() {
     if [[ "$1" =~ ^-[dD](ate)? ]] ; then shift 1; local MDATE; MDATE="#$(date)"; fi
@@ -106,9 +105,9 @@ fpend() {
     echo "INCORRECT ARGUMENTS"; return 1
 }
 addally() {
-    echo '#----------ADDALLY----------# '"${ITEXT}"  >> "$HOME/.bashrc"
+    echo '#----------ADDALLY----------# '"${ITEXT}"  >> "${HOME}/.bashrc"
     printf 'alias %s='\''cd "%s"'\'' %s\n' \
-        "${1}" "${PWD/$HOME/\$HOME}" "${ITEXT}" >> "$HOME/.bashrc"
+        "${1}" "${PWD/$HOME/\$\{HOME\}}" "${ITEXT}" >> "${HOME}/.bashrc"
 }
 rifs()   { IFS=$' \t\n'; printf 'IFS=%q\n' "${IFS}" ; }
 ppifs()  { printf "IFS=%q" "${IFS}"; echo ""        ; }
@@ -143,9 +142,9 @@ get_alias_fzf() {
 }
 bash_history_grab() {
     if [[ -n "${2}" ]] ; then
-        grep -Pi "${2}" "$HOME/.bash_history2" | tail -n "${1}"
+        grep -Pi "${2}" "${HISTFILE}" | tail -n "${1}"
     else
-        grep -Pi "${1}" "$HOME/.bash_history2"
+        grep -Pi "${1}" "${HISTFILE}"
     fi
 }
 function rg_with_p() {
@@ -218,10 +217,10 @@ alias   cl="        printf '\n%.0s_______________________________' {1..400} ; pr
 alias   cz='        ccze -m ansi'
 alias   fz='        my_cd'
 alias   gd='        xcmenu --input --clipboard "$(pwd)"'
-alias   gf='        grep --file="-" -Fi "$HOME/.bashrc" <<<'
+alias   gf='        grep --file="-" -Fi "${HOME}/.bashrc" <<<'
 alias   gg='        grep -P -r -i'
-alias   gr='        grep --file="-" -Pi "$HOME/.bashrc" <<<'
-alias   hb='        nvim $HOME/.bash_history2'
+alias   gr='        grep --file="-" -Pi "${HOME}/.bashrc" <<<'
+alias   hb='        nvim "${HISTFILE}"'
 alias   ic='        clear; imgcat'
 alias   lc='        compgen -c'
 alias   ll="        lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
@@ -235,7 +234,7 @@ alias   rt='        \rg --hidden --ignore-file="${XDG_CONFIG_HOME}/rg/rg_basic.g
 alias   tl='        tar --list --file'
 alias   xf='        xdg-open "$(fzf --preview="ctpv {}")"'
 alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf,apk,snap,out,jar,sx,s,bin,o,exe,deb,pyc,pyo,aac,webm,alac,ape,ogg,mp4,mkv,m4a,mp4a,avi,mp3,wav,flac}'
-alias   xr='        echo ""; nvim $HOME/.Xresources; xrdb ~/.Xresources'
+alias   xr='        echo ""; nvim "${HOME}/.Xresources"; xrdb "${HOME}/.Xresources"'
 alias   yg='        xg          --exclude=\*.{rar,tar,gz,tgz,zip,bz2,tbz2}'
 alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
 #----------------------------------------#
@@ -244,7 +243,7 @@ alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,az
 #------------------------------------------------------------#
 alias   mixf='      mix format'
 alias   gfi='       fd --search-path "/" -u --mount'
-alias   hfi='       fd --search-path "$HOME" --exclude ".mynvim" --exclude ".local" --hidden'
+alias   hfi='       fd --search-path "${HOME}" --exclude ".mynvim" --exclude ".local" --hidden'
 alias   lla='       ll -a'
 alias   acc='       alias_conflict'
 alias   acf='       alias_conflict --full'
@@ -318,7 +317,7 @@ alias   yayil='     yay -Qi'
 alias   yaysel='    yay -Qs'
 alias   yayfrom='   yay -Qo'
 alias   yayfiles='  yay -Qql'
-alias   yaycool='   yay -Sl aur | grep "Installed" | grep'
+alias   yaycool='   yay -Sl aur | grep "Installed"'
 alias   yaysalt='   yay -Sl | grep -Pio ".*(?=\[installed\])"'
 alias   yigse='     (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 alias   rqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*(Required[ \t]*By|Optional[ \t]*For)" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
@@ -342,15 +341,15 @@ alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for anoth
 alias   pigse='     (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 #------------------------------------------------------------#
 alias   sctl='      journalctl | ccze -m ansi'
-alias   i3e='       nvim -p "$HOME/.config/i3/"*'
-alias   ebash='     nvim $HOME/.bashrc; source ~/.bashrc'
-alias   einp='      nvim $HOME/.inputrc'
-alias   editnv='    nvim $HOME/.config/nvim/init.vim'
-alias   emime='     nvim $HOME/.config/mimeapps.list'
-alias   ysb='       source $HOME/.bashrc'
+alias   i3e='       find "${XDG_CONFIG_HOME}/i3/" -maxdepth 1 -type f -print0 | xargs -0 nvim -p'
+alias   ebash='     nvim "${HOME}/.bashrc"; source "${HOME}/.bashrc"'
+alias   einp='      nvim "${HOME}/.inputrc"'
+alias   editnv='    nvim "${HOME}/.config/nvim/init.vim"'
+alias   emime='     nvim "${HOME}/.config/mimeapps.list"'
+alias   ysb='       source "${HOME}/.bashrc"'
 alias   capkey='    xev | grep -Pio '\''(keysym [^)]*)'\'
-alias   nvgr='      grep --file="-" -Pri "$HOME/.config/nvim/" <<< '
-alias   i3gr='      grep --file="-" -Pri "$HOME/.config/i3/"   <<< '
+alias   nvgr='      grep --file="-" -Pri "${HOME}/.config/nvim/" <<< '
+alias   i3gr='      grep --file="-" -Pri "${HOME}/.config/i3/"   <<< '
 alias   vid='       open_mpv'
 alias   fvid='      open_mpv --fzf'
 alias   flip_img='  mogrify -rotate 180 *.jpg'
@@ -393,12 +392,11 @@ alias   spred='     cd "${SPREADSHEETS}"'
 alias   wallz='     cd "${WALLPAPERS}"'
 alias   lke='       cd "${HOME}/Notebooks/REFERENCE_SHEETS/"'
 alias   lib='       cd "${MY_LIBRARY}"; cd_from_lf'
-alias   ww='        cd "${MYWEB}"'
+alias   ww='        cd "${MY_WEB}"'
 alias   cnf='       cd "${XDG_CONFIG_HOME}"; cd "$(fd -H --maxdepth 1 -t d | fzf --preview="${LS_PREVIEW} {}")"'
-alias   bhagr='     cd "${BASH_HISTORY_ARCHIVE}"; rg 2>/dev/null'
 alias   conf='      cd "${XDG_CONFIG_HOME}"'
 alias   nvcode='    cd "${CODING}"; nf'
-alias   nswp='      cd "$HOME/.mynvim/swapfiles/"'
+alias   nswp='      cd "${HOME}/.mynvim/swapfiles/"'
 alias   cde='       cd "${CODING}"; cd "$(fd --maxdepth 3 -t d | sort -n | fzf --preview="${LS_PREVIEW} {}")"'
 alias   clne='      cd "${CLONED}"; cd "$(fd --maxdepth 1 -t d --color=always | sort -n | fzf --ansi --preview="${LS_PREVIEW} {}")"'
 #########################################################################
@@ -406,6 +404,11 @@ alias   clne='      cd "${CLONED}"; cd "$(fd --maxdepth 1 -t d --color=always | 
 #  EXPORT   					                                        #
 #-----------------------------------------------------------------------#
 #########################################################################
+#------------------BASH-HISTORY--------#
+export  HISTSIZE=1000000
+export  HISTFILE="$HOME/.bash_history"
+export  HISTCONTROL=ignoreboth
+export  TMPDIR="/tmp/"
 #------------------XDG-----------------#
 export  XDG_CONFIG_HOME="${HOME}/.config"
 export  XDG_CACHE_HOME="${HOME}/.cache"
@@ -429,15 +432,12 @@ export  LS_PREVIEW='lsd   --color=always        \
                           --blocks="permission,user,date,name"'
 #------------------SYSTEM--------------#
 export  SUDO_EDITOR='vim'
+#export  TERM='st-256color'
 export  TERM='st-256color'
 export  TERMINAL='/usr/local/bin/st'
 export  EDITOR="nvim"
 #export  XDG_STATE_HOME="$HOME/.local/state/" # Have to fix dirs first
 #export  XDG_DATA_HOME="$HOME/.local/data/"   # Have to fix dirs first
-#------------------BASH-HISTORY--------#
-export  HISTSIZE=1000000
-export  HISTFILE="$HOME/.bash_history2"
-export  HISTCONTROL=ignoreboth
 #------------------MINE----------------#
 export  BACKUP="${HOME}/BACKUP_FILES"
 export  BIN="${HOME}/bin"
@@ -446,7 +446,10 @@ export  DESKTOP="${HOME}/Desktop/"
 export  DOCUMENTS="${HOME}/Documents/"
 export  DOWNLOADS="${HOME}/Downloads/"
 export  MY_LIBRARY="${HOME}/Library/"
-export  LOCAL_BIN="${HOME}/.local/bin" # By default this is in path (set by os, not by me) (just so i remember)
+export  MY_LOCAL="${HOME}/.local/"
+export  MY_LOCAL_BIN="${MY_LOCAL}/bin/" # By default this is in path (set by os, not by me) (just so i remember)
+export  MY_LOCAL_SHARE="${MY_LOCAL}/share/"
+export  MY_LOCAL_LIB="${MY_LOCAL}/lib/"
 export  PICTURES="${HOME}/Pictures/"
 export  VIDEOS="${HOME}/Videos/"
 #------------------PAGER---------------#
@@ -456,13 +459,11 @@ export  PAGER='most'
 export  LESSOPEN='|pygmentize -g %s'
 export  LESS='-R'
 #------------------MULTI-LEVEL---------#
-export               MY_LOGS="${DOCUMENTS}/LOGS/"
 export           INFORMATION="${DOCUMENTS}/INFORMATION"
 export          SPREADSHEETS="${DOCUMENTS}/SPREADSHEETS"
 export            WALLPAPERS="${PICTURES}/Wallpapers"
 export                CODING="${DESKTOP}/Coding/"
 export                CLONED="${DESKTOP}/CLONED/"
-export  BASH_HISTORY_ARCHIVE="${MY_LOGS}/BASH_HISTORY/"
 #-----------------------------------------------APPLICATIONS-#
 export  NO_AT_BRIDGE=1
 export  QT_QPA_PLATFORMTHEME="qt5ct"
