@@ -170,7 +170,7 @@ URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-c:           perl:clipboard:copy
 URxvt.keysym.M-v:           perl:clipboard:paste
 URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
-*dpi:                       98
+*dpi:                       90
 !*antialias:              True
 !*hinting:                Full
 URxvt.keysym.KP_Add:        +

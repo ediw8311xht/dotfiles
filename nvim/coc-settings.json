@@ -15,9 +15,7 @@
             "initializationOptions": {
                 "cache": {
                     "directory": "/tmp/java"
-                }
-            }
-        },
+        } } },
         "ccls": {
             "command": "ccls",
             "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
@@ -25,9 +23,7 @@
             "initializationOptions": {
                 "cache": {
                     "directory": "/tmp/ccls"
-                }
-            }
-        },
+        } } },
         "haskell": {
             "command": "haskell-language-server-wrapper",
             "args": ["--lsp"],
@@ -41,11 +37,6 @@
                     "formattingProvider": "ormolu",
                     "plugin": {
                         "stan": { "globalOn": true }
-                    }
-                }
-            }
-        }
-    }
-
-}
+        } } } }
+} }
 

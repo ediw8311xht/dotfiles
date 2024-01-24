@@ -16,7 +16,7 @@ PS0='\e[0 q\[\e[0m\]'
 PS1=':\w/:> '
 PS2='\e[0 q\[\e[0m\]'
 #########################################################################
-#  FUNCTIONS								                            #
+#  FUNCTIONS                                                            #
 #########################################################################
 mps() {
     local h1 h2 h3 h4
@@ -58,11 +58,13 @@ cd_from_lf() {
         trash-put "${a}"
     fi
 }
-my_cd()	{
+mycd()    {
     local MAXDEPTH=10
+    local RESTRICT='H'
     [[ "${1}" =  '-g'        ]] && cd /              && shift 1
+    [[ "${1}" =~ ^[-]u$      ]] && RESTRICT='u'      && shift 1
     [[ "${1}" =~ ^[-][0-9]+$ ]] && MAXDEPTH="${1#-}" && shift 1
-    cd "${@:-"$(fd -H -td -d "${MAXDEPTH}" 2>/dev/null | fzf --preview="${LS_PREVIEW} {}")"}" || return 1
+    cd "${@:-"$(fd -"${RESTRICT}" -td -d "${MAXDEPTH}" 2>/dev/null | fzf --preview="${LS_PREVIEW} {}")"}" || return 1
 }
 open_mpv() {
     local AUD CLOSE FILE_FZF
@@ -151,7 +153,7 @@ function rg_with_p() {
     rg "${@}" | $PAGER
 }
 #########################################################################
-#  ALIASES								                                #
+#  ALIASES                                                                #
 #########################################################################
 #---------------------------------------#
 #                              SPECIAL  #
@@ -176,7 +178,7 @@ alias    a='         get_alias_fzf'
 alias    c='         cd ..'
 alias    d='         deactivate' # For python virtualenv
 alias    e='         xcmenu --input --primary'
-alias    f='         /usr/bin/fd --unrestricted'
+alias    f='         fd -H'
 alias    g='         grep -Pi'
 #        h=          RESERVED
 alias    i='         iex' # elixir
@@ -185,12 +187,12 @@ alias    i='         iex' # elixir
 alias    l='         cd_from_lf' # my lf, so it cd's shell after exiting lf
 alias    m='         mimetype'
 alias    n='         lsd --group-dirs="first" -t -r --icon="never" --permission="octal"  --date=+" %l:%M%P %y %m %_d " --blocks="permission,user,date,size,name"'
-#-       o           #-
+alias    o='         mycd -1'
 alias    p='         pwd'
 #-       q           #-
 alias    r='         \rg --pcre2 -i'
 alias    s='         cd - >/dev/null'
-alias    t='	     trash-put'
+alias    t='         trash-put'
 #-       u           #-
 alias    v='         sc-im'
 #-       w           RESERVED
@@ -201,9 +203,10 @@ alias    z='         zim'
 #                   ONE LETTER <UPPER>  #
 #---------------------------------------#
 alias    B='         bat'
-alias    C='         my_cd'
+alias    C='         mycd'
 alias    E='         xcmenuctrl'
-alias    F='         grep -F'
+alias    F='         fd --unrestricted'
+alias    G='         grep -F'
 alias    M='         ./manage.py'
 alias    O='         open_prog'
 alias    P='         readlink -f' # get full path of file
@@ -215,7 +218,7 @@ alias    W='         whereis'
 alias   ac='        acheck'
 alias   cl="        printf '\n%.0s_______________________________' {1..400} ; printf '%.0s\n' {1..500} ; clear"
 alias   cz='        ccze -m ansi'
-alias   fz='        my_cd'
+alias   fz='        mycd'
 alias   gd='        xcmenu --input --clipboard "$(pwd)"'
 alias   gf='        grep --file="-" -Fi "${HOME}/.bashrc" <<<'
 alias   gg='        grep -P -r -i'
@@ -241,6 +244,7 @@ alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,az
 #                         THREE LETTER   #
 #----------------------------------------#
 #------------------------------------------------------------#
+alias   mycdu='     my_cd -u'
 alias   mixf='      mix format'
 alias   gfi='       fd --search-path "/" -u --mount'
 alias   hfi='       fd --search-path "${HOME}" --exclude ".mynvim" --exclude ".local" --hidden'
@@ -399,9 +403,10 @@ alias   nvcode='    cd "${CODING}"; nf'
 alias   nswp='      cd "${HOME}/.mynvim/swapfiles/"'
 alias   cde='       cd "${CODING}"; cd "$(fd --maxdepth 3 -t d | sort -n | fzf --preview="${LS_PREVIEW} {}")"'
 alias   clne='      cd "${CLONED}"; cd "$(fd --maxdepth 1 -t d --color=always | sort -n | fzf --ansi --preview="${LS_PREVIEW} {}")"'
+
 #########################################################################
 #-----------------------------------------------------------------------#
-#  EXPORT   					                                        #
+#  EXPORT                                                               #
 #-----------------------------------------------------------------------#
 #########################################################################
 #------------------BASH-HISTORY--------#
@@ -413,7 +418,7 @@ export  TMPDIR="/tmp/"
 export  XDG_CONFIG_HOME="${HOME}/.config"
 export  XDG_CACHE_HOME="${HOME}/.cache"
 #------------------FZF-----------------#
-export  FZF_DEFAULT_COMMAND='fd -u'
+export  FZF_DEFAULT_COMMAND='fd -H'
 export  FZF_DEFAULT_OPTS='--bind ctrl-a:first
                           --bind ctrl-e:last
                           --bind ctrl-u:half-page-up
@@ -475,13 +480,13 @@ export  GROFF_NO_SGR=1 ### https://stackoverflow.com/a/32456403                 
 #####################   https://stackoverflow.com/questions/32384644/color-setting-works-for-only-for-help-tab-in-man-page-dosent-work-for-the-en #
 #------------------------------------------------------------------------------------------------------------------------------------------------ #
 #---------------------------------------------------------------------- #
-#-`PATH`								                                #
+#-`PATH`                                                                #
 #---------------------------------------------------------------------- #
-if  [ -d "${HOME}/bin/"         	 ] ; then PATH="${HOME}/bin/:$PATH"        	 ;	fi
-if  [ -d "${HOME}/bin/txt2man"       ] ; then PATH="${HOME}/bin/txt2man:$PATH"     ;	fi
-if  [ -d "${HOME}/bin/i3wm"     	 ] ; then PATH="${HOME}/bin/i3wm:$PATH"    	 ; 	fi
-if  [ -d "${HOME}/bin/personal" 	 ] ; then PATH="${HOME}/bin/personal:$PATH"	 ; 	fi
-if  [ -d "${HOME}/bin/ufw"      	 ] ; then PATH="${HOME}/bin/ufw:$PATH"     	 ; 	fi
-if  [ -d "${HOME}/Desktop/MY_APPS"   ] ; then PATH="${HOME}/Desktop/MY_APPS:$PATH" ; 	fi
-if  [ -d "/etc/systemd/user" 	     ] ; then PATH="/etc/systemd/user:$PATH"     ; 	fi
-if  [ -d "/usr/bin"                  ] ; then PATH="/usr/bin/:$PATH"             ;  fi
+if  [ -d "${HOME}/bin/"              ] ; then PATH="${HOME}/bin/:$PATH"             ; fi
+if  [ -d "${HOME}/bin/txt2man"       ] ; then PATH="${HOME}/bin/txt2man:$PATH"      ; fi
+if  [ -d "${HOME}/bin/i3wm"          ] ; then PATH="${HOME}/bin/i3wm:$PATH"         ; fi
+if  [ -d "${HOME}/bin/personal"      ] ; then PATH="${HOME}/bin/personal:$PATH"     ; fi
+if  [ -d "${HOME}/bin/ufw"           ] ; then PATH="${HOME}/bin/ufw:$PATH"          ; fi
+if  [ -d "${HOME}/Desktop/MY_APPS"   ] ; then PATH="${HOME}/Desktop/MY_APPS:$PATH"  ; fi
+if  [ -d "/etc/systemd/user"         ] ; then PATH="/etc/systemd/user:$PATH"        ; fi
+if  [ -d "/usr/bin"                  ] ; then PATH="/usr/bin/:$PATH"                ; fi

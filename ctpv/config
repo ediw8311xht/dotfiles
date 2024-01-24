@@ -3,7 +3,7 @@
 #set forceueberzug
 set shell "/usr/bin/bash"
 
-preview myepub .epub {{
+preview my_epub .epub {{
     gname="/tmp/gnome_epub_$(date +%9N).png"
     a="$((w*h))"
     [[ "${a}" -gt 500 ]] && a="500"
@@ -12,3 +12,18 @@ preview myepub .epub {{
     send_image "${gname}"
 }}
 
+preview my_json .json {{
+    highlight "${f}" --stdout --out-format="ansi"
+}}
+
+preview my_log .log {{
+    highlight "${f}" --stdout --out-format="ansi"
+}}
+
+preview my_js .js {{
+    highlight "${f}" --stdout --out-format="ansi"
+}}
+
+preview my_html .html {{
+    highlight "${f}" --stdout --out-format="ansi"
+}}

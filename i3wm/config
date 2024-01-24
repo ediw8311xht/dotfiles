@@ -5,8 +5,6 @@
 # i3 config file (v4)
 #-------------------------------------------------SPECIAL-BINDS-----------#
     #sticky toggle
-    set $mode_be            exec killall xmessage ; mode
-    set $mode_be_default    exec killall xmessage ; mode "default"
     set $scratchpad_default floating enable, move scratchpad, scratchpad show, move position center
     set $floating_default   floating enable, move position center
     set $xm_hd              exec $HOME/bin/xmsg_quick.sh
@@ -20,10 +18,6 @@
     set $SmallWidth     850px
     set $SmallHeight    750px
     set $mod           Mod1
-    set $Br            bindsym     Mod1+
-    set $Br_CTRL       bindsym     Mod1+Ctrl
-    set $SF            bindsym     Mod1+Shift+
-    set $SF_CTRL       bindsym     Mod1+Shift+Ctrl
     set $EXC           exec 	   --no-startup-id
     set $EXC_A         exec_always --no-startup-id
     set $B1 ;
@@ -108,9 +102,4 @@
     $EXC    /usr/bin/dunst
     $EXC    unclutter --timeout 2 --fork
     $EXC_A  $HOME/.config/polybar/launch.sh
-    #$EXC_A  $HOME/bin/auto_monitor.sh
-    #$EXC_A  xset -dpms
-    #$EXC_A  xset s off
-    #$EXC_A  xset r rate 200 40
-    #$EXC_A  $HOME/bin/xwallpaperauto.sh --silent
 #-------END---------------------------------------------------------------#

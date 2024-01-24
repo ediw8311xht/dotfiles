@@ -44,7 +44,7 @@ fu! CorrectColors()
     hi MarkSignNumHL                                            gui=NONE    guibg=none    guifg=NONE
     hi MarkSignVirtTextHL                                       gui=NONE    guibg=NONE    guifg=#00FF00
     hi IncSearch        cterm=NONE ctermbg=white ctermfg=black  gui=NONE    guibg=#FF0000 guifg=#000000
-    hi Search           cterm=NONE ctermbg=white ctermfg=black  gui=NONE    guibg=#000099 guifg=#FFFFFF
+    hi Search           cterm=NONE ctermbg=white ctermfg=black  gui=BOLD    guibg=#FF00FF guifg=#000000
     "<--------------------------------COC----------------------------------->
     hi CocWarningHighlight      gui=UNDERLINE
     hi CocHintHighlight         gui=NONE        guibg=#00FFFF guifg=#000000
@@ -163,7 +163,7 @@ set dir=~/.mynvim/swapfiles
 set backupdir=~/.mynvim/backupfiles
 set undodir=~/.mynvim/undo_dir
 set timeout
-set timeoutlen=700
+set timeoutlen=500
 set ttimeoutlen=0
 set wildmode=longest,list,full
 set foldcolumn=auto
@@ -174,6 +174,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set backspace=2
+set cedit=\<C-c>
 "set nomore
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -195,7 +196,7 @@ call plug#begin()
 " Show-all-matching-tags-vim
     Plug 'andymass/vim-matchup'
 " Autoclose HTML tags
-    Plug 'alvan/vim-closetag'
+    "Plug 'alvan/vim-closetag'
 " Autorename HTML tags
     Plug 'AndrewRadev/tagalong.vim'
 " Syntax-for-lf
@@ -231,20 +232,21 @@ lua require('base')
     let g:bracey_server_port        = 4842
 "---- For 'ptzz/lf.vim' ----"
     let g:lf_map_keys   = 0
+
 let g:html_mode     = 1
 let g:is_bash       = 1
 "-----------------CLOSETAG
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
-let g:closetag_filetypes = 'html,xhtml,phtml'
-let g:closetag_xhtml_filetypes = 'xhtml,jsx'
-let g:closetag_emptyTags_caseSensitive = 1
-let g:closetag_regions = {
-    \ 'typescript.tsx' : 'jsxRegion,tsxRegion',
-    \ 'javascript.jsx' : 'jsxRegion',
-    \ 'typescriptreact': 'jsxRegion,tsxRegion',
-    \ 'javascriptreact': 'jsxRegion',
-    \ }
+"let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+"let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+"let g:closetag_filetypes = 'html,xhtml,phtml'
+"let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+"let g:closetag_emptyTags_caseSensitive = 1
+"let g:closetag_regions = {
+"    \ 'typescript.tsx' : 'jsxRegion,tsxRegion',
+"    \ 'javascript.jsx' : 'jsxRegion',
+"    \ 'typescriptreact': 'jsxRegion,tsxRegion',
+"    \ 'javascriptreact': 'jsxRegion',
+"    \ }
 " Shortcut for closing tags, default is '>'
 "let g:closetag_shortcut = '<leader>'
 " Add > at current position without closing the current tag, default is ''
@@ -268,117 +270,119 @@ set nocuc
 "-- Leader Bindings              --
 "----------------------------------
     "call L( 'r'    ,     '<C-w>')
-    call L( 'oc'           ,     'q:iput=execute("")<esc>A<C-c>')
-    call L( 'op'           ,     'q:<C-p><esc>Iput =execute("<esc>A")<esc>A<C-c>')
-    call L( 'ox'           ,     ':put     =execute("<C-r>0")<esc>')
-    call L( 'out'          ,     'q:iput =execute("<C-r>0")<esc>A<C-c>')
-    " -- Toggle COC -- "
-        call L( 'a'        ,     ':call Toggle(g:coc_enabled, 0, ":CocEnable", ":CocDisable")<esc>')
-    " -- List and Go to Buffer -- "
-        call L( 'b'        ,     ':ls<CR>:b<Space>')
-    " -- Toggle Cursorline -- "
-        call L( 'c'        ,     ':set nocursorline!<esc>')
-    " -- Toggle Cursorcolumn -- "
-        call L( 'e'        ,     ':set cursorcolumn!<esc>')
-    " -- Open LF -- "
-        call L( 'u'        ,     ':Lf<esc>')
-    " -- Half Page Down -- "
-        call L( 'd'        ,     '<C-d>')
-    " -- Toggle Word Wrap -- "
-        call L( 'f'        ,     ':set wrap!<esc>')
-    " -- Create New Buffer -- "
-        call L( 'g'        ,     ':enew<esc>')
-    " -- Toggle Status Line -- "
-        call L( 'h'        ,     ':call Toggle(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc><C-L>')
-    " -- Got to Next File -- "
-        call L( 'n'        ,     ':next<esc>')
-    " -- Got to Previous File -- "
-        call L( 'p'        ,     ':previous<esc>')
-    " -- Delete Buffer (Pick) -- "
-        call L( 'q'        ,     ':bd')
-    " -- Delete Current Buffer -- "
-        call L( 'D'        ,     ':bdelete<esc><enter>')
-        call L( 'ZC'       ,     ':bd<esc>')
-    " -- Delete Current Buffer (Don't Save) -- "
-        call L( 'ZG'       ,     ':bd!<esc>')
-    " -- Load Vim Config File -- "
-        call L( 's'        ,     ':%so "${HOME}/.config/nvim/init.vim"<esc>')
-    " -- Tab Stuff -- "
-        call L( 'tcc'      ,     ':tabclose<esc>')
-        call L( 'tt'       ,     ':tabnew<esc>')
-        call L( 'tn'       ,     ':tabmove +1<esc>')
-        call L( 'tp'       ,     ':tabmove -1<esc>')
-        call L( 'tb'       ,     ':tabmove -1<esc>')
-        call L( 'tm'       ,     ':tabmove')
-        call L( 'tf'       ,     ':tabfirst<esc>')
-        call L( 'tl'       ,     ':tablast<esc>')
-        call L( 'tB'       ,     ':tabmove -1<esc>')
-        call L( 'tN'       ,     ':tabmove +1<esc>')
-    " -- Search with Register -- "
-        call L( 'vf'       ,     '?<C-r>"<enter>')
-    " -- Eval Register -- "
-        call L( 'vm'       ,     ':put =eval("<C-r>0")')
-    " -- Eval Register (Automatic)-- "
-        call L( 'vq'       ,     ':put =eval("<C-r>0")<esc>')
-    " -- Virtual Edit Cycle -- "
-        call L( 'vv'       ,     ':call Cycle(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<CR>')
-    " -- Save -- "
-        call L( 'w'        ,     ':w<esc>')
-    " -- Execute -- "
-        call L( 'x'        ,     ':w<esc>:!%:p<esc>')
-    " -- Toggle Transparency -- "
-        call L( 'y'        ,    ':hi Normal guibg=Transparent<esc>')
-    " -- z does tons of stuff.... -- "
-        call L( 'z'        ,    'z')
-    " -- Show Buffers in Pane -- "
-        call L( 'B'        ,    ':Buffers<esc>')
-    " -- Help Grep -- "
-        call L( 'H'        ,    ':vert helpgrep ')
-    " -- Correct Color Stuff -- "
-        call L( 'k'        ,    ':call CorrectColors()<CR>')
-    " -- Cycle Background Colors -- "
-        call L( 'l'        ,    ':call CycleBackground(+1)<CR>')
-        call L( 'L'        ,    ':call CycleBackground(-1)<CR>')
-    " -- Cycle Colorscheme -- "
-        call L( 'j'        ,    ':call CycleColor(+1)<CR>')
-        call L( 'J'        ,    ':call CycleColor(-1)<CR>')
-    " -- Show Messages -- "
-        call L( 'M'        ,    ':messages<esc>')
-    " -- Display Next Error -- "
-        call L( 'N'        ,    ':cnext<esc>')
-    " -- Display Previous Error -- "
-        call L( 'P'        ,    ':cprevious<esc>')
-    " -- Toggle Color Column -- "
-        call L( '<C-w>line',    ':call Toggle(&cc, 0, "set cc=80", "set cc=0")<esc>')
-    " -- Start Bracy -- "
-        call L( 'WW'       ,   ':Bracey<esc>')
-    " -- Stop Bracy -- "
-        "call L( 'S'        ,    ':BraceyStop<esc>')
-    " -- OPEN TERMINAL -- "
-        call L( 'T'        ,    ':buff term://<esc>i')
-    " -- OPEN WEB BROWSER -- "
-        call L( 'W'        ,    ':call Web("f")<esc>i')
-        " -- Go to 'https://localhost:4842' -- "
-        "call L( 'G'    ,    ':buff term://<esc>iohttp://localhost:4842')
-        call L( 'Gm'    ,    ':call GetMappings()<CR>')
-    " -- QUICK SWITCH BETWEEN ALTERNATE FILE -- "
-        call L( '<leader>' ,    '<C-^>')
-        call L( ',' ,           '<C-^>')
-    " -- LIST AND OPEN BUFFER QUICK -- "
-        call L( ';'        ,    ':ls<CR>:b<Space>')
-        "call L( '.'       ,    ':bnext<esc>')-----------------------
-    " -- OPEN FILE EXPLORER -- "
-        call L( '/'        ,    ':Explore<CR>')
-    " -- GO PREVIOUS BUFFER -- "
-        call L( '['        ,    ':bprevious<CR>:noh<esc><C-L>')
-    " -- GO NEXT BUFFER -- "
-        call L( ']'        ,    ':bnext<CR>:noh<esc><C-L>')
-    " -- DELETE MARK -- "
-        call L( 'dm'       ,    ':delmark')
-    " -- DELETE WHITESPACE -- "
-        call L( 'df'       ,    ':%s/\s\+\ze$//gc<esc>')
-    " --  Run Healthchecks -- "
-        call L( 'CH'       ,    ':checkhealth<esc>')
+call L( 'oc'           ,     'q:iput=execute("")<esc>A<C-c>')
+call L( 'op'           ,     'q:<C-p><esc>Iput =execute("<esc>A")<esc>A<C-c>')
+call L( 'ox'           ,     ':put     =execute("<C-r>0")<esc>')
+call L( 'out'          ,     'q:iput =execute("<C-r>0")<esc>A<C-c>')
+" -- Toggle COC -- "
+call L( 'a'        ,     ':call Toggle(g:coc_enabled, 0, ":CocEnable", ":CocDisable")<esc>')
+" -- List and Go to Buffer -- "
+call L( 'b'        ,     ':ls<CR>:b<Space>')
+" -- Toggle Cursorline -- "
+call L( 'c'        ,     ':set nocursorline!<esc>')
+" -- Toggle Cursorcolumn -- "
+call L( 'e'        ,     ':set cursorcolumn!<esc>')
+" -- Open LF -- "
+call L( 'u'        ,     ':Lf<esc>')
+" -- Half Page Down -- "
+"call L( 'd'        ,     '<C-d>')
+" -- Toggle Word Wrap -- "
+call L( 'f'        ,     ':set wrap!<esc>')
+" -- Create New Buffer -- "
+call L( 'g'        ,     ':enew<esc>')
+" -- Toggle Status Line -- "
+call L( 'h'        ,     ':call Toggle(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc><C-L>')
+" -- Got to Next File -- "
+call L( 'n'        ,     ':next<esc>')
+" -- Got to Previous File -- "
+call L( 'p'        ,     ':previous<esc>')
+" -- Delete Buffer (Pick) -- "
+call L( 'q'        ,     ':bd')
+" -- Delete Current Buffer -- "
+call L( 'D'        ,     ':bdelete<esc><enter>')
+call L( 'ZC'       ,     ':bd<esc>')
+" -- Delete Current Buffer (Don't Save) -- "
+call L( 'ZG'       ,     ':bd!<esc>')
+" -- Load Vim Config File -- "
+call L( 's'        ,     ':%so "${HOME}/.config/nvim/init.vim"<esc>')
+" -- Tab Stuff -- "
+call L( 'tcc'      ,     ':tabclose<esc>')
+call L( 'tt'       ,     ':tabnew<esc>')
+call L( 'tn'       ,     ':tabmove +1<esc>')
+call L( 'tp'       ,     ':tabmove -1<esc>')
+call L( 'tb'       ,     ':tabmove -1<esc>')
+call L( 'tm'       ,     ':tabmove')
+call L( 'tf'       ,     ':tabfirst<esc>')
+call L( 'tl'       ,     ':tablast<esc>')
+call L( 'tB'       ,     ':tabmove -1<esc>')
+call L( 'tN'       ,     ':tabmove +1<esc>')
+" -- Search with Register -- "
+call L( 'vf'       ,     '?<C-r>"<enter>')
+" -- Eval Register -- "
+call L( 'vm'       ,     ':put =eval("<C-r>0")')
+" -- Eval Register (Automatic)-- "
+call L( 'vq'       ,     ':put =eval("<C-r>0")<esc>')
+" -- Virtual Edit Cycle -- "
+call L( 'vv'       ,     ':call Cycle(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<CR>')
+" -- Toggle Color Column -- "
+call L( 'vl',    ':call Toggle(&cc, 0, "set cc=80", "set cc=0")<esc>')
+" -- Save -- "
+call L( 'w'        ,     ':w<esc>')
+" -- Execute -- "
+call L( 'x'        ,     ':w<esc>:!%:p<esc>')
+" -- Toggle Transparency -- "
+call L( 'y'        ,    ':hi Normal guibg=Transparent<esc>')
+" -- z does tons of stuff.... -- "
+call L( 'z'        ,    'z')
+" -- Show Buffers in Pane -- "
+call L( 'B'        ,    ':Buffers<esc>')
+" -- Help Grep -- "
+call L( 'H'        ,    ':vert helpgrep ')
+" -- Correct Color Stuff -- "
+call L( 'k'        ,    ':call CorrectColors()<CR>')
+" -- Cycle Background Colors -- "
+call L( 'l'        ,    ':call CycleBackground(+1)<CR>')
+call L( 'L'        ,    ':call CycleBackground(-1)<CR>')
+" -- Cycle Colorscheme -- "
+call L( 'j'        ,    ':call CycleColor(+1)<CR>')
+call L( 'J'        ,    ':call CycleColor(-1)<CR>')
+" -- Show Messages -- "
+call L( 'M'        ,    ':messages<esc>')
+" -- Display Next Error -- "
+call L( 'N'        ,    ':cnext<esc>')
+" -- Display Previous Error -- "
+call L( 'P'        ,    ':cprevious<esc>')
+" -- Start Bracy -- "
+call L( 'WW'       ,   ':Bracey<esc>')
+" -- Stop Bracy -- "
+call L( 'WC'        ,    ':BraceyStop<esc>')
+" -- OPEN TERMINAL -- "
+call L( 'T'        ,    ':buff term://<esc>i')
+" -- OPEN WEB BROWSER -- "
+call L( 'W'        ,    ':call Web("f")<esc>i')
+" -- Go to 'https://localhost:4842' -- "
+"call L( 'G'    ,    ':buff term://<esc>iohttp://localhost:4842')
+call L( 'Gm'    ,    ':call GetMappings()<CR>')
+" -- QUICK SWITCH BETWEEN ALTERNATE FILE -- "
+call L( '<leader>' ,    '<C-^>')
+call L( ',' ,           '<C-^>')
+" -- LIST AND OPEN BUFFER QUICK -- "
+call L( ';'        ,    ':ls<CR>:b<Space>')
+"call L( '.'       ,    ':bnext<esc>')-----------------------
+" -- OPEN FILE EXPLORER -- "
+call L( '/'        ,    ':Explore<CR>')
+" -- GO PREVIOUS BUFFER -- "
+call L( '['        ,    ':bprevious<CR>:noh<esc><C-L>')
+" -- GO NEXT BUFFER -- "
+call L( ']'        ,    ':bnext<CR>:noh<esc><C-L>')
+" -- DELETE MARK -- "
+call L( 'dm'       ,    ':delmark')
+" -- DELETE WHITESPACE -- "
+call L( 'df'       ,    ':%s/\s\+\ze$//gc<esc>')
+" --  Run Healthchecks -- "
+call L( 'CH'       ,    ':checkhealth<esc>')
+
+call L( 'SS'       ,    ':source ~/.config/nvim/init.vim<esc><C-w>L')
     " -- -- "
         "call L( '<enter>'  ,    ':set paste!<esc>')
 
@@ -419,14 +423,13 @@ let g:subshell_end=join(  ['####################', ') #---END-SUBSHELL-#', '####
     nn / /\v\c
     nn ? ?\v\c
     nn <C-_> /\V\c
-    nn \| /\V
+    nn \| /\V\c
     nn <C-\> /\V\c
     nn <lt> :tabprevious<esc>
     nn > :tabnext<esc>
     nn x "xx
-    nn \ `
+    nn \ /\V
     nn <C-w>n    :new<esc><C-w>L
-    nn SS :source ~/.config/nvim/init.vim<esc><C-w>L
     "sil nn <silent><esc> :noh<esc>
     sil nn <Enter> @=(foldlevel('.')?'za':"\<Space>")<CR>
 "----------------------------------
@@ -444,11 +447,15 @@ let g:subshell_end=join(  ['####################', ') #---END-SUBSHELL-#', '####
     " -- Edit Normal Mode -- "
         inoremap    jk <esc>
     " -- Emacs Like Bindings for Insert Mode -- "
-        inoremap <C-a> <esc>I
-        inoremap <C-b> <left>
-        inoremap <C-e> <esc>A
-        inoremap <C-f> <right>
-        inoremap <C-K> <esc>lCi
+        inoremap <C-a>     <esc>I
+        inoremap <C-b>     <left>
+        inoremap <C-c>     <esc>ui
+        inoremap <C-e>     <esc>A
+        inoremap <C-f>     <right>
+        inoremap <C-K>     <esc>lC
+        inoremap <C-v>     <esc><C-r>i
+        "inoremap <C-Space> <esc>:call  search("[<][^>]*\\zs[>]")    <enter>a
+        "inoremap <C-l> <esc>/\v[<][^>]*[>]<enter>:noh<esc><C-L>a
 "----------------------------------
 "-- Terminal                     --
 "----------------------------------
@@ -466,7 +473,6 @@ let g:subshell_end=join(  ['####################', ') #---END-SUBSHELL-#', '####
 "map <leader> :Lf<CR>
 " Take last command line command to use to output to neovim
 " BELOW 4 lines do that riff on that
-set cedit=\<C-c>
 "<--------- STATUS LINE ---------------------------------------------------->
 set statusline=\ [%n]\ 
 set statusline+=\ %F\ 
@@ -475,13 +481,19 @@ set statusline+=%m\
 set statusline+=%=\(%l\/%L\)\ (%v\)\ 
 set statusline+=%{wordcount().words}\ w\ 
 
+"<--------- LANGUAGE SPECIFIC CONFIGS -------------------------------------->
+autocmd Filetype html                                   source ~/.config/nvim/language_specific/html.vim
+autocmd BufNewFile,BufRead ~/.bashrc                    source ~/.config/nvim/language_specific/bashrc.vim
+
+"<--------- STUFF ---------------------------------------------------------->
 autocmd BufNewFile,BufRead *.sh                         set syntax=bash
 autocmd BufNewFile,BufRead ~/.config/polybar/config     setfiletype dosini
 autocmd BufNewFile,BufRead ~/.config/i3/*               setfiletype i3
 autocmd BufNewFile,BufRead *.html                       setlocal tabstop=2 shiftwidth=2 softtabstop=4 expandtab
 autocmd BufNewFile,BufRead *.css                        setlocal tabstop=2 shiftwidth=2 softtabstop=4 expandtab
 " -----------------REMEMBER-----------------
-" & is repeat last substitution
+" &      - (normal mode) repeat last substitution "
+" ctrl+o - (insert mode) execute 1 normal command "
 
 
 "map <c-b> nn <leader>bb :buffers<cr>:b<space>
