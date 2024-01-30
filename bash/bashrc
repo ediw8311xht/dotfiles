@@ -78,9 +78,9 @@ open_mpv() {
     done
 
     if [[ -n "${FILE_FZF}" ]] ; then
-        mpv --audio-channels="${AUD:-"auto"}" "${FILE_FZF}" & disown
+        mpv --audio-channels="${AUD:-"auto"}" "${FILE_FZF}" --input-ipc-server=/tmp/mpvsocket & disown
     else
-        mpv --audio-channels="${AUD:-"auto"}" "${@:-.}" & disown
+        mpv --audio-channels="${AUD:-"auto"}" "${@:-.}" --input-ipc-server=/tmp/mpvsocket & disown
     fi
     [[ "${CLOSE}" = 'close' ]] && exit
 }
@@ -244,7 +244,7 @@ alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,az
 #                         THREE LETTER   #
 #----------------------------------------#
 #------------------------------------------------------------#
-alias   mycdu='     my_cd -u'
+alias   mycdu='     mycd -u'
 alias   mixf='      mix format'
 alias   gfi='       fd --search-path "/" -u --mount'
 alias   hfi='       fd --search-path "${HOME}" --exclude ".mynvim" --exclude ".local" --hidden'
@@ -254,7 +254,7 @@ alias   acf='       alias_conflict --full'
 alias   alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
 alias   bsg='       ps ax | grep -Pv "/usr/lib/brave" | grep -Pi'
 alias   comv='      command -V'
-alias   cop='       xcmenu --input --clipboard'
+alias   cop='       xclip -selection "clipboard" -i <<< '
 alias   decl='      declare -f'
 alias   doren='     perl-rename -v'
 alias   eread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --preview="ctpv {}" --print0 | xargs -0 -r -o zathura --fork; exit'
@@ -402,15 +402,16 @@ alias   conf='      cd "${XDG_CONFIG_HOME}"'
 alias   nvcode='    cd "${CODING}"; nf'
 alias   nswp='      cd "${HOME}/.mynvim/swapfiles/"'
 alias   cde='       cd "${CODING}"; cd "$(fd --maxdepth 3 -t d | sort -n | fzf --preview="${LS_PREVIEW} {}")"'
-alias   clne='      cd "${CLONED}"; cd "$(fd --maxdepth 1 -t d --color=always | sort -n | fzf --ansi --preview="${LS_PREVIEW} {}")"'
+alias   clne='      cd "${CLONED}"; cd "$(fd --maxdepth 1 -t d | sort -n | fzf --preview="${LS_PREVIEW} {}")"'
 
+#########################################################################
 #########################################################################
 #-----------------------------------------------------------------------#
 #  EXPORT                                                               #
 #-----------------------------------------------------------------------#
 #########################################################################
 #------------------BASH-HISTORY--------#
-export  HISTSIZE=1000000
+export  HISTSIZE=10000000
 export  HISTFILE="$HOME/.bash_history"
 export  HISTCONTROL=ignoreboth
 export  TMPDIR="/tmp/"
@@ -471,7 +472,7 @@ export                CODING="${DESKTOP}/Coding/"
 export                CLONED="${DESKTOP}/CLONED/"
 #-----------------------------------------------APPLICATIONS-#
 export  NO_AT_BRIDGE=1
-export  QT_QPA_PLATFORMTHEME="qt5ct"
+export  QT_QPA_PLATFORMTHEME="qt6ct"
 export  npm_config_prefix="${HOME}/.local"
 export  GTK2_RC_FILES="/usr/share/themes/Midnight/gtk-2.0/gtkrc"
 #------------------------------------------------------------------------------------------------------------------------------------------------ #
@@ -490,3 +491,4 @@ if  [ -d "${HOME}/bin/ufw"           ] ; then PATH="${HOME}/bin/ufw:$PATH"      
 if  [ -d "${HOME}/Desktop/MY_APPS"   ] ; then PATH="${HOME}/Desktop/MY_APPS:$PATH"  ; fi
 if  [ -d "/etc/systemd/user"         ] ; then PATH="/etc/systemd/user:$PATH"        ; fi
 if  [ -d "/usr/bin"                  ] ; then PATH="/usr/bin/:$PATH"                ; fi
+if  [ -d "${HOME}/.cargo/bin"        ] ; then PATH="${HOME}/.cargo/bin:$PATH"       ; fi

@@ -27,9 +27,14 @@ match ExtraWhiteSpace /[^\s]\s\+\zs$/
 
 "<--------- FUNCTIONS ------------------------------------------------------>
 fu! CorrectColors()
+    if ! empty($DISPLAY)
+        hi Comment      gui=NONE guibg=#444444 guifg=#000000
+    else
+        hi Comment      cterm=ITALIC ctermbg=160 ctermfg=18 gui=ITALIC guifg=#0000FF guibg=NONE
+    endif
+    hi ColorColumn      cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=#333333 guifg=NONE
     hi ExtraWhiteSpace  cterm=NONE ctermbg=gray ctermfg=NONE    gui=NONE    guibg=#0099FF
     hi Normal                                   ctermbg=black   gui=NONE    guibg=#000000
-    hi Comment          cterm=NONE ctermbg=NONE ctermfg=NONE    gui=BOLD    guibg=#404040 guifg=#000000
     hi StatusLine       cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#000033 guifg=#00FF00
     hi StatusLineNC     cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#444444 guifg=#000000
     hi FoldColumn       cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#00FF00
@@ -174,7 +179,6 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set backspace=2
-set cedit=\<C-c>
 "set nomore
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -190,10 +194,11 @@ call plug#begin()
 " Language Servers. Use release branch (recommend)
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Treesitter
-"    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Treesitter, extra stuff
 "    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 " Show-all-matching-tags-vim
+    Plug 'jbyuki/nabla.nvim'
     Plug 'andymass/vim-matchup'
 " Autoclose HTML tags
     "Plug 'alvan/vim-closetag'
@@ -225,6 +230,7 @@ call plug#begin()
 call plug#end()
 "<--------_G-VAR_<leader>f_from-:-lf
 lua require('base')
+"lua require('mytreesitter')
 "---- Bracey Settings ----"
     let g:bracey_refresh_on_save    = 1
     let g:bracey_eval_on_save       = 1
@@ -232,6 +238,7 @@ lua require('base')
     let g:bracey_server_port        = 4842
 "---- For 'ptzz/lf.vim' ----"
     let g:lf_map_keys   = 0
+
 
 let g:html_mode     = 1
 let g:is_bash       = 1
@@ -256,8 +263,7 @@ let g:is_bash       = 1
 "<--------- COLOR SCHEME STUFF --------------------------------------------->
 colorscheme pop-punk
 :call CorrectColors()
-hi Normal       ctermbg=black guibg=Transparent
-hi ColorColumn cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=#333333 guifg=NONE
+
 set guicursor=n:block90,i:ver20
 set cul
 set nocuc
@@ -392,6 +398,8 @@ let g:subshell_end=join(  ['####################', ') #---END-SUBSHELL-#', '####
         call L( 'Sb'       ,    ':put =subshell_begin<esc>')
         call L( 'Se'       ,    ':put =subshell_end<esc>')
 
+"nnoremap <leader>p :lua require("nabla").popup()<CR> " Customize with popup({border = ...})  : `single` (default), `double`, `rounded`
+
 "---------------------------------------------------
 "-- Map  (Normal, Visual, Select, OperatorPending --
 "---------------------------------------------------
@@ -449,13 +457,13 @@ let g:subshell_end=join(  ['####################', ') #---END-SUBSHELL-#', '####
     " -- Emacs Like Bindings for Insert Mode -- "
         inoremap <C-a>     <esc>I
         inoremap <C-b>     <left>
-        inoremap <C-c>     <esc>ui
         inoremap <C-e>     <esc>A
         inoremap <C-f>     <right>
         inoremap <C-K>     <esc>lC
+        inoremap <C-\>     <esc>ui
         inoremap <C-v>     <esc><C-r>i
         "inoremap <C-Space> <esc>:call  search("[<][^>]*\\zs[>]")    <enter>a
-        "inoremap <C-l> <esc>/\v[<][^>]*[>]<enter>:noh<esc><C-L>a
+"       "inoremap <C-l> <esc>/\v[<][^>]*[>]<enter>:noh<esc><C-L>a
 "----------------------------------
 "-- Terminal                     --
 "----------------------------------
@@ -474,6 +482,7 @@ let g:subshell_end=join(  ['####################', ') #---END-SUBSHELL-#', '####
 " Take last command line command to use to output to neovim
 " BELOW 4 lines do that riff on that
 "<--------- STATUS LINE ---------------------------------------------------->
+set cedit=\<C-c>
 set statusline=\ [%n]\ 
 set statusline+=\ %F\ 
 set statusline+=%m\ 
@@ -551,4 +560,5 @@ autocmd BufNewFile,BufRead *.css                        setlocal tabstop=2 shift
 "hi htmlTagName                                                gui=NONE guifg=#90b0d1 guibg=#000033
 "hi htmlEndTag                                                 gui=NONE guifg=#000000 guibg=#ffffff
 "
+
 

@@ -12,6 +12,7 @@
 .electrum/
 .FBReader/
 .fontconfig/
+.git/
 .gnome/
 .gnupg/
 .grsync/
@@ -19,6 +20,7 @@
 .icons/
 .java/
 .librewolf/
+.local/
 .m2/
 .mozilla/
 .mynvim/
@@ -39,35 +41,35 @@
 .tmux/
 .Trash/
 .vcpkg/
-.local/
-.git/
 
-icons/
-coc/
-Trash/
-trash/
-Trash-1000/
-Trash-0/
-wheel/
-virtualenv/
-SoftMaker/
-Library/
 Audio/
-Videos/
 BACKUP_FILES/
+BASH_HISTORY/
+coc/
+icons/
+Library/
 LOG/
+LOGS/
+SoftMaker/
+trash/
+Trash/
+Trash-0/
+Trash-1000/
+Videos/
+virtualenv/
+wheel/
 
-.emacs.d/elpa/
 .emacs.d/auto-save-list/
+.emacs.d/elpa/
 
-.config/chromium/
-.config/google-chrome/
 .config/BraveSoftware/
-.config/GIMP/
+.config/chromium/
+.config/emacs/
 .config/FreeTube/
+.config/GIMP/
+.config/google-chrome/
 .config/SoftMaker/
 .config/TabNine/
-.config/emacs/
 
 .config/mpv/watch_later/
 .config/deluge/state/
