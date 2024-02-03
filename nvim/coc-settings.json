@@ -1,9 +1,9 @@
 
 {
     "diagnostic.enable": true,
-	"coc.preferences.useQuickfixForLocations": true,
-	"coc.preferences.extensionUpdateCheck": "never",
-	"diagnostic.checkCurrentLine": true,
+    "coc.preferences.useQuickfixForLocations": true,
+    "coc.preferences.extensionUpdateCheck": "never",
+    "diagnostic.checkCurrentLine": true,
     "codeLens.enable": true,
     "elixir.pathToElixirLS": "/$HOME/.local/bin/elixir-ls",
 

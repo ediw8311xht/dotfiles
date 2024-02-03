@@ -182,7 +182,6 @@ set backspace=2
 "set nomore
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-let g:html_dynamic_folds = 1
 let g:coc_start_at_startup = v:true
 let g:coc_enable_at_startup = v:false
 let g:mapleader = " "
@@ -266,7 +265,7 @@ colorscheme pop-punk
 
 set guicursor=n:block90,i:ver20
 set cul
-set nocuc
+"set nocuc
 "<--------- MAPPINGS ------------------------------------------------------->
 "nn <leader>stupidv :%s/\t/    /g<esc>
 "list keybindings with :help index

@@ -2,16 +2,13 @@
 #
 #- ~/.bashrc
 ## shellcheck disable=SC1000-SC9999
-#-
-#
 #-If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-#########################################################################
-#- USE VI KEYS -#
+#- Use VI Keys -#
 set -o vi
-#- DEFAULT FILE/DIR PERMISSIONS -#
+#- Default Permissions -#
 umask 077
-#- DEFAULT PS0,PS1,PS3 IF mps() DOESNT RUN -#
+#- Default PS0,PS1,PS3 if mps() doesn't run -#
 PS0='\e[0 q\[\e[0m\]'
 PS1=':\w/:> '
 PS2='\e[0 q\[\e[0m\]'
@@ -40,9 +37,6 @@ mps() {
     esac
     PS1+='\[\e[0m\]'
 } ; mps 'xs'
-#########################################################################
-#########################################################################
-#########################################################################
 git_clone() {
     cd "${CLONED}" ||  return 1
     git clone "${@}"
@@ -153,11 +147,9 @@ function rg_with_p() {
     rg "${@}" | $PAGER
 }
 #########################################################################
-#  ALIASES                                                                #
+#  ALIASES                                                              #
 #########################################################################
-#---------------------------------------#
 #                              SPECIAL  #
-#---------------------------------------#
 alias        anyr='anyremote'
 alias          ls='ls --color="auto" '
 alias        grep='grep --colour="auto" '
@@ -170,9 +162,7 @@ alias        free='free -h'
 alias      pacman='pacman --color="always"'
 alias         yay='yay --color="always"'
 alias       subdl='subdl --lang="eng"'
-#---------------------------------------#
-#                   ONE LETTER <LOWER>  #
-#---------------------------------------#
+#                                   1L  #
 alias    a='         get_alias_fzf'
 #        b=          RESERVED
 alias    c='         cd ..'
@@ -199,9 +189,7 @@ alias    v='         sc-im'
 alias    x='         xdg-open'
 alias    y='         source .venv/bin/activate'
 alias    z='         zim'
-#---------------------------------------#
-#                   ONE LETTER <UPPER>  #
-#---------------------------------------#
+#                                   1U  #
 alias    B='         bat'
 alias    C='         mycd'
 alias    E='         xcmenuctrl'
@@ -212,9 +200,7 @@ alias    O='         open_prog'
 alias    P='         readlink -f' # get full path of file
 alias    W='         whereis'
 #        X           RESERVED
-#---------------------------------------#
-#                   TWO LETTER <UPPER>  #
-#---------------------------------------#
+#                                   2   #
 alias   ac='        acheck'
 alias   cl="        printf '\n%.0s_______________________________' {1..400} ; printf '%.0s\n' {1..500} ; clear"
 alias   cz='        ccze -m ansi'
@@ -240,9 +226,6 @@ alias   xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf,apk,sna
 alias   xr='        echo ""; nvim "${HOME}/.Xresources"; xrdb "${HOME}/.Xresources"'
 alias   yg='        xg          --exclude=\*.{rar,tar,gz,tgz,zip,bz2,tbz2}'
 alias   zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
-#----------------------------------------#
-#                         THREE LETTER   #
-#----------------------------------------#
 #------------------------------------------------------------#
 alias   mycdu='     mycd -u'
 alias   mixf='      mix format'
@@ -305,7 +288,6 @@ alias   ufwn='      ufw status numbered'
 alias   ufws='      ufw status verbose'
 alias   upfonts='   fc-cache; echo "return $?"'
 alias   xprattach=' nohup /usr/bin/xpra attach :${XPRA_DISPLAY_NUMBER} &'
-#--------------------------------------------------------MAN-#
 #alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | grep -Pi -- "${_z:-''}")) <<<'
 #------------------------------------------------------EXPAC-#
 alias   exspace='   expac -HM "%m %n" | sort -n'           # Size of packages pacman
@@ -339,9 +321,9 @@ alias   pacfrom='   pacman -Qo'
 alias   pacfiles='  pacman -Qql'
 alias   pacool='    pacman -Sl | grep -Fi  "[installed]" | grep -i'
 alias   pacnot='    pacman -Sl | grep -vFi "[installed]" | grep -i'
-alias   fl="        pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pio '^Name[\ \t:]+\K.*$'"
-alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 '^Required by.*None' | grep -Pi -B 12 '^Optional\ for.*None$' | grep -Pio '^Name[\ \t:]*\K.*$'"
-alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'^Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
+alias   fl="        pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 'Required by.*None' | grep -Pio 'Name[\ \t:]+\K.*$'"
+alias   flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 'Required by.*None' | grep -Pi -B 12 'Optional\ for.*None$' | grep -Pio 'Name[\ \t:]*\K.*$'"
+alias   fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
 alias   pigse='     (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 #------------------------------------------------------------#
 alias   sctl='      journalctl | ccze -m ansi'
@@ -365,13 +347,7 @@ alias   ydl='       cd "${VIDEOS}"; yt-dlp -o "%(title)s.%(ext)s" --restrict-fil
 alias   getkeys_all='   xmodmap -pke'
 alias   key_spec='      evemu-describe'
 alias   betterkey='     showkey -k'
-#alias   tma='       tmux attach'
-#alias   tmn='       tmux new-session -t mx'
-#alias   tmd='       tmux detach'
-#-----------------------------------------------------------------------#
-# - CODING -                                                            #
-#-----------------------------------------------------------------------#
-#alias   jweb="/usr/lib/jvm/java-19-openjdk/bin/jwebserver"
+#   CODING                                                              #
 alias   springmr='  mvn spring-boot:run'
 #-----------------------------------------------------DJANGO-#
 alias   djs='       python manage.py runserver'
@@ -381,9 +357,7 @@ alias   pips='      poetry search'
 alias   pipf='      pip freeze'
 alias   pipsl='     pip list | grep -i'
 alias   pip3sl='    pip3 list | grep -i'
-#-----------------------------------------------------------------------#
-# - CD -                                                                #
-#-----------------------------------------------------------------------#
+#   CD                                                                  #
 alias   b='         cd "${BIN}"'
 alias   h='         cd "${HOME}"'
 alias   vids='      cd "${VIDEOS}"'
@@ -403,12 +377,8 @@ alias   nvcode='    cd "${CODING}"; nf'
 alias   nswp='      cd "${HOME}/.mynvim/swapfiles/"'
 alias   cde='       cd "${CODING}"; cd "$(fd --maxdepth 3 -t d | sort -n | fzf --preview="${LS_PREVIEW} {}")"'
 alias   clne='      cd "${CLONED}"; cd "$(fd --maxdepth 1 -t d | sort -n | fzf --preview="${LS_PREVIEW} {}")"'
-
 #########################################################################
-#########################################################################
-#-----------------------------------------------------------------------#
 #  EXPORT                                                               #
-#-----------------------------------------------------------------------#
 #########################################################################
 #------------------BASH-HISTORY--------#
 export  HISTSIZE=10000000
@@ -479,7 +449,6 @@ export  GTK2_RC_FILES="/usr/share/themes/Midnight/gtk-2.0/gtkrc"
 #####################   Fixes colored man pages when using `most`, for some reason, TY https://stackoverflow.com/users/26449/bill                 #
 export  GROFF_NO_SGR=1 ### https://stackoverflow.com/a/32456403                                                                                   #
 #####################   https://stackoverflow.com/questions/32384644/color-setting-works-for-only-for-help-tab-in-man-page-dosent-work-for-the-en #
-#------------------------------------------------------------------------------------------------------------------------------------------------ #
 #---------------------------------------------------------------------- #
 #-`PATH`                                                                #
 #---------------------------------------------------------------------- #
