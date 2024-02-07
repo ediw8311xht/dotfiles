@@ -305,8 +305,8 @@ i3wm.R_GAPS:     0
 i3wm.L_GAPS:     0
 
 
+*keysym.C-semicolon:   \033[;
 
-
-i3wm.monitor1: DisplayPort-0
-i3wm.monitor2: HDMI-A-0
-i3wm.monitor3: DVI-D-0
+i3wm.other_monitor_1: DisplayPort-0
+i3wm.primary_monitor: HDMI-A-0
+i3wm.other_monitor_2: DVI-D-0

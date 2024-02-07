@@ -265,7 +265,7 @@ colorscheme pop-punk
 
 set guicursor=n:block90,i:ver20
 set cul
-"set nocuc
+set nocuc
 "<--------- MAPPINGS ------------------------------------------------------->
 "nn <leader>stupidv :%s/\t/    /g<esc>
 "list keybindings with :help index
@@ -408,6 +408,7 @@ let g:subshell_end=join(  ['####################', ') #---END-SUBSHELL-#', '####
 "----------------------------------
 "-- Visual                       --
 "----------------------------------
+
     vn <leader>x c<esc>l:execute "normal! i" . eval('<C-r>"')<esc>
     vn im :s/\%V[ \t]*//<esc>| "REMOVE TABS ON VISUAL SELECTION
     vn <Enter> zf
@@ -429,14 +430,15 @@ let g:subshell_end=join(  ['####################', ') #---END-SUBSHELL-#', '####
     nn <C-p> <C-i>
     nn / /\v\c
     nn ? ?\v\c
-    nn <C-_> /\V\c
-    nn \| /\V\c
-    nn <C-\> /\V\c
+    nn <C-_> /\v
+    nn \ /\V\c
+    nn \| ?\V\c
+    nn <C-\> /\V
     nn <lt> :tabprevious<esc>
     nn > :tabnext<esc>
     nn x "xx
-    nn \ /\V
     nn <C-w>n    :new<esc><C-w>L
+    "nn <Backspace> :call search("f", "b", line("."))<esc>
     "sil nn <silent><esc> :noh<esc>
     sil nn <Enter> @=(foldlevel('.')?'za':"\<Space>")<CR>
 "----------------------------------
