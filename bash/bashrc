@@ -378,6 +378,8 @@ export  TMPDIR="/tmp/"
 #------------------XDG-----------------#
 export  XDG_CONFIG_HOME="${HOME}/.config"
 export  XDG_CACHE_HOME="${HOME}/.cache"
+#export  XDG_STATE_HOME="$HOME/.local/state/" # Have to fix dirs first
+#export  XDG_DATA_HOME="$HOME/.local/data/"   # Have to fix dirs first
 #------------------FZF-----------------#
 export  FZF_DEFAULT_COMMAND='fd -H'
 export  FZF_DEFAULT_OPTS='--bind ctrl-a:first
@@ -398,12 +400,10 @@ export  LS_PREVIEW='lsd   --color=always        \
                           --blocks="permission,user,date,name"'
 #------------------SYSTEM--------------#
 export  SUDO_EDITOR='vim'
-#export  TERM='st-256color'
 export  TERM='st-256color'
 export  TERMINAL='/usr/local/bin/st'
 export  EDITOR="nvim"
-#export  XDG_STATE_HOME="$HOME/.local/state/" # Have to fix dirs first
-#export  XDG_DATA_HOME="$HOME/.local/data/"   # Have to fix dirs first
+export  ERL_AFLAGS="-kernel shell_history enabled"
 #------------------MINE----------------#
 export  BACKUP="${HOME}/BACKUP_FILES"
 export  BIN="${HOME}/bin"
@@ -418,6 +418,7 @@ export  MY_LOCAL_SHARE="${MY_LOCAL}/share/"
 export  MY_LOCAL_LIB="${MY_LOCAL}/lib/"
 export  PICTURES="${HOME}/Pictures/"
 export  VIDEOS="${HOME}/Videos/"
+export  WHEN_CONFIG_HOME="${XDG_CONFIG_HOME}/when"
 #------------------PAGER---------------#
 export  MOST_INITFILE="${XDG_CONFIG_HOME}/most/most.rc"
 export  MOST_EDITOR='nvim'

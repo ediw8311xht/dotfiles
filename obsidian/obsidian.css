@@ -1,48 +1,116 @@
-
-
-
 /*------------------------------*/
-/*----------- LATEX  -----------*/
+/*----------- ROOT -------------*/
 /*------------------------------*/
-.MathJax > * {
-  padding: 3px;
+.cm-scroller, .cm-sizer {
+  padding-left: 0px !important;
+  padding-top: 0px !important;
 }
 
-mjx-container {
-  background-color: #AAA;
-  color: black;
+.inline-title {
+  padding: 0;
+  margin: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+  background-color: black;
+  width: 90vw;
+}
+.metadata-container {
+  padding: 0;
+  margin: 0;
+  padding-left: 10px;
+  width: 90vw;
+  background-color: black;
 }
 
-mjx-container * {
-  background-color: #AAA;
+.view-content {
+  margin-bottom: 1vh !important;
+  margin-left: 5%;
+  max-width: max(90%, 900px);
+  background-color: #141414 !important;
 }
-
-mjx-frac {
-  font-size: 140%;
+.cm-contentContainer {
+  margin-top: 0px;
+  padding-top: 0px;
 }
-
-mjx-sqrt * {
-  padding-top: 0.9%;
-}
-mjx-line {
-  padding-top: 1px;
+body {
+  --file-line-width: 80vw;
+  --text-selection: #009 !important;
+  padding: 0px !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
 /*------------------------------*/
-/*----------- RANDOM -----------*/
+/*----------- GUI --------------*/
+/*------------------------------*/
+.nav-files-container, .workspace-ribbon,      .workspace-tab-header-container,
+.nav-header,          .sidebar-toggle-button, .mod-close {
+  background-color: black !important;
+}
+.mod-minimize, .mod-maximize {
+  display: none !important;
+}
+.mod-left-split {
+  width: max(10vw,100px) !important;
+}
+/*------------------------------*/
+/*----------- LEFT-PANEL -------*/
+/*------------------------------*/
+.nav-files-container * {
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
+  border-radius: 0px;
+  border: none !important;
+}
+.nav-file-title, .nav-folder-title {
+  margin: 0px;
+  font-size: 17px;
+}
+/*(1) Folder*/
+.nav-folder.mod-root>.nav-folder-children>.nav-folder>.nav-folder-title {
+  color: #0B0;
+  background-color: #000;
+}
+/*(2) Folder*/
+.nav-folder.mod-root>.nav-folder-children>.nav-folder>.nav-folder-children>.nav-folder>.nav-folder-title {
+  color: #AA0;
+  background-color: #000020;
+}
+/*(1) Files*/
+.nav-folder.mod-root>.nav-folder-children>.nav-folder>.nav-folder-children>.nav-file>.nav-file-title {
+  color: #999;
+  text-decoration: underline;
+  background-color: #000;
+}
+/*(root) Files*/
+.mod-root > .tree-item-children > .tree-item > .nav-file-title {
+  color: #0D0;
+  background-color: #000;
+  border: 2px solid #070 !important;
+  border-radius: 0px;
+}
+.is-selected > * {
+  background-color: blue;
+  color: white;
+}
+/*------------------------------*/
+/*----------- ELEMENTS ---------*/
 /*------------------------------*/
 
 img, .pdf-embed {
-  max-height: 125px;
-  max-width: 500px;
+  max-height: 10vh;
+  max-width: 20vw;
+  border: 10px solid #000 !important;
 }
 
 img:hover, .pdf-embed:hover {
-  max-height: 1000px;
-  max-width: 1000px;
+  max-height: 30vh !important;
 }
 
 u {
-  color: #ad9300;
+  color: #999900;
+  background-color: black;
+  padding: 1px;
+  font-size: 95% !important;
 }
 
 .markdown-rendered :is(li, ol, ul, h1, h2, h3, h4, h5, h6) {
@@ -60,31 +128,108 @@ u {
   padding: 0px;
   margin: 0px;
 }
+/*------------------------------*/
+/*----------- LATEX  -----------*/
+/*------------------------------*/
+.MathJax > * {
+  padding: 3px;
+  font-size: 120%;
+}
 
+mjx-container {
+  background-color: #AAA;
+  color: black;
+}
+
+mjx-container > * {
+  background-color: #AAA;
+}
+
+mjx-frac {
+  font-size: 120%;
+}
+
+mjx-mroot  mjx-root  mjx-mstyle .mjx-n {
+  font-size: 125% !important;
+}
+mjx-line {
+  padding-top: 1px;
+}
+.mjx-c2B  {
+  font-size: 80% !important;
+  margin-bottom: 1px !important;
+}
+.mjx-c2212, .mjx-cD7 {
+  font-size: 85% !important;
+  margin-bottom: 1px !important;
+}
+/*------------------------------*/
+/*----------- TABLE  -----------*/
+/*------------------------------*/
+
+table {
+  margin-left: 3em;
+}
+table, th, td {
+  border: 3px solid #000 !important;
+}
+th {
+  background-color: black !important;
+  color: #0D0 !important;
+  text-align: center !important;
+  vertical-align: middle;
+}
+tbody {
+  background-color: #013 !important;
+  color: #AAA;
+}
+table td, table th {
+  max-width: 20em !important;
+  height: 3em !important;
+  vertical-align: middle !important;
+}
+table .cm-hmd-internal-link, table .internal-link {
+  color: #000;
+  background-color: #777777;
+  padding-left: 0.8em !important;
+  padding-right: 0.8em !Important;
+  text-decoration: none;
+  text-align: center;
+  border: 2px solid #04A;
+  padding: 4px;
+  max-width: 18em;
+  margin: 0 auto;
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+  margin-right: 0.50em !important;
+  display: block;
+}
 /*------------------------------*/
 /*----------- LINKS ------------*/
 /*------------------------------*/
 .cm-hmd-internal-link, .internal-link {
-  color: #09F !important;
-  background-color: #000;
-  padding: 2px;
+  text-decoration: none !important;
+  border: 1px solid #999;
+  --link-decoration: none;
+  color: #07F !important;
+  background-color: #000 !important;
+  padding: 4px !important;
   font-weight: bold;
-  font-family: "Hack";
+  display: inline-block;
 }
 
 .cm-hmd-internal-link:hover, .internal-link:hover {
   color: #FFF !important;
   padding: 2px;
 }
-
 /*------------------------------*/
 /*----------- HEADERS ----------*/
 /*------------------------------*/
-.HyperMD-header-h1, .HyperMD-header-h2, .HyperMD-header-h3, .HyperMD-header-h4, .HyperMD-header-5, h1, h2, h3, h4, h5 {
+.HyperMD-header-1, .HyperMD-header-2, .HyperMD-header-3, .HyperMD-header-4, .HyperMD-header-5, h1, h2, h3, h4, h5 {
   width: 100% !important;
   background-color: black;
   padding: 10px !important;
-  padding-left: 20% !important;
+  padding-left: 5% !important;
 }
 .HyperMD-header-1, .cm-header-1, .markdown-rendered :is(h1){
   color: #F00;
@@ -104,23 +249,107 @@ u {
 /*------------------------------*/
 /*----------- LIST  ------------*/
 /*------------------------------*/
-.HyperMD-list-line {
-  padding: 0px;
-  margin: 0px;
+.cm-formatting, .cm-indent, .markdown-rendered :is(li) {
+  margin-left: 20px;
 }
 
-.HyperMD-list-line-1, ul li {
+.HyperMD-list-line-1, li {
   color: #181;
 }
 
-.HyperMD-list-line-2, ol li {
+.HyperMD-list-line-2, li li {
   color: #49F;
 }
 
-.HyperMD-list-line-3, ol li li {
-  color: #FFF;
+.HyperMD-list-line-3, li li li {
+  color: #BBB;
 }
 
-.HyperMD-list-line-4, ol li li li {
+.HyperMD-list-line-4, li li li li {
   color: #999;
+}
+/*------------------------------*/
+/*----------- GUTTER -----------*/
+/*------------------------------*/
+.cm-gutters {
+  margin-right: 8px !important;
+}
+.cm-gutters  > * {
+  background-color: #000;
+  color: #777;
+  font-size: 1.10em;
+}
+.cm-gutter * {
+  padding: 3px;
+}
+.cm-active {
+  color: #0F0;
+}
+/*##############################*/
+/*########### VTABLE ###########*/
+/*##############################*/
+.vtable h6, .vtable .HyperMD-header-6, .vtable .cm-header-6, .vtable .markdown-rendered :is(h6) {
+  font-weight: normal;
+}
+.vtable th {
+    text-align: left !important;
+}
+.vtable th:nth-child(2) {
+    background-color: #013 !important;
+    color: #999 !important;
+}
+.vtable td:nth-child(1), .vtable td:nth-child(1) {
+    background-color: black !important;
+    color: #0F0 !important;
+}
+.vtable .table-wrapper {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+.vtable table {
+  margin-left: 1em;
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+.vtable .markdown-rendered :is(table) {
+  margin-left: 3em;
+  margin-top: -0.7em !important;
+  margin-bottom: -0.7em !important;
+}
+
+/*##############################*/
+/*########### MAINCLASS ########*/
+/*##############################*/
+.mainclass table, .table-wrapper {
+  margin-left: min(100px, 10vw);
+}
+.mainclass table * {
+  font-size: 1.03em;
+  font-weight: normal;
+}
+.mainclass td {
+  border: 0.10em solid #058 !important;
+}
+.mainclass thead {
+  padding-bottom: 90px !important;
+  margin-bottom: 90px !important;
+  margin-top: 2em !important;
+  padding: 2em !important;
+}
+.mainclass th {
+  border: 0.14em solid #07B !important;
+}
+.mainclass .cm-hmd-internal-link td, .mainclass td .internal-link {
+  color: #09F !important;
+}
+.mainclass .cm-hmd-internal-link th, .mainclass th .internal-link {
+  color: #0F0 !important;
+  border: 1px solid #030;
+}
+
+/*##############################*/
+/*########### TODOLIST #########*/
+/*##############################*/
+.todolist .HyperMD-list-line > *, .todolist .task-list-item{
+  margin-left: 3em;
 }
