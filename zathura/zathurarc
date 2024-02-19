@@ -17,7 +17,7 @@
     set n-completion-items      20
     set pages-per-row           1
     set page-padding            0
-    set scroll-step             10
+    set scroll-step             100
     set zoom-step               4
 # status bar and scrollbar
 #---------------------------------------#
@@ -34,17 +34,19 @@
     map  <C-+>  adjust_window width
     map  <C-=>  adjust_window width
     map  <C-l>  focus_inputbar ':blist '
+    map  <C-B>  feedkeys  ':bmark quickbookmark<Return>'
+    map  <C-b>  feedkeys  ':blist quickbookmark<Return>'
 #---------------------------------------#
 #----MAPPINGS----------------COMMA------#
 #---------------------------------------#
-    map  ,,     set 'scroll-step 1'
-    map  ..     set 'scroll-step 5'
-    map  ,.     set 'scroll-step 10'
-    map  .,     set 'scroll-step 20'
-    map  <<     set 'scroll-step 40'
-    map  >>     set 'scroll-step 80'
-    map  <>     set 'scroll-step 160'
-    map  ><     set 'scroll-step 320'
+    map  ,,     set 'scroll-step   1'
+    map  ..     set 'scroll-step   5'
+    map  ,.     set 'scroll-step  10'
+    map  .,     set 'scroll-step  20'
+    map  <<     set 'scroll-step  40'
+    map  >>     set 'scroll-step 100'
+    map  <>     set 'scroll-step 200'
+    map  ><     set 'scroll-step 300'
 #---------------------------------------#
 #----MAPPINGS----------------REGULAR----#
 #---------------------------------------#

@@ -80,9 +80,13 @@ map o 		&mimeopen "${f}" 2>/dev/null
 #-----------ASK AND THEN OPEN IN NEW WINDOW-----------------#
 map O 		$mimeopen --ask "${f}" 2>/dev/null
 map m       push :!mkdir<space>
+
+# - CD -
+# Uppercase
 map <gt>C   cd ~/.config/
 map <gt>D   cd ~/Desktop/
 
+# Lowercase
 map <gt>b   cd ~/bin/
 map <gt>c   cd ~/Desktop/Coding/
 map <gt>d   cd ~/Downloads/
@@ -92,7 +96,6 @@ map <gt>h   cd ~/
 map <gt>l   cd ~/Library/
 map <gt>p   cd ~/Pictures/
 map <gt>v   cd ~/Videos/
-
 
 map e           np
 map <lt>p       set preview!

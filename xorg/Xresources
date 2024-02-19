@@ -7,12 +7,13 @@
 *.borderpx:     10px
 
 !!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTSHH
+*.font: 	    Agave:style=Regular:size=11:antialias=false:autohint=false
 !*.font: 	    FiraCode:style=Medium:pixelsize=13:antialias=true:autohint=false
-!*.font: 	    Agave:style=Medium:pixelsize=15:antialias=false:autohint=false
 !*.font: 	    Iosevka:style=Medium:pixelsize=11:antialias=true:autohint=true
-*.font: 	    IosevkaCustom:style=Medium:pixelsize=13:antialias=false:autohint=false
+!*.font: 	    IosevkaCustom:style=Medium:pixelsize=13:antialias=false:autohint=false
 !*.font: 	    MononokiNerdFontMono:style=Medium:pixelsize=15:antialias=true:autohint=true
 !*.font: 	    IBMPlexMono:style=Medium:size=10:antialias=true:autohint=false
+!*.font: 	    Menlo:style=Medium:size=10:autohint=true:antialias=true
 !*.font: 	    IBM 3270:style=Medium:size=11:antialias=true:autohint=true
 !*.font: 	    Consolas:size=11:antialias=true:autohint=true
 !*.font:        TerminessTTF Nerd Font Mono:size=12:style=Medium:autohint=true:antialias=true
@@ -20,16 +21,16 @@
 !*.font: 	    Hermit:size=13:antialias=true:autohint=true
 !*.font: 	    ShareTechMono:pixelsize=13:style=Regular:autohint=true:antialias=true
 !*.font: 	    Courier:style=Medium:size=13:antialias=false
-!*.font: 	    FantasqueSansMono:style=Regular:pixelsize=13:autohint=true:antialias=true
+!*.font: 	    FantasqueSansMono:style=Regular:pixelsize=14:autohint=true:antialias=true
 
 !!!!!!!!!!!!!!!!!!!!!!!!!! REALLY COOL FONTS
-!*.font: 	    ProggyCleanTT Nerd Font:pixelsize=23
-!*.font: 	    Tamzen:size=13:style=Regular:autohint=false:antialias=false
+!*.font: 	    ProggyCleanTT Nerd Font:style=Medium:pixelsize=18
+!*.font: 	    Tamzen:size=13:style=Medium:autohint=false:antialias=false
 !*.font: 	    xos4Terminus:pixelsize=15:autohint=true:antialias=true
 !*.font: 	    IosevkaCustom:pixelsize=13:antialias=true:autohint=false
-!*.font: 	    Monoid:size=13:antialias=true:autohint=false
+!*.font: 	    Monoid:size=10:antialias=true:autohint=false
 !*.font: 	    ComicMono:size=13:autohint=true:antialias=true
-!*.font: 	    LektonNerdFontMono:style=Medium:size=13:autohint=true:antialias=true
+!*.font: 	    LektonNerdFontMono:style=Medium:size=11:autohint=true:antialias=true
 !*.font: 	    CascadiaMono:size=13:antialias=true
 !*.font: 	    RobotoMono:size=13:antialias=true
 !*.font: 	    Consolas:size=13:antialias=true:autohint=true
@@ -43,6 +44,7 @@
 !*.font: 	    SourceCodePro:pixelsize=13:style=Medium:autohint=true:antialias=true
 !!!!!!!COOL FONTS (my names for ref):
 !!!!!!!IBM 3270, Agave, SarasaMonoSlab, Iosevka Custom, Hack, Hermit, Menlo, Fira Code, Input Mono
+
 !!*.borderColor:      #FF0000
 !!*.cursorColor:      #999999
 !!*.internalBorder:   0px
@@ -93,6 +95,7 @@
 !! Cyberpunk Neon: https://github.com/Roboron3042/Cyberpunk-Neon                   !!
 !! Author: Theo (theo-grivel)                                                      !!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+special_float*font: 	    FantasqueSansMono:style=Regular:pixelsize=14:autohint=true:antialias=true
 
 special_float*alpha:	            1
 special_float*foreground:           #0abdc6
@@ -199,7 +202,7 @@ URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-c:           perl:clipboard:copy
 URxvt.keysym.M-v:           perl:clipboard:paste
 URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
-*dpi:                       92
+*dpi:                       96
 !*antialias:              True
 !*hinting:                Full
 URxvt.keysym.KP_Add:        +
@@ -303,9 +306,6 @@ i3wm.TOP_GAPS:   0
 i3wm.BOP_GAPS:   0
 i3wm.R_GAPS:     0
 i3wm.L_GAPS:     0
-
-
-*keysym.C-semicolon:   \033[;
 
 i3wm.other_monitor_1: DisplayPort-0
 i3wm.primary_monitor: HDMI-A-0

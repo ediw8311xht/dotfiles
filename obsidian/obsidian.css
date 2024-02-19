@@ -1,11 +1,11 @@
-/*------------------------------*/
-/*----------- ROOT -------------*/
-/*------------------------------*/
+
+/*-- ROOT ----------------------*/
+
+.cm-cursorLayer {animation: none !important;}
 .cm-scroller, .cm-sizer {
   padding-left: 0px !important;
   padding-top: 0px !important;
 }
-
 .inline-title {
   padding: 0;
   margin: 0;
@@ -21,16 +21,28 @@
   width: 90vw;
   background-color: black;
 }
-
 .view-content {
   margin-bottom: 1vh !important;
-  margin-left: 5%;
-  max-width: max(90%, 900px);
-  background-color: #141414 !important;
+  /*max-width: max(90%, 900px);*/
+  background-color: #000 !important;
+}
+.view-header{
+  display: none !important;
+}
+.view-header:hover {
+  height: 30px;
+  display: block;;
+}
+.workspace-tab-header-container {
+  height: 40px;
+}
+.workspace-tab-header-container * {
+  border-radius: 0px !important;
 }
 .cm-contentContainer {
   margin-top: 0px;
   padding-top: 0px;
+  line-height: 1.2 !important;
 }
 body {
   --file-line-width: 80vw;
@@ -39,9 +51,21 @@ body {
   margin-left: 0px !important;
   margin-right: 0px !important;
 }
-/*------------------------------*/
-/*----------- GUI --------------*/
-/*------------------------------*/
+.cm-html-embed.cm-embed-block {
+  padding: 0px;
+  padding-left: 4em !important;
+}
+pre {
+  color: #AAA;
+  background-color: #111 !important;
+  padding-right: 4em !important;
+  padding-left: 4em !important;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  width: 800px;
+  overflow: wrap;
+}
+/*-- GUI -----------------------*/
 .nav-files-container, .workspace-ribbon,      .workspace-tab-header-container,
 .nav-header,          .sidebar-toggle-button, .mod-close {
   background-color: black !important;
@@ -52,9 +76,7 @@ body {
 .mod-left-split {
   width: max(10vw,100px) !important;
 }
-/*------------------------------*/
-/*----------- LEFT-PANEL -------*/
-/*------------------------------*/
+/*-- LEFT-PANEL ----------------*/
 .nav-files-container * {
   margin-bottom: 0px !important;
   margin-top: 0px !important;
@@ -92,33 +114,31 @@ body {
   background-color: blue;
   color: white;
 }
-/*------------------------------*/
-/*----------- ELEMENTS ---------*/
-/*------------------------------*/
-
+/*-- ELEMENTS ------------------*/
 img, .pdf-embed {
   max-height: 10vh;
   max-width: 20vw;
   border: 10px solid #000 !important;
 }
-
 img:hover, .pdf-embed:hover {
-  max-height: 30vh !important;
+  display: absolute;
+  top: 0;
+  left: 0;
+  max-height: 70vh !important;
 }
-
 u {
-  color: #999900;
-  background-color: black;
-  padding: 1px;
-  font-size: 95% !important;
+  background-color: #000055;
+  padding: 2px;
+  font-size: 94% !important;
+  text-decoration: none;
+  font-weight: 570;
+  color: #888;
 }
-
 .markdown-rendered :is(li, ol, ul, h1, h2, h3, h4, h5, h6) {
     margin-block-start: 0em;
     margin-block-end:   0em; /* default is 1em */
     margin:             0px;
 }
-
 .mod-cm6 .cm-editor .HyperMD-header, .markdown-reading-view .markdown-preview-section :is(h1,h2,h3,h4,h5,h6) {
     line-height: 1em !important;
     margin:      2px 0px 2px 0px;
@@ -128,65 +148,75 @@ u {
   padding: 0px;
   margin: 0px;
 }
-/*------------------------------*/
-/*----------- LATEX  -----------*/
-/*------------------------------*/
-.MathJax > * {
-  padding: 3px;
-  font-size: 120%;
+/*-- LATEX --------------------*/
+.math {
+  border: none;
+  padding-top: 0.1em !important;
+  padding-bottom: 0.3em !important;
+  padding-left: 0.03em !important;
+  padding-left: 0.2em !important;
+  padding-right: 0.2em !important;
+  color: #AA5500;
+  margin: 0px !important;
+}
+.math {
+  line-height: 0.9 !important;
+  margin: 0px !important;
+}
+mjx-container > *, mjx-container {
+  font-weight: 550 !important;
 }
 
-mjx-container {
-  background-color: #AAA;
-  color: black;
-}
-
-mjx-container > * {
-  background-color: #AAA;
-}
-
+/*.mjx-c28 {*/
+ /*margin-left: 3px;*/
+/*}*/
+/**/
+/*.mjx-c29 {*/
+ /*margin-right: 3px;*/
+/*}*/
+/*.mjx-c2B  {*/
+  /*margin-bottom: 1px !important;*/
+/*}*/
+/*.mjx-c2212, .mjx-cD7 {*/
+  /*margin-bottom: 1px !important;*/
+/*}*/
 mjx-frac {
   font-size: 120%;
 }
-
 mjx-mroot  mjx-root  mjx-mstyle .mjx-n {
   font-size: 125% !important;
 }
 mjx-line {
   padding-top: 1px;
 }
-.mjx-c2B  {
-  font-size: 80% !important;
-  margin-bottom: 1px !important;
+/*-- TABLE --------------------*/
+table .cm-gutters {
+  display: none !important;
 }
-.mjx-c2212, .mjx-cD7 {
-  font-size: 85% !important;
-  margin-bottom: 1px !important;
-}
-/*------------------------------*/
-/*----------- TABLE  -----------*/
-/*------------------------------*/
-
 table {
   margin-left: 3em;
+  margin-top: -10px;
 }
 table, th, td {
-  border: 3px solid #000 !important;
+  border: 3px solid #222 !important;
 }
 th {
-  background-color: black !important;
+  background-color: #222 !important;
   color: #0D0 !important;
   text-align: center !important;
   vertical-align: middle;
 }
 tbody {
-  background-color: #013 !important;
+  background-color: #000 !important;
   color: #AAA;
 }
 table td, table th {
-  max-width: 20em !important;
-  height: 3em !important;
+  max-width: 40em !important;
+  height: 2em !important;
   vertical-align: middle !important;
+}
+.cm-formatting-header {
+  display: none
 }
 table .cm-hmd-internal-link, table .internal-link {
   color: #000;
@@ -204,73 +234,65 @@ table .cm-hmd-internal-link, table .internal-link {
   margin-right: 0.50em !important;
   display: block;
 }
-/*------------------------------*/
-/*----------- LINKS ------------*/
-/*------------------------------*/
+/*-- LINKS ---------------------*/
 .cm-hmd-internal-link, .internal-link {
   text-decoration: none !important;
   border: 1px solid #999;
   --link-decoration: none;
   color: #07F !important;
   background-color: #000 !important;
-  padding: 4px !important;
-  font-weight: bold;
+  padding-left: 2px !important;
+  padding-right: 2px !important;
+  font-weight: 630;
   display: inline-block;
+  margin-bottom: 2px;
+  margin-top: 2px;
 }
-
 .cm-hmd-internal-link:hover, .internal-link:hover {
   color: #FFF !important;
   padding: 2px;
 }
-/*------------------------------*/
-/*----------- HEADERS ----------*/
-/*------------------------------*/
+/*-- HEADERS -------------------*/
 .HyperMD-header-1, .HyperMD-header-2, .HyperMD-header-3, .HyperMD-header-4, .HyperMD-header-5, h1, h2, h3, h4, h5 {
-  width: 100% !important;
-  background-color: black;
-  padding: 10px !important;
-  padding-left: 5% !important;
+  padding: 2px !important;
+  padding-left: 1% !important;
+  margin: 2px !important;
+  background-color: #111;
+  border-left: 3px solid green;
 }
 .HyperMD-header-1, .cm-header-1, .markdown-rendered :is(h1){
   color: #F00;
 }
 .cm-header-2, .markdown-rendered :is(h2){
-  color: #B04;
+  color: #000;
 }
 .cm-header-3, .markdown-rendered :is(h3){
-  color: #907;
+  color: #AAA;
 }
 .cm-header-4, .markdown-rendered :is(h4){
-  color: #0D3;
+  color: #AAA;
 }
 .cm-header-5, .markdown-rendered :is(h5){
-  color: #0B3;
+  color: #DDD;
 }
-/*------------------------------*/
-/*----------- LIST  ------------*/
-/*------------------------------*/
+/*-- LIST ----------------------*/
 .cm-formatting, .cm-indent, .markdown-rendered :is(li) {
   margin-left: 20px;
 }
-
 .HyperMD-list-line-1, li {
-  color: #181;
+  color: #0B4;
+  font-weight: 300 !important;
 }
-
 .HyperMD-list-line-2, li li {
-  color: #49F;
+  color: #999;
 }
-
 .HyperMD-list-line-3, li li li {
-  color: #BBB;
+  color: #999;
 }
-
 .HyperMD-list-line-4, li li li li {
   color: #999;
 }
-/*------------------------------*/
-/*----------- GUTTER -----------*/
-/*------------------------------*/
+/*-- GUTTER --------------------*/
 .cm-gutters {
   margin-right: 8px !important;
 }
@@ -279,15 +301,13 @@ table .cm-hmd-internal-link, table .internal-link {
   color: #777;
   font-size: 1.10em;
 }
-.cm-gutter * {
-  padding: 3px;
-}
 .cm-active {
-  color: #0F0;
+  border-bottom: 1px solid white;
+  font-weight: bold;
 }
-/*##############################*/
-/*########### VTABLE ###########*/
-/*##############################*/
+/*-- FUNCTION-PLOT -------------*/
+
+/*## VTABLE ####################*/
 .vtable h6, .vtable .HyperMD-header-6, .vtable .cm-header-6, .vtable .markdown-rendered :is(h6) {
   font-weight: normal;
 }
@@ -316,15 +336,12 @@ table .cm-hmd-internal-link, table .internal-link {
   margin-top: -0.7em !important;
   margin-bottom: -0.7em !important;
 }
-
-/*##############################*/
-/*########### MAINCLASS ########*/
-/*##############################*/
-.mainclass table, .table-wrapper {
-  margin-left: min(100px, 10vw);
-}
+/*## MAINCLASS #################*/
+/*.mainclass table, .mainclass .table-wrapper {*/
+  /*  margin-left: max(5px, 0.1vw);*/
+/*}*/
 .mainclass table * {
-  font-size: 1.03em;
+  font-size: 1em;
   font-weight: normal;
 }
 .mainclass td {
@@ -334,10 +351,9 @@ table .cm-hmd-internal-link, table .internal-link {
   padding-bottom: 90px !important;
   margin-bottom: 90px !important;
   margin-top: 2em !important;
-  padding: 2em !important;
 }
 .mainclass th {
-  border: 0.14em solid #07B !important;
+  border: 3px solid #07B !important;
 }
 .mainclass .cm-hmd-internal-link td, .mainclass td .internal-link {
   color: #09F !important;
@@ -346,10 +362,12 @@ table .cm-hmd-internal-link, table .internal-link {
   color: #0F0 !important;
   border: 1px solid #030;
 }
-
-/*##############################*/
-/*########### TODOLIST #########*/
-/*##############################*/
+/*## TODOLIST ##################*/
 .todolist .HyperMD-list-line > *, .todolist .task-list-item{
   margin-left: 3em;
+}
+/*## FULLTABLE #################*/
+.fulltable table th {
+  font-size: 0.95em !important;
+  padding: 10px;
 }

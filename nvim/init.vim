@@ -497,10 +497,12 @@ autocmd BufNewFile,BufRead ~/.bashrc                    source ~/.config/nvim/la
 
 "<--------- STUFF ---------------------------------------------------------->
 autocmd BufNewFile,BufRead *.sh                         set syntax=bash
+autocmd BufNewFile,BufRead *.ex                         setfiletype elixir
 autocmd BufNewFile,BufRead ~/.config/polybar/config     setfiletype dosini
 autocmd BufNewFile,BufRead ~/.config/i3/*               setfiletype i3
 autocmd BufNewFile,BufRead *.html                       setlocal tabstop=2 shiftwidth=2 softtabstop=4 expandtab
 autocmd BufNewFile,BufRead *.css                        setlocal tabstop=2 shiftwidth=2 softtabstop=4 expandtab
+autocmd BufNewFile,BufRead *.ex                         setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 " -----------------REMEMBER-----------------
 " &      - (normal mode) repeat last substitution "
 " ctrl+o - (insert mode) execute 1 normal command "

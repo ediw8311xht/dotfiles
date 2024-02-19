@@ -11,8 +11,8 @@
     bindsym Mod1+Shift+r    exec --no-startup-id    "xrdb ~/.Xresources  ;     $HOME/bin/i3wm_config_check.sh --3"
     bindsym Mod1+Shift+c    exec --no-startup-id    "$HOME/.secret_xinit ;     xrdb ~/.Xresources; $HOME/bin/i3wm_config_check.sh --NOASK --0"
 #-------------------------------------------------SET---------------------#
-    set $DefaultSize   1400px 950px
-    set $DefaultWidth  1400px
+    set $DefaultSize   1000px 950px
+    set $DefaultWidth  1000px
     set $DefaultHeight  950px
     set $SmallSize      850px  750px
     set $SmallWidth     850px

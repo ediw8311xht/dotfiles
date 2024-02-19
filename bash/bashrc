@@ -16,13 +16,10 @@ PS2='\e[0 q\[\e[0m\]'
 #  FUNCTIONS                                                            #
 #########################################################################
 mps() {
-    local h1 h2 h3 h4
-    local d1 d2 d3 d4 d6
-    local s1 s2 s3
-    #- SET -#
-    h1='\[\e[00;01;07;34m\]' ; h2='\[\e[00;01m\]' ; h3='\[\e[00;01;34m\]' ; h4='\[\e[00;01;33m\]'
-    d1='\D{%F}'              ; d2='\D{%T}'        ; d3='\D{%s}'           ; d4='\D{%d-%m-%y}'     ; d5='\D{%H%M}' ; d6='\D{%Y%m%d}'
-    s1=':\w/:>'              ; s2='-\$'           ; s3=':\W/:>'
+    local h1='\[\e[00;01;07;34m\]'  h2='\[\e[00;01m\]'  h3='\[\e[00;01;34m\]'   h4='\[\e[00;01;33m\]'
+    local d1='\D{%F}'               d2='\D{%T}'         d3='\D{%s}'
+    local d4='\D{%d-%m-%y}'         d5='\D{%H%M}'       d6='\D{%Y%m%d}'
+    local s1=':\w/:>'               s2='-\$'            s3=':\W/:>'
     #- INITIALIZE -#
     PS0=''
     PROMPT_DIRTRIM='0'
@@ -37,14 +34,10 @@ mps() {
     esac
     PS1+='\[\e[0m\]'
 } ; mps 'xs'
-git_clone() {
-    cd "${CLONED}" ||  return 1
-    git clone "${@}"
-}
 cd_from_lf() {
     #lf -log="${MY_LOGS}/LF_LOGS/$(date +'%s')_LF_LOG.txt"
     lf
-    if a="$(find /tmp/ -name 'tmplf*' 2>/dev/null | tail -1)"
+    if a="$(find /tmp/ -type f -name 'tmplf*' 2>/dev/null | tail -1)"
     then
         if [[ "${PWD}" != "${a}" ]] ; then
             cd "$(cat "${a}")" || return 1
@@ -105,13 +98,8 @@ addally() {
     printf 'alias %s='\''cd "%s"'\'' %s\n' \
         "${1}" "${PWD/$HOME/\$\{HOME\}}" "${ITEXT}" >> "${HOME}/.bashrc"
 }
-rifs()   { IFS=$' \t\n'; printf 'IFS=%q\n' "${IFS}" ; }
-ppifs()  { printf "IFS=%q" "${IFS}"; echo ""        ; }
-pifs()   { printf     "%q" "${IFS}"; echo ""        ; }
-acheck() { compgen -c  | grep -x "${@}"             ; }
-gport_function() { netstat -lntu | grep -Pi "${@:-""}" ; }
 alias_conflict() {
-    local beg cvm wcl
+    local cvm wcl
     cvm="$(compgen -c)"
     while read -r -d$'\n' i ; do
         wcl="$(grep -c -x "${i}" <<< "${cvm}")"
@@ -143,6 +131,7 @@ function rg_with_p() {
 #  ALIASES                                                              #
 #########################################################################
 #                              SPECIAL  #
+
 alias ls='ls --color="auto" '
 alias grep='grep --colour="auto" --group-separator="===================================" '
 alias systemctl='systemctl --no-pager'
@@ -190,7 +179,7 @@ alias P='         readlink -f' # get full path of file
 alias W='         whereis'
 #     X           RESERVED
 #-----------------------------------2---#
-alias ac='        acheck'
+alias ac='        compgen -c  | grep -x'
 alias cz='        ccze -m ansi'
 alias fz='        mycd'
 alias gd='        xcmenu --input --clipboard "$(pwd)"'
@@ -210,10 +199,7 @@ alias ro='        \rg --hidden --ignore-file="${XDG_CONFIG_HOME}/rg/rg_html_web.
 alias rt='        \rg --hidden --ignore-file="${XDG_CONFIG_HOME}/rg/rg_basic.gitignore" --pcre2 -i'
 alias tl='        tar --list --file'
 alias xf='        xdg-open "$(fzf --preview="ctpv {}")"'
-alias xg='        grep -r -i  --exclude=\*.{dll,gpg,iso,au,elc,xpm,xcf,apk,snap,out,jar,sx,s,bin,o,exe,deb,pyc,pyo,aac,webm,alac,ape,ogg,mp4,mkv,m4a,mp4a,avi,mp3,wav,flac}'
 alias xr='        echo ""; nvim "${HOME}/.Xresources"; xrdb "${HOME}/.Xresources"'
-alias yg='        xg          --exclude=\*.{rar,tar,gz,tgz,zip,bz2,tbz2}'
-alias zg='        yg          --exclude=\*.{pdf,mobi,epub,azw,azw2,djvu,lit,azw3}'
 #------------------------------------------------------------#
 alias acc='       alias_conflict'
 alias acf='       alias_conflict --full'
@@ -226,13 +212,16 @@ alias doren='     perl-rename -v'
 alias eread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --preview="ctpv {}" --print0 | xargs -0 -r -o zathura --fork; exit'
 alias ezchmod='   chmod og-rwx -R .'
 #alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | grep -Pi -- "${_z:-''}")) <<<'
+alias rifs="      IFS=$' \t\n'" #; printf 'IFS=%q\n' "${IFS}" ; }
+alias ppifs='      printf "\n_%q_\n\n" "${IFS}"'
+alias p0fs='      printf "_%q_" "${IFS}"'
 alias fread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --preview="ctpv {}" --print0 | xargs -0 -r -o zathura --fork'
-alias gclone='    cd "${CLONED}"; git clone'
+alias gclone='    cd "${CLONED}" && git clone'
 alias getfont='   fc-list -v | grep -i '
 alias gfi='       fd --search-path "/" -u --mount'
 alias gital='     git log --source --all -S'
 alias git_mt='    git log --pretty=format:"%h %s" --graph'
-alias gport='     gport_function'
+alias gport='     netstat -lntu | grep -Pi'
 alias grab_dir='  xcmenu --input --clipboard "$(pwd)"'
 alias hfi='       fd --search-path "${HOME}" --exclude ".mynvim" --exclude ".local" --hidden'
 alias i3c='       i3 -C "$HOME/.config/i3/config"'
@@ -371,7 +360,7 @@ alias clne='      cd "${CLONED}"; cd "$(fd --maxdepth 1 -t d | sort -n | fzf --p
 #------------------BASH-HISTORY--------#
 shopt -s histappend
 export  PROMPT_COMMAND='history -a;history -n'
-export  HISTSIZE=10000000
+export  HISTSIZE=1000000
 export  HISTFILE="$HOME/.bash_history"
 export  HISTCONTROL=ignoreboth
 export  TMPDIR="/tmp/"
@@ -405,6 +394,7 @@ export  TERMINAL='/usr/local/bin/st'
 export  EDITOR="nvim"
 export  ERL_AFLAGS="-kernel shell_history enabled"
 #------------------MINE----------------#
+export  STANDARD_IFS=$' \t\n'
 export  BACKUP="${HOME}/BACKUP_FILES"
 export  BIN="${HOME}/bin"
 export  BROWSER="/usr/bin/brave"
