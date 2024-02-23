@@ -16,8 +16,8 @@
 "<--------- MY VARS -------------------------------------------------------->
 let jam        = 'hi FoldColumn gui=bold guibg=NONE guifg=#00ff00'
 let GreatJammy = ':call CorrectColors()'
-let g:myScheme = [ 'pop-punk', 'eldar', 'elflord', 'delek', 'morning', 'blue', 'peachpuff', 'industry'] + [ 'cyberpunk-neon' ]
-let g:mySpec   = [        ".",     jam,       ".",     ".",       ".",    ".",         '.',        '.'] + [ GreatJammy ]
+let g:myScheme = [ 'pop-punk', 'eldar', 'elflord', 'delek', 'morning', 'blue', 'peachpuff', 'industry', 'murphy'] + [ 'cyberpunk-neon' ]
+let g:mySpec   = [        ".",     jam,       ".",     ".",       ".",    ".",         '.',        '.', '.'] + [ GreatJammy ]
 let g:myBg     = [ "#000000", "#333333", "#111111", "#220000", "#002200", "#000022", "#002244" ] + [ "NONE" ]
 let g:myFg     = [         ".",         ".",         ".",         ".",         ".",         ".", "#aaawaa" ] + [ "." ]
 let g:python3_host_prog="/usr/bin/python"
@@ -25,6 +25,7 @@ let g:python3_host_prog="/usr/bin/python"
 " Color superfluous whitespace at end of lines "
 match ExtraWhiteSpace /[^\s]\s\+\zs$/
 
+" $a^2 + b^2 + c^2$
 "<--------- FUNCTIONS ------------------------------------------------------>
 fu! CorrectColors()
     if ! empty($DISPLAY)
@@ -143,6 +144,7 @@ filetype plugin on
 filetype plugin indent on
 syntax on
 "set colorcolumn=80
+set encoding=utf-8
 set magic
 set termguicolors
 set splitright
@@ -190,42 +192,45 @@ let maplocalleader = " "
 
 "<--------- PLUGINS -------------------------------------------------------->
 call plug#begin()
-" Language Servers. Use release branch (recommend)
+" Language Servers. Use release branch (recommend) #
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Treesitter
-    "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Treesitter, extra stuff
-"    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-" Show-all-matching-tags-vim
-    Plug 'jbyuki/nabla.nvim'
+" Treesitter                        #
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Treesitter, extra stuff           #
+    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+" Latex                             #
+    Plug 'lervag/vimtex'
+" Show-all-matching-tags-vim        #
     Plug 'andymass/vim-matchup'
-" Autoclose HTML tags
-    "Plug 'alvan/vim-closetag'
-" Autorename HTML tags
+" Autoclose HTML tags               #
+    "Plug 'alvan/vim-closetag'      #
+" Autorename HTML tags #            #
     Plug 'AndrewRadev/tagalong.vim'
-" Syntax-for-lf
+" Syntax-for-lf                     #
     Plug 'VebbNix/lf-vim'
-" Syntax-for-i3
+" Syntax-for-i3                     #
     Plug 'PotatoesMaster/i3-vim-syntax'
-" Auto-save-restore-view :) --best plugin
+" Auto-save-restore-view :) --best plugin #
     Plug 'https://github.com/vim-scripts/restore_view.vim'
-" Real-time HTML/CSS/JS Editor
+" Real-time HTML/CSS/JS Editor      #
     Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
-" Showmarks/ Better marks
+" Showmarks/ Better marks           #
     Plug 'chentoast/marks.nvim'
-" Requirements for lilypond (not using anymore), cool ui stuff
+" Requirements for lilypond (not using anymore), cool ui stuff #
     Plug 'MunifTanjim/nui.nvim'
-" Fzf Finder
+" Fzf Finder                        #
     Plug 'junegunn/fzf.vim'
-" Markdown Preview
+" Markdown Preview                  #
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-" Semantic Highlighting for Python
+" Semantic Highlighting for Python  #
     Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
-" For lf.vim
+" For lf.vim                        #
     Plug 'voldikss/vim-floaterm'
     Plug 'ptzz/lf.vim'
-" Elixir
+" Elixir                            #
     Plug 'elixir-editors/vim-elixir'
+" colorscheme tokyonight            #
+    Plug 'folke/tokyonight.nvim'
 call plug#end()
 "<--------_G-VAR_<leader>f_from-:-lf
 lua require('base')
@@ -238,6 +243,34 @@ lua require('base')
 "---- For 'ptzz/lf.vim' ----"
     let g:lf_map_keys   = 0
 
+" This is necessary for VimTeX to load properly. The "indent" is optional.
+" Note that most plugin managers will do this automatically.
+" This enables Vim's and neovim's syntax-related features. Without this, some
+" VimTeX features will not work (see ":help vimtex-requirements" for more
+" info).
+syntax enable
+if empty(v:servername) && exists('*remote_startserver')
+  call remote_startserver('VIM')
+endif
+
+" Viewer options: One may configure the viewer either by specifying a built-in
+" viewer method:
+let g:vimtex_view_method = 'zathura'
+
+" Or with a generic interface:
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+
+" VimTeX uses latexmk as the default compiler backend. If you use it, which is
+" strongly recommended, you probably don't need to configure anything. If you
+" want another compiler backend, you can change it as follows. The list of
+" supported backends and further explanation is provided in the documentation,
+" see ":help vimtex-compiler".
+let g:vimtex_compiler_method = 'tectonic'
+
+" Most VimTeX mappings rely on localleader and this can be changed with the
+" following line. The default is usually fine and is the symbol "\".
+let maplocalleader = ","
 
 let g:html_mode     = 1
 let g:is_bash       = 1
@@ -300,7 +333,7 @@ call L( 'h'        ,     ':call Toggle(&ls, 0, "set ru \| set ls=2", "set noru \
 " -- Got to Next File -- "
 call L( 'n'        ,     ':next<esc>')
 " -- Got to Previous File -- "
-call L( 'p'        ,     ':previous<esc>')
+"call L( 'p'        ,     ':previous<esc>')
 " -- Delete Buffer (Pick) -- "
 call L( 'q'        ,     ':bd')
 " -- Delete Current Buffer -- "
@@ -356,7 +389,7 @@ call L( 'M'        ,    ':messages<esc>')
 " -- Display Next Error -- "
 call L( 'N'        ,    ':cnext<esc>')
 " -- Display Previous Error -- "
-call L( 'P'        ,    ':cprevious<esc>')
+"call L( 'P'        ,    ':cprevious<esc>')
 " -- Start Bracy -- "
 call L( 'WW'       ,   ':Bracey<esc>')
 " -- Stop Bracy -- "
@@ -397,7 +430,6 @@ let g:subshell_end=join(  ['####################', ') #---END-SUBSHELL-#', '####
         call L( 'Sb'       ,    ':put =subshell_begin<esc>')
         call L( 'Se'       ,    ':put =subshell_end<esc>')
 
-"nnoremap <leader>p :lua require("nabla").popup()<CR> " Customize with popup({border = ...})  : `single` (default), `double`, `rounded`
 
 "---------------------------------------------------
 "-- Map  (Normal, Visual, Select, OperatorPending --

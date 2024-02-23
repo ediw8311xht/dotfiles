@@ -1,6 +1,5 @@
 
 /*-- ROOT ----------------------*/
-
 .cm-cursorLayer {animation: none !important;}
 .cm-scroller, .cm-sizer {
   padding-left: 0px !important;
@@ -33,12 +32,6 @@
   height: 30px;
   display: block;;
 }
-.workspace-tab-header-container {
-  height: 40px;
-}
-.workspace-tab-header-container * {
-  border-radius: 0px !important;
-}
 .cm-contentContainer {
   margin-top: 0px;
   padding-top: 0px;
@@ -51,9 +44,38 @@ body {
   margin-left: 0px !important;
   margin-right: 0px !important;
 }
+.mermaid {
+  margin-left: 3em;
+  font-weight: 500;
+  padding: 0px !important;
+}
+.HyperMD-codeblock * {
+  font-size: 1.2em !important;
+  font-weight: 500 !important;
+  max-height: 400px !important;
+}
+.mermaid * {
+  font-weight: 700 !important;
+}
+.mermaid {
+  margin-left: 90px;
+  padding: 0px !important;
+  border: none !important;
+}
+.mermaid svg {
+  max-width: 80vw;
+  max-height: max(15vh, 150px);
+  padding: 0px;
+}
+.mermaid svg:hover {
+  max-height: min(70vh, 1000px);
+}
+.cm-embed-block * {
+  padding: 0px !important;
+}
 .cm-html-embed.cm-embed-block {
   padding: 0px;
-  padding-left: 4em !important;
+  padding-left: 2em !important;
 }
 pre {
   color: #AAA;
@@ -66,6 +88,21 @@ pre {
   overflow: wrap;
 }
 /*-- GUI -----------------------*/
+/*.workspace-leaf * {*/
+/*}*/
+.workspace-tab-header-container * {
+  border-radius: 0px !important;
+}
+.workspace-tab-header-container {
+  height: 40px;
+}
+.workspace-tab-header-container * {
+  border-radius: 0px !important;
+}
+
+.nav-files-container * {
+  font-size: 12px !important;
+}
 .nav-files-container, .workspace-ribbon,      .workspace-tab-header-container,
 .nav-header,          .sidebar-toggle-button, .mod-close {
   background-color: black !important;
@@ -75,6 +112,10 @@ pre {
 }
 .mod-left-split {
   width: max(10vw,100px) !important;
+}
+.mod-left-split {
+
+  width: max(200px, 13vw) !important;
 }
 /*-- LEFT-PANEL ----------------*/
 .nav-files-container * {
@@ -116,15 +157,16 @@ pre {
 }
 /*-- ELEMENTS ------------------*/
 img, .pdf-embed {
-  max-height: 10vh;
-  max-width: 20vw;
+  max-width: min(600px, 40vw) !important;
+  max-height: min(200px, 20vh) !important;
   border: 10px solid #000 !important;
 }
 img:hover, .pdf-embed:hover {
   display: absolute;
   top: 0;
   left: 0;
-  max-height: 70vh !important;
+  max-height: min(1000px, 70vh) !important;
+  max-width: 70vw !important;
 }
 u {
   background-color: #000055;
@@ -133,6 +175,7 @@ u {
   text-decoration: none;
   font-weight: 570;
   color: #888;
+  z-index: 0 !important;
 }
 .markdown-rendered :is(li, ol, ul, h1, h2, h3, h4, h5, h6) {
     margin-block-start: 0em;
@@ -140,13 +183,10 @@ u {
     margin:             0px;
 }
 .mod-cm6 .cm-editor .HyperMD-header, .markdown-reading-view .markdown-preview-section :is(h1,h2,h3,h4,h5,h6) {
+    /*z-index: 1 !important;*/
     line-height: 1em !important;
     margin:      2px 0px 2px 0px;
     padding:     3px 0px 4px 0px;
-}
-.HyperMD-list-line {
-  padding: 0px;
-  margin: 0px;
 }
 /*-- LATEX --------------------*/
 .math {
@@ -158,13 +198,32 @@ u {
   padding-right: 0.2em !important;
   color: #AA5500;
   margin: 0px !important;
+  font-size: 1.2em !important;
 }
 .math {
   line-height: 0.9 !important;
   margin: 0px !important;
 }
 mjx-container > *, mjx-container {
-  font-weight: 550 !important;
+  font-weight: 600 !important;
+}
+
+mjx-frac {
+  font-size: 120% !important;
+}
+mjx-mroot  mjx-root  mjx-mstyle .mjx-n {
+  font-size: 125% !important;
+}
+mjx-line {
+  padding-top: 1px;
+}
+.mjx-c2B  {
+  font-size: 80% !important;
+  margin-bottom: 1px !important;
+}
+.mjx-c2212, .mjx-cD7 {
+  font-size: 85% !important;
+  margin-bottom: 1px !important;
 }
 
 /*.mjx-c28 {*/
@@ -190,12 +249,8 @@ mjx-line {
   padding-top: 1px;
 }
 /*-- TABLE --------------------*/
-table .cm-gutters {
-  display: none !important;
-}
 table {
-  margin-left: 3em;
-  margin-top: -10px;
+  margin-left: 30px;
 }
 table, th, td {
   border: 3px solid #222 !important;
@@ -205,6 +260,7 @@ th {
   color: #0D0 !important;
   text-align: center !important;
   vertical-align: middle;
+  font-weight: 500 !important;
 }
 tbody {
   background-color: #000 !important;
@@ -215,8 +271,8 @@ table td, table th {
   height: 2em !important;
   vertical-align: middle !important;
 }
-.cm-formatting-header {
-  display: none
+.collapse-indicator { 
+  border-left: 3px solid green;
 }
 table .cm-hmd-internal-link, table .internal-link {
   color: #000;
@@ -243,7 +299,7 @@ table .cm-hmd-internal-link, table .internal-link {
   background-color: #000 !important;
   padding-left: 2px !important;
   padding-right: 2px !important;
-  font-weight: 630;
+  font-weight: 650;
   display: inline-block;
   margin-bottom: 2px;
   margin-top: 2px;
@@ -258,30 +314,52 @@ table .cm-hmd-internal-link, table .internal-link {
   padding-left: 1% !important;
   margin: 2px !important;
   background-color: #111;
-  border-left: 3px solid green;
 }
 .HyperMD-header-1, .cm-header-1, .markdown-rendered :is(h1){
+  font-size: 3em;
   color: #F00;
+  font-weight: 500;
 }
-.cm-header-2, .markdown-rendered :is(h2){
-  color: #000;
+.HyperMD-header-2, .cm-header-2, .markdown-rendered :is(h2){
+  color: #F0F;
+  font-weight: 500;
 }
-.cm-header-3, .markdown-rendered :is(h3){
-  color: #AAA;
-}
-.cm-header-4, .markdown-rendered :is(h4){
-  color: #AAA;
-}
-.cm-header-5, .markdown-rendered :is(h5){
+.HyperMD-header-3, .cm-header-3, .markdown-rendered :is(h3){
   color: #DDD;
+  font-weight: 500;
+}
+.HyperMD-header-4, .cm-header-4, .markdown-rendered :is(h4){
+  font-size: 3em;
+  color: #FFF;
+  font-weight: 500;
+}
+.HyperMD-header-5, .cm-header-5, .markdown-rendered :is(h5){
+  font-size: 1.1em;
+  color: #DDD;
+  font-weight: 500;
+}
+.HyperMD-header-6, .cm-header-6, .markdown-rendered :is(h6){
+  color: #DDD;
+  font-size: 1em;
+  font-weight: 700;
 }
 /*-- LIST ----------------------*/
-.cm-formatting, .cm-indent, .markdown-rendered :is(li) {
-  margin-left: 20px;
+.HyperMD-list-line {
+  padding: 0px;
+  margin: 0px;
+}
+.markdown-rendered :is(ol, ul) {
+  margin-left: 1.5em;
+}
+.markdown-rendered :is(ol, ul) :is(ol, ul){
+  margin-left: 1em !important;
+}
+.cm-formatting-list {
+  margin-left: 1.4em;
 }
 .HyperMD-list-line-1, li {
   color: #0B4;
-  font-weight: 300 !important;
+  font-weight: 350 !important;
 }
 .HyperMD-list-line-2, li li {
   color: #999;
@@ -303,13 +381,13 @@ table .cm-hmd-internal-link, table .internal-link {
 }
 .cm-active {
   border-bottom: 1px solid white;
-  font-weight: bold;
+  font-weight: 700;
 }
 /*-- FUNCTION-PLOT -------------*/
 
 /*## VTABLE ####################*/
 .vtable h6, .vtable .HyperMD-header-6, .vtable .cm-header-6, .vtable .markdown-rendered :is(h6) {
-  font-weight: normal;
+  font-weight: 500;
 }
 .vtable th {
     text-align: left !important;
@@ -342,7 +420,7 @@ table .cm-hmd-internal-link, table .internal-link {
 /*}*/
 .mainclass table * {
   font-size: 1em;
-  font-weight: normal;
+  font-weight: 300;
 }
 .mainclass td {
   border: 0.10em solid #058 !important;

@@ -145,7 +145,7 @@ alias yay='yay --color="always"'
 #-----------------------------------1L--#
 alias a='         get_alias_fzf'
 #        b=          RESERVED
-alias c='         cd ..'
+alias c='         mycd'
 alias d='         deactivate' # For python virtualenv
 alias e='         xcmenu --input --primary'
 alias f='         fd -H'
@@ -169,7 +169,7 @@ alias y='         source .venv/bin/activate'
 #-    z #
 #-----------------------------------1U--#
 alias B='         bat'
-alias C='         mycd'
+alias C='         cd ..'
 alias E='         xcmenuctrl'
 alias F='         fd --unrestricted'
 alias G='         grep -F'
@@ -213,8 +213,7 @@ alias eread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --preview="ctpv {}" -
 alias ezchmod='   chmod og-rwx -R .'
 #alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | grep -Pi -- "${_z:-''}")) <<<'
 alias rifs="      IFS=$' \t\n'" #; printf 'IFS=%q\n' "${IFS}" ; }
-alias ppifs='      printf "\n_%q_\n\n" "${IFS}"'
-alias p0fs='      printf "_%q_" "${IFS}"'
+alias pifs='      printf "\n_%q_\n\n" "${IFS}"'
 alias fread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --preview="ctpv {}" --print0 | xargs -0 -r -o zathura --fork'
 alias gclone='    cd "${CLONED}" && git clone'
 alias getfont='   fc-list -v | grep -i '

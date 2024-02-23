@@ -75,6 +75,7 @@
 #-------ASSIGN------------------------------------------------------------#
     #assign [class=".*Deluge.*"]             workspace 12
 #-------FOR_WINDOW--------------------------------------------------------#
+    for_window [class="[Oo]bsidian"]            floating enable, move scratchpad, resize set 1400px 1000px, scratchpad show, move position center
     for_window [instance="(i3s_note|i3s_st)"]   $scratchpad_default
     for_window [class=".*qutebrowser.*"]        $scratchpad_default
     for_window [class=".*icecat.*"]	            $scratchpad_default
@@ -82,6 +83,7 @@
     for_window [class=".*Thunar.*"]             $scratchpad_default
     for_window [class=".*Xsane.*"]              $scratchpad_default
     for_window [class="Emacs"]				    $scratchpad_default
+    #for_window [class="^(([Oo]bsidian)$"] resize set 1200px 800px, move position center
     for_window [window_role="task_dialog"]      $floating_default
     for_window [window_role="Preferences"]      $floating_default
     for_window [window_role="pop-up"]           $floating_default
@@ -89,9 +91,8 @@
     for_window [window_type="dialog"]           $floating_default
     for_window [window_type="popup_menu"]       $floating_default
     #-------SPECIAL-XMESSAGE-----------#
-    for_window [class="Xmessage"]			    floating enable
+    for_window [class="Xmessage"] floating enable
     no_focus   [class="Xmessage"]
-    for_window [class="^(?!Xmessage$)" floating] resize set $DefaultSize, move position center
     #-------TITLE----------------------#
     for_window [all] title_window_icon no
     for_window [all] title_format "<big><big><big><span background='#000000' rise='7pt'> <small><small>%title</small></small> </span></big></big></big>"
