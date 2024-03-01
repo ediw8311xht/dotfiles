@@ -1,0 +1,26 @@
+
+.HyperMD-list-line {
+  padding: 0px;
+  margin: 0px;
+}
+ol, ul, .markdown-rendered :is(ol, ul) {
+  margin-left: 1.7em !important;
+}
+.markdown-rendered :is(ol, ul) :is(ol, ul){
+  margin-left: 1em !important;
+}
+.cm-formatting-list {
+  margin-left: 1.7em;
+}
+.HyperMD-list-line-1, li {
+  color: #0B4;
+}
+.HyperMD-list-line-2, li li {
+  color: #999;
+}
+.HyperMD-list-line-3, li li li {
+  color: #999;
+}
+.HyperMD-list-line-4, li li li li {
+  color: #999;
+}

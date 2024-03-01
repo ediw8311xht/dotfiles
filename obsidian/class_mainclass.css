@@ -1,0 +1,27 @@
+
+/*## MAINCLASS #################*/
+/*.mainclass table, .mainclass .table-wrapper {*/
+  /*  margin-left: max(5px, 0.1vw);*/
+/*}*/
+.mainclass table * {
+  font-size: 1em;
+  font-weight: 500;
+}
+.mainclass td {
+  border: 0.10em solid #058 !important;
+}
+.mainclass thead {
+  padding-bottom: 90px !important;
+  margin-bottom: 90px !important;
+  margin-top: 2em !important;
+}
+.mainclass th {
+  border: 3px solid #07B !important;
+}
+.mainclass .cm-hmd-internal-link td, .mainclass td .internal-link {
+  color: #09F !important;
+}
+.mainclass .cm-hmd-internal-link th, .mainclass th .internal-link {
+  color: #0F0 !important;
+  border: 1px solid #030;
+}

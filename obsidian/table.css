@@ -1,0 +1,45 @@
+
+table {
+  margin-left: 30px;
+}
+table, th, td {
+  border: 3px solid #222 !important;
+}
+th {
+  background-color: #222 !important;
+  color: #0D0 !important;
+  text-align: center !important;
+  vertical-align: middle;
+  font-weight: 500 !important;
+}
+tbody {
+  background-color: #000 !important;
+  color: #AAA;
+}
+td, .markdown-rendered :is(td) {
+  padding: 4px !important;
+}
+table td, table th {
+  max-width: 40em !important;
+  height: 2em !important;
+  vertical-align: middle !important;
+}
+.collapse-indicator {
+  border-left: 3px solid green;
+}
+table .cm-hmd-internal-link, table .internal-link {
+  color: #000;
+  background-color: #777777;
+  padding-left: 0.8em !important;
+  padding-right: 0.8em !Important;
+  text-decoration: none;
+  text-align: center;
+  border: 2px solid #04A;
+  padding: 4px;
+  max-width: 18em;
+  margin: 0 auto;
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+  margin-right: 0.50em !important;
+  display: block;
+}

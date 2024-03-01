@@ -37,45 +37,15 @@
   padding-top: 0px;
   line-height: 1.2 !important;
 }
+* {
+  font-weight: 500;
+}
 body {
   --file-line-width: 80vw;
   --text-selection: #009 !important;
   padding: 0px !important;
   margin-left: 0px !important;
   margin-right: 0px !important;
-}
-.mermaid {
-  margin-left: 3em;
-  font-weight: 500;
-  padding: 0px !important;
-}
-.HyperMD-codeblock * {
-  font-size: 1.2em !important;
-  font-weight: 500 !important;
-  max-height: 400px !important;
-}
-.mermaid * {
-  font-weight: 700 !important;
-}
-.mermaid {
-  margin-left: 90px;
-  padding: 0px !important;
-  border: none !important;
-}
-.mermaid svg {
-  max-width: 80vw;
-  max-height: max(15vh, 150px);
-  padding: 0px;
-}
-.mermaid svg:hover {
-  max-height: min(70vh, 1000px);
-}
-.cm-embed-block * {
-  padding: 0px !important;
-}
-.cm-html-embed.cm-embed-block {
-  padding: 0px;
-  padding-left: 2em !important;
 }
 pre {
   color: #AAA;
@@ -87,94 +57,16 @@ pre {
   width: 800px;
   overflow: wrap;
 }
-/*-- GUI -----------------------*/
-/*.workspace-leaf * {*/
-/*}*/
-.workspace-tab-header-container * {
-  border-radius: 0px !important;
-}
-.workspace-tab-header-container {
-  height: 40px;
-}
-.workspace-tab-header-container * {
-  border-radius: 0px !important;
-}
-
-.nav-files-container * {
-  font-size: 12px !important;
-}
-.nav-files-container, .workspace-ribbon,      .workspace-tab-header-container,
-.nav-header,          .sidebar-toggle-button, .mod-close {
-  background-color: black !important;
-}
-.mod-minimize, .mod-maximize {
-  display: none !important;
-}
-.mod-left-split {
-  width: max(10vw,100px) !important;
-}
-.mod-left-split {
-
-  width: max(200px, 13vw) !important;
-}
-/*-- LEFT-PANEL ----------------*/
-.nav-files-container * {
-  margin-bottom: 0px !important;
-  margin-top: 0px !important;
-  border-radius: 0px;
-  border: none !important;
-}
-.nav-file-title, .nav-folder-title {
-  margin: 0px;
-  font-size: 17px;
-}
-/*(1) Folder*/
-.nav-folder.mod-root>.nav-folder-children>.nav-folder>.nav-folder-title {
-  color: #0B0;
-  background-color: #000;
-}
-/*(2) Folder*/
-.nav-folder.mod-root>.nav-folder-children>.nav-folder>.nav-folder-children>.nav-folder>.nav-folder-title {
-  color: #AA0;
-  background-color: #000020;
-}
-/*(1) Files*/
-.nav-folder.mod-root>.nav-folder-children>.nav-folder>.nav-folder-children>.nav-file>.nav-file-title {
-  color: #999;
-  text-decoration: underline;
-  background-color: #000;
-}
-/*(root) Files*/
-.mod-root > .tree-item-children > .tree-item > .nav-file-title {
-  color: #0D0;
-  background-color: #000;
-  border: 2px solid #070 !important;
-  border-radius: 0px;
-}
-.is-selected > * {
-  background-color: blue;
-  color: white;
-}
-/*-- ELEMENTS ------------------*/
-img, .pdf-embed {
-  max-width: min(600px, 40vw) !important;
-  max-height: min(200px, 20vh) !important;
-  border: 10px solid #000 !important;
-}
-img:hover, .pdf-embed:hover {
-  display: absolute;
-  top: 0;
-  left: 0;
-  max-height: min(1000px, 70vh) !important;
-  max-width: 70vw !important;
+.cm-strong, strong {
+  font-weight: 700 !important;
 }
 u {
   background-color: #000055;
   padding: 2px;
   font-size: 94% !important;
   text-decoration: none;
-  font-weight: 570;
-  color: #888;
+  font-weight: 700;
+  color: #AAA;
   z-index: 0 !important;
 }
 .markdown-rendered :is(li, ol, ul, h1, h2, h3, h4, h5, h6) {
@@ -187,108 +79,6 @@ u {
     line-height: 1em !important;
     margin:      2px 0px 2px 0px;
     padding:     3px 0px 4px 0px;
-}
-/*-- LATEX --------------------*/
-.math {
-  border: none;
-  padding-top: 0.1em !important;
-  padding-bottom: 0.3em !important;
-  padding-left: 0.03em !important;
-  padding-left: 0.2em !important;
-  padding-right: 0.2em !important;
-  color: #AA5500;
-  margin: 0px !important;
-  font-size: 1.2em !important;
-}
-.math {
-  line-height: 0.9 !important;
-  margin: 0px !important;
-}
-mjx-container > *, mjx-container {
-  font-weight: 600 !important;
-}
-
-mjx-frac {
-  font-size: 120% !important;
-}
-mjx-mroot  mjx-root  mjx-mstyle .mjx-n {
-  font-size: 125% !important;
-}
-mjx-line {
-  padding-top: 1px;
-}
-.mjx-c2B  {
-  font-size: 80% !important;
-  margin-bottom: 1px !important;
-}
-.mjx-c2212, .mjx-cD7 {
-  font-size: 85% !important;
-  margin-bottom: 1px !important;
-}
-
-/*.mjx-c28 {*/
- /*margin-left: 3px;*/
-/*}*/
-/**/
-/*.mjx-c29 {*/
- /*margin-right: 3px;*/
-/*}*/
-/*.mjx-c2B  {*/
-  /*margin-bottom: 1px !important;*/
-/*}*/
-/*.mjx-c2212, .mjx-cD7 {*/
-  /*margin-bottom: 1px !important;*/
-/*}*/
-mjx-frac {
-  font-size: 120%;
-}
-mjx-mroot  mjx-root  mjx-mstyle .mjx-n {
-  font-size: 125% !important;
-}
-mjx-line {
-  padding-top: 1px;
-}
-/*-- TABLE --------------------*/
-table {
-  margin-left: 30px;
-}
-table, th, td {
-  border: 3px solid #222 !important;
-}
-th {
-  background-color: #222 !important;
-  color: #0D0 !important;
-  text-align: center !important;
-  vertical-align: middle;
-  font-weight: 500 !important;
-}
-tbody {
-  background-color: #000 !important;
-  color: #AAA;
-}
-table td, table th {
-  max-width: 40em !important;
-  height: 2em !important;
-  vertical-align: middle !important;
-}
-.collapse-indicator { 
-  border-left: 3px solid green;
-}
-table .cm-hmd-internal-link, table .internal-link {
-  color: #000;
-  background-color: #777777;
-  padding-left: 0.8em !important;
-  padding-right: 0.8em !Important;
-  text-decoration: none;
-  text-align: center;
-  border: 2px solid #04A;
-  padding: 4px;
-  max-width: 18em;
-  margin: 0 auto;
-  margin-top: 0.1em;
-  margin-bottom: 0.1em;
-  margin-right: 0.50em !important;
-  display: block;
 }
 /*-- LINKS ---------------------*/
 .cm-hmd-internal-link, .internal-link {
@@ -308,68 +98,6 @@ table .cm-hmd-internal-link, table .internal-link {
   color: #FFF !important;
   padding: 2px;
 }
-/*-- HEADERS -------------------*/
-.HyperMD-header-1, .HyperMD-header-2, .HyperMD-header-3, .HyperMD-header-4, .HyperMD-header-5, h1, h2, h3, h4, h5 {
-  padding: 2px !important;
-  padding-left: 1% !important;
-  margin: 2px !important;
-  background-color: #111;
-}
-.HyperMD-header-1, .cm-header-1, .markdown-rendered :is(h1){
-  font-size: 3em;
-  color: #F00;
-  font-weight: 500;
-}
-.HyperMD-header-2, .cm-header-2, .markdown-rendered :is(h2){
-  color: #F0F;
-  font-weight: 500;
-}
-.HyperMD-header-3, .cm-header-3, .markdown-rendered :is(h3){
-  color: #DDD;
-  font-weight: 500;
-}
-.HyperMD-header-4, .cm-header-4, .markdown-rendered :is(h4){
-  font-size: 3em;
-  color: #FFF;
-  font-weight: 500;
-}
-.HyperMD-header-5, .cm-header-5, .markdown-rendered :is(h5){
-  font-size: 1.1em;
-  color: #DDD;
-  font-weight: 500;
-}
-.HyperMD-header-6, .cm-header-6, .markdown-rendered :is(h6){
-  color: #DDD;
-  font-size: 1em;
-  font-weight: 700;
-}
-/*-- LIST ----------------------*/
-.HyperMD-list-line {
-  padding: 0px;
-  margin: 0px;
-}
-.markdown-rendered :is(ol, ul) {
-  margin-left: 1.5em;
-}
-.markdown-rendered :is(ol, ul) :is(ol, ul){
-  margin-left: 1em !important;
-}
-.cm-formatting-list {
-  margin-left: 1.4em;
-}
-.HyperMD-list-line-1, li {
-  color: #0B4;
-  font-weight: 350 !important;
-}
-.HyperMD-list-line-2, li li {
-  color: #999;
-}
-.HyperMD-list-line-3, li li li {
-  color: #999;
-}
-.HyperMD-list-line-4, li li li li {
-  color: #999;
-}
 /*-- GUTTER --------------------*/
 .cm-gutters {
   margin-right: 8px !important;
@@ -383,69 +111,8 @@ table .cm-hmd-internal-link, table .internal-link {
   border-bottom: 1px solid white;
   font-weight: 700;
 }
-/*-- FUNCTION-PLOT -------------*/
-
-/*## VTABLE ####################*/
-.vtable h6, .vtable .HyperMD-header-6, .vtable .cm-header-6, .vtable .markdown-rendered :is(h6) {
-  font-weight: 500;
-}
-.vtable th {
-    text-align: left !important;
-}
-.vtable th:nth-child(2) {
-    background-color: #013 !important;
-    color: #999 !important;
-}
-.vtable td:nth-child(1), .vtable td:nth-child(1) {
-    background-color: black !important;
-    color: #0F0 !important;
-}
-.vtable .table-wrapper {
-  margin-top: 0px !important;
-  margin-bottom: 0px !important;
-}
-.vtable table {
-  margin-left: 1em;
-  margin-top: 0.4em;
-  margin-bottom: 0.4em;
-}
-.vtable .markdown-rendered :is(table) {
-  margin-left: 3em;
-  margin-top: -0.7em !important;
-  margin-bottom: -0.7em !important;
-}
-/*## MAINCLASS #################*/
-/*.mainclass table, .mainclass .table-wrapper {*/
-  /*  margin-left: max(5px, 0.1vw);*/
-/*}*/
-.mainclass table * {
-  font-size: 1em;
-  font-weight: 300;
-}
-.mainclass td {
-  border: 0.10em solid #058 !important;
-}
-.mainclass thead {
-  padding-bottom: 90px !important;
-  margin-bottom: 90px !important;
-  margin-top: 2em !important;
-}
-.mainclass th {
-  border: 3px solid #07B !important;
-}
-.mainclass .cm-hmd-internal-link td, .mainclass td .internal-link {
-  color: #09F !important;
-}
-.mainclass .cm-hmd-internal-link th, .mainclass th .internal-link {
-  color: #0F0 !important;
-  border: 1px solid #030;
-}
 /*## TODOLIST ##################*/
 .todolist .HyperMD-list-line > *, .todolist .task-list-item{
   margin-left: 3em;
 }
-/*## FULLTABLE #################*/
-.fulltable table th {
-  font-size: 0.95em !important;
-  padding: 10px;
-}
+

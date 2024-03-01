@@ -8,6 +8,10 @@
 
 !!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTSHH
 *.font: 	    Agave:style=Regular:size=11:antialias=false:autohint=false
+emacs.font: 	Agave:style=Regular:size=15:antialias=true:autohint=false
+!*.font: 	    BriemAkademiMono:style=Regular:size=11:antialias=false:autohint=false
+!*.font: 	    CopperplateGothicStd:style=Regular:size=11:antialias=false:autohint=false
+!*.font: 	    Agave:style=Regular:size=11:antialias=false:autohint=false
 !*.font: 	    FiraCode:style=Medium:pixelsize=13:antialias=true:autohint=false
 !*.font: 	    Iosevka:style=Medium:pixelsize=11:antialias=true:autohint=true
 !*.font: 	    IosevkaCustom:style=Medium:pixelsize=13:antialias=false:autohint=false

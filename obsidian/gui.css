@@ -1,0 +1,69 @@
+
+/*-- GUI -----------------------*/
+/*.workspace-leaf * {*/
+/*}*/
+.workspace-tab-header-container * {
+  border-radius: 0px !important;
+}
+.workspace-tab-header-container {
+  height: 40px;
+}
+.workspace-tab-header-container * {
+  border-radius: 0px !important;
+}
+
+.nav-files-container * {
+  font-size: 12px !important;
+}
+.nav-files-container, .workspace-ribbon,      .workspace-tab-header-container,
+.nav-header,          .sidebar-toggle-button, .mod-close {
+  background-color: black !important;
+}
+.mod-minimize, .mod-maximize {
+  display: none !important;
+}
+.mod-left-split {
+  width: max(10vw,100px) !important;
+}
+.mod-left-split {
+
+  width: max(200px, 13vw) !important;
+}
+/*-- LEFT-PANEL ----------------*/
+.nav-files-container * {
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
+  border-radius: 0px;
+  border: none !important;
+}
+.nav-file-title, .nav-folder-title {
+  margin: 0px;
+  font-size: 17px;
+}
+/*(1) Folder*/
+.nav-folder.mod-root>.nav-folder-children>.nav-folder>.nav-folder-title {
+  color: #0B0;
+  background-color: #000;
+}
+/*(2) Folder*/
+.nav-folder.mod-root>.nav-folder-children>.nav-folder>.nav-folder-children>.nav-folder>.nav-folder-title {
+  color: #AA0;
+  background-color: #000020;
+}
+/*(1) Files*/
+.nav-folder.mod-root>.nav-folder-children>.nav-folder>.nav-folder-children>.nav-file>.nav-file-title {
+  color: #999;
+  text-decoration: underline;
+  background-color: #000;
+}
+/*(root) Files*/
+.mod-root > .tree-item-children > .tree-item > .nav-file-title {
+  color: #0D0;
+  background-color: #000;
+  border: 2px solid #070 !important;
+  border-radius: 0px;
+}
+.is-selected > * {
+  background-color: blue;
+  color: white;
+}

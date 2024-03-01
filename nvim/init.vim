@@ -164,11 +164,20 @@ set clipboard=unnamedplus
 set autoindent
 set backup
 set undofile
-set undolevels=10000000
-set undoreload=1000000
-set dir=~/.mynvim/swapfiles
-set backupdir=~/.mynvim/backupfiles
+set undolevels=10000
+set undoreload=10000
+"set dir=~/.mynvim/swapfiles
+"set backupdir=~/.mynvim/backupfiles
+
+" [Retain undo history if file is edited outside of Vim](https://stackoverflow.com/a/75553217)
+" Thank you Steven Lu
+let nvim_backup_swap = $HOME . '/.mynvim/' . getpid()
+silent! call mkdir(vimtmp, "p", 0700)
+let &backupdir=nvim_backup_swap
+let &directory=nvim_backup_swap
 set undodir=~/.mynvim/undo_dir
+
+set backup
 set timeout
 set timeoutlen=500
 set ttimeoutlen=0
@@ -452,12 +461,12 @@ let g:subshell_end=join(  ['####################', ') #---END-SUBSHELL-#', '####
 "----------------------------------
     "nn <esc> <C-w>
     " -- MOVE BETWEEN PANELS
-        nn <C-h> <C-w>h
-        nn <C-j> <C-w>j
-        nn <C-k> <C-w>k
-        nn <C-l> <C-w>l
+        nn <C-H> <C-w>h
+        nn <C-J> <C-w>j
+        nn <C-K> <C-w>k
+        nn <C-L> <C-w>l
     " -- ESCAPE CLEAR STATUSLINE -- "
-        nn <esc> :noh<esc><C-L>
+        nn <esc> :noh<esc>:echon ''<enter>
     no <leader>zaf gg/<C-r>0<esc>jVnkzf
     nn <C-p> <C-i>
     nn / /\v\c

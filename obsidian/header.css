@@ -1,0 +1,30 @@
+
+
+.HyperMD-header-1, .HyperMD-header-2, .HyperMD-header-3, .HyperMD-header-4, .HyperMD-header-5, h1, h2, h3, h4, h5, .markdown-rendered :is(h1, h2, h3, h4, h5), .cm-header {
+  padding: 2px !important;
+  margin: 2px !important;
+  background-color: #111;
+  font-weight: 700 !important;
+}
+.HyperMD-header-1, .cm-header-1, .markdown-rendered :is(h1){
+  font-size: 3em;
+  color: #F00;
+}
+.HyperMD-header-2, .cm-header-2, .markdown-rendered :is(h2){
+  color: #F0F;
+}
+.HyperMD-header-3, .cm-header-3, .markdown-rendered :is(h3){
+  color: #DDD;
+}
+.HyperMD-header-4, .cm-header-4, .markdown-rendered :is(h4){
+  font-size: 3em;
+  color: #FFF;
+}
+.HyperMD-header-5, .cm-header-5, .markdown-rendered :is(h5){
+  font-size: 1.1em;
+  color: #DDD;
+}
+.HyperMD-header-6, .cm-header-6, .markdown-rendered :is(h6){
+  color: #DDD;
+  font-size: 1em;
+}

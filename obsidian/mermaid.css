@@ -1,0 +1,20 @@
+
+.mermaid {
+  margin-left: 3em;
+  font-weight: 500;
+}
+.mermaid * {
+  font-weight: 700 !important;
+}
+.mermaid {
+  margin-left: 90px;
+  border: none !important;
+}
+.mermaid svg {
+  max-height: max(15vh, 150px);
+}
+.mermaid:hover svg {
+  max-height: min(70vh, 1000px) !important;
+  z-index: 100 !important;
+  overflow-x: wrap !important;
+}

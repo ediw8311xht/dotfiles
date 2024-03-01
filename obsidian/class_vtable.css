@@ -1,0 +1,29 @@
+
+.vtable h6, .vtable .HyperMD-header-6, .vtable .cm-header-6, .vtable .markdown-rendered :is(h6) {
+  font-weight: 700;
+}
+.vtable th {
+    text-align: left !important;
+}
+.vtable th:nth-child(2) {
+    background-color: #013 !important;
+    color: #999 !important;
+}
+.vtable td:nth-child(1), .vtable td:nth-child(1) {
+    background-color: black !important;
+    color: #0F0 !important;
+}
+.vtable .table-wrapper {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+.vtable table {
+  margin-left: 1em;
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+.vtable .markdown-rendered :is(table) {
+  margin-left: 3em;
+  margin-top: -0.7em !important;
+  margin-bottom: -0.7em !important;
+}

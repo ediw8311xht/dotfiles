@@ -1,0 +1,72 @@
+
+.canvas .pdf-embed * {
+  overflow-x: hidden !important;
+}
+
+.canvas .pdf-embed, .canvas .pdf-embed:hover {
+  max-width: 1900px !important;
+  max-height: 1900px !important;
+  height: 100% !important;
+  width: 100% !important;
+  padding-right: 10px !important;
+}
+
+.native-scrollbars {
+  color: green !important;
+}
+
+.canvas .pdf-embed:hover {
+  cursor: default !important;
+}
+
+.canvas .image-embed {
+  width: 100%;
+  height: 100%;
+}
+
+.canvas h2 {
+  color: green !important;
+}
+.canvas-node-label {
+  background-color: #004 !important;
+  padding: 2px;
+  border: 2px solid #999 !important;
+  color: #FFF !important;
+  width: 100%;
+  text-align: center;
+}
+.canvas-node.is-focused {
+  border: none !important;
+}
+.canvas .markdown-embed *::-webkit-scrollbar {
+  display: none !important;
+}
+.canvas-node-container {
+  border: 1px solid gray !important;
+}
+
+.canvas-node-content:not(.is-loaded) * {
+  width: 100% !important;
+  background-color: #000 !important;
+  text-align: center;
+}
+
+.canvas-group-label {
+  background-color: black;
+  color: green;
+  border: 1px solid gray;
+  padding: 8px;
+}
+
+.canvas-node-group {
+  background-color: black;
+}
+
+
+
+
+
+
+
+
+

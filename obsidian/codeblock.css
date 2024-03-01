@@ -1,0 +1,53 @@
+
+.HyperMD-codeblock * {
+  font-size: 1.2em !important;
+  font-weight: 500 !important;
+  max-height: 400px !important;
+}
+.cm-embed-block * {
+  padding: 0px !important;
+}
+.cm-html-embed.cm-embed-block {
+  padding: 0px;
+  padding-left: 2em !important;
+}
+
+
+.pdf-embed:not(.canvas-node-content),
+.image-embed:not(.canvas-node-content) img {
+  max-width: min(600px, 50vw) !important;
+  max-height: min(200px, 20vh) !important;
+  border: 10px solid #000 !important;
+  z-index: 0 !important;
+  padding-left: 10px !important;
+}
+.pdf-viewer {
+  margin-right: 10px !important;
+}
+.pdf-embed:not(.canvas-node-content):hover,
+.image-embed:not(.canvas-node-content) img:hover {
+  display: absolute !important;
+  top: 0;
+  left: 0;
+  max-height: min(1000px, 70vh) !important;
+  max-width: 70vw !important;
+  z-index: 1;
+}
+
+::-webkit-scrollbar {
+  background-color: #111 !important;
+  padding-right: 10px !important;
+  color: blue !important;
+  border-radius: 5px 5px !important;
+  border: 2px solid #999 !important;
+  width: 20px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color:  #099 !important;
+  border-radius: 0px !important;
+}
+
+::-webkit-scrollbar:hover {
+  width: 20px !important;
+}

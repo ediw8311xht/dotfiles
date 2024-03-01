@@ -1,0 +1,62 @@
+.markdown-preview-view, .markdown-source-view.mod-cm6 .cm-scroller {
+    font-family: 'Iosevka' !important;
+    font-size: 16px;
+}
+.math {
+  border: none;
+  padding-top: 0.2em !important;
+  padding-bottom: 0.3em !important;
+  padding-left: 0.04em !important;
+  padding-left: 0.4em !important;
+  padding-right: 0.4em !important;
+  color: #AA5500;
+  line-height: 1.4 !important;
+  margin: 0px !important;
+  font-size: 105%;
+}
+.math * {
+  font-weight: 700 !important;
+}
+mjx-root mjx-mi mjx-c {
+  font-size: 110% !important;
+}
+mjx-frac, mjx-mfrac {
+  font-size: 1.2em !important;
+}
+mjx-script {
+  font-size: 1em !important;
+}
+mjx-line {
+  padding-top: 1px;
+}
+.mjx-c2B  {
+  font-size: 90% !important;
+  margin-bottom: 1px !important;
+}
+.mjx-c2212, .mjx-cD7 {
+  font-size: 90% !important;
+  margin-bottom: 1px !important;
+}
+mjx-line {
+  padding-top: 1px;
+}
+.mjx-c1D461, .mjx-c1D460 {
+  font-size: 120% !important;
+}
+mjx-msub .mjx-c1D44E {
+  font-size: 140% !important;
+}
+/*.mjx-c28 {*/
+ /*margin-left: 3px;*/
+/*}*/
+/**/
+/*.mjx-c29 {*/
+ /*margin-right: 3px;*/
+/*}*/
+/*.mjx-c2B  {*/
+  /*margin-bottom: 1px !important;*/
+/*}*/
+/*.mjx-c2212, .mjx-cD7 {*/
+  /*margin-bottom: 1px !important;*/
+/*}*/
+
