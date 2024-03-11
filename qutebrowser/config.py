@@ -50,7 +50,8 @@ config.load_autoconfig(False)
 ## Background color of the tab bar ## Type: QssColor
 ## Color gradient inerpolation system for the tab indicator.
 ## rgb, hsv, hsl, none ##Type: ColorSystem
-
+c.spellcheck.languages = []
+c.content.canvas_reading = False
 c.tabs.position = 'right'
 c.colors.tabs.bar.bg = '#111111'
 c.colors.webpage.preferred_color_scheme = 'dark'
@@ -65,14 +66,14 @@ c.tabs.favicons.scale = 1.0
 #c.colors.tabs.indicator.stop = '#00aa00'
 c.colors.tabs.indicator.system = 'none'
 
-c.colors.tabs.even.bg = '#002244'
+c.colors.tabs.even.bg = '#000000'
 c.colors.tabs.even.fg = '#AAAAAA'
-c.colors.tabs.odd.bg  = '#002244'
+c.colors.tabs.odd.bg = '#000000'
 c.colors.tabs.odd.fg  = '#AAAAAA'
 
-c.colors.tabs.selected.even.bg = '#000000'
+c.colors.tabs.selected.even.bg = '#002244'
 c.colors.tabs.selected.even.fg = '#00FF00'
-c.colors.tabs.selected.odd.bg = '#000000'
+c.colors.tabs.selected.odd.bg  = '#002244'
 c.colors.tabs.selected.odd.fg = '#00FFFF'
 
 c.colors.tabs.indicator.error = '#ff0000'
@@ -128,8 +129,7 @@ c.session.default_name = "Default"
 c.session.lazy_restore = True
 
 c.url.start_pages = ['www.maxballard.com', 'https://www.pythonanywhere.com/user/maxballard/webapps/#tab_id_www_maxballard_com', '192.168.0.1:5000']
-c.url.default_page = 'https://www.google.com'
-c.url.searchengines = {'DEFAULT': 'https://google.com/?q={}'}
+c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'}
 
 c.scrolling.smooth = False
 c.statusbar.widgets = ['keypress', 'url', 'scroll', 'history', 'tabs', 'progress']
@@ -179,7 +179,7 @@ config.bind('<Ctrl-Shift-Tab>', 'tab-prev')
 config.bind('<Ctrl-j>', 'tab-next')
 config.bind('<Ctrl-k>', 'tab-prev')
 config.bind('L', 'forward')
-config.bind('<Ctrl-O>', 'set-cmd-text :open {url:pretty}')
+config.bind('<Ctrl-O>', 'cmd-set-text :open {url:pretty}')
 config.bind('<Up>', 'completion-item-focus --history prev', mode='command')
 config.bind('<Ctrl-j>', 'completion-item-focus --history prev', mode='command')
 config.bind('<Ctrl-k>', 'completion-item-focus --history next', mode='command')
@@ -198,6 +198,8 @@ config.bind('<Ctrl-k>', 'completion-item-focus --history next', mode='command')
 config.bind('yp', 'yank pretty-url')
 config.bind('<Ctrl-D>', 'scroll-page 0 0.5')
 config.bind('<Ctrl-U>', 'scroll-page 0 -0.5')
+config.bind('b', 'cmd-set-text -s :bookmark-load')
+config.bind('B', 'cmd-set-text -s :bookmark-load -t')
 
 # config.bind('<Ctrl-F5>', 'reload -f')
 # config.bind('<Ctrl-F>', 'scroll-page 0 1')
