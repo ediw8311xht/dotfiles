@@ -4,22 +4,23 @@
   /*  margin-left: max(5px, 0.1vw);*/
 /*}*/
 .mainclass table * {
-  font-size: 1em;
   font-weight: 500;
+  padding: 0px !important;
+  text-align: center !important;
+  margin: 0px !important;
 }
 .mainclass td {
   border: 0.10em solid #058 !important;
 }
-.mainclass thead {
-  padding-bottom: 90px !important;
-  margin-bottom: 90px !important;
-  margin-top: 2em !important;
-}
-.mainclass th {
-  border: 3px solid #07B !important;
+.mainclass th, .mainclass .markdown-rendered :is(th) {
+  vertical-align: middle !important;
+  height: auto !important;
+  text-align: center !important;
+  padding: 0px !important;
 }
 .mainclass .cm-hmd-internal-link td, .mainclass td .internal-link {
-  color: #09F !important;
+  color: #999 !important;
+  text-align: center !important;
 }
 .mainclass .cm-hmd-internal-link th, .mainclass th .internal-link {
   color: #0F0 !important;

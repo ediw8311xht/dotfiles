@@ -51,25 +51,29 @@ config.load_autoconfig(False)
 ## Color gradient inerpolation system for the tab indicator.
 ## rgb, hsv, hsl, none ##Type: ColorSystem
 
+c.tabs.position = 'right'
+c.colors.tabs.bar.bg = '#111111'
 c.colors.webpage.preferred_color_scheme = 'dark'
 
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
 
 
-c.colors.tabs.indicator.stop = '#00aa00'
-c.colors.tabs.bar.bg = '#000099'
+c.tabs.favicons.show = 'always'
+c.tabs.favicons.scale = 1.0
+
+#c.colors.tabs.indicator.stop = '#00aa00'
 c.colors.tabs.indicator.system = 'none'
 
-c.colors.tabs.even.bg = '#444444'
-c.colors.tabs.even.fg = '#000000'
-c.colors.tabs.odd.bg  = '#444444'
-c.colors.tabs.odd.fg  = '#000000'
+c.colors.tabs.even.bg = '#002244'
+c.colors.tabs.even.fg = '#AAAAAA'
+c.colors.tabs.odd.bg  = '#002244'
+c.colors.tabs.odd.fg  = '#AAAAAA'
 
 c.colors.tabs.selected.even.bg = '#000000'
 c.colors.tabs.selected.even.fg = '#00FF00'
 c.colors.tabs.selected.odd.bg = '#000000'
-c.colors.tabs.selected.odd.fg = '#00FF00'
+c.colors.tabs.selected.odd.fg = '#00FFFF'
 
 c.colors.tabs.indicator.error = '#ff0000'
 c.colors.tabs.indicator.start = '#0000aa'
@@ -86,16 +90,17 @@ c.colors.tabs.pinned.selected.odd.fg = 'white'
 
 c.colors.webpage.bg = 'black'
 
-c.fonts.default_family = ["Agave", "Terminus", "Sarasa"]
+c.fonts.default_family = ["Iosevka"]
 
-c.fonts.default_size = '11pt'
+c.fonts.default_size = '10pt'
 c.fonts.downloads = 'default_size default_family'
 
-c.fonts.tabs.selected   = '11pt Agave'
-c.fonts.tabs.unselected = '11pt Agave'
+c.fonts.tabs.selected   = '10pt Iosevka'
+c.fonts.tabs.unselected = '10pt Iosevka'
 
-c.fonts.statusbar = '11px Hermit'
+c.fonts.statusbar = '10px Iosevka'
 
+#c.colors.statusbar.url.fg = 'blue'
 #############################################################################################################################
 #############################################################################################################################
 #############################################################################################################################
@@ -112,10 +117,10 @@ c.content.geolocation = False
 c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
 c.content.headers.accept_language = 'en-US,en;q=0.9'
 
-c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt', 'https://easylist.to/easylist/easyprivacy.txt']
+c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt', 'https://easylist.to/easylist/easyprivacy.txt', 'https://secure.fanboy.co.nz/fanboy-annoyance.txt', 'https://easylist.to/easylist/fanboy-social.txt']
 c.content.blocking.enabled = True
 c.content.blocking.hosts.block_subdomains = True
-c.content.blocking.method = 'auto'
+c.content.blocking.method = 'both'
 
 c.auto_save.session = True
 c.auto_save.interval = 50
@@ -126,7 +131,7 @@ c.url.start_pages = ['www.maxballard.com', 'https://www.pythonanywhere.com/user/
 c.url.default_page = 'https://www.google.com'
 c.url.searchengines = {'DEFAULT': 'https://google.com/?q={}'}
 
-c.scrolling.smooth = True
+c.scrolling.smooth = False
 c.statusbar.widgets = ['keypress', 'url', 'scroll', 'history', 'tabs', 'progress']
 
 c.content.cookies.accept = 'no-3rdparty'
@@ -143,11 +148,13 @@ c.search.incremental = True
 
 c.bindings.key_mappings = {'<Ctrl-6>': '<Ctrl-^>', '<Ctrl-M>': '<Return>', '<Ctrl-J>': '<Return>', '<Shift-Return>': '<Return>', '<Enter>': '<Return>', '<Shift-Enter>': '<Return>', '<Ctrl-Enter>': '<Ctrl-Return>'}
 
+c.tabs.width = '15%'
+#c.tabs.max_width = 1000
 c.tabs.focus_stack_size = 100
-c.tabs.favicons.show = 'never'
-c.tabs.indicator.padding = {'top': 0, 'bottom': 0, 'left': 0, 'right': 0}
-c.tabs.indicator.width = 5
-c.tabs.title.format = '[{relative_index}] {current_title}[{index}]{audio}'
+c.tabs.indicator.padding = {'top': 0, 'bottom': 0, 'left': 0, 'right': 9}
+c.tabs.indicator.width = 1
+#c.tabs.title.format = '[{relative_index}] {current_title}[{index}]{audio}'
+c.tabs.title.format = '{audio} {current_title}'
 c.tabs.undo_stack_size = -1
 
 config.bind('<Ctrl-i>', 'open -- {clipboard}', mode='insert')
@@ -169,6 +176,8 @@ config.bind('K', 'tab-next')
 config.bind('J', 'tab-prev')
 config.bind('<Ctrl-Tab>', 'tab-next')
 config.bind('<Ctrl-Shift-Tab>', 'tab-prev')
+config.bind('<Ctrl-j>', 'tab-next')
+config.bind('<Ctrl-k>', 'tab-prev')
 config.bind('L', 'forward')
 config.bind('<Ctrl-O>', 'set-cmd-text :open {url:pretty}')
 config.bind('<Up>', 'completion-item-focus --history prev', mode='command')

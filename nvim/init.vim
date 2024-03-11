@@ -34,23 +34,23 @@ fu! CorrectColors()
         hi Comment      cterm=ITALIC ctermbg=160 ctermfg=18 gui=ITALIC guifg=#0000FF guibg=NONE
     endif
     hi ColorColumn      cterm=NONE ctermbg=NONE ctermfg=NONE gui=NONE guibg=#333333 guifg=NONE
-    hi ExtraWhiteSpace  cterm=NONE ctermbg=gray ctermfg=NONE    gui=NONE    guibg=#0099FF
-    hi Normal                                   ctermbg=black   gui=NONE    guibg=#000000
-    hi StatusLine       cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#000033 guifg=#00FF00
-    hi StatusLineNC     cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE    guibg=#444444 guifg=#000000
-    hi FoldColumn       cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#00FF00
-    hi Folded           cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#444444
-    hi CursorLine       cterm=BOLD ctermfg=NONE ctermbg=18      gui=BOLD    guibg=#111111 guifg=NONE
-    hi CursorLineNr     cterm=BOLD ctermfg=NONE ctermbg=18      gui=NONE    guibg=NONE    guifg=#FFFF00
-    hi SignColumn       cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC  guibg=NONE    guifg=#000000
-    hi LineNr           cterm=NONE ctermbg=NONE ctermfg=NONE    gui=NONE    guibg=#000000 guifg=#AAAAAA
-    hi LineNrAbove      cterm=NONE ctermbg=NONE ctermfg=NONE    gui=NONE    guibg=#000000 guifg=#00AAFF
-    hi TabLine                                                  gui=NONE    guibg=#222222 guifg=#999999
-    hi TabLineSel                                               gui=BOLD    guibg=#000000 guifg=#00FF00
-    hi MarkSignNumHL                                            gui=NONE    guibg=none    guifg=NONE
-    hi MarkSignVirtTextHL                                       gui=NONE    guibg=NONE    guifg=#00FF00
-    hi IncSearch        cterm=NONE ctermbg=white ctermfg=black  gui=NONE    guibg=#FF0000 guifg=#000000
-    hi Search           cterm=NONE ctermbg=white ctermfg=black  gui=BOLD    guibg=#FF00FF guifg=#000000
+    hi ExtraWhiteSpace  cterm=NONE ctermbg=gray ctermfg=NONE    gui=NONE        guibg=#0099FF
+    hi Normal                                   ctermbg=black   gui=NONE        guibg=#000000
+    hi StatusLine       cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE        guibg=#000033 guifg=#00FF00
+    hi StatusLineNC     cterm=NONE ctermbg=NONE ctermfg=160     gui=NONE        guibg=#444444 guifg=#000000
+    hi FoldColumn       cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC      guibg=NONE    guifg=#00FF00
+    hi Folded           cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC      guibg=NONE    guifg=#444444
+    hi CursorLine       cterm=BOLD ctermfg=NONE ctermbg=18      gui=NONE        guibg=#000033 guifg=NONE
+    hi CursorLineNr     cterm=BOLD ctermfg=NONE ctermbg=18      gui=NONE        guibg=NONE    guifg=#FFFF00
+    hi SignColumn       cterm=NONE ctermbg=NONE ctermfg=NONE    gui=ITALIC      guibg=NONE    guifg=#000000
+    hi LineNr           cterm=NONE ctermbg=NONE ctermfg=NONE    gui=NONE        guibg=#000000 guifg=#AAAAAA
+    hi LineNrAbove      cterm=NONE ctermbg=NONE ctermfg=NONE    gui=NONE        guibg=#000000 guifg=#00AAFF
+    hi TabLine                                                  gui=NONE        guibg=#222222 guifg=#999999
+    hi TabLineSel                                               gui=BOLD        guibg=#000000 guifg=#00FF00
+    hi MarkSignNumHL                                            gui=REVERSE     guibg=NONE    guifg=#0099FF
+    hi MarkSignVirtTextHL                                       gui=NONE        guibg=NONE    guifg=#00FF00
+    hi IncSearch        cterm=NONE ctermbg=white ctermfg=black  gui=NONE        guibg=#FF0000 guifg=#000000
+    hi Search           cterm=NONE ctermbg=white ctermfg=black  gui=BOLD        guibg=#FF00FF guifg=#000000
     "<--------------------------------COC----------------------------------->
     hi CocWarningHighlight      gui=UNDERLINE
     hi CocHintHighlight         gui=NONE        guibg=#00FFFF guifg=#000000

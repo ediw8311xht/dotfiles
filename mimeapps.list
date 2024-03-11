@@ -19,6 +19,7 @@ application/json=nvim.desktop
 application/mobi=zathura.desktop
 application/pdf=zathura.desktop
 application/schema+json=nvim.desktop
+application/vnd.chess-pgn
 application/x-bittorrent=deluge.desktop
 application/x-desktop=nvim.desktop
 application/x-extension-htm=brave-browser.desktop

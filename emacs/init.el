@@ -1,4 +1,3 @@
-
 ;; Set up package.el to work with MELPA
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://orgmode.org/elpa/"))
@@ -50,8 +49,8 @@
 (evil-set-leader 'normal (kbd ","))
 
 ;;--THREE-MODE--;;
-(evil_three_mode_map (kbd  "C-\-") 'text-scale-decrease)
-(evil_three_mode_map (kbd  "C-\=") 'text-scale-increase)
+;(evil_three_mode_map (kbd  "C-\-") 'text-scale-decrease)
+;(evil_three_mode_map (kbd  "C-\=") 'text-scale-increase)
 ;-----------------------(evil_three_mode_map (kbd "C-\+") 'text-scale-increase)
 
 (evil_three_mode_map (kbd  "C-:")  'backward-sexp)
@@ -112,9 +111,4 @@
  '(tool-bar-mode nil)
  '(tooltip-mode nil))
 
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(default ((t (:family "Iosevka" :antialias true :slant normal :weight medium :height 120 :width normal :foundry "CYEL")))))
+(set-frame-font "Agave 12" nil t)
