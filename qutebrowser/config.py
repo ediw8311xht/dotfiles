@@ -2,14 +2,13 @@
 ## This is here so configs done via the GUI are still loaded.
 ## Remove it to not load settings done via the GUI.
 config.load_autoconfig(False)
-
 #############################################################################################################################
 #############################################################################################################################
 #############################################################################################################################
 #############################################################################################################################
 
 ##  This only has an effect when `colors.webpage.darkmode.algorithm` is set to `lightness-hsl` `brightness-rgb`. Type: Float
-#c.colors.webpage.darkmode.contrast = 0.0 
+#c.colors.webpage.darkmode.contrast = 0.0
 #
 ##################################################### - always, aever, amart
 ##c.colors.webpage.darkmode.policy.images = 'never'
@@ -50,58 +49,47 @@ config.load_autoconfig(False)
 ## Background color of the tab bar ## Type: QssColor
 ## Color gradient inerpolation system for the tab indicator.
 ## rgb, hsv, hsl, none ##Type: ColorSystem
-c.spellcheck.languages = []
-c.content.canvas_reading = False
-c.tabs.position = 'right'
-c.colors.tabs.bar.bg = '#111111'
-c.colors.webpage.preferred_color_scheme = 'dark'
+#c.colors.webpage.darkmode.policy.page = 'always'
 
-c.colors.webpage.darkmode.enabled = True
-c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
+c.window.transparent                     =  True
+c.spellcheck.languages                   =  []
+c.content.canvas_reading                 =  False
+c.tabs.position                          =  'left'
+c.colors.tabs.bar.bg                     =  '#99111111'
+c.colors.webpage.preferred_color_scheme  =  'dark'
+c.colors.webpage.darkmode.enabled        =  True
+c.colors.webpage.darkmode.algorithm      =  'lightness-cielab'
+#c.colors.webpage.bg                     =  "#AA444444"
+c.tabs.favicons.show                     =  'always'
+c.tabs.favicons.scale                    =  1.0
+#c.colors.tabs.indicator.stop            =  '#00aa00'
+c.colors.tabs.indicator.system           =  'none'
+c.colors.tabs.even.bg                    =  '#000000'
+c.colors.tabs.even.fg                    =  '#AAAAAA'
+c.colors.tabs.odd.bg                     =  '#000000'
+c.colors.tabs.odd.fg                     =  '#AAAAAA'
+c.colors.tabs.selected.even.bg           =  '#002244'
+c.colors.tabs.selected.even.fg           =  '#00FF00'
+c.colors.tabs.selected.odd.bg            =  '#002244'
+c.colors.tabs.selected.odd.fg            =  '#00FFFF'
+c.colors.tabs.indicator.error            =  '#ff0000'
+c.colors.tabs.indicator.start            =  '#0000aa'
+c.colors.tabs.pinned.even.bg             =  'darkseagreen'
+c.colors.tabs.pinned.even.fg             =  'white'
+c.colors.tabs.pinned.odd.bg              =  'seagreen'
+c.colors.tabs.pinned.odd.fg              =  'white'
+c.colors.tabs.pinned.selected.even.bg    =  'black'
+c.colors.tabs.pinned.selected.even.fg    =  'white'
+c.colors.tabs.pinned.selected.odd.bg     =  'black'
+c.colors.tabs.pinned.selected.odd.fg     =  'white'
+c.fonts.default_family                   =  ["Iosevka",         "Agave",         "Monospace"]
+c.fonts.default_size                     =  '10pt'
+c.fonts.downloads                        =  'default_size       default_family'
+c.fonts.tabs.selected                    =  '10pt               Iosevka'
+c.fonts.tabs.unselected                  =  '10pt               Iosevka'
+c.fonts.statusbar                        =  '10px               Iosevka'
+#c.colors.statusbar.url.fg               =  'blue'
 
-
-c.tabs.favicons.show = 'always'
-c.tabs.favicons.scale = 1.0
-
-#c.colors.tabs.indicator.stop = '#00aa00'
-c.colors.tabs.indicator.system = 'none'
-
-c.colors.tabs.even.bg = '#000000'
-c.colors.tabs.even.fg = '#AAAAAA'
-c.colors.tabs.odd.bg = '#000000'
-c.colors.tabs.odd.fg  = '#AAAAAA'
-
-c.colors.tabs.selected.even.bg = '#002244'
-c.colors.tabs.selected.even.fg = '#00FF00'
-c.colors.tabs.selected.odd.bg  = '#002244'
-c.colors.tabs.selected.odd.fg = '#00FFFF'
-
-c.colors.tabs.indicator.error = '#ff0000'
-c.colors.tabs.indicator.start = '#0000aa'
-
-c.colors.tabs.pinned.even.bg = 'darkseagreen'
-c.colors.tabs.pinned.even.fg = 'white'
-c.colors.tabs.pinned.odd.bg = 'seagreen'
-c.colors.tabs.pinned.odd.fg = 'white'
-
-c.colors.tabs.pinned.selected.even.bg = 'black'
-c.colors.tabs.pinned.selected.even.fg = 'white'
-c.colors.tabs.pinned.selected.odd.bg = 'black'
-c.colors.tabs.pinned.selected.odd.fg = 'white'
-
-c.colors.webpage.bg = 'black'
-
-c.fonts.default_family = ["Iosevka"]
-
-c.fonts.default_size = '10pt'
-c.fonts.downloads = 'default_size default_family'
-
-c.fonts.tabs.selected   = '10pt Iosevka'
-c.fonts.tabs.unselected = '10pt Iosevka'
-
-c.fonts.statusbar = '10px Iosevka'
-
-#c.colors.statusbar.url.fg = 'blue'
 #############################################################################################################################
 #############################################################################################################################
 #############################################################################################################################
@@ -111,14 +99,19 @@ c.history_gap_interval = -1
 c.window.hide_decoration = False
 
 c.aliases = {'w': 'session-save', 'q': 'close', 'qa': 'quit', 'wq': 'quit --save', 'wqa': 'quit --save'}
+c.bindings.key_mappings = {'<Ctrl-6>': '<Ctrl-^>', '<Ctrl-M>': '<Return>', '<Ctrl-J>': '<Return>', '<Shift-Return>': '<Return>', '<Enter>': '<Return>', '<Shift-Enter>': '<Return>', '<Ctrl-Enter>': '<Ctrl-Return>'}
+c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt', 'https://easylist.to/easylist/easyprivacy.txt', 'https://secure.fanboy.co.nz/fanboy-annoyance.txt', 'https://easylist.to/easylist/fanboy-social.txt']
+c.hints.selectors = {'all': ['a', 'area', 'textarea', 'select', 'input:not([type="hidden"])', 'button', 'frame', 'iframe', 'img', 'link', 'summary', '[contenteditable]:not([contenteditable="false"])', '[onclick]', '[onmousedown]', '[role="link"]', '[role="option"]', '[role="button"]', '[role="tab"]', '[role="checkbox"]', '[role="menuitem"]', '[role="menuitemcheckbox"]', '[role="menuitemradio"]', '[ng-click]', '[ngClick]', '[data-ng-click]', '[x-ng-click]', '[tabindex]:not([tabindex="-1"])'], 'links': ['a[href]', 'area[href]', 'link[href]', '[role="link"][href]'], 'images': ['img'], 'media': ['audio', 'img', 'video'], 'url': ['[src]', '[href]'], 'inputs': ['input[type="text"]', 'input[type="date"]', 'input[type="datetime-local"]', 'input[type="email"]', 'input[type="month"]', 'input[type="number"]', 'input[type="password"]', 'input[type="search"]', 'input[type="tel"]', 'input[type="time"]', 'input[type="url"]', 'input[type="week"]', 'input:not([type])', '[contenteditable]:not([contenteditable="false"])', 'textarea']}
+c.statusbar.widgets = ['keypress', 'url', 'scroll', 'history', 'tabs', 'progress']
+c.tabs.indicator.padding = {'top': 0, 'bottom': 0, 'left': 0, 'right': 9}
+c.zoom.levels = ['5%', '10%', '15%', '25%', '30%', '35%', '40%', '45%', '50%', '67%', '75%', '90%', '100%', '110%', '125%', '150%', '175%', '200%', '250%', '300%', '400%', '500%']
+c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
+c.content.headers.accept_language = 'en-US,en;q=0.9'
 
 c.content.pdfjs = True
 c.content.dns_prefetch = True
 c.content.geolocation = False
-c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
-c.content.headers.accept_language = 'en-US,en;q=0.9'
 
-c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt', 'https://easylist.to/easylist/easyprivacy.txt', 'https://secure.fanboy.co.nz/fanboy-annoyance.txt', 'https://easylist.to/easylist/fanboy-social.txt']
 c.content.blocking.enabled = True
 c.content.blocking.hosts.block_subdomains = True
 c.content.blocking.method = 'both'
@@ -128,17 +121,12 @@ c.auto_save.interval = 50
 c.session.default_name = "Default"
 c.session.lazy_restore = True
 
-c.url.start_pages = ['www.maxballard.com', 'https://www.pythonanywhere.com/user/maxballard/webapps/#tab_id_www_maxballard_com', '192.168.0.1:5000']
-c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}'}
-
 c.scrolling.smooth = False
-c.statusbar.widgets = ['keypress', 'url', 'scroll', 'history', 'tabs', 'progress']
 
 c.content.cookies.accept = 'no-3rdparty'
 c.content.cookies.store = True
 
-c.zoom.default = '100%'
-c.zoom.levels = ['25%', '33%', '50%', '67%', '75%', '90%', '100%', '110%', '125%', '150%', '175%', '200%', '250%', '300%', '400%', '500%']
+c.zoom.default = '90%'
 c.zoom.mouse_divider = 512
 c.zoom.text_only = False
 
@@ -146,61 +134,78 @@ c.search.wrap = True
 c.search.ignore_case = 'smart'
 c.search.incremental = True
 
-c.bindings.key_mappings = {'<Ctrl-6>': '<Ctrl-^>', '<Ctrl-M>': '<Return>', '<Ctrl-J>': '<Return>', '<Shift-Return>': '<Return>', '<Enter>': '<Return>', '<Shift-Enter>': '<Return>', '<Ctrl-Enter>': '<Ctrl-Return>'}
-
 c.tabs.width = '15%'
 #c.tabs.max_width = 1000
 c.tabs.focus_stack_size = 100
-c.tabs.indicator.padding = {'top': 0, 'bottom': 0, 'left': 0, 'right': 9}
 c.tabs.indicator.width = 1
 #c.tabs.title.format = '[{relative_index}] {current_title}[{index}]{audio}'
 c.tabs.title.format = '{audio} {current_title}'
 c.tabs.undo_stack_size = -1
 
-config.bind('<Ctrl-i>', 'open -- {clipboard}', mode='insert')
-config.bind('u', 'undo --window')
-config.bind('<Ctrl-Shift-T>', 'undo')
-#config.bind('U', 'undo -w')
-config.bind('U', 'scroll-page 0 -0.5')
-config.bind('d', 'scroll-page 0 0.5')
-config.bind('D', 'scroll-close 0 1')
-config.bind('>', 'tab-move +')
-config.bind('<', 'tab-move -')
-config.bind("'", 'mode-enter jump_mark')
-config.bind('+', 'zoom-in')
-config.bind(';t', 'hint inputs')
-config.bind('R', 'reload -f')
-config.bind('-', 'zoom-out')
-config.bind('H', 'back')
-config.bind('K', 'tab-next')
-config.bind('J', 'tab-prev')
-config.bind('<Ctrl-Tab>', 'tab-next')
-config.bind('<Ctrl-Shift-Tab>', 'tab-prev')
-config.bind('<Ctrl-j>', 'tab-next')
-config.bind('<Ctrl-k>', 'tab-prev')
-config.bind('L', 'forward')
-config.bind('<Ctrl-O>', 'cmd-set-text :open {url:pretty}')
-config.bind('<Up>', 'completion-item-focus --history prev', mode='command')
-config.bind('<Ctrl-j>', 'completion-item-focus --history prev', mode='command')
-config.bind('<Ctrl-k>', 'completion-item-focus --history next', mode='command')
-config.bind('<Shift-Tab>', 'completion-item-focus prev', mode='command')
-config.bind('<Tab>', 'completion-item-focus next', mode='command')
-config.bind('<Ctrl-n>', 'completion-item-focus next', mode='command')
-config.bind('<Ctrl-p>', 'completion-item-focus prev', mode='command')
-config.bind('<Ctrl-[>', 'command-history-next', mode='command')
-config.bind('<Ctrl-]>', 'command-history-prev', mode='command')
-config.bind('j', 'scroll down')
-config.bind('k', 'scroll up')
-config.bind('<Ctrl-]', 'scroll down')
-config.bind('<Ctrl-[', 'scroll up')
-config.bind('<Ctrl-j>', 'completion-item-focus --history prev', mode='command')
-config.bind('<Ctrl-k>', 'completion-item-focus --history next', mode='command')
-config.bind('yp', 'yank pretty-url')
-config.bind('<Ctrl-D>', 'scroll-page 0 0.5')
-config.bind('<Ctrl-U>', 'scroll-page 0 -0.5')
+config.bind(',aq', 'quickmark-save')
+config.bind(',ab', 'bookmark-add')
+config.bind(',rb', 'bookmark-del')
+config.bind(',rq', 'quickmark-del')
+config.bind(',om', 'hint links spawn mpv {hint-url}')
+config.bind(',oM', 'spawn mpv {url}')
 config.bind('b', 'cmd-set-text -s :bookmark-load')
 config.bind('B', 'cmd-set-text -s :bookmark-load -t')
+config.bind('cd', 'download-clear')
+config.bind('<Ctrl-[>', 'command-history-next', mode='command')
+config.bind('<Ctrl-]>', 'command-history-prev', mode='command')
+config.bind('<Ctrl-D>', 'scroll-page 0 0.5')
+config.bind('<Ctrl-i>', 'open -- {clipboard}', mode='insert')
+config.bind('<Ctrl-j>', 'tab-next')
+config.bind('<Ctrl-k>', 'tab-prev')
+config.bind('<Ctrl-n>', 'completion-item-focus next', mode='command')
+config.bind('<Ctrl-O>', 'cmd-set-text :open {url:pretty}')
+config.bind('<Ctrl-p>', 'completion-item-focus prev', mode='command')
+config.bind('<Ctrl-]', 'scroll down')
+config.bind('<Ctrl-[', 'scroll up')
+config.bind('<Ctrl-Shift-I>', 'devtools bottom')
+config.bind('<Ctrl-Shift-Tab>', 'tab-prev')
+config.bind('<Ctrl-Shift-T>', 'undo')
+config.bind('<Ctrl-Shift-+>', 'zoom-in')
+config.bind('<Ctrl-Shift-_>', 'zoom-out')
+config.bind('<Ctrl-Tab>', 'tab-next')
+config.bind('<Ctrl-U>', 'scroll-page 0 -0.5')
+config.bind('<Ctrl-V>', 'mode-enter passthrough')
+config.bind('<Ctrl-=>', 'zoom-in')
+config.bind('<Ctrl-->', 'zoom-out')
+config.bind('D', 'scroll-close 0 1')
+config.bind('d', 'scroll-page 0 0.5')
+config.bind('gO', 'set-cmd-text :open -t -r {url:pretty}')
+config.bind('H', 'back')
+config.bind(';h', 'hint all hover')
+config.bind(';i', 'hint images')
+config.bind('j', 'scroll down')
+config.bind('J', 'tab-prev')
+config.bind('k', 'scroll up')
+config.bind('K', 'tab-next')
+config.bind('L', 'forward')
+config.bind("'", 'mode-enter jump_mark')
+config.bind(';o', 'hint links fill :open {hint-url}')
+config.bind(';r', 'hint --rapid links tab-bg')
+config.bind('R', 'reload -f')
+config.bind('<Shift-Tab>', 'completion-item-focus prev', mode='command')
+config.bind('<Tab>', 'completion-item-focus next', mode='command')
+config.bind('<', 'tab-move -')
+config.bind('>', 'tab-move +')
+config.bind(';t', 'hint inputs')
+config.bind('<Up>', 'completion-item-focus --history prev', mode='command')
+config.bind('U', 'scroll-page 0 -0.5')
+#config.bind('U', 'undo -w')
+config.bind('u', 'undo --window')
+config.bind('wIf', 'devtools-focus')
+config.bind('wIh', 'devtools left')
+config.bind('wIk', 'devtools top')
+config.bind('wIl', 'devtools right')
+config.bind('wIw', 'devtools window')
+config.bind(';y', 'hint links yank')
+config.bind('yp', 'yank pretty-url')
 
+#config.bind('<Ctrl-j>', 'completion-item-focus --history prev', mode='command')
+#config.bind('<Ctrl-k>', 'completion-item-focus --history next', mode='command')
 # config.bind('<Ctrl-F5>', 'reload -f')
 # config.bind('<Ctrl-F>', 'scroll-page 0 1')
 # config.bind('<Ctrl-N>', 'open -w')
@@ -1659,7 +1664,6 @@ config.bind('B', 'cmd-set-text -s :bookmark-load -t')
 # config.bind('B', 'set-cmd-text -s :quickmark-load -t')
 # config.bind('F', 'hint all tab')
 # config.bind('G', 'scroll-to-perc')
-# config.bind('M', 'bookmark-add')
 # config.bind('N', 'search-prev')
 # config.bind('O', 'set-cmd-text -s :open -t')
 # config.bind('PP', 'open -t -- {primary}')

@@ -112,7 +112,7 @@ u {
   font-weight: 700;
 }
 /*## TODOLIST ##################*/
-.todolist .HyperMD-list-line > *, .todolist .task-list-item{
-  margin-left: 3em;
-}
+/*.todolist .HyperMD-list-line > *, .todolist .task-list-item{*/
+  /*margin-left: 3em;*/
+/*}*/
 

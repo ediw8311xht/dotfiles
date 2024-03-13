@@ -47,7 +47,7 @@ fu! CorrectColors()
     hi LineNrAbove      cterm=NONE ctermbg=NONE ctermfg=NONE    gui=NONE        guibg=#000000 guifg=#00AAFF
     hi TabLine                                                  gui=NONE        guibg=#222222 guifg=#999999
     hi TabLineSel                                               gui=BOLD        guibg=#000000 guifg=#00FF00
-    hi MarkSignNumHL                                            gui=REVERSE     guibg=NONE    guifg=#0099FF
+    hi MarkSignNumHL                                            gui=NONE        guibg=NONE    guifg=NONE
     hi MarkSignVirtTextHL                                       gui=NONE        guibg=NONE    guifg=#00FF00
     hi IncSearch        cterm=NONE ctermbg=white ctermfg=black  gui=NONE        guibg=#FF0000 guifg=#000000
     hi Search           cterm=NONE ctermbg=white ctermfg=black  gui=BOLD        guibg=#FF00FF guifg=#000000
@@ -211,6 +211,8 @@ call plug#begin()
     Plug 'lervag/vimtex'
 " Show-all-matching-tags-vim        #
     Plug 'andymass/vim-matchup'
+" Aligning text                     #
+    Plug 'godlygeek/tabular'
 " Autoclose HTML tags               #
     "Plug 'alvan/vim-closetag'      #
 " Autorename HTML tags #            #
@@ -252,7 +254,7 @@ lua require('base')
 "---- For 'ptzz/lf.vim' ----"
     let g:lf_map_keys   = 0
 
-" This is necessary for VimTeX to load properly. The "indent" is optional.
+" This is necessary for VimTeX to load properly. The _"indent"_ is optional.
 " Note that most plugin managers will do this automatically.
 " This enables Vim's and neovim's syntax-related features. Without this, some
 " VimTeX features will not work (see ":help vimtex-requirements" for more
@@ -274,13 +276,12 @@ let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 " strongly recommended, you probably don't need to configure anything. If you
 " want another compiler backend, you can change it as follows. The list of
 " supported backends and further explanation is provided in the documentation,
-" see ":help vimtex-compiler".
+" see _":help vimtex-compiler"_.
 let g:vimtex_compiler_method = 'tectonic'
 
 " Most VimTeX mappings rely on localleader and this can be changed with the
-" following line. The default is usually fine and is the symbol "\".
+" following line. The default is usually fine and is the symbol _"\"_.
 let maplocalleader = ","
-
 let g:html_mode     = 1
 let g:is_bash       = 1
 "-----------------CLOSETAG
@@ -456,6 +457,7 @@ let g:subshell_end=join(  ['####################', ') #---END-SUBSHELL-#', '####
     "-- Math --"
         vn <leader>M :!dc<esc>
         vn <leader>m :!bc<esc>
+        vn <leader>c :!column -t<enter>
 "----------------------------------
 "-- Normal                       --
 "----------------------------------

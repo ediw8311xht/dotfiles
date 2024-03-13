@@ -99,7 +99,7 @@
 !! Cyberpunk Neon: https://github.com/Roboron3042/Cyberpunk-Neon                   !!
 !! Author: Theo (theo-grivel)                                                      !!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-special_float*font: 	    FantasqueSansMono:style=Regular:pixelsize=14:autohint=true:antialias=true
+!special_float*font: 	    FantasqueSansMono:style=Regular:pixelsize=14:autohint=true:antialias=true
 
 special_float*alpha:	            1
 special_float*foreground:           #0abdc6
