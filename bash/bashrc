@@ -354,6 +354,7 @@ alias nvcode='    cd "${CODING}"; nf'
 alias nswp='      cd "${HOME}/.mynvim/swapfiles/"'
 alias cde='       cd "${CODING}"; cd "$(fd --maxdepth 3 -t d | sort -n | fzf --preview="${LS_PREVIEW} {}")"'
 alias clne='      cd "${CLONED}"; cd "$(fd --maxdepth 1 -t d | sort -n | fzf --preview="${LS_PREVIEW} {}")"'
+alias rcel='      zathura --fork "${MY_LIBRARY}/CURRENTLY_READING/elixir_in_action_2nd_edition.pdf"'
 #########################################################################
 #  EXPORT                                                               #
 #########################################################################
