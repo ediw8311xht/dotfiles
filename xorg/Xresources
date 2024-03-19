@@ -3,7 +3,7 @@
 !xterm*font: xft:Agave:style=Medium:size=11:antialias=false:autohint=false
 
 !!!!!!!!!!!!!!!!!!!!!!!!! -----------------_FONTS
-*.alpha:	    1
+*.alpha:	    0.95
 *.borderpx:     10px
 
 !!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTSHH
@@ -99,9 +99,9 @@
 !! Cyberpunk Neon: https://github.com/Roboron3042/Cyberpunk-Neon                   !!
 !! Author: Theo (theo-grivel)                                                      !!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!special_float*font: 	    FantasqueSansMono:style=Regular:pixelsize=14:autohint=true:antialias=true
+special_float*font: 	    Iosevka:style=Regular:pixelsize=14:autohint=true:antialias=true
 
-special_float*alpha:	            1
+special_float*alpha:	            0.95
 special_float*foreground:           #0abdc6
 special_float*background:           #000b1e
 !.# Black, Gray, Silver, White
