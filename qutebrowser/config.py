@@ -325,7 +325,7 @@ config.bind(',ab',                      'bookmark-add')
 config.bind(',rb',                      'bookmark-del')
 config.bind(',rq',                      'quickmark-del')
 config.bind(',om',                      'hint links spawn mpv {hint-url}')
-config.bind(',oM',                      'spawn mpv {url}')
+config.bind(',oc',                      'spawn mpv {url}')
 
 config.bind(';t',                       'hint inputs')
 config.bind(';i',                       'hint images')

@@ -12,8 +12,6 @@
 "<==------------------======================================------------------==>
 "<==============================================================================>
 "<==============================================================================>
-
-"<--------- MY VARS -------------------------------------------------------->
 let jam        = 'hi FoldColumn gui=bold guibg=NONE guifg=#00ff00'
 let GreatJammy = ':call CorrectColors()'
 let g:myScheme = [ 'pop-punk', 'eldar', 'elflord', 'delek', 'morning', 'blue', 'peachpuff', 'industry', 'murphy'] + [ 'cyberpunk-neon' ]
@@ -21,14 +19,13 @@ let g:mySpec   = [        ".",     jam,       ".",     ".",       ".",    ".",  
 let g:myBg     = [ "#000000", "#333333", "#111111", "#220000", "#002200", "#000022", "#002244" ] + [ "NONE" ]
 let g:myFg     = [         ".",         ".",         ".",         ".",         ".",         ".", "#aaawaa" ] + [ "." ]
 let g:python3_host_prog="/usr/bin/python"
-" Color superfluous whitespace at end of lines "
+
 match ExtraWhiteSpace /[^\s]\s\+\zs$/
 
-source ${HOME}/.config/nvim/my_functions.vim
-source ${HOME}/.config/nvim/my_autocmd.vim
-source ${HOME}/.config/nvim/my_plugins.vim
+source ${HOME}/.config/nvim/c_functions.vim
+source ${HOME}/.config/nvim/c_autocmd.vim
+source ${HOME}/.config/nvim/c_plugins.vim
 
-"<--------- LET/SET -------------------------------------------------------->
 filetype on
 filetype plugin on
 filetype plugin indent on
@@ -92,28 +89,19 @@ let g:coc_enable_at_startup = v:false
 let g:mapleader = " "
 let mapleader = " "
 let maplocalleader = " "
-
 "<--------_G-VAR_<leader>f_from-:-lf
 lua require('base')
-"lua require('mytreesitter')
-"---- Bracey Settings ----"
-    let g:bracey_refresh_on_save    = 1
-    let g:bracey_eval_on_save       = 1
-    let g:bracey_auto_start_browser = 0
-    let g:bracey_server_port        = 4842
-"---- For 'ptzz/lf.vim' ----"
-    let g:lf_map_keys   = 0
-
-syntax enable
-
+let g:bracey_refresh_on_save    = 1
+let g:bracey_eval_on_save       = 1
+let g:bracey_auto_start_browser = 0
+let g:bracey_server_port        = 4842
+let g:lf_map_keys   = 0
 let maplocalleader = ","
 let g:html_mode     = 1
 let g:is_bash       = 1
-
-"<--------- COLOR SCHEME STUFF --------------------------------------------->
 colorscheme pop-punk
 :call CorrectColors()
 
-source ${HOME}/.config/nvim/my_leader_bindings.vim
-source ${HOME}/.config/nvim/my_etc_bindings.vim
+source ${HOME}/.config/nvim/c_lnn.vim
+source ${HOME}/.config/nvim/c_etc_bindings.vim
 
