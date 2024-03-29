@@ -17,6 +17,7 @@ set noicons
 set relativenumber
 set sortby atime
 set sixel true
+set dirfirst true
 
 set previewer ctpv
 set cleaner ctpvclear
@@ -92,6 +93,7 @@ map <gt>c   cd ~/Desktop/Coding/
 map <gt>d   cd ~/Downloads/
 map <gt>e   cd ~/Desktop/Coding/ELIXIR/
 map <gt>f   cd ~/Documents/
+map <gt>i   cd ~/Documents/INFORMATION/
 map <gt>h   cd ~/
 map <gt>l   cd ~/Library/
 map <gt>p   cd ~/Pictures/

@@ -3,27 +3,25 @@
 #set forceueberzug
 set shell "/usr/bin/bash"
 
+
 preview my_epub .epub {{
-    gname="/tmp/gnome_epub_$(date +%9N).png"
+    epub_image="/tmp/gnome_epub_$(date +%9N).png"
     a="$((w*h))"
     [[ "${a}" -gt 500 ]] && a="500"
-    gnome-epub-thumbnailer -s "${a}" "${f}" "${gname}"
+    gnome-epub-thumbnailer -s "${a}" "${f}" "${epub_image}"
     setup_image
-    send_image "${gname}"
+    send_image "${epub_image}"
 }}
 
-preview my_json .json {{
+preview mygzip .gz {{
+    zcat "${f}"
+}}
+
+preview pygm .log .md {{
+    pygmentize "${f}"
+}}
+
+preview myjs .js .json .html {{
     highlight "${f}" --stdout --out-format="ansi"
 }}
 
-preview my_log .log {{
-    highlight "${f}" --stdout --out-format="ansi"
-}}
-
-preview my_js .js {{
-    highlight "${f}" --stdout --out-format="ansi"
-}}
-
-preview my_html .html {{
-    highlight "${f}" --stdout --out-format="ansi"
-}}

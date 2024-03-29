@@ -1,28 +1,21 @@
 [Added Associations]
-application/x-extension-htm=brave-browser.desktop;
-application/x-extension-html=nvim.desktop
-application/x-extension-shtml=nvim.desktop
-application/x-extension-xht=brave-browser.desktop;
-application/x-extension-xhtml=nvim.desktop
-application/xhtml+xml=nvim.desktop
-application/x-mimearchive=nvim.desktop;
-image/gif=brave-browser.desktop;
 x-scheme-handler/chrome=brave-browser.desktop;
 x-scheme-handler/ftp=brave-browser.desktop;
 x-scheme-handler/http=brave-browser.desktop;
 x-scheme-handler/https=brave-browser.desktop;
 
 [Default Applications]
+application/x-mimearchive=nvim.desktop;
+application/pdf=zathura.desktop
 application/epub=zathura.desktop
 application/epub+zip=org.pwmt.zathura-pdf-mupdf.desktop;
 application/json=nvim.desktop
 application/mobi=zathura.desktop
-application/pdf=zathura.desktop
 application/schema+json=nvim.desktop
 application/vnd.chess-pgn
 application/x-bittorrent=deluge.desktop
 application/x-desktop=nvim.desktop
-application/x-extension-htm=brave-browser.desktop
+application/x-extension-htm=nvim.desktop
 application/x-extension-html=nvim.desktop
 application/x-extension-shtml=nvim.desktop
 application/x-extension-xhtml=nvim.desktop
@@ -62,7 +55,7 @@ audio/x-wav=mpv.desktop
 audio/x-wavpack=mpv.desktop
 image/avif=nsxiv.desktop
 image/bmp=nsxiv.desktop
-image/gif=nsxiv.desktop
+image/gif=imv.desktop
 image/heif=nsxiv.desktop
 image/jp2=nsxiv.desktop
 image/jpeg=nsxiv.desktop

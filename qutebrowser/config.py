@@ -216,7 +216,10 @@ c.spellcheck.languages                   =  []
 c.tabs.favicons.scale                    =  1.0
 c.tabs.favicons.show                     =  'always'
 c.tabs.position                          =  'left'
+c.downloads.position                     =  'bottom'
 c.window.transparent                     =  True
+c.qt.highdpi                             =  True
+
 
 #----------variables---------------#
 hint_all     = [
@@ -246,6 +249,10 @@ adblock_list += ['https://easylist.to/easylist/easyprivacy.txt'     ]
 adblock_list += ['https://secure.fanboy.co.nz/fanboy-annoyance.txt' ]
 adblock_list += ['https://easylist.to/easylist/fanboy-social.txt'   ]
 #----------settings---------------#
+c.content.javascript.log_message.excludes = {
+    "userscript:_qute_stylesheet": ["*Refused to apply inline style because it violates the following Content Security Policy directive: *"],
+    "userscript:_qute_js":         ["*TrustedHTML*"]
+}
 c.hints.selectors = {'all': hint_all, 'links': hint_links, 'images': hint_images, 'media': hint_media, 'url': hint_url, 'inputs': hint_inputs}
 c.history_gap_interval = -1
 c.window.hide_decoration = False
@@ -274,33 +281,55 @@ c.url.default_page                  =  my_start_page
 c.content.headers.user_agent        = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
 c.content.headers.accept_language   = 'en-US,en;q=0.9'
 
-c.auto_save.interval                       =  50
-c.auto_save.session                        =  True
-c.content.blocking.enabled                 =  True
-c.content.blocking.hosts.block_subdomains  =  True
-c.content.blocking.method                  =  'both'
-c.content.cookies.accept                   =  'no-3rdparty'
-c.content.cookies.store                    =  True
-c.content.dns_prefetch                     =  True
-c.content.geolocation                      =  False
-c.content.pdfjs                            =  True
-c.messages.timeout                         =  0
-c.scrolling.smooth                         =  False
-c.search.ignore_case                       =  'smart'
-c.search.incremental                       =  True
-c.search.wrap                              =  True
-c.session.default_name                     =  "Default"
-c.session.lazy_restore                     =  True
-c.tabs.focus_stack_size                    =  100
-c.tabs.indicator.width                     =  1
-c.tabs.title.format                        =  '{audio}{current_title}'
-c.tabs.undo_stack_size                     =  -1
-c.tabs.width                               =  '15%'
-c.zoom.default                             =  '90%'
-c.zoom.mouse_divider                       =  512
-c.zoom.text_only                           =  False
+c.auto_save.interval                        =  50
+c.auto_save.session                         =  True
+c.content.blocking.enabled                  =  True
+c.content.blocking.hosts.block_subdomains   =  True
+c.content.blocking.method                   =  'both'
+c.content.cookies.accept                    =  'no-3rdparty'
+c.content.cookies.store                     =  True
+c.content.dns_prefetch                      =  True
+c.content.geolocation                       =  False
+c.messages.timeout                          =  0
+c.scrolling.smooth                          =  False
+c.search.ignore_case                        =  'smart'
+c.search.incremental                        =  True
+c.search.wrap                               =  True
+c.session.default_name                      =  "Default"
+c.session.lazy_restore                      =  True
+c.tabs.focus_stack_size                     =  100
+c.tabs.indicator.width                      =  1
+c.tabs.title.format                         =  '{audio}{current_title}'
+c.tabs.undo_stack_size                      =  -1
+c.tabs.width                                =  '15%'
+c.zoom.default                              =  '90%'
+c.zoom.mouse_divider                        =  512
+c.zoom.text_only                            =  False
+c.content.javascript.enabled                =  True
+c.content.pdfjs                             =  True
+c.content.site_specific_quirks.enabled      =  True
+c.downloads.location.suggestion             =  'both'
+c.fileselect.folder.command                 =  ['xterm', '-e', 'ranger', '--choosedir={}']
+c.completion.use_best_match                 =  True
+c.qt.workarounds.disable_accelerated_2d_canvas = 'always'
+
+#----------permissions-------------#
+c.content.media.audio_capture        =  False
+c.content.media.audio_video_capture  =  False
+c.content.media.video_capture        =  False
+c.content.notifications.enabled      =  False
+
 
 #----------regular_binding--------#
+config.bind('<Ctrl-1>',                 'tab-focus 1')
+config.bind('<Ctrl-2>',                 'tab-focus 2')
+config.bind('<Ctrl-3>',                 'tab-focus 3')
+config.bind('<Ctrl-4>',                 'tab-focus 4')
+config.bind('<Ctrl-5>',                 'tab-focus 5')
+config.bind('<Ctrl-6>',                 'tab-focus 6')
+config.bind('<Ctrl-7>',                 'tab-focus 7')
+config.bind('<Ctrl-8>',                 'tab-focus 8')
+config.bind('<Ctrl-9>',                 'tab-focus -1')
 config.bind('<Ctrl-D>',                 'scroll-page 0 0.5')
 config.bind('<Ctrl-j>',                 'tab-next')
 config.bind('<Ctrl-k>',                 'tab-prev')
@@ -318,8 +347,9 @@ config.bind('<Ctrl-V>',                 'mode-enter passthrough')
 config.bind('<Ctrl-=>',                 'zoom-in')
 config.bind('<Ctrl-->',                 'zoom-out')
 
-config.bind('<Escape>',                 'clear-keychain ;; search ;; clear-messages')
+config.bind('<Escape>',                 'clear-keychain ;; search ;; clear-messages;; download-clear')
 
+config.bind('<Alt-E>',                  'prompt-fileselect-external', mode='prompt')
 config.bind(',aq',                      'quickmark-save')
 config.bind(',ab',                      'bookmark-add')
 config.bind(',rb',                      'bookmark-del')
@@ -355,12 +385,13 @@ config.bind('u',                        'scroll-page 0 -0.5')
 
 config.bind('cd',                       'download-clear')
 config.bind('gO',                       'set-cmd-text :open -t -r {url:pretty}')
+config.bind('yp',                       'yank pretty-url')
+config.bind('yD',                       'yank domain -s')
 config.bind('wIf',                      'devtools-focus')
 config.bind('wIh',                      'devtools left')
 config.bind('wIk',                      'devtools top')
 config.bind('wIl',                      'devtools right')
 config.bind('wIw',                      'devtools window')
-config.bind('yp',                       'yank pretty-url')
 
 #----------command_binding---------#
 config.bind('<Ctrl-p>',                 'completion-item-focus prev',           mode='command')
@@ -372,6 +403,7 @@ config.bind('<Tab>',                    'completion-item-focus next',           
 config.bind('<Up>',                     'completion-item-focus --history prev', mode='command')
 #----------insert__binding---------#
 config.bind('<Ctrl-i>',                 'open -- {clipboard}',                  mode='insert')
-
+#----------passthrough_binding-----#
+config.bind('<Shift-Escape>',           'mode-leave', mode='passthrough')
 #------------------END--------------------#
 

@@ -109,6 +109,11 @@ alias_conflict() {
         fi
     done < <(alias -p | grep -Pio '^[ \t]*alias[ \t]*\K[^=]*')
 }
+fzf_edit() {
+    rg --ignore-file="${XDG_CONFIG_HOME}/rg/code.rg" --hidden --files "${1:-.}" 2>/dev/null \
+        | fzf --preview="highlight -O ansi -l {} 2>/dev/null" --print0                      \
+        | xargs -0 -r -o "${EDITOR}"
+}
 get_alias_fzf() {
     local prc='grep -Po '
     local prc+='"^alias[ \t]*"{}"[=].[ \t]*\K.*" '
@@ -166,7 +171,7 @@ alias v='         sc-im'
 #-    w           RESERVED
 alias x='         xdg-open'
 alias y='         source .venv/bin/activate'
-#-    z #
+alias z='         zathura'
 #-----------------------------------1U--#
 alias B='         bat'
 alias C='         cd ..'
@@ -191,7 +196,7 @@ alias hb='        nvim "${HISTFILE}"'
 alias ic='        clear; imgcat'
 alias lc='        compgen -c'
 alias ll="        lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
-alias nf='        rg --ignore-file="${XDG_CONFIG_HOME}/rg/code.rg" --hidden --files . 2>/dev/null | fzf --preview="highlight -O ansi -l {} 2>/dev/null" --print0 | xargs -0 -r -o nvim'
+alias nf='        fzf_edit'
 alias nv='        nvim'
 alias pe='        ps -eo comm=,'
 alias po='        ps -eo cmd=,'
@@ -202,6 +207,7 @@ alias tl='        tar --list --file'
 alias xf='        xdg-open "$(fzf --preview="ctpv {}")"'
 alias xr='        echo ""; nvim "${HOME}/.Xresources"; xrdb "${HOME}/.Xresources"'
 #------------------------------------------------------------#
+alias ren='       renamer'
 alias acc='       alias_conflict'
 alias acf='       alias_conflict --full'
 alias alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
@@ -343,12 +349,13 @@ alias down='      cd "${DOWNLOADS}"'
 alias pics='      cd "${PICTURES}"'
 alias docs='      cd "${DOCUMENTS}"'
 alias desk='      cd "${DESKTOP}"'
-alias infs='      cd "${INFORMATION}"'
+alias infs='      cd "${MY_INFORMATION}"'
 alias spred='     cd "${SPREADSHEETS}"'
 alias wallz='     cd "${WALLPAPERS}"'
 alias lke='       cd "${HOME}/Notebooks/REFERENCE_SHEETS/"'
 #alias lib='       cd "${MY_LIBRARY}"; cd_from_lf'
 alias ww='        cd "${MY_WEB}"'
+alias inf='       cd "${MY_INFORMATION}"; cd "$(fd -H --maxdepth 1 -t d | fzf --preview="${LS_PREVIEW} {}")"'
 alias cnf='       cd "${XDG_CONFIG_HOME}"; cd "$(fd -H --maxdepth 1 -t d | fzf --preview="${LS_PREVIEW} {}")"'
 alias conf='      cd "${XDG_CONFIG_HOME}"'
 alias nvcode='    cd "${CODING}"; nf'
@@ -446,11 +453,11 @@ export BG_GRA='\033[47m'
 export BG_WHI='\033[48m'
 export BG_NON='\033[49m'
 #------------------MULTI-LEVEL---------#
-export           INFORMATION="${DOCUMENTS}/INFORMATION"
-export          SPREADSHEETS="${DOCUMENTS}/SPREADSHEETS"
-export            WALLPAPERS="${PICTURES}/Wallpapers"
-export                CODING="${DESKTOP}/Coding/"
-export                CLONED="${DESKTOP}/CLONED/"
+export  MY_INFORMATION="${DOCUMENTS}/INFORMATION"
+export  SPREADSHEETS="${DOCUMENTS}/SPREADSHEETS"
+export  WALLPAPERS="${PICTURES}/Wallpapers"
+export  CODING="${DESKTOP}/Coding/"
+export  CLONED="${DESKTOP}/CLONED/"
 #-----------------------------------------------APPLICATIONS-#
 export  NO_AT_BRIDGE=1
 export  QT_QPA_PLATFORMTHEME="qt6ct"
