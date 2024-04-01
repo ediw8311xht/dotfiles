@@ -249,9 +249,11 @@ adblock_list += ['https://easylist.to/easylist/easyprivacy.txt'     ]
 adblock_list += ['https://secure.fanboy.co.nz/fanboy-annoyance.txt' ]
 adblock_list += ['https://easylist.to/easylist/fanboy-social.txt'   ]
 #----------settings---------------#
+
+c.content.local_content_can_access_remote_urls = True
 c.content.javascript.log_message.excludes = {
-    "userscript:_qute_stylesheet": ["*Refused to apply inline style because it violates the following Content Security Policy directive: *"],
-    "userscript:_qute_js":         ["*TrustedHTML*"]
+    #"userscript:_qute_stylesheet": ["*Refused to apply inline style because it violates the following Content Security Policy directive: *"],
+    #"userscript:_qute_js":         ["*TrustedHTML*"]
 }
 c.hints.selectors = {'all': hint_all, 'links': hint_links, 'images': hint_images, 'media': hint_media, 'url': hint_url, 'inputs': hint_inputs}
 c.history_gap_interval = -1
@@ -281,7 +283,7 @@ c.url.default_page                  =  my_start_page
 c.content.headers.user_agent        = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
 c.content.headers.accept_language   = 'en-US,en;q=0.9'
 
-c.auto_save.interval                        =  50
+c.auto_save.interval                        =  500
 c.auto_save.session                         =  True
 c.content.blocking.enabled                  =  True
 c.content.blocking.hosts.block_subdomains   =  True
