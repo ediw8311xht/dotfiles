@@ -207,6 +207,7 @@ alias tl='        tar --list --file'
 alias xf='        xdg-open "$(fzf --preview="ctpv {}")"'
 alias xr='        echo ""; nvim "${HOME}/.Xresources"; xrdb "${HOME}/.Xresources"'
 #------------------------------------------------------------#
+alias mmcopy='    math137; cp templates/template.html'
 alias ren='       renamer'
 alias acc='       alias_conflict'
 alias acf='       alias_conflict --full'

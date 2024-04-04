@@ -250,6 +250,7 @@ adblock_list += ['https://secure.fanboy.co.nz/fanboy-annoyance.txt' ]
 adblock_list += ['https://easylist.to/easylist/fanboy-social.txt'   ]
 #----------settings---------------#
 
+c.new_instance_open_target = 'tab-silent'
 c.content.local_content_can_access_remote_urls = True
 c.content.javascript.log_message.excludes = {
     #"userscript:_qute_stylesheet": ["*Refused to apply inline style because it violates the following Content Security Policy directive: *"],
