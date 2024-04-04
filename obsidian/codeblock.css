@@ -16,7 +16,7 @@
 .pdf-embed:not(.canvas-node-content),
 .image-embed:not(.canvas-node-content) img {
   max-width: min(600px, 50vw) !important;
-  max-height: min(200px, 20vh) !important;
+  max-height: min(300px, 30vh) !important;
   border: 10px solid #000 !important;
   z-index: 0 !important;
   padding-left: 10px !important;

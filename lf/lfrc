@@ -95,7 +95,7 @@ map <gt>e   cd ~/Desktop/Coding/ELIXIR/
 map <gt>f   cd ~/Documents/
 map <gt>i   cd ~/Documents/INFORMATION/
 map <gt>h   cd ~/
-map <gt>l   cd ~/Library/
+map <gt>l   cd ~/MyLibrary/
 map <gt>p   cd ~/Pictures/
 map <gt>v   cd ~/Videos/
 

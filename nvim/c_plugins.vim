@@ -1,44 +1,66 @@
 
 "<--------- PLUGINS -------------------------------------------------------->
 call plug#begin()
-        " Language Servers. Use release branch (recommend) #
+" Language Servers. Use release branch (recommend) #
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-        " Treesitter                        #
+
+" Treesitter                        #
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-        " Treesitter, extra stuff           #
+" Treesitter, extra stuff           #
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-        " Show-all-matching-tags-vim        #
+
+" Show-all-matching-tags-vim        #
     Plug 'andymass/vim-matchup'
-        " Aligning text                     #
+
+" Aligning text                     #
     Plug 'godlygeek/tabular'
-        " Autoclose HTML tags               #
-        " Plug 'alvan/vim-closetag'         #
-        " Autorename HTML tags #            #
+
+" Autoclose HTML tags               #
+" Plug 'alvan/vim-closetag'         #
+
+" Autorename HTML tags #            #
     Plug 'AndrewRadev/tagalong.vim'
-        " Syntax-for-lf                     #
+
+" Extra Syntax                      #
     Plug 'VebbNix/lf-vim'
-        " Syntax-for-i3                     #
     Plug 'PotatoesMaster/i3-vim-syntax'
-        " Auto-save-restore-view :) --best plugin #
+
+" Auto-save-restore-view :) --best plugin #
     Plug 'https://github.com/vim-scripts/restore_view.vim'
-        " Real-time HTML/CSS/JS Editor      #
+
+" Real-time HTML/CSS/JS Editor      #
     Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
-        " Showmarks/ Better marks           #
+
+" Showmarks/ Better marks           #
     Plug 'chentoast/marks.nvim'
-        " Requirements for lilypond (not using anymore), cool ui stuff #
+
+" Requirements for lilypond (not using anymore), cool ui stuff #
     Plug 'MunifTanjim/nui.nvim'
-        " Fzf Finder                        #
+
+" Fzf Finder                        #
     Plug 'junegunn/fzf.vim'
-        " Markdown Preview                  #
+
+" Markdown Preview                  #
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-        " Semantic Highlighting for Python  #
+
+" Semantic Highlighting for Python  #
     Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
-        " For lf.vim                        #
+
+" For lf.vim                        #
     Plug 'voldikss/vim-floaterm'
     Plug 'ptzz/lf.vim'
-        " Elixir                            #
+
+" Elixir                            #
     Plug 'elixir-editors/vim-elixir'
-        " colorscheme tokyonight            #
+
+" colorscheme tokyonight            #
     Plug 'folke/tokyonight.nvim'
+
 call plug#end()
+
+
+
+
+
+
 

@@ -222,7 +222,6 @@ alias ezchmod='   chmod og-rwx -R .'
 alias rifs="      IFS=$' \t\n'" #; printf 'IFS=%q\n' "${IFS}" ; }
 alias pifs='      printf "\n_%q_\n\n" "${IFS}"'
 alias fread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --preview="ctpv {}" --print0 | xargs -0 -r -o zathura --fork'
-alias gclone='    cd "${CLONED}" && git clone'
 alias getfont='   fc-list -v | grep -i '
 alias gfi='       fd --search-path "/" -u --mount'
 alias gital='     git log --source --all -S'
@@ -248,6 +247,8 @@ alias lsz="       lsd --icon='never' -lSrh"
 alias manlist='   man -f'
 alias men='       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" 2>/dev/null | $PAGER) <<< '
 alias mixf='      mix format'
+alias mixc='      mix compile'
+alias iexm='      iex -S mix'
 alias mycdu='     mycd -u'
 alias nimg='      nsxiv -0 .'
 alias pcal='      calcurse'
@@ -410,7 +411,7 @@ export  BROWSER="/usr/bin/brave"
 export  DESKTOP="${HOME}/Desktop/"
 export  DOCUMENTS="${HOME}/Documents/"
 export  DOWNLOADS="${HOME}/Downloads/"
-export  MY_LIBRARY="${HOME}/Library/"
+export  MY_LIBRARY="${HOME}/MyLibrary/"
 export  MY_LOCAL="${HOME}/.local/"
 export  MY_LOCAL_BIN="${MY_LOCAL}/bin/" # By default this is in path (set by os, not by me) (just so i remember)
 export  MY_LOCAL_SHARE="${MY_LOCAL}/share/"

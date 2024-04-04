@@ -5,8 +5,7 @@ let g:subshell_end=join(  ['####################', ') #---END-SUBSHELL-#', '####
 "----------------------------------
 "-- Leader Bindings              --
 "----------------------------------
-
-call L( 'nn', 'a'        ,    ':call Toggle(g:coc_enabled, 0, ":CocEnable", ":CocDisable")<esc>')
+call L( 'nn', 'a'        ,    ':call Toggle(g:coc_enabled, 0, ":CocEnable", ":call coc#float#close_all() \| :CocDisable")<esc>')
 call L( 'nn', 'B'        ,    ':Buffers<esc>')
 call L( 'nn', 'b'        ,    ':ls<CR>:b<Space>')
 call L( 'nn', ']'        ,    ':bnext<CR>:noh<esc><C-L>')

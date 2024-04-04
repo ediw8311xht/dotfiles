@@ -2,7 +2,7 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
 (setq package-enable-at-startup nil)
 (package-initialize)
@@ -12,6 +12,7 @@
 (unless (package-installed-p 'evil)        (package-install 'evil))
 (unless (package-installed-p 'slime)       (package-install 'slime))
 (unless (package-installed-p 'evil-escape) (package-install 'evil-escape))
+(unless (package-installed-p 'ido)         (package-install 'ido))
 
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
@@ -22,6 +23,8 @@
 (evil-mode t)
 (require 'slime)
 (require 'evil-escape)
+(require 'ido)
+
 ;; (require 'lilypond)
 
 ;;---------------------------------------------------------------------    SETTINGS    --------------;;
@@ -80,6 +83,8 @@
 (define-key evil-normal-state-map (kbd "<leader>ed") 'edit_config_file)
 (define-key evil-normal-state-map (kbd "<leader>sl") 'slime)
 
+(define-key evil-normal-state-map (kbd "<leader>ll") 'org-latex-preview)
+
 ;;; DESCRIBE KEY COMMAND describe-key
 
 ;;--INSERT--;;
@@ -87,28 +92,33 @@
 (define-key evil-insert-state-map (kbd "C-<backspace>") (kbd "<backspace><backspace>"))
 
 ;;---------------------------------------------------------------------    ETC    -------------------;;
+(ido-mode 1)
 
-(add-to-list 'default-frame-alist '(alpha 100))
+;;(setq ido-enable-flex-matching t
+;;      ido-use-filename-at-point 'guess
+;;      ido-vertical-define-keys 'C-n-C-p-up-down-left-right))
+
+(setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
+
 (add-hook 'lisp-mode-hook          (lambda () (slime-mode t)))
 (add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
 (evil-set-undo-system 'undo-redo)
 (setq evil-want-fine-undo t)
 (setq inferior-lisp-program "sbcl")
 ;(setq w3m-default-display-inline-images t)
-
+(add-to-list 'default-frame-alist '(alpha 100))
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+
  '(blink-cursor-mode nil)
  '(custom-enabled-themes '(modus-vivendi))
  '(display-line-numbers-type 'relative)
  '(font-use-system-font t)
  '(global-display-line-numbers-mode t)
- '(package-selected-packages '(evil-escape slime evil-visual-mark-mode evil))
+ '(package-selected-packages
+   '(flx-ido ido ido-hacks evil-escape slime evil-visual-mark-mode evil))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
  '(tooltip-mode nil))
 
-(set-frame-font "Agave 12" nil t)
+;;(set-frame-font "Agave 12" nil t)
+(add-to-list 'default-frame-alist '(font . "Agave 12"))

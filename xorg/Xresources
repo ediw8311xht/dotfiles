@@ -8,7 +8,7 @@
 
 !!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTSHH
 *.font: 	    Agave:style=Regular:size=11:antialias=false:autohint=false
-!emacs.font: 	Agave:style=Regular:size=15:antialias=true:autohint=false
+emacs.font: 	Agave:style=Regular:size=15:antialias=true:autohint=false
 !*.font: 	    InputMono:size=9:antialias=true:autohint=true
 !*.font: 	    BriemAkademiMono:style=Regular:size=11:antialias=false:autohint=false
 !*.font: 	    CopperplateGothicStd:style=Regular:size=11:antialias=false:autohint=false

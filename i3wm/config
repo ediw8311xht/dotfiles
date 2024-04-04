@@ -76,7 +76,7 @@
     #assign [class=".*Deluge.*"]             workspace 12
 #-------FOR_WINDOW--------------------------------------------------------#
     for_window [class=".*qutebrowser.*"]        floating enable, move scratchpad, resize set 1450px 900px, scratchpad show, move position center
-    for_window [class="[Oo]bsidian"]            floating enable, move scratchpad, resize set 1700px 1040px, scratchpad show, move position center
+    for_window [class="[Oo]bsidian"]            floating enable, move scratchpad, resize set 1700px 1000px, scratchpad show, move position center
     for_window [instance="(i3s_note|i3s_st)"]   $scratchpad_default
     for_window [class=".*icecat.*"]	            $scratchpad_default
     for_window [class="Tor Browser"]		    $scratchpad_default

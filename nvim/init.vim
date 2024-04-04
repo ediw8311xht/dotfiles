@@ -104,4 +104,5 @@ colorscheme pop-punk
 
 source ${HOME}/.config/nvim/c_lnn.vim
 source ${HOME}/.config/nvim/c_etc_bindings.vim
+source ${HOME}/.config/nvim/coc_bindings.vim
 
