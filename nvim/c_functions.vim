@@ -32,20 +32,14 @@ fu! CorrectColors()
     hi CocFadeOut               gui=NONE        guibg=#888888 guifg=#000000
 endfu
 
-fu! L(mode, keys, command, silent="0")
-    if a:silent ==? '1'
-        execute 'sil '.a:mode.' <leader>'.a:keys.' '.a:command
-    else
-        execute a:mode.' <leader>'.a:keys.' '.a:command
-    end
-endfu
-
-fu! B(mode, keys, command, silent="0")
-    if a:silent ==? '1'
-        execute 'sil '.a:mode.' 'a:keys.' '.a:command
-    else
-        execute a:mode.' '.a:keys.' '.a:command
-    end
+fu! MyMap(maptype, keys, leader=0)
+    for i in a:keys
+        if a:leader == 1
+            execute a:maptype.' <leader>'.i[0].' '.i[1]
+        else
+            execute a:maptype.' '.i[0].' '.i[1]
+        endif
+    endfor
 endfu
 
 fu! CycleBackground(nextprevious)

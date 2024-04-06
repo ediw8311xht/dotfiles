@@ -15,6 +15,6 @@ nnoremap <leader>m i<span class="math inline">\(\)</span><esc>F(a
 nnoremap <leader>M 0f(a
 nnoremap <leader>vp :%!prettier --parser="html"<esc>
 
-nnoremap <leader>r  i<img src=""/><esc>2F"a
+nnoremap <leader>r  i<img src="images/"/><esc>F"i
 nnoremap <leader>rO :!qutebrowser %<esc>
 "nnoremap <leader>R :!qutebrowser ":reload"<esc>

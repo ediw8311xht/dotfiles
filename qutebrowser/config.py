@@ -315,6 +315,8 @@ c.downloads.location.suggestion             =  'both'
 c.fileselect.folder.command                 =  ['xterm', '-e', 'ranger', '--choosedir={}']
 c.completion.use_best_match                 =  True
 c.qt.workarounds.disable_accelerated_2d_canvas = 'always'
+c.tabs.show = "multiple"
+
 
 #----------permissions-------------#
 c.content.media.audio_capture        =  False
@@ -367,9 +369,13 @@ config.bind(';r',                       'hint --rapid links tab-bg')
 config.bind(';h',                       'hint all hover')
 config.bind(';y',                       'hint links yank')
 
+#-------------------TAB-BAR-TOGGLE---------------------------------------#
+config.bind(';Tn',                      'set tabs.show "never"')
+config.bind(';Tm',                      'set tabs.show "multiple"')
+config.bind(';Ta',                      'set tabs.show "always"')
+config.bind(';Ts',                      'set tabs.show "switching"')
+
 config.bind("'",                        'mode-enter jump_mark')
-config.bind('<',                        'tab-move -')
-config.bind('>',                        'tab-move +')
 
 config.bind('B',                        'cmd-set-text -s :bookmark-load -t')
 config.bind('D',                        'scroll-close 0 1')

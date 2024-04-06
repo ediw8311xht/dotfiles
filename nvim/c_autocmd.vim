@@ -9,5 +9,5 @@ autocmd BufNewFile,BufRead *.sh                         set syntax=bash
 autocmd BufNewFile,BufRead *.ex,*.exs                   setfiletype elixir
 autocmd BufNewFile,BufRead ~/.config/polybar/config     setfiletype dosini
 autocmd BufNewFile,BufRead ~/.config/i3/*               setfiletype i3
-autocmd BufNewFile,BufRead *.html                       setlocal tabstop=2 shiftwidth=2 softtabstop=4 expandtab
+autocmd BufNewFile,BufRead *.html,*.css                 setlocal tabstop=2 shiftwidth=2 softtabstop=4 expandtab
 autocmd BufNewFile,BufRead *.ex,*.exs                   setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab

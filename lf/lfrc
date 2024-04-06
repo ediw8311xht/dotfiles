@@ -4,7 +4,7 @@ set shellopts '-eu'
 ##USE DOUBLE QUOTES FOR 'set ifs "something"'
 #set period 1
 set ifs         "\n"
-set ratios      1:3:5
+set ratios      2:3:5
 set info        size:time
 set scrolloff   8
 set autoquit

@@ -1,77 +1,86 @@
 
 source ${HOME}/.config/nvim/c_functions.vim
-let g:subshell_begin=join(['####################', '( #-START-SUBSHELL-#', '####################'], "\n")
-let g:subshell_end=join(  ['####################', ') #---END-SUBSHELL-#', '####################'], "\n")
+
 "----------------------------------
 "-- Leader Bindings              --
 "----------------------------------
-call L( 'nn', 'a'        ,    ':call Toggle(g:coc_enabled, 0, ":CocEnable", ":call coc#float#close_all() \| :CocDisable")<esc>')
-call L( 'nn', 'B'        ,    ':Buffers<esc>')
-call L( 'nn', 'b'        ,    ':ls<CR>:b<Space>')
-call L( 'nn', ']'        ,    ':bnext<CR>:noh<esc><C-L>')
-call L( 'nn', '['        ,    ':bprevious<CR>:noh<esc><C-L>')
-call L( 'nn', ','        ,    '<C-^>')
-call L( 'nn', 'CH'       ,    ':checkhealth<esc>')
-call L( 'nn', 'c'        ,    ':set nocursorline!<esc>')
-call L( 'nn', 'D'        ,    ':bdelete<esc><enter>')
-call L( 'nn', 'df'       ,    ':%s/\s\+\ze$//gc<esc>')
-call L( 'nn', 'dm'       ,    ':delmark')
-call L( 'nn', 'e'        ,    ':set cursorcolumn!<esc>')
-call L( 'nn', '/'        ,    ':Explore<CR>')
-call L( 'nn', 'f'        ,    ':set wrap!<esc>')
-call L( 'nn', 'g'        ,    ':enew<esc>')
-call L( 'nn', 'Gm'       ,    ':call GetMappings()<CR>')
-call L( 'nn', 'h'        ,    ':call Toggle(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc><C-L>')
-call L( 'nn', 'H'        ,    ':vert helpgrep ')
-call L( 'nn', 'j'        ,    ':call CycleColor(+1)<CR>')
-call L( 'nn', 'J'        ,    ':call CycleColor(-1)<CR>')
-call L( 'nn', 'k'        ,    ':call CorrectColors()<CR>')
-call L( 'nn', 'l'        ,    ':call CycleBackground(+1)<CR>')
-call L( 'nn', 'L'        ,    ':call CycleBackground(-1)<CR>')
-call L( 'nn', '<leader>' ,    '<C-^>')
-call L( 'nn', ';'        ,    ':ls<CR>:b<Space>')
-call L( 'nn', 'M'        ,    ':messages<esc>')
-call L( 'nn', 'N'        ,    ':cnext<esc>')
-call L( 'nn', 'n'        ,    ':next<esc>')
-call L( 'nn', 'oc'       ,    'q:iput=execute("")<esc>A<C-c>')
-call L( 'nn', 'op'       ,    'q:<C-p><esc>Iput =execute("<esc>A")<esc>A<C-c>')
-call L( 'nn', 'out'      ,    'q:iput =execute("<C-r>0")<esc>A<C-c>')
-call L( 'nn', 'ox'       ,    ':put     =execute("<C-r>0")<esc>')
-call L( 'nn', 'q'        ,    ':bd')
-call L( 'nn', 'Sb'       ,    ':put =subshell_begin<esc>')
-call L( 'nn', 'Se'       ,    ':put =subshell_end<esc>')
-call L( 'nn', 's'        ,    ':source ~/.config/nvim/init.vim<esc>')
-call L( 'nn', 'tb'       ,    ':tabmove -1<esc>')
-call L( 'nn', 'tB'       ,    ':tabmove -1<esc>')
-call L( 'nn', 'tcc'      ,    ':tabclose<esc>')
-call L( 'nn', 'tf'       ,    ':tabfirst<esc>')
-call L( 'nn', 'tl'       ,    ':tablast<esc>')
-call L( 'nn', 'tm'       ,    ':tabmove')
-call L( 'nn', 'tn'       ,    ':tabmove +1<esc>')
-call L( 'nn', 'tN'       ,    ':tabmove +1<esc>')
-call L( 'nn', 'tp'       ,    ':tabmove -1<esc>')
-call L( 'nn', 'T'        ,    ':term<esc>')
-call L( 'nn', 'tt'       ,    ':tabnew<esc>')
-call L( 'nn', 'u'        ,    ':Lf<esc>')
-call L( 'nn', 'vf'       ,    '?<C-r>"<enter>')
-call L( 'nn', 'vl'       ,    ':call Toggle(&cc, 0, "set cc=80", "set cc=0")<esc>')
-call L( 'nn', 'vm'       ,    ':put =eval("<C-r>0")')
-call L( 'nn', 'vq'       ,    ':put =eval("<C-r>0")<esc>')
-call L( 'nn', 'vv'       ,    ':call Cycle(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<CR>')
-call L( 'nn', 'W'        ,    ':call Web("f")<esc>i')
-call L( 'nn', 'WC'       ,    ':BraceyStop<esc>')
-call L( 'nn', 'WW'       ,    ':Bracey<esc>')
-call L( 'nn', 'w'        ,    ':w<esc>')
-call L( 'nn', 'X'        ,    ':w<esc>:!%:p ')
-call L( 'nn', 'x'        ,    ':w<esc>:!%:p<esc>')
-call L( 'nn', 'y'        ,    ':hi Normal guibg=Transparent<esc>')
-call L( 'nn', 'ZC'       ,    ':bd<esc>')
-call L( 'nn', 'ZG'       ,    ':bd!<esc>')
-call L( 'nn', 'z'        ,    'z')
 
-call L( 'no', 'zaf'      ,    'gg/<C-r>0<esc>jVnkzf')
+let g:bindings_l_noremap = [
+    \[ 'zaf' ,    'gg/<C-r>0<esc>jVnkzf' ]
+\]
 
-call L( 'vn', 'm'        ,    ':!bc<esc>')
-call L( 'vn', 'M'        ,    ':!dc<esc>')
-call L( 'vn', 'vc'       ,    ':!column -t<enter>')
-call L( 'vn', 'vs'       ,    ':!sort -n<enter>')
+let g:bindings_l_nnoremap = [
+    \[ '<leader>' , '<C-^>' ],
+    \[ 'a'   ,    ':call Toggle(g:coc_enabled, 0, ":CocEnable", ":call coc#float#close_all() \| :CocDisable")<esc>'  ],
+    \[ 'B'   ,    ':Buffers<esc>'                                                                                    ],
+    \[ 'b'   ,    ':ls<CR>:b<Space>'                                                                                 ],
+    \[ ']'   ,    ':bnext<CR>:noh<esc><C-L>'                                                                         ],
+    \[ '['   ,    ':bprevious<CR>:noh<esc><C-L>'                                                                     ],
+    \[ ','   ,    '<C-^>'                                                                                            ],
+    \[ 'CH'  ,    ':checkhealth<esc>'                                                                                ],
+    \[ 'c'   ,    ':set nocursorline!<esc>'                                                                          ],
+    \[ 'D'   ,    ':bdelete<esc><enter>'                                                                             ],
+    \[ 'df'  ,    ':%s/\s\+\ze$//gc<esc>'                                                                            ],
+    \[ 'dm'  ,    ':delmark'                                                                                         ],
+    \[ 'e'   ,    ':set cursorcolumn!<esc>'                                                                          ],
+    \[ '/'   ,    ':Explore<CR>'                                                                                     ],
+    \[ 'f'   ,    ':set wrap!<esc>'                                                                                  ],
+    \[ 'g'   ,    ':enew<esc>'                                                                                       ],
+    \[ 'Gm'  ,    ':call GetMappings()<CR>'                                                                          ],
+    \[ 'h'   ,    ':call Toggle(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc><C-L>'                     ],
+    \[ 'H'   ,    ':vert helpgrep '                                                                                  ],
+    \[ 'j'   ,    ':call CycleColor(+1)<CR>'                                                                         ],
+    \[ 'J'   ,    ':call CycleColor(-1)<CR>'                                                                         ],
+    \[ 'k'   ,    ':call CorrectColors()<CR>'                                                                        ],
+    \[ 'l'   ,    ':call CycleBackground(+1)<CR>'                                                                    ],
+    \[ 'L'   ,    ':call CycleBackground(-1)<CR>'                                                                    ],
+    \[ ';'   ,    ':ls<CR>:b<Space>'                                                                                 ],
+    \[ 'M'   ,    ':messages<esc>'                                                                                   ],
+    \[ 'N'   ,    ':cnext<esc>'                                                                                      ],
+    \[ 'n'   ,    ':next<esc>'                                                                                       ],
+    \[ 'oc'  ,    'q:iput=execute("")<esc>A<C-c>'                                                                    ],
+    \[ 'op'  ,    'q:<C-p><esc>Iput =execute("<esc>A")<esc>A<C-c>'                                                   ],
+    \[ 'out' ,    'q:iput =execute("<C-r>0")<esc>A<C-c>'                                                             ],
+    \[ 'ox'  ,    ':put     =execute("<C-r>0")<esc>'                                                                 ],
+    \[ 'q'   ,    ':bd'                                                                                              ],
+    \[ 's'   ,    ':source ~/.config/nvim/init.vim<esc>'                                                             ],
+    \[ 'tb'  ,    ':tabmove -1<esc>'                                                                                 ],
+    \[ 'tB'  ,    ':tabmove -1<esc>'                                                                                 ],
+    \[ 'tcc' ,    ':tabclose<esc>'                                                                                   ],
+    \[ 'tf'  ,    ':tabfirst<esc>'                                                                                   ],
+    \[ 'tl'  ,    ':tablast<esc>'                                                                                    ],
+    \[ 'tm'  ,    ':tabmove'                                                                                         ],
+    \[ 'tn'  ,    ':tabmove +1<esc>'                                                                                 ],
+    \[ 'tN'  ,    ':tabmove +1<esc>'                                                                                 ],
+    \[ 'tp'  ,    ':tabmove -1<esc>'                                                                                 ],
+    \[ 'T'   ,    ':term<esc>'                                                                                       ],
+    \[ 'tt'  ,    ':tabnew<esc>'                                                                                     ],
+    \[ 'u'   ,    ':Lf<esc>'                                                                                         ],
+    \[ 'vf'  ,    '?<C-r>"<enter>'                                                                                   ],
+    \[ 'vl'  ,    ':call Toggle(&cc, 0, "set cc=80", "set cc=0")<esc>'                                               ],
+    \[ 'vm'  ,    ':put =eval("<C-r>0")'                                                                             ],
+    \[ 'vq'  ,    ':put =eval("<C-r>0")<esc>'                                                                        ],
+    \[ 'vv'  ,    ':call Cycle(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<CR>'],
+    \[ 'W'   ,    ':call Web("f")<esc>i'                                                                             ],
+    \[ 'WC'  ,    ':BraceyStop<esc>'                                                                                 ],
+    \[ 'WW'  ,    ':Bracey<esc>'                                                                                     ],
+    \[ 'w'   ,    ':w<esc>'                                                                                          ],
+    \[ 'X'   ,    ':w<esc>:!%:p '                                                                                    ],
+    \[ 'x'   ,    ':w<esc>:!%:p<esc>'                                                                                ],
+    \[ 'y'   ,    ':hi Normal guibg=Transparent<esc>'                                                                ],
+    \[ 'ZC'  ,    ':bd<esc>'                                                                                         ],
+    \[ 'ZG'  ,    ':bd!<esc>'                                                                                        ],
+    \[ 'z'   ,    'z'                                                                                                ],
+\]
+
+let g:bindings_l_vnoremap = [
+    \[ 'm'   ,    ':!bc<esc>'            ],
+    \[ 'M'   ,    ':!dc<esc>'            ],
+    \[ 'vc'  ,    ':!column -t<enter>'   ],
+    \[ 'vs'  ,    ':!sort -n<enter>'     ],
+\]
+
+call MyMap( "nnoremap" , g:bindings_l_nnoremap, 1)
+call MyMap( "noremap"  , g:bindings_l_noremap,  1)
+call MyMap( "vnoremap" , g:bindings_l_vnoremap, 1)
+
