@@ -71,6 +71,7 @@ image/x-portable-pixmap=nsxiv.desktop
 image/x-tga=nsxiv.desktop
 image/x-xpixmap=nsxiv.desktop
 inode/directory=thunar.desktop
+text/x-log=nvim.desktop
 text/cpp=nvim.desktop
 text/css=nvim.desktop
 text/csv=nvim.desktop

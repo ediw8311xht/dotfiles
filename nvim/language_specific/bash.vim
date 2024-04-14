@@ -14,5 +14,5 @@ let s:sle=[
 let g:subshell_begin=join(s:slb, "\n")
 let g:subshell_end=join(s:sle, "\n")
 
-nnoremap Sb :put =g:subshell_begin<esc>
-nnoremap Se :put =g:subshell_end<esc>
+nnoremap <leader>Sb :put =g:subshell_begin<esc>
+nnoremap <leader>Se :put =g:subshell_end<esc>

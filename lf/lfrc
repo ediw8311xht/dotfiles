@@ -84,55 +84,57 @@ map m       push :!mkdir<space>
 
 # - CD -
 # Uppercase
-map <gt>C   cd ~/.config/
-map <gt>D   cd ~/Desktop/
+map  <gt>C  cd  ~/.config/
+map  <gt>D  cd  ~/Desktop/
+map  <gt>P  cd  ~/Pictures/
 
 # Lowercase
-map <gt>b   cd ~/bin/
-map <gt>c   cd ~/Desktop/Coding/
-map <gt>d   cd ~/Downloads/
-map <gt>e   cd ~/Desktop/Coding/ELIXIR/
-map <gt>f   cd ~/Documents/
-map <gt>i   cd ~/Documents/INFORMATION/
-map <gt>h   cd ~/
-map <gt>l   cd ~/MyLibrary/
-map <gt>p   cd ~/Pictures/
-map <gt>v   cd ~/Videos/
+map  <gt>b  cd  ~/bin/
+map  <gt>c  cd  ~/Desktop/Coding/
+map  <gt>d  cd  ~/Downloads/
+map  <gt>e  cd  ~/Desktop/Coding/ELIXIR/
+map  <gt>f  cd  ~/Documents/
+map  <gt>h  cd  ~/
+map  <gt>i  cd  ~/Documents/INFORMATION/
+map  <gt>l  cd  ~/MyLibrary/
+map  <gt>p  cd  ~/Pictures/
+map  <gt>v  cd  ~/Videos/
 
 map e           np
 map <lt>p       set preview!
-map <lt><lt>    set ratios 1:3:5
+map <lt><lt>    set ratios 2:3:5
 map <lt>0       set ratios 1:2:3
 map <lt>1       set ratios 1:2:1
 map <lt>2       set ratios 1:2
 map <lt>3       set ratios 1:1
 map <lt>4       set ratios 2:1
-map <lt>5       :oneforone
+map <lt>5       :set nopreview; set ratios 1
 map <lt>6       set ratios 1:6
 map <lt>7       set ratios 1:7
 map <lt>8       set ratios 1:8
 map <lt>9       set ratios 1:9
+
 map <esc>       clear
 map <enter>     shell
-map I       :toggle_info "size:atime"
-map H		set hidden!
-map d  	  	set dironly!
-map r 		set reverse!
-map U       :unselect; clear
-map TR		:trash
-map RR      :reload
-map RN		rename
-map RF	    push :rename<enter><c-a><c-k>
-map P		push :!echo<space>""<left>
-map ;		push ''
-map	K		:rep "3" "up"
-map J		:rep "3" "down"
-map VG		invert-below
-map Vg		:invert-below; invert
+map I           :toggle_info "size:atime"
+map H		    set hidden!
+map d  	  	    set dironly!
+map r 		    set reverse!
+map U           :unselect; clear
+map TR		    :trash
+map RR          :reload
+map RN		    rename
+map RF	        push :rename<enter><c-a><c-k>
+map P		    push :!echo<space>""<left>
+map ;		    push ''
+map	K		    :rep "3" "up"
+map J		    :rep "3" "down"
+map VG		    invert-below
+map Vg		    :invert-below; invert
 #------------------------------------------------------------------#
 #-----------CALL WITH THIS function to use autocd------------------#
 #------------------------------------------------------------------#
-map q 		:autocd
+map q 		    :autocd
 #
 #   function cd_from_lf() {
 #       lf

@@ -2,54 +2,7 @@
 ## This is here so configs done via the GUI are still loaded.
 ## Remove it to not load settings done via the GUI.
 config.load_autoconfig(False)
-#############################################################################################################################
-#############################################################################################################################
-#############################################################################################################################
-#############################################################################################################################
 
-##  This only has an effect when `colors.webpage.darkmode.algorithm` is set to `lightness-hsl` `brightness-rgb`. Type: Float
-#c.colors.webpage.darkmode.contrast = 0.0
-#
-##################################################### - always, aever, amart
-##c.colors.webpage.darkmode.policy.images = 'never'
-#
-### Render all colors as grayscale. Only works when `c..darkmode.algorithm` is set to `lightness-hsl` `brightness-rgb` ## Type: Bool
-#c.colors.webpage.darkmode.grayscale.all = False
-#
-### Desaturation factor for images in dark mode. If set to 0, images are left as-is. If set to 1, images are completely grayscale. Values ## Type: Float
-#c.colors.webpage.darkmode.grayscale.images = 0.0
-#
-### Which pages to apply dark mode to. The underlying Chromium setting has
-### been removed in QtWebEngine 5.15.3, thus this setting is ignored
-### there. Instead, every element is now classified individually.
-### Type: String
-### Valid values:
-###   - always: Apply dark mode filter to all frames, regardless of content.
-###   - smart: Apply dark mode filter to frames based on background color.
-#c.colors.webpage.darkmode.policy.page = 'smart'
-#
-### Threshold for inverting background elements with dark mode. Background
-### elements with brightness above this threshold will be inverted, and
-### below it will be left as in the original, non-dark-mode page. Set to
-### 256 to never invert the color or to 0 to always invert it. Note: This
-### behavior is the opposite of `colors.webpage.darkmode.threshold.text`!
-### Type: Int
-#c.colors.webpage.darkmode.threshold.background = 256
-### Threshold for inverting text with dark mode. Text colors with
-### brightness below this threshold will be inverted, and above it will be
-### left as in the original, non-dark-mode page. Set to 256 to always
-### invert text color or to 0 to never invert text color.
-### Type: Int
-#c.colors.webpage.darkmode.threshold.text = 256
-## lightness-cielab: Modify colors by converting them to CIELAB color space and inverting the L value. Not available with Qt < 5.14.
-## lightness-hsl: Modify colors by converting them to the HSL color space and inverting the lightness (i.e. the "L" in HSL).
-## brightness-rgb: Modify colors by subtracting each of r, g, and b from their maximum value.
-
-## Color gradient end for the tab indicator ## Type: QtColor
-## Background color of the tab bar ## Type: QssColor
-## Color gradient inerpolation system for the tab indicator.
-## rgb, hsv, hsl, none ##Type: ColorSystem
-#c.colors.webpage.darkmode.policy.page = 'always'
 c.url.searchengines = {
     'DEFAULT':                  'https://www.google.com/search?q={}',
     ':af':                      'https://www.google.com/search?q=site%3Ahttps://bbs.archlinux.org+{}',
@@ -179,8 +132,7 @@ c.url.searchengines = {
     ':ytube':                   'https://www.youtube.com/results?search_query={}&page={{startPage?}}&utm_source=opensearch',
 }
 
-
-#----------appearance--------------#
+#----------appearance-------------#
 c.colors.tabs.bar.bg                     =  '#DF111111'
 c.colors.tabs.even.bg                    =  '#000000'
 c.colors.tabs.even.fg                    =  '#AAAAAA'
@@ -220,27 +172,45 @@ c.downloads.position                     =  'bottom'
 c.window.transparent                     =  True
 c.qt.highdpi                             =  True
 
-
-#----------variables---------------#
-hint_all     = [
-                    'a',                           'area',                    'textarea',                        'select',
-                    'input:not([type="hidden"])',  'button',                  'frame',                           'iframe',
-                    'img',                         'link',                    'summary',                         '[contenteditable]:not([contenteditable="false"])',
-                    '[onclick]',                   '[onmousedown]',           '[role="link"]',                   '[role="option"]',
-                    '[role="button"]',             '[role="tab"]',            '[role="checkbox"]',               '[role="menuitem"]',
-                    '[role="menuitemcheckbox"]',   '[role="menuitemradio"]',  '[ng-click]',                      '[ngClick]',
-                    '[data-ng-click]',             '[x-ng-click]',            '[tabindex]:not([tabindex="-1"])'
-               ]
+#----------variables--------------#
+hint_all = [
+    'a',                           'area',                    'textarea',                        'select',
+    'input:not([type="hidden"])',  'button',                  'frame',                           'iframe',
+    'img',                         'link',                    'summary',                         '[contenteditable]:not([contenteditable="false"])',
+    '[onclick]',                   '[onmousedown]',           '[role="link"]',                   '[role="option"]',
+    '[role="button"]',             '[role="tab"]',            '[role="checkbox"]',               '[role="menuitem"]',
+    '[role="menuitemcheckbox"]',   '[role="menuitemradio"]',  '[ng-click]',                      '[ngClick]',
+    '[data-ng-click]',             '[x-ng-click]',            '[tabindex]:not([tabindex="-1"])'
+]
 hint_links   = [ 'a[href]', 'area[href]', 'link[href]', '[role="link"][href]' ]
 hint_images  = [ 'img' ]
 hint_media   = [ 'audio', 'img', 'video' ]
 hint_url     = [ '[src]', '[href]' ]
 hint_inputs  = [
-                 'input[type="text"]',   'input[type="date"]',                                'input[type="datetime-local"]',  'input[type="email"]',
-                 'input[type="month"]',  'input[type="number"]',                              'input[type="password"]',        'input[type="search"]',
-                 'input[type="tel"]',    'input[type="time"]',                                'input[type="url"]',             'input[type="week"]',
-                 'input:not([type])',    '[contenteditable]:not([contenteditable="false"])',  'textarea'
-               ]
+    'input[type="text"]'            ,
+    'input[type="month"]'           ,
+    'input[type="tel"]'             ,
+    'input[type="datetime-local"]'  ,
+    'input[type="password"]'        ,
+    'input[type="url"]'             ,
+    'input:not([type])'             ,
+    'input[type="date"]'            ,
+    'input[type="number"]'          ,
+    'input[type="time"]'            ,
+    'input[type="email"]'           ,
+    'input[type="search"]'          ,
+    'input[type="week"]'            ,
+    'textarea'                      ,
+    '[contenteditable]:not([contenteditable="false"])',
+]
+hint_selectors = {
+    'all':     hint_all,
+    'links':   hint_links,
+    'images':  hint_images,
+    'media':   hint_media,
+    'url':     hint_url,
+    'inputs':  hint_inputs,
+}
 my_start_page = "about:blank"
 
 adblock_list = []
@@ -248,82 +218,94 @@ adblock_list += ['https://easylist.to/easylist/easylist.txt'        ]
 adblock_list += ['https://easylist.to/easylist/easyprivacy.txt'     ]
 adblock_list += ['https://secure.fanboy.co.nz/fanboy-annoyance.txt' ]
 adblock_list += ['https://easylist.to/easylist/fanboy-social.txt'   ]
-#----------settings---------------#
+keybind_mappings = {
+    '<Ctrl-6>':        '<Ctrl-^>',
+    '<Ctrl-M>':        '<Return>',
+    '<Ctrl-J>':        '<Return>',
+    '<Shift-Return>':  '<Return>',
+    '<Enter>':         '<Return>',
+    '<Shift-Enter>':   '<Return>',
+    '<Ctrl-Enter>':    '<Ctrl-Return>'
+}
+aliases = {
+    'w': 'session-save',
+    'q': 'close',
+    'qa': 'quit',
+    'wq': 'quit --save',
+    'wqa': 'quit --save'
+}
+zoom_levels = [
+    '5%',    '10%',   '15%',   '25%',   '30%',   '35%',   '40%',   '45%',
+    '50%',   '55%',   '65%',   '75%',   '90%',   '100%',  '110%',  '125%',
+    '150%',  '175%',  '200%',  '250%',  '300%',  '400%',  '500%'
+]
 
+#----------settings---------------#
 c.new_instance_open_target = 'tab-silent'
 c.content.local_content_can_access_remote_urls = True
 c.content.javascript.log_message.excludes = {
     #"userscript:_qute_stylesheet": ["*Refused to apply inline style because it violates the following Content Security Policy directive: *"],
     #"userscript:_qute_js":         ["*TrustedHTML*"]
 }
-c.hints.selectors = {'all': hint_all, 'links': hint_links, 'images': hint_images, 'media': hint_media, 'url': hint_url, 'inputs': hint_inputs}
+c.hints.selectors = hint_selectors
 c.history_gap_interval = -1
 c.window.hide_decoration = False
-c.aliases = {
-               'w': 'session-save',
-               'q': 'close',
-               'qa': 'quit',
-               'wq': 'quit --save',
-               'wqa': 'quit --save'
-            }
-c.bindings.key_mappings = {
-                            '<Ctrl-6>':        '<Ctrl-^>',
-                            '<Ctrl-M>':        '<Return>',
-                            '<Ctrl-J>':        '<Return>',
-                            '<Shift-Return>':  '<Return>',
-                            '<Enter>':         '<Return>',
-                            '<Shift-Enter>':   '<Return>',
-                            '<Ctrl-Enter>':    '<Ctrl-Return>'
-                          }
-c.statusbar.widgets                 = ['keypress', 'url', 'scroll', 'history', 'tabs', 'progress']
-c.tabs.indicator.padding            = {'top': 0, 'bottom': 0, 'left': 0, 'right': 9}
-c.zoom.levels                       = ['5%', '10%', '15%', '25%', '30%', '35%', '40%', '45%', '50%', '67%', '75%', '90%', '100%', '110%', '125%', '150%', '175%', '200%', '250%', '300%', '400%', '500%']
-c.content.blocking.adblock.lists    =  adblock_list
-c.url.start_pages                   = [ my_start_page, ]
-c.url.default_page                  =  my_start_page
-c.content.headers.user_agent        = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
-c.content.headers.accept_language   = 'en-US,en;q=0.9'
+c.aliases = aliases
+c.bindings.key_mappings = keybind_mappings
+c.auto_save.interval                            =   500
+c.auto_save.session                             =   True
+c.completion.use_best_match                     =   True
+c.content.blocking.adblock.lists                =   adblock_list
+c.content.blocking.enabled                      =   True
+c.content.blocking.hosts.block_subdomains       =   True
+c.content.blocking.method                       =   'both'
+c.content.cookies.accept                        =   'no-3rdparty'
+c.content.cookies.store                         =   True
+c.content.dns_prefetch                          =   True
+c.content.geolocation                           =   False
+c.content.headers.accept_language               =   'en-US,en;q=0.9'
+c.content.headers.user_agent                    =   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
+c.content.javascript.enabled                    =   True
+c.content.pdfjs                                 =   True
+c.content.site_specific_quirks.enabled          =   True
+c.downloads.location.suggestion                 =   'both'
+c.downloads.remove_finished                     =   -1
+c.messages.timeout                              =   0
+c.qt.workarounds.disable_accelerated_2d_canvas  =   'always'
+c.scrolling.smooth                              =   False
+c.search.ignore_case                            =   'smart'
+c.search.incremental                            =   True
+c.search.wrap                                   =   True
+c.session.default_name                          =   "Default"
+c.session.lazy_restore                          =   True
+c.statusbar.widgets                             =   ['keypress', 'url', 'scroll', 'history', 'tabs', 'progress']
+c.url.default_page                              =   my_start_page
+c.url.start_pages                               =   [ my_start_page, ]
+c.zoom.default                                  =   '75%'
+c.zoom.levels                                   =   zoom_levels
+c.zoom.mouse_divider                            =   512
+c.zoom.text_only                                =   False
 
-c.auto_save.interval                        =  500
-c.auto_save.session                         =  True
-c.content.blocking.enabled                  =  True
-c.content.blocking.hosts.block_subdomains   =  True
-c.content.blocking.method                   =  'both'
-c.content.cookies.accept                    =  'no-3rdparty'
-c.content.cookies.store                     =  True
-c.content.dns_prefetch                      =  True
-c.content.geolocation                       =  False
-c.messages.timeout                          =  0
-c.scrolling.smooth                          =  False
-c.search.ignore_case                        =  'smart'
-c.search.incremental                        =  True
-c.search.wrap                               =  True
-c.session.default_name                      =  "Default"
-c.session.lazy_restore                      =  True
+#----------tab-settings-----------#
+c.tabs.indicator.padding            = {'top': 0, 'bottom': 0, 'left': 0, 'right': 9}
 c.tabs.focus_stack_size                     =  100
 c.tabs.indicator.width                      =  1
 c.tabs.title.format                         =  '{audio}{current_title}'
 c.tabs.undo_stack_size                      =  -1
 c.tabs.width                                =  '15%'
-c.zoom.default                              =  '90%'
-c.zoom.mouse_divider                        =  512
-c.zoom.text_only                            =  False
-c.content.javascript.enabled                =  True
-c.content.pdfjs                             =  True
-c.content.site_specific_quirks.enabled      =  True
-c.downloads.location.suggestion             =  'both'
-c.fileselect.folder.command                 =  ['xterm', '-e', 'ranger', '--choosedir={}']
-c.completion.use_best_match                 =  True
-c.qt.workarounds.disable_accelerated_2d_canvas = 'always'
 c.tabs.show = "multiple"
 
+#----------external-commands------#
+c.fileselect.folder.command =  ['st', '-e', 'ranger', '--choosedir={}']
+c.editor.command = ['st', '-e', 'nvim', '-f', '{file}', '-c', 'normal {line}G{column0}l']
+c.editor.encoding = 'utf-8'
+c.editor.remove_file = True
 
-#----------permissions-------------#
+#----------permissions------------#
 c.content.media.audio_capture        =  False
 c.content.media.audio_video_capture  =  False
 c.content.media.video_capture        =  False
 c.content.notifications.enabled      =  False
-
 
 #----------regular_binding--------#
 config.bind('<Ctrl-1>',                 'tab-focus 1')
@@ -369,7 +351,8 @@ config.bind(';r',                       'hint --rapid links tab-bg')
 config.bind(';h',                       'hint all hover')
 config.bind(';y',                       'hint links yank')
 
-#-------------------TAB-BAR-TOGGLE---------------------------------------#
+
+#----------TAB-BAR-TOGGLE---------#
 config.bind(';Tn',                      'set tabs.show "never"')
 config.bind(';Tm',                      'set tabs.show "multiple"')
 config.bind(';Ta',                      'set tabs.show "always"')
@@ -402,7 +385,8 @@ config.bind('wIk',                      'devtools top')
 config.bind('wIl',                      'devtools right')
 config.bind('wIw',                      'devtools window')
 
-#----------command_binding---------#
+
+#----------command_binding--------#
 config.bind('<Ctrl-p>',                 'completion-item-focus prev',           mode='command')
 config.bind('<Ctrl-n>',                 'completion-item-focus next',           mode='command')
 config.bind('<Ctrl-[>',                 'command-history-next',                 mode='command')
@@ -410,9 +394,58 @@ config.bind('<Ctrl-]>',                 'command-history-prev',                 
 config.bind('<Shift-Tab>',              'completion-item-focus prev',           mode='command')
 config.bind('<Tab>',                    'completion-item-focus next',           mode='command')
 config.bind('<Up>',                     'completion-item-focus --history prev', mode='command')
-#----------insert__binding---------#
+
+#----------insert__binding--------#
 config.bind('<Ctrl-i>',                 'open -- {clipboard}',                  mode='insert')
-#----------passthrough_binding-----#
+#----------passthrough_binding----#
 config.bind('<Shift-Escape>',           'mode-leave', mode='passthrough')
 #------------------END--------------------#
 
+#############################################################################################################################
+#############################################################################################################################
+#############################################################################################################################
+#############################################################################################################################
+
+##  This only has an effect when `colors.webpage.darkmode.algorithm` is set to `lightness-hsl` `brightness-rgb`. Type: Float
+#c.colors.webpage.darkmode.contrast = 0.0
+#
+##################################################### - always, aever, amart
+##c.colors.webpage.darkmode.policy.images = 'never'
+#
+### Render all colors as grayscale. Only works when `c..darkmode.algorithm` is set to `lightness-hsl` `brightness-rgb` ## Type: Bool
+#c.colors.webpage.darkmode.grayscale.all = False
+#
+### Desaturation factor for images in dark mode. If set to 0, images are left as-is. If set to 1, images are completely grayscale. Values ## Type: Float
+#c.colors.webpage.darkmode.grayscale.images = 0.0
+#
+### Which pages to apply dark mode to. The underlying Chromium setting has
+### been removed in QtWebEngine 5.15.3, thus this setting is ignored
+### there. Instead, every element is now classified individually.
+### Type: String
+### Valid values:
+###   - always: Apply dark mode filter to all frames, regardless of content.
+###   - smart: Apply dark mode filter to frames based on background color.
+#c.colors.webpage.darkmode.policy.page = 'smart'
+#
+### Threshold for inverting background elements with dark mode. Background
+### elements with brightness above this threshold will be inverted, and
+### below it will be left as in the original, non-dark-mode page. Set to
+### 256 to never invert the color or to 0 to always invert it. Note: This
+### behavior is the opposite of `colors.webpage.darkmode.threshold.text`!
+### Type: Int
+#c.colors.webpage.darkmode.threshold.background = 256
+### Threshold for inverting text with dark mode. Text colors with
+### brightness below this threshold will be inverted, and above it will be
+### left as in the original, non-dark-mode page. Set to 256 to always
+### invert text color or to 0 to never invert text color.
+### Type: Int
+#c.colors.webpage.darkmode.threshold.text = 256
+## lightness-cielab: Modify colors by converting them to CIELAB color space and inverting the L value. Not available with Qt < 5.14.
+## lightness-hsl: Modify colors by converting them to the HSL color space and inverting the lightness (i.e. the "L" in HSL).
+## brightness-rgb: Modify colors by subtracting each of r, g, and b from their maximum value.
+
+## Color gradient end for the tab indicator ## Type: QtColor
+## Background color of the tab bar ## Type: QssColor
+## Color gradient inerpolation system for the tab indicator.
+## rgb, hsv, hsl, none ##Type: ColorSystem
+#c.colors.webpage.darkmode.policy.page = 'always'

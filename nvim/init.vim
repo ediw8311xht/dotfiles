@@ -30,6 +30,7 @@ filetype on
 filetype plugin on
 filetype plugin indent on
 syntax on
+set autoread
 set autoindent
 set backup
 set clipboard=unnamedplus
@@ -102,7 +103,7 @@ let g:is_bash       = 1
 colorscheme pop-punk
 :call CorrectColors()
 
-source ${HOME}/.config/nvim/c_lnn.vim
+source ${HOME}/.config/nvim/c_leader_bindings.vim
 source ${HOME}/.config/nvim/c_etc_bindings.vim
 source ${HOME}/.config/nvim/coc_bindings.vim
 
