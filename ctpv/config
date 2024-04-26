@@ -17,7 +17,7 @@ preview mygzip .gz {{
     zcat "${f}"
 }}
 
-preview pygm .log .md {{
+preview pygm .log {{
     pygmentize "${f}"
 }}
 

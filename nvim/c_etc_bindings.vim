@@ -37,9 +37,9 @@ let g:bindings_inoremap=[
     \[ '<C-e>',    '<esc>A'                     ],
     \[ '<C-f>',    '<right>'                    ],
     \[ '<C-\>',    '<esc>ui'                    ],
-    \[ '<C-v>',    '<esc><C-r>i'                ],
     \[ '<C-K>',    '<esc>lC'                    ],
 \]
+    "\[ '<C-v>',    '<esc><C-r>i'                ],
 let g:bindings_tmap=[
     \[ '<C-w>',    '<C-\><C-n>'             ],
 \]
