@@ -82,7 +82,7 @@ set cedit=\<C-c>
 set statusline=\ [%n]\ 
 set statusline+=\ %F\ 
 set statusline+=%m\ 
-set statusline+=%=\(%l\/%L\)\ (%v\)\ 
+set statusline+=%=\(\ %l\/%L\ \)\ (%v\)\ 
 set statusline+=%{wordcount().words}\ w\ 
 
 let g:coc_start_at_startup = v:true

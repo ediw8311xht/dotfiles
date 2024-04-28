@@ -3,25 +3,25 @@
 !xterm*font: xft:Agave:style=Medium:size=11:antialias=false:autohint=false
 
 !!!!!!!!!!!!!!!!!!!!!!!!! -----------------_FONTS
-*.alpha:	    1
+*.alpha:	    0.85
 *.borderpx:     10px
 
 !!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTSHH
-!*.font: 	    Agave:style=Thin:size=11:antialias=false:autohint=false
-!*.font: 	    InputMono:size=9:antialias=true:autohint=true
+*.font: 	    Agave:style=Medium:size=11:antialias=false:autohint=false
+!*.font: 	    MononokiNerdFontMono:style=Medium:pixelsize=12:antialias=true:autohint=true
+!*.font: 	    InputMono:style=Medium:size=7:antialias=true:autohint=true
 !*.font: 	    BriemAkademiMono:style=Regular:size=11:antialias=false:autohint=false
 !*.font: 	    CopperplateGothicStd:style=Regular:size=11:antialias=false:autohint=false
 !*.font: 	    Agave:style=Regular:size=11:antialias=false:autohint=false
 !*.font: 	    FiraCode:style=Medium:pixelsize=12:antialias=true:autohint=false
-*.font: 	    IosevkaTerm:style=Medium:pixelsize=12:antialias=true:autohint=true
+!*.font: 	    IosevkaTerm:style=Medium:pixelsize=12:antialias=true:autohint=true
 !*.font: 	    IosevkaCustom:style=Regular:pixelsize=12:antialias=false:autohint=false
-!*.font: 	    MononokiNerdFontMono:style=Medium:pixelsize=15:antialias=true:autohint=true
 !*.font: 	    3270NarrowNerdFont:style=Medium:size=12
 !*.font: 	    Consolas:size=11:antialias=true:autohint=true
 !*.font:        TerminessTTF Nerd Font Mono:size=12:style=Medium:autohint=true:antialias=true
 !*.font: 	    Hack:style=Medium:pixelsize=14:antialias=true:autohint=true
 !*.font: 	    Hermit:pixelsize=12:antialias=true:autohint=true
-!*.font: 	    Courier:style=Medium:size=12:antialias=false
+!*.font: 	    Courier:style=Medium:size=10:antialias=false
 !*.font: 	    FantasqueSansMono:style=Regular:pixelsize=14:autohint=true:antialias=true
 !!!!!!!IBM 3270, Agave, SarasaMonoSlab, Iosevka Custom, Hack, Hermit, Menlo, Fira Code, Input Mono
 !!!!!!!!!!!!!!!!!!!!!!!!!----------------DEFAULT
@@ -29,24 +29,24 @@
 !!!.color:        #FFFFFF
 
 emacs.font: 	Agave:style=Regular:size=15:antialias=true:autohint=false
-*.foreground:   #FFFFFF
-*.background:   #000000
+*.foreground:   #FFF
+*.background:   #000
 ! black
-*.color0:       #000000
+*.color0:       #000
 *.color8:       #2a495d
 ! red
 !*.color1:       #f12f2c
-*.color1:       #FF0000
+*.color1:       #F00
 *.color9:       #d700ff
 ! green
-*.color2:       #00FF00
-*.color10:      #00DD33
+*.color2:       #0F0
+*.color10:      #0D3
 ! yellow
 *.color3:       #e0c500
 *.color11:      #f9c400
 ! blue
-*.color4:       #00A0FF
-*.color12:      #0090FF
+*.color4:       #0AF
+*.color12:      #09F
 ! magenta
 *.color5:       #898edf
 *.color13:      #a0a6f8
@@ -54,10 +54,11 @@ emacs.font: 	Agave:style=Regular:size=15:antialias=true:autohint=false
 *.color6:       #58ccc3
 *.color14:      #63f5ea
 ! white
-*.color7:       #DDDDDD
-*.color15:      #777777
+*.color7:       #DDD
+*.color15:      #777
+*.color16:      #FFF
 !
-*.color48:      #FFFFFF
+*.color48:      #FFF
 !!------------------------*.color4:       #2587cc
 !!!!!!!!!!!!!!!!!!!!!!!----------------SPECIAL------(FLOAT)--FROM:-[http://dotshare.it/dots/136/]H
 !!special_float*alpha:	        1
@@ -71,10 +72,10 @@ emacs.font: 	Agave:style=Regular:size=15:antialias=true:autohint=false
 !! Cyberpunk Neon: https://github.com/Roboron3042/Cyberpunk-Neon                   !!
 !! Author: Theo (theo-grivel)                                                      !!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-special_float*font: 	    Iosevka:style=Regular:pixelsize=14:autohint=true:antialias=true
+special_float*font: 	    Iosevka:style=Regular:pixelsize=12:autohint=true:antialias=true
 
-special_float*alpha:	            0.95
-special_float*background:           #111111
+special_float*alpha:	            0.90
+special_float*background:           #000
 !special_float*foreground:           #0abdc6
 !!.# Black, Gray, Silver, White
 !special_float*color0:               #000b1e
