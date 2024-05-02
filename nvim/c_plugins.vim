@@ -13,7 +13,7 @@ call plug#begin()
     Plug 'andymass/vim-matchup'
 
 " Aligning text                     #
-    Plug 'godlygeek/tabular'
+    "Plug 'godlygeek/tabular'
 
 " Autoclose HTML tags               #
 " Plug 'alvan/vim-closetag'         #

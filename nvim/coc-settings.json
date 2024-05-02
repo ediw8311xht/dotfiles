@@ -7,6 +7,11 @@
     "codeLens.enable": true,
     "elixir.pathToElixirLS": "/usr/bin/elixir-ls",
 
+    "html.format.indentInnerHtml": true,
+    "html.hover.references": true,
+    "html.hover.documentation": true,
+    "html.suggest.html5": true,
+
     "languageserver": {
         "java": {
             "command": "ccls",

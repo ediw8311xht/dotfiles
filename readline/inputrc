@@ -14,6 +14,7 @@ set mark-modified-lines off
 #set visible-stats on
 set completion-map-case on
 set completion-query-items 300
+set keymap vi
 set editing-mode vi
 set keyseq-timeout 10
 
@@ -26,9 +27,14 @@ $else
 	set vi-cmd-mode-string \1\e[2 q\2
 $endif
 
+$if mode=vi
+    set keymap vi-command
+$endif
+
 ################################################################################
 $if mode=emacs
 # for linux console and RH/Debian xterm
+    set keymap emacs
     "\e[1~": beginning-of-line
     "\e[4~": end-of-line
     "\e[5~": beginning-of-history

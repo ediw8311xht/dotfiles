@@ -7,7 +7,7 @@
 *.borderpx:     10px
 
 !!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTSHH
-*.font: 	    Agave:style=Medium:size=11:antialias=false:autohint=false
+!*.font: 	    Agave:style=Medium:size=11:antialias=false:autohint=false
 !*.font: 	    MononokiNerdFontMono:style=Medium:pixelsize=12:antialias=true:autohint=true
 !*.font: 	    InputMono:style=Medium:size=7:antialias=true:autohint=true
 !*.font: 	    BriemAkademiMono:style=Regular:size=11:antialias=false:autohint=false
@@ -18,11 +18,12 @@
 !*.font: 	    IosevkaCustom:style=Regular:pixelsize=12:antialias=false:autohint=false
 !*.font: 	    3270NarrowNerdFont:style=Medium:size=12
 !*.font: 	    Consolas:size=11:antialias=true:autohint=true
-!*.font:        TerminessTTF Nerd Font Mono:size=12:style=Medium:autohint=true:antialias=true
+!*.font:        TerminessTTF Nerd Font Mono:style=Medium:size=10:autohint=false:antialias=false
+!*.font:        Lekton Nerd Font Mono:style=Medium:size=10:autohint=false:antialias=false
 !*.font: 	    Hack:style=Medium:pixelsize=14:antialias=true:autohint=true
 !*.font: 	    Hermit:pixelsize=12:antialias=true:autohint=true
 !*.font: 	    Courier:style=Medium:size=10:antialias=false
-!*.font: 	    FantasqueSansMono:style=Regular:pixelsize=14:autohint=true:antialias=true
+*.font: 	    FantasqueSansMono:style=Regular:pixelsize=14:autohint=true:antialias=true
 !!!!!!!IBM 3270, Agave, SarasaMonoSlab, Iosevka Custom, Hack, Hermit, Menlo, Fira Code, Input Mono
 !!!!!!!!!!!!!!!!!!!!!!!!!----------------DEFAULT
 !*.font: 	    ShareTechMono:pixelsize=12:style=Regular:autohint=true:antialias=true
@@ -74,8 +75,8 @@ emacs.font: 	Agave:style=Regular:size=15:antialias=true:autohint=false
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 special_float*font: 	    Iosevka:style=Regular:pixelsize=12:autohint=true:antialias=true
 
-special_float*alpha:	            0.90
-special_float*background:           #000
+special_float*alpha:	            1
+special_float*background:           #00091F
 !special_float*foreground:           #0abdc6
 !!.# Black, Gray, Silver, White
 !special_float*color0:               #000b1e
@@ -286,7 +287,13 @@ i3wm.R_GAPS:     0
 i3wm.L_GAPS:     0
 
 
-!!nsxiv.window.background: #FFFFFF
+!---------------NSXIV---------------!
+*.window.background: #000000
+*.window.foreground: #AAAAAA
+*.bar.background:    #0077DD
+*.bar.foreground:    #000000
+*.bar.font: IosevkaTerm:style=Medium:pixelsize=12:antialias=true:autohint=true
+
 i3wm.other_monitor_1: DisplayPort-0
 i3wm.primary_monitor: HDMI-A-0
 i3wm.other_monitor_2: DVI-D-0

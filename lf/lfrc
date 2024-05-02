@@ -63,7 +63,7 @@ cmd trash ${{
 
 cmd autocd ${{
     echo "${PWD}" > "$(mktemp /tmp/tmplf.XXXXXXXX)"
-    lf -remote "send $id quit"
+    lf -remote "send ${id} quit" 2>/dev/null
 }}
 
 cmd toggle_info ${{
