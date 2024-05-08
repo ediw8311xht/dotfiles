@@ -93,6 +93,7 @@ text/x-c++src=nvim.desktop
 text/x-csrc=nvim.desktop
 text/x-dsrc=nvim.desktop
 text/x-elixir=nvim.desktop
+text/x-go=nvim.desktop
 text/x-google-video-pointer=nvim.desktop
 text/x-java=nvim.desktop
 text/x-javascript=nvim.desktop

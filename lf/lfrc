@@ -37,6 +37,10 @@ cmd rep &{{
 	i="$1"; while [[ $((i--)) -gt 0 ]] ; do lf -remote "send $id ${2}"; done
 }}
 
+cmd open_editor &{{
+    lf -remote "send $id \$$EDITOR \$fx"
+}}
+
 cmd open &{{
     for i in ${fx[@]} ; do
         zz="$(xdg-mime query default "$(mimetype -Lb "${i}")")"
@@ -74,12 +78,15 @@ cmd toggle_info ${{
     fi
 }}
 
+map bB      &$BROWSER $fx
+map bQ      &qutebrowser $fx
+
 map C 		:quit
 map Q 		&lf -remote 'send quit'; lf -remote 'quit'
 #-----------OPEN IN NEW WINDOW------------------------------#
-map o 		&mimeopen "${f}" 2>/dev/null
+map o 		&mimeopen $fx
 #-----------ASK AND THEN OPEN IN NEW WINDOW-----------------#
-map O 		$mimeopen --ask "${f}" 2>/dev/null
+map O 		$mimeopen --ask $fx
 map m       push :!mkdir<space>
 
 # - CD -
@@ -101,6 +108,7 @@ map  <gt>p  cd  ~/Pictures/
 map  <gt>v  cd  ~/Videos/
 
 map e           np
+map E           :open_editor
 map <lt>p       set preview!
 map <lt><lt>    set ratios 2:3:5
 map <lt>0       set ratios 1:2:3
@@ -117,7 +125,7 @@ map <lt>9       set ratios 1:9
 map <esc>       clear
 map <enter>     shell
 map I           :toggle_info "size:atime"
-map H		    set hidden!
+map <c-h>		set hidden!
 map d  	  	    set dironly!
 map r 		    set reverse!
 map U           :unselect; clear
