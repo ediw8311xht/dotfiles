@@ -11,7 +11,6 @@ let g:bindings_l_noremap = [
 
 let g:bindings_l_nnoremap = [
     \[ '<leader>' , '<C-^>' ],
-    \[ ';'   ,    ':ls<CR>:b<Space>'                                                                                                                                ],
     \[ ']'   ,    ':bnext<CR>:noh<esc><C-L>'                                                                                                                        ],
     \[ '['   ,    ':bprevious<CR>:noh<esc><C-L>'                                                                                                                    ],
     \[ ','   ,    '<C-^>'                                                                                                                                           ],
@@ -67,6 +66,7 @@ let g:bindings_l_nnoremap = [
     \[ 'ZC'  ,    ':bd<esc>'                                                                                                                                        ],
     \[ 'z'   ,    'z'                                                                                                                                               ],
 \]
+"\[ ';'   ,    ':ls<CR>:b<Space>'                                                                                                                                ],
 
 let g:bindings_l_vnoremap = [
     \[ 'm'   ,    ':!bc<esc>'            ],

@@ -7,6 +7,7 @@ let g:bindings_map=[
 \]
 let g:bindings_noremap=[
     \[ 'x',        '"xx'                        ],
+    \[ ',;',       ','                          ],
 \]
 let g:bindings_vnoremap=[
     \[ 'im',       ':s/\%V[ \t]*//<esc>'        ],

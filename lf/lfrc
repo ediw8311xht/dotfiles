@@ -125,7 +125,7 @@ map <lt>9       set ratios 1:9
 map <esc>       clear
 map <enter>     shell
 map I           :toggle_info "size:atime"
-map <c-h>		set hidden!
+map H		    set hidden!
 map d  	  	    set dironly!
 map r 		    set reverse!
 map U           :unselect; clear
