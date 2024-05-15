@@ -3,7 +3,7 @@
 !xterm*font: xft:Agave:style=Medium:size=11:antialias=false:autohint=false
 
 !!!!!!!!!!!!!!!!!!!!!!!!! -----------------_FONTS
-*.alpha:	    0.85
+*.alpha:	    0.95
 *.borderpx:     10px
 
 !!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTSHH
@@ -295,6 +295,6 @@ i3wm.L_GAPS:     0
 *.bar.foreground:    #000000
 *.bar.font: IosevkaTerm:style=Medium:pixelsize=12:antialias=true:autohint=true
 
-i3wm.other_monitor_1: DisplayPort-0
-i3wm.primary_monitor: HDMI-A-0
-i3wm.other_monitor_2: DVI-D-0
+i3wm.other_monitor_1: HDMI-2
+i3wm.primary_monitor: DP-1
+i3wm.other_monitor_2: HDMI-3

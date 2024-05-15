@@ -1,4 +1,4 @@
-#!/bin/bash/elixir
+#!/bin/elixir
 
 defmodule Placeholder do
     def main() do
