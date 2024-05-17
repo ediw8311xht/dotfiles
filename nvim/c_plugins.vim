@@ -5,9 +5,9 @@ call plug#begin()
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Treesitter                        #
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Treesitter, extra stuff           #
-    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+    "Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 " Show-all-matching-tags-vim        #
     Plug 'andymass/vim-matchup'
