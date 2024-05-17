@@ -77,7 +77,7 @@ emacs.font: 	Agave:style=Regular:size=15:antialias=true:autohint=false
 !special_float*font: 	    Iosevka:style=Regular:pixelsize=12:autohint=true:antialias=true
 
 special_float*alpha:	            1
-special_float*background:           #00091F
+special_float*background:           #050505
 !special_float*foreground:           #0abdc6
 !!.# Black, Gray, Silver, White
 !special_float*color0:               #000b1e
