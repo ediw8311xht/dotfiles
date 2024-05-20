@@ -1,3 +1,104 @@
+
+local  lspconfig         =  require('lspconfig')
+local  cmp_capabilities  =  require('cmp_nvim_lsp').default_capabilities()
+local  luasnip           =  require('luasnip')
+local  cmp               =  require('cmp')
+
+require'lspconfig'.elixirls.setup{
+  credo = { enable = false },
+  cmd = { "/usr/lib/elixir-ls/language_server.sh" },
+  -- on_attach = custom_attach, -- this may be required for extended functionalities of the LSP
+  capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  elixirLS = {
+      dialyzerEnabled = true,
+      fetchDeps = false,
+      enableTestLenses = true,
+      suggestSpecs = true,
+  };
+}
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.pyright.setup{}
+require'marks'.setup {
+    -- whether to map keybinds or not. default true
+    default_mappings = true,
+    -- which builtin marks to show. default {}
+    builtin_marks = { ".", "<", ">", "^" },
+    -- whether movements cycle back to the beginning/end of buffer. default true
+    cyclic = true,
+    -- whether the shada file is updated after modifying uppercase marks. default false
+    force_write_shada = false,
+    -- how often (in ms) to redraw signs/recompute mark positions.
+    -- higher values will have better performance but may cause visual lag,
+    -- while lower values may cause performance penalties. default 150.
+    refresh_interval = 450,
+    -- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
+    -- marks, and bookmarks.
+    -- can be either a table with all/none of the keys, or a single number, in which case
+    -- the priority applies to all marks.
+    -- default 10.
+    sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
+    -- disables mark tracking for specific filetypes. default {}
+    excluded_filetypes = {},
+    -- marks.nvim allows you to configure up to 10 bookmark groups, each with its own
+    -- sign/virttext. Bookmarks can be used to group together positions and quickly move
+    -- across multiple buffers. default sign is '!@#$%^&*()' (from 0 to 9), and
+    -- default virt_text is "".
+    bookmark_0 = {
+    sign = "⚑",
+    virt_text = "hello world",
+    -- explicitly prompt for a virtual line annotation when setting a bookmark from this group.
+    -- defaults to false.
+    annotate = false,
+    },
+    mappings = {}
+}
+vim.opt.updatetime = 400
+-- nvim-cmp
+
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+  mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+    ['<Tab>'] = function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end,
+    ['<S-Tab>'] = function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end,
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  },
+}
 -- require'nvim-treesitter.configs'.setup {
 --   -- A list of parser names, or "all" (the five listed parsers should always be installed)
 --   ensure_installed = { "json", "elixir", "c", "lua", "vim", "vimdoc", "query" },
@@ -39,41 +140,6 @@
 --     additional_vim_regex_highlighting = false,
 --   },
 -- }
-require'marks'.setup {
-    -- whether to map keybinds or not. default true
-    default_mappings = true,
-    -- which builtin marks to show. default {}
-    builtin_marks = { ".", "<", ">", "^" },
-    -- whether movements cycle back to the beginning/end of buffer. default true
-    cyclic = true,
-    -- whether the shada file is updated after modifying uppercase marks. default false
-    force_write_shada = false,
-    -- how often (in ms) to redraw signs/recompute mark positions.
-    -- higher values will have better performance but may cause visual lag,
-    -- while lower values may cause performance penalties. default 150.
-    refresh_interval = 450,
-    -- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
-    -- marks, and bookmarks.
-    -- can be either a table with all/none of the keys, or a single number, in which case
-    -- the priority applies to all marks.
-    -- default 10.
-    sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
-    -- disables mark tracking for specific filetypes. default {}
-    excluded_filetypes = {},
-    -- marks.nvim allows you to configure up to 10 bookmark groups, each with its own
-    -- sign/virttext. Bookmarks can be used to group together positions and quickly move
-    -- across multiple buffers. default sign is '!@#$%^&*()' (from 0 to 9), and
-    -- default virt_text is "".
-    bookmark_0 = {
-    sign = "⚑",
-    virt_text = "hello world",
-    -- explicitly prompt for a virtual line annotation when setting a bookmark from this group.
-    -- defaults to false.
-    annotate = false,
-    },
-    mappings = {}
-}
-vim.opt.updatetime = 400
 -- require('nvls').setup({
 --     lilypond = {
 --         mappings = {

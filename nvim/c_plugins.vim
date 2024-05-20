@@ -1,13 +1,17 @@
 
 "<--------- PLUGINS -------------------------------------------------------->
 call plug#begin()
-" Language Servers. Use release branch (recommend) #
-    "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 " Treesitter                        #
     "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Treesitter, extra stuff           #
     "Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+
+" LSP-config                        #
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'saadparwaiz1/cmp_luasnip'
+    Plug 'L3MON4D3/LuaSnip'
 
 " Show-all-matching-tags-vim        #
     Plug 'andymass/vim-matchup'
@@ -20,11 +24,8 @@ call plug#begin()
 
 " Autorename HTML tags #            #
     Plug 'AndrewRadev/tagalong.vim'
-    Plug 'neovim/nvim-lspconfig'
-
-" Extra Syntax                      #
-    Plug 'VebbNix/lf-vim'
-    Plug 'PotatoesMaster/i3-vim-syntax'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'elixir-tools/elixir-tools.nvim'
 
 " Auto-save-restore-view :) --best plugin #
     Plug 'https://github.com/vim-scripts/restore_view.vim'
@@ -47,15 +48,19 @@ call plug#begin()
 " Semantic Highlighting for Python  #
     Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 
-" For lf.vim                        #
+" For using lf in nvim              #
     Plug 'voldikss/vim-floaterm'
     Plug 'ptzz/lf.vim'
 
-" Elixir                            #
+" Syntax Highlighting, Detection Elixir #
     Plug 'elixir-editors/vim-elixir'
 
-" colorscheme tokyonight            #
+" Colorscheme                       #
     Plug 'folke/tokyonight.nvim'
+
+" Extra Syntax                      #
+    Plug 'VebbNix/lf-vim'
+    Plug 'PotatoesMaster/i3-vim-syntax'
 
 call plug#end()
 
