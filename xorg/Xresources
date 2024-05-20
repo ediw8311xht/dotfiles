@@ -256,17 +256,18 @@ Xft.rgba:       rgb
 Xft.font: *font: -*-inputmono-*-r-*-*-17-*-*-*-*-*-*-*
 
 xfontsel*font: -*-inputmono-*-r-*-*-17-*-*-*-*-*-*-*
-Xmessage*message.Scroll:    Never
-Xmessage*message.Border:    0
+Xmessage*message*Scroll:    Never
+Xmessage*message*Border:    0
 Xmessage*background:        #008fF8
 Xmessage*foreground:        #000000
-Xmessage*geometry:          +20+20
-Xmessage*.*bw:              20
+Xmessage*geometry:          +40+40
+Xmessage*.*bw:              0
 Xmessage*renderFont:        true
 !Xmessage*faceName:          xos4Terminus
 Xmessage*faceSize:          20
-Xmessage*font:              -*-clean-*-*-*-*-45-*-*-*-*-*-*-*
+Xmessage*font:              -*-inputmono-*-r-*-*-25-*-*-*-*-*-*-*
 Xmessage*Buttons:
+!Xmessage*font*Button:      -*-clean-*-*-*-*-25-*-*-*-*-*-*-*
 !!!!!!!!!!!!!!!!!!!!!!!----------------Zutty-----------!!!!!!!!!!!!!!!!!!!!!!!
 Zutty.fontsize:             18
 Zutty.font:                 Agave-Regular-Slashed

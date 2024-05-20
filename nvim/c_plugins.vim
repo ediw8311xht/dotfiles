@@ -2,7 +2,7 @@
 "<--------- PLUGINS -------------------------------------------------------->
 call plug#begin()
 " Language Servers. Use release branch (recommend) #
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Treesitter                        #
     "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -20,6 +20,7 @@ call plug#begin()
 
 " Autorename HTML tags #            #
     Plug 'AndrewRadev/tagalong.vim'
+    Plug 'neovim/nvim-lspconfig'
 
 " Extra Syntax                      #
     Plug 'VebbNix/lf-vim'

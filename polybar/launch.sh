@@ -1,49 +1,37 @@
 #!/bin/bash
 
 #---------------DON'T-------USE
-function handle_args() {
-    while [[ -n "${1}" ]] ; do
-        [[ "${1}" =~ -c=.* ]]           \
-            && insert_config="${1}"     \
-            || MONS+=("$(monitor_getter "${1}")")
-        shift 1
-    done
-}
-#---------------DON'T-------USE
 
-function real_kill() {
+real_kill() {
     local i
     while [[ $((++i)) -le 10 ]] ; do
-        killall --quiet "${1}" || break
+        killall --quiet "${1}" || return 0
     done
+    xmsg_quick.sh -b "okay" "polybar/launch.sh: Couldn't kill polybar" & disown
+    exit 1
 }
 
-function monitor_getter() {
-    START='^[ \t]*[0-9]+[:][ \t]*[+]'
-    MIDDLE='.*[ ]\K'
-    END='[^ \t]+(?=[ \t]*)$'
-    if   [[ "${1,,}" =  'primary'   ]] ; then MIDDLE='[*].*[ ]\K'
-    elif [[ "${1,,}" =  'secondary' ]] ; then MIDDLE='[^*].*[ ]\K'
-    elif [[ "${1,,}" != 'all'       ]] ; then END='[^ \t]*('"${*}"')[^ \t]*'
-    fi
-    grep -PZo "${START}${MIDDLE}${END}" <<< "$(xrandr --listmonitors)"
+xrec_get() {
+    xrdb -get "${1}"
 }
 
 
-function launch_main() {
-    mapfile -t MONS < <(monitor_getter "${@:-all}")
-    insert_config=''
+launch_main() {
+    local PRIMARY=''
+    local OTHER=''
+    local i='1'
 
     real_kill 'polybar'
-    #handle_args "${@}"
 
-    for item in "${MONS[@]}"
-    do
-        if [[ -f "${insert_config}" ]] ; then
-            MONITOR="${item}" polybar "${insert_config}" --reload basicbar & disown
-        else
-            MONITOR="${item}" polybar --reload basicbar & disown
-        fi
+    PRIMARY="$(xrec_get 'i3wm.primary_monitor')"
+
+    if [[ -n "${PRIMARY}" ]] ; then
+        MONITOR="${PRIMARY}" polybar --reload primarybar & disown
+    fi
+
+    while OTHER="$(xrec_get "i3wm.other_monitor_${i}")" && [[ -n "${OTHER}" ]] ; do
+        MONITOR="${OTHER}" polybar --reload secondarybar & disown
+        ((i++))
     done
 }
 
