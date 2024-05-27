@@ -1,5 +1,0 @@
-configuration {
-    modi: "window,drun,run,filebrowser";
-    element-icon { size: 2.65ch; }
-}
-@theme "/usr/share/rofi/themes/Monokai.rasi"
