@@ -117,8 +117,11 @@ bash_history_grab() {
         grep -Pi "${1}" "${HISTFILE}"
     fi
 }
-function rg_with_p() {
-    rg "${@}" | $PAGER
+stream_ytdl_mpv() {
+    yt-dlp "${1}" -o - | mpv --input-ipc-server=/tmp/mpvsocket -
+}
+rg_with_p()       {
+    rg "${@}" | "${PAGER}"
 }
 #########################################################################
 #  ALIASES                                                              #
@@ -136,6 +139,7 @@ alias yay='yay --color="always"'
 #-----------------------------------1L--#
 #alias a='         get_alias_fzf'
 #        b=          RESERVED
+alias start_vlime='sbcl --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp'
 alias htmlcheck=' xmllint --html'
 alias ac='        compgen -c  | grep -x'
 alias cz='        ccze -m ansi'
@@ -260,8 +264,8 @@ alias yayfrom='   yay -Qo'
 alias yayfiles='  yay -Qql'
 alias yaycool='   yay -Sl aur | grep "Installed"'
 alias yaysalt='   yay -Sl | grep -Pio ".*(?=\[installed\])"'
-alias yigse='     (read _a _b; yay -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
-alias rqs='       (read _a ; yay -Qi "${_a}" | grep -Pi "^[ \t]*(Required[ \t]*By|Optional[ \t]*For)" | grep -Pio "(.*[:]|[ \t]*[^ \t]*)") <<< '
+alias pacdep='    expac -l "\n" "%D"'
+alias pacopt='    expac -l "\n" "%o"'
 #-----------------------------------------------------PACMAN-#
 alias ptc='       pactree --color' #Pacman Dependencies
 alias pacse='     pacman -Ss'
@@ -276,10 +280,6 @@ alias pacfrom='   pacman -Qo'
 alias pacfiles='  pacman -Qql'
 alias pacool='    pacman -Sl | grep -Fi  "[installed]" | grep -i'
 alias pacnot='    pacman -Sl | grep -vFi "[installed]" | grep -i'
-alias fl="        pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 'Required by.*None' | grep -Pio 'Name[\ \t:]+\K.*$'"
-alias flg="       pacil | grep -A 3 -B 18 'Installed as a dependency for another package' | grep -Pi -B 10 -A 11 'Required by.*None' | grep -Pi -B 12 'Optional\ for.*None$' | grep -Pio 'Name[\ \t:]*\K.*$'"
-alias fle='       pacil | grep -A 3 -B 18 "Installed as a dependency for another package" | grep -Pi -B 10 -A 11 '"'Required by [\ \t]*:\ None'"' | grep -Pi '"'^Name.*$'"
-alias pigse='     (read _a _b; pacman -Ss "${_a}" | grep -C1 -Pi "${_b:-^[^ \t].*}") <<< '
 #------------------------------------------------------------#
 alias sctl='      journalctl | ccze -m ansi'
 alias i3e='       find "${XDG_CONFIG_HOME}/i3/" -maxdepth 1 -type f -print0 | xargs -0 nvim -p'
@@ -299,6 +299,7 @@ alias szof="      du -axhc --time --max-depth=1 | grep -Pv '^0[ \t]' | sort -h"
 alias szofall='   du -ahc  --time --max-depth=1'
 alias bgsz='      szof | grep -P "^[^ ]*G"'
 alias ydl='       cd "${VIDEOS}"; yt-dlp -o "%(title)s.%(ext)s" --restrict-filename'
+alias ystream='   stream_ytdl_mpv'
 alias getkeysall='   xmodmap -pke'
 #alias key_spec='      evemu-describe'
 alias betterkey='     showkey -k'
@@ -453,4 +454,3 @@ if  [ -d "${HOME}/Desktop/MY_APPS"      ] ; then PATH="${HOME}/Desktop/MY_APPS:$
 if  [ -d "/etc/systemd/user"            ] ; then PATH="/etc/systemd/user:$PATH"           ; fi
 if  [ -d "/usr/bin"                     ] ; then PATH="/usr/bin:$PATH"                    ; fi
 if  [ -d "${HOME}/.cargo/bin"           ] ; then PATH="${HOME}/.cargo/bin:$PATH"          ; fi
-

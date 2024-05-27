@@ -22,9 +22,9 @@ let g:python3_host_prog="/usr/bin/python"
 
 match ExtraWhiteSpace /[^\s]\s\+\zs$/
 
-source ${HOME}/.config/nvim/c_functions.vim
-source ${HOME}/.config/nvim/c_autocmd.vim
-source ${HOME}/.config/nvim/c_plugins.vim
+source ${HOME}/.config/nvim/functions.vim
+source ${HOME}/.config/nvim/plugins.vim
+lua require('base')
 
 filetype on
 filetype plugin on
@@ -44,7 +44,7 @@ set nowrap
 set nu
 set rnu
 set ruler
-set signcolumn=yes
+set signcolumn=yes:2
 set splitright
 set t_Co=256
 set termguicolors
@@ -79,11 +79,13 @@ set guicursor=n:block90,i:ver20
 set cul
 set nocuc
 set cedit=\<C-c>
+
 set statusline=\ [%n]\ 
 set statusline+=\ %F\ 
 set statusline+=%m\ 
 set statusline+=%=\(\ %l\/%L\ \)\ (%v\)\ 
 set statusline+=%{wordcount().words}\ w\ 
+set statusline+=%{LspStatus()}
 
 let g:coc_start_at_startup = v:true
 let g:coc_enable_at_startup = v:false
@@ -91,7 +93,6 @@ let g:mapleader = " "
 let mapleader = " "
 let maplocalleader = " "
 "<--------_G-VAR_<leader>f_from-:-lf
-lua require('base')
 let g:bracey_refresh_on_save    = 1
 let g:bracey_eval_on_save       = 1
 let g:bracey_auto_start_browser = 0
@@ -103,7 +104,6 @@ let g:is_bash       = 1
 colorscheme pop-punk
 :call CorrectColors()
 
-source ${HOME}/.config/nvim/c_leader_bindings.vim
-source ${HOME}/.config/nvim/c_etc_bindings.vim
-source ${HOME}/.config/nvim/coc_bindings.vim
-
+source ${HOME}/.config/nvim/leader_bindings.vim
+source ${HOME}/.config/nvim/etc_bindings.vim
+source ${HOME}/.config/nvim/autocmd.vim
