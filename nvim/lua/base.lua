@@ -1,12 +1,19 @@
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
 
-local  cmp_capabilities  =  require('cmp_nvim_lsp').default_capabilities()
-local  lspconfig         =  require('lspconfig')
-local  luasnip           =  require('luasnip')
-local  cmp               =  require('cmp')
+local   cmp_capabilities    =   require('cmp_nvim_lsp').default_capabilities()
+local   lspconfig           =   require('lspconfig')
+local   luasnip             =   require('luasnip')
+local   cmp                 =   require('cmp')
+local   org                 =   require('orgmode')
 
 require('gitsigns').setup()
+-- init.lua
+
+org.setup({
+  org_agenda_files = {'~/Documents/Dropbox/org/*', '~/Documents/my-orgs/**/*'},
+  org_default_notes_file = '~/Documents/Dropbox/org/refile.org',
+})
 
 cmp.setup({
     snippet = {

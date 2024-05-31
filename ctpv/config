@@ -25,3 +25,7 @@ preview myjs .js .json .html {{
     highlight "${f}" --stdout --out-format="ansi"
 }}
 
+preview mylua .lua {{
+    highlight "${f}" --stdout --out-format="ansi"
+}}
+

@@ -18,6 +18,7 @@ set relativenumber
 set sortby atime
 set sixel true
 set dirfirst true
+set mouse true
 
 set previewer ctpv
 set cleaner ctpvclear

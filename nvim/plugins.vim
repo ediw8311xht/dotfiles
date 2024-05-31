@@ -40,6 +40,8 @@ call plug#begin()
 " Lisp                              #
     Plug 'vlime/vlime', {'rtp': 'vim/'}
     Plug 'vim-scripts/paredit.vim'
+" Org Mode                          #
+    Plug 'nvim-orgmode/orgmode'
 call plug#end()
 " Aligning text                     #
     "Plug 'godlygeek/tabular'

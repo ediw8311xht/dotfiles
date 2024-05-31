@@ -9,10 +9,11 @@ let g:bindings_noremap=[
     \[ 'x',        '"xx'                        ],
     \[ ',;',       ','                          ],
 \]
+" \[ '<Enter>',  'zf'                         ],
 let g:bindings_vnoremap=[
     \[ 'im',       ':s/\%V[ \t]*//<esc>'        ],
-    \[ '<Enter>',  'zf'                         ],
 \]
+" \[ '<Enter>',  '@=(foldlevel('."'.')?'za':".'"\<Space>")<CR>'   ],
 let g:bindings_nnoremap=[
     \[ '<esc>',    ':noh<esc>:echon ""<enter>'  ],
     \[ '/',        '/\v\c'                      ],
@@ -21,7 +22,6 @@ let g:bindings_nnoremap=[
     \[ '\|',       '?\V\c'                      ],
     \[ '<lt>',     ':tabprevious<esc>'          ],
     \[ '>',        ':tabnext<esc>'              ],
-    \[ '<Enter>',  '@=(foldlevel('."'.')?'za':".'"\<Space>")<CR>'   ],
     \[ '<C-p>',    '<C-i>'                      ],
     \[ '<C-H>',    '<C-w>h'                     ],
     \[ '<C-J>',    '<C-w>j'                     ],
