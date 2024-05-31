@@ -109,6 +109,7 @@ text/x-rst=nvim.desktop
 text/x-scala=sc-im.desktop
 text/x-shellscript=nvim.desktop
 text/x-tex=nvim.desktop
+text/x-emacs-lisp=nvim.desktop
 video/3gpp2=mpv.desktop
 video/3gpp=mpv.desktop
 video/avi=mpv.desktop
