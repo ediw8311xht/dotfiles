@@ -301,7 +301,8 @@ alias ystream='   stream_ytdl_mpv'
 alias getkeysall='   xmodmap -pke'
 #alias key_spec='      evemu-describe'
 alias betterkey='     showkey -k'
-#   CODING                                                              #
+# TaskWarrior #
+alias tl='        task list'
 #alias springmr='  mvn spring-boot:run'
 #-----------------------------------------------------DJANGO-#
 #alias djs='       python manage.py runserver'
@@ -394,6 +395,7 @@ export  LS_PREVIEW='lsd   --color=always        \
                           --date=+"%y%m%_d"     \
                           --blocks="permission,user,date,name"'
 #------------------SYSTEM--------------#
+export  DOOMDIR="${HOME}/.config/doom"
 export  SUDO_EDITOR='vim'
 export  TERM='st-256color'
 export  TERMINAL='/usr/local/bin/st'
@@ -440,14 +442,14 @@ export  GROFF_NO_SGR=1 ### https://stackoverflow.com/a/32456403                 
 #---------------------------------------------------------------------- #
 #-`PATH`                                                                #
 #---------------------------------------------------------------------- #
-if  [ -d "${HOME}/.local/bin/FreeTube/" ] ; then PATH="${HOME}/.local/bin/FreeTube:$PATH" ; fi
-if  [ -d "${HOME}/bin/"                 ] ; then PATH="${HOME}/bin/:$PATH"                ; fi
-if  [ -d "${HOME}/bin/txt2man"          ] ; then PATH="${HOME}/bin/txt2man:$PATH"         ; fi
-if  [ -d "${HOME}/bin/i3wm"             ] ; then PATH="${HOME}/bin/i3wm:$PATH"            ; fi
-if  [ -d "${HOME}/bin/personal"         ] ; then PATH="${HOME}/bin/personal:$PATH"        ; fi
-if  [ -d "${HOME}/bin/ufw"              ] ; then PATH="${HOME}/bin/ufw:$PATH"             ; fi
-if  [ -d "${HOME}/Desktop/MY_APPS"      ] ; then PATH="${HOME}/Desktop/MY_APPS:$PATH"     ; fi
-if  [ -d "/etc/systemd/user"            ] ; then PATH="/etc/systemd/user:$PATH"           ; fi
-if  [ -d "/usr/bin"                     ] ; then PATH="/usr/bin:$PATH"                    ; fi
-if  [ -d "${HOME}/.cargo/bin"           ] ; then PATH="${HOME}/.cargo/bin:$PATH"          ; fi
-if  [ -d "${HOME}/.config/emacs/bin/"   ] ; then PATH="${HOME}/.config/emacs/bin/:$PATH"  ; fi
+#if  [ -d "${HOME}/.local/bin/FreeTube/" ] ; then PATH="${HOME}/.local/bin/FreeTube:$PATH" ; fi
+#if  [ -d "${HOME}/bin/"                 ] ; then PATH="${HOME}/bin/:$PATH"                ; fi
+#if  [ -d "${HOME}/bin/txt2man"          ] ; then PATH="${HOME}/bin/txt2man:$PATH"         ; fi
+#if  [ -d "${HOME}/bin/i3wm"             ] ; then PATH="${HOME}/bin/i3wm:$PATH"            ; fi
+#if  [ -d "${HOME}/bin/personal"         ] ; then PATH="${HOME}/bin/personal:$PATH"        ; fi
+#if  [ -d "${HOME}/bin/ufw"              ] ; then PATH="${HOME}/bin/ufw:$PATH"             ; fi
+#if  [ -d "${HOME}/Desktop/MY_APPS"      ] ; then PATH="${HOME}/Desktop/MY_APPS:$PATH"     ; fi
+#if  [ -d "/etc/systemd/user"            ] ; then PATH="/etc/systemd/user:$PATH"           ; fi
+#if  [ -d "/usr/bin"                     ] ; then PATH="/usr/bin:$PATH"                    ; fi
+#if  [ -d "${HOME}/.cargo/bin"           ] ; then PATH="${HOME}/.cargo/bin:$PATH"          ; fi
+#if  [ -d "${HOME}/.config/emacs/bin/"   ] ; then PATH="${HOME}/.config/emacs/bin/:$PATH"  ; fi

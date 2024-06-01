@@ -41,8 +41,17 @@ cmp.setup({
     })
 })
 
+lspconfig.tailwindcss.setup({
+  init_options = {
+    userLanguages = {
+      elixir = "html-eex",
+      eelixir = "html-eex",
+      heex = "html-eex",
+    },
+  },
+})
 
-require'lspconfig'.elixirls.setup{
+lspconfig.elixirls.setup{
     credo = { enable = false },
     cmd = { "/usr/lib/elixir-ls/language_server.sh" },
     -- on_attach = custom_attach, -- this may be required for extended functionalities of the LSP
@@ -58,11 +67,12 @@ require'lspconfig'.elixirls.setup{
         suggestSpecs      =  false,
     };
 }
-require'lspconfig'.bashls.setup{
+lspconfig.bashls.setup{
     on_attach = lsp_status.on_attach,
     capabilities = capabilities,
 }
-require'lspconfig'.pyright.setup{
+
+lspconfig.pyright.setup{
     on_attach = lsp_status.on_attach,
     capabilities = capabilities,
 }
