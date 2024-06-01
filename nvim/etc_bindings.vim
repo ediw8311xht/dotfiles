@@ -45,10 +45,10 @@ let g:bindings_tmap=[
     \[ '<C-w>',    '<C-\><C-n>'             ],
 \]
 
-call MyMap( "map"       , g:bindings_map        )
-call MyMap( "noremap"   , g:bindings_noremap    )
-call MyMap( "vnoremap"  , g:bindings_vnoremap   )
-call MyMap( "nnoremap"  , g:bindings_nnoremap   )
-call MyMap( "inoremap"  , g:bindings_inoremap   )
-call MyMap( "tmap"      , g:bindings_tmap       )
+call M_Map( "map"       , g:bindings_map        )
+call M_Map( "noremap"   , g:bindings_noremap    )
+call M_Map( "vnoremap"  , g:bindings_vnoremap   )
+call M_Map( "nnoremap"  , g:bindings_nnoremap   )
+call M_Map( "inoremap"  , g:bindings_inoremap   )
+call M_Map( "tmap"      , g:bindings_tmap       )
 

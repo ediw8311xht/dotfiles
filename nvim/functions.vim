@@ -32,7 +32,7 @@ fu! CorrectColors()
     hi CocFadeOut               gui=NONE        guibg=#888888 guifg=#000000
 endfu
 
-fu! MyMap(maptype, keys, leader=0)
+fu! M_Map(maptype, keys, leader=0)
     for i in a:keys
         if a:leader == 1
             execute a:maptype.' <leader>'.i[0].' '.i[1]
@@ -43,23 +43,29 @@ fu! MyMap(maptype, keys, leader=0)
 endfu
 
 fu! CycleBackground(nextprevious)
-    let i = 0 | let current_background = synIDattr(hlID("Normal"), "bg")
-    if current_background == ""
-        let current_background="NONE"| "CATCH NO BACKGROUND (Transparency)
-    endif
     let lenny = len(g:myBg)
+    let i = 0
+    let current_background = synIDattr(hlID("Normal"), "bg")
+    if current_background == ""
+        "CATCH NO BACKGROUND (Transparency)
+        let current_background="NONE"
+    endif
     for _ in g:myBg
         if current_background ==? _
             let j = (i + (a:nextprevious)) % lenny
             execute "highlight Normal guibg=" . g:myBg[j]
             execute "highlight Normal guifg=" . g:myFg[j]
-            echo j . ' / ' . lenny | syntax on | return
+            echo j . ' / ' . lenny
+            syntax on
+            return
         endif
-    let i += 1 | endfor
+        let i += 1
+    endfor
 endfu
 
 fu! CycleColor(nextprevious)
-    let i = 0 | let current_scheme = g:colors_name
+    let i = 0
+    let current_scheme = g:colors_name
     let lenny = len(g:myScheme)
     for _ in g:myScheme
         if current_scheme ==? _
@@ -68,23 +74,47 @@ fu! CycleColor(nextprevious)
             execute "colorscheme " g:myScheme[j]
             execute g:mySpec[j]
             syntax on
-        return | endif
-    let i += 1 | endfor
+            return
+        endif
+        let i += 1
+    endfor
 endfu
 
 fu! Toggle(c1, c2, r1, r2)
     if a:c1 == a:c2
-    execute a:r1 | return | endif
-    execute a:r2
+        execute a:r1
+    else
+        execute a:r2
+    endif
 endfu
 
+fu! M_LspState()
+    if luaeval('vim.inspect(vim.lsp.get_active_clients()) == "{}"')
+        return 0
+    else
+        return 1
+    endif
+endfu
+
+fu! M_ToggleLsp()
+    if M_LspState() == 1
+        echo "Lsp Stopped"
+        LspStop()
+    else
+        echo "Lsp Starting"
+        LspStart()
+    endif
+endfun
+
 fu! Cycle(checkarr, cvar, doarr, nextprevious)
-    let lenny = len(a:checkarr) | let i = 0
+    let lenny = len(a:checkarr)
+    let i = 0
     while i < lenny
         if a:checkarr[i] ==? a:cvar
             let j = (i + (a:nextprevious)) % lenny
             execute a:doarr[j]
-        return | endif
+            return
+        endif
         let i += 1
     endwhile
 endfu
@@ -111,11 +141,10 @@ fu! GetMappings()
     :e /tmp/nvim_mappings.txt
 endfunction
 
-function! LspStatus() abort
-  if luaeval('#vim.lsp.buf_get_clients() > 0')
-    return luaeval("require('lsp-status').status()")
-  endif
-
-  return ""
+fu! LspStatus() abort
+    if luaeval('#vim.lsp.buf_get_clients() > 0')
+        return luaeval("require('lsp-status').status()")
+    else
+    return ""
 endfunction
 

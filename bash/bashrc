@@ -123,6 +123,22 @@ stream_ytdl_mpv() {
 rg_with_p()       {
     rg "${@}" | "${PAGER}"
 }
+open_in_emacs_client() {
+    emacsclient --reuse-frame --no-wait "${@}"
+}
+manage_emacs_daemon() {
+    case "${1,,}" in
+        -s) emacs --daemon="${1:-"${EMACS_SOCKET_NAME}"}"
+    ;;  -r) emacsclient -e "(kill-emacs)"
+            emacs --daemon="${1:-"${EMACS_SOCKET_NAME}"}"
+    ;;  -d) doom sync
+    ;;  -k) emacsclient -e "(kill-emacs)"
+    ;;  -*) echo "${1}: Invalid option. Ignoring..."
+    ;;   *) return 0
+    ;; esac
+    shift 1
+    start_emacs_daemon "${@}"
+}
 #########################################################################
 #  ALIASES                                                              #
 #########################################################################
@@ -146,7 +162,8 @@ alias cz='          ccze -m ansi'
 alias c='           mycd'
 alias d='           \df -h | ccze -m ansi'
 alias D='           \df -h | grep -Po "^[ ]*[/]dev[/].*" | ccze -m ansi'
-alias e='           type -a'
+alias e='           open_in_emacs_client'
+#alias e='           type -a'
 #alias d='         deactivate' # For python virtualenv
 #alias e='         xcmenu --input --primary'
 alias g='         grep -Pi'
@@ -335,34 +352,6 @@ alias clne='      cd "${CLONED}"; cd "$(fd --maxdepth 1 -t d | sort -n | fzf --p
 #  EXPORT                                                               #
 #########################################################################
 #------------------COLORS--------------#
-#------------------TEXT----------------#
-export TT_BOL='\[\e[01m\]'
-export TT_DIM='\[\e[02m\]'
-export TT_ITA='\[\e[03m\]'
-export TT_UND='\[\e[04m\]'
-export TT_BLI='\[\e[06m\]'
-export TT_REV='\[\e[07m\]'
-export TT_HID='\[\e[08m\]'
-#------------------FOREGROUND----------#
-export FG_BLA='\[\e[30m\]'
-export FG_RED='\[\e[31m\]'
-export FG_GRE='\[\e[32m\]'
-export FG_YEL='\[\e[33m\]'
-export FG_BLU='\[\e[34m\]'
-export FG_MAG='\[\e[35m\]'
-export FG_CYA='\[\e[36m\]'
-export FG_WHI='\[\e[37m\]'
-#------------------BACKGROUND----------#
-export BG_BLA='\[\e[40m\]'
-export BG_RED='\[\e[41m\]'
-export BG_GRE='\[\e[42m\]'
-export BG_YEL='\[\e[43m\]'
-export BG_BLU='\[\e[44m\]'
-export BG_MAG='\[\e[45m\]'
-export BG_CYA='\[\e[46m\]'
-export BG_GRA='\[\e[47m\]'
-export BG_WHI='\[\e[48m\]'
-export BG_NON='\[\e[49m\]'
 export NO_AT_BRIDGE=1
 #------------------BASH-HISTORY--------#
 shopt -s histappend
@@ -395,6 +384,7 @@ export  LS_PREVIEW='lsd   --color=always        \
                           --date=+"%y%m%_d"     \
                           --blocks="permission,user,date,name"'
 #------------------SYSTEM--------------#
+export  EMACS_SOCKET_NAME="${USER}_emacs_daemon"
 export  DOOMDIR="${HOME}/.config/doom"
 export  SUDO_EDITOR='vim'
 export  TERM='st-256color'

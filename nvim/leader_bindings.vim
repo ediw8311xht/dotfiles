@@ -15,8 +15,9 @@ let g:bindings_l_nnoremap = [
     \[ '['   ,    ':bprevious<CR>:noh<esc><C-L>'                                                                                                                    ],
     \[ ','   ,    '<C-^>'                                                                                                                                           ],
     \[ '/'   ,    ':Explore<CR>'                                                                                                                                    ],
-    \[ '-'   ,    '20<c-w><'                                                                                                                                       ],
-    \[ '='   ,    '20<c-w>>'                                                                                                                                       ],
+    \[ '-'   ,    '20<c-w><'                                                                                                                                        ],
+    \[ '='   ,    '20<c-w>>'                                                                                                                                        ],
+    \[ 'a'   ,    ':call M_ToggleLsp()<CR>'                                                                                                                         ],
     \[ 'B'   ,    ':ls<CR>:b<Space>'                                                                                                                                ],
     \[ 'b'   ,    ':Buffers<esc>'                                                                                                                                   ],
     \[ 'cC'  ,    ':call Toggle(&colorcolumn, 0, "set colorcolumn=80", "set colorcolumn=0")<esc>', "toggles color column (Line length indicator)"                   ],
@@ -74,9 +75,9 @@ let g:bindings_l_vnoremap = [
     \[ 'vs'  ,    ':!sort -n<enter>'     ],
 \]
 
-call MyMap( "nnoremap" , g:bindings_l_nnoremap, 1)
-call MyMap( "noremap"  , g:bindings_l_noremap,  1)
-call MyMap( "vnoremap" , g:bindings_l_vnoremap, 1)
+call M_Map( "nnoremap" , g:bindings_l_nnoremap, 1)
+call M_Map( "noremap"  , g:bindings_l_noremap,  1)
+call M_Map( "vnoremap" , g:bindings_l_vnoremap, 1)
 
 
 "    \[ 'oc'  ,    'q:iput=execute("")<esc>A<C-c>'                                                                                                                   ],
