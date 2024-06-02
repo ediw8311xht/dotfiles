@@ -123,22 +123,6 @@ stream_ytdl_mpv() {
 rg_with_p()       {
     rg "${@}" | "${PAGER}"
 }
-open_in_emacs_client() {
-    emacsclient --reuse-frame --no-wait "${@}"
-}
-manage_emacs_daemon() {
-    case "${1,,}" in
-        -s) emacs --daemon="${1:-"${EMACS_SOCKET_NAME}"}"
-    ;;  -r) emacsclient -e "(kill-emacs)"
-            emacs --daemon="${1:-"${EMACS_SOCKET_NAME}"}"
-    ;;  -d) doom sync
-    ;;  -k) emacsclient -e "(kill-emacs)"
-    ;;  -*) echo "${1}: Invalid option. Ignoring..."
-    ;;   *) return 0
-    ;; esac
-    shift 1
-    start_emacs_daemon "${@}"
-}
 #########################################################################
 #  ALIASES                                                              #
 #########################################################################
@@ -384,7 +368,7 @@ export  LS_PREVIEW='lsd   --color=always        \
                           --date=+"%y%m%_d"     \
                           --blocks="permission,user,date,name"'
 #------------------SYSTEM--------------#
-export  EMACS_SOCKET_NAME="${USER}_emacs_daemon"
+#export  EMACS_SOCKET_NAME="${USER}_emacs_daemon"
 export  DOOMDIR="${HOME}/.config/doom"
 export  SUDO_EDITOR='vim'
 export  TERM='st-256color'
