@@ -9,12 +9,14 @@ let g:bindings_noremap=[
     \[ 'x',        '"xx'                        ],
     \[ ',;',       ','                          ],
 \]
-" \[ '<Enter>',  'zf'                         ],
+
 let g:bindings_vnoremap=[
-    \[ 'im',       ':s/\%V[ \t]*//<esc>'        ],
+    \[ '~',        'zf'                         ],
+    \[ 'im',       ':s/\%v[ \t]*//<esc>'        ],
 \]
-" \[ '<Enter>',  '@=(foldlevel('."'.')?'za':".'"\<Space>")<CR>'   ],
+
 let g:bindings_nnoremap=[
+    \[ '~',        '@=(foldlevel('."'.')?'za':".'"\<Space>")<CR>'   ],
     \[ '<esc>',    ':noh<esc>:echon ""<enter>'  ],
     \[ '/',        '/\v\c'                      ],
     \[ '?',        '?\v\c'                      ],
@@ -30,6 +32,7 @@ let g:bindings_nnoremap=[
     \[ '<C-\>',    '/\V'                        ],
     \[ '<C-_>',    '/\v'                        ],
     \[ '<C-w>n',   ':new<esc><C-w>L'            ],
+    \[ '<C-s>',    ':%s/\v'                     ],
 \]
 let g:bindings_inoremap=[
     \[ 'jk',       '<esc>'                      ],
@@ -42,7 +45,7 @@ let g:bindings_inoremap=[
 \]
     "\[ '<C-v>',    '<esc><C-r>i'                ],
 let g:bindings_tmap=[
-    \[ '<C-w>',    '<C-\><C-n>'             ],
+    \[ '<C-w>',    '<C-\><C-n>'                 ],
 \]
 
 call M_Map( "map"       , g:bindings_map        )

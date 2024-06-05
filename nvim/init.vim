@@ -63,7 +63,7 @@ let &backupdir=nvim_backup_swap
 let &directory=nvim_backup_swap
 set undodir=~/.mynvim/undo_dir
 set backup
-set timeout
+"set notimeout
 set timeoutlen=500
 set ttimeoutlen=0
 set wildmode=longest,list,full
@@ -91,14 +91,8 @@ let g:coc_start_at_startup = v:true
 let g:coc_enable_at_startup = v:false
 let g:mapleader = " "
 let mapleader = " "
-let maplocalleader = " "
-"<--------_G-VAR_<leader>f_from-:-lf
-let g:bracey_refresh_on_save    = 1
-let g:bracey_eval_on_save       = 1
-let g:bracey_auto_start_browser = 0
-let g:bracey_server_port        = 4842
-let g:lf_map_keys   = 0
 let maplocalleader = ","
+let g:lf_map_keys   = 0
 let g:html_mode     = 1
 let g:is_bash       = 1
 colorscheme pop-punk
@@ -107,3 +101,8 @@ colorscheme pop-punk
 source ${HOME}/.config/nvim/leader_bindings.vim
 source ${HOME}/.config/nvim/etc_bindings.vim
 source ${HOME}/.config/nvim/autocmd.vim
+
+"let g:bracey_refresh_on_save    = 1
+"let g:bracey_eval_on_save       = 1
+"let g:bracey_auto_start_browser = 0
+"let g:bracey_server_port        = 4842

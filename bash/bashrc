@@ -5,6 +5,7 @@
 #-If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 #- Use VI Keys -#
+stty -ixon
 set -o vi
 #- Default Permissions -#
 umask 077
@@ -231,7 +232,9 @@ alias manlist='   man -f'
 alias men='       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" 2>/dev/null | $PAGER) <<< '
 #alias mixf='      mix format'
 #alias mixc='      mix compile'
-alias iexm='      MIX_ENV=test iex -S mix'
+#alias iexm='      MIX_ENV=test iex -S mix'
+alias iexm='      iex -S mix'
+alias iexp='      iex -S mix phx.server'
 alias pgr='       $PAGER'
 alias pse='       ps -eo comm=, | grep --ignore-case'
 alias psg='       ps ax | grep -Pi'
@@ -284,7 +287,7 @@ alias pacnot='    pacman -Sl | grep -vFi "[installed]" | grep -i'
 alias sctl='      journalctl | ccze -m ansi'
 alias i3e='       find "${XDG_CONFIG_HOME}/i3/" -maxdepth 1 -type f -print0 | xargs -0 nvim -p'
 alias ebash='     nvim "${HOME}/.bashrc"; source "${HOME}/.bashrc"'
-alias ednv='      fd . -tf -0 --exact-depth 1 "${HOME}/.config/nvim/" | xargs -0 -r nvim'
+alias ednv='      fd . -tf -0 --exact-depth 1 "${HOME}/.config/nvim/" "${HOME}/.config/nvim/lua/" | xargs -0 -r nvim'
 alias full_ednv=' fd . -tf -0 "${HOME}/.config/nvim/" | xargs -0 -r nvim'
 alias emime='     nvim "${HOME}/.config/mimeapps.list"'
 alias ysb='       source "${HOME}/.bashrc"'

@@ -7,6 +7,9 @@ call plug#begin()
     Plug 'saadparwaiz1/cmp_luasnip'
     Plug 'L3MON4D3/LuaSnip'
     Plug 'nvim-lua/lsp-status.nvim'
+    Plug 'nvimdev/lspsaga.nvim'
+" key hints"
+    Plug 'folke/which-key.nvim'
 " git                               #
     Plug 'lewis6991/gitsigns.nvim'
 " Show-all-matching-tags-vim        #
@@ -34,10 +37,10 @@ call plug#begin()
     Plug 'elixir-editors/vim-elixir'
 " Colorscheme                       #
     Plug 'folke/tokyonight.nvim'
-" Extra Syntax                      #
+" extra Syntax                      #
     Plug 'VebbNix/lf-vim'
     Plug 'PotatoesMaster/i3-vim-syntax'
-" Lisp                              #
+" lisp                              #
     Plug 'vlime/vlime', {'rtp': 'vim/'}
     Plug 'vim-scripts/paredit.vim'
 " Org Mode                          #
