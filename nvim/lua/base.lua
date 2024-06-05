@@ -51,22 +51,70 @@ lspconfig.tailwindcss.setup({
   },
 })
 
-lspconfig.elixirls.setup{
-    credo = { enable = false },
-    cmd = { "/usr/lib/elixir-ls/language_server.sh" },
-    -- on_attach = custom_attach, -- this may be required for extended functionalities of the LSP
-    on_attach = lsp_status.on_attach,
-    capabilities = capabilities,
-    flags = {
-        debounce_text_changes = 150,
+local elixir = require("elixir")
+local elixirls = require("elixir.elixirls")
+
+elixir.setup {
+    nextls = {
+        enable = false, -- defaults to false
+--        port = 9000, -- connect via TCP with the given port. mutually exclusive with `cmd`. defaults to nil
+--        cmd = "path/to/next-ls", -- path to the executable. mutually exclusive with `port`
+--        init_options = {
+--            mix_env = "dev",
+--            mix_target = "host",
+--            experimental = {
+--                completions = {
+--                    enable = false -- control if completions are enabled. defaults to false
+--                }
+--            }
+--        },
+--        on_attach = function(client, bufnr)
+--            -- custom keybinds
+--        end
     },
-    elixirLS = {
-        dialyzerEnabled   =  false,
-        fetchDeps         =  false,
-        enableTestLenses  =  false,
-        suggestSpecs      =  false,
-    };
+    credo = {
+        enable = false, -- defaults to true
+--        port = 9000, -- connect via TCP with the given port. mutually exclusive with `cmd`. defaults to nil
+--        cmd = "path/to/credo-language-server", -- path to the executable. mutually exclusive with `port`
+--        version = "0.1.0-rc.3", -- version of credo-language-server to install and use. defaults to the latest release
+--        on_attach = function(client, bufnr)
+--            -- custom keybinds
+--        end
+    },
+    elixirls = {
+        enable = true,
+        cmd = "/usr/bin/elixir-ls",
+
+        -- default settings, use the `settings` function to override settings
+        settings = elixirls.settings {
+            dialyzerEnabled = false,
+            fetchDeps = false,
+            enableTestLenses = false,
+            suggestSpecs = false,
+        },
+        on_attach = function(client, bufnr)
+--            vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
+--            vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
+--            vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
+        end
+    }
 }
+-- lspconfig.elixirls.setup{
+--     credo = { enable = false },
+--     cmd = { "/usr/lib/elixir-ls/language_server.sh" },
+--     -- on_attach = custom_attach, -- this may be required for extended functionalities of the LSP
+--     on_attach = lsp_status.on_attach,
+--     capabilities = capabilities,
+--     flags = {
+--         debounce_text_changes = 150,
+--     },
+--     elixirLS = {
+--         dialyzerEnabled   =  false,
+--         fetchDeps         =  false,
+--         enableTestLenses  =  false,
+--         suggestSpecs      =  false,
+--     };
+-- }
 lspconfig.bashls.setup{
     on_attach = lsp_status.on_attach,
     capabilities = capabilities,
