@@ -10,7 +10,7 @@ let g:bindings_l_noremap = [
 \]
 
 let g:bindings_l_nnoremap = [
-    \[ '<leader>' , '<C-^>' ],
+    \[ '<leader>' , '<C-^>'                                                                                                                                         ],
     \[ ']'   ,    ':bnext<CR>:noh<esc><C-L>'                                                                                                                        ],
     \[ '['   ,    ':bprevious<CR>:noh<esc><C-L>'                                                                                                                    ],
     \[ ','   ,    '<C-^>'                                                                                                                                           ],
@@ -71,7 +71,7 @@ let g:bindings_l_nnoremap = [
 let g:bindings_l_vnoremap = [
     \[ 'm'   ,    ':!bc<esc>'            ],
     \[ 'M'   ,    ':!dc<esc>'            ],
-    \[ 'vc'  ,    ':!column -t<enter>'   ],
+    \[ 'vc'  ,    ':!column -o " " -t<enter>'   ],
     \[ 'vs'  ,    ':!sort -n<enter>'     ],
 \]
 

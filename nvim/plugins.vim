@@ -12,9 +12,9 @@ call plug#begin()
     Plug 'folke/which-key.nvim'
 " git                               #
     Plug 'lewis6991/gitsigns.nvim'
-" Show-all-matching-tags-vim        #
+" show-all-matching-tags-vim        #
     Plug 'andymass/vim-matchup'
-" Autorename HTML tags #            #
+" Autorename HTML tags              #
     Plug 'AndrewRadev/tagalong.vim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'elixir-tools/elixir-tools.nvim'
@@ -35,14 +35,16 @@ call plug#begin()
     Plug 'ptzz/lf.vim'
 " Syntax Highlighting, Detection Elixir #
     Plug 'elixir-editors/vim-elixir'
-" Colorscheme                       #
+" colorscheme                       #
     Plug 'folke/tokyonight.nvim'
-" extra Syntax                      #
+" syntax                            #
     Plug 'VebbNix/lf-vim'
     Plug 'PotatoesMaster/i3-vim-syntax'
 " lisp                              #
     Plug 'vlime/vlime', {'rtp': 'vim/'}
     Plug 'vim-scripts/paredit.vim'
+" show marks                        #
+    Plug 'chentoast/marks.nvim'
 " Org Mode                          #
     Plug 'nvim-orgmode/orgmode'
 call plug#end()

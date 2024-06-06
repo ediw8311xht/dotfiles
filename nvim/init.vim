@@ -52,7 +52,7 @@ set textwidth=0
 set undofile
 set undolevels=10000
 set undoreload=10000
-set updatetime=300
+set updatetime=400
 "set dir=~/.mynvim/swapfiles
 "set backupdir=~/.mynvim/backupfiles
 " [Retain undo history if file is edited outside of Vim](https://stackoverflow.com/a/75553217)

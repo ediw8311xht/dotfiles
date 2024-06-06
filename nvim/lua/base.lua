@@ -12,8 +12,25 @@ local  elixirls          =  require("elixir.elixirls")
 local  lspsaga           =  require('lspsaga')
 local  gitsigns          =  require('gitsigns')
 local  which_key         =  require('which-key')
--- init.lua
+local  marks             =  require('marks')
 
+marks.setup({
+    default_mappings = true,
+    builtin_marks = {".", "<", ">", "^"},
+    cyclic = true,
+    refresh_interval = 400,
+    sign_priority = {lower=10, uppwer=15, built=8, bookmark=20 },
+    mappings = {
+        set_next = "m,",
+        next = "m]",
+        prev = "m[",
+        preview = "m:",
+        set_bookmark0 = "m0",
+        delete_line = "md",
+        delete_buf = "mD",
+    }
+})
+-- luasnip.setup({})
 lspsaga.setup({})
 gitsigns.setup({})
 which_key.setup({
@@ -42,10 +59,11 @@ which_key.setup({
     -- operators = true,
     key_labels = {
         -- override the label used to display some keys. It doesn't effect WK in any other way.
-        -- For example:
-        -- ["<space>"] = "SPC",
-        -- ["<cr>"] = "RET",
-        -- ["<tab>"] = "TAB",
+        ["<space>"]  =  "SPC",
+        ["<cr>"]     =  "RET",
+        ["<tab>"]    =  "TAB",
+        ["<enter>"]  =  "ENT",
+        ["<esc>"]    =  "ESC",
     },
     motions = {
         count = true,
@@ -115,7 +133,7 @@ org.setup({
 cmp.setup({
     snippet = {
         expand = function(args)
-            require('luasnip').lsp_expand(args.body)
+            luasnip.lsp_expand(args.body)
         end,
     },
     window = {
@@ -155,11 +173,11 @@ elixir.setup({
             enableTestLenses = true,
             suggestSpecs = false,
         },
-        on_attach = function(client, bufnr)
+--      on_attach = function(client, bufnr)
 --            vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
 --            vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
 --            vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
-        end
+--      end
     }
 })
 
@@ -176,25 +194,27 @@ lspconfig.tailwindcss.setup({
     },
 })
 
-lspconfig.bashls.setup{
+lspconfig.vimls.setup({})
+
+lspconfig.lua_ls.setup({
+})
+
+lspconfig.bashls.setup({
     on_attach = lsp_status.on_attach,
-    capabilities = capabilities,
-}
+    capabilities = cmp_capabilities,
+})
 
-lspconfig.pyright.setup{
+lspconfig.pyright.setup({
     on_attach = lsp_status.on_attach,
-    capabilities = capabilities,
-}
-
-vim.opt.updatetime = 200
-
+    capabilities = cmp_capabilities,
+})
 
 -- lspconfig.elixirls.setup{
 --     credo = { enable = false },
 --     cmd = { "/usr/lib/elixir-ls/language_server.sh" },
 --     -- on_attach = custom_attach, -- this may be required for extended functionalities of the LSP
 --     on_attach = lsp_status.on_attach,
---     capabilities = capabilities,
+--     capabilities = cmp_capabilities,
 --     flags = {
 --         debounce_text_changes = 150,
 --     },
