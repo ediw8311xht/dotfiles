@@ -1,5 +1,10 @@
 "<--------- PLUGINS -------------------------------------------------------->
 call plug#begin()
+
+" Treesitter                        #
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Treesitter, extra stuff           #
+    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 " LSP-config                        #
     Plug 'neovim/nvim-lspconfig'
     Plug 'hrsh7th/nvim-cmp'
@@ -7,6 +12,7 @@ call plug#begin()
     Plug 'saadparwaiz1/cmp_luasnip'
     Plug 'L3MON4D3/LuaSnip'
     Plug 'nvim-lua/lsp-status.nvim'
+    Plug 'nvim-tree/nvim-web-devicons'
     Plug 'nvimdev/lspsaga.nvim'
 " key hints"
     Plug 'folke/which-key.nvim'
@@ -52,9 +58,4 @@ call plug#end()
     "Plug 'godlygeek/tabular'
 " Autoclose HTML tags               #
 " Plug 'alvan/vim-closetag'         #
-" Treesitter                        #
-    "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Treesitter, extra stuff           #
-    "Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-" Showmarks/ Better marks           #
-    "Plug 'chentoast/marks.nvim'
+

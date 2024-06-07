@@ -124,6 +124,9 @@ stream_ytdl_mpv() {
 rg_with_p()       {
     rg "${@}" | "${PAGER}"
 }
+man_all_pages() {
+    MAN_KEEP_FORMATTING=1 man -a "${@}" 2>/dev/null | "${PAGER}"
+}
 #########################################################################
 #  ALIASES                                                              #
 #########################################################################
@@ -229,7 +232,7 @@ alias lsn="       lsd --icon='never' -l"
 alias lst="       lsd --icon='never' -ltrh"
 alias lsz="       lsd --icon='never' -lSrh"
 alias manlist='   man -f'
-alias men='       (read _z; MAN_KEEP_FORMATTING=1 man -a "${_z}" 2>/dev/null | $PAGER) <<< '
+alias men='       man_all_pages'
 #alias mixf='      mix format'
 #alias mixc='      mix compile'
 #alias iexm='      MIX_ENV=test iex -S mix'
@@ -287,7 +290,7 @@ alias pacnot='    pacman -Sl | grep -vFi "[installed]" | grep -i'
 alias sctl='      journalctl | ccze -m ansi'
 alias i3e='       find "${XDG_CONFIG_HOME}/i3/" -maxdepth 1 -type f -print0 | xargs -0 nvim -p'
 alias ebash='     nvim "${HOME}/.bashrc"; source "${HOME}/.bashrc"'
-alias ednv='      fd . -tf -0 --exact-depth 1 "${HOME}/.config/nvim/" "${HOME}/.config/nvim/lua/" | xargs -0 -r nvim'
+alias ednv='      nvim "${HOME}/.config/nvim/lua/"*.lua "${HOME}/.config/nvim/"*.vim'
 alias full_ednv=' fd . -tf -0 "${HOME}/.config/nvim/" | xargs -0 -r nvim'
 alias emime='     nvim "${HOME}/.config/mimeapps.list"'
 alias ysb='       source "${HOME}/.bashrc"'

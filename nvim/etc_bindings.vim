@@ -12,8 +12,8 @@ let g:bindings_noremap=[
 
 let g:bindings_vnoremap=[
     \[ '~',        'zf'                         ],
-    \[ 'im',       ':s/\%v[ \t]*//<esc>'        ],
 \]
+"    \[ 'im',       ':s/\%v[ \t]*//<esc>'        ],
 
 let g:bindings_nnoremap=[
     \[ '~',        '@=(foldlevel('."'.')?'za':".'"\<Space>")<CR>'   ],

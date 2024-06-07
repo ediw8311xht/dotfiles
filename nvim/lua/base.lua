@@ -28,6 +28,8 @@ marks.setup({
         set_bookmark0 = "m0",
         delete_line = "md",
         delete_buf = "mD",
+        annotate = "ma",
+        toggle = "mt",
     }
 })
 -- luasnip.setup({})

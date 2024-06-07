@@ -24,6 +24,7 @@ match ExtraWhiteSpace /[^\s]\s\+\zs$/
 
 source ${HOME}/.config/nvim/functions.vim
 source ${HOME}/.config/nvim/plugins.vim
+lua require('mytreesitter')
 lua require('base')
 
 filetype on
