@@ -1,0 +1,108 @@
+#/bin/bash
+
+mps() {
+    local h1='\[\e[00;01;07;34m\]'  h2='\[\e[00;01m\]'  h3='\[\e[00;01;34m\]'   h4='\[\e[00;01;33m\]'
+    local d1='\D{%F}'               d2='\D{%T}'         d3='\D{%s}'
+    local d4='\D{%d-%m-%y}'         d5='\D{%H%M}'       d6='\D{%Y%m%d}'
+    local s1=':\w/:>'               s2='-\$'            s3=':\W/:>'
+    if [[ -n "${SSH_CLIENT}" ]] || [[ -n "${SSH_TTY}" ]] ; then
+    fi
+    #- INITIALIZE -#
+    PROMPT_DIRTRIM='0'
+    case "${1,,}" in
+                #PS0="${h1} ${PWD} | ${d1} | ${d2} \n"'\e[0 q\[\e[0m\]'
+        ;;   *) return 2
+    esac
+    PS1+='\[\e[0m\]'
+}
+cd_from_lf() {
+    #lf -log="${MY_LOGS}/LF_LOGS/$(date +'%s')_LF_LOG.txt"
+    lf
+    if a="$(find /tmp/ -type f -name 'tmplf*' 2>/dev/null | tail -1)"
+    then
+        if [[ "${PWD}" != "${a}" ]] ; then
+            cd "$(cat "${a}")" || return 1
+        fi
+        trash-put "${a}"
+    fi
+}
+mycd()    {
+    local MAXDEPTH=10
+    local RESTRICT='H'
+    [[ "${1}" =  '-g'        ]] && cd /              && shift 1
+    [[ "${1}" =~ ^[-]u$      ]] && RESTRICT='u'      && shift 1
+    [[ "${1}" =~ ^[-][0-9]+$ ]] && MAXDEPTH="${1#-}" && shift 1
+    cd "${@:-"$(fd -"${RESTRICT}" -td -d "${MAXDEPTH}" 2>/dev/null | fzf --preview="${LS_PREVIEW} {}")"}" || return 1
+}
+open_mpv() {
+    local AUD CLOSE FILE_FZF
+    while [[ "${1,,}" =~ ^-[-?].*$ ]] ; do
+        [[ "${1,,}" =~ ^-m(ono)?      ]] && AUD="mono"
+        [[ "${1,,}" =~ ^(-c|--close)$ ]] && CLOSE="close"
+        [[ "${1,,}" =~ ^(-f|--fzf)$   ]] && \
+            FILE_FZF="$(fd -H "[.](mp4|mkv|avi|mpeg|mpeg4|mpv|mpv4|m4v|mpg|m4p|mov|wmv|webm)$" | fzf --preview="ctpv {}")"
+            [[ ! -f "${FILE_FZF}" ]] && return 1
+        shift 1
+    done
+
+    if [[ -n "${FILE_FZF}" ]] ; then
+        mpv --audio-channels="${AUD:-"auto"}" "${FILE_FZF}" --input-ipc-server=/tmp/mpvsocket & disown
+    else
+        mpv --audio-channels="${AUD:-"auto"}" "${@:-.}" --input-ipc-server=/tmp/mpvsocket & disown
+    fi
+    [[ "${CLOSE}" = 'close' ]] && exit
+}
+open_prog() {
+    xdg-open "${1}" & disown
+}
+#get_outdated_pip() {
+#    local zfile
+#    local IFS=$'\n'
+#    zfile="$(mktemp /tmp/get_outdated_pip_XXXXXXXX.txt)"
+#    trap "trash-put '${zfile}'" SIGINT SIGHUP EXIT RETURN
+#    pip list --outdated > "${zfile}"
+#    nvim "${zfile}"
+#}
+fpend() {
+    if [[ "$1" =~ ^-[dD](ate)? ]] ; then shift 1; local MDATE; MDATE="#$(date)"; fi
+    if [[ -f "${1}"            ]] ; then
+        for i in "${@:2}" "${MDATE:-"_"}"; do
+            echo "${i}" '  |---|  ' "${1}"
+            echo "${i}" >> "${1}"
+        done
+        return "$?"
+    fi
+    echo "INCORRECT ARGUMENTS"; return 1
+}
+alias_conflict() {
+    local cvm wcl
+    cvm="$(compgen -c)"
+    while read -r -d$'\n' i ; do
+        wcl="$(grep -c -x "${i}" <<< "${cvm}")"
+        if [[ "${wcl}" -gt 1 ]] ; then
+            echo "---------${wcl} - ${i}"
+            [[ "${1::2}" = '-f' ]] && type -a "${i}" | sed -E "s/(.*[\`]|^)/\t/"
+        fi
+    done < <(alias -p | grep -Pio '^[ \t]*alias[ \t]*\K[^=]*')
+}
+fzf_edit() {
+    rg --ignore-file="${XDG_CONFIG_HOME}/rg/code.rg" --hidden --files "${1:-.}" 2>/dev/null \
+        | fzf --preview="highlight -O ansi -l {} 2>/dev/null" --print0                      \
+        | xargs -0 -r -o "${EDITOR}"
+}
+bash_history_grab() {
+    if [[ -n "${2}" ]] ; then
+        grep -Pi "${2}" "${HISTFILE}" | tail -n "${1}"
+    else
+        grep -Pi "${1}" "${HISTFILE}"
+    fi
+}
+stream_ytdl_mpv() {
+    yt-dlp "${1}" -o - | mpv --input-ipc-server=/tmp/mpvsocket -
+}
+rg_with_p()       {
+    rg "${@}" | "${PAGER}"
+}
+man_all_pages() {
+    MAN_KEEP_FORMATTING=1 man -a "${@}" 2>/dev/null | "${PAGER}"
+}

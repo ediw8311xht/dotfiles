@@ -5,10 +5,17 @@ source ${HOME}/.config/nvim/functions.vim
 "-- Leader Bindings              --
 "----------------------------------
 
+"\[ 'zaf' ,    'gg/<C-r>0<esc>jVnkzf' ]
 let g:bindings_l_noremap = [
-    \[ 'zaf' ,    'gg/<C-r>0<esc>jVnkzf' ]
 \]
 
+"\[ 'vf'  ,    '?<C-r>"<enter>'                                                                                                                                  ],
+"\[ 'tcc' ,    ':tabclose<esc>'                                                                                                                                  ],
+"\[ 'tf'  ,    ':tabfirst<esc>'                                                                                                                                  ],
+"\[ 'tl'  ,    ':tablast<esc>'                                                                                                                                   ],
+"\[ 'tm'  ,    ':tabmove'                                                                                                                                        ],
+"\[ 'WC'  ,    ':BraceyStop<esc>'                                                                                                                                ],
+"\[ 'WW'  ,    ':Bracey<esc>'                                                                                                                                    ],
 let g:bindings_l_nnoremap = [
     \[ '<leader>' , '<C-^>'                                                                                                                                         ],
     \[ ']'   ,    ':bnext<CR>:noh<esc><C-L>'                                                                                                                        ],
@@ -43,22 +50,12 @@ let g:bindings_l_nnoremap = [
     \[ 'q'   ,    ':bd'                                                                                                                                             ],
     \[ 's'   ,    ':source ~/.config/nvim/init.vim<esc>'                                                                                                            ],
     \[ 'tb'  ,    ':tabmove -1<esc>'                                                                                                                                ],
-    \[ 'tB'  ,    ':tabmove -1<esc>'                                                                                                                                ],
-    \[ 'tcc' ,    ':tabclose<esc>'                                                                                                                                  ],
-    \[ 'tf'  ,    ':tabfirst<esc>'                                                                                                                                  ],
-    \[ 'tl'  ,    ':tablast<esc>'                                                                                                                                   ],
-    \[ 'tm'  ,    ':tabmove'                                                                                                                                        ],
     \[ 'tn'  ,    ':tabmove +1<esc>'                                                                                                                                ],
-    \[ 'tN'  ,    ':tabmove +1<esc>'                                                                                                                                ],
-    \[ 'tp'  ,    ':tabmove -1<esc>'                                                                                                                                ],
     \[ 'T'   ,    ':term<esc>'                                                                                                                                      ],
     \[ 'tt'  ,    ':tabnew<esc>'                                                                                                                                    ],
     \[ 'u'   ,    ':Lf<esc>'                                                                                                                                        ],
-    \[ 'vf'  ,    '?<C-r>"<enter>'                                                                                                                                  ],
     \[ 'vv'  ,    ':call Cycle(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<CR>'            ],
     \[ 'W'   ,    ':call Web("f")<esc>i'                                                                                                                            ],
-    \[ 'WC'  ,    ':BraceyStop<esc>'                                                                                                                                ],
-    \[ 'WW'  ,    ':Bracey<esc>'                                                                                                                                    ],
     \[ 'w'   ,    ':w<esc>'                                                                                                                                         ],
     \[ 'X'   ,    ':w<esc>:!%:p '                                                                                                                                   ],
     \[ 'x'   ,    ':w<esc>:!%:p<esc>'                                                                                                                               ],

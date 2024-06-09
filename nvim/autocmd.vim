@@ -4,6 +4,8 @@ autocmd FocusGained,CursorHold,CursorHoldI * silent! checktime
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 "<--------- LANGUAGE SPECIFIC CONFIGS -------------------------------------->
 
+"autocmd BufNewFile,BufRead ~/.bashrc                            set syntax=bash
+"autocmd BufNewFile,BufRead ~/bashrc_files/*                     set syntax=bash
 autocmd BufNewFile,BufRead *.sh                                 set syntax=bash
 autocmd BufNewFile,BufRead ${XDG_CONFIG_HOME}/polybar/*.ini     setfiletype dosini
 autocmd BufNewFile,BufRead ${XDG_CONFIG_HOME}/polybar/*/*.ini   setfiletype dosini

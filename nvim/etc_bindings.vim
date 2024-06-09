@@ -12,6 +12,7 @@ let g:bindings_noremap=[
 
 let g:bindings_vnoremap=[
     \[ '~',        'zf'                         ],
+    \[ '<C-s>',    ':s/\v'                      ],
 \]
 "    \[ 'im',       ':s/\%v[ \t]*//<esc>'        ],
 
