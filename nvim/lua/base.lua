@@ -204,6 +204,7 @@ lspconfig.lua_ls.setup({
 lspconfig.bashls.setup({
     on_attach = lsp_status.on_attach,
     capabilities = cmp_capabilities,
+    filetypes = { "bash" },
 })
 
 lspconfig.pyright.setup({
