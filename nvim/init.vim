@@ -20,6 +20,7 @@ let g:myBg     = [ "#000000", "#333333", "#111111", "#220000", "#002200", "#0000
 let g:myFg     = [         ".",         ".",         ".",         ".",         ".",         ".", "#aaawaa" ] + [ "." ]
 let g:python3_host_prog="/usr/bin/python"
 
+source ${HOME}/.config/nvim/autocmd.vim
 match ExtraWhiteSpace /[^\s]\s\+\zs$/
 
 source ${HOME}/.config/nvim/functions.vim
@@ -101,7 +102,6 @@ colorscheme pop-punk
 
 source ${HOME}/.config/nvim/leader_bindings.vim
 source ${HOME}/.config/nvim/etc_bindings.vim
-source ${HOME}/.config/nvim/autocmd.vim
 
 "let g:bracey_refresh_on_save    = 1
 "let g:bracey_eval_on_save       = 1

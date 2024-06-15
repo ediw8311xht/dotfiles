@@ -103,5 +103,6 @@
     $EXC    xcompmgr 	-n
     $EXC    /usr/bin/dunst
     $EXC    unclutter --timeout 2 --fork
+    $EXC    arbtt-capture
     $EXC_A  $HOME/.config/polybar/launch.sh
 #-------END---------------------------------------------------------------#

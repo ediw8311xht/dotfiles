@@ -1,3 +1,4 @@
+#!/bin/bash
 
 export  PROMPT_COMMAND='history -a;history -n'
 export  HISTSIZE=1000000

@@ -161,10 +161,20 @@ cmp.setup({
 
 -- Elixir --
 elixir.setup({
-    nextls = { enable = false },
+    nextls = {
+        enable = true,
+        filetypes = { "elixir" },
+        init_options = {
+            mix_env = "dev",
+            mix_target = "host",
+            experimental = {
+                completions = { enable = true }
+            }
+        },
+    },
     credo = { enable = false },
     elixirls = {
-        enable = true,
+        enable = false,
         filetypes = { "elixir" },
         cmd = "/usr/bin/elixir-ls",
 
