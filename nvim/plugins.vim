@@ -14,6 +14,7 @@ call plug#begin()
     Plug 'nvim-lua/lsp-status.nvim'
     Plug 'nvim-tree/nvim-web-devicons'
     Plug 'nvimdev/lspsaga.nvim'
+    Plug 'maan2003/lsp_lines.nvim'
 " key hints"
     Plug 'folke/which-key.nvim'
 " git                               #

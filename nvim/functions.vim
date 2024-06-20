@@ -24,7 +24,19 @@ fu! CorrectColors()
     hi MarkSignVirtTextHL gui=NONE      guibg=NONE    guifg=#00FF00
     hi IncSearch          cterm=NONE    ctermbg=white ctermfg=black gui=NONE   guibg=#FF0000 guifg=#000000
     hi Search             cterm=NONE    ctermbg=white ctermfg=black gui=BOLD   guibg=#FF00FF guifg=#000000
-    hi TermCursor         guibg=#000000 guifg=#00FF00
+    hi TermCursor         guibg=#000000 guifg=#00AA00
+    hi DiagnosticError    guifg=#000000 guibg=#990000
+    hi DiagnosticWarn     guifg=#000000 guibg=#AA8500
+    hi DiagnosticInfo     guifg=#000000 guibg=#AAAAAA
+    hi DiagnosticHint     guifg=#000000 guibg=#888888
+    hi GitSignsAdd        guifg=#777777
+    hi WhichKeyFloat      guifg=#000000 guibg=NONE
+    hi WhichKey           guibg=NONE    guifg=#22FF22
+    hi WhichKeyGroup      guifg=#000000 guibg=#555500
+    hi WhichKeySeparator  guifg=#000000 guibg=#000000
+    hi WhichKeyDesc       guifg=#BBBBBB guibg=#000000
+    "hi WhichKeyBorder      guifg=#777777 guibg=#999999
+    hi WhichKeyValue     guifg=#777777 guibg=#444400
     "------------------------Tree-Sitter------------------------#
     hi @module guifg=#00FF00
     hi @keyword guifg=#777777
@@ -89,23 +101,23 @@ fu! Toggle(c1, c2, r1, r2)
     endif
 endfu
 
-fu! M_LspState()
-    if luaeval('vim.inspect(vim.lsp.get_active_clients()) == "{}"')
-        return 0
-    else
-        return 1
-    endif
-endfu
-
-fu! M_ToggleLsp()
-    if M_LspState() == 1
-        echo "Lsp Stopped"
-        LspStop()
-    else
-        echo "Lsp Starting"
-        LspStart()
-    endif
-endfun
+"fu! M_LspState()
+"    if luaeval('vim.inspect(vim.lsp.buf_get_clients()) == "{}"')
+"        return 0
+"    else
+"        return 1
+"    endif
+"endfu
+"
+"fu! M_ToggleLsp()
+"    if M_LspState() == 1
+"        echo "Lsp Stopped"
+"        LspStop()
+"    else
+"        echo "Lsp Starting"
+"        LspStart()
+"    endif
+"endfun
 
 fu! Cycle(checkarr, cvar, doarr, nextprevious)
     let lenny = len(a:checkarr)

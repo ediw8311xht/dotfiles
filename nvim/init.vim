@@ -98,11 +98,11 @@ let g:lf_map_keys   = 0
 let g:html_mode     = 1
 let g:is_bash       = 1
 colorscheme pop-punk
-:call CorrectColors()
 
 source ${HOME}/.config/nvim/leader_bindings.vim
 source ${HOME}/.config/nvim/etc_bindings.vim
 
+:call CorrectColors()
 "let g:bracey_refresh_on_save    = 1
 "let g:bracey_eval_on_save       = 1
 "let g:bracey_auto_start_browser = 0
