@@ -1,8 +1,10 @@
 #!/usr/bin/bash
 
 #set forceueberzug
+#set forcechafa
+#set forcekitty
+#set chafasixel
 set shell "/usr/bin/bash"
-
 
 preview my_epub .epub {{
     epub_image="/tmp/gnome_epub_$(date +%9N).png"

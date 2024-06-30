@@ -16,7 +16,7 @@ set ignorecase
 set noicons
 set relativenumber
 set sortby atime
-set sixel true
+#set sixel true
 set dirfirst true
 set mouse true
 

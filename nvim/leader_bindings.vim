@@ -39,7 +39,8 @@ let g:bindings_l_nnoremap = [
     \[ 'Gm'  ,    ':call GetMappings()<CR>'                                                                                                                         ],
     \[ 'h'   ,    ':call Toggle(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")<esc><C-L>'                                                                    ],
     \[ 'H'   ,    ':vert helpgrep '                                                                                                                                 ],
-    \[ 'i'   ,    ':lua require("lsp_lines").toggle()<CR>'                                                                                                          ],
+    \[ 'i'   ,    ':lua vim.diagnostic.open_float(nil, {focus=true, scope="cursor"})<CR>'                                                                           ],
+    \[ 'I'   ,    ':lua require("lsp_lines").toggle()<CR>'                                                                                                          ],
     \[ 'j'   ,    ':call CycleColor(+1)<CR>'                                                     , "cycles color scheme (next)"                                     ],
     \[ 'J'   ,    ':call CycleColor(-1)<CR>'                                                     , "cycles color scheme (prev)"                                     ],
     \[ 'k'   ,    ':call CorrectColors()<CR>'                                                                                                                       ],
@@ -64,6 +65,7 @@ let g:bindings_l_nnoremap = [
     \[ 'ZC'  ,    ':bd<esc>'                                                                                                                                        ],
     \[ 'z'   ,    'z'                                                                                                                                               ],
 \]
+"\[ 'II'   ,    ':lua require("lsp_lines").toggle()<CR>'                                                                                                          ],
 "\[ ';'   ,    ':ls<CR>:b<Space>'                                                                                                                                ],
 "\[ 'X'   ,    ':w<esc>:!%:p '                                                                                                                                   ],
 "\[ 'x'   ,    ':w<esc>:!%:p<esc>'                                                                                                                               ],

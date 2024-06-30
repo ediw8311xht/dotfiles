@@ -13,15 +13,19 @@ local  lspsaga           =  require('lspsaga')
 local  gitsigns          =  require('gitsigns')
 local  which_key         =  require('which-key')
 local  marks             =  require('marks')
-local  lsp_lines         =  require("lsp_lines")
+-- local  hologram          =  require('hologram')
+-- local  lsp_lines         =  require("lsp_lines")
 
 
 -- Disable virtual_text since it's redundant due to lsp_lines.
-vim.diagnostic.config({
-  virtual_text = false,
-})
+-- vim.diagnostic.config({
+--   virtual_text = false,
+-- })
+-- lsp_lines.setup({})
 
-lsp_lines.setup({})
+-- require('hologram').setup{
+--     auto_display = true -- WIP automatic markdown image display, may be prone to breaking
+-- }
 
 marks.setup({
     default_mappings = true,
@@ -236,11 +240,11 @@ elixir.setup({
             enableTestLenses = true,
             suggestSpecs = false,
         },
---      on_attach = function(client, bufnr)
---            vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
---            vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
---            vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
---      end
+      on_attach = function(client, bufnr)
+            vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
+            vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
+            vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
+      end
     }
 })
 
@@ -259,8 +263,7 @@ lspconfig.tailwindcss.setup({
 
 lspconfig.vimls.setup({})
 
-lspconfig.lua_ls.setup({
-})
+lspconfig.lua_ls.setup({})
 
 lspconfig.bashls.setup({
     on_attach = lsp_status.on_attach,

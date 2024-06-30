@@ -3,7 +3,7 @@
 !xterm*font: xft:Agave:style=Medium:size=11:antialias=false:autohint=false
 
 !!!!!!!!!!!!!!!!!!!!!!!!! -----------------_FONTS
-*.alpha:	    0.95
+*.alpha:	    0.85
 *.borderpx:     10px
 
 !!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTSHH
@@ -76,8 +76,8 @@ emacs.font: 	Agave:style=Regular:size=15:antialias=true:autohint=false
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !special_float*font: 	    Iosevka:style=Regular:pixelsize=12:autohint=true:antialias=true
 
-special_float*alpha:	            1
-special_float*background:           #050505
+special_float*alpha:	            0.90
+special_float*background:           #000000
 !special_float*foreground:           #0abdc6
 !!.# Black, Gray, Silver, White
 !special_float*color0:               #000b1e
