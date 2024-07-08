@@ -210,7 +210,9 @@ cmp.setup({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
     }, {
-        { name = 'buffer'}
+        { name = 'buffer'},
+        { name = 'path'},
+        { name = 'cmdline'},
     })
 })
 
@@ -231,20 +233,23 @@ elixir.setup({
     elixirls = {
         enable = false,
         filetypes = { "elixir" },
-        cmd = "/usr/bin/elixir-ls",
+        -- cmd = "/usr/bin/elixir-ls",
         -- default settings, use the `settings` function to override settings
         settings = elixirls.settings {
-            dialyzerEnabled = false,
-            fetchDeps = false,
+            dialyzerEnabled = true,
+            fetchDeps = true,
             enableTestLenses = true,
-            suggestSpecs = false,
+            suggestSpecs = true,
         },
       on_attach = function(client, bufnr)
             vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
             vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
             vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
       end
-    }
+    },
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
 })
 
 -- LSP --
