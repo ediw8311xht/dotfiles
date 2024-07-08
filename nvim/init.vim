@@ -43,8 +43,8 @@ set magic
 set modelines=0
 set nocompatible
 set nowrap
-set nu
-set rnu
+set number
+set relativenumber
 set ruler
 set signcolumn=yes:2
 set splitright

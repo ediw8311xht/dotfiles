@@ -228,7 +228,6 @@ elixir.setup({
             }
         },
     },
-    credo = { enable = false },
     elixirls = {
         enable = false,
         filetypes = { "elixir" },

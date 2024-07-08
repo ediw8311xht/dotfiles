@@ -36,7 +36,7 @@ call plug#begin()
 " Markdown Preview                  #
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " Semantic Highlighting for Python  #
-    Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
+    "Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 " For using lf in nvim              #
     Plug 'voldikss/vim-floaterm'
     Plug 'ptzz/lf.vim'

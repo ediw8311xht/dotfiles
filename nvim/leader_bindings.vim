@@ -59,7 +59,7 @@ let g:bindings_l_nnoremap = [
     \[ 'vv'  ,    ':call Cycle(["none", "all", "block"], &ve, ["set ve=all \| echo &ve", "set ve=block \| echo &ve", "set ve=none \| echo &ve"], 0)<CR>'            ],
     \[ 'W'   ,    ':call Web("f")<esc>i'                                                                                                                            ],
     \[ 'w'   ,    ':w<esc>'                                                                                                                                         ],
-    \[ 'X'   ,    '::!%:p '                                                                                                                                         ],
+    \[ 'X'   ,    ':!%:p '                                                                                                                                         ],
     \[ 'x'   ,    ':!%:p<esc>'                                                                                                                                      ],
     \[ 'y'   ,    ':hi Normal guibg=Transparent<esc>'                                                                                                               ],
     \[ 'ZC'  ,    ':bd<esc>'                                                                                                                                        ],
