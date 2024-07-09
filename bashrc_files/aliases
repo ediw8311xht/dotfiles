@@ -1,5 +1,11 @@
 #!/bin/bash
 
+#--------------------------------------------------RESERVED------------------------------#
+# b           RESERVED
+# h           RESERVED
+# w           RESERVED
+# X           RESERVED
+#--------------------------------------------------utilities-----------------------------#
 alias ls='ls --color="auto" '
 alias grep='grep --colour="auto" --group-separator="===================================" '
 alias systemctl='systemctl --no-pager'
@@ -9,128 +15,28 @@ alias cp='cp -i'
 alias free='free -h'
 alias pacman='pacman --color="always"'
 alias yay='yay --color="always"'
-#-----------------------------------1L--#
-#alias a='         get_alias_fzf'
-#        b=          RESERVED
-
-alias vlime_start=' sbcl --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp'
-alias htmlcheck='   xmllint --html'
-alias ac='          compgen -c  | grep -x'
-alias cz='          ccze -m ansi'
-alias c='           mycd'
-alias d='           \df -h | ccze -m ansi'
-alias D='           \df -h | grep -Po "^[ ]*[/]dev[/].*" | ccze -m ansi'
-alias e='           open_in_emacs_client'
-#alias e='           type -a'
-#alias d='         deactivate' # For python virtualenv
-#alias e='         xcmenu --input --primary'
-alias g='         grep -Pi'
-#     h=          RESERVED
-alias i='         iex' # elixir
-alias l='         cd_from_lf' # my lf, so it cd's shell after exiting lf
-#alias m='         mimetype'
-alias n='         lsd --group-dirs="first" -t -r --icon="never" --permission="octal"  --date=+" %l:%M%P %y %m %_d " --blocks="permission,user,date,size,name"'
-#-    q #
-alias r='         \rg --pcre2 -i'
-alias s='         cd - 2>/dev/null'
-alias t='         trash-put'
-#-    u #
-alias v='         sc-im'
-#-    w           RESERVED
-#alias x='         xdg-open'
-#alias y='         source .venv/bin/activate'
-alias z='         zathura --fork'
-#-----------------------------------1U--#
-alias B='         bat'
-alias C='         cd ..'
-#alias E='         xcmenuctrl'
-#alias G='         grep -F'
+#--------------------------------------------------ls------------------------------------#
 alias L='         ls++'
-#alias M='         ./manage.py'
-#alias O='         open_prog'
-alias P='         readlink -f'
-alias W='         whereis'
-#     X           RESERVED
-#-----------------------------------2---#
-alias klr='       kalker --angle-unit rad'
-alias kld='       kalker --angle-unit deg'
-#alias gd='        xcmenu --input --clipboard "$(pwd)"'
-alias gf='        grep --file="-" -Fi "${HOME}/.bashrc" "${HOME}/bashrc_files/"* <<<'
-alias gr='        grep --file="-" -Pi "${HOME}/.bashrc" "${HOME}/bashrc_files/"* <<<'
-#alias gg='        grep -P -r -i'
-#alias ic='        clear; imgcat'
-alias ll="        lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
-alias nf='        fzf_edit'
-alias nv='        nvim'
-#alias pe='        ps -eo comm=,'
-#alias po='        ps -eo cmd=,'
-#alias py='        clear; python3'
-alias xf='        xdg-open "$(fzf --preview="ctpv {}")"'
-alias xr='        echo ""; nvim "${HOME}/.Xresources"; xrdb "${HOME}/.Xresources"'
-#------------------------------------------------------------#
-alias nva='       fd --exact-depth 1 --type f --print0 | xargs -0 -r nvim'
-alias ren='       renamer'
-alias acc='       alias_conflict'
-alias acf='       alias_conflict --full'
-alias alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
-alias cop='       xclip -selection "clipboard" -i <<< '
-alias decl='      declare -f'
-alias doren='     perl-rename -v'
-alias eread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --preview="ctpv {}" --print0 | xargs -0 -r -o zathura --fork; exit'
-alias ezchmod='   chmod og-rwx -R .'
-#alias   fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | grep -Pi -- "${_z:-''}")) <<<'
-alias rifs="      IFS=$' \t\n'"
-alias pifs='      printf "\n_%q_\n\n" "${IFS}"'
-alias fread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --preview="ctpv {}" --print0 | xargs -0 -r -o zathura --fork'
-alias getfont='   fc-list -v | grep -i '
-alias gfi='       fd --search-path "/" -u --mount'
-alias gital='     git log --source --all -S'
-alias git_mt='    git log --pretty=format:"%h %s" --graph'
-alias gport='     netstat -lntu | grep -Pi'
-alias grab_dir='  xcmenu --input --clipboard "$(pwd)"'
-#alias i3c='       i3 -C "$HOME/.config/i3/config"'
-alias img='       nsxiv -0'
-#alias isport='    (read _z; ss -lp "sport = :${_z}") <<< '
-alias ldi='       fdisk -l -o +uuid'
-alias listaudio=" find . -type f -iregex '.*[.]\(mp3\|flac\)'"
-alias list_coms=' compgen -c'
-alias listmedia=" listaudio; listpics; listvids"
-alias listpics="  find . -type f -iregex '.*[.]\(jp[e]?g\|png\|tiff\|webp\|bmp\|avif\|ico\|gif[v]?\)'"
-alias listvids="  find . -type f -iregex '.*[.]\(mov\|m4v\|mkv\|mp[e]?[4vg]\|webm\|avi\|amv\)'"
-alias lla='       ll -a'
+alias n='         lsd --group-dirs="first" -t -r --icon="never" --permission="octal"  --date=+" %l:%M%P %y %m %_d " --blocks="permission,user,date,size,name"'
 alias lsn="       lsd --icon='never' -l"
 alias lst="       lsd --icon='never' -ltrh"
 alias lsz="       lsd --icon='never' -lSrh"
-alias manlist='   man -f'
-alias men='       man_all_pages'
-#alias mixf='      mix format'
-#alias mixc='      mix compile'
-#alias iexm='      MIX_ENV=test iex -S mix'
+alias ll="        lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
+alias lla='       ll -a'
+#--------------------------------------------------elixir--------------------------------#
+alias i='         iex' # elixir
 alias iexm='      iex -S mix'
+alias dial='      mix dialyzer'
 alias iexp='      iex -S mix phx.server'
-alias pgr='       $PAGER'
-alias pse='       ps -eo comm=, | grep --ignore-case'
-alias psg='       ps ax | grep -Pi'
-alias pso='       ps -eo cmd=, | grep --ignore-case'
-alias quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g'"
-alias rml='       rmlint --no-followlinks --keep-all-tagged --no-crossdev --paranoid --progress --types="duplicates"'
-alias testpy='    nv "$HOME/TEST/test.py"'
-alias sap='       apropos'
-alias sman='      man -K --regex'
-alias snv='       sudoedit'
-alias tracenet='  strace'
-alias tret='      ps -ejH'
-alias tres='      ps -eHo euser,ruser,suser,fuser,f,comm,label'
-alias trev='      ps axjf'
-alias upfonts='   fc-cache -f -v; echo $?'
-alias getmonospacefonts='fc-list :spacing=100 | grep -i '
-#alias xprattach=' nohup /usr/bin/xpra attach :${XPRA_DISPLAY_NUMBER} &'
-#------------------------------------------------------EXPAC-#
+    #alias mixf='      mix format'
+    #alias mixc='      mix compile'
+    #alias iexm='      MIX_ENV=test iex -S mix'
+#--------------------------------------------------expac---------------------------------#
 alias exspace='   expac -HM "%m %n" | sort -n'           # Size of packages pacman
 alias exlast="    expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
 alias exopt='     expac -Qv -l "\n\t" "%n:\n\t%O"'
 alias exdep='     expac -Qv -l "\n\t" "%n:\n\t%D"'
-#--------------------------------------------------------YAY-#
+#--------------------------------------------------yay-----------------------------------#
 alias yayse='     yay -Ss'
 alias yayi='      yay -Si'
 alias yayp='      yay -P --stats'
@@ -142,7 +48,7 @@ alias yaycool='   yay -Sl aur | grep "Installed"'
 alias yaysalt='   yay -Sl | grep -Pio ".*(?=\[installed\])"'
 alias pacdep='    expac -l "\n" "%D"'
 alias pacopt='    expac -l "\n" "%o"'
-#-----------------------------------------------------PACMAN-#
+#--------------------------------------------------pacman--------------------------------#
 alias ptc='       pactree --color' #Pacman Dependencies
 alias pacse='     pacman -Ss'
 alias paci='      pacman -Si'
@@ -156,39 +62,8 @@ alias pacfrom='   pacman -Qo'
 alias pacfiles='  pacman -Qql'
 alias pacool='    pacman -Sl | grep -Fi  "[installed]" | grep -i'
 alias pacnot='    pacman -Sl | grep -vFi "[installed]" | grep -i'
-alias sctl='      journalctl | ccze -m ansi'
-alias i3e='       find "${XDG_CONFIG_HOME}/i3/" -maxdepth 1 -type f -print0 | xargs -0 nvim'
-alias ebash='     nvim "${HOME}/.bashrc" "${HOME}/bashrc_files/"*; source "${HOME}/.bashrc"'
-alias ednv='      nvim "${HOME}/.config/nvim/lua/"*.lua "${HOME}/.config/nvim/"*.vim'
-alias full_ednv=' fd . -tf -0 "${HOME}/.config/nvim/" | xargs -0 -r nvim'
-alias emime='     nvim "${HOME}/.config/mimeapps.list"'
-alias ysb='       source "${HOME}/.bashrc"'
-#alias capkey='    xev | grep -Pio '\''(keysym [^)]*)'\'
-#alias atspikill=' killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher'
-alias nvgr='      grep --file="-" -Pri "${HOME}/.config/nvim/" <<< '
-alias i3gr='      grep --file="-" -Pri "${HOME}/.config/i3/"   <<< '
-alias vid='       open_mpv'
-alias chx='       chmod 700'
-alias szof="      du -axhc --time --max-depth=1 | grep -Pv '^0[ \t]' | sort -h"
-alias szofall='   du -ahc  --time --max-depth=1'
-alias bgsz='      szof | grep -P "^[^ ]*G"'
-alias ydl='       cd "${VIDEOS}"; yt-dlp -f "bestvideo[height<=?1080]+bestaudio/best" -o "%(title)s.%(ext)s" --restrict-filename'
-alias ystream='   stream_ytdl_mpv'
-alias getkeysall='   xmodmap -pke'
-#alias key_spec='      evemu-describe'
-alias betterkey='     showkey -k'
-# TaskWarrior #
-alias tl='        task list'
-#alias springmr='  mvn spring-boot:run'
-#-----------------------------------------------------DJANGO-#
-#alias djs='       python manage.py runserver'
-#alias tjs='       python manage.py test'
-#--------------------------------------------------------PIP-#
-alias pips='      poetry search'
-alias pipf='      pip freeze'
-alias pipsl='     pip list | grep -i'
-alias pip3sl='    pip3 list | grep -i'
-#   CD                                                                  #
+#--------------------------------------------------cd------------------------------------#
+alias c='         mycd'
 alias b='         cd "${BIN}"'
 alias h='         cd "${HOME}"'
 alias vids='      cd "${VIDEOS}"'
@@ -209,3 +84,133 @@ alias ncde='      cd "${CODING}"; nf'
 alias nswp='      cd "${HOME}/.mynvim/swapfiles/"'
 alias cde='       cd "${CODING}"; cd "$(fd --maxdepth 3 -t d | sort -n | fzf --preview="${LS_PREVIEW[@]} {}")"'
 alias clne='      cd "${CLONED}"; cd "$(fd --maxdepth 1 -t d | sort -n | fzf --preview="${LS_PREVIEW[@]} {}")"'
+#--------------------------------------------------find----------------------------------#
+alias listaudio=" find . -type f -iregex '.*[.]\(mp3\|flac\)'"
+alias listpics="  find . -type f -iregex '.*[.]\(jp[e]?g\|png\|tiff\|webp\|bmp\|avif\|ico\|gif[v]?\)'"
+alias listvids="  find . -type f -iregex '.*[.]\(mov\|m4v\|mkv\|mp[e]?[4vg]\|webm\|avi\|amv\)'"
+alias i3e='       find "${XDG_CONFIG_HOME}/i3/" -maxdepth 1 -type f -print0 | xargs -0 nvim'
+alias gfi='       fd --search-path "/" -u --mount'
+#--------------------------------------------------Python--------------------------------#
+alias pips='      poetry search'
+alias pipf='      pip freeze'
+alias pipsl='     pip list | grep -i'
+alias pip3sl='    pip3 list | grep -i'
+    #alias djs='       python manage.py runserver'
+    #alias tjs='       python manage.py test'
+    #alias py='        clear; python3'
+#--------------------------------------------------ps------------------------------------#
+alias psg='       ps ax | grep -Pi'
+alias pse='       ps -eo comm=, | grep --ignore-case'
+alias pso='       ps -eo cmd=, | grep --ignore-case'
+alias tret='      ps -ejH'
+alias tres='      ps -eHo euser,ruser,suser,fuser,f,comm,label'
+alias trev='      ps axjf'
+    #alias pe='        ps -eo comm=,'
+    #alias po='        ps -eo cmd=,'
+#--------------------------------------------------man-----------------------------------#
+alias manlist='   man -f'
+alias men='       man_all_pages'
+alias sman='      man -K --regex'
+#--------------------------------------------------nvim----------------------------------#
+alias nv='        nvim'
+alias nvgr='      grep --file="-" -Pri "${HOME}/.config/nvim/" <<< '
+alias full_ednv=' fd . -tf -0 "${HOME}/.config/nvim/" | xargs -0 -r nvim'
+alias ednv='      nvim "${HOME}/.config/nvim/lua/"*.lua "${HOME}/.config/nvim/"*.vim'
+alias nva='       fd --exact-depth 1 --type f --print0 | xargs -0 -r nvim'
+#--------------------------------------------------zathura-------------------------------#
+alias z='         zathura --fork'
+alias eread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --preview="ctpv {}" --print0 | xargs -0 -r -o zathura --fork; exit'
+alias fread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --preview="ctpv {}" --print0 | xargs -0 -r -o zathura --fork'
+#--------------------------------------------------df------------------------------------#
+alias d='           \df -h | ccze -m ansi'
+alias D='           \df -h | grep -Po "^[ ]*[/]dev[/].*" | ccze -m ansi'
+#--------------------------------------------------lf------------------------------------#
+alias l='         cd_from_lf' # my lf, so it cd's shell after exiting lf
+#--------------------------------------------------TaskWarrior---------------------------#
+alias tl='        task list'
+#--------------------------------------------------lisp----------------------------------#
+alias vlime_start=' sbcl --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp'
+#----------------------------------------------------------------------------------------#
+
+alias htmlcheck='   xmllint --html'
+alias ac='          compgen -c  | grep -x'
+alias cz='          ccze -m ansi'
+alias e='           open_in_emacs_client'
+alias g='         grep -Pi'
+alias r='         \rg --pcre2 -i'
+alias t='         trash-put'
+alias v='         sc-im'
+alias B='         bat'
+alias C='         cd ..'
+alias P='         readlink -f'
+alias W='         whereis'
+alias klr='       kalker --angle-unit rad'
+alias kld='       kalker --angle-unit deg'
+alias gf='        grep --file="-" -Fi "${HOME}/.bashrc" "${HOME}/bashrc_files/"* <<<'
+alias gr='        grep --file="-" -Pi "${HOME}/.bashrc" "${HOME}/bashrc_files/"* <<<'
+alias nf='        fzf_edit'
+alias xf='        xdg-open "$(fzf --preview="ctpv {}")"'
+alias xr='        echo ""; nvim "${HOME}/.Xresources"; xrdb "${HOME}/.Xresources"'
+alias ren='       renamer'
+alias acc='       alias_conflict'
+alias acf='       alias_conflict --full'
+alias alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
+alias cop='       xclip -selection "clipboard" -i <<< '
+alias decl='      declare -f'
+alias doren='     perl-rename -v'
+alias ezchmod='   chmod og-rwx -R .'
+alias rifs="      IFS=$' \t\n'"
+alias pifs='      printf "\n_%q_\n\n" "${IFS}"'
+alias getfont='   fc-list -v | grep -i '
+alias gital='     git log --source --all -S'
+alias git_mt='    git log --pretty=format:"%h %s" --graph'
+alias gport='     netstat -lntu | grep -Pi'
+alias grab_dir='  xcmenu --input --clipboard "$(pwd)"'
+alias img='       nsxiv -0'
+alias ldi='       fdisk -l -o +uuid'
+alias list_coms=' compgen -c'
+alias listmedia=" listaudio; listpics; listvids"
+alias pgr='       $PAGER'
+alias quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g'"
+alias rml='       rmlint --no-followlinks --keep-all-tagged --no-crossdev --paranoid --progress --types="duplicates"'
+alias testpy='    nv "$HOME/TEST/test.py"'
+alias sap='       apropos'
+alias snv='       sudoedit'
+alias tracenet='  strace'
+alias upfonts='   fc-cache -f -v; echo $?'
+alias getmonospacefonts='fc-list :spacing=100 | grep -i '
+alias sctl='      journalctl | ccze -m ansi'
+alias ebash='     nvim "${HOME}/.bashrc" "${HOME}/bashrc_files/"*; source "${HOME}/.bashrc"'
+alias emime='     nvim "${HOME}/.config/mimeapps.list"'
+alias ysb='       source "${HOME}/.bashrc"'
+alias i3gr='      grep --file="-" -Pri "${HOME}/.config/i3/"   <<< '
+alias vid='       open_mpv'
+alias chx='       chmod 700'
+alias szof="      du -axhc --time --max-depth=1 | grep -Pv '^0[ \t]' | sort -h"
+alias szofall='   du -ahc  --time --max-depth=1'
+alias bgsz='      szof | grep -P "^[^ ]*G"'
+alias ydl='       cd "${VIDEOS}"; yt-dlp -f "bestvideo[height<=?1080]+bestaudio/best" -o "%(title)s.%(ext)s" --restrict-filename'
+alias ystream='   stream_ytdl_mpv'
+alias getkeysall='   xmodmap -pke'
+alias betterkey='     showkey -k'
+
+#-    q #
+#-    u #
+#alias m='         mimetype'
+#alias x='         xdg-open'
+#alias y='         source .venv/bin/activate'
+#alias G='         grep -F'
+#alias M='         ./manage.py'
+#alias O='         open_prog'
+#alias a='         get_alias_fzf'
+#alias xprattach=' nohup /usr/bin/xpra attach :${XPRA_DISPLAY_NUMBER} &'
+#alias key_spec='      evemu-describe'
+#alias springmr='  mvn spring-boot:run'
+#alias capkey='    xev | grep -Pio '\''(keysym [^)]*)'\'
+#alias atspikill=' killall at-spi2-registryd; killall at-spi2-bus-launcher; killall at-spi-registryd; killall at-spi-bus-launcher'
+#alias fnsc='      (read _z; $EDITOR <(xlsfonts | grep -F -- "--0-0-0-0-" | grep -Pi -- "${_z:-''}")) <<<'
+#alias i3c='       i3 -C "$HOME/.config/i3/config"'
+#alias isport='    (read _z; ss -lp "sport = :${_z}") <<< '
+#alias gg='        grep -P -r -i'
+#alias ic='        clear; imgcat'
+#alias gd='        xcmenu --input --clipboard "$(pwd)"'
