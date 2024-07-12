@@ -8,7 +8,7 @@ set ratios      2:3:5
 set info        size:time
 set scrolloff   8
 set autoquit
-set drawbox
+#set drawbox
 set dircounts
 set preview
 set number
@@ -19,6 +19,7 @@ set sortby atime
 #set sixel true
 set dirfirst true
 set mouse true
+#set borderfmt "\033[33m"
 
 set previewer ctpv
 set cleaner ctpvclear

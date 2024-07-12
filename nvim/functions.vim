@@ -37,6 +37,8 @@ fu! CorrectColors()
     hi WhichKeyDesc       guifg=#BBBBBB guibg=#000000
     "hi WhichKeyBorder      guifg=#777777 guibg=#999999
     hi WhichKeyValue     guifg=#777777 guibg=#444400
+    hi Floaterm guibg=#000000
+    hi FloatermBorder guibg=#003377 guifg=#000000
     "------------------------Tree-Sitter------------------------#
     hi @module guifg=#00FF00
     hi @keyword guifg=#777777
@@ -154,10 +156,11 @@ fu! GetMappings()
     :e /tmp/nvim_mappings.txt
 endfunction
 
-fu! LspStatus() abort
-    if luaeval('#vim.lsp.buf_get_clients() > 0')
-        return luaeval("require('lsp-status').status()")
-    else
-    return ""
+function! LspStatus() abort
+  if luaeval('#vim.lsp.buf_get_clients() > 0')
+    return luaeval("require('lsp-status').status()")
+  endif
+
+  return ""
 endfunction
 

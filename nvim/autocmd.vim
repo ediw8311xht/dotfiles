@@ -5,6 +5,8 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 "<--------- LANGUAGE SPECIFIC CONFIGS -------------------------------------->
 
 "autocmd Filetype vim setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd BufNewFile,BufRead ~/.config/zathura/*                  set syntax=zathurarc
+
 autocmd BufNewFile,BufRead ~/.bashrc                            setfiletype bash
 autocmd BufNewFile,BufRead ~/bashrc_files/*                     setfiletype bash
 autocmd BufNewFile,BufRead *.sh                                 setfiletype bash

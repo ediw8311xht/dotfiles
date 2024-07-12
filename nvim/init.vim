@@ -88,6 +88,10 @@ set statusline+=%m\
 set statusline+=%=\(\ %l\/%L\ \)\ (%v\)\ 
 set statusline+=%{wordcount().words}\ w\ 
 set statusline+=%{LspStatus()}
+let g:floaterm_opener='edit'
+let g:floaterm_width=0.7
+let g:floaterm_height=0.9
+"let g:floaterm_borderchars='        '
 
 let g:coc_start_at_startup = v:true
 let g:coc_enable_at_startup = v:false
