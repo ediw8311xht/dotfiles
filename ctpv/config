@@ -7,12 +7,11 @@
 set shell "/usr/bin/bash"
 
 preview my_epub .epub {{
-    epub_image="/tmp/gnome_epub_$(date +%9N).png"
     a="$((w*h))"
     [[ "${a}" -gt 500 ]] && a="500"
-    gnome-epub-thumbnailer -s "${a}" "${f}" "${epub_image}"
+    gnome-epub-thumbnailer -s "${a}" "${f}" "${cache_f}.png"
     setup_image
-    send_image "${epub_image}"
+    send_image "${cache_f}.png"
 }}
 
 preview mygzip .gz {{
