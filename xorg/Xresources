@@ -30,7 +30,7 @@
 !!!.color:        #FFFFFF
 
 emacs.font: 	Agave:style=Regular:size=15:antialias=true:autohint=false
-*.cursorColor:  #FFFF00
+*.cursorColor:  #FF0
 *.foreground:   #FFF
 *.background:   #000
 ! black
