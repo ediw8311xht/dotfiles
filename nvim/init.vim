@@ -81,6 +81,7 @@ set guicursor=n:block90,i:ver20
 set cul
 set nocuc
 set cedit=\<C-c>
+set statuscolumn=
 
 set statusline=\ [%n]\ 
 set statusline+=\ %F\ 
@@ -88,7 +89,7 @@ set statusline+=%m\
 set statusline+=%=\(\ %l\/%L\ \)\ (%v\)\ 
 set statusline+=%{wordcount().words}\ w\ 
 set statusline+=%{LspStatus()}
-"let g:floaterm_opener='edit'
+let g:floaterm_opener='edit'
 let g:lf_width=0.9
 let g:lf_height=0.9
 "let g:floaterm_borderchars='        '

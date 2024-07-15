@@ -19,7 +19,7 @@ set sortby atime
 #set sixel true
 set dirfirst true
 set mouse true
-#set borderfmt "\033[33m"
+set borderfmt "\033[1;37m"
 
 set previewer ctpv
 set cleaner ctpvclear

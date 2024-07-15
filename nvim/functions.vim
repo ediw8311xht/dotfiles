@@ -6,8 +6,9 @@ fu! CorrectColors()
     else
         hi Comment      cterm=ITALIC ctermbg=160 ctermfg=18 gui=ITALIC guifg=#005FEF guibg=NONE
     endif
+    hi lCursor            gui=NONE guibg=NONE guifg=NONE
     hi ColorColumn        cterm=NONE    ctermbg=NONE  ctermfg=NONE  gui=NONE   guibg=#222222 guifg=NONE
-    hi CursorLine         cterm=BOLD    ctermfg=NONE  ctermbg=18    gui=BOLD   guibg=#090909 guifg=NONE
+    hi CursorLine         cterm=BOLD    ctermfg=NONE  ctermbg=18    gui=BOLD   guibg=#000022 guifg=NONE
     hi CursorLineNr       cterm=BOLD    ctermfg=NONE  ctermbg=18    gui=NONE   guibg=NONE    guifg=#FFFF00
     hi ExtraWhiteSpace    cterm=NONE    ctermbg=gray  ctermfg=NONE  gui=NONE   guibg=#0099FF
     hi FoldColumn         cterm=NONE    ctermbg=NONE  ctermfg=NONE  gui=ITALIC guibg=NONE    guifg=#00FF00
@@ -19,7 +20,6 @@ fu! CorrectColors()
     hi MarkSignVirtTextHL gui=NONE      guibg=NONE    guifg=#00FF00
     hi Normal             ctermbg=black gui=NONE      guibg=NONE
     hi Search             cterm=NONE    ctermbg=white ctermfg=black gui=BOLD   guibg=#FF00FF guifg=#000000
-    hi SignColumn         cterm=NONE    ctermbg=NONE  ctermfg=NONE  gui=ITALIC guibg=NONE    guifg=#000000
     hi StatusLine         cterm=NONE    ctermbg=NONE  ctermfg=160   gui=BOLD   guibg=#0099FF guifg=#000000
     hi StatusLineNC       cterm=NONE    ctermbg=NONE  ctermfg=160   gui=NONE   guibg=#555555 guifg=#000000
     hi TabLine            gui=NONE      guibg=#222222 guifg=#999999
@@ -30,15 +30,20 @@ fu! CorrectColors()
     hi DiagnosticInfo     guifg=#000000 guibg=#AAAAAA
     hi DiagnosticHint     guifg=#000000 guibg=#888888
     hi GitSignsAdd        guifg=#777777
-    hi WhichKeyFloat      guifg=#000000 guibg=NONE
-    hi WhichKey           guibg=NONE    guifg=#22FF22
-    hi WhichKeyGroup      guifg=#000000 guibg=#555500
-    hi WhichKeySeparator  guifg=#000000 guibg=#000000
-    hi WhichKeyDesc       guifg=#BBBBBB guibg=#000000
-    "hi WhichKeyBorder      guifg=#777777 guibg=#999999
-    hi WhichKeyValue     guifg=#777777 guibg=#444400
-    "hi Floaterm guibg=#000000
-    "hi FloatermBorder guibg=#003377 guifg=#000000
+    "-----Sign Column-----"
+        hi SignColumn         gui=NONE guibg=NONE guifg=NONE
+        hi CursorLineSign     gui=NONE guibg=#000022 guifg=#000000
+    "-----Which Key-----"
+        hi WhichKeyFloat      guifg=#000000 guibg=NONE
+        hi WhichKey           guibg=NONE    guifg=#22FF22
+        hi WhichKeyGroup      guifg=#000000 guibg=#555500
+        hi WhichKeySeparator  guifg=#000000 guibg=#000000
+        hi WhichKeyDesc       guifg=#BBBBBB guibg=#000000
+        "hi WhichKeyBorder      guifg=#777777 guibg=#999999
+        hi WhichKeyValue     guifg=#777777 guibg=#444400
+    "-----Floaterm-----"
+        hi Floaterm          guibg=#000000
+        hi FloatermBorder    guibg=#000000 guifg=#000000
     "------------------------Tree-Sitter------------------------#
     hi @module guifg=#00FF00
     hi @keyword guifg=#777777

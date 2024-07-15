@@ -34,6 +34,11 @@ marks.setup({
     cyclic = true,
     refresh_interval = 400,
     sign_priority = {lower=10, uppwer=15, built=8, bookmark=20 },
+    -- excluded_filetypes = {},
+    excluded_buftypes = {
+        "terminal",
+        "nui",
+    },
     mappings = {
         set_next = "m,",
         next = "m]",
