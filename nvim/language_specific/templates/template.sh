@@ -1,38 +1,41 @@
 #!/bin/bash
 
-####################
-( #-START-SUBSHELL-#
-####################
-ARGS=()
+( #--------------START-SUBSHELL---------------#
+FILENAME="$(basename "$0")"
+DESCRIPTION=(
+    "${FILENAME}"
+)
+OPTIONS=(
+    "-h/--help: print help for this program"
+)
+SEP="-"
+WIDTH="$(tput cols)"
+
+repeat_string() { seq "${2}" | xargs printf -- "${1}%.0s";  }
+psep()          { repeat_string "${SEP}" "${WIDTH}"; echo; }
 
 help_func() {
-    local DESCRIPTION="Placeholder"
-    local OPTIONS='''
-------------------------------------------------
-    -h/--help: print help for this program
-------------------------------------------------
-    '''
-    printf "%s\n" '' "${DESCRIPTION}" "${OPTIONS}"
+    psep ; printf "%s\n"       "Description:"
+    printf "\t%s\n"     "${DESCRIPTION[@]}"
+    psep ; printf "%s\n"       "Options:"
+    printf "\t%s\n"     "${OPTIONS[@]}"
+    psep
 }
 
 handle_arguments() {
-    case "${1,,}" in
-        -h|--help) help_func; exit
-    ;;         -*) echo "invalid argument"
-    ;;          *) ARGS=("${@}"); return
-    ;; esac
-    shift 1
-    handle_arguments "${@}"
+    local i; while [[ "${i:="1"}" -le "${#}" ]] ; do
+        case "${@:i++:1}" in
+            -h|--help) help_func; return 0
+        ;;          *) echo "invalid argument"
+        ;; esac
+    done
 }
 
 main() {
     handle_arguments "${@}"
-    return 0
 }
 
 main "${@}"
+) #----------------END-SUBSHELL---------------#
 
-####################
-) #---END-SUBSHELL-#
-####################
 
