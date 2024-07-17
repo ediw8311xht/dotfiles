@@ -108,3 +108,9 @@ rg_with_p()       {
 man_all_pages() {
     MAN_KEEP_FORMATTING=1 man -a "${@}" 2>/dev/null | "${PAGER}"
 }
+markdown_view_w3m() {
+    w3m -T text/html < <(pandoc -s "${1}" 2>/dev/null)
+}
+
+
+

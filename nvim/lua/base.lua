@@ -14,6 +14,8 @@ local  gitsigns          =  require('gitsigns')
 local  which_key         =  require('which-key')
 local  marks             =  require('marks')
 
+
+
 -- local  hologram          =  require('hologram')
 -- local  lsp_lines         =  require("lsp_lines")
 
@@ -27,6 +29,36 @@ local  marks             =  require('marks')
 -- require('hologram').setup{
 --     auto_display = true -- WIP automatic markdown image display, may be prone to breaking
 -- }
+
+luasnip.setup({})
+cmp.setup({
+    snippet = {
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end,
+    },
+    window = {
+        completion     =  cmp.config.window.bordered(),
+        documentation  =  cmp.config.window.bordered(),
+    },
+    mapping = {
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-y>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.close(),
+    },
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+    }, {
+        { name = 'buffer'},
+        { name = 'path'},
+        { name = 'cmdline'},
+        { name = 'dotenv'},
+    })
+})
 
 marks.setup({
     default_mappings = true,
@@ -51,7 +83,6 @@ marks.setup({
     }
 })
 
--- luasnip.setup({})
 lspsaga.setup({})
 gitsigns.setup({
   signs = {
@@ -193,35 +224,6 @@ org.setup({
     org_agenda_files = {'~/Documents/Dropbox/org/*', '~/Documents/my-orgs/**/*'},
     org_default_notes_file = '~/Documents/Dropbox/org/refile.org',
 })
-
-cmp.setup({
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body)
-        end,
-    },
-    window = {
-        completion     =  cmp.config.window.bordered(),
-        documentation  =  cmp.config.window.bordered(),
-    },
-    mapping = {
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-y>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.close(),
-    },
-    sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-    }, {
-        { name = 'buffer'},
-        { name = 'path'},
-        { name = 'cmdline'},
-    })
-})
-
 
 -- Elixir --
 elixir.setup({

@@ -131,7 +131,7 @@ alias tl='        task list'
 #--------------------------------------------------lisp----------------------------------#
 alias vlime_start=' sbcl --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp'
 #----------------------------------------------------------------------------------------#
-
+alias mdview='      markdown_view_w3m "$( fd -tf ".*[.]md" | fzf)"'
 alias htmlcheck='   xmllint --html'
 alias ac='          compgen -c  | grep -x'
 alias cz='          ccze -m ansi'

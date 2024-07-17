@@ -1,41 +1,32 @@
 #!/bin/bash
 
-( #--------------START-SUBSHELL---------------#
-FILENAME="$(basename "$0")"
-DESCRIPTION=(
-    "${FILENAME}"
-)
-OPTIONS=(
-    "-h/--help: print help for this program"
-)
-SEP="-"
-WIDTH="$(tput cols)"
+script_main() (
+    local S DESCRIPTION OPTIONS HELP
+    S="$(printf "\n%$(tput cols || echo 20)s\n" | tr ' ' '-')"
+    DESCRIPTION=(
+        "$(basename "$0")"
+    )
+    OPTIONS=(
+        "-h/--help: print help for this program"
+    )
+    HELP=(
+        "Description:${S}" "${DESCRIPTION[@]/#/$'\t'}"
+            "Options:${S}"     "${OPTIONS[@]/#/$'\t'}"
+    )
 
-repeat_string() { seq "${2}" | xargs printf -- "${1}%.0s";  }
-psep()          { repeat_string "${SEP}" "${WIDTH}"; echo; }
+    help_func() { echo; printf -- "%s\n" "${HELP[@]}"; }
+    handle_arguments() {
+        local i; while [[ "${i:="1"}" -le "${#}" ]] ; do
+            case "${@:i++:1}" in
+                -h|--help) help_func; return 0
+            ;;          *) echo "invalid argument"
+            ;; esac
+        done
+    }
 
-help_func() {
-    psep ; printf "%s\n"       "Description:"
-    printf "\t%s\n"     "${DESCRIPTION[@]}"
-    psep ; printf "%s\n"       "Options:"
-    printf "\t%s\n"     "${OPTIONS[@]}"
-    psep
-}
-
-handle_arguments() {
-    local i; while [[ "${i:="1"}" -le "${#}" ]] ; do
-        case "${@:i++:1}" in
-            -h|--help) help_func; return 0
-        ;;          *) echo "invalid argument"
-        ;; esac
-    done
-}
-
-main() {
     handle_arguments "${@}"
-}
+)
 
-main "${@}"
-) #----------------END-SUBSHELL---------------#
-
-
+script_main "${@}"
+# remove function from environment
+unset script_main
