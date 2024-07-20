@@ -65,11 +65,16 @@
     map  -      zoom      'out'
     map  =      zoom      'in'
     map  +      zoom      'in'
+
+#---------------------------------------#
+#---DBUS--------------------------------#
+#---------------------------------------#
+    set   dbus-service              true
+    set   dbus-raise-window         false
 #---------------------------------------#
 #---APPEARANCE--------------------------#
 #---------------------------------------#
     set   font                      "Hack regular 8"
-    set   dbus-service              true
     set   recolor-keephue           true
     set   statusbar-h-padding       20
     set   statusbar-v-padding       5

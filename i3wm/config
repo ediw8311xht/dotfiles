@@ -3,13 +3,22 @@
 #----MAXIMILIAN-BALLARD-(MY-i3/CONFIG)--------------------------------|
 #---------------------------------------------------------------------|
 # i3 config file (v4)
+#-------------------------------------------------SCRIPTS-----------------#
+    set $zathura_script     $HOME/bin/zathura_dbus_controller.sh
+    set $monitor_script     $HOME/bin/auto_monitor.sh
+    set $wallpaper_script   $HOME/bin/xwallpaperauto.sh
+    set $dmenu_script       $HOME/bin/my_dmenu.sh
+    set $dmenu_search       $HOME/bin/dmenu_websearch.sh
+    set $emacs_script       $HOME/bin/manage_emacs.sh
+    set $border_script      $HOME/bin/i3wm_change_border.sh
+    set $clipboard_script   $HOME/bin/add_to_clip.sh
 #-------------------------------------------------SPECIAL-BINDS-----------#
     #sticky toggle
     set $scratchpad_default floating enable, move scratchpad, scratchpad show, move position center
     set $floating_default   floating enable, move position center
     set $xm_hd              exec $HOME/bin/xmsg_quick.sh
     bindsym Mod1+Shift+r    exec --no-startup-id    "xrdb ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --3"
-    bindsym Mod1+Shift+c    exec --no-startup-id    "xrdb ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --NOASK --0"
+    #bindsym Mod1+Shift+c    exec --no-startup-id    "xrdb ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --NOASK --0"
     bindsym Mod1+Shift+o    exec "sleep 0.5; xset dpms force off"
 #-------------------------------------------------SET---------------------#
     set $DefaultSize   1200px 950px
@@ -77,7 +86,6 @@
     #assign [class=".*Deluge.*"]             workspace 12
 #-------FOR_WINDOW--------------------------------------------------------#
     for_window [class=".*qutebrowser.*"]        floating enable, move scratchpad, resize set 1450px 900px, scratchpad show, move position center
-    for_window [class="[Oo]bsidian"]            floating enable, move scratchpad, resize set 1700px 1000px, scratchpad show, move position center
     for_window [instance="(i3s_note|i3s_st)"]   $scratchpad_default
     for_window [title="i3s_xfce4_term"]         $scratchpad_default
     for_window [class=".*icecat.*"]	            $scratchpad_default
@@ -85,7 +93,6 @@
     for_window [class=".*Thunar.*"]             $scratchpad_default
     for_window [class=".*Xsane.*"]              $scratchpad_default
     for_window [class="Emacs"]				    $scratchpad_default
-    #for_window [class="^(([Oo]bsidian)$"] resize set 1200px 800px, move position center
     for_window [window_role="task_dialog"]      $floating_default
     for_window [window_role="Preferences"]      $floating_default
     for_window [window_role="pop-up"]           $floating_default

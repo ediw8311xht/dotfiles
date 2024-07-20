@@ -29,7 +29,7 @@ export  LS_PREVIEW='lsd   --color=always        \
                           --date=+"%y%m%_d"     \
                           --blocks="permission,user,date,name"'
 #------------------SYSTEM--------------#
-#export  EMACS_SOCKET_NAME="${USER}_emacs_daemon"
+export  EMACS_SOCKET_NAME="${USER}_emacs_daemon"
 export  DOOMDIR="${HOME}/.config/doom"
 export  SUDO_EDITOR='vim'
 export  TERM='st-256color'
