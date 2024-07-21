@@ -21,7 +21,7 @@ call plug#begin()
     Plug 'nvimdev/lspsaga.nvim'
     Plug 'maan2003/lsp_lines.nvim'
 " key hints"
-    Plug 'folke/which-key.nvim'
+    "Plug 'folke/which-key.nvim'
 " git                               #
     Plug 'lewis6991/gitsigns.nvim'
 " show-all-matching-tags-vim        #
@@ -35,7 +35,7 @@ call plug#begin()
 " Real-time HTML/CSS/JS Editor      #
     Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 " Requirements for lilypond (not using anymore), cool ui stuff #
-    Plug 'MunifTanjim/nui.nvim'
+    "Plug 'MunifTanjim/nui.nvim'
 " Fzf Finder                        #
     Plug 'junegunn/fzf.vim'
 " Markdown Preview                  #

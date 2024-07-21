@@ -18,9 +18,9 @@ let g:bindings_l_noremap = [
 "\[ 'WW'  ,    ':Bracey<esc>'                                                                                                                                    ],
 let g:bindings_l_nnoremap = [
     \[ '<leader>' , '<C-^>'                                                                                                                                         ],
+    \[ ','   ,    '<C-^>'                                                                                                                                           ],
     \[ ']'   ,    ':bnext<CR>:noh<esc><C-L>'                                                                                                                        ],
     \[ '['   ,    ':bprevious<CR>:noh<esc><C-L>'                                                                                                                    ],
-    \[ ','   ,    '<C-^>'                                                                                                                                           ],
     \[ '/'   ,    ':Explore<CR>'                                                                                                                                    ],
     \[ '-'   ,    '20<c-w><'                                                                                                                                        ],
     \[ '='   ,    '20<c-w>>'                                                                                                                                        ],
