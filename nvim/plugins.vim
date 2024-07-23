@@ -14,8 +14,10 @@ call plug#begin()
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'SergioRibera/cmp-dotenv'
-    Plug 'saadparwaiz1/cmp_luasnip'
+
     Plug 'L3MON4D3/LuaSnip'
+    Plug 'saadparwaiz1/cmp_luasnip'
+
     Plug 'nvim-lua/lsp-status.nvim'
     Plug 'nvim-tree/nvim-web-devicons'
     Plug 'nvimdev/lspsaga.nvim'

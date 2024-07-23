@@ -21,6 +21,7 @@
     #bindsym Mod1+Shift+c    exec --no-startup-id    "xrdb ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --NOASK --0"
     bindsym Mod1+Shift+o    exec "sleep 0.5; xset dpms force off"
 #-------------------------------------------------SET---------------------#
+    set $mod Mod1
     set $DefaultSize   1200px 950px
     set $DefaultWidth  1200px
     set $DefaultHeight  950px
@@ -53,6 +54,7 @@
         set_from_resource $BOT_GAPS    i3wm.BOT_GAPS 0
         set_from_resource $R_GAPS      i3wm.R_GAPS   0
         set_from_resource $L_GAPS      i3wm.L_GAPS   0
+        set_from_resource $BRAVE_SCALE brave.BRAVE_SCALE 1
 #-------------------------------------------------------INCLUDE-----------#
     include $BORDER_FILE
     include regular_bindings_i3wm.conf

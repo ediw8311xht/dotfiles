@@ -8,8 +8,9 @@ export  TMPDIR="/tmp/"
 #------------------XDG-----------------#
 export  XDG_CONFIG_HOME="${HOME}/.config"
 export  XDG_CACHE_HOME="${HOME}/.cache"
-#export  XDG_STATE_HOME="$HOME/.local/state/" # Have to fix dirs first
-#export  XDG_DATA_HOME="$HOME/.local/data/"   # Have to fix dirs first
+#export  XDG_STATE_HOME="${HOME}/.local/state"
+#export  XDG_DATA_HOME="${HOME}/.local/data"
+#export  XDG_DATA_DIRS="${HOME}/.local/share/"
 #------------------FZF-----------------#
 export  FZF_DEFAULT_COMMAND='fd -H'
 export  FZF_DEFAULT_OPTS='--bind ctrl-a:first

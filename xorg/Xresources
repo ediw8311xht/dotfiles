@@ -182,6 +182,7 @@ URxvt.keysym.M-c:           perl:clipboard:copy
 URxvt.keysym.M-v:           perl:clipboard:paste
 URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
 *dpi:                       96
+*Brave*dpi:                  120
 !*antialias:              True
 !*hinting:                Full
 URxvt.keysym.KP_Add:        +
@@ -287,6 +288,7 @@ i3wm.TOP_GAPS:   0
 i3wm.BOP_GAPS:   0
 i3wm.R_GAPS:     0
 i3wm.L_GAPS:     0
+brave.BRAVE_SCALE: 1
 
 
 !---------------NSXIV---------------!

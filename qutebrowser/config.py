@@ -212,6 +212,7 @@ hint_selectors = {
     'inputs':  hint_inputs,
 }
 my_start_page = "about:blank"
+my_start_pages = [ my_start_page ]
 
 adblock_list = []
 adblock_list += ['https://easylist.to/easylist/easylist.txt'        ]
@@ -280,7 +281,7 @@ c.session.default_name                          =   "Default"
 c.session.lazy_restore                          =   True
 c.statusbar.widgets                             =   ['progress', 'keypress', 'url', 'scroll', 'history', 'tabs', 'progress']
 c.url.default_page                              =   my_start_page
-c.url.start_pages                               =   [ my_start_page, ]
+c.url.start_pages                               =   my_start_pages
 c.zoom.default                                  =   '75%'
 c.zoom.levels                                   =   zoom_levels
 c.zoom.mouse_divider                            =   512

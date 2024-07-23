@@ -2,7 +2,6 @@
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
 
-local  cmp_capabilities  =  require('cmp_nvim_lsp').default_capabilities()
 local  lspconfig         =  require('lspconfig')
 local  luasnip           =  require('luasnip')
 local  cmp               =  require('cmp')
@@ -54,10 +53,27 @@ cmp.setup({
     }, {
         { name = 'buffer'},
         { name = 'path'},
-        { name = 'cmdline'},
+        --{ name = 'cmdline'},
         { name = 'dotenv'},
     })
 })
+
+cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+        { name = 'buffer' }
+    }
+})
+cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = 'path' }
+    }, {
+        { name = 'cmdline' }
+    }),
+    matching = { disallow_symbol_nonprefix_matching = false }
+})
+local  cmp_capabilities  =  require('cmp_nvim_lsp').default_capabilities()
 
 marks.setup({
     default_mappings = true,
