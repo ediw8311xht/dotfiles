@@ -136,11 +136,13 @@ map RR          :reload
 map RN		    rename
 map RF	        push :rename<enter><c-a><c-k>
 map P		    push :!echo<space>""<left>
-map ;		    push ''
-map	K		    :rep "3" "up"
-map J		    :rep "3" "down"
+map	K		    push 3k
+map J		    push 3j
 map VG		    invert-below
 map Vg		    :invert-below; invert
+map ;		    :mark-save
+## remove filter with <c-r>
+map <c-f>       :filter
 #------------------------------------------------------------------#
 #-----------CALL WITH THIS function to use autocd------------------#
 #------------------------------------------------------------------#

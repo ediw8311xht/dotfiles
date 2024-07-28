@@ -19,3 +19,5 @@ source "${HOME}/bashrc_files/aliases"
 mps 'xs' #setting PS1
 #------------------BASH-HISTORY--------#
 shopt -s histappend
+
+source /$HOME/.config/broot/launcher/bash/br

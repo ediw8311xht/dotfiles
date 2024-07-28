@@ -14,6 +14,8 @@
     origin = top-right
     # Offset from the origin
     offset = 5x5
+    min_icon_size = 0
+    max_icon_size = 1
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
