@@ -33,11 +33,23 @@ verbs: [
         leave_broot: false
     }
     {
-        invocation: open_leave
+        invocation: open_leave_me
         from_shell: true
         key: "ctrl-L"
         execution: "cd {directory}"
         leave_broot: true
+    }
+
+    {
+        invocation: toggle_preview_z
+        key: "ctrl-P"
+        execution: ":toggle_preview"
+    }
+
+    {
+        invocation: toggle_hidden_me
+        key: "ctrl-h"
+        execution: ":toggle_hidden"
     }
 
     # Example 1: launching `tail -n` on the selected file (leaving broot)
