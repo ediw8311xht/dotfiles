@@ -2,7 +2,7 @@
 #
 [global]
     #separator_color  = "#0000FF"
-    separator_height = 0
+    #separator_height = 1
     width            = (0, 1400)
     font             = Input Mono 8
     padding          = 8
