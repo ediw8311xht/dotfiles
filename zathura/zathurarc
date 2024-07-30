@@ -90,7 +90,7 @@
     set   completion-fg             "#DDDDDD"
     set   notification-bg           "#222222"
     set   notification-fg           "#0099FF"
-    #     set                      recolor             true
+    set   recolor                   true
     #     set                      default-bg          "#000000"  #    Background
     #     set                      default-fg          "#000000"  #    Foreground
     #     set                      recolor-lightcolor  "#101010"  #    Background

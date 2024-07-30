@@ -4,11 +4,11 @@ configuration {
 }
 //@theme "/usr/share/rofi/themes/Monokai.rasi"
 
-window {
-    //width: 80%;
-    //height: 80%;
-}
 //@theme "/usr/share/rofi/themes/rounded-green-dark.rasi"
 //@theme "/$HOME/.config/rofi/themes/my_rounded_green_dark_theme.rasi"
 //@theme "/$HOME/.config/rofi/themes/my_rounded_green_dark_theme.rasi"
 @theme "/$HOME/.config/rofi/themes/AA_black.rasi"
+window {
+    width: 70%;
+    height: 70%;
+}

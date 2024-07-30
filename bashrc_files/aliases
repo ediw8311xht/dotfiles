@@ -16,6 +16,7 @@ alias free='free -h'
 alias pacman='pacman --color="always"'
 alias yay='yay --color="always"'
 #--------------------------------------------------ls------------------------------------#
+alias rgf='       source "${HOME}/bin/rg_fzf.sh"'
 alias L='         ls++'
 alias n='         lsd --group-dirs="first" -t -r --icon="never" --permission="octal"  --date=+" %l:%M%P %y %m %_d " --blocks="permission,user,date,size,name"'
 alias lsn="       lsd --icon='never' -l"
@@ -63,7 +64,6 @@ alias pacfiles='  pacman -Qql'
 alias pacool='    pacman -Sl | grep -Fi  "[installed]" | grep -i'
 alias pacnot='    pacman -Sl | grep -vFi "[installed]" | grep -i'
 #--------------------------------------------------cd------------------------------------#
-alias c='         mycd'
 alias b='         cd "${BIN}"'
 alias h='         cd "${HOME}"'
 alias vids='      cd "${VIDEOS}"'
@@ -85,10 +85,11 @@ alias nswp='      cd "${HOME}/.mynvim/swapfiles/"'
 alias cde='       cd "${CODING}"; cd "$(fd --maxdepth 3 -t d | sort -n | fzf --preview="${LS_PREVIEW[@]} {}")"'
 alias clne='      cd "${CLONED}"; cd "$(fd --maxdepth 1 -t d | sort -n | fzf --preview="${LS_PREVIEW[@]} {}")"'
 #--------------------------------------------------find----------------------------------#
-alias listaudio=" find . -type f -iregex '.*[.]\(mp3\|flac\)'"
-alias listpics="  find . -type f -iregex '.*[.]\(jp[e]?g\|png\|tiff\|webp\|bmp\|avif\|ico\|gif[v]?\)'"
-alias listvids="  find . -type f -iregex '.*[.]\(mov\|m4v\|mkv\|mp[e]?[4vg]\|webm\|avi\|amv\)'"
-alias i3e='       find "${XDG_CONFIG_HOME}/i3/" -maxdepth 1 -type f -print0 | xargs -0 nvim'
+#alias listaudio=' fd . -tf -e mp3 -e flac'
+#alias listpics='  fd . -tf -e jpg -e jpeg -e png -e tiff -e webp -e bmp -e avif -e ico -e gif -e gifv'
+#alias listvids='  fd . -tf -e mov -e m4v -e mkv -e mpeg -e mp4 -e mpv -e webm -e avi -e amv'
+#alias listmedia=" listaudio; listpics; listvids"
+alias i3e='       fd . -d1 -tf "${XDG_CONFIG_HOME}/i3/" -X nvim'
 alias gfi='       fd --search-path "/" -u --mount'
 #--------------------------------------------------Python--------------------------------#
 alias pips='      poetry search'
@@ -114,9 +115,9 @@ alias sman='      man -K --regex'
 #--------------------------------------------------nvim----------------------------------#
 alias nv='        nvim'
 alias nvgr='      grep --file="-" -Pri "${HOME}/.config/nvim/" <<< '
-alias full_ednv=' fd . -tf -0 "${HOME}/.config/nvim/" | xargs -0 -r nvim'
+alias full_ednv=' fd . -tf -0 "${HOME}/.config/nvim/" -X nvim'
 alias ednv='      nvim "${HOME}/.config/nvim/lua/"*.lua "${HOME}/.config/nvim/"*.vim'
-alias nva='       fd --exact-depth 1 --type f --print0 | xargs -0 -r nvim'
+alias nva='       fd . --exact-depth 1 -tf -X nvim'
 #--------------------------------------------------zathura-------------------------------#
 alias z='         zathura --fork'
 alias eread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --preview="ctpv {}" --print0 | xargs -0 -r -o zathura --fork; exit'
@@ -169,7 +170,6 @@ alias grab_dir='  xcmenu --input --clipboard "$(pwd)"'
 alias img='       nsxiv -0'
 alias ldi='       fdisk -l -o +uuid'
 alias list_coms=' compgen -c'
-alias listmedia=" listaudio; listpics; listvids"
 alias pgr='       $PAGER'
 alias quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g'"
 alias rml='       rmlint --no-followlinks --keep-all-tagged --no-crossdev --paranoid --progress --types="duplicates"'

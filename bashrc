@@ -16,8 +16,8 @@ PS2='\e[0 q\[\e[0m\]    > \[\e[32m\]'
 source "${HOME}/bashrc_files/exports"
 source "${HOME}/bashrc_files/functions"
 source "${HOME}/bashrc_files/aliases"
+source "${HOME}/.config/broot/launcher/bash/br"
 mps 'xs' #setting PS1
 #------------------BASH-HISTORY--------#
 shopt -s histappend
 
-source /$HOME/.config/broot/launcher/bash/br

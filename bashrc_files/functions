@@ -28,14 +28,6 @@ cd_from_lf() {
         fi
     fi
 }
-mycd()    {
-    local MAXDEPTH=10
-    local RESTRICT='H'
-    [[ "${1}" =  '-g'        ]] && cd /              && shift 1
-    [[ "${1}" =~ ^[-]u$      ]] && RESTRICT='u'      && shift 1
-    [[ "${1}" =~ ^[-][0-9]+$ ]] && MAXDEPTH="${1#-}" && shift 1
-    cd "${@:-"$(fd -"${RESTRICT}" -td -d "${MAXDEPTH}" 2>/dev/null | fzf --preview="${LS_PREVIEW} {}")"}" || return 1
-}
 open_mpv() {
     local AUD CLOSE FILE_FZF
     while [[ "${1,,}" =~ ^-[-?].*$ ]] ; do
