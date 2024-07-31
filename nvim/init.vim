@@ -16,7 +16,7 @@ let jam        = 'hi FoldColumn gui=bold guibg=NONE guifg=#00ff00'
 let GreatJammy = ':call CorrectColors()'
 let g:myScheme = [ 'pop-punk', 'eldar', 'elflord', 'delek', 'morning', 'blue', 'peachpuff', 'industry', 'murphy'] + [ 'cyberpunk-neon' ]
 let g:mySpec   = [        ".",     jam,       ".",     ".",       ".",    ".",         '.',        '.', '.'] + [ GreatJammy ]
-let g:myBg     = [ "#000000", "#333333", "#111111", "#220000", "#002200", "#000022", "#002244" ] + [ "NONE" ]
+let g:myBg     = [ "#010101", "#333333", "#111111", "#220000", "#002200", "#000022", "#002244" ] + [ "NONE" ]
 let g:myFg     = [         ".",         ".",         ".",         ".",         ".",         ".", "#aaawaa" ] + [ "." ]
 let g:python3_host_prog="/usr/bin/python"
 
