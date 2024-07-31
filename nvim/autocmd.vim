@@ -32,6 +32,7 @@ autocmd BufNewFile *.kalker     0read ${XDG_CONFIG_HOME}/nvim/language_specific/
 autocmd BufNewFile *.exs        0read ${XDG_CONFIG_HOME}/nvim/language_specific/templates/template.exs    | :silent w | :silent !chmod 700 %
 autocmd BufNewFile *.ex         0read ${XDG_CONFIG_HOME}/nvim/language_specific/templates/template.ex     | :silent w | :silent !chmod 600 %
 autocmd BufNewFile *.html       0read ${XDG_CONFIG_HOME}/nvim/language_specific/templates/template.html   | :silent w | :silent !chmod 600 %
+autocmd VimLeave * call ClipBoardExit()
 "autocmd CursorHold * silent! checktime
 "autocmd FileChangedShellPost *
 "\ echohl WarningMsg | echo "File changed on by external program (not nvim). Buffer reloaded." | echohl None

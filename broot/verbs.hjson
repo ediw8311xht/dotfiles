@@ -42,7 +42,7 @@ verbs: [
 
     {
         invocation: toggle_preview_z
-        key: "ctrl-P"
+        key: "ctrl-p"
         execution: ":toggle_preview"
     }
 

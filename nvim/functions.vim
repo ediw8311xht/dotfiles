@@ -18,7 +18,7 @@ fu! CorrectColors()
     hi LineNr             cterm=NONE    ctermbg=NONE  ctermfg=NONE  gui=NONE   guibg=#000000 guifg=#AAAAAA
     hi MarkSignNumHL      gui=NONE      guibg=NONE    guifg=NONE
     hi MarkSignVirtTextHL gui=NONE      guibg=NONE    guifg=#00FF00
-    hi Normal             ctermbg=black gui=NONE      guibg=NONE
+    hi Normal             cterm=NONE ctermbg=black gui=NONE      guibg=NONE
     hi Search             cterm=NONE    ctermbg=white ctermfg=black gui=BOLD   guibg=#FF00FF guifg=#000000
     hi StatusLine         cterm=NONE    ctermbg=NONE  ctermfg=160   gui=BOLD   guibg=#0099FF guifg=#000000
     hi StatusLineNC       cterm=NONE    ctermbg=NONE  ctermfg=160   gui=NONE   guibg=#555555 guifg=#000000
@@ -108,24 +108,6 @@ fu! Toggle(c1, c2, r1, r2)
     endif
 endfu
 
-"fu! M_LspState()
-"    if luaeval('vim.inspect(vim.lsp.buf_get_clients()) == "{}"')
-"        return 0
-"    else
-"        return 1
-"    endif
-"endfu
-"
-"fu! M_ToggleLsp()
-"    if M_LspState() == 1
-"        echo "Lsp Stopped"
-"        LspStop()
-"    else
-"        echo "Lsp Starting"
-"        LspStart()
-"    endif
-"endfun
-
 fu! Cycle(checkarr, cvar, doarr, nextprevious)
     let lenny = len(a:checkarr)
     let i = 0
@@ -161,11 +143,34 @@ fu! GetMappings()
     :e /tmp/nvim_mappings.txt
 endfunction
 
-function! LspStatus() abort
+fu! ClipBoardExit()
+    if executable("xclip")
+        call system('xclip -selection clipboard -i -r <<< ', getreg('a'))
+    endif
+endfunction
+
+fu! LspStatus() abort
   if luaeval('#vim.lsp.buf_get_clients() > 0')
     return luaeval("require('lsp-status').status()")
   endif
-
   return ""
 endfunction
+
+"fu! M_LspState()
+"    if luaeval('vim.inspect(vim.lsp.buf_get_clients()) == "{}"')
+"        return 0
+"    else
+"        return 1
+"    endif
+"endfu
+"
+"fu! M_ToggleLsp()
+"    if M_LspState() == 1
+"        echo "Lsp Stopped"
+"        LspStop()
+"    else
+"        echo "Lsp Starting"
+"        LspStart()
+"    endif
+"endfun
 

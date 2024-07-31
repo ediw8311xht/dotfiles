@@ -7,7 +7,7 @@
 *.borderpx:     10px
 
 !!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTSHH
-*.font: 	    Agave:style=Medium:size=11:antialias=false:autohint=false
+*.font: 	    Agave:style=Regular:size=11:antialias=false:autohint=false
 !*.font: 	    IosevkaTerm:style=Medium:pixelsize=12:antialias=true:autohint=true
 !*.font: 	    MononokiNerdFontMono:style=Medium:pixelsize=12:antialias=true:autohint=true
 !*.font: 	    InputMono:style=Medium:size=7:antialias=true:autohint=true
