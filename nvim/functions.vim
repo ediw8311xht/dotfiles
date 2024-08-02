@@ -83,21 +83,28 @@ fu! CycleBackground(nextprevious)
     endfor
 endfu
 
+fu! SetScheme(scheme)
+    execute "colorscheme " a:scheme[0]
+    if a:scheme[1] != '.'
+        execute a:scheme[1]
+    endif
+endfu
+
 fu! CycleColor(nextprevious)
-    let i = 0
-    let current_scheme = g:colors_name
-    let lenny = len(g:myScheme)
-    for _ in g:myScheme
-        if current_scheme ==? _
-            let j = (i + (a:nextprevious)) % lenny
-            echo g:myScheme[j] . ' - ' . j '/' . (lenny - 1)
-            execute "colorscheme " g:myScheme[j]
-            execute g:mySpec[j]
+    " current color scheme let g:colors_name
+    let l:i = 0
+    let l:length = len(g:myScheme)
+    for [l:color, l:specs] in g:MySchemes
+        if g:colors_name ==? l:color
+            let l:j = (l:i + (a:nextprevious)) % l:length
+            echo g:MySchemes[ l:j ][0] . ' - ' . l:j '/' . (l:length - 1)
+            call SetScheme(g:MySchemes[j])
             syntax on
             return
         endif
-        let i += 1
+        let l:i += 1
     endfor
+    call SetScheme(g:MySchemes[j])
 endfu
 
 fu! Toggle(c1, c2, r1, r2)

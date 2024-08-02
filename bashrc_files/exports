@@ -1,7 +1,8 @@
 #!/bin/bash
 
-export  PROMPT_COMMAND='history -a;history -n'
-export  HISTSIZE=1000000
+export  PROMPT_COMMAND='history -n; history -a'
+export  HISTTIMEFORMAT="%D %T "
+export  HISTSIZE=5000
 export  HISTFILE="$HOME/.bash_history"
 export  HISTCONTROL=ignoreboth
 export  TMPDIR="/tmp/"
@@ -14,7 +15,7 @@ export  XDG_CACHE_HOME="${HOME}/.cache"
 #---------------RIPGREP-(RG)-----------#
 export  RIPGREP_CONFIG_PATH="${HOME}/.config/rg/ripgreprc"
 #------------------FZF-----------------#
-export  FZF_DEFAULT_COMMAND='fd -H'
+export  FZF_DEFAULT_COMMAND='fd -H --mount'
 export  FZF_DEFAULT_OPTS='
     --bind ctrl-a:first
     --bind ctrl-e:last

@@ -3,7 +3,6 @@ autocmd FocusGained,CursorHold,CursorHoldI * silent! checktime
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 "<--------- LANGUAGE SPECIFIC CONFIGS -------------------------------------->
-
 "autocmd Filetype vim setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd BufNewFile,BufRead ~/.config/zathura/*                  set syntax=zathurarc
 
@@ -33,6 +32,34 @@ autocmd BufNewFile *.exs        0read ${XDG_CONFIG_HOME}/nvim/language_specific/
 autocmd BufNewFile *.ex         0read ${XDG_CONFIG_HOME}/nvim/language_specific/templates/template.ex     | :silent w | :silent !chmod 600 %
 autocmd BufNewFile *.html       0read ${XDG_CONFIG_HOME}/nvim/language_specific/templates/template.html   | :silent w | :silent !chmod 600 %
 autocmd VimLeave * call ClipBoardExit()
-"autocmd CursorHold * silent! checktime
-"autocmd FileChangedShellPost *
-"\ echohl WarningMsg | echo "File changed on by external program (not nvim). Buffer reloaded." | echohl None
+
+"--------- HELP ---------"
+autocmd FileType help nnoremap <buffer> <CR> <C-]>
+autocmd FileType help nnoremap <buffer> <BS> <C-T>
+
+"---------- For Vim Help File ---------"
+let pattern_a = join(["'", '\l{2,}', "'"], '')
+let pattern_b = ""
+let combined  = join([pattern_a, pattern_b], '|')
+
+"let g:bindings_help_busfer=[
+"    \[  'o',    join(['/\v(', l:combined, ')<CR>'], '')   ],
+"    \[  'O',    join(['?\v(', l:combined, ')<CR>'], '')   ],
+"\]
+"
+"autocmd FileType help call M_Map("nnoremap <buffer>", g:bindings_help_buffer)
+
+
+"autocmd FileType help call call('M_Map', mapping_g + ['o'] + [bar])
+"autocmd FileType help nnoremap <buffer> O ?'\l\{2,\}'<CR>
+
+"autocmd FileType help nnoremap <buffer> o /'\l\{2,\}'<CR>
+"autocmd FileType help nnoremap <buffer> O ?'\l\{2,\}'<CR>
+
+"autocmd FileType help nnoremap <buffer> s /\|\zs\S\+\ze\|<CR>
+"autocmd FileType help nnoremap <buffer> S ?\|\zs\S\+\ze\|<CR>
+call matchadd("ExtraWhiteSpace", '/[^\s]\s\+\zs$/')
+"autocmd FileChangedShellPost * "\ echohl WarningMsg | echo "File changed on by external program (not nvim). Buffer reloaded." | echohl None
+
+
+

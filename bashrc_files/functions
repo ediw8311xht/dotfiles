@@ -49,14 +49,6 @@ open_mpv() {
 open_prog() {
     xdg-open "${1}" & disown
 }
-#get_outdated_pip() {
-#    local zfile
-#    local IFS=$'\n'
-#    zfile="$(mktemp /tmp/get_outdated_pip_XXXXXXXX.txt)"
-#    trap "trash-put '${zfile}'" SIGINT SIGHUP EXIT RETURN
-#    pip list --outdated > "${zfile}"
-#    nvim "${zfile}"
-#}
 fpend() {
     if [[ "$1" =~ ^-[dD](ate)? ]] ; then shift 1; local MDATE; MDATE="#$(date)"; fi
     if [[ -f "${1}"            ]] ; then
@@ -79,17 +71,40 @@ alias_conflict() {
         fi
     done < <(alias -p | grep -Pio '^[ \t]*alias[ \t]*\K[^=]*')
 }
+add_pwd_to_history() {
+    if [[ ! -f "${HISTFILE}" ]] ; then
+        return 1
+    else
+        printf 'cd "%s"' "${PWD}" >> "${HISTFILE}"
+    fi
+}
+fzf_cd() {
+    local out_dir
+    if [[ "${1,,}" = -d ]] && [[ -d "${2}" ]] ; then
+        { cd "${2}" && add_pwd_to_history && shift 2; } || return 1
+    fi
+    local OPTIONS=(
+        --preview="${LS_PREVIEW[*]:-ls} {}"
+    )
+
+    out_dir="$(fd "${@}" -td | fzf "${OPTIONS[@]}")"
+    if [[ -d "${out_dir}" ]] && cd "${out_dir}" ; then
+        add_pwd_to_history
+    else
+        return 1
+    fi
+}
+
 fzf_edit() {
-    rg --ignore-file="${XDG_CONFIG_HOME}/rg/code.rg" --hidden --files "${1:-.}" 2>/dev/null \
-        | fzf --preview="highlight -O ansi -l {} 2>/dev/null" --print0                      \
-        | xargs -0 -r -o "${EDITOR}"
+    local RG=( --ignore-file="${XDG_CONFIG_HOME}/rg/code.rg"
+                --hidden
+                --files "${1:-.}" )
+    local FZF=( --preview="highlight -O ansi -l {} 2>/dev/null"
+                --bind="enter:become(${EDITOR} -o {}; echo {})" )
+    rg "${RG[@]}" | fzf "${FZF[@]}"
 }
 bash_history_grab() {
-    if [[ -n "${2}" ]] ; then
-        grep -Pi "${2}" "${HISTFILE}" | tail -n "${1}"
-    else
-        grep -Pi "${1}" "${HISTFILE}"
-    fi
+    grep -Pi "${1}" "${HISTFILE}" | tail -n "${2:-50}"
 }
 stream_ytdl_mpv() {
     yt-dlp "${1}" -f "bestvideo[height<=?1080]+bestaudio/best" -o - | mpv --input-ipc-server=/tmp/mpvsocket -
@@ -103,6 +118,12 @@ man_all_pages() {
 markdown_view_w3m() {
     w3m -T text/html < <(pandoc -s "${1}" 2>/dev/null)
 }
-
-
+#get_outdated_pip() {
+#    local zfile
+#    local IFS=$'\n'
+#    zfile="$(mktemp /tmp/get_outdated_pip_XXXXXXXX.txt)"
+#    trap "trash-put '${zfile}'" SIGINT SIGHUP EXIT RETURN
+#    pip list --outdated > "${zfile}"
+#    nvim "${zfile}"
+#}
 

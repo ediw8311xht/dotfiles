@@ -4,7 +4,7 @@
 "<==-----    ||||-----======================================-----    ||||-----==>
 "<==-----    ||||-----==__________________________________==-----    ||||-----==>
 "<==-    ||||||||||||-==                                  ==-    ||||||||||||-==>
-"<==-    ||||||||||||-== Vim Config -> Maximilian Ballard ==-    ||||||||||||-==>
+"<==-    ||||||||||||-== Nvim Config - Maximilian Ballard ==-    ||||||||||||-==>
 "<==-----    ||||-----==__________________________________==-----    ||||-----==>
 "<==-----    ||||-----==                                  ==-----    ||||-----==>
 "<==-----    ||||-----======================================-----    ||||-----==>
@@ -12,16 +12,28 @@
 "<==------------------======================================------------------==>
 "<==============================================================================>
 "<==============================================================================>
-let jam        = 'hi FoldColumn gui=bold guibg=NONE guifg=#00ff00'
-let GreatJammy = ':call CorrectColors()'
-let g:myScheme = [ 'pop-punk', 'eldar', 'elflord', 'delek', 'morning', 'blue', 'peachpuff', 'industry', 'murphy'] + [ 'cyberpunk-neon' ]
-let g:mySpec   = [        ".",     jam,       ".",     ".",       ".",    ".",         '.',        '.', '.'] + [ GreatJammy ]
-let g:myBg     = [ "#010101", "#333333", "#111111", "#220000", "#002200", "#000022", "#002244" ] + [ "NONE" ]
-let g:myFg     = [         ".",         ".",         ".",         ".",         ".",         ".", "#aaawaa" ] + [ "." ]
+
+let g:MyDefaultScheme = [ 'pop-punk', 'call CorrectColors()' ]
+
+let g:MySchemes=[ 
+    \g:MyDefaultScheme,
+    \[ 'eldar',             "."                      ],
+    \[ 'cyberpunk-neon',    'call CorrectColors()'   ],
+    \[ 'elflord',           "."                      ],
+    \[ 'delek',             "."                      ],
+    \[ 'morning',           "."                      ],
+    \[ 'blue',              "."                      ],
+    \[ 'peachpuff',         "."                      ],
+    \[ 'industry',          "."                      ],
+    \[ 'murphy',            "."                      ],
+\]
+
+let g:myBg          = [ "#010101", " #333333", "#111111", "#220000", "#002200", "#000022", "#002244" ] + [ "NONE" ]
+let g:myFg          = [ ".", ".", ".", ".", ".", ".", "#aaawaa" ] + [ "." ]
+
 let g:python3_host_prog="/usr/bin/python"
 
 source ${HOME}/.config/nvim/autocmd.vim
-match ExtraWhiteSpace /[^\s]\s\+\zs$/
 
 source ${HOME}/.config/nvim/functions.vim
 source ${HOME}/.config/nvim/plugins.vim

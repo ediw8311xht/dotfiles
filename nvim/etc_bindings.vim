@@ -2,8 +2,8 @@
 source ${HOME}/.config/nvim/functions.vim
 
 let g:bindings_map=[
-    \[ ',',        '<leader>'                   ],
-    \[ '+',        'g_'                         ],
+    \[ ',',         '<leader>'                   ],
+    \[ '+',         'g_'                         ],
 \]
 let g:bindings_noremap=[
     \[ 'x',        '"xx'                        ],
@@ -17,6 +17,7 @@ let g:bindings_vnoremap=[
 "    \[ 'im',       ':s/\%v[ \t]*//<esc>'        ],
 
 let g:bindings_nnoremap=[
+    \[ 'ZG',       ':wqall<CR>'                 ],
     \[ '~',        '@=(foldlevel('."'.')?'za':".'"\<Space>")<CR>'   ],
     \[ '<esc>',    ':noh<esc>:echon ""<enter>'  ],
     \[ '/',        '/\v\c'                      ],

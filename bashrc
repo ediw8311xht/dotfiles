@@ -3,7 +3,7 @@
 #
 # shellcheck disable=SC2016,SC2064,SC1094
 
-#[[ $- == *i* ]] && source "${HOME}/.local/share/blesh/ble.sh" --noattach
+[[ $- == *i* ]] && source "${HOME}/.local/share/blesh/ble.sh" --noattach
 
 # Add this line at the end of .bashrc:
 #-If not running interactively, don't do anything
@@ -16,6 +16,8 @@ umask 077   #- Default Permissions -#
 PS0='\e[0 q\[\e[0m\]'
 PS1=':\w/:> '
 PS2=''
+
+#export PROMPT_COMMAND='history -a'
 source "${HOME}/bashrc_files/exports"
 source "${HOME}/bashrc_files/functions"
 source "${HOME}/bashrc_files/aliases"
@@ -24,4 +26,4 @@ mps 'xs' #setting PS1
 #------------------BASH-HISTORY--------#
 shopt -s histappend
 
-#[[ ${BLE_VERSION-} ]] && ble-attach
+[[ ${BLE_VERSION-} ]] && ble-attach
