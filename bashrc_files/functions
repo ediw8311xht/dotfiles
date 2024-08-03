@@ -71,28 +71,17 @@ alias_conflict() {
         fi
     done < <(alias -p | grep -Pio '^[ \t]*alias[ \t]*\K[^=]*')
 }
-add_pwd_to_history() {
-    if [[ ! -f "${HISTFILE}" ]] ; then
-        return 1
-    else
-        printf 'cd "%s"' "${PWD}" >> "${HISTFILE}"
-    fi
-}
 fzf_cd() {
     local out_dir
     if [[ "${1,,}" = -d ]] && [[ -d "${2}" ]] ; then
-        { cd "${2}" && add_pwd_to_history && shift 2; } || return 1
+        { cd "${2}" && shift 2; } || return 1
     fi
     local OPTIONS=(
         --preview="${LS_PREVIEW[*]:-ls} {}"
     )
 
     out_dir="$(fd "${@}" -td | fzf "${OPTIONS[@]}")"
-    if [[ -d "${out_dir}" ]] && cd "${out_dir}" ; then
-        add_pwd_to_history
-    else
-        return 1
-    fi
+    [[ -d "${out_dir}" ]] && cd "${out_dir}" || return 1
 }
 
 fzf_edit() {

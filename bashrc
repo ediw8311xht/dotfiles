@@ -3,7 +3,7 @@
 #
 # shellcheck disable=SC2016,SC2064,SC1094
 
-[[ $- == *i* ]] && source "${HOME}/.local/share/blesh/ble.sh" --noattach
+#[[ $- == *i* ]] && source "${HOME}/.local/share/blesh/ble.sh" --noattach
 
 # Add this line at the end of .bashrc:
 #-If not running interactively, don't do anything
@@ -27,4 +27,4 @@ mps 'xs' #setting PS1
 #xset -dpms
 shopt -s histappend
 
-[[ ${BLE_VERSION-} ]] && ble-attach
+#[[ ${BLE_VERSION-} ]] && ble-attach

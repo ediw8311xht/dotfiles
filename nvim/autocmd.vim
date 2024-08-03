@@ -39,15 +39,15 @@ autocmd FileType help nnoremap <buffer> <BS> <C-T>
 
 "---------- For Vim Help File ---------"
 let pattern_a = join(["'", '\l{2,}', "'"], '')
-let pattern_b = ""
-let combined  = join([pattern_a, pattern_b], '|')
+let pattern_b = join(['[\|]', '\zs\S+\ze','[\|]'], '')
+let combined  = join([pattern_a, pattern_b], '\|') 
 
-"let g:bindings_help_busfer=[
-"    \[  'o',    join(['/\v(', l:combined, ')<CR>'], '')   ],
-"    \[  'O',    join(['?\v(', l:combined, ')<CR>'], '')   ],
-"\]
-"
-"autocmd FileType help call M_Map("nnoremap <buffer>", g:bindings_help_buffer)
+let g:bindings_help_buffer=[
+    \[  'o',    join(['/\v(', combined, ')<CR>' ], '')   ],
+    \[  'O',    join(['?\v(', combined, ')<CR>' ], '')   ],
+\]
+"call M_Map('nnoremap', g:bindings_help_buffer)
+autocmd FileType help call M_Map("nnoremap <buffer>", g:bindings_help_buffer)
 
 
 "autocmd FileType help call call('M_Map', mapping_g + ['o'] + [bar])
@@ -58,7 +58,7 @@ let combined  = join([pattern_a, pattern_b], '|')
 
 "autocmd FileType help nnoremap <buffer> s /\|\zs\S\+\ze\|<CR>
 "autocmd FileType help nnoremap <buffer> S ?\|\zs\S\+\ze\|<CR>
-call matchadd("ExtraWhiteSpace", '/[^\s]\s\+\zs$/')
+autocmd BufRead * call matchadd("ExtraWhiteSpace", '/[^\s]\s\+\zs$/') 
 "autocmd FileChangedShellPost * "\ echohl WarningMsg | echo "File changed on by external program (not nvim). Buffer reloaded." | echohl None
 
 
