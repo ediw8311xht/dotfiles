@@ -12,11 +12,13 @@ endfu
 
 fu! PreviewMarkdown(flag = "")
     let l:bufn = bufnr("previewmark")
-
-    if a:flag == "q" | bdelete! l:bufn | return | endif
-
     let l:temp_file = WritePreview()
-    if l:bufn != -1
+
+    if a:flag == "q" 
+        execute ":silent !qutebrowser " . l:temp_file
+    elseif a:flag == "b" 
+        execute ":silent !${BROWSER} " . l:temp_file
+    elseif l:bufn != -1
         call chansend(l:bufn, "\<C-r>")
     else
         vsplit
@@ -27,7 +29,6 @@ fu! PreviewMarkdown(flag = "")
 endfu
 
 nnoremap <leader>x  :%!pandoc -t commonmark_x<CR>
-"nnoremap <leader>o  :vsplit +file g:bufname_preview<esc>:terminal(pandoc % \| lynx -stdin)<esc><c-W>h
-nnoremap <leader>o  :silent call PreviewMarkdown()<esc>
-"nnoremap <leader>O  :!qutebrowser expand(
-"nnoremap <leader>O
+nnoremap <leader>oo :silent call PreviewMarkdown()<esc>
+nnoremap <leader>oq :silent call PreviewMarkdown("q")<esc>
+nnoremap <leader>ob :silent call PreviewMarkdown("b")<esc>
