@@ -49,6 +49,7 @@ let g:bindings_help_buffer=[
 "call M_Map('nnoremap', g:bindings_help_buffer)
 autocmd FileType help call M_Map("nnoremap <buffer>", g:bindings_help_buffer)
 
+autocmd TermOpen * setlocal statusline=%{b:term_title}
 
 "autocmd FileType help call call('M_Map', mapping_g + ['o'] + [bar])
 "autocmd FileType help nnoremap <buffer> O ?'\l\{2,\}'<CR>
@@ -58,7 +59,7 @@ autocmd FileType help call M_Map("nnoremap <buffer>", g:bindings_help_buffer)
 
 "autocmd FileType help nnoremap <buffer> s /\|\zs\S\+\ze\|<CR>
 "autocmd FileType help nnoremap <buffer> S ?\|\zs\S\+\ze\|<CR>
-autocmd BufRead * call matchadd("ExtraWhiteSpace", '/[^\s]\s\+\zs$/') 
+"autocmd BufRead * call matchadd("ExtraWhiteSpace", '/[^\s]\s\+\zs$/') 
 "autocmd FileChangedShellPost * "\ echohl WarningMsg | echo "File changed on by external program (not nvim). Buffer reloaded." | echohl None
 
 

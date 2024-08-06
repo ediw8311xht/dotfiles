@@ -1,7 +1,7 @@
 
 ################################################################################
 # do not bell on tab-completion
-set completion-display-width 0
+set completion-display-width 80
 set page-completions off
 set bell-style none
 set meta-flag on
@@ -11,7 +11,8 @@ set output-meta on
 set colored-stats on
 set colored-completion-prefix on
 set mark-modified-lines off
-#set visible-stats on
+set visible-stats on
+set show-all-if-ambiguous on
 set completion-map-case on
 set completion-query-items 300
 set keymap vi

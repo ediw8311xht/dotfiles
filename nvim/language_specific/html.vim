@@ -12,10 +12,9 @@ vnoremap <C-q>   ?\v\v[<][^>]*[>]<enter>
 vnoremap <C-w>   /\v[<][^>]*\\zs[>]<enter>
 
 nnoremap <leader>m i<span class="math inline">\(\)</span><esc>F(a
-nnoremap <leader>M 0f(a
+"nnoremap <leader>M 0f(a
 nnoremap <leader>vp :%!prettier --parser="html"<esc>
 
-nnoremap <leader>r  i<img src="images/"/><esc>F"i
-nnoremap <leader>rO :!qutebrowser %<esc>
+"nnoremap <leader>r  i<img src="images/"/><esc>F"i
 "nnoremap <leader>R :!qutebrowser ":reload"<esc>
-setlocal tabstop=2 shiftwidth=2 softtabstop=4 expandtab
+setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab

@@ -282,7 +282,7 @@ c.session.lazy_restore                          =   True
 c.statusbar.widgets                             =   ['progress', 'keypress', 'url', 'scroll', 'history', 'tabs', 'progress']
 c.url.default_page                              =   my_start_page
 c.url.start_pages                               =   my_start_pages
-c.zoom.default                                  =   '75%'
+c.zoom.default                                  =   '100%'
 c.zoom.levels                                   =   zoom_levels
 c.zoom.mouse_divider                            =   512
 c.zoom.text_only                                =   False
@@ -345,6 +345,7 @@ config.bind(',rq',                      'quickmark-del')
 config.bind(',om',                      'hint links spawn mpv {hint-url}')
 config.bind(',oc',                      'spawn mpv {url}')
 
+config.bind(';;',                       'config-cycle tabs.show always never')
 config.bind(';t',                       'hint inputs')
 config.bind(';i',                       'hint images')
 config.bind(';o',                       'hint links fill :open {hint-url}')

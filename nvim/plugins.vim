@@ -23,7 +23,7 @@ call plug#begin()
     Plug 'nvimdev/lspsaga.nvim'
     Plug 'maan2003/lsp_lines.nvim'
 " key hints"
-    "Plug 'folke/which-key.nvim'
+    Plug 'folke/which-key.nvim'
 " git                               #
     Plug 'lewis6991/gitsigns.nvim'
 " show-all-matching-tags-vim        #
@@ -44,6 +44,7 @@ call plug#begin()
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " Semantic Highlighting for Python  #
     "Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
+    Plug 'kassio/neoterm'
 " For using lf in nvim              #
     Plug 'voldikss/vim-floaterm'
     Plug 'ptzz/lf.vim'
