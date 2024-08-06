@@ -28,6 +28,7 @@ call plug#begin()
     Plug 'lewis6991/gitsigns.nvim'
 " show-all-matching-tags-vim        #
     Plug 'andymass/vim-matchup'
+    Plug 'alvan/vim-closetag'
 " Autorename HTML tags              #
     Plug 'AndrewRadev/tagalong.vim'
     Plug 'nvim-lua/plenary.nvim'
@@ -66,5 +67,4 @@ call plug#end()
 " Aligning text                     #
     "Plug 'godlygeek/tabular'
 " Autoclose HTML tags               #
-" Plug 'alvan/vim-closetag'         #
 

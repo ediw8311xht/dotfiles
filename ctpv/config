@@ -30,3 +30,7 @@ preview mylua .lua {{
     highlight "${f}" --stdout --out-format="ansi"
 }}
 
+#preview mymd .md {{
+#    mdt 
+#}}
+

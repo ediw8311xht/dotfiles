@@ -2,16 +2,17 @@
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
 
-local  lspconfig        =   require('lspconfig')
-local  luasnip          =   require('luasnip')
-local  cmp              =   require('cmp')
-local  org              =   require('orgmode')
-local  elixir           =   require('elixir')
-local  which_key        =   require('which-key')
-local  elixirls         =   require('elixir.elixirls')
-local  lspsaga          =   require('lspsaga')
-local  gitsigns         =   require('gitsigns')
-local  marks            =   require('marks')
+local   lspconfig       =   require('lspconfig')
+local   luasnip         =   require('luasnip')
+local   cmp             =   require('cmp')
+local   org             =   require('orgmode')
+local   elixir          =   require('elixir')
+local   which_key       =   require('which-key')
+local   elixirls        =   require('elixir.elixirls')
+local   lspsaga         =   require('lspsaga')
+local   gitsigns        =   require('gitsigns')
+local   marks           =   require('marks')
+local   treesitter      =   require('nvim-treesitter.configs')
 
 
 
@@ -29,6 +30,14 @@ local  marks            =   require('marks')
 --     auto_display = true -- WIP automatic markdown image display, may be prone to breaking
 -- }
 
+treesitter.setup({
+    highlight = {
+        enable = true,
+        disable = function(lang, bufnr) -- Disable in large C++ buffers
+            return vim.api.nvim_buf_line_count(bufnr) > 1000
+        end,
+    },
+})
 which_key.setup({
 --    notify = false,
 --    win = {
@@ -88,7 +97,6 @@ cmp.setup({
         { name = 'dotenv'},
     })
 })
-
 -- cmp.setup.cmdline({ '/', '?' }, {
 --     mapping = cmp.mapping.preset.cmdline(),
 --     sources = {
@@ -104,7 +112,9 @@ cmp.setup({
 --     }),
 --     matching = { disallow_symbol_nonprefix_matching = false }
 -- })
+
 local  cmp_capabilities  =  require('cmp_nvim_lsp').default_capabilities()
+
 
 marks.setup({
     default_mappings = true,

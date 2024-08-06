@@ -116,9 +116,8 @@ colorscheme pop-punk
 
 source ${HOME}/.config/nvim/leader_bindings.vim
 source ${HOME}/.config/nvim/etc_bindings.vim
-source ${HOME}/.config/nvim/autocmd.vim
-
 :call CorrectColors()
+source ${HOME}/.config/nvim/autocmd.vim
 
 "let g:bracey_refresh_on_save    = 1
 "let g:bracey_eval_on_save       = 1
