@@ -89,7 +89,8 @@ alias clne='      fzf_cd -d "${CLONED}"'
 #alias listpics='  fd . -tf -e jpg -e jpeg -e png -e tiff -e webp -e bmp -e avif -e ico -e gif -e gifv'
 #alias listvids='  fd . -tf -e mov -e m4v -e mkv -e mpeg -e mp4 -e mpv -e webm -e avi -e amv'
 #alias listmedia=" listaudio; listpics; listvids"
-alias i3e='       fd . -d1 -tf "${XDG_CONFIG_HOME}/i3/" -X nvim'
+alias i3e='       fd . -d1 -0 -a -tf "${XDG_CONFIG_HOME}/i3/" | sort -z | xargs -0 nvim -c "Buffers"'
+alias full_i3e='  fd .     -0 -a -tf "${XDG_CONFIG_HOME}/i3/" | sort -z | xargs -0 nvim -c "Buffers"' 
 alias gfi='       fd --search-path "/" -u --mount'
 #--------------------------------------------------Python--------------------------------#
 alias pips='      poetry search'
@@ -115,9 +116,9 @@ alias sman='      man -K --regex'
 #--------------------------------------------------nvim----------------------------------#
 alias nv='        nvim'
 alias nvgr='      grep --file="-" -Pri "${HOME}/.config/nvim/" <<< '
-alias full_ednv=' fd . -tf -0 "${HOME}/.config/nvim/" -X nvim'
-alias ednv='      nvim "${HOME}/.config/nvim/lua/"*.lua "${HOME}/.config/nvim/"*.vim'
-alias nva='       fd . --exact-depth 1 -tf -X nvim'
+alias full_ednv=' fd . -tf -0 "${HOME}/.config/nvim/" -X nvim -c "Buffers"'
+alias ednv='      nvim -c "Buffers" "${XDG_CONFIG_HOME}/nvim/lua/"*.lua "${XDG_CONFIG_HOME}/nvim/"*.vim'
+alias nva='       fd . --exact-depth 1 -tf -0 -X nvim -c "Buffers"'
 #--------------------------------------------------zathura-------------------------------#
 alias z='         zathura --fork'
 alias eread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --preview="ctpv {}" --print0 | xargs -0 -r -o zathura --fork; exit'
@@ -159,7 +160,6 @@ alias alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
 alias cop='       xclip -selection "clipboard" -i -r <<< '
 alias decl='      declare -f'
 alias doren='     perl-rename -v'
-alias ezchmod='   chmod og-rwx -R .'
 alias rifs="      IFS=$' \t\n'"
 alias pifs='      printf "\n_%q_\n\n" "${IFS}"'
 alias getfont='   fc-list -v | grep -i '
@@ -180,7 +180,7 @@ alias tracenet='  strace'
 alias upfonts='   fc-cache -f -v; echo $?'
 alias getmonospacefonts='fc-list :spacing=100 | grep -i '
 alias sctl='      journalctl | ccze -m ansi'
-alias ebash='     nvim "${HOME}/.bashrc" "${HOME}/bashrc_files/"*; source "${HOME}/.bashrc"'
+alias ebash='     nvim -c "Buffers" "${HOME}/.bashrc" "${HOME}/bashrc_files/"*; source "${HOME}/.bashrc"'
 alias emime='     nvim "${HOME}/.config/mimeapps.list"'
 alias ysb='       source "${HOME}/.bashrc"'
 alias i3gr='      grep --file="-" -Pri "${HOME}/.config/i3/"   <<< '
@@ -192,7 +192,6 @@ alias ydl='       cd "${VIDEOS}"; yt-dlp -f "bestvideo[height<=?1080]+bestaudio/
 alias ystream='   stream_ytdl_mpv'
 alias getkeysall='   xmodmap -pke'
 alias betterkey='     showkey -k'
-
 #-    q #
 #-    u #
 #alias m='         mimetype'

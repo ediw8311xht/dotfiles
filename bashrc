@@ -24,7 +24,7 @@ source "${HOME}/bashrc_files/aliases"
 source "${HOME}/.config/broot/launcher/bash/br"
 mps 'xs' #setting PS1
 #------------------BASH-HISTORY--------#
-#xset -dpms
+
 shopt -s histappend
 
 #[[ ${BLE_VERSION-} ]] && ble-attach
