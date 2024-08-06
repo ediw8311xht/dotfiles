@@ -1,4 +1,6 @@
 
+let g:loaded_mark_preview = 0
+
 fu! MakeSafe(f)
     return substitute(a:f, '[/.]', '\\%', 'g')
 endfu
@@ -11,20 +13,18 @@ fu! WritePreview()
 endfu
 
 fu! PreviewMarkdown(flag = "")
-    let l:bufn = bufnr("previewmark")
     let l:temp_file = WritePreview()
 
     if a:flag == "q" 
         execute ":silent !qutebrowser " . l:temp_file
     elseif a:flag == "b" 
         execute ":silent !${BROWSER} " . l:temp_file
-    elseif l:bufn != -1
-        call chansend(l:bufn, "\<C-r>")
+    elseif g:loaded_mark_preview == 0
+        execute ":vertical:T lynx " . l:temp_file
+        let g:loaded_mark_preview = 1
     else
-        vsplit
-        execute ":terminal lynx " . l:temp_file
-        file previewmark
-        execute ":norm \<c-w>h"
+        execute ":vertical:Topen"
+        execute ":T \<c-r>"
     endif
 endfu
 
