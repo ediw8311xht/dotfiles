@@ -9,7 +9,7 @@ local   org             =   require('orgmode')
 local   elixir          =   require('elixir')
 local   which_key       =   require('which-key')
 local   elixirls        =   require('elixir.elixirls')
-local   lspsaga         =   require('lspsaga')
+-- local   lspsaga         =   require('lspsaga')
 local   gitsigns        =   require('gitsigns')
 local   marks           =   require('marks')
 local   treesitter      =   require('nvim-treesitter.configs')
@@ -138,7 +138,7 @@ marks.setup({
     }
 })
 
-lspsaga.setup({})
+-- lspsaga.setup({})
 gitsigns.setup({
     signs = {
         add          = { text = '+' },
@@ -238,6 +238,10 @@ lspconfig.tailwindcss.setup({
 })
 
 lspconfig.cssls.setup({
+    capabilities = cmp_capabilities,
+})
+
+lspconfig.html.setup({
     capabilities = cmp_capabilities,
 })
 

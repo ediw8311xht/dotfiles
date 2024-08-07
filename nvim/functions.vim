@@ -93,7 +93,7 @@ endfu
 fu! CycleColor(nextprevious)
     " current color scheme let g:colors_name
     let l:i = 0
-    let l:length = len(g:myScheme)
+    let l:length = len(g:MySchemes)
     for [l:color, l:specs] in g:MySchemes
         if g:colors_name ==? l:color
             let l:j = (l:i + (a:nextprevious)) % l:length
@@ -161,7 +161,7 @@ fu! LspStatus() abort
     return luaeval("require('lsp-status').status()")
   endif
   return ""
-endfunction
+endfu
 
 "fu! M_LspState()
 "    if luaeval('vim.inspect(vim.lsp.buf_get_clients()) == "{}"')
