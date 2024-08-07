@@ -12,6 +12,7 @@
     set $emacs_script       $HOME/bin/manage_emacs.sh
     set $border_script      $HOME/bin/i3wm_change_border.sh
     set $clipboard_script   $HOME/bin/add_to_clip.sh
+    set $refresh_script     $HOME/bin/refresh_browser.sh
 #-------------------------------------------------SPECIAL-BINDS-----------#
     #sticky toggle
     set $scratchpad_default floating enable, move scratchpad, scratchpad show, move position center
@@ -54,6 +55,7 @@
         set_from_resource $R_GAPS      i3wm.R_GAPS   0
         set_from_resource $L_GAPS      i3wm.L_GAPS   0
         set_from_resource $BRAVE_SCALE brave.BRAVE_SCALE 1
+        set_from_resource $BROWSER     i3wm.browser brave
 #-------------------------------------------------------INCLUDE-----------#
     include $BORDER_FILE
     include regular_bindings.conf

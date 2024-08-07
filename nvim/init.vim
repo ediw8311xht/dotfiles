@@ -33,6 +33,7 @@ let g:myFg          = [ ".",        ".",         ".",       ".",        ".",    
 
 let g:python3_host_prog="/usr/bin/python"
 
+source ${HOME}/.config/nvim/autocmd.vim
 source ${HOME}/.config/nvim/functions.vim
 source ${HOME}/.config/nvim/plugins.vim
 lua require('mytreesitter')
@@ -116,8 +117,8 @@ colorscheme pop-punk
 
 source ${HOME}/.config/nvim/leader_bindings.vim
 source ${HOME}/.config/nvim/etc_bindings.vim
-:call CorrectColors()
 source ${HOME}/.config/nvim/autocmd.vim
+:call CorrectColors()
 
 "let g:bracey_refresh_on_save    = 1
 "let g:bracey_eval_on_save       = 1
