@@ -113,8 +113,7 @@ cmp.setup({
 --     matching = { disallow_symbol_nonprefix_matching = false }
 -- })
 
-local  cmp_capabilities  =  require('cmp_nvim_lsp').default_capabilities()
-
+local   cmp_capabilities  =  require('cmp_nvim_lsp').default_capabilities()
 
 marks.setup({
     default_mappings = true,
@@ -227,7 +226,8 @@ elixir.setup({
 -- LSP --
 lspconfig.tailwindcss.setup({
     filetype = {},
-    filetypes = { "html-eex", "heex", "css" },
+    filetypes = { "html-eex", "heex"},
+    capabilities = cmp_capabilities,
     init_options = {
         userLanguages = {
             elixir = "html-eex",
@@ -237,9 +237,17 @@ lspconfig.tailwindcss.setup({
     },
 })
 
-lspconfig.vimls.setup({})
+lspconfig.cssls.setup({
+    capabilities = cmp_capabilities,
+})
 
-lspconfig.lua_ls.setup({})
+lspconfig.vimls.setup({
+    capabilities = cmp_capabilities,
+})
+
+lspconfig.lua_ls.setup({
+    capabilities = cmp_capabilities,
+})
 
 lspconfig.bashls.setup({
     on_attach = lsp_status.on_attach,
