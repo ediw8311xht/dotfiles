@@ -5,12 +5,19 @@ mps() {
     local d1='\D{%F}'               d2='\D{%T}'         d3='\D{%s}'
     local d4='\D{%d-%m-%y}'         d5='\D{%H%M}'       d6='\D{%Y%m%d}'
     local s1=':\w/:>'               s2='-\$'            s3=':\W/:>'
+    local spec_ssh=''
     if [[ -n "${SSH_CLIENT}" ]] || [[ -n "${SSH_TTY}" ]] ; then
+        local spec_ssh='\[\e[01m\]\[\e[37m\][\[\e[32m\]SSH\[\e[37m\]]'
     fi
     #- INITIALIZE -#
     PROMPT_DIRTRIM='0'
     case "${1,,}" in
+             l) PROMPT_DIRTRIM='2'; PS1="${spec_ssh}$h1 $d1 | $d2 $h2 $s1 "
+        ;;   m) PROMPT_DIRTRIM='1'; PS1="${spec_ssh}$h1 $d4 $d5 $h2 $s3 "
+        ;;   s) PROMPT_DIRTRIM='0'; PS1="${spec_ssh} $d3 $s2 "
+        ;;  xs) PROMPT_DIRTRIM='5'; PS1="${spec_ssh}${h4} :\w:$ ${h2}"
                 #PS0="${h1} ${PWD} | ${d1} | ${d2} \n"'\e[0 q\[\e[0m\]'
+        ;;   x) PROMPT_DIRTRIM='5'; PS1="${spec_ssh}${h3} |${d6}|\w:$ "
         ;;   *) return 2
     esac
     PS1+='\[\e[0m\]'
