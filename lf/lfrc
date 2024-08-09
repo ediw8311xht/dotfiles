@@ -67,10 +67,10 @@ cmd trash ${{
     done
 }}
 
-cmd autocd ${{
-    echo "${PWD}" > "$(mktemp /tmp/tmplf.XXXXXXXX)"
-    lf -remote "send ${id} quit" 2>/dev/null
-}}
+#cmd autocd ${{
+#    echo "${PWD}" > "$(mktemp /tmp/tmplf.XXXXXXXX)"
+#    lf -remote "send ${id} quit" 2>/dev/null
+#}}
 
 cmd toggle_info ${{
     if [[ -n "$lf_info" ]] ; then
@@ -146,7 +146,7 @@ map <c-f>       :filter
 #------------------------------------------------------------------#
 #-----------CALL WITH THIS function to use autocd------------------#
 #------------------------------------------------------------------#
-map q 		    :autocd
+#map q 		    :autocd
 #
 #   function cd_from_lf() {
 #       lf

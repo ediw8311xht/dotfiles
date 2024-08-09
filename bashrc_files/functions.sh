@@ -24,15 +24,15 @@ mps() {
 }
 cd_from_lf() {
     #lf -log="${MY_LOGS}/LF_LOGS/$(date +'%s')_LF_LOG.txt"
-    local a dir
-    lf
-    if a="$(find /tmp/ -type f -name 'tmplf*' 2>/dev/null | tail -1)"
-    then
-        dir="$(cat "${a}")"
-        trash-put "${a}"
-        if [[ "${PWD}" != "${dir}" ]] ; then
-            cd "${dir}" || return 1
-        fi
+    local dir tmp_file
+    tmp_file="$(mktemp "/tmp/tmp_lf.XXXXXXXX")"
+    lf -last-dir-path="${tmp_file}"
+
+    dir="$(cat "${tmp_file}")"
+    trash-put "${tmp_file}"
+
+    if [[ -d "${dir}" ]] && [[ "${PWD}" != "${dir}" ]] ; then
+        cd "${dir}" || return 1
     fi
 }
 open_mpv() {
