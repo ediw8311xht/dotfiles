@@ -18,11 +18,11 @@ alias yay='yay --color="always"'
 #--------------------------------------------------ls------------------------------------#
 alias rgf='       source "${HOME}/bin/rg_fzf.sh"'
 alias L='         ls++'
-alias n='         lsd --group-dirs="first" -t -r --icon="never" --permission="octal"  --date=+" %l:%M%P %y %m %_d " --blocks="permission,user,date,size,name"'
+alias n='         lsd --group-directories-first -t -r --icon="never" --permission="octal"  --date=+" %l:%M%P %y %m %_d " --blocks="permission,user,date,size,name"'
 alias lsn="       lsd --icon='never' -l"
 alias lst="       lsd --icon='never' -ltrh"
 alias lsz="       lsd --icon='never' -lSrh"
-alias ll="        lsd --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
+alias ll="        lsd --group-directories-first --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
 alias lla='       ll -a'
 #--------------------------------------------------elixir--------------------------------#
 alias i='         iex' # elixir

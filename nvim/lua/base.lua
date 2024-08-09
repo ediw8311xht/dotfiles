@@ -2,22 +2,30 @@
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
 
-local   lspconfig       =   require('lspconfig')
-local   luasnip         =   require('luasnip')
-local   cmp             =   require('cmp')
-local   org             =   require('orgmode')
-local   elixir          =   require('elixir')
-local   which_key       =   require('which-key')
-local   elixirls        =   require('elixir.elixirls')
--- local   lspsaga         =   require('lspsaga')
-local   gitsigns        =   require('gitsigns')
-local   marks           =   require('marks')
-local   treesitter      =   require('nvim-treesitter.configs')
+local lspconfig  = require('lspconfig')
+local luasnip    = require('luasnip')
+local cmp        = require('cmp')
+local org        = require('orgmode')
+local elixir     = require('elixir')
+local which_key  = require('which-key')
+local elixirls   = require('elixir.elixirls')
+local lspsaga    = require('lspsaga')
+local gitsigns   = require('gitsigns')
+local marks      = require('marks')
+local treesitter = require('nvim-treesitter.configs')
+local lspstatus  = require('lsp-status')
+local HOME       = os.getenv("HOME")
+
+lspstatus.config({
+  indicator_ok = 'Ok',
+})
+
+lsp_status.register_progress()
 
 
 
--- local  hologram          =  require('hologram')
--- local  lsp_lines         =  require("lsp_lines")
+-- local  hologram      =  require('hologram')
+-- local  lsp_lines     =  require("lsp_lines")
 
 
 -- Disable virtual_text since it's redundant due to lsp_lines.
@@ -27,257 +35,262 @@ local   treesitter      =   require('nvim-treesitter.configs')
 -- lsp_lines.setup({})
 
 -- require('hologram').setup{
---     auto_display = true -- WIP automatic markdown image display, may be prone to breaking
+--   auto_display = true -- WIP automatic markdown image display, may be prone to breaking
 -- }
 
 treesitter.setup({
-    highlight = {
-        enable = true,
-        disable = function(lang, bufnr) -- Disable in large C++ buffers
-            return vim.api.nvim_buf_line_count(bufnr) > 1000
-        end,
-    },
+  highlight = {
+    enable = true,
+    disable = function(lang, bufnr) -- Disable in large C++ buffers
+      return vim.api.nvim_buf_line_count(bufnr) > 1000
+    end,
+  },
 })
 which_key.setup({
---    notify = false,
---    win = {
---        border = "none", -- none, single, double, shadow
---        position = "bottom", -- bottom, top
---        margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
---        padding = { 1, 1, 2, 2 }, -- extra window padding [top, right, bottom, left]
---        winblend = 0, -- value between 0-100 0 for fully opaque and 100 for fully transparent
---        zindex = 1000, -- positive value to position WhichKey above other floating windows.
---    },
---    layout = {
---        height = { min = 4, max = 10 }, -- min and max height of the columns
---        width = { min = 4, max = 40 }, -- min and max width of the columns
---        spacing = 3, -- spacing between columns
---        align = "left", -- align columns left, center or right
---    },
+--  notify = false,
+--  win = {
+--    border = "none", -- none, single, double, shadow
+--    position = "bottom", -- bottom, top
+--    margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
+--    padding = { 1, 1, 2, 2 }, -- extra window padding [top, right, bottom, left]
+--    winblend = 0, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+--    zindex = 1000, -- positive value to position WhichKey above other floating windows.
+--  },
+--  layout = {
+--    height = { min = 4, max = 10 }, -- min and max height of the columns
+--    width = { min = 4, max = 40 }, -- min and max width of the columns
+--    spacing = 3, -- spacing between columns
+--    align = "left", -- align columns left, center or right
+--  },
 })
 
 -- which_key.add({
---     { "<leader>f", group = "file" }, -- group
---     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File", mode = "n" },
---     { "<leader>fb", function() print("hello") end, desc = "Foobar" },
---     { "<leader>fn", desc = "New File" },
---     { "<leader>f1", hidden = true }, -- hide this keymap
---     { "<leader>w", proxy = "<c-w>", group = "windows" }, -- proxy to window mappings
---     { "<leader>b", group = "buffers", expand = function()
---             return require("which-key.extras").expand.buf()
---         end
---     }
+--   { "<leader>f", group = "file" }, -- group
+--   { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File", mode = "n" },
+--   { "<leader>fb", function() print("hello") end, desc = "Foobar" },
+--   { "<leader>fn", desc = "New File" },
+--   { "<leader>f1", hidden = true }, -- hide this keymap
+--   { "<leader>w", proxy = "<c-w>", group = "windows" }, -- proxy to window mappings
+--   { "<leader>b", group = "buffers", expand = function()
+--       return require("which-key.extras").expand.buf()
+--     end
+--   }
 -- })
 luasnip.setup({})
 cmp.setup({
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body)
-        end,
-    },
-    window = {
-        completion     =  cmp.config.window.bordered(),
-        documentation  =  cmp.config.window.bordered(),
-    },
-    mapping = {
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-y>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.close(),
-    },
-    sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-    }, {
-        { name = 'buffer'},
-        { name = 'path'},
-        --{ name = 'cmdline'},
-        { name = 'dotenv'},
-    })
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  window = {
+    completion   =  cmp.config.window.bordered(),
+    documentation  =  cmp.config.window.bordered(),
+  },
+  mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-y>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  }, {
+    { name = 'buffer'},
+    { name = 'path'},
+    --{ name = 'cmdline'},
+    { name = 'dotenv'},
+  })
 })
 -- cmp.setup.cmdline({ '/', '?' }, {
---     mapping = cmp.mapping.preset.cmdline(),
---     sources = {
---         { name = 'buffer' }
---     }
+--   mapping = cmp.mapping.preset.cmdline(),
+--   sources = {
+--     { name = 'buffer' }
+--   }
 -- })
 -- cmp.setup.cmdline(':', {
---     mapping = cmp.mapping.preset.cmdline(),
---     sources = cmp.config.sources({
---         { name = 'path' }
---     }, {
---         { name = 'cmdline' }
---     }),
---     matching = { disallow_symbol_nonprefix_matching = false }
+--   mapping = cmp.mapping.preset.cmdline(),
+--   sources = cmp.config.sources({
+--     { name = 'path' }
+--   }, {
+--     { name = 'cmdline' }
+--   }),
+--   matching = { disallow_symbol_nonprefix_matching = false }
 -- })
 
 local   cmp_capabilities  =  require('cmp_nvim_lsp').default_capabilities()
 
 marks.setup({
-    default_mappings = true,
-    builtin_marks = {".", "<", ">", "^"},
-    cyclic = true,
-    refresh_interval = 400,
-    sign_priority = {lower=10, uppwer=15, built=8, bookmark=20 },
-    -- excluded_filetypes = {},
-    excluded_buftypes = {
-        "terminal",
-        "nui",
-    },
-    mappings = {
-        set_next = "m,",
-        next = "m]",
-        prev = "m[",
-        preview = "m:",
-        delete_line = "md",
-        delete_buf = "mD",
-        annotate = "ma",
-        toggle = "mt",
-    }
+  default_mappings = true,
+  builtin_marks = {".", "<", ">", "^"},
+  cyclic = true,
+  refresh_interval = 400,
+  sign_priority = {lower=10, uppwer=15, built=8, bookmark=20 },
+  -- excluded_filetypes = {},
+  excluded_buftypes = {
+    "terminal",
+    "nui",
+  },
+  mappings = {
+    set_next = "m,",
+    next = "m]",
+    prev = "m[",
+    preview = "m:",
+    delete_line = "md",
+    delete_buf = "mD",
+    annotate = "ma",
+    toggle = "mt",
+  }
 })
 
--- lspsaga.setup({})
+lspsaga.setup({})
 gitsigns.setup({
-    signs = {
-        add          = { text = '+' },
-        change       = { text = '=' },
-        delete       = { text = '_' },
-        topdelete    = { text = '‾' },
-        changedelete = { text = '~' },
-        untracked    = { text = '┆' },
-    },
-    signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-    numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
-    linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
-    word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
-    watch_gitdir = {
-        follow_files = true
-    },
-    auto_attach = true,
-    attach_to_untracked = false,
-    current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-    current_line_blame_opts = {
-        virt_text = true,
-        virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
-        delay = 1000,
-        ignore_whitespace = true,
-        virt_text_priority = 100,
-    },
-    -- current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
-    -- current_line_blame_formatter_opts = {
-    --     relative_time = false,
-    -- },
-    sign_priority = 6,
-    update_debounce = 100,
-    status_formatter = nil, -- Use default
-    max_file_length = 40000, -- Disable if file is longer than this (in lines)
-    preview_config = {
-        -- Options passed to nvim_open_win
-        border = 'single',
-        style = 'minimal',
-        relative = 'cursor',
-        row = 0,
-        col = 1
-    }
+  signs = {
+    add      = { text = '+' },
+    change     = { text = '=' },
+    delete     = { text = '_' },
+    topdelete  = { text = '‾' },
+    changedelete = { text = '~' },
+    untracked  = { text = '┆' },
+  },
+  signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+  numhl    = false, -- Toggle with `:Gitsigns toggle_numhl`
+  linehl   = false, -- Toggle with `:Gitsigns toggle_linehl`
+  word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+  watch_gitdir = {
+    follow_files = true
+  },
+  auto_attach = true,
+  attach_to_untracked = false,
+  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+    delay = 1000,
+    ignore_whitespace = true,
+    virt_text_priority = 100,
+  },
+  -- current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+  -- current_line_blame_formatter_opts = {
+  --   relative_time = false,
+  -- },
+  sign_priority = 6,
+  update_debounce = 100,
+  status_formatter = nil, -- Use default
+  max_file_length = 40000, -- Disable if file is longer than this (in lines)
+  preview_config = {
+    -- Options passed to nvim_open_win
+    border = 'single',
+    style = 'minimal',
+    relative = 'cursor',
+    row = 0,
+    col = 1
+  }
 })
 
 org.setup({
-    org_agenda_files = {'~/Documents/Dropbox/org/*', '~/Documents/my-orgs/**/*'},
-    org_default_notes_file = '~/Documents/Dropbox/org/refile.org',
+  org_agenda_files = {'~/Documents/Dropbox/org/*', '~/Documents/my-orgs/**/*'},
+  org_default_notes_file = '~/Documents/Dropbox/org/refile.org',
 })
 
 -- Elixir --
 elixir.setup({
-    nextls = {
-        enable = true,
-        filetypes = { "elixir" },
-        init_options = {
-            mix_env = "dev",
-            mix_target = "host",
-            experimental = {
-                completions = { enable = true }
-            }
-        },
+  nextls = {
+    enable = true,
+    filetypes = { "elixir" },
+    init_options = {
+      mix_env = "dev",
+      mix_target = "host",
+      experimental = {
+        completions = { enable = true }
+      }
     },
-    elixirls = {
-        enable = false,
-        filetypes = { "elixir" },
-        -- cmd = "/usr/bin/elixir-ls",
-        -- default settings, use the `settings` function to override settings
-        settings = elixirls.settings {
-            dialyzerEnabled = true,
-            fetchDeps = true,
-            enableTestLenses = true,
-            suggestSpecs = true,
-        },
-      -- on_attach = function(client, bufnr)
-      --       vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
-      --       vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
-      --       vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
-      -- end
+  },
+  elixirls = {
+    enable = false,
+    filetypes = { "elixir" },
+    -- cmd = "/usr/bin/elixir-ls",
+    -- default settings, use the `settings` function to override settings
+    settings = elixirls.settings {
+      dialyzerEnabled = true,
+      fetchDeps = true,
+      enableTestLenses = true,
+      suggestSpecs = true,
     },
+    -- on_attach = function(client, bufnr)
+    --     vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
+    --     vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
+    --     vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
+    -- end
+  },
   dependencies = {
-    "nvim-lua/plenary.nvim",
+  "nvim-lua/plenary.nvim",
   },
 })
 
 -- LSP --
 lspconfig.tailwindcss.setup({
-    filetype = {},
-    filetypes = { "html-eex", "heex"},
-    capabilities = cmp_capabilities,
-    init_options = {
-        userLanguages = {
-            elixir = "html-eex",
-            eelixir = "html-eex",
-            heex = "html-eex",
-        },
+  filetype = {},
+  filetypes = { "html-eex", "heex"},
+  capabilities = cmp_capabilities,
+  init_options = {
+    userLanguages = {
+      elixir = "html-eex",
+      eelixir = "html-eex",
+      heex = "html-eex",
     },
+  },
 })
 
 lspconfig.cssls.setup({
-    capabilities = cmp_capabilities,
+  capabilities = cmp_capabilities,
 })
 
 lspconfig.html.setup({
-    capabilities = cmp_capabilities,
+  capabilities = cmp_capabilities,
 })
 
 lspconfig.vimls.setup({
-    capabilities = cmp_capabilities,
+  capabilities = cmp_capabilities,
 })
 
 lspconfig.lua_ls.setup({
-    capabilities = cmp_capabilities,
+  capabilities = cmp_capabilities,
 })
 
 lspconfig.bashls.setup({
-    on_attach = lsp_status.on_attach,
-    capabilities = cmp_capabilities,
-    filetypes = { "bash" },
+  on_attach = lsp_status.on_attach,
+  capabilities = cmp_capabilities,
+  filetypes = { "bash" },
+  settings = {
+    bashIde = {
+      shellcheckArguments = '--rcfile='..HOME..'/.shellcheckrc'
+    }
+  }
 })
 
 lspconfig.pyright.setup({
-    on_attach = lsp_status.on_attach,
-    capabilities = cmp_capabilities,
+  on_attach = lsp_status.on_attach,
+  capabilities = cmp_capabilities,
 })
 
 -- lspconfig.elixirls.setup{
---     credo = { enable = false },
---     cmd = { "/usr/lib/elixir-ls/language_server.sh" },
---     -- on_attach = custom_attach, -- this may be required for extended functionalities of the LSP
---     on_attach = lsp_status.on_attach,
---     capabilities = cmp_capabilities,
---     flags = {
---         debounce_text_changes = 150,
---     },
---     elixirLS = {
---         dialyzerEnabled   =  false,
---         fetchDeps         =  false,
---         enableTestLenses  =  false,
---         suggestSpecs      =  false,
---     };
+--   credo = { enable = false },
+--   cmd = { "/usr/lib/elixir-ls/language_server.sh" },
+--   -- on_attach = custom_attach, -- this may be required for extended functionalities of the LSP
+--   on_attach = lsp_status.on_attach,
+--   capabilities = cmp_capabilities,
+--   flags = {
+--     debounce_text_changes = 150,
+--   },
+--   elixirLS = {
+--     dialyzerEnabled   =  false,
+--     fetchDeps     =  false,
+--     enableTestLenses  =  false,
+--     suggestSpecs    =  false,
+--   };
 -- }
 

@@ -32,12 +32,12 @@ let g:myBg          = [ "#010101",  "#333333",  "#111111", "#220000",  "#002200"
 let g:myFg          = [ ".",        ".",         ".",       ".",        ".",        ".",        "#aaawaa" ] + [ "." ]
 
 let g:python3_host_prog="/usr/bin/python"
+let g:my_lua_files = [ 'mytreesitter', 'base' ]
 
 source ${HOME}/.config/nvim/autocmd.vim
-source ${HOME}/.config/nvim/functions.vim
 source ${HOME}/.config/nvim/plugins.vim
-lua require('mytreesitter')
-lua require('base')
+source ${HOME}/.config/nvim/functions.vim
+call LoadLuaFiles()
 
 filetype on
 filetype plugin on
@@ -94,12 +94,17 @@ set nocuc
 set cedit=\<C-c>
 set statuscolumn=
 
-set statusline=\ [%n]\ 
-set statusline+=\ %F\ 
-set statusline+=%m\ 
-set statusline+=%=\(\ %l\/%L\ \)\ (%v\)\ 
-set statusline+=%{wordcount().words}\ w\ 
-set statusline+=%{LspStatus()}
+set statusline=%t\ 
+set statusline+=%r
+set statusline+=%m
+"set statusline+=%=
+"set statusline+=[%v]\ (%L\ lines)\ 
+"set statusline+=(%{wordcount().words}\ words\)
+set statusline+=%=
+"set statusline+=%#HLspStatus#%{LspStatus()}
+set statusline+=%*
+set statusline+=[%{LspStatus()}]\ 
+set statusline+=[%F]
 let g:floaterm_opener='edit'
 let g:lf_width=0.9
 let g:lf_height=0.9
@@ -117,7 +122,6 @@ colorscheme pop-punk
 
 source ${HOME}/.config/nvim/leader_bindings.vim
 source ${HOME}/.config/nvim/etc_bindings.vim
-source ${HOME}/.config/nvim/autocmd.vim
 :call CorrectColors()
 
 "let g:bracey_refresh_on_save    = 1

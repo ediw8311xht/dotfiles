@@ -22,8 +22,8 @@ autocmd BufNewFile,BufRead *.kalker                             setfiletype kalk
 autocmd BufNewFile,BufRead ${XDG_CONFIG_HOME}/i3/*              setfiletype i3
 autocmd BufNewFile,BufRead *.ex,*.exs                           setfiletype elixir
 
-autocmd BufNewFile,BufRead *.ex,*.exs                           setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-
+autocmd Filetype elixir                                         setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd Filetype lua                                            source ${XDG_CONFIG_HOME}/nvim/language_specific/lua.vim
 autocmd Filetype kalker                                         source ${XDG_CONFIG_HOME}/nvim/language_specific/kalker.vim
 autocmd Filetype css                                            source ${XDG_CONFIG_HOME}/nvim/language_specific/css.vim
 autocmd Filetype html                                           source ${XDG_CONFIG_HOME}/nvim/language_specific/html.vim

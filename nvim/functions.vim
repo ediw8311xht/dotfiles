@@ -2,54 +2,71 @@
 fu! CorrectColors()
     if ! empty($DISPLAY)
         "hi Comment      gui=NONE guibg=#444444 guifg=#000000
-        hi Comment      cterm=ITALIC ctermbg=160 ctermfg=18 gui=ITALIC guifg=#005FEF guibg=NONE
+        hi Comment          gui=ITALIC guifg=#005FEF guibg=NONE
     else
-        hi Comment      cterm=ITALIC ctermbg=160 ctermfg=18 gui=ITALIC guifg=#005FEF guibg=NONE
+        hi Comment          gui=ITALIC guifg=#005FEF guibg=NONE
     endif
-    hi lCursor            gui=NONE guibg=NONE guifg=NONE
-    hi ColorColumn        cterm=NONE    ctermbg=NONE  ctermfg=NONE  gui=NONE   guibg=#222222 guifg=NONE
-    hi CursorLine         cterm=BOLD    ctermfg=NONE  ctermbg=18    gui=BOLD   guibg=#000022 guifg=NONE
-    hi CursorLineNr       cterm=BOLD    ctermfg=NONE  ctermbg=18    gui=NONE   guibg=NONE    guifg=#FFFF00
-    hi ExtraWhiteSpace    cterm=NONE    ctermbg=gray  ctermfg=NONE  gui=NONE   guibg=#0099FF
-    hi FoldColumn         cterm=NONE    ctermbg=NONE  ctermfg=NONE  gui=ITALIC guibg=NONE    guifg=#00FF00
-    hi Folded             cterm=NONE    ctermbg=NONE  ctermfg=NONE  gui=ITALIC guibg=NONE    guifg=#777777
-    hi IncSearch          cterm=NONE    ctermbg=white ctermfg=black gui=NONE   guibg=#FF0000 guifg=#000000
-    hi LineNrAbove        cterm=NONE    ctermbg=NONE  ctermfg=NONE  gui=NONE   guibg=#000000 guifg=#00AAFF
-    hi LineNr             cterm=NONE    ctermbg=NONE  ctermfg=NONE  gui=NONE   guibg=#000000 guifg=#AAAAAA
-    hi MarkSignNumHL      gui=NONE      guibg=NONE    guifg=NONE
-    hi MarkSignVirtTextHL gui=NONE      guibg=NONE    guifg=#00FF00
-    hi Normal             cterm=NONE ctermbg=black gui=NONE      guibg=NONE
-    hi Search             cterm=NONE    ctermbg=white ctermfg=black gui=BOLD   guibg=#FF00FF guifg=#000000
-    hi StatusLine         cterm=NONE    ctermbg=NONE  ctermfg=160   gui=BOLD   guibg=#0099FF guifg=#000000
-    hi StatusLineNC       cterm=NONE    ctermbg=NONE  ctermfg=160   gui=NONE   guibg=#555555 guifg=#000000
-    hi TabLine            gui=NONE      guibg=#222222 guifg=#999999
-    hi TabLineSel         gui=BOLD      guibg=#000000 guifg=#00FF00
-    hi TermCursor         guibg=#000000 guifg=#00AA00
-    hi DiagnosticError    guifg=#000000 guibg=#990000
-    hi DiagnosticWarn     guifg=#000000 guibg=#AA8500
-    hi DiagnosticInfo     guifg=#000000 guibg=#AAAAAA
-    hi DiagnosticHint     guifg=#000000 guibg=#888888
-    hi GitSignsAdd        guifg=#777777
+    hi ColorColumn          gui=NONE    guibg=#222222   guifg=NONE
+    hi CursorLine           gui=BOLD    guibg=#000022   guifg=NONE
+    hi CursorLineNr         gui=NONE    guibg=NONE      guifg=#FFFF00
+    hi DiagnosticError                  guifg=#000000   guibg=#990000 
+    hi DiagnosticHint                   guifg=#000000   guibg=#888888 
+    hi DiagnosticInfo                   guifg=#000000   guibg=#AAAAAA 
+    hi DiagnosticWarn                   guifg=#000000   guibg=#AA8500 
+    hi EndOfBuffer          gui=NONE    guifg=#333333   guibg=NONE
+    hi ExtraWhiteSpace      gui=NONE    guibg=#0099FF   
+    hi FoldColumn           gui=ITALIC  guibg=NONE      guifg=#00FF00
+    hi Folded               gui=ITALIC  guibg=NONE      guifg=#777777
+    hi GitSignsAdd                      guifg=#00DD00                 
+    hi IncSearch            gui=NONE    guibg=#FF0000   guifg=#000000
+    hi lCursor              gui=NONE    guibg=NONE      guifg=NONE
+    hi LineNrAbove          gui=NONE    guibg=#000000   guifg=#00AAFF
+    hi LineNr               gui=NONE    guibg=#000000   guifg=#CCCCCC
+    hi MarkSignNumHL        gui=NONE    guibg=NONE      guifg=NONE
+    hi MarkSignVirtTextHL   gui=NONE    guibg=NONE      guifg=#00FF00
+    "hi ModeMsg              gui=NONE    guibg=#00ff00   guifg=#000087 
+    "hi MoreMsg              gui=NONE    guibg=NONE      guifg=#5fffff 
+    hi NonText              gui=NONE    guibg=NONE      guifg=#00FF00 
+    hi Normal               gui=NONE    guibg=NONE      
+    hi Search               gui=NONE    guibg=#FF00FF   guifg=#000000
+    hi StatusLine           gui=NONE    guibg=NONE      guifg=#009900
+    hi StatusLineNC         gui=NONE    guibg=NONE      guifg=#999999
+    hi TabLine              gui=NONE    guibg=NONE      guifg=#999999
+    hi TabLineSel           gui=BOLD    guibg=NONE      guifg=#00FF00
+    hi TermCursor                       guibg=NONE      guifg=#00AA00 
+    hi HLspStatus           gui=NONE    guibg=NONE      guifg=#00FF00
+    hi HStatusFullFile      gui=NONE    guibg=NONE      guifg=#999999
+
+    "hi ModeMsg guifg=#000087 guibg=#00ff00 gui=NONE cterm=NONE
+    "hi MoreMsg guifg=#5fffff guibg=NONE gui=NONE cterm=NONE
+    "hi NonText guifg=#d787d7 guibg=NONE gui=NONE cterm=NONE
+    "hi StatusLine guifg=#000087 guibg=#5fffff gui=NONE cterm=NONE
     "-----Sign Column-----"
-        hi SignColumn         gui=NONE guibg=NONE guifg=NONE
-        hi CursorLineSign     gui=NONE guibg=#000022 guifg=#000000
+        hi SignColumn       gui=NONE    guibg=NONE      guifg=NONE
+        hi CursorLineSign   gui=NONE    guibg=#000022   guifg=#000000
     "-----Which Key-----"
-        hi WhichKeyFloat      guifg=#000000 guibg=NONE
-        hi WhichKey           guibg=NONE    guifg=#22FF22
-        hi WhichKeyGroup      guifg=#000000 guibg=#555500
-        hi WhichKeySeparator  guifg=#000000 guibg=#000000
-        hi WhichKeyDesc       guifg=#BBBBBB guibg=#000000
-        "hi WhichKeyBorder      guifg=#777777 guibg=#999999
-        hi WhichKeyValue     guifg=#777777 guibg=#444400
+        hi  WhichKeyFloat               guibg=NONE      guifg=#000000 
+        hi  WhichKey                    guibg=NONE      guifg=#22FF22 
+        hi  WhichKeyGroup                   guibg=#555500   guifg=#000000 
+        hi  WhichKeySeparator               guibg=#000000   guifg=#000000 
+        hi  WhichKeyDesc                    guibg=#000000   guifg=#BBBBBB 
+        "hi WhichKeyBorder                  guibg=#999999   guifg=#777777 
+        hi  WhichKeyValue                   guibg=#444400   guifg=#777777 
     "-----Floaterm-----"
-        hi Floaterm          guibg=#000000
-        hi FloatermBorder    guibg=#000000 guifg=#000000
+        hi Floaterm                         guibg=#000000
+        hi FloatermBorder                   guibg=#000000   guifg=#000000
     "------------------------Tree-Sitter------------------------#
-    hi @module guifg=#00FF00
-    hi @keyword guifg=#777777
-    hi @keyword.function guifg=#009900 gui=BOLD
-    hi @function guifg=#00AAAA gui=BOLD
+        hi @module                                          guifg=#00FF00 
+        hi @keyword                                         guifg=#777777 
+        hi @keyword.function                                guifg=#009900
+        hi @function                                        guifg=#00AAAA
     "hi @keyword.repeat guifg=#FF0000
+endfu
+
+fu! LoadLuaFiles(reload=0)
+    for file in g:my_lua_files
+        exe "lua require('" . file . "')"
+    endfor
 endfu
 
 fu! M_Map(maptype, keys, leader=0)
@@ -157,10 +174,10 @@ fu! ClipBoardExit()
 endfunction
 
 fu! LspStatus() abort
-  if luaeval('#vim.lsp.buf_get_clients() > 0')
-    return luaeval("require('lsp-status').status()")
-  endif
-  return ""
+    if luaeval('#vim.lsp.buf_get_clients() > 0')
+        return luaeval("require('lsp-status').status()")
+    endif
+    return ""
 endfu
 
 "fu! M_LspState()

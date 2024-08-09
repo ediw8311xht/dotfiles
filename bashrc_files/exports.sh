@@ -1,9 +1,10 @@
 #!/bin/bash
 
+#export  SHELLCHECK_OPTS='--exclude=SC1091'
 export  PROMPT_COMMAND='history -n; history -a'
 #export  HISTTIMEFORMAT='%D %T '
 export  HISTSIZE=25000
-export  HISTFILE="$HOME/.bash_history"
+export  HISTFILE="${HOME}/.bash_history"
 export  HISTCONTROL=ignoreboth
 export  TMPDIR="/tmp/"
 #------------------XDG-----------------#
@@ -14,7 +15,7 @@ export  XDG_STATE_HOME="${HOME}/.local/state"
 #---------------RIPGREP-(RG)-----------#
 export  RIPGREP_CONFIG_PATH="${HOME}/.config/rg/ripgreprc"
 #------------------FZF-----------------#
-export HTML_TIDY="${XDG_CONFIG_HOME}/tidy/tidy.conf"
+export  HTML_TIDY="${XDG_CONFIG_HOME}/tidy/tidy.conf"
 export  FZF_DEFAULT_COMMAND='fd -H'
 export  FZF_DEFAULT_OPTS='
     --bind ctrl-a:first
@@ -35,7 +36,7 @@ export  LS_PREVIEW='lsd   \
     --date=+"%y%m%_d"     \
     --blocks="permission,user,date,name"'
 #------------------BEMENU--------------#
-export BEMENU_OPTS=''
+export  BEMENU_OPTS=''
 #------------------SYSTEM--------------#
 export  EMACS_SOCKET_NAME="${USER}_emacs_daemon"
 export  DOOMDIR="${HOME}/.config/doom"
@@ -86,6 +87,7 @@ export  GROFF_NO_SGR=1 ### https://stackoverflow.com/a/32456403                 
 #####################   https://stackoverflow.com/questions/32384644/color-setting-works-for-only-for-help-tab-in-man-page-dosent-work-for-the-en #
 
 
+export LUA_CPATH='/usr/local/lib/lua/5.4/?.so;/usr/lib/lua/5.4/?.so;/usr/local/lib/lua/5.4/loadall.so;/usr/lib/lua/5.4/loadall.so;./?.so;/$HOME/.luarocks/lib/lua/5.4/?.so'
 
 
 
