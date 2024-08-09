@@ -15,7 +15,6 @@
     set $refresh_script     $HOME/bin/refresh_browser.sh
     set $balance_workspace  $HOME/.local/bin/i3_balance_workspace
     set $polybar_script     $HOME/bin/polybar_manipulate.sh
-    set $polybar_dmenu      $HOME/bin/polybar_select_dmenu.sh
 #-------------------------------------------------SPECIAL-BINDS-----------#
     #sticky toggle
     set $scratchpad_default floating enable, move scratchpad, scratchpad show, move position center

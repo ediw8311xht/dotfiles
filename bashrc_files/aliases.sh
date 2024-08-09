@@ -102,6 +102,7 @@ alias pip3sl='    pip3 list | grep -i'
     #alias py='        clear; python3'
 #--------------------------------------------------ps------------------------------------#
 alias psg='       ps ax | grep -Pi'
+alias pgs='       pgrep'
 alias pse='       ps -eo comm=, | grep --ignore-case'
 alias pso='       ps -eo cmd=, | grep --ignore-case'
 alias tret='      ps -ejH'
