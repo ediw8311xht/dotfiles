@@ -45,21 +45,22 @@ fu! CorrectColors()
         hi SignColumn       gui=NONE    guibg=NONE      guifg=NONE
         hi CursorLineSign   gui=NONE    guibg=#000022   guifg=#000000
     "-----Which Key-----"
-        hi  WhichKeyFloat               guibg=NONE      guifg=#000000 
         hi  WhichKey                    guibg=NONE      guifg=#22FF22 
-        hi  WhichKeyGroup                   guibg=#555500   guifg=#000000 
-        hi  WhichKeySeparator               guibg=#000000   guifg=#000000 
-        hi  WhichKeyDesc                    guibg=#000000   guifg=#BBBBBB 
-        "hi WhichKeyBorder                  guibg=#999999   guifg=#777777 
-        hi  WhichKeyValue                   guibg=#444400   guifg=#777777 
+        hi  WhichKeyNormal              guibg=NONE      guifg=#00FF00 
+        hi  WhichKeyFloat               guibg=NONE      " guifg=#000000 
+        hi  WhichKeyGroup               guibg=NONE      " guifg=#000000 
+        hi  WhichKeySeparator           guibg=NONE      " guifg=#000000 
+        hi  WhichKeyDesc                guibg=NONE      " guifg=#BBBBBB 
+        "hi WhichKeyBorder              guibg=#999999   guifg=#777777 
+        hi  WhichKeyValue   gui=ITALIC guibg=NONE   guifg=#777777 
     "-----Floaterm-----"
-        hi Floaterm                         guibg=#000000
-        hi FloatermBorder                   guibg=#000000   guifg=#000000
+        hi Floaterm                     guibg=#000000
+        hi FloatermBorder               guibg=#000000   guifg=#000000
     "------------------------Tree-Sitter------------------------#
-        hi @module                                          guifg=#00FF00 
-        hi @keyword                                         guifg=#777777 
-        hi @keyword.function                                guifg=#009900
-        hi @function                                        guifg=#00AAAA
+        hi @module                                      guifg=#00FF00 
+        hi @keyword                                     guifg=#777777 
+        hi @keyword.function                            guifg=#009900
+        hi @function                                    guifg=#00AAAA
     "hi @keyword.repeat guifg=#FF0000
 endfu
 
@@ -80,14 +81,14 @@ fu! M_Map(maptype, keys, leader=0)
 endfu
 
 fu! CycleBackground(nextprevious)
-    let lenny = len(g:myBg)
+    let lenny = len(s:myBg)
     let i = 0
     let current_background = synIDattr(hlID("Normal"), "bg")
     if current_background == ""
         "CATCH NO BACKGROUND (Transparency)
         let current_background="NONE"
     endif
-    for _ in g:myBg
+    for _ in s:myBg
         if current_background ==? _
             let j = (i + (a:nextprevious)) % lenny
             execute "highlight Normal guibg=" . g:myBg[j]

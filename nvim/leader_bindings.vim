@@ -1,6 +1,4 @@
 
-source ${HOME}/.config/nvim/functions.vim
-
 "----------------------------------
 "-- Leader Bindings              --
 "----------------------------------

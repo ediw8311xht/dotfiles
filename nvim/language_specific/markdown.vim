@@ -28,7 +28,10 @@ fu! PreviewMarkdown(flag = "")
     endif
 endfu
 
+set wrap
+vnoremap <buffer> <leader>x  :!pandoc -t commonmark_x<CR>
 nnoremap <buffer> <leader>x  :%!pandoc -t commonmark_x<CR>
 nnoremap <buffer> <leader>oo :silent call PreviewMarkdown()<esc>
 nnoremap <buffer> <leader>oq :silent call PreviewMarkdown("q")<esc>
 nnoremap <buffer> <leader>ob :silent call PreviewMarkdown("b")<esc>
+nnoremap <buffer> <leader>oO :MarkdownPreview<esc>

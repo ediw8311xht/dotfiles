@@ -46,36 +46,68 @@ treesitter.setup({
     end,
   },
 })
+
 which_key.setup({
---  notify = false,
---  win = {
---    border = "none", -- none, single, double, shadow
---    position = "bottom", -- bottom, top
---    margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
---    padding = { 1, 1, 2, 2 }, -- extra window padding [top, right, bottom, left]
---    winblend = 0, -- value between 0-100 0 for fully opaque and 100 for fully transparent
---    zindex = 1000, -- positive value to position WhichKey above other floating windows.
---  },
---  layout = {
---    height = { min = 4, max = 10 }, -- min and max height of the columns
---    width = { min = 4, max = 40 }, -- min and max width of the columns
---    spacing = 3, -- spacing between columns
---    align = "left", -- align columns left, center or right
---  },
+--    notify = false,
+   win = {
+     no_overlap = false,
+     border = "none", -- none, single, double, shadow
+     padding = {0, 0},
+     wo = {
+         winblend = 25, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+     }
+   },
+    layout = {
+      height = { min = 4, max = 50 }, -- min and max height of the columns
+      width = { min = 4, max = 20 }, -- min and max width of the columns
+      spacing = 1, -- spacing between columns
+      align = "left", -- align columns left, center or right
+    },
+      icons = {
+        breadcrumb = ">", -- symbol used in the command line area that shows your active key combo
+        separator = "", -- symbol used between a key and it's label
+        group = "+", -- symbol prepended to a group
+        ellipsis = "…",
+        -- set to false to disable all mapping icons,
+        -- both those explicitely added in a mapping
+        -- and those from rules
+        mappings = false,
+        rules = {},
+        colors = true,
+        -- used by key format
+        keys = {
+            BS = '󰁮 ',
+            Space = '<leader>',
+            Tab = '<Tab>',
+            Up = '<up>',
+            Down = '<down>',
+            Left = '<left>',
+            Right = '<right>',
+            C = '^',
+            M = '󰘵 ',
+            D = '󰘳 ',
+            S = '<S>',
+            CR = '<CR>',
+            Esc = '󱊷 ',
+            ScrollWheelDown = '󱕐 ',
+            ScrollWheelUp = '󱕑 ',
+            NL = '󰌑 ',
+            F1 = '󱊫 ',
+            F2 = '󱊬 ',
+            F3 = '󱊭 ',
+            F4 = '󱊮 ',
+            F5 = '󱊯 ',
+            F6 = '󱊰 ',
+            F7 = '󱊱 ',
+            F8 = '󱊲 ',
+            F9 = '󱊳 ',
+            F10 = '󱊴 ',
+            F11 = '󱊵 ',
+            F12 = '󱊶 ',
+        },
+    },
 })
 
--- which_key.add({
---   { "<leader>f", group = "file" }, -- group
---   { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File", mode = "n" },
---   { "<leader>fb", function() print("hello") end, desc = "Foobar" },
---   { "<leader>fn", desc = "New File" },
---   { "<leader>f1", hidden = true }, -- hide this keymap
---   { "<leader>w", proxy = "<c-w>", group = "windows" }, -- proxy to window mappings
---   { "<leader>b", group = "buffers", expand = function()
---       return require("which-key.extras").expand.buf()
---     end
---   }
--- })
 luasnip.setup({})
 cmp.setup({
   snippet = {

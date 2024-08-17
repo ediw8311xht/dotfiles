@@ -82,7 +82,7 @@ alias cnf='       fzf_cd -d "${XDG_CONFIG_HOME}" -u -d1'
 alias conf='      cd "${XDG_CONFIG_HOME}"'
 alias ncde='      cd "${CODING}"; nf'
 alias nswp='      cd "${HOME}/.mynvim/swapfiles/"'
-alias cde='       fzf_cd cd -d "${CODING}" -d3'
+alias cde='       fzf_cd -d "${CODING}" -d3'
 alias clne='      fzf_cd -d "${CLONED}"'
 #--------------------------------------------------find----------------------------------#
 #alias listaudio=' fd . -tf -e mp3 -e flac'

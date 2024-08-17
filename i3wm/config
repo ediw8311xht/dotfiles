@@ -9,17 +9,16 @@
     set $wallpaper_script   $HOME/bin/xwallpaperauto.sh
     set $dmenu_script       $HOME/bin/my_dmenu.sh
     set $dmenu_search       $HOME/bin/dmenu_websearch.sh
-    set $emacs_script       $HOME/bin/manage_emacs.sh
     set $border_script      $HOME/bin/i3wm_change_border.sh
     set $clipboard_script   $HOME/bin/add_to_clip.sh
     set $refresh_script     $HOME/bin/refresh_browser.sh
     set $balance_workspace  $HOME/.local/bin/i3_balance_workspace
     set $polybar_script     $HOME/bin/polybar_manipulate.sh
+    set $xmsg_script        $HOME/bin/xmsg_quick.sh
 #-------------------------------------------------SPECIAL-BINDS-----------#
     #sticky toggle
     set $scratchpad_default floating enable, move scratchpad, scratchpad show, move position center
     set $floating_default   floating enable, move position center
-    set $xm_hd              exec $HOME/bin/xmsg_quick.sh
     bindsym Mod1+Shift+r    exec --no-startup-id    "xrdb ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --3"
     #bindsym Mod1+Shift+c    exec --no-startup-id    "xrdb ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --NOASK --0"
     bindsym Mod1+Shift+o    exec "sleep 0.5; xset dpms force off"

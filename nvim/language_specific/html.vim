@@ -13,8 +13,8 @@
 "
 "nnoremap <buffer> <leader>m i<span class="math inline">\(\)</span><esc>F(a
 ""nnoremap <leader>M 0f(a
-"nnoremap <buffer> <leader>vp :%!tidy --parser="html"<esc>
-"nnoremap <buffer> <leader>x  :!xmllint %<esc>
+nnoremap <buffer> <leader>vp :%!tidy --parser="html"<esc>
+nnoremap <buffer> <leader>x  :!xmllint %<esc>
 "
 ""nnoremap <leader>r  i<img src="images/"/><esc>F"i
 ""nnoremap <leader>R :!qutebrowser ":reload"<esc>

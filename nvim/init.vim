@@ -17,8 +17,8 @@ let g:MyDefaultScheme = [ 'pop-punk', 'call CorrectColors()' ]
 
 let g:MySchemes=[ 
     \g:MyDefaultScheme,
-    \[ 'eldar',             "."                      ],
     \[ 'cyberpunk-neon',    'call CorrectColors()'   ],
+    \[ 'eldar',             "."                      ],
     \[ 'elflord',           "."                      ],
     \[ 'delek',             "."                      ],
     \[ 'morning',           "."                      ],
@@ -99,7 +99,7 @@ set statusline+=%r
 set statusline+=%m
 "set statusline+=%=
 "set statusline+=[%v]\ (%L\ lines)\ 
-"set statusline+=(%{wordcount().words}\ words\)
+set statusline+=(%{wordcount().words}\ words\)
 set statusline+=%=
 "set statusline+=%#HLspStatus#%{LspStatus()}
 set statusline+=%*
@@ -113,8 +113,8 @@ let g:lf_height=0.9
 let g:coc_start_at_startup = v:true
 let g:coc_enable_at_startup = v:false
 let g:mapleader = " "
-let mapleader = " "
-let maplocalleader = ","
+"let mapleader = " "
+let g:maplocalleader = ","
 let g:lf_map_keys   = 0
 let g:html_mode     = 1
 let g:is_bash       = 1

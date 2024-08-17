@@ -1,9 +1,9 @@
 
-source ${HOME}/.config/nvim/functions.vim
+"source ${HOME}/.config/nvim/functions.vim
 
 let g:bindings_map=[
-    \[ ',',         '<leader>'                   ],
-    \[ '+',         'g_'                         ],
+    \[ ',',         '<leader>'                  ],
+    \[ '+',         'g_'                        ],
 \]
 let g:bindings_noremap=[
     \[ 'x',        '"xx'                        ],
@@ -12,10 +12,12 @@ let g:bindings_noremap=[
 
 let g:bindings_vnoremap=[
     \[ '~',        'zf'                         ],
-    \[ '<C-s>',    ':s/\v'                      ],
+    \[ '<C-s>',    ':s/\%V\v'                   ],
 \]
 "    \[ 'im',       ':s/\%v[ \t]*//<esc>'        ],
 
+"    \[ '<lt>',     ':tabprevious<esc>'          ],
+"    \[ '>',        ':tabnext<esc>'              ],
 let g:bindings_nnoremap=[
     \[ 'ZG',       ':wqall<CR>'                 ],
     \[ '~',        '@=(foldlevel('."'.')?'za':".'"\<Space>")<CR>'   ],
@@ -26,8 +28,6 @@ let g:bindings_nnoremap=[
     \[ '\',        '/\V\c'                      ],
     \[ '\|',       '?\V\c'                      ],
     \
-    \[ '<lt>',     ':tabprevious<esc>'          ],
-    \[ '>',        ':tabnext<esc>'              ],
     \[ '<C-p>',    '<C-i>'                      ],
     \
     \[ '<C-h>',    '<C-w>h'                     ],

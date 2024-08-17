@@ -14,8 +14,24 @@ xset r rate 200 40
 #xmodmap -e  "keycode 49  = 0x0000 0xffeb 0x0000 0xffeb"
 #xmodmap -e  "keycode 108 = 0x007e 0x0060 0x007e 0x0060"
 #xmodmap -e  "keycode 133 = 0x007e 0x0060 0x007e 0x0060"
+#check_mod_map() {
+#    local a=(
+#        'Mod1 Alt_R'
+#        'Mod1 Meta_R'
+#        'Mod4 asciitilde'
+#    )
+#    for i in "${a[@]}"  ; do
+#        if xmodmap -pm | grep -qF "${i}" ; then
+#            xmodmap -e 'remove Mod1 = Alt_R'
+#        fi
+#    done
+#}
 xmodmap     "$HOME/.Xmodmap"
-xmodmap -e 'remove Mod1 = Alt_R'
+
+if xmodmap -pm | grep -iq 'Mod1.*Alt_R' ; then
+    xmodmap -e 'remove Mod1 = Alt_R'
+fi
+
 xmodmap -e 'remove Mod1 = Super_R'
 xmodmap -e 'remove Mod1 = Meta_R'
 xmodmap -e 'remove Mod4 = asciitilde'
