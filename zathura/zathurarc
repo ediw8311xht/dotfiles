@@ -9,7 +9,7 @@
     set   n-completion-items       20
     set   page-padding             0
     set   pages-per-row            1
-    set   sandbox                  none
+    #set   sandbox                  none
     #set sandbox strict
     set   scroll-step              100
     set   selection-clipboard      clipboard

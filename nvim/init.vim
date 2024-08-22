@@ -16,28 +16,28 @@
 let g:MyDefaultScheme = [ 'pop-punk', 'call CorrectColors()' ]
 
 let g:MySchemes=[ 
-    \g:MyDefaultScheme,
-    \[ 'cyberpunk-neon',    'call CorrectColors()'   ],
-    \[ 'eldar',             "."                      ],
-    \[ 'elflord',           "."                      ],
-    \[ 'delek',             "."                      ],
-    \[ 'morning',           "."                      ],
-    \[ 'blue',              "."                      ],
-    \[ 'peachpuff',         "."                      ],
-    \[ 'industry',          "."                      ],
-    \[ 'murphy',            "."                      ],
+    \g:MyDefaultScheme  ,
+    \[ 'cyberpunk-neon' ,   'call CorrectColors()'  ],
+    \[ 'eldar'          ,   "."                     ],
+    \[ 'elflord'        ,   "."                     ],
+    \[ 'delek'          ,   "."                     ],
+    \[ 'morning'        ,   "."                     ],
+    \[ 'blue'           ,   "."                     ],
+    \[ 'peachpuff'      ,   "."                     ],
+    \[ 'industry'       ,   "."                     ],
+    \[ 'murphy'         ,   "."                     ],
 \]
 
 let g:myBg          = [ "#010101",  "#333333",  "#111111", "#220000",  "#002200",  "#000022",  "#002244" ] + [ "NONE" ]
 let g:myFg          = [ ".",        ".",         ".",       ".",        ".",        ".",        "#aaawaa" ] + [ "." ]
 
 let g:python3_host_prog="/usr/bin/python"
-let g:my_lua_files = [ 'mytreesitter', 'base' ]
 
 source ${HOME}/.config/nvim/autocmd.vim
 source ${HOME}/.config/nvim/plugins.vim
 source ${HOME}/.config/nvim/functions.vim
-call LoadLuaFiles()
+lua require('mytreesitter')
+lua require('base')
 
 filetype on
 filetype plugin on
@@ -99,12 +99,14 @@ set statusline+=%r
 set statusline+=%m
 "set statusline+=%=
 "set statusline+=[%v]\ (%L\ lines)\ 
-set statusline+=(%{wordcount().words}\ words\)
+"set statusline+=(%{wordcount().words}\ words\)
 set statusline+=%=
 "set statusline+=%#HLspStatus#%{LspStatus()}
 set statusline+=%*
 set statusline+=[%{LspStatus()}]\ 
 set statusline+=[%F]
+
+let g:neoterm_automap_keys=',Tt'
 let g:floaterm_opener='edit'
 let g:lf_width=0.9
 let g:lf_height=0.9
@@ -122,6 +124,10 @@ colorscheme pop-punk
 
 source ${HOME}/.config/nvim/leader_bindings.vim
 source ${HOME}/.config/nvim/etc_bindings.vim
+
+lua require("mappings")
+lua require('functions')
+
 :call CorrectColors()
 
 "let g:bracey_refresh_on_save    = 1

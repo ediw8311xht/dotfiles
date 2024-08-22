@@ -29,6 +29,7 @@ fu! PreviewMarkdown(flag = "")
 endfu
 
 set wrap
+colorscheme cyberpunk-neon
 vnoremap <buffer> <leader>x  :!pandoc -t commonmark_x<CR>
 nnoremap <buffer> <leader>x  :%!pandoc -t commonmark_x<CR>
 nnoremap <buffer> <leader>oo :silent call PreviewMarkdown()<esc>

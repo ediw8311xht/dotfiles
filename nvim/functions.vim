@@ -64,12 +64,6 @@ fu! CorrectColors()
     "hi @keyword.repeat guifg=#FF0000
 endfu
 
-fu! LoadLuaFiles(reload=0)
-    for file in g:my_lua_files
-        exe "lua require('" . file . "')"
-    endfor
-endfu
-
 fu! M_Map(maptype, keys, leader=0)
     for i in a:keys
         if a:leader == 1
@@ -80,7 +74,7 @@ fu! M_Map(maptype, keys, leader=0)
     endfor
 endfu
 
-fu! CycleBackground(nextprevious)
+fu! CyBack(nextprevious)
     let lenny = len(g:myBg)
     let i = 0
     let current_background = synIDattr(hlID("Normal"), "bg")
@@ -108,7 +102,7 @@ fu! SetScheme(scheme)
     endif
 endfu
 
-fu! CycleColor(nextprevious)
+fu! SetColScheme(nextprevious)
     " current color scheme let g:colors_name
     let l:i = 0
     let l:length = len(g:MySchemes)
@@ -125,6 +119,16 @@ fu! CycleColor(nextprevious)
     call SetScheme(g:MySchemes[j])
 endfu
 
+fu! TogVE() 
+    call Toggle(&ve, "none", "set ve=all \| echo &ve", "set ve=none \| echo &ve")
+endfu
+fu! TogSL()
+    call Toggle(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")
+endfu
+fu! TogCC()
+    call Toggle(&cc, 0, "set cc=80", "set cc=0")
+endfu
+
 fu! Toggle(c1, c2, r1, r2)
     if a:c1 == a:c2
         execute a:r1
@@ -134,15 +138,15 @@ fu! Toggle(c1, c2, r1, r2)
 endfu
 
 fu! Cycle(checkarr, cvar, doarr, nextprevious)
-    let lenny = len(a:checkarr)
-    let i = 0
-    while i < lenny
+    let l:lenny = len(a:checkarr)
+    let l:i = 0
+    while l:i < lenny
         if a:checkarr[i] ==? a:cvar
-            let j = (i + (a:nextprevious)) % lenny
-            execute a:doarr[j]
+            let l:j = (l:i + (a:nextprevious)) % l:lenny
+            execute a:doarr[l:j]
             return
         endif
-        let i += 1
+        let l:i += 1
     endwhile
 endfu
 
@@ -159,7 +163,7 @@ fu! IndentHalfOrDouble(half_or_double)
     endif
 endfunction
 
-fu! GetMappings()
+fu! GMaps()
     :redir! > /tmp/nvim_mappings.txt
     :silent imap
     :silent nmap
@@ -179,6 +183,13 @@ fu! LspStatus() abort
         return luaeval("require('lsp-status').status()")
     endif
     return ""
+endfu
+
+fu! FilePathFull()
+    " gonna add this later to make file argument get from current path
+        "fu! FilePathFull(file_arg=v:false)
+        "let l:file = a:file_arg == v:false ? expand("%:p:h") : a:file_arg
+    return substitute(expand("%:p:h"), '\V' . $HOME, "~", "")
 endfu
 
 "fu! M_LspState()

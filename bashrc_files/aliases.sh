@@ -122,8 +122,8 @@ alias ednv='      nvim -c "Buffers" "${XDG_CONFIG_HOME}/nvim/lua/"*.lua "${XDG_C
 alias nva='       fd . --exact-depth 1 -tf -0 -X nvim -c "Buffers"'
 #--------------------------------------------------zathura-------------------------------#
 alias z='         zathura --fork'
-alias eread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --preview="ctpv {}" --print0 | xargs -0 -r -o zathura --fork; exit'
-alias fread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --preview="ctpv {}" --print0 | xargs -0 -r -o zathura --fork'
+alias eread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --print0 | xargs -0 -r -o zathura --fork; exit'
+alias fread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --print0 | xargs -0 -r -o zathura --fork'
 #--------------------------------------------------df------------------------------------#
 alias d='           \df -h | ccze -m ansi'
 alias D='           \df -h | grep -Po "^[ ]*[/]dev[/].*" | ccze -m ansi'

@@ -12,17 +12,15 @@ local elixirls   = require('elixir.elixirls')
 local lspsaga    = require('lspsaga')
 local gitsigns   = require('gitsigns')
 local marks      = require('marks')
-local treesitter = require('nvim-treesitter.configs')
 local lspstatus  = require('lsp-status')
 local HOME       = os.getenv("HOME")
+local cmp_capabilities  =  require('cmp_nvim_lsp').default_capabilities()
 
 lspstatus.config({
   indicator_ok = 'Ok',
 })
 
 lsp_status.register_progress()
-
-
 
 -- local  hologram      =  require('hologram')
 -- local  lsp_lines     =  require("lsp_lines")
@@ -38,14 +36,6 @@ lsp_status.register_progress()
 --   auto_display = true -- WIP automatic markdown image display, may be prone to breaking
 -- }
 
-treesitter.setup({
-  highlight = {
-    enable = true,
-    disable = function(lang, bufnr) -- Disable in large C++ buffers
-      return vim.api.nvim_buf_line_count(bufnr) > 1000
-    end,
-  },
-})
 
 which_key.setup({
 --    notify = false,
@@ -110,6 +100,10 @@ which_key.setup({
 
 luasnip.setup({})
 cmp.setup({
+  performance = {
+    throttle = 0.3,
+    async_budget = 20,
+  },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -137,6 +131,7 @@ cmp.setup({
     { name = 'dotenv'},
   })
 })
+
 -- cmp.setup.cmdline({ '/', '?' }, {
 --   mapping = cmp.mapping.preset.cmdline(),
 --   sources = {
@@ -153,7 +148,6 @@ cmp.setup({
 --   matching = { disallow_symbol_nonprefix_matching = false }
 -- })
 
-local   cmp_capabilities  =  require('cmp_nvim_lsp').default_capabilities()
 
 marks.setup({
   default_mappings = true,
@@ -291,6 +285,13 @@ lspconfig.vimls.setup({
 
 lspconfig.lua_ls.setup({
   capabilities = cmp_capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' }
+      }
+    }
+  },
 })
 
 lspconfig.bashls.setup({
@@ -308,6 +309,8 @@ lspconfig.pyright.setup({
   on_attach = lsp_status.on_attach,
   capabilities = cmp_capabilities,
 })
+
+lspconfig.ccls.setup({})
 
 -- lspconfig.elixirls.setup{
 --   credo = { enable = false },

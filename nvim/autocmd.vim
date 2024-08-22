@@ -6,31 +6,31 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 "autocmd Filetype vim setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd BufNewFile,BufRead ~/.config/zathura/*                  set syntax=zathurarc
 
-autocmd BufNewFile *.sh         0read ${XDG_CONFIG_HOME}/nvim/language_specific/templates/template.sh     | :silent w | :silent !chmod 700 %
-autocmd BufNewFile *.py         0read ${XDG_CONFIG_HOME}/nvim/language_specific/templates/template.py     | :silent w | :silent !chmod 700 %
-autocmd BufNewFile *.kalker     0read ${XDG_CONFIG_HOME}/nvim/language_specific/templates/template.kalker | :silent w | :silent !chmod 700 %
-autocmd BufNewFile *.exs        0read ${XDG_CONFIG_HOME}/nvim/language_specific/templates/template.exs    | :silent w | :silent !chmod 700 %
-autocmd BufNewFile *.ex         0read ${XDG_CONFIG_HOME}/nvim/language_specific/templates/template.ex     | :silent w | :silent !chmod 600 %
-autocmd BufNewFile *.html       0read ${XDG_CONFIG_HOME}/nvim/language_specific/templates/template.html   | :silent w | :silent !chmod 600 %
+autocmd BufNewFile *.sh         0read ${HOME}/.config/nvim/language_specific/templates/template.sh     | :silent w | :silent !chmod 700 %
+autocmd BufNewFile *.py         0read ${HOME}/.config/nvim/language_specific/templates/template.py     | :silent w | :silent !chmod 700 %
+autocmd BufNewFile *.kalker     0read ${HOME}/.config/nvim/language_specific/templates/template.kalker | :silent w | :silent !chmod 700 %
+autocmd BufNewFile *.exs        0read ${HOME}/.config/nvim/language_specific/templates/template.exs    | :silent w | :silent !chmod 700 %
+autocmd BufNewFile *.ex         0read ${HOME}/.config/nvim/language_specific/templates/template.ex     | :silent w | :silent !chmod 600 %
+autocmd BufNewFile *.html       0read ${HOME}/.config/nvim/language_specific/templates/template.html   | :silent w | :silent !chmod 600 %
 
 autocmd BufNewFile,BufRead ~/.bashrc                            setfiletype bash
 autocmd BufNewFile,BufRead ~/bashrc_files/*                     setfiletype bash
 autocmd BufNewFile,BufRead *.sh                                 setfiletype bash
-autocmd BufNewFile,BufRead ${XDG_CONFIG_HOME}/polybar/*.ini     setfiletype dosini
-autocmd BufNewFile,BufRead ${XDG_CONFIG_HOME}/polybar/*/*.ini   setfiletype dosini
+autocmd BufNewFile,BufRead ${HOME}/.config/polybar/*.ini     setfiletype dosini
+autocmd BufNewFile,BufRead ${HOME}/.config/polybar/*/*.ini   setfiletype dosini
 autocmd BufNewFile,BufRead *.kalker                             setfiletype kalker
-autocmd BufNewFile,BufRead ${XDG_CONFIG_HOME}/i3/*              setfiletype i3
+autocmd BufNewFile,BufRead ${HOME}/.config/i3/*              setfiletype i3
 autocmd BufNewFile,BufRead *.ex,*.exs                           setfiletype elixir
 
 autocmd Filetype elixir                                         setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-autocmd Filetype lua                                            source ${XDG_CONFIG_HOME}/nvim/language_specific/lua.vim
-autocmd Filetype kalker                                         source ${XDG_CONFIG_HOME}/nvim/language_specific/kalker.vim
-autocmd Filetype css                                            source ${XDG_CONFIG_HOME}/nvim/language_specific/css.vim
-autocmd Filetype html                                           source ${XDG_CONFIG_HOME}/nvim/language_specific/html.vim
-autocmd Filetype elixir                                         source ${XDG_CONFIG_HOME}/nvim/language_specific/elixir.vim
-autocmd Filetype sh,bash                                        source ${XDG_CONFIG_HOME}/nvim/language_specific/bash.vim
-autocmd Filetype markdown                                       source ${XDG_CONFIG_HOME}/nvim/language_specific/markdown.vim
-autocmd BufNewFile,BufRead ~/.bashrc                            source ${XDG_CONFIG_HOME}/nvim/language_specific/bashrc.vim
+autocmd Filetype lua                                            source ${HOME}/.config/nvim/language_specific/lua.vim
+autocmd Filetype kalker                                         source ${HOME}/.config/nvim/language_specific/kalker.vim
+autocmd Filetype css                                            source ${HOME}/.config/nvim/language_specific/css.vim
+autocmd Filetype html                                           source ${HOME}/.config/nvim/language_specific/html.vim
+autocmd Filetype elixir                                         source ${HOME}/.config/nvim/language_specific/elixir.vim
+autocmd Filetype sh,bash                                        source ${HOME}/.config/nvim/language_specific/bash.vim
+autocmd Filetype markdown                                       source ${HOME}/.config/nvim/language_specific/markdown.vim
+autocmd BufNewFile,BufRead ~/.bashrc                            source ${HOME}/.config/nvim/language_specific/bashrc.vim
 
 
 autocmd VimLeave * call ClipBoardExit()

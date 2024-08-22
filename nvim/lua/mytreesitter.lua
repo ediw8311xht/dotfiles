@@ -26,7 +26,10 @@ treesitter.setup {
     -- the name of the parser)
     -- list of language that will be disabled
 
-    disable = { "txt", "help", "vimdoc", "vim", "doc", "man" },
+    disable = function(_, bufnr) -- Disable in large buffers
+        return vim.api.nvim_buf_line_count(bufnr) > 2000
+      end,
+    -- disable = { "txt", "help", "vimdoc", "vim", "doc", "man" },
     -- disable = {},
 
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files

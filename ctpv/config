@@ -6,7 +6,7 @@
 #set chafasixel
 set shell "/usr/bin/bash"
 
-preview my_epub .epub {{
+preview epub .epub {{
     a="$((w*h))"
     [[ "${a}" -gt 500 ]] && a="500"
     gnome-epub-thumbnailer -s "${a}" "${f}" "${cache_f}.png"
@@ -14,19 +14,19 @@ preview my_epub .epub {{
     send_image "${cache_f}.png"
 }}
 
-preview mygzip .gz {{
+preview gzip application/gzip {{
     zcat "${f}"
 }}
 
-preview pygm .log {{
+preview log text/x-log {{
     pygmentize "${f}"
 }}
 
-preview myjs .js .json .html {{
+preview jshtml .js .json .html {{
     highlight "${f}" --stdout --out-format="ansi"
 }}
 
-preview mylua .lua {{
+preview lua .lua {{
     highlight "${f}" --stdout --out-format="ansi"
 }}
 
