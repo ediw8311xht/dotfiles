@@ -33,12 +33,6 @@ let g:myFg          = [ ".",        ".",         ".",       ".",        ".",    
 
 let g:python3_host_prog="/usr/bin/python"
 
-source ${HOME}/.config/nvim/autocmd.vim
-source ${HOME}/.config/nvim/plugins.vim
-source ${HOME}/.config/nvim/functions.vim
-lua require('mytreesitter')
-lua require('base')
-
 filetype on
 filetype plugin on
 filetype plugin indent on
@@ -93,6 +87,8 @@ set cul
 set nocuc
 set cedit=\<C-c>
 set statuscolumn=
+"Make sure vimwiki doesn't run on markdown not in ~/vimwiki dir.
+let g:vimwiki_global_ext = 0
 
 set statusline=%t\ 
 set statusline+=%r
@@ -120,13 +116,20 @@ let g:maplocalleader = ","
 let g:lf_map_keys   = 0
 let g:html_mode     = 1
 let g:is_bash       = 1
+
+source ${HOME}/.config/nvim/autocmd.vim
+source ${HOME}/.config/nvim/plugins.vim
+source ${HOME}/.config/nvim/functions.vim
+lua require('mytreesitter')
+lua require('base')
+
 colorscheme pop-punk
 
 source ${HOME}/.config/nvim/leader_bindings.vim
 source ${HOME}/.config/nvim/etc_bindings.vim
 
-lua require("mappings")
 lua require('functions')
+lua require("mappings")
 
 :call CorrectColors()
 

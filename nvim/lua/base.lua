@@ -1,4 +1,5 @@
 
+local HOME       = os.getenv("HOME")
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
 
@@ -13,7 +14,6 @@ local lspsaga    = require('lspsaga')
 local gitsigns   = require('gitsigns')
 local marks      = require('marks')
 local lspstatus  = require('lsp-status')
-local HOME       = os.getenv("HOME")
 local cmp_capabilities  =  require('cmp_nvim_lsp').default_capabilities()
 
 lspstatus.config({
@@ -100,10 +100,10 @@ which_key.setup({
 
 luasnip.setup({})
 cmp.setup({
-  performance = {
-    throttle = 0.3,
-    async_budget = 20,
-  },
+  -- performance = {
+  --   throttle = 0.3,
+  --   async_budget = 20,
+  -- },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)

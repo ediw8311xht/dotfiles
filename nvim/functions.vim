@@ -36,7 +36,8 @@ fu! CorrectColors()
     hi TermCursor                       guibg=NONE      guifg=#00AA00 
     hi HLspStatus           gui=NONE    guibg=NONE      guifg=#00FF00
     hi HStatusFullFile      gui=NONE    guibg=NONE      guifg=#999999
-
+    "------------------------SPELLING---------------------------#
+    hi SpellBad gui=undercurl guisp=red guifg=#AAAAAA
     "hi ModeMsg guifg=#000087 guibg=#00ff00 gui=NONE cterm=NONE
     "hi MoreMsg guifg=#5fffff guibg=NONE gui=NONE cterm=NONE
     "hi NonText guifg=#d787d7 guibg=NONE gui=NONE cterm=NONE
@@ -190,6 +191,10 @@ fu! FilePathFull()
         "fu! FilePathFull(file_arg=v:false)
         "let l:file = a:file_arg == v:false ? expand("%:p:h") : a:file_arg
     return substitute(expand("%:p:h"), '\V' . $HOME, "~", "")
+endfu
+
+fu! GetHL()
+    echo synIDattr(synID(line("."), col("."), 0), "name")
 endfu
 
 "fu! M_LspState()
