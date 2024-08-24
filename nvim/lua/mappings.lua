@@ -35,7 +35,7 @@ local leader_nnoremap = {
   { 'Edit File CWD',        'E'   ,  ':call feedkeys(":e " . FilePathFull() . "/")<CR>'                         },
   { '+ Wrap',               'f'   ,  ':set wrap!<esc>'                                                          },
   { 'New File',             'gn'  ,  ':enew<esc>'                                                               },
-  { '',                     'gh'  ,  ':call GetHL()<CR>'                                                        },
+  { '',                     'gh'  ,  ':call GetHL()<ESC>'                                                        },
   { 'Print Mappings',       'gm'  ,  ':call GMaps()<CR>'                                                        },
   { 'Helpgrep',             'H'   ,  ':vert helpgrep '                                                          },
   { 'Open diagnostics',     'i'   ,  ':lua vim.diagnostic.open_float(nil, {focus=true, scope="cursor")<CR>'     },

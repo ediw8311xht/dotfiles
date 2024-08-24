@@ -54,7 +54,7 @@ set ruler
 set signcolumn=yes:2
 set splitright
 set t_Co=256
-set termguicolors
+"set termguicolors
 set textwidth=0
 set undofile
 set undolevels=10000
