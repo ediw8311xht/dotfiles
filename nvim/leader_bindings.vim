@@ -29,7 +29,8 @@ let g:bindings_l_noremap = [
 "    \[ 'cC'  ,    ':call Toggle(&colorcolumn, 0, "set colorcolumn=80", "set colorcolumn=0")<esc>', "toggles color column (Line length indicator)"                   ],
 "    \[ 'cc'  ,    ':set nocursorline!<esc>'                                                                                                                         ],
 "    \[ 'CH'  ,    ':checkhealth<esc>'                                                                                                                               ],
-"    \[ 'D'   ,    ':bdelete<esc><enter>'                                                                                                                            ],
+"    \[ 'Dd'   ,    ':bdelete<esc><enter>'                                                                                                                            ],
+"    \[ 'DG'  ,    ':bd!<esc>'                                                                                                                                       ],
 "    \[ 'df'  ,    ':%s/\s\+\ze$//gc<esc>'                                                        , "finds and optionally deletes extra space at end of line"        ],
 "    \[ 'e'   ,    ':set cursorcolumn!<esc>'                                                                                                                         ],
 "    \[ 'E'   ,    ':call feedkeys(":e " . FilePathFull() . "/")<cr>' ],
@@ -69,10 +70,10 @@ let g:bindings_l_noremap = [
 "\[ 'x'   ,    ':w<esc>:!%:p<esc>'                                                                                                                               ],
 
 let g:bindings_l_vnoremap = [
-    \[ 'm'   ,    ':!bc<esc>'            ],
     \[ 'M'   ,    ':!dc<esc>'            ],
+    \[ 'm'   ,    ':!bc<esc>'            ],
     \[ 'vc'  ,    ':!column -o " " -t<enter>'   ],
-    \[ 'vs'  ,    ':!sort -n<enter>'     ],
+    \[ 'vs'  ,    ':sort<enter>'     ],
 \]
 
 "call M_Map( "nnoremap" , g:bindings_l_nnoremap, 1)
@@ -86,5 +87,4 @@ call M_Map( "vnoremap" , g:bindings_l_vnoremap, 1)
 "    \[ 'vm'  ,    ':put =eval("<C-r>0")'                                                                                                                            ],
 "    \[ 'vq'  ,    ':put =eval("<C-r>0")<esc>'                                                                                                                       ],
 "    \[ 'out' ,    'q:iput =execute("<C-r>0")<esc>A<C-c>'                                                                                                            ],
-"    \[ 'ZG'  ,    ':bd!<esc>'                                                                                                                                       ],
 

@@ -12,6 +12,7 @@ autocmd BufNewFile *.kalker     0read ${HOME}/.config/nvim/language_specific/tem
 autocmd BufNewFile *.exs        0read ${HOME}/.config/nvim/language_specific/templates/template.exs    | :silent w | :silent !chmod 700 %
 autocmd BufNewFile *.ex         0read ${HOME}/.config/nvim/language_specific/templates/template.ex     | :silent w | :silent !chmod 600 %
 autocmd BufNewFile *.html       0read ${HOME}/.config/nvim/language_specific/templates/template.html   | :silent w | :silent !chmod 600 %
+autocmd BufNewFile *.cpp        0read ${HOME}/.config/nvim/language_specific/templates/template.cpp    | :silent w | :silent !chmod 600 %
 
 autocmd BufNewFile,BufRead ~/.bashrc                            setfiletype bash
 autocmd BufNewFile,BufRead ~/bashrc_files/*                     setfiletype bash
@@ -23,6 +24,7 @@ autocmd BufNewFile,BufRead ${HOME}/.config/i3/*              setfiletype i3
 autocmd BufNewFile,BufRead *.ex,*.exs                           setfiletype elixir
 
 autocmd Filetype elixir                                         setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd Filetype cpp                                            source ${HOME}/.config/nvim/language_specific/cpp.vim
 autocmd Filetype lua                                            source ${HOME}/.config/nvim/language_specific/lua.vim
 autocmd Filetype kalker                                         source ${HOME}/.config/nvim/language_specific/kalker.vim
 autocmd Filetype css                                            source ${HOME}/.config/nvim/language_specific/css.vim

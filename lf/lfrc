@@ -80,22 +80,15 @@ cmd toggle_info ${{
     fi
 }}
 
-map bB      &$BROWSER $fx
-map bQ      &qutebrowser $fx
-
-map C 		:quit
-map Q 		&lf -remote 'send quit'; lf -remote 'quit'
-#-----------OPEN IN NEW WINDOW------------------------------#
-map o 		&mimeopen $fx
-#-----------ASK AND THEN OPEN IN NEW WINDOW-----------------#
-map O 		$mimeopen --ask $fx
-map m       push :!mkdir<space>
 
 # - CD -
 # Uppercase
 map  <gt>C  cd  ~/.config/
 map  <gt>D  cd  ~/Desktop/
 map  <gt>P  cd  ~/Pictures/
+map  <gt>SS cd  ~/Desktop/SCHOOL/
+map  <gt>SM cd  ~/Desktop/SCHOOL/COMP_SCI_1/
+map  <gt>SC cd  ~/Desktop/SCHOOL/CALC/
 
 # Lowercase
 map  <gt>b  cd  ~/bin/
@@ -109,8 +102,6 @@ map  <gt>l  cd  ~/MyLibrary/
 map  <gt>p  cd  ~/Pictures/
 map  <gt>v  cd  ~/Videos/
 
-map e           np
-map E           :open_editor
 map <lt>p       set preview!
 map <lt><lt>    set ratios 2:3:5
 map <lt>0       set ratios 1:2:3
@@ -123,26 +114,37 @@ map <lt>6       set ratios 1:6
 map <lt>7       set ratios 1:7
 map <lt>8       set ratios 1:8
 map <lt>9       set ratios 1:9
-
 map <esc>       clear
 map <enter>     shell
-map I           :toggle_info "size:atime"
-map H		    set hidden!
-map d  	  	    set dironly!
-map r 		    set reverse!
-map U           :unselect; clear
-map TR		    :trash
-map RR          :reload
-map RN		    rename
-map RF	        push :rename<enter><c-a><c-k>
-map P		    push :!echo<space>""<left>
-map	K		    push 3k
-map J		    push 3j
-map VG		    invert-below
-map Vg		    :invert-below; invert
-map ;		    :mark-save
-## remove filter with <c-r>
 map <c-f>       :filter
+#map C 		:quit
+map ;		:mark-save
+map	K		push 3k
+map E       :open_editor
+map H		set hidden!
+map I       :toggle_info "size:atime"
+map J		push 3j
+map O 		$mimeopen --ask $fx #-----------ASK AND THEN OPEN IN NEW WINDOW-----------------#
+map P		push :!echo<space>""<left>
+map Q 		&lf -remote 'send quit'; lf -remote 'quit'
+map RF	    push :rename<enter><c-a><c-k>
+map RN		rename
+map RR      :reload
+map TR		:trash
+map U       :unselect; clear
+map VG		invert-below
+map Vg		:invert-below; invert
+
+map bB      &$BROWSER $fx
+map bQ      &qutebrowser $fx
+map c 		&xclip -selection "clipboard" -i -r <<< "${fx[*]}"
+map d  	  	set dironly!
+map e       np
+map m       push :!mkdir<space>
+map o 		&mimeopen $fx       #-----------OPEN IN NEW WINDOW------------------------------#
+map r 		set reverse!
+map x       cut
+## remove filter with <c-r>
 #------------------------------------------------------------------#
 #-----------CALL WITH THIS function to use autocd------------------#
 #------------------------------------------------------------------#
