@@ -15,7 +15,6 @@
     set $balance_workspace  $HOME/.local/bin/i3_balance_workspace
     set $polybar_script     $HOME/bin/polybar_manipulate.sh
     set $xmsg_script        $HOME/bin/xmsg_quick.sh
-    set $zathura_recent     $HOME/bin/zathura_recent.sh
 #-------------------------------------------------SPECIAL-BINDS-----------#
     #sticky toggle
     set $scratchpad_default floating enable, move scratchpad, scratchpad show, move position center

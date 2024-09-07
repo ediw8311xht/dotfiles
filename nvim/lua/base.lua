@@ -310,8 +310,25 @@ lspconfig.pyright.setup({
   capabilities = cmp_capabilities,
 })
 
-lspconfig.ccls.setup({})
-
+-- lspconfig.clangd.setup({
+--     cmd = {'clangd', '--background-index', '--compile-commands-dir', 'D:/systemc/excersies/build'},
+--     init_options = {
+--         clangdFileStatus = true,
+--         clangdSemanticHighlighting = true
+--     },
+--     filetypes = {'c', 'cpp', 'cxx', 'cc'},
+--     root_dir = function() vim.fn.getcwd() end,
+--     settings = {
+--         ['clangd'] = {
+--             ['compilationDatabasePath'] = 'build',
+--             ['fallbackFlags'] = {'-std=c++17'}
+--         }
+--     }
+-- })
+lspconfig.ccls.setup({
+  filetypes = {"c", "cpp"},
+})
+-- lspconfig.sourcekit.setup({})
 -- lspconfig.elixirls.setup{
 --   credo = { enable = false },
 --   cmd = { "/usr/lib/elixir-ls/language_server.sh" },
