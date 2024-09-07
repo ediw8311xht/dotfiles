@@ -1,0 +1,1 @@
+/home/maceurt/bin/polybar_spot_price.sh
