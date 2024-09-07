@@ -4,7 +4,7 @@ set shellopts '-eu'
 ##USE DOUBLE QUOTES FOR 'set ifs "something"'
 #set period 1
 set ifs         "\n"
-set ratios      2:3:5
+set ratios      2:4:4
 set info        size:time
 set scrolloff   8
 set autoquit
@@ -20,6 +20,7 @@ set sortby natural
 set dirfirst true
 set mouse true
 set borderfmt "\033[1;37m"
+set cursoractivefmt "\033[30;100m"
 
 set previewer ctpv
 set cleaner ctpvclear
@@ -102,6 +103,7 @@ map  <gt>l  cd  ~/MyLibrary/
 map  <gt>p  cd  ~/Pictures/
 map  <gt>v  cd  ~/Videos/
 
+map <lt>t       set ratios 1:1:1:1
 map <lt>p       set preview!
 map <lt><lt>    set ratios 2:3:5
 map <lt>0       set ratios 1:2:3

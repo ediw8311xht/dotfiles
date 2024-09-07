@@ -254,9 +254,9 @@ Xft.hinting:    1
 Xft.hintstyle:  hintfull
 Xft.lcdfilter:  lcddefault
 Xft.rgba:       rgb
-Xft.font: *font: -*-inputmono-*-r-*-*-17-*-*-*-*-*-*-*
+Xft.font:       -misc-inconsolata condensed-medium-r-condensed--25-180-100-100-m-150-ascii-0
 
-xfontsel*font: -*-inputmono-*-r-*-*-17-*-*-*-*-*-*-*
+xfontsel*font:              -misc-dejavu sans mono-bold-r-normal--30-*-*-*-m-60-*-*
 Xmessage*message*Scroll:    Never
 Xmessage*message*Border:    0
 Xmessage*background:        #008fF8
@@ -266,7 +266,8 @@ Xmessage*.*bw:              0
 Xmessage*renderFont:        true
 !Xmessage*faceName:          xos4Terminus
 Xmessage*faceSize:          20
-Xmessage*font:              -*-inputmono-*-r-*-*-25-*-*-*-*-*-*-*
+/*Xmessage*font:              -*-inputmono-*-r-*-*-25-*-*-*-*-*-*-**/
+Xmessage*font:              -misc-dejavu sans mono-bold-r-normal--30-*-*-*-m-60-*-*
 Xmessage*Buttons:
 !Xmessage*font*Button:      -*-clean-*-*-*-*-25-*-*-*-*-*-*-*
 !!!!!!!!!!!!!!!!!!!!!!!----------------Zutty-----------!!!!!!!!!!!!!!!!!!!!!!!
