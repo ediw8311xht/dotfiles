@@ -20,7 +20,8 @@ set sortby natural
 set dirfirst true
 set mouse true
 set borderfmt "\033[1;37m"
-set cursoractivefmt "\033[30;100m"
+set cursorinactivefmt "\033[9m"
+set cursoractivefmt "\033[7m"
 
 set previewer ctpv
 set cleaner ctpvclear
