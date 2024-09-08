@@ -20,7 +20,7 @@ set sortby natural
 set dirfirst true
 set mouse true
 set borderfmt "\033[1;37m"
-set cursorinactivefmt "\033[9m"
+set cursorparentfmt "\033[02;49m"
 set cursoractivefmt "\033[7m"
 
 set previewer ctpv
@@ -138,6 +138,7 @@ map U       :unselect; clear
 map VG		invert-below
 map Vg		:invert-below; invert
 
+map Ss      :set number!; set relativenumber!
 map bB      &$BROWSER $fx
 map bQ      &qutebrowser $fx
 map c 		&xclip -selection "clipboard" -i -r <<< "${fx[*]}"

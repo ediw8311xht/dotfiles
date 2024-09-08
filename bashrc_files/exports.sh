@@ -64,7 +64,7 @@ export  NVIMSWAP="${HOME}/.local/share/nvim/swap/"
 export  WHEN_CONFIG_HOME="${XDG_CONFIG_HOME}/when"
 export  W3M_DIR="${XDG_CONFIG_HOME}/w3m/"
 #------------------PAGER---------------#
-export  MOST_INITFILE="${XDG_CONFIG_HOME}/most/most.rc"
+export  MOST_INITFILE="${HOME}/.mostrc"
 export  MOST_EDITOR='nvim'
 export  PAGER='most'
 export  LESSOPEN='|pygmentize -g %s'
