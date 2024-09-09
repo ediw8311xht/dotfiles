@@ -3,16 +3,23 @@
 -- local function makemap (key, mode, map, desc, remap)
 --   return { key = key, mode = mode, map = map, desc = desc, remap = remap }
 -- end
+-- { '',                     {l     ,  '<C-^>'               }},
+-- { '',                     '/'   ,  ':Explore<CR>'        },
+
+-- local f(s, , , 
 
 if not table.unpack then
   table.unpack = unpack
 end
 
--- local f(s, , , 
 local l = '<leader>'
 
--- { '',                     {l     ,  '<C-^>'               }},
--- { '',                     '/'   ,  ':Explore<CR>'        },
+-- local leader_vnoremap = {
+--   { 'Copy Line w/o newline',    ','   ,  ''  },
+-- }
+-- local f(s, , , 
+
+
 local leader_nnoremap = {
   { 'Prev Tab',             'tb'  ,  ':tabmove -1<esc>'                                                         },
   { 'Next Tab',             'tn'  ,  ':tabmove +1<esc>'                                                         },
@@ -68,8 +75,12 @@ local leader_nnoremap = {
 
 
 
+-- for _, map in ipairs(leader_vnoremap) do
+--   vim.keymap.set('n', l .. map[2], map[3], {remap = false})
+-- end
+
 for _, map in ipairs(leader_nnoremap) do
-  vim.keymap.set('n', l .. map[2], map[3])
+  vim.keymap.set('n', l .. map[2], map[3], {remap = false})
 end
 
 

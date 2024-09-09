@@ -8,7 +8,7 @@ set ratios      2:4:4
 set info        size:time
 set scrolloff   8
 set autoquit
-set drawbox
+#set drawbox
 set dircounts
 set preview
 set number
@@ -121,7 +121,9 @@ map <esc>       clear
 map <enter>     shell
 map <c-f>       :filter
 #map C 		:quit
+#map C 		!
 map ;		:mark-save
+map ?       :maps
 map	K		push 3k
 map E       :open_editor
 map H		set hidden!
@@ -133,15 +135,15 @@ map Q 		&lf -remote 'send quit'; lf -remote 'quit'
 map RF	    push :rename<enter><c-a><c-k>
 map RN		rename
 map RR      :reload
+map Sb      :set drawbox!
+map Ss      :set number!; set relativenumber!
 map TR		:trash
 map U       :unselect; clear
 map VG		invert-below
 map Vg		:invert-below; invert
-
-map Ss      :set number!; set relativenumber!
 map bB      &$BROWSER $fx
 map bQ      &qutebrowser $fx
-map c 		&xclip -selection "clipboard" -i -r <<< "${fx[*]}"
+map c 		&sed "s@${HOME}/@\$\{HOME\}/@"  <<< "${fx[*]}" | xclip -selection "clipboard" -i -r
 map d  	  	set dironly!
 map e       np
 map m       push :!mkdir<space>
