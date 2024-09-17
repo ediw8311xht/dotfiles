@@ -30,6 +30,7 @@ application/x-mobipocket-ebook=zathura.desktop;
 application/x-openzim=zim.desktop;
 application/x-shellscript=nvim.desktop;
 application/x-wine-extension-ini=nvim.desktop;
+application/toml=nvim.desktop
 audio/aac=mpv.desktop;
 audio/ac3=mpv.desktop;
 audio/AMR=mpv.desktop;

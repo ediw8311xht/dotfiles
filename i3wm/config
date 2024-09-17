@@ -15,6 +15,7 @@
     set $balance_workspace  $HOME/.local/bin/i3_balance_workspace
     set $polybar_script     $HOME/bin/polybar_manipulate.sh
     set $xmsg_script        $HOME/bin/xmsg_quick.sh
+    set $bluetooth_script   $HOME/bin/ubluetoggle.sh
 #-------------------------------------------------SPECIAL-BINDS-----------#
     #sticky toggle
     set $scratchpad_default floating enable, move scratchpad, scratchpad show, move position center
