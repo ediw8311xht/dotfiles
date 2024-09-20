@@ -45,7 +45,7 @@ set encoding=utf-8
 set formatoptions=tcqrn1
 set hidden
 set magic
-set modelines=0
+set modelines=5
 set nocompatible
 set nowrap
 set number
@@ -116,6 +116,7 @@ let g:maplocalleader = ","
 let g:lf_map_keys   = 0
 let g:html_mode     = 1
 let g:is_bash       = 1
+let g:vlime_leader = "~"
 
 source ${HOME}/.config/nvim/autocmd.vim
 source ${HOME}/.config/nvim/plugins.vim
@@ -125,11 +126,11 @@ lua require('base')
 
 colorscheme pop-punk
 
-source ${HOME}/.config/nvim/leader_bindings.vim
-source ${HOME}/.config/nvim/etc_bindings.vim
+"source ${HOME}/.config/nvim/leader_bindings.vim
+"source ${HOME}/.config/nvim/etc_bindings.vim
 
 lua require('functions')
-lua require("mappings")
+lua require('mappings')
 
 :call CorrectColors()
 

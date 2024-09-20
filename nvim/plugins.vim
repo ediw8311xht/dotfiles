@@ -7,7 +7,6 @@ let g:my_plugins = {
     \ "cmp env":           [ 'SergioRibera',      'cmp-dotenv'                  ],
     \ "cmp luasnip":       [ 'saadparwaiz1',      'cmp_luasnip'                 ],
     \ "cmp path":          [ 'hrsh7th',           'cmp-path'                    ],
-\
     \ "devicons":          [ 'nvim-tree',         'nvim-web-devicons'           ],
     \ "elixir":            [ 'elixir-tools',      'elixir-tools.nvim'           ],
     \ "elixirfiledetect":  [ 'elixir-editors',    'vim-elixir'                  ],
@@ -15,19 +14,15 @@ let g:my_plugins = {
     \ "fzf":               [ 'junegunn',          'fzf.vim'                     ],
     \ "git":               [ 'lewis6991',         'gitsigns.nvim'               ],
     \ "lf":                [ 'ptzz',              'lf.vim'                      ],
-\
     \ "lisp paredit":      [ 'vim-scripts',       'paredit.vim'                 ],
     \ "lisp vlime":        [ 'vlime',             'vlime',
         \{'rtp': 'vim/'} ],
-\
     \ "live preview html": [ 'turbio',            'bracey.vim',
         \{'do': 'npm install --prefix server'} ],
-\
     \ "lspconfig":         [ 'neovim',            'nvim-lspconfig'              ],
     \ "lsp lines":         [ 'maan2003',          'lsp_lines.nvim'              ],
     \ "lsp saga":          [ 'nvimdev',           'lspsaga.nvim'                ],
     \ "lsp statusline":    [ 'nvim-lua',          'lsp-status.nvim'             ],
-\
     \ "markdown preview":  [ 'iamcco',            'markdown-preview.nvim',
         \{ 'do': 'cd app && yarn install' } ],
     \ "marks":             [ 'chentoast',         'marks.nvim'                  ],
@@ -39,14 +34,11 @@ let g:my_plugins = {
     \ "restore view":      [ 'vim-scripts',       'restore_view.vim'            ],
     \ "show key hints":    [ 'folke',             'which-key.nvim'              ],
     \ "tokyonight":        [ 'folke',             'tokyonight.nvim'             ],
-\
     \ "treesitter":        [ 'nvim-treesitter',   'nvim-treesitter',
         \{'do': ':TSUpdate'} ],
     \ "treesitter-extra":  [ 'nvim-treesitter',   'nvim-treesitter-textobjects' ],
-\
     \ "i3 syntax":         [ 'PotatoesMaster',    'i3-vim-syntax'               ],
     \ "lf syntax":         [ 'VebbNix',           'lf-vim'                      ],
-\
     \ "vimwiki":           [ 'vimwiki',           'vimwiki'                     ],
     \ 'luarocks for nvim': [ 'theHamsta',         'nvim_rocks',                 
         \{'do': 'pipx install hererocks && python3 -mhererocks . -j2.1.0-beta3 -r3.0.0 && cp nvim_rocks.lua lua'}],

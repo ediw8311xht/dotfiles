@@ -49,7 +49,7 @@ which_key.setup({
    },
     layout = {
       height = { min = 4, max = 50 }, -- min and max height of the columns
-      width = { min = 4, max = 20 }, -- min and max width of the columns
+      width = { min = 4, max = 40 }, -- min and max width of the columns
       spacing = 1, -- spacing between columns
       align = "left", -- align columns left, center or right
     },

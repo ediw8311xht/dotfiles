@@ -23,15 +23,16 @@ autocmd BufNewFile,BufRead *.kalker                             setfiletype kalk
 autocmd BufNewFile,BufRead ${HOME}/.config/i3/*              setfiletype i3
 autocmd BufNewFile,BufRead *.ex,*.exs                           setfiletype elixir
 
-autocmd Filetype elixir                                         setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd Filetype cpp                                            source ${HOME}/.config/nvim/language_specific/cpp.vim
-autocmd Filetype lua                                            source ${HOME}/.config/nvim/language_specific/lua.vim
-autocmd Filetype kalker                                         source ${HOME}/.config/nvim/language_specific/kalker.vim
 autocmd Filetype css                                            source ${HOME}/.config/nvim/language_specific/css.vim
-autocmd Filetype html                                           source ${HOME}/.config/nvim/language_specific/html.vim
+autocmd Filetype elixir                                         setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd Filetype elixir                                         source ${HOME}/.config/nvim/language_specific/elixir.vim
-autocmd Filetype sh,bash                                        source ${HOME}/.config/nvim/language_specific/bash.vim
+autocmd Filetype html                                           source ${HOME}/.config/nvim/language_specific/html.vim
+autocmd Filetype kalker                                         source ${HOME}/.config/nvim/language_specific/kalker.vim
+autocmd Filetype lisp                                           source ${HOME}/.config/nvim/language_specific/lisp.vim
+autocmd Filetype lua                                            source ${HOME}/.config/nvim/language_specific/lua.vim
 autocmd Filetype markdown                                       source ${HOME}/.config/nvim/language_specific/markdown.vim
+autocmd Filetype sh,bash                                        source ${HOME}/.config/nvim/language_specific/bash.vim
 autocmd BufNewFile,BufRead ~/.bashrc                            source ${HOME}/.config/nvim/language_specific/bashrc.vim
 
 
