@@ -19,9 +19,7 @@ local cmp_capabilities  =  require('cmp_nvim_lsp').default_capabilities()
 lspstatus.config({
   indicator_ok = 'Ok',
 })
-
 lsp_status.register_progress()
-
 -- local  hologram      =  require('hologram')
 -- local  lsp_lines     =  require("lsp_lines")
 
@@ -35,7 +33,6 @@ lsp_status.register_progress()
 -- require('hologram').setup{
 --   auto_display = true -- WIP automatic markdown image display, may be prone to breaking
 -- }
-
 
 which_key.setup({
 --    notify = false,
@@ -97,7 +94,6 @@ which_key.setup({
         },
     },
 })
-
 luasnip.setup({})
 cmp.setup({
   -- performance = {
@@ -131,7 +127,6 @@ cmp.setup({
     { name = 'dotenv'},
   })
 })
-
 -- cmp.setup.cmdline({ '/', '?' }, {
 --   mapping = cmp.mapping.preset.cmdline(),
 --   sources = {
@@ -147,8 +142,6 @@ cmp.setup({
 --   }),
 --   matching = { disallow_symbol_nonprefix_matching = false }
 -- })
-
-
 marks.setup({
   default_mappings = true,
   builtin_marks = {".", "<", ">", "^"},
@@ -171,7 +164,6 @@ marks.setup({
     toggle = "mt",
   }
 })
-
 lspsaga.setup({})
 gitsigns.setup({
   signs = {
@@ -216,12 +208,10 @@ gitsigns.setup({
     col = 1
   }
 })
-
 org.setup({
   org_agenda_files = {'~/Documents/Dropbox/org/*', '~/Documents/my-orgs/**/*'},
   org_default_notes_file = '~/Documents/Dropbox/org/refile.org',
 })
-
 -- Elixir --
 elixir.setup({
   nextls = {
@@ -256,7 +246,6 @@ elixir.setup({
   "nvim-lua/plenary.nvim",
   },
 })
-
 -- LSP --
 lspconfig.tailwindcss.setup({
   filetype = {},
@@ -270,19 +259,15 @@ lspconfig.tailwindcss.setup({
     },
   },
 })
-
 lspconfig.cssls.setup({
   capabilities = cmp_capabilities,
 })
-
 lspconfig.html.setup({
   capabilities = cmp_capabilities,
 })
-
 lspconfig.vimls.setup({
   capabilities = cmp_capabilities,
 })
-
 lspconfig.lua_ls.setup({
   capabilities = cmp_capabilities,
   settings = {
@@ -293,7 +278,6 @@ lspconfig.lua_ls.setup({
     }
   },
 })
-
 lspconfig.bashls.setup({
   on_attach = lsp_status.on_attach,
   capabilities = cmp_capabilities,
@@ -304,12 +288,10 @@ lspconfig.bashls.setup({
     }
   }
 })
-
 lspconfig.pyright.setup({
   on_attach = lsp_status.on_attach,
   capabilities = cmp_capabilities,
 })
-
 -- lspconfig.clangd.setup({
 --     cmd = {'clangd', '--background-index', '--compile-commands-dir', 'D:/systemc/excersies/build'},
 --     init_options = {

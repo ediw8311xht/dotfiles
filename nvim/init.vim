@@ -113,10 +113,10 @@ let g:coc_enable_at_startup = v:false
 let g:mapleader = " "
 "let mapleader = " "
 let g:maplocalleader = ","
-let g:lf_map_keys   = 0
-let g:html_mode     = 1
-let g:is_bash       = 1
-let g:vlime_leader = "~"
+let g:lf_map_keys    = 0
+let g:html_mode      = 1
+let g:is_bash        = 1
+let g:vlime_leader   = "~"
 
 source ${HOME}/.config/nvim/autocmd.vim
 source ${HOME}/.config/nvim/plugins.vim
