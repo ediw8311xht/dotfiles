@@ -131,6 +131,7 @@ colorscheme pop-punk
 
 lua require('functions')
 lua require('mappings')
+lua require('textobjects')
 
 :call CorrectColors()
 
