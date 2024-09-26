@@ -93,6 +93,10 @@ local leader_mappings={
   { 'n', false, '',                     'y'   ,  ':hi Normal guibg=Transparent<esc>'                                        },
   { 'n', false, '',                     'ZC'  ,  ':bd<esc>'                                                                 },
   { 'n', false, '',                     'z'   ,  'z'                                                                        },
+  { 'v', false, '',                     'M'   ,  ':!dc<esc>'                                                                },
+  { 'v', false, '',                     'm'   ,  ':!bc<esc>'                                                                },
+  { 'v', false, '',                     'vc'  ,  ':!column -o " " -t<enter>'                                                },
+  { 'v', false, '',                     'vs'  ,  ':sort<enter>'                                                             },
 }
 
 for _, map in ipairs(regular_mappings) do
