@@ -17,11 +17,12 @@ autocmd BufNewFile *.cpp        0read ${HOME}/.config/nvim/language_specific/tem
 autocmd BufNewFile,BufRead ~/.bashrc                            setfiletype bash
 autocmd BufNewFile,BufRead ~/bashrc_files/*                     setfiletype bash
 autocmd BufNewFile,BufRead *.sh                                 setfiletype bash
-autocmd BufNewFile,BufRead ${HOME}/.config/polybar/*.ini     setfiletype dosini
-autocmd BufNewFile,BufRead ${HOME}/.config/polybar/*/*.ini   setfiletype dosini
+autocmd BufNewFile,BufRead ${HOME}/.config/polybar/*.ini        setfiletype dosini
+autocmd BufNewFile,BufRead ${HOME}/.config/polybar/*/*.ini      setfiletype dosini
 autocmd BufNewFile,BufRead *.kalker                             setfiletype kalker
-autocmd BufNewFile,BufRead ${HOME}/.config/i3/*              setfiletype i3
+autocmd BufNewFile,BufRead ${HOME}/.config/i3/*                 setfiletype i3
 autocmd BufNewFile,BufRead *.ex,*.exs                           setfiletype elixir
+autocmd BufNewFile,BufRead *.schema                             setfiletype sql
 
 autocmd Filetype cpp                                            source ${HOME}/.config/nvim/language_specific/cpp.vim
 autocmd Filetype css                                            source ${HOME}/.config/nvim/language_specific/css.vim

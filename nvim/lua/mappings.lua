@@ -36,12 +36,12 @@ local regular_mappings={
   { 'n', false, '', 'ZG',       ':wqall<CR>'                                    },
   { 'n', false, '', '\\',       '/\\V\\c'                                       },
   { 'n', false, '', '\\|',      '?\\V\\c'                                       },
-  { 'n', false, '', '~',        '@=(foldlevel(\'.\')?\'za\':"<Space>")<CR>'     },
+  { 'n', false, '', '`',        '@=(foldlevel(\'.\')?\'za\':"<Space>")<CR>'     },
   { '',  false, '', ',;',       ','                                             },
   { '',  false, '', 'x',        '"xx'                                           },
   { 't', true,  '', '<C-w>',    '<C-\\><C-n>'                                   },
   { 'v', false, '', '<C-s>',    ':s/\\%V\\v'                                    },
-  { 'v', false, '', '~',        'zf'                                            },
+  { 'v', false, '', '`',        'zf'                                            },
 }
 local leader_mappings={
   { 'n', false, 'Prev Tab',             'tb'  ,  ':tabmove -1<esc>'                                                         },

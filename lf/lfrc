@@ -99,6 +99,7 @@ map  <gt>h  cd  ~/
 map  <gt>i  cd  ~/Documents/INFORMATION/
 map  <gt>l  cd  ~/MyLibrary/
 map  <gt>p  cd  ~/Pictures/
+map  <gt>t  cd  ~/TEST/
 map  <gt>v  cd  ~/Videos/
 
 map <lt>t       set ratios 1:1:1:1

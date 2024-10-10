@@ -51,7 +51,7 @@ set nowrap
 set number
 set relativenumber
 set ruler
-set signcolumn=yes:2
+set signcolumn=auto:2-9
 set splitright
 set t_Co=256
 "set termguicolors
@@ -87,6 +87,8 @@ set cul
 set nocuc
 set cedit=\<C-c>
 set statuscolumn=
+"set laststatus=3
+"set stc=%s%r%=\ %l\ \|\ 
 "Make sure vimwiki doesn't run on markdown not in ~/vimwiki dir.
 let g:vimwiki_global_ext = 0
 

@@ -22,6 +22,10 @@ preview log text/x-log {{
     pygmentize "${f}"
 }}
 
+preview lisp .txt .lisp .fasl {{
+    highlight "${f}" --stdout --out-format="ansi"
+}}
+
 preview jshtml .js .json .html {{
     highlight "${f}" --stdout --out-format="ansi"
 }}

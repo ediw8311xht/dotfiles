@@ -29,13 +29,14 @@ fu! CorrectColors()
     hi NonText              gui=NONE    guibg=NONE      guifg=#00FF00 
     hi Normal               gui=NONE    guibg=NONE      guifg=#D0D0D0
     hi Search               gui=NONE    guibg=#FF00FF   guifg=#000000
-    hi StatusLine           gui=NONE    guibg=NONE      guifg=#009900
+    hi StatusLine           gui=NONE    guibg=NONE      guifg=#229922
     hi StatusLineNC         gui=NONE    guibg=NONE      guifg=#999999
     hi TabLine              gui=NONE    guibg=NONE      guifg=#999999
     hi TabLineSel           gui=bold    guibg=NONE      guifg=#00FF00
     hi TermCursor                       guibg=NONE      guifg=#00AA00 
     hi HLspStatus           gui=NONE    guibg=NONE      guifg=#00FF00
     hi HStatusFullFile      gui=NONE    guibg=NONE      guifg=#999999
+    hi WinSeparator         gui=NONE    guibg=NONE      guifg=#009900
     "------------------------SPELLING---------------------------#
     hi SpellBad gui=undercurl guisp=#FF0000 guibg=NONE guifg=#AAAAAA
     hi ModeMsg guifg=#000000 guibg=#009900 gui=NONE cterm=NONE

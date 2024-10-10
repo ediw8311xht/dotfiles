@@ -1,7 +1,6 @@
 
 local HOME       = os.getenv("HOME")
 local lsp_status = require('lsp-status')
-lsp_status.register_progress()
 
 local lspconfig  = require('lspconfig')
 local luasnip    = require('luasnip')
@@ -16,85 +15,96 @@ local marks      = require('marks')
 local lspstatus  = require('lsp-status')
 local cmp_capabilities  =  require('cmp_nvim_lsp').default_capabilities()
 
+
+
+marks.setup({
+  default_mappings = true,
+  builtin_marks = {".", "<", ">", "^"},
+  cyclic = true,
+  refresh_interval = 400,
+  sign_priority = {lower=10, uppwer=15, built=8, bookmark=20 },
+  -- excluded_filetypes = {},
+  excluded_buftypes = {
+    "terminal",
+    "nui",
+  },
+  mappings = {
+    set_next = "m,",
+    next = "m]",
+    prev = "m[",
+    preview = "m:",
+    delete_line = "dml",
+    delete_buf = "dmf",
+    annotate = "mk",
+    toggle = "m'",
+  }
+})
 lspstatus.config({
   indicator_ok = 'Ok',
 })
 lsp_status.register_progress()
--- local  hologram      =  require('hologram')
--- local  lsp_lines     =  require("lsp_lines")
-
-
--- Disable virtual_text since it's redundant due to lsp_lines.
--- vim.diagnostic.config({
---   virtual_text = false,
--- })
--- lsp_lines.setup({})
-
--- require('hologram').setup{
---   auto_display = true -- WIP automatic markdown image display, may be prone to breaking
--- }
-
 which_key.setup({
 --    notify = false,
-   win = {
-     no_overlap = false,
-     border = "none", -- none, single, double, shadow
-     padding = {0, 0},
-     wo = {
-         winblend = 25, -- value between 0-100 0 for fully opaque and 100 for fully transparent
-     }
-   },
+  win = {
+    no_overlap = false,
+    border = "none", -- none, single, double, shadow
+    padding = {0, 0},
+    wo = {
+         winblend = 5, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+      }
+    },
     layout = {
       height = { min = 4, max = 50 }, -- min and max height of the columns
-      width = { min = 4, max = 40 }, -- min and max width of the columns
+      width = { min = 4, max = 70 }, -- min and max width of the columns
       spacing = 1, -- spacing between columns
       align = "left", -- align columns left, center or right
     },
-      icons = {
-        breadcrumb = ">", -- symbol used in the command line area that shows your active key combo
-        separator = "|", -- symbol used between a key and it's label
-        group = "+", -- symbol prepended to a group
-        ellipsis = "…",
-        -- set to false to disable all mapping icons,
-        -- both those explicitely added in a mapping
-        -- and those from rules
-        mappings = false,
-        rules = {},
-        colors = true,
-        -- used by key format
-        keys = {
-            BS = '󰁮 ',
-            Space = '<leader>',
-            Tab = '<Tab>',
-            Up = '<up>',
-            Down = '<down>',
-            Left = '<left>',
-            Right = '<right>',
-            C = '^',
-            M = '󰘵 ',
-            D = '󰘳 ',
-            S = '<S>',
-            CR = '<CR>',
-            Esc = '󱊷 ',
-            ScrollWheelDown = '󱕐 ',
-            ScrollWheelUp = '󱕑 ',
-            NL = '󰌑 ',
-            F1 = '󱊫 ',
-            F2 = '󱊬 ',
-            F3 = '󱊭 ',
-            F4 = '󱊮 ',
-            F5 = '󱊯 ',
-            F6 = '󱊰 ',
-            F7 = '󱊱 ',
-            F8 = '󱊲 ',
-            F9 = '󱊳 ',
-            F10 = '󱊴 ',
-            F11 = '󱊵 ',
-            F12 = '󱊶 ',
-        },
+    icons = {
+      breadcrumb = "> ", -- symbol used in the command line area that shows your active key combo
+      separator = "|", -- symbol used between a key and it's label
+      group = "+", -- symbol prepended to a group
+      ellipsis = "…",
+      -- set to false to disable all mapping icons,
+      -- both those explicitely added in a mapping
+      -- and those from rules
+      mappings = false,
+      rules = {},
+      colors = true,
+      -- used by key format
+      keys = {
+          BS = '󰁮 ',
+          Space = '<leader>',
+          Tab = '<Tab>',
+          Up = '<up>',
+          Down = '<down>',
+          Left = '<left>',
+          Right = '<right>',
+          C = '^',
+          M = '󰘵 ',
+          D = '󰘳 ',
+          S = '<S>',
+          CR = '<CR>',
+          Esc = '󱊷 ',
+          ScrollWheelDown = '󱕐 ',
+          ScrollWheelUp = '󱕑 ',
+          NL = '󰌑 ',
+          F1 = '󱊫 ',
+          F2 = '󱊬 ',
+          F3 = '󱊭 ',
+          F4 = '󱊮 ',
+          F5 = '󱊯 ',
+          F6 = '󱊰 ',
+          F7 = '󱊱 ',
+          F8 = '󱊲 ',
+          F9 = '󱊳 ',
+          F10 = '󱊴 ',
+          F11 = '󱊵 ',
+          F12 = '󱊶 ',
+      },
     },
 })
 luasnip.setup({})
+lspsaga.setup({})
 cmp.setup({
   -- performance = {
   --   throttle = 0.3,
@@ -127,44 +137,6 @@ cmp.setup({
     { name = 'dotenv'},
   })
 })
--- cmp.setup.cmdline({ '/', '?' }, {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = {
---     { name = 'buffer' }
---   }
--- })
--- cmp.setup.cmdline(':', {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = cmp.config.sources({
---     { name = 'path' }
---   }, {
---     { name = 'cmdline' }
---   }),
---   matching = { disallow_symbol_nonprefix_matching = false }
--- })
-marks.setup({
-  default_mappings = true,
-  builtin_marks = {".", "<", ">", "^"},
-  cyclic = true,
-  refresh_interval = 400,
-  sign_priority = {lower=10, uppwer=15, built=8, bookmark=20 },
-  -- excluded_filetypes = {},
-  excluded_buftypes = {
-    "terminal",
-    "nui",
-  },
-  mappings = {
-    set_next = "m,",
-    next = "m]",
-    prev = "m[",
-    preview = "m:",
-    delete_line = "md",
-    delete_buf = "mD",
-    annotate = "ma",
-    toggle = "mt",
-  }
-})
-lspsaga.setup({})
 gitsigns.setup({
   signs = {
     add      = { text = '+' },
@@ -326,5 +298,34 @@ lspconfig.ccls.setup({
 --     enableTestLenses  =  false,
 --     suggestSpecs    =  false,
 --   };
+-- }
+
+-- cmp.setup.cmdline({ '/', '?' }, {
+--   mapping = cmp.mapping.preset.cmdline(),
+--   sources = {
+--     { name = 'buffer' }
+--   }
+-- })
+-- cmp.setup.cmdline(':', {
+--   mapping = cmp.mapping.preset.cmdline(),
+--   sources = cmp.config.sources({
+--     { name = 'path' }
+--   }, {
+--     { name = 'cmdline' }
+--   }),
+--   matching = { disallow_symbol_nonprefix_matching = false }
+-- })
+-- local  hologram      =  require('hologram')
+-- local  lsp_lines     =  require("lsp_lines")
+
+
+-- Disable virtual_text since it's redundant due to lsp_lines.
+-- vim.diagnostic.config({
+--   virtual_text = false,
+-- })
+-- lsp_lines.setup({})
+
+-- require('hologram').setup{
+--   auto_display = true -- WIP automatic markdown image display, may be prone to breaking
 -- }
 
