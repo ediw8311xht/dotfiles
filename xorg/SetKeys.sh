@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-xset +fp /usr/share/fonts/misc        2>/dev/null
-xset +fp /usr/share/fonts/*           2>/dev/null
-xset +fp "${HOME}/.local/share/fonts/"* 2>/dev/null
-xset -dpms
-xset s off
-xset r rate 200 40
+if [[ ! "${1,,}" = '--y' ]] ; then
+    xset +fp /usr/share/fonts/misc        2>/dev/null
+    xset +fp /usr/share/fonts/*           2>/dev/null
+    xset +fp "${HOME}/.local/share/fonts/"* 2>/dev/null
+    xset -dpms
+    xset s off
+    xset r rate 200 40
+fi
 #xset r off
 ##### This turns off mouse acceleration
 ##### xinput --set-prop 12   "libinput Accel Speed" -1

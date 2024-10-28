@@ -121,6 +121,7 @@ alias nvgr='      fd . -tf "${XDG_CONFIG_HOME}/nvim/" -x grep --color="always" -
 alias full_ednv=' fd . -tf -0 "${HOME}/.config/nvim/" -X nvim -c "Buffers"'
 alias ednv='      nvim -c "Buffers" "${XDG_CONFIG_HOME}/nvim/lua/"*.lua "${XDG_CONFIG_HOME}/nvim/"*.vim'
 alias nva='       fd . --exact-depth 1 -tf -0 -X nvim -c "Buffers"'
+alias nvcpp='     fd . --exact-depth 1 -e cpp -e h -tf -0 -X nvim -c "Buffers"'
 #--------------------------------------------------zathura-------------------------------#
 alias z='         zathura --fork'
 alias eread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --print0 | xargs -0 -r -o zathura --fork; exit'

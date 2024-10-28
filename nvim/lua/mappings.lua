@@ -5,6 +5,12 @@ if not table.unpack then
   table.unpack = unpack
 end
 
+-- local status1 = '%t %r%m%=[%v] (%L lines) (%{wordcount().words} words)%=%#HLspStatus#%{LspStatus()}%*[%{LspStatus()}] [%F]'
+
+
+
+
+
 local l = '<leader>'
 
 local regular_mappings={
@@ -53,7 +59,7 @@ local leader_mappings={
   { 'n', false, '',                     '-'   ,  '20<c-w><'                                                                 },
   { 'n', false, '',                     '='   ,  '20<c-w>>'                                                                 },
   { 'n', false, '',                     'A'   ,  ':LspStart()<CR>'                                                          },
-  { 'n', false, '',                     'a'   ,  ':LspStop()<CR>'                                                           },
+  { 'n', false, '',                     'a'   ,  ':LspStop<CR>'                                                           },
   { 'n', false, '',                     'B'   ,  ':ls<CR>:b<Space>'                                                         },
   { 'n', false, '',                     'b'   ,  ':Buffers<esc>'                                                            },
   { 'n', false, '+ Line Len Indicator', 'cc'  ,  ':call TogCC()<CR>'                                                        },
