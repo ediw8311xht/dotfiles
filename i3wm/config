@@ -3,7 +3,7 @@
 #----MAXIMILIAN-BALLARD-(MY-i3/CONFIG)--------------------------------|
 #---------------------------------------------------------------------|
 # i3 config file (v4)
-#-------------------------------------------------SCRIPTS-----------------#
+#-------------------------------------------------Scripts-----------------#
     set $zathura_script     $HOME/bin/zathura_dbus_controller.sh
     set $monitor_script     $HOME/bin/auto_monitor.sh
     set $wallpaper_script   $HOME/bin/xwallpaperauto.sh
@@ -16,23 +16,27 @@
     set $polybar_script     $HOME/bin/polybar_manipulate.sh
     set $xmsg_script        $HOME/bin/xmsg_quick.sh
     set $bluetooth_script   $HOME/bin/ubluetoggle.sh
-#-------------------------------------------------SPECIAL-BINDS-----------#
+#-------------------------------------------------Special-Binds-----------#
     #sticky toggle
     set $scratchpad_default floating enable, move scratchpad, scratchpad show, move position center
     set $floating_default   floating enable, move position center
     bindsym Mod1+Shift+r    exec --no-startup-id    "xrdb ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --3"
     #bindsym Mod1+Shift+c    exec --no-startup-id    "xrdb ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --NOASK --0"
     bindsym Mod1+Shift+o    exec "sleep 0.5; xset dpms force off"
-#-------------------------------------------------SET---------------------#
+#-------------------------------------------------Set---------------------#
     set $mod Mod1
-    set $DefaultSize   1200px 950px
-    set $DefaultWidth  1200px
-    set $DefaultHeight  950px
-    set $SmallSize      850px  750px
-    set $SmallWidth     850px
-    set $SmallHeight    750px
-    set $EXC           exec 	   --no-startup-id
-    set $EXC_A         exec_always --no-startup-id
+    #--Floating-Size------------------#
+        # Default
+            set $DefaultSize    50ppt 70ppt
+            set $DefaultWidth   55ppt
+            set $DefaultHeight  80ppt
+        # Small
+            set $SmallSize      40ppt 50ppt
+            set $SmallWidth     40ppt
+            set $SmallHeight    50ppt
+    #---------------------------------#
+    set $EXC    exec 	   --no-startup-id
+    set $EXC_A  exec_always --no-startup-id
     set $B1 ;
     set $B2 ;
     set $_  ;
@@ -40,16 +44,16 @@
     set $focuse_TEXT  #FFFFFF
     set $inacti_TEXT  #888888
     set $unfocu_TEXT  #888888
-#-------------------------------------------------RESOURCES---------------#
-    #-----BORDER_FILE------------------------------------#
+#-------------------------------------------------Resources---------------#
+    #-----Border-File------------------------------------#
         set_from_resource $BORDER_FILE i3wm.BORDER_FILE borders/border_flash.conf
-    #-----LEFT_MONITOR-----------------------------------#
+    #-----Left-Monitor-----------------------------------#
         set_from_resource $MON_P       i3wm.primary_monitor DVI-D-1
-    #---CENTER_MONITOR-----------------------------------#
+    #---Center-Monitor-----------------------------------#
         set_from_resource $MON_1       i3wm.other_monitor_1 DVI-D-1
-    #----RIGHT_MONITOR-----------------------------------#
+    #----Right-Monitor-----------------------------------#
         set_from_resource $MON_2       i3wm.other_monitor_2 DVI-D-1
-    #----GAPS--------------------------------------------#
+    #----Gaps--------------------------------------------#
         set_from_resource $IN_GAPS     i3wm.IN_GAPS  0
         set_from_resource $OUT_GAPS    i3wm.OUT_GAPS 0
         set_from_resource $TOP_GAPS    i3wm.TOP_GAPS 0
