@@ -1,108 +1,112 @@
 #!/usr/bin/lua
 
 
-if not table.unpack then
-  table.unpack = unpack
-end
-
 -- local status1 = '%t %r%m%=[%v] (%L lines) (%{wordcount().words} words)%=%#HLspStatus#%{LspStatus()}%*[%{LspStatus()}] [%F]'
 
 
 
 
 
-local l = '<leader>'
+-- local _l = '<leader>'
+local F = false;
+local T = true;
+local n = 'n';
+local i = 'i';
+local t = 't';
+local v = 't';
+
 
 local regular_mappings={
-  { 'i', false, '', '<C-K>',    '<esc>lC'                                       },
-  { 'i', false, '', '<C-\\>',   '<esc>ui'                                       },
-  { 'i', false, '', '<C-a>',    '<esc>I'                                        },
-  { 'i', false, '', '<C-b>',    '<left>'                                        },
-  { 'i', false, '', '<C-e>',    '<esc>A'                                        },
-  { 'i', false, '', '<C-f>',    '<right>'                                       },
-  { 'i', false, '', 'jk',       '<esc>'                                         },
-  { '',  true,  '', '+',        'g_'                                            },
-  { '',  true,  '', ',',        '<leader>'                                      },
-  { 'n', false, '', '/',        '/\\v\\c'                                       },
-  { 'n', false, '', '<C-S-h>',  '<C-w>h'                                        },
-  { 'n', false, '', '<C-S-j>',  '<C-w>j'                                        },
-  { 'n', false, '', '<C-S-k>',  '<C-w>k'                                        },
-  { 'n', false, '', '<C-S-l>',  '<C-w>l'                                        },
-  { 'n', false, '', '<C-\\>',   '/\\V'                                          },
-  { 'n', false, '', '<C-_>',    '/\\v'                                          },
-  { 'n', false, '', '<C-h>',    '<C-w>h'                                        },
-  { 'n', false, '', '<C-j>',    '<C-w>j'                                        },
-  { 'n', false, '', '<C-k>',    '<C-w>k'                                        },
-  { 'n', false, '', '<C-l>',    '<C-w>l'                                        },
-  { 'n', false, '', '<C-p>',    '<C-i>'                                         },
-  { 'n', false, '', '<C-s>',    ':%s/\\v'                                       },
-  { 'n', false, '', '<C-w>n',   ':new<esc><C-w>L'                               },
-  { 'n', false, '', '<esc>',    ':noh<esc>:echon ""<enter>'                     },
-  { 'n', false, '', '?',        '?\\v\\c'                                       },
-  { 'n', false, '', 'ZG',       ':wqall<CR>'                                    },
-  { 'n', false, '', '\\',       '/\\V\\c'                                       },
-  { 'n', false, '', '\\|',      '?\\V\\c'                                       },
-  { 'n', false, '', '`',        '@=(foldlevel(\'.\')?\'za\':"<Space>")<CR>'     },
-  { '',  false, '', ',;',       ','                                             },
-  { '',  false, '', 'x',        '"xx'                                           },
-  { 't', true,  '', '<C-w>',    '<C-\\><C-n>'                                   },
-  { 'v', false, '', '<C-s>',    ':s/\\%V\\v'                                    },
-  { 'v', false, '', '`',        'zf'                                            },
+  { i,    F, '', '<C-K>',    '<esc>lC'                                      },
+  { i,    F, '', '<C-\\>',   '<esc>ui'                                      },
+  { i,    F, '', '<C-a>',    '<esc>I'                                       },
+  { i,    F, '', '<C-b>',    '<left>'                                       },
+  { i,    F, '', '<C-e>',    '<esc>A'                                       },
+  { i,    F, '', '<C-f>',    '<right>'                                      },
+  { i,    F, '', 'jk',       '<esc>'                                        },
+  { '',   T,  '', '+',        'g_'                                          },
+  { '',   T,  '', ',',        '<leader>'                                    },
+  { n,    F, '', '/',        '/\\v\\c'                                      },
+  { n,    F, '', '<C-S-h>',  '<C-w>h'                                       },
+  { n,    F, '', '<C-S-j>',  '<C-w>j'                                       },
+  { n,    F, '', '<C-S-k>',  '<C-w>k'                                       },
+  { n,    F, '', '<C-S-l>',  '<C-w>l'                                       },
+  { n,    F, '', '<C-\\>',   '/\\V'                                         },
+  { n,    F, '', '<C-_>',    '/\\v'                                         },
+  { n,    F, '', '<C-h>',    '<C-w>h'                                       },
+  { n,    F, '', '<C-j>',    '<C-w>j'                                       },
+  { n,    F, '', '<C-k>',    '<C-w>k'                                       },
+  { n,    F, '', '<C-l>',    '<C-w>l'                                       },
+  { n,    F, '', '<C-p>',    '<C-i>'                                        },
+  { n,    F, '', '<C-s>',    ':%s/\\v'                                      },
+  { n,    F, '', '<C-w>n',   ':new<esc><C-w>L'                              },
+  { n,    F, '', '<esc>',    ':noh<esc>:echon ""<enter>'                    },
+  { n,    F, '', '?',        '?\\v\\c'                                      },
+  { n,    F, '', 'ZG',       ':wqall<CR>'                                   },
+  { n,    F, '', '\\',       '/\\V\\c'                                      },
+  { n,    F, '', '\\|',      '?\\V\\c'                                      },
+  { n,    F, '', '`',        '@=(foldlevel(\'.\')?\'za\':"<Space>")<CR>'    },
+  { '',   F, '', ',;',       ','                                            },
+  { '',   F, '', 'x',        '"xx'                                          },
+  { t,    T, '', '<C-w>',    '<C-\\><C-n>'                                  },
+  { v,    F, '', '<C-s>',    ':s/\\%V\\v'                                   },
+  { v,    F, '', '`',        'zf'                                           },
 }
+
 local leader_mappings={
-  { 'n', false, 'Prev Tab',             'tb'  ,  ':tabmove -1<esc>'                                                         },
-  { 'n', false, 'Next Tab',             'tn'  ,  ':tabmove +1<esc>'                                                         },
-  { 'n', false, 'New Tab',              'tt'  ,  ':tabnew<esc>'                                                             },
-  { 'n', false, '',                     ','   ,  '<C-^>'                                                                    },
-  { 'n', false, 'Next Buffer',          ']'   ,  ':bnext<CR>'                                                               },
-  { 'n', false, 'Prev Buffer',          '['   ,  ':bprevious<CR>'                                                           },
-  { 'n', false, '',                     '-'   ,  '20<c-w><'                                                                 },
-  { 'n', false, '',                     '='   ,  '20<c-w>>'                                                                 },
-  { 'n', false, '',                     'A'   ,  ':LspStart()<CR>'                                                          },
-  { 'n', false, '',                     'a'   ,  ':LspStop<CR>'                                                           },
-  { 'n', false, '',                     'B'   ,  ':ls<CR>:b<Space>'                                                         },
-  { 'n', false, '',                     'b'   ,  ':Buffers<esc>'                                                            },
-  { 'n', false, '+ Line Len Indicator', 'cc'  ,  ':call TogCC()<CR>'                                                        },
-  { 'n', false, '+ CursorLine',         'cl'  ,  ':set nocul!<CR>'                                                          },
-  { 'n', false, '+ Statusline',         'cs'  ,  ':call TogSL()<CR>'                                                        },
-  { 'n', false, 'Delete Buffer',        'D'   ,  ':bd<esc><enter>'                                                          },
-  { 'n', false, 'Find Space EOL',       'df'  ,  ':%s/\\s\\+\\ze$//gc<CR>'                                                  },
-  { 'n', false, '+ CursorColumn',       'e'   ,  ':set cuc!<CR>'                                                            },
-  { 'n', false, 'Edit File CWD',        'E'   ,  ':call feedkeys(":e " . FilePathFull() . "/")<CR>'                         },
-  { 'n', false, '+ Wrap',               'f'   ,  ':set wrap!<esc>'                                                          },
-  { 'n', false, 'New File',             'gn'  ,  ':enew<esc>'                                                               },
-  { 'n', false, '',                     'gh'  ,  ':call GetHL()<ESC>'                                                       },
-  { 'n', false, 'Print Mappings',       'gm'  ,  ':call GMaps()<CR>'                                                        },
-  { 'n', false, 'Helpgrep',             'H'   ,  ':vert helpgrep '                                                          },
-  { 'n', false, 'Open diagnostics',     'i'   ,  ':lua vim.diagnostic.open_float(nil, {focus=true, scope="cursor"})<CR>'    },
-  { 'n', false, '+ lsp_lines',          'I'   ,  ':lua require("lsp_lines").toggle()<CR>'                                   },
-  { 'n', false, 'Next Scheme',          'j'   ,  ':call SetColScheme(+1)<CR>'                                               },
-  { 'n', false, 'Prev Scheme',          'J'   ,  ':call SetColScheme(-1)<CR>'                                               },
-  { 'n', false, '',                     'k'   ,  ':call CorrectColors()<CR>'                                                },
-  { 'n', false, '',                     'l'   ,  ':call CyBack(+1)<CR>'                                                     },
-  { 'n', false, '',                     'L'   ,  ':call CyBack(-1)<CR>'                                                     },
-  { 'n', false, 'Checkhealth',          'mh'  ,  ':checkhealth<CR>'                                                         },
-  { 'n', false, '',                     'mm'  ,  ':messages<esc>'                                                           },
-  { 'n', false, '',                     'N'   ,  ':cnext<esc>'                                                              },
-  { 'n', false, '',                     'n'   ,  ':next<esc>'                                                               },
-  { 'n', false, '',                     'ob'  ,  ':silent !"${BROWSER:-"brave"}"  %<CR>'                                    },
-  { 'n', false, '',                     'oq'  ,  ':silent !"qutebrowser" %<CR>'                                             },
-  { 'n', false, '',                     'q'   ,  ':bd'                                                                      },
-  { 'n', false, '',                     's'   ,  ':source ~/.config/nvim/init.vim<esc>'                                     },
-  { 'n', false, '',                     'T'   ,  ':term<esc>'                                                               },
-  { 'n', false, '',                     'u'   ,  ':Lf<esc>'                                                                 },
-  { 'n', false, '',                     'vv'  ,  ':call TogVE()<CR>'                                                        },
-  { 'n', false, '',                     'W'   ,  '<Plug>VimwikiIndex'                                                       },
-  { 'n', false, '',                     'w'   ,  ':w<esc>'                                                                  },
-  { 'n', false, '',                     'X'   ,  ':!%:p '                                                                   },
-  { 'n', false, '',                     'x'   ,  ':!%:p<esc>'                                                               },
-  { 'n', false, '',                     'y'   ,  ':hi Normal guibg=Transparent<esc>'                                        },
-  { 'n', false, '',                     'ZC'  ,  ':bd<esc>'                                                                 },
-  { 'n', false, '',                     'z'   ,  'z'                                                                        },
-  { 'v', false, '',                     'M'   ,  ':!dc<esc>'                                                                },
-  { 'v', false, '',                     'm'   ,  ':!bc<esc>'                                                                },
-  { 'v', false, '',                     'vc'  ,  ':!column -o " " -t<enter>'                                                },
-  { 'v', false, '',                     'vs'  ,  ':sort<enter>'                                                             },
+  { n, F, 'Prev Tab',               'tb'  ,  ':tabmove -1<esc>'                                                      },
+  { n, F, 'Next Tab',               'tn'  ,  ':tabmove +1<esc>'                                                      },
+  { n, F, 'New Tab',                'tt'  ,  ':tabnew<esc>'                                                          },
+  { n, F, 'Alternate File',         ','   ,  '<C-^>'                                                                 },
+  { n, F, 'Next Buffer',            ']'   ,  ':bnext<CR>'                                                            },
+  { n, F, 'Prev Buffer',            '['   ,  ':bprevious<CR>'                                                        },
+  { n, F, 'Equalize Split Hori',    '-'   ,  '20<c-w><'                                                              },
+  { n, F, 'Equalize Split Vert',    '='   ,  '20<c-w>>'                                                              },
+  { n, F, 'Start LSP',              'A'   ,  ':LspStart()<CR>'                                                       },
+  { n, F, 'Stop LSP',               'a'   ,  ':LspStop<CR>'                                                          },
+  { n, F, 'open buffer',            'b'   ,  ':Buffers<esc>'                                                         },
+  { n, F, '+ Line Len Indicator',   'cc'  ,  ':call TogCC()<CR>'                                                     },
+  { n, F, '+ CursorLine',           'cl'  ,  ':set nocul!<CR>'                                                       },
+  { n, F, '+ Statusline',           'cs'  ,  ':call TogSL()<CR>'                                                     },
+  { n, F, 'Delete Buffer',          'D'   ,  ':bd<esc><enter>'                                                       },
+  { n, F, 'Find Space EOL',         'df'  ,  ':%s/\\s\\+\\ze$//gc<CR>'                                               },
+  { n, F, '+ CursorColumn',         'e'   ,  ':set cuc!<CR>'                                                         },
+  { n, F, 'CWD Edit',               'E'   ,  ':call feedkeys(":e " . FilePathFull() . "/")<CR>'                      },
+  { n, F, '+ Wrap',                 'f'   ,  ':set wrap!<esc>'                                                       },
+  { n, F, 'New File',               'gn'  ,  ':enew<esc>'                                                            },
+  { n, F, 'Get highlight',          'gh'  ,  ':call GetHL()<ESC>'                                                    },
+  { n, F, 'Print Mappings',         'gm'  ,  ':call GMaps()<CR>'                                                     },
+  { n, F, 'Helpgrep',               'H'   ,  ':vert helpgrep '                                                       },
+  { n, F, 'Open diagnostics',       'i'   ,  ':lua vim.diagnostic.open_float(nil, {focus=T, scope="cursor"})<CR>'    },
+  { n, F, '+ lsp_lines',            'I'   ,  ':lua require("lsp_lines").toggle()<CR>'                                },
+  { n, F, 'Next Scheme',            'j'   ,  ':call SetColScheme(+1)<CR>'                                            },
+  { n, F, 'Prev Scheme',            'J'   ,  ':call SetColScheme(-1)<CR>'                                            },
+  { n, F, 'CorrectColor',           'k'   ,  ':call CorrectColors()<CR>'                                             },
+  { n, F, 'Next Background',        'l'   ,  ':call CyBack(+1)<CR>'                                                  },
+  { n, F, 'Prev Background',        'L'   ,  ':call CyBack(-1)<CR>'                                                  },
+  { n, F, 'Checkhealth',            'mh'  ,  ':checkhealth<CR>'                                                      },
+  { n, F, 'Messages',               'mm'  ,  ':messages<esc>'                                                        },
+  { n, F, 'Previous Buffer',        'N'   ,  ':cnext<esc>'                                                           },
+  { n, F, 'Next Buffer',            'n'   ,  ':next<esc>'                                                            },
+  { n, F, '',                       'ob'  ,  ':silent !"${BROWSER:-"brave"}"  %<CR>'                                 },
+  { n, F, '',                       'oq'  ,  ':silent !"qutebrowser" %<CR>'                                          },
+  { n, F, '',                       'q'   ,  ':bd'                                                                   },
+  { n, F, '',                       's'   ,  ':source ~/.config/nvim/init.vim<esc>'                                  },
+  { n, F, '',                       'T'   ,  ':term<esc>'                                                            },
+  { n, F, '',                       'u'   ,  ':Lf<esc>'                                                              },
+  { n, F, '',                       'vv'  ,  ':call TogVE()<CR>'                                                     },
+  { n, F, 'VimwikiIndex',           'W'   ,  '<Plug>VimwikiIndex'                                                    },
+  { n, F, 'Write',                  'w'   ,  ':w<esc>'                                                               },
+  { n, F, 'Execute with args',      'X'   ,  ':!%:p '                                                                },
+  { n, F, 'Execute',                'x'   ,  ':!%:p<esc>'                                                            },
+  { n, F, '',                       'y'   ,  ':hi Normal guibg=Transparent<esc>'                                     },
+  { n, F, '',                       'ZC'  ,  ':bd<esc>'                                                              },
+  { n, F, '',                       'z'   ,  'z'                                                                     },
+
+  { v, F, '',                       'M'   ,  ':!dc<esc>'                                                             },
+  { v, F, '',                       'm'   ,  ':!bc<esc>'                                                             },
+  { v, F, '',                       'vc'  ,  ':!column -o " " -t<enter>'                                             },
+  { v, F, '',                       'vs'  ,  ':sort<enter>'                                                          },
 }
 
 for _, map in ipairs(regular_mappings) do
@@ -110,45 +114,8 @@ for _, map in ipairs(regular_mappings) do
 end
 
 for _, map in ipairs(leader_mappings) do
-  vim.keymap.set(map[1], l .. map[4], map[5], {remap = map[2]})
+  vim.keymap.set(map[1], '<leader>' .. map[4], map[5], {remap = map[2]})
 end
-
-
-
--- { 'Start Vlime',          'mS'  ,  ':'                                                                        },
--- { '',                     'W'   ,  ':call Web("f")<esc>i'},
-
-
--- for _, map in ipairs(leader_vnoremap) do
---   vim.keymap.set('n', l .. map[2], map[3], {remap = false})
--- end
-
----- call M_Map( "map"       , g:bindings_map        )
---call M_Map( "noremap"   , g:bindings_noremap    )
---call M_Map( "vnoremap"  , g:bindings_vnoremap   )
---call M_Map( "nnoremap"  , g:bindings_nnoremap   )
---call M_Map( "inoremap"  , g:bindings_inoremap   )
---call M_Map( "tmap"      , g:bindings_tmap       )
-
--- local leader_vnoremap = {
---   { 'Copy Line w/o newline',    ','   ,  ''  },
--- }
--- local f(s, , , 
-
---    { 'im',       ':s/\%v[ \t}*//<esc>'        ],
-
---    { '<lt>',     ':tabprevious<esc>'          },
---    { '>',        ':tabnext<esc>'              },
--- { '<C-v>',    '<esc><C-r>i'                },
-
--- local function makemap (key, mode, map, desc, remap)
---   return { key = key, mode = mode, map = map, desc = desc, remap = remap }
--- end
--- { '',                     {l     ,  '<C-^>'               }},
--- { '',                     '/'   ,  ':Explore<CR>'        },
-
--- local f(s, , , 
-
 
 
 

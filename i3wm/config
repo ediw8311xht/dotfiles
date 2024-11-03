@@ -71,6 +71,8 @@
     #-------------------------------LEFT--------#
         workspace    1  output	$MON_1
         workspace    2	output  $MON_1
+        workspace    3	output	$MON_1
+        workspace    4	output	$MON_1
     #-------------------------------CENTER------#
         workspace    7	output	$MON_P
         workspace    8	output	$MON_P
@@ -78,8 +80,6 @@
         workspace   10	output	$MON_P
         workspace   11	output	$MON_P
         workspace   12	output	$MON_P
-        workspace    3	output	$MON_P
-        workspace    4	output	$MON_P
         workspace    5	output	$MON_P
         workspace    6	output	$MON_P
     #-------------------------------RIGHT-------#
