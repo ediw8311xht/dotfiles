@@ -13,7 +13,7 @@ local T = true;
 local n = 'n';
 local i = 'i';
 local t = 't';
-local v = 't';
+local v = 'v';
 
 
 local regular_mappings={
