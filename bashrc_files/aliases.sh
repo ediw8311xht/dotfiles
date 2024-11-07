@@ -118,7 +118,7 @@ alias sman='      man -K --regex'
 #--------------------------------------------------nvim----------------------------------#
 alias nv='        nvim'
 alias nvgr='      fd . -tf "${XDG_CONFIG_HOME}/nvim/" -x grep --color="always" -Pi'
-alias full_ednv=' fd . -tf -0 "${HOME}/.config/nvim/" -X nvim -c "Buffers"'
+alias full_ednv=' fd . -tf -0 "${HOME}/.config/nvim/" "${HOME}/.local/share/nvim/site/ftplugin/" -X nvim -c "Buffers"'
 alias ednv='      nvim -c "Buffers" "${XDG_CONFIG_HOME}/nvim/lua/"*.lua "${XDG_CONFIG_HOME}/nvim/"*.vim'
 alias nva='       fd . --exact-depth 1 -tf -0 -X nvim -c "Buffers"'
 alias nvcpp='     fd . --exact-depth 1 -e cpp -e h -tf -0 -X nvim -c "Buffers"'

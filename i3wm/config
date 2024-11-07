@@ -16,6 +16,7 @@
     set $polybar_script     $HOME/bin/polybar_manipulate.sh
     set $xmsg_script        $HOME/bin/xmsg_quick.sh
     set $bluetooth_script   $HOME/bin/ubluetoggle.sh
+    set $toggle_r_rate      $HOME/bin/keyme7baby
 #-------------------------------------------------Special-Binds-----------#
     #sticky toggle
     set $scratchpad_default floating enable, move scratchpad, scratchpad show, move position center
