@@ -73,7 +73,7 @@
         workspace    1  output	$MON_1
         workspace    2	output  $MON_1
         workspace    3	output	$MON_1
-        workspace    4	output	$MON_1
+        workspace    4	output	$MON_P
     #-------------------------------CENTER------#
         workspace    7	output	$MON_P
         workspace    8	output	$MON_P
