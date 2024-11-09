@@ -25,7 +25,7 @@ export  FZF_DEFAULT_OPTS='
     --bind ctrl-g:preview-half-page-down
     --bind ctrl-h:preview-half-page-up
     --bind ctrl-K:clear-query
-    --bind ctrl-space:toggle-preview'
+    --bind ctrl-t:toggle-preview'
 export  LS_PREVIEW='lsd   \
     --color=always        \
     --group-dirs="first"  \

@@ -120,6 +120,14 @@ let g:html_mode      = 1
 let g:is_bash        = 1
 let g:vlime_leader   = "~"
 
+"-------Latex----------"
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+"----------------------"
+
 source ${HOME}/.config/nvim/autocmd.vim
 source ${HOME}/.config/nvim/plugins.vim
 source ${HOME}/.config/nvim/functions.vim

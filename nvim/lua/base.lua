@@ -1,19 +1,19 @@
 
-local HOME       = os.getenv("HOME")
-local lsp_status = require('lsp-status')
-
-local lspconfig  = require('lspconfig')
-local luasnip    = require('luasnip')
-local cmp        = require('cmp')
-local org        = require('orgmode')
-local elixir     = require('elixir')
-local which_key  = require('which-key')
-local elixirls   = require('elixir.elixirls')
-local lspsaga    = require('lspsaga')
-local gitsigns   = require('gitsigns')
-local marks      = require('marks')
-local lspstatus  = require('lsp-status')
-local cmp_capabilities  =  require('cmp_nvim_lsp').default_capabilities()
+local HOME              = os.getenv("HOME")
+local lsp_status        = require('lsp-status')
+local lspconfig         = require('lspconfig')
+local luasnip           = require('luasnip')
+local cmp               = require('cmp')
+local org               = require('orgmode')
+local elixir            = require('elixir')
+local which_key         = require('which-key')
+local elixirls          = require('elixir.elixirls')
+local lspsaga           = require('lspsaga')
+local gitsigns          = require('gitsigns')
+local marks             = require('marks')
+local lspstatus         = require('lsp-status')
+local cmp_capabilities  = require('cmp_nvim_lsp').default_capabilities()
+-- local cmp_dictionary    = require("cmp_dictionary")
 
 
 
@@ -130,6 +130,8 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    -- { name = "latex_symbols" },
+    -- { name = "dictionary", keyword_length = 2, },
   }, {
     { name = 'buffer'},
     { name = 'path'},
@@ -137,6 +139,17 @@ cmp.setup({
     { name = 'dotenv'},
   })
 })
+cmp.setup.filetype("tex", {
+    enabled = true,
+    sources = {
+    { name = "latex_symbols" },
+    }
+})
+
+-- cmp_dictionary.setup({
+--   paths = { "/usr/share/dict/words" },
+--   exact_length = 2,
+-- })
 gitsigns.setup({
   signs = {
     add      = { text = '+' },
