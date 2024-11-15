@@ -13,7 +13,6 @@ local gitsigns          = require('gitsigns')
 local marks             = require('marks')
 local lspstatus         = require('lsp-status')
 local cmp_capabilities  = require('cmp_nvim_lsp').default_capabilities()
--- local texlab            = require('texlab')
 
 -- texlab.setup({})
 -- local luasnip_latex_snips = require('luasnip_latex_snippets')
@@ -128,12 +127,14 @@ cmp.setup({
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-y>'] = cmp.mapping.complete(),
+    ['<C-y>'] = cmp.mapping.confirm( { select = true} ),
+    ['<C-S-y>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'vimtex' },
     -- { name = "latex_symbols" },
     -- { name = "dictionary", keyword_length = 2, },
   }, {
@@ -143,13 +144,13 @@ cmp.setup({
     { name = 'dotenv'},
   })
 })
-cmp.setup.filetype("tex", {
-    enabled = true,
-    sources = {
-      { name = "nvim_lsp"      },
-      { name = "latex_symbols" },
-    },
-})
+-- cmp.setup.filetype("tex", {
+--     enabled = true,
+--     sources = {
+--       { name = "nvim_lsp"      },
+--       { name = "latex_symbols" },
+--     },
+-- })
 
 -- cmp_dictionary.setup({
 --   paths = { "/usr/share/dict/words" },
@@ -300,7 +301,9 @@ lspconfig.pyright.setup({
 lspconfig.ccls.setup({
   filetypes = {"c", "cpp"},
 })
-lspconfig.texlab.setup({})
+-- lspconfig.texlab.setup({
+--   capabilities = cmp_capabilities,
+-- })
 -- lspconfig.sourcekit.setup({})
 -- lspconfig.elixirls.setup{
 --   credo = { enable = false },

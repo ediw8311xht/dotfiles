@@ -8,7 +8,6 @@ let g:my_plugins = {
 \    "cmp luasnip":                 [ 'saadparwaiz1',       'cmp_luasnip'                 ],
 \    "cmp path":                    [ 'hrsh7th',            'cmp-path'                    ],
 \    'cmp plain english':           [ 'uga-rosa',           'cmp-dictionary'              ],
-\    'latex cmp':                   [ 'kdheepak',           'cmp-latex-symbols'           ],
 \    "devicons":                    [ 'nvim-tree',          'nvim-web-devicons'           ],
 \    "elixir":                      [ 'elixir-tools',       'elixir-tools.nvim'           ],
 \    "elixirfiledetect":            [ 'elixir-editors',     'vim-elixir'                  ],
@@ -40,9 +39,11 @@ let g:my_plugins = {
 \    "vimwiki":                     [ 'vimwiki',            'vimwiki'                     ],
 \    'luarocks for nvim':           [ 'theHamsta',          'nvim_rocks',                 {'do': 'pipx install hererocks && python3 -mhererocks . -j2.1.0-beta3 -r3.0.0 && cp nvim_rocks.lua lua'}],
 \    'vim latex':                   [ 'lervag',             'vimtex'                      ],
-\    'latex lsp':                   [ 'latex-lsp',          'texlab'                      ],
+\    'vim latex snips for vimtex':  [ 'micangl',            'cmp-vimtex'                  ],
 \}
+"\    'latex lsp':                   [ 'latex-lsp',          'texlab'                      ],
 "\    'vim latex snippest':          [ 'evesdropper',        'luasnip-latex-snippets.nvim' ],
+"\    'latex cmp':                   [ 'kdheepak',           'cmp-latex-symbols'           ],
 
 "vim closetag":      [ 'alneotermvan',      'vim-closetag'                ],
 "match up":          [ 'andymass',          'vim-matchup'                 ],
