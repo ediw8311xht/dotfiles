@@ -46,6 +46,7 @@ export  TERMINAL='/usr/local/bin/st'
 export  EDITOR='nvim'
 export  ERL_AFLAGS="-kernel shell_history enabled"
 #------------------MINE----------------#
+export  SCHOOL="${HOME}/Desktop/SCHOOL/"
 export  STANDARD_IFS=$' \t\n'
 export  BACKUP="${HOME}/BACKUP_FILES"
 export  BIN="${HOME}/bin"

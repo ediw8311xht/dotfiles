@@ -3,6 +3,7 @@ set shell bash
 set shellopts '-eu'
 ##USE DOUBLE QUOTES FOR 'set ifs "something"'
 #set period 1
+set incfilter
 set ifs         "\n"
 set ratios      2:4:4
 set info        size:time

@@ -7,7 +7,7 @@ toggle_r_rate() {
             xset r off
             notify-send -t 3000 $'Keyboard Repeat: \nOff'
         else
-            xset r rate 200 40
+            xset r rate 250 55
             notify-send -t 3000 $'Keyboard Repeat: \nOn'
         fi
 }
@@ -22,7 +22,7 @@ main() {
             xset +fp "${HOME}/.local/share/fonts/"* 2>/dev/null
             xset -dpms
             xset s off
-            xset r rate 200 40
+            xset r rate 250 55
         fi
         #xset r off
         ##### This turns off mouse acceleration

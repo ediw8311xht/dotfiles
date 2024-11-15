@@ -52,6 +52,13 @@ verbs: [
         execution: ":toggle_hidden"
     }
 
+    {
+        invocation: open
+        key: "ctrl-o"
+        execution: "xdg-open {file}"
+    }
+
+
     # Example 1: launching `tail -n` on the selected file (leaving broot)
     # {
     #     name: tail_lines

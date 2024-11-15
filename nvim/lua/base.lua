@@ -13,8 +13,9 @@ local gitsigns          = require('gitsigns')
 local marks             = require('marks')
 local lspstatus         = require('lsp-status')
 local cmp_capabilities  = require('cmp_nvim_lsp').default_capabilities()
+-- local luasnip_latex_snips = require('luasnip_latex_snippets')
 -- local cmp_dictionary    = require("cmp_dictionary")
-
+-- luasnip_latex_snips.setup({})
 
 
 marks.setup({

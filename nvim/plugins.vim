@@ -40,6 +40,7 @@ let g:my_plugins = {
 \    "vimwiki":                     [ 'vimwiki',            'vimwiki'                     ],
 \    'luarocks for nvim':           [ 'theHamsta',          'nvim_rocks',                 {'do': 'pipx install hererocks && python3 -mhererocks . -j2.1.0-beta3 -r3.0.0 && cp nvim_rocks.lua lua'}],
 \    'vim latex':                   [ 'lervag',             'vimtex'                      ],
+\    'vim latex snippest':          [ 'evesdropper',        'luasnip-latex-snippets.nvim' ],
 \}
 
 "vim closetag":      [ 'alneotermvan',      'vim-closetag'                ],

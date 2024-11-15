@@ -22,6 +22,7 @@ source "${HOME}/bashrc_files/exports.sh"
 source "${HOME}/bashrc_files/functions.sh"
 source "${HOME}/bashrc_files/aliases.sh"
 source "${HOME}/.config/broot/launcher/bash/br"
+#source "${HOME}/bashrc_files/zoxide.sh"
 mps 'r' #setting PS1
 #------------------BASH-HISTORY--------#
 

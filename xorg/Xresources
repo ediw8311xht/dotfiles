@@ -30,6 +30,7 @@
 !*.font: 	    ShareTechMono:pixelsize=12:style=Regular:autohint=true:antialias=true
 !!!.color:        #FFFFFF
 
+*.font: 	Agave:style=Regular:size=12:antialias=true:autohint=false
 emacs.font: 	Agave:style=Regular:size=15:antialias=true:autohint=false
 *.cursorColor:  #FF0
 *.foreground:   #FFF

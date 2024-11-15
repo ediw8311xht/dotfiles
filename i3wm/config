@@ -28,7 +28,7 @@
     set $mod Mod1
     #--Floating-Size------------------#
         # Default
-            set $DefaultSize    50ppt 70ppt
+            set $DefaultSize    55ppt 70ppt
             set $DefaultWidth   55ppt
             set $DefaultHeight  80ppt
         # Small
@@ -73,12 +73,12 @@
         workspace    1  output	$MON_1
         workspace    2	output  $MON_1
         workspace    3	output	$MON_1
-        workspace    4	output	$MON_P
     #-------------------------------CENTER------#
+        workspace   10	output	$MON_P
+        workspace    4	output	$MON_P
         workspace    7	output	$MON_P
         workspace    8	output	$MON_P
         workspace    9	output	$MON_P
-        workspace   10	output	$MON_P
         workspace   11	output	$MON_P
         workspace   12	output	$MON_P
         workspace    5	output	$MON_P
