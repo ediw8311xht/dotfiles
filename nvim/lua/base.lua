@@ -13,6 +13,9 @@ local gitsigns          = require('gitsigns')
 local marks             = require('marks')
 local lspstatus         = require('lsp-status')
 local cmp_capabilities  = require('cmp_nvim_lsp').default_capabilities()
+-- local texlab            = require('texlab')
+
+-- texlab.setup({})
 -- local luasnip_latex_snips = require('luasnip_latex_snippets')
 -- local cmp_dictionary    = require("cmp_dictionary")
 -- luasnip_latex_snips.setup({})
@@ -143,8 +146,9 @@ cmp.setup({
 cmp.setup.filetype("tex", {
     enabled = true,
     sources = {
-    { name = "latex_symbols" },
-    }
+      { name = "nvim_lsp"      },
+      { name = "latex_symbols" },
+    },
 })
 
 -- cmp_dictionary.setup({
@@ -296,6 +300,7 @@ lspconfig.pyright.setup({
 lspconfig.ccls.setup({
   filetypes = {"c", "cpp"},
 })
+lspconfig.texlab.setup({})
 -- lspconfig.sourcekit.setup({})
 -- lspconfig.elixirls.setup{
 --   credo = { enable = false },
