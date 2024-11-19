@@ -3,13 +3,12 @@
 # vi: ft=bash
 
 toggle_r_rate() {
-        if xset q | grep -q -Pi 'auto[ ]*repeat[:][ ]*on' ; then
-            xset r off
-            notify-send -t 3000 $'Keyboard Repeat: \nOff'
-        else
-            xset r rate 250 55
-            notify-send -t 3000 $'Keyboard Repeat: \nOn'
-        fi
+    if [[ "${1,,}" != 'on' ]] &&
+       { xset q | grep -q -Pi 'auto[ ]*repeat[:][ ]*on'; }
+    then xset r off
+    else xset r rate 300 50
+    fi
+    notify-send -t 3000 "Keyboard Repeat Toggled"
 }
 
 main() {
@@ -21,8 +20,7 @@ main() {
             xset +fp /usr/share/fonts/*           2>/dev/null
             xset +fp "${HOME}/.local/share/fonts/"* 2>/dev/null
             xset -dpms
-            xset s off
-            xset r rate 250 55
+            toggle_r_rate "on"
         fi
         #xset r off
         ##### This turns off mouse acceleration

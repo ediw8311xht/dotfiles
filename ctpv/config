@@ -23,15 +23,19 @@ preview log text/x-log {{
 }}
 
 preview lisp .txt .lisp .fasl {{
-    highlight "${f}" --stdout --out-format="ansi"
+    highlight "${f}" --stdout --out-format="truecolor"
 }}
 
 preview jshtml .js .json .html {{
-    highlight "${f}" --stdout --out-format="ansi"
+    highlight "${f}" --stdout --out-format="truecolor"
 }}
 
 preview lua .lua {{
-    highlight "${f}" --stdout --out-format="ansi"
+    highlight "${f}" --stdout --out-format="truecolor"
+}}
+
+preview latex .tex {{
+    highlight "${f}" --stdout --out-format="truecolor"
 }}
 
 #preview mymd .md {{
