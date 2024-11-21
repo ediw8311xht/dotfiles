@@ -14,12 +14,6 @@ local marks             = require('marks')
 local lspstatus         = require('lsp-status')
 local cmp_capabilities  = require('cmp_nvim_lsp').default_capabilities()
 
--- texlab.setup({})
--- local luasnip_latex_snips = require('luasnip_latex_snippets')
--- local cmp_dictionary    = require("cmp_dictionary")
--- luasnip_latex_snips.setup({})
-
-
 marks.setup({
   default_mappings = true,
   builtin_marks = {".", "<", ">", "^"},
@@ -144,18 +138,6 @@ cmp.setup({
     { name = 'dotenv'},
   })
 })
--- cmp.setup.filetype("tex", {
---     enabled = true,
---     sources = {
---       { name = "nvim_lsp"      },
---       { name = "latex_symbols" },
---     },
--- })
-
--- cmp_dictionary.setup({
---   paths = { "/usr/share/dict/words" },
---   exact_length = 2,
--- })
 gitsigns.setup({
   signs = {
     add      = { text = '+' },
@@ -182,10 +164,6 @@ gitsigns.setup({
     ignore_whitespace = true,
     virt_text_priority = 100,
   },
-  -- current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
-  -- current_line_blame_formatter_opts = {
-  --   relative_time = false,
-  -- },
   sign_priority = 6,
   update_debounce = 100,
   status_formatter = nil, -- Use default
@@ -283,28 +261,9 @@ lspconfig.pyright.setup({
   on_attach = lsp_status.on_attach,
   capabilities = cmp_capabilities,
 })
--- lspconfig.clangd.setup({
---     cmd = {'clangd', '--background-index', '--compile-commands-dir', 'D:/systemc/excersies/build'},
---     init_options = {
---         clangdFileStatus = true,
---         clangdSemanticHighlighting = true
---     },
---     filetypes = {'c', 'cpp', 'cxx', 'cc'},
---     root_dir = function() vim.fn.getcwd() end,
---     settings = {
---         ['clangd'] = {
---             ['compilationDatabasePath'] = 'build',
---             ['fallbackFlags'] = {'-std=c++17'}
---         }
---     }
--- })
 lspconfig.ccls.setup({
   filetypes = {"c", "cpp"},
 })
--- lspconfig.texlab.setup({
---   capabilities = cmp_capabilities,
--- })
--- lspconfig.sourcekit.setup({})
 -- lspconfig.elixirls.setup{
 --   credo = { enable = false },
 --   cmd = { "/usr/lib/elixir-ls/language_server.sh" },
@@ -320,34 +279,5 @@ lspconfig.ccls.setup({
 --     enableTestLenses  =  false,
 --     suggestSpecs    =  false,
 --   };
--- }
-
--- cmp.setup.cmdline({ '/', '?' }, {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = {
---     { name = 'buffer' }
---   }
--- })
--- cmp.setup.cmdline(':', {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = cmp.config.sources({
---     { name = 'path' }
---   }, {
---     { name = 'cmdline' }
---   }),
---   matching = { disallow_symbol_nonprefix_matching = false }
--- })
--- local  hologram      =  require('hologram')
--- local  lsp_lines     =  require("lsp_lines")
-
-
--- Disable virtual_text since it's redundant due to lsp_lines.
--- vim.diagnostic.config({
---   virtual_text = false,
--- })
--- lsp_lines.setup({})
-
--- require('hologram').setup{
---   auto_display = true -- WIP automatic markdown image display, may be prone to breaking
 -- }
 

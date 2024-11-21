@@ -144,7 +144,8 @@ let g:vimtex_compiler_latexmk = {
 "let g:tex_conceal='abdmg'
 "----------------------"
 
-source ${HOME}/.config/nvim/autocmd.vim
+lua require('functions')
+lua require('autocmd')
 source ${HOME}/.config/nvim/plugins.vim
 source ${HOME}/.config/nvim/functions.vim
 lua require('mytreesitter')
@@ -152,10 +153,6 @@ lua require('base')
 
 colorscheme pop-punk
 
-"source ${HOME}/.config/nvim/leader_bindings.vim
-"source ${HOME}/.config/nvim/etc_bindings.vim
-
-lua require('functions')
 lua require('mappings')
 lua require('textobjects')
 

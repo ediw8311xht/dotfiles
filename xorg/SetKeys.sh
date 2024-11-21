@@ -3,12 +3,13 @@
 # vi: ft=bash
 
 toggle_r_rate() {
+    local status='On'
     if [[ "${1,,}" != 'on' ]] &&
        { xset q | grep -q -Pi 'auto[ ]*repeat[:][ ]*on'; }
-    then xset r off
+    then xset r off; status='Off'
     else xset r rate 300 50
     fi
-    notify-send -t 3000 "Keyboard Repeat Toggled"
+    notify-send -t 3000 "Keyboard Repeat Toggled" "${status}"
 }
 
 main() {
