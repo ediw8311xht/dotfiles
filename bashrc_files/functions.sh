@@ -1,5 +1,19 @@
 #!/bin/bash
 
+list_files_pac() {
+    if   yay -Qi "${1}" &>/dev/null ; then
+        yay -Ql "${1}"
+    elif yay -Si "${1}" &>/dev/null ; then
+        echo "HER"
+        if ! pkgfile -sl "${1}" ; then
+            echo "Package in AUR and not installed. Can't list files." >&2; return 1
+        fi
+    else
+        echo "Package: '${1}' not in AUR/AOR." >&2; return 1
+    fi
+    return 0
+    #if yay -Qi "${1}" 
+}
 mps() {
     local h1='\[\e[00;01;07;34m\]'  h2='\[\e[00;01m\]'  h3='\[\e[00;01;34m\]'   h4='\[\e[00;01;33m\]'
     local d1='\D{%F}'               d2='\D{%T}'         d3='\D{%s}'
@@ -92,6 +106,7 @@ fzf_cd() {
 }
 
 fzf_edit() {
+    # local f=""
     local RG=( --ignore-file="${XDG_CONFIG_HOME}/rg/code.rg"
                 --hidden
                 --files "${1:-.}" )
