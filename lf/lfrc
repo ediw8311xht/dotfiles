@@ -148,6 +148,7 @@ map e       np
 map m       push :!mkdir<space>
 map o 		&mimeopen $fx       #-----------OPEN IN NEW WINDOW------------------------------#
 map r 		set reverse!
+map t       push :!touch<space>
 map x       cut
 ## remove filter with <c-r>
 #------------------------------------------------------------------#

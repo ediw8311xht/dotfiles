@@ -70,6 +70,7 @@ export  MOST_EDITOR='nvim'
 export  PAGER='most'
 export  LESSOPEN='|pygmentize -g %s'
 export  LESS='-R'
+export  DMENU_SCRIPT="${HOME}/bin/my_dmenu.sh"
 #------------------MULTI-LEVEL---------#
 export  MY_INFORMATION="${DOCUMENTS}/INFORMATION"
 export  SPREADSHEETS="${DOCUMENTS}/SPREADSHEETS"

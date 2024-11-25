@@ -119,7 +119,6 @@ let g:lf_map_keys    = 0
 let g:html_mode      = 1
 let g:is_bash        = 1
 let g:vlime_leader   = "~"
-
 "-------Latex----------"
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'

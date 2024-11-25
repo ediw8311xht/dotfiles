@@ -1,19 +1,33 @@
-
 %! TeX program = xelatex
 
-\documentclass[12pt]{scrartcl}
+\documentclass[11pt]{scrartcl}
 \usepackage{fontspec}
-\usepackage{inconsolata}
-\usepackage[a4paper, total={8in, 10in}] {geometry}
+\usepackage{amsfonts}
+% \usepackage{inconsolata}
+% \usepackage[paperheight=8.5in,paperwidth=13.0in,margin=0.1in,headheight=0.0in,footskip=0.5in]{geometry}
+\usepackage{listings}
+\usepackage[paperheight=40in,paperwidth=12in,margin=0.5in,heightrounded]{geometry}
+\usepackage{array}
+\usepackage{makecell}
 \usepackage[fleqn]{amsmath}
 \usepackage{graphicx}
 \usepackage{xfrac}
 \usepackage[svgnames]{xcolor}
-\setlength{\mathindent}{0pt}
+% \pagecolor{black}
+\setmainfont[Color=black]{FantasqueSansMono Nerd Font Mono}
+\setsansfont[Color=black]{FantasqueSansMono Nerd Font Mono}
+\setmonofont[Color=black]{FantasqueSansMono Nerd Font Mono}
+\setlength{\mathindent}{22pt}
 \addtokomafont{section}{\color{MediumBlue}}
-\addtokomafont{subsection}{\color{Black}}
-\addtokomafont{subsubsection}{\normalfont\itshape\subsubsectionfont}
+\addtokomafont{subsection}{\color{black}}
+\addtokomafont{subsubsection}{\color{black}}
 
 \begin{document}
-
+%------------------------------
+% For tables
+%------------------------------
+\renewcommand{\arraystretch}{4}
+\renewcommand{\cellalign}{l}
+%------------------------------
+\mathversion{bold}
 \end{document}
