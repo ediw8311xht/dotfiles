@@ -70,6 +70,7 @@ local leader_mappings={
   { n, F, '+ Line Len Indicator',   'cc'  ,  ':call TogCC()<CR>'                                                     },
   { n, F, '+ CursorLine',           'cl'  ,  ':set nocul!<CR>'                                                       },
   { n, F, '+ Statusline',           'cs'  ,  ':call TogSL()<CR>'                                                     },
+  { n, F, '+ spell',                'cS'  ,  ':set spell!<CR>'                                                       },
   { n, F, 'Delete Buffer',          'D'   ,  ':bd<esc><enter>'                                                       },
   { n, F, 'Find Space EOL',         'df'  ,  ':%s/\\s\\+\\ze$//gc<CR>'                                               },
   { n, F, '+ CursorColumn',         'e'   ,  ':set cuc!<CR>'                                                         },

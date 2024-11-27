@@ -46,7 +46,6 @@ export  TERMINAL='/usr/local/bin/st'
 export  EDITOR='nvim'
 export  ERL_AFLAGS="-kernel shell_history enabled"
 #------------------MINE----------------#
-export  SCHOOL="${HOME}/Desktop/SCHOOL/"
 export  STANDARD_IFS=$' \t\n'
 export  BACKUP="${HOME}/BACKUP_FILES"
 export  BIN="${HOME}/bin"
@@ -72,11 +71,6 @@ export  LESSOPEN='|pygmentize -g %s'
 export  LESS='-R'
 export  DMENU_SCRIPT="${HOME}/bin/my_dmenu.sh"
 #------------------MULTI-LEVEL---------#
-export  MY_INFORMATION="${DOCUMENTS}/INFORMATION"
-export  SPREADSHEETS="${DOCUMENTS}/SPREADSHEETS"
-export  WALLPAPERS="${PICTURES}/Wallpapers"
-export  CODING="${DESKTOP}/Coding/"
-export  CLONED="${DESKTOP}/CLONED/"
 export  PYTHONPATH="${PYTHONPATH}:/usr/bin/python3"
 #------------------APPLICATIONS--------#
 export  NO_AT_BRIDGE=1
@@ -87,9 +81,6 @@ export  GTK2_RC_FILES="/usr/share/themes/Midnight/gtk-2.0/gtkrc"
 #####################   Fixes colored man pages when using `most`, for some reason, TY https://stackoverflow.com/users/26449/bill                 #
 export  GROFF_NO_SGR=1 ### https://stackoverflow.com/a/32456403                                                                                   #
 #####################   https://stackoverflow.com/questions/32384644/color-setting-works-for-only-for-help-tab-in-man-page-dosent-work-for-the-en #
-
-
-export LUA_CPATH='/usr/local/lib/lua/5.4/?.so;/usr/lib/lua/5.4/?.so;/usr/local/lib/lua/5.4/loadall.so;/usr/lib/lua/5.4/loadall.so;./?.so;/$HOME/.luarocks/lib/lua/5.4/?.so'
 
 
 
