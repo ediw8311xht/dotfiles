@@ -38,7 +38,7 @@ filetype plugin on
 filetype plugin indent on
 syntax enable
 set autoread
-set autoindent
+set cindent
 set backup
 set clipboard=unnamedplus
 set encoding=utf-8

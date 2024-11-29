@@ -4,7 +4,6 @@ list_files_pac() {
     if   yay -Qi "${1}" &>/dev/null ; then
         yay -Ql "${1}"
     elif yay -Si "${1}" &>/dev/null ; then
-        echo "HER"
         if ! pkgfile -sl "${1}" ; then
             echo "Package in AUR and not installed. Can't list files." >&2; return 1
         fi

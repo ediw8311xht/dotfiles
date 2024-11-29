@@ -168,6 +168,7 @@ alias rifs="      IFS=$' \t\n'"
 alias pifs='      printf "\n_%q_\n\n" "${IFS}"'
 alias getfont='   fc-list -v | grep -i '
 alias gital='     git log --source --all -S'
+alias gitig='     git status --ignored'
 alias git_mt='    git log --pretty=format:"%h %s" --graph'
 alias gport='     netstat -lntu | grep -Pi'
 alias gd='        xclip -selection "clipboard" <<< "${PWD}"'
