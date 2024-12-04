@@ -304,11 +304,8 @@ brave.BRAVE_SCALE: 1
 *.bar.font: IosevkaTerm:style=Medium:pixelsize=12:antialias=true:autohint=true
 
 i3wm.other_monitor_1: HDMI-2
-i3wm.other_monitor_1_resx: 1080
-i3wm.other_monitor_1_resy: 1920
+i3wm.other_monitor_1_resx: 1600
+i3wm.other_monitor_1_resy: 900
 i3wm.primary_monitor: DP-1
 i3wm.primary_monitor_resx: 1920
 i3wm.primary_monitor_resy: 1080
-i3wm.other_monitor_2: HDMI-3
-i3wm.other_monitor_2_resx: 1920
-i3wm.other_monitor_2_resy: 1080
