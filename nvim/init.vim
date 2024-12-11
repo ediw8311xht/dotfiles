@@ -60,6 +60,7 @@ set undofile
 set undolevels=10000
 set undoreload=10000
 set updatetime=400
+let NERDTreeIgnore = ['\.o$']
 "set dir=~/.mynvim/swapfiles
 "set backupdir=~/.mynvim/backupfiles
 " [Retain undo history if file is edited outside of Vim](https://stackoverflow.com/a/75553217)

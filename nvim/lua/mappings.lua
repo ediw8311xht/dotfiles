@@ -17,15 +17,25 @@ local v = 'v';
 
 
 local regular_mappings={
-  { i,    F, '',                       '<C-K>',    '<esc>lC'                                    },
-  { i,    F, '',                       '<C-\\>',   '<esc>ui'                                    },
-  { i,    F, '',                       '<C-a>',    '<esc>I'                                     },
+  { i,    F, '',                       '<C-S-t>',  '<C-d>'                                      },
+  { i,    F, '',                       '<C-S-k>',  '<C-o>C'                                     },
+  { i,    F, '',                       '<C-\\>',   '<C-o>u'                                     },
+  { i,    F, '',                       '<C-S-\\>', '<C-o><C-r>'                                 },
+  { i,    F, '',                       '<C-a>',    '<C-o>I'                                     },
   { i,    F, '',                       '<C-b>',    '<left>'                                     },
-  { i,    F, '',                       '<C-e>',    '<esc>A'                                     },
+  { i,    F, '',                       '<C-e>',    '<C-o>A'                                     },
   { i,    F, '',                       '<C-f>',    '<right>'                                    },
+  { i,    F, '',                       '<C-w>',    '<S-right>'                                  },
+  { i,    F, '',                       '<C-S-w>',  '<S-left>'                                   },
+  { i,    F, '',                       '<C-w>',    '<S-right>'                                  },
+  { i,    F, '',                       '<C-S-w>',  '<S-left>'                                   },
+
   { i,    F, '',                       'jk',       '<esc>'                                      },
+
   { '',   T, '',                       '+',        'g_'                                         },
   { '',   T, '',                       ',',        '<leader>'                                   },
+
+  { n,    F, '',                       '<C-S-e>',  'be'                                         },
   { n,    F, '',                       '/',        '/\\v\\c'                                    },
   { n,    F, '',                       '<C-S-h>',  '<C-w>h'                                     },
   { n,    F, '',                       '<C-S-j>',  '<C-w>j'                                     },
@@ -52,6 +62,7 @@ local regular_mappings={
   { t,    T, '',                       '<C-w>',    '<C-\\><C-n>'                                },
   { v,    F, 'Sub char insensitive',   '<C-s>',    ':s/\\V\\v\\c'                               },
   { v,    F, 'Sub char sensitive',     '<C-S-s>',  ':s/\\V\\v'                                  },
+  { n,    F, '',                       '<C-n>' ,   ':NERDTreeToggle<CR>'                        },
   { v,    F, '',                       '`',        'zf'                                         },
 }
 
@@ -94,8 +105,8 @@ local leader_mappings={
   { n, F, '',                       'ob'  ,  ':silent !"${BROWSER:-"brave"}"  %<CR>'                                 },
   { n, F, '',                       'oq'  ,  ':silent !"qutebrowser" %<CR>'                                          },
   { n, F, '',                       'q'   ,  ':bd'                                                                   },
-  { n, F, '',                       's'   ,  ':NERDTreeToggle<CR>'                                                   },
-  { n, F, '',                       'S'   ,  ':source ~/.config/nvim/init.vim<esc>'                                  },
+  { n, F, '',                       's'   ,  '<C-w><C-p>'                                                            },
+  -- { n, F, '',                       'S'   ,  ':source ~/.config/nvim/init.vim<esc>'                                  },
   { n, F, '',                       'T'   ,  ':term<esc>'                                                            },
   { n, F, '',                       'u'   ,  ':Lf<esc>'                                                              },
   { n, F, '',                       'vv'  ,  ':call TogVE()<CR>'                                                     },

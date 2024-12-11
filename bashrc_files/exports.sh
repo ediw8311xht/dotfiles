@@ -41,8 +41,8 @@ export  BEMENU_OPTS=''
 export  EMACS_SOCKET_NAME="${USER}_emacs_daemon"
 export  DOOMDIR="${HOME}/.config/doom"
 export  SUDO_EDITOR='nvim'
-export  TERM='st-256color'
-export  TERMINAL='/usr/local/bin/st'
+export  TERM='kitty'
+export  TERMINAL='/usr/bin/kitty'
 export  EDITOR='nvim'
 export  ERL_AFLAGS="-kernel shell_history enabled"
 #------------------MINE----------------#

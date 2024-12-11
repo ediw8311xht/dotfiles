@@ -1,5 +1,5 @@
 
-local va    = vim.api;
+local va    = vim.api
 local vauto = vim.api.nvim_create_autocmd
 local vc    = vim.cmd
 
@@ -25,3 +25,6 @@ function Contains(t, v)
   end
   return false
 end
+-- function SearchBuffers(s)
+--   vc( {cmd="vimgrep", args={s, "##"} } )
+-- end

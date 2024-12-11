@@ -261,8 +261,13 @@ lspconfig.pyright.setup({
   on_attach = lsp_status.on_attach,
   capabilities = cmp_capabilities,
 })
-lspconfig.ccls.setup({
-  filetypes = {"c", "cpp"},
+-- lspconfig.ccls.setup({
+--   filetypes = {"c", "cpp", "h", "cc", "hpp"},
+-- })
+lspconfig.clangd.setup({
+  init_options = {
+    fallbackFlags = {'--std=c++20'}
+  },
 })
 -- lspconfig.elixirls.setup{
 --   credo = { enable = false },
