@@ -5,6 +5,7 @@ config.load_autoconfig(False)
 
 c.url.searchengines = {
     'DEFAULT':                  'https://www.google.com/search?q={}',
+    'wt':                       'https://www.google.com/search?q=site%3Ahttps%3A%2F%2Fwww.webtoolkit.eu%2Fwt%2Fdoc%2Freference+{}',
     ':af':                      'https://www.google.com/search?q=site%3Ahttps://bbs.archlinux.org+{}',
     ':amir':                    'http://scripts.jakeandamir.com/index.php?search={}',
     ':aor':                     'https://archlinux.org/packages/?sort=&q={}&maintainer=&flagged=',
@@ -357,6 +358,7 @@ config.bind('<Ctrl-v>',                 'mode-enter passthrough')
 
 config.bind('<Ctrl-Shift-I>',           'devtools bottom')
 config.bind('<Ctrl-Shift-T>',           'undo')
+config.bind('<Ctrl-Shift-O>',           'cmd-set-text :open -t {url:pretty}')
 
 
 config.bind('B',                        'cmd-set-text -s :bookmark-load -t')
