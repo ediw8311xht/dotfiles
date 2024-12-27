@@ -148,6 +148,7 @@ lua require('functions')
 lua require('autocmd')
 source ${HOME}/.config/nvim/plugins.vim
 source ${HOME}/.config/nvim/functions.vim
+source ${HOME}/.config/nvim/mappings.vim
 lua require('mytreesitter')
 lua require('base')
 

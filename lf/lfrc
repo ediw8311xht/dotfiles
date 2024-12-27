@@ -131,7 +131,7 @@ map J		push 3j
 map O 		$mimeopen --ask $fx #-----------ASK AND THEN OPEN IN NEW WINDOW-----------------#
 map P		push :!echo<space>""<left>
 map Q 		&lf -remote 'send quit'; lf -remote 'quit'
-map RF	    push :rename<enter><c-a><c-k>
+map RF	    push :rename<enter><c-u>
 map RN		rename
 map RR      :reload
 map Sb      :set drawbox!

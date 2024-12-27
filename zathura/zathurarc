@@ -2,16 +2,18 @@
 #---------------------------------------#
 #----SETTINGS---------------------------#
 #---------------------------------------#
+    set     incremental-search      false
     set     show-recent             100
     set     adjust-open             best-fit
     set     continuous-hist-save    true
     set     database                sqlite
     set     guioptions              s
-    set     n-completion-items      20
+    set     n-completion-items      5
     set     page-padding            0
     set     pages-per-row           1
     #set     sandbox                none
     #set s  andbox strict
+    set     page-cache-size         200
     set     scroll-step             100
     set     selection-clipboard     clipboard
     set     show-hidden             true

@@ -128,6 +128,15 @@ man_all_pages() {
 markdown_view_w3m() {
     w3m -T text/html < <(pandoc -s "${1}" 2>/dev/null)
 }
+size_of_dir() {
+    local tdir="${1:-.}"
+    if ! [[ -d "${tdir}" ]] ; then
+        echo "Directory: '${tdir}' not found." >&2
+        return 1
+    else
+        du -axhc --time --max-depth=1 "${tdir}" | sort -h
+    fi
+}
 #get_outdated_pip() {
 #    local zfile
 #    local IFS=$'\n'
