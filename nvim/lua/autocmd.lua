@@ -1,9 +1,12 @@
 
-TemplatePath = "${HOME}/.config/nvim/language_specific/templates/"
+local home  = vim.env.HOME
+local va    = vim.api
+local vauto = vim.api.nvim_create_autocmd
+local vc    = vim.cmd
+
+TemplatePath = home .. "/.config/nvim/language_specific/templates/"
 MaxLinesCMP = 5000
-local va    = vim.api;
-local vauto = vim.api.nvim_create_autocmd;
-local vc    = vim.cmd;
+
 
 ---------------------------------
 -- Disable CMP For Large Files --
@@ -60,21 +63,21 @@ end
 -------------------------
 local exts = { "sh", "py", "kalker", "exs", "tex", "ex", "html", "cpp" }
 local globcomms = {
-  ["${HOME}/.bashrc"] = {
+  [home .. "/.bashrc"] = {
       "setfiletype bash",
       "source ${HOME}/.config/nvim/language_specific/bashrc.vim"
     },
-  ["${HOME}/bashrc_files/*" ]               = { "setfiletype bash"      },
+  [home .. "/bashrc_files/*" ]               = { "setfiletype bash"      },
   ["*.sh" ]                                 = { "setfiletype bash"      },
-  ["${HOME}/.config/polybar/*.ini" ]        = { "setfiletype dosini"    },
-  ["${HOME}/.config/polybar/*/*.ini" ]      = { "setfiletype dosini"    },
+  [home .. "/.config/polybar/*.ini" ]        = { "setfiletype dosini"    },
+  [home .. "/.config/polybar/*/*.ini" ]      = { "setfiletype dosini"    },
   ["*.kalker" ]                             = { "setfiletype kalker"    },
-  ["${HOME}/.config/i3/*" ]                 = { "setfiletype i3"        },
+  [home .. "/.config/i3/*" ]                 = { "setfiletype i3"        },
   ["*.ex,*.exs" ]                           = { "setfiletype elixir"    },
   ["*.schema" ]                             = { "setfiletype sql"       },
   ["*.md" ]                                 = { "setfiletype markdown"  },
 
-  ["${HOME}/.config/zathura/*"]             = { "set syntax=zathurarc"  },
+  [home .. "/.config/zathura/*"]             = { "set syntax=zathurarc"  },
 
 }
 template_add_e(exts)
@@ -138,7 +141,12 @@ vauto({"FileType"}, {
 -- autocmd FileType help nnoremap <buffer> <CR> <C-]>
 -- autocmd FileType help nnoremap <buffer> <BS> <C-T>
 
-
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+  pattern = "/$HOME/.config/i3/*",
+  callback = function()
+    vim.cmd("setfiletype i3")
+  end
+})
 
 
 

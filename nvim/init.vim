@@ -145,10 +145,9 @@ let g:vimtex_compiler_latexmk = {
 "----------------------"
 
 lua require('functions')
-lua require('autocmd')
 source ${HOME}/.config/nvim/plugins.vim
 source ${HOME}/.config/nvim/functions.vim
-source ${HOME}/.config/nvim/mappings.vim
+"source ${HOME}/.config/nvim/mappings.vim
 lua require('mytreesitter')
 lua require('base')
 
@@ -163,3 +162,16 @@ lua require('textobjects')
 "let g:bracey_eval_on_save       = 1
 "let g:bracey_auto_start_browser = 0
 "let g:bracey_server_port        = 4842
+
+lua require('autocmd')
+"autocmd BufNewFile,BufRead ~/.bashrc                            setfiletype bash
+"autocmd BufNewFile,BufRead ~/bashrc_files/*                     setfiletype bash
+"autocmd BufNewFile,BufRead *.sh                                 setfiletype bash
+"autocmd BufNewFile,BufRead ${HOME}/.config/polybar/*.ini        setfiletype dosini
+"autocmd BufNewFile,BufRead ${HOME}/.config/polybar/*/*.ini      setfiletype dosini
+"autocmd BufNewFile,BufRead *.kalker                             setfiletype kalker
+"autocmd BufNewFile,BufRead ${HOME}/.config/i3/*                 setfiletype i3
+"autocmd BufNewFile,BufRead *.ex,*.exs                           setfiletype elixir
+"autocmd BufNewFile,BufRead *.schema                             setfiletype sql
+"autocmd BufNewFile,BufRead *.md                                 setfiletype markdown
+
