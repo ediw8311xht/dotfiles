@@ -25,6 +25,7 @@ setkey   "bob"           "gg"
 setkey   "down"          "j"
 setkey   "up"            "k"
 setkey   "edt_find_next" "n"
+setkey   "redraw" "r"
 
 setkey   "edit"          "E"
 setkey   "eob"           "G"

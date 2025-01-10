@@ -67,18 +67,16 @@ local globcomms = {
       "setfiletype bash",
       "source ${HOME}/.config/nvim/language_specific/bashrc.vim"
     },
-  [home .. "/bashrc_files/*" ]               = { "setfiletype bash"      },
-  ["*.sh" ]                                 = { "setfiletype bash"      },
-  [home .. "/.config/polybar/*.ini" ]        = { "setfiletype dosini"    },
-  [home .. "/.config/polybar/*/*.ini" ]      = { "setfiletype dosini"    },
-  ["*.kalker" ]                             = { "setfiletype kalker"    },
-  [home .. "/.config/i3/*" ]                 = { "setfiletype i3"        },
-  ["*.ex,*.exs" ]                           = { "setfiletype elixir"    },
-  ["*.schema" ]                             = { "setfiletype sql"       },
-  ["*.md" ]                                 = { "setfiletype markdown"  },
-
-  [home .. "/.config/zathura/*"]             = { "set syntax=zathurarc"  },
-
+  [home .. "/bashrc_files/*" ]              = { "setfiletype bash"      } ,
+  ["*.sh" ]                                 = { "setfiletype bash"      } ,
+  [home .. "/.config/polybar/*.ini" ]       = { "setfiletype dosini"    } ,
+  [home .. "/.config/polybar/*/*.ini" ]     = { "setfiletype dosini"    } ,
+  ["*.kalker" ]                             = { "setfiletype kalker"    } ,
+  [home .. "/.config/i3/*" ]                = { "setfiletype i3"        } ,
+  ["*.ex,*.exs" ]                           = { "setfiletype elixir"    } ,
+  ["*.schema" ]                             = { "setfiletype sql"       } ,
+  ["*.md" ]                                 = { "setfiletype markdown"  } ,
+  [home .. "/.config/zathura/*"]            = { "set syntax=zathurarc"  } ,
 }
 template_add_e(exts)
 bufnr_add(globcomms)

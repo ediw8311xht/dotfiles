@@ -28,6 +28,7 @@ let g:MySchemes=[
     \[ 'murphy'         ,   "."                     ],
 \]
 
+lua require('autocmd')
 let g:myBg          = [ "#010101",  "#333333",  "#111111", "#220000",  "#002200",  "#000022",  "#002244" ] + [ "NONE" ]
 let g:myFg          = [ ".",        ".",         ".",       ".",        ".",        ".",        "#aaawaa" ] + [ "." ]
 
@@ -163,7 +164,6 @@ lua require('textobjects')
 "let g:bracey_auto_start_browser = 0
 "let g:bracey_server_port        = 4842
 
-lua require('autocmd')
 "autocmd BufNewFile,BufRead ~/.bashrc                            setfiletype bash
 "autocmd BufNewFile,BufRead ~/bashrc_files/*                     setfiletype bash
 "autocmd BufNewFile,BufRead *.sh                                 setfiletype bash
