@@ -54,6 +54,7 @@ export  DESKTOP="${HOME}/Desktop/"
 export  DOCUMENTS="${HOME}/Documents/"
 export  DOWNLOADS="${HOME}/Downloads/"
 export  MY_LIBRARY="${HOME}/MyLibrary/"
+export  CURRENTLY_READING="$MY_LIBRARY/Z_CURRENTLY_READING/"
 export  MY_LOCAL="${HOME}/.local/"
 export  MY_LOCAL_BIN="${MY_LOCAL}/bin/" # By default this is in path (set by os, not by me) (just so i remember)
 export  MY_LOCAL_SHARE="${MY_LOCAL}/share/"
