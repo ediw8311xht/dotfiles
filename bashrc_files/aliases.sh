@@ -30,9 +30,9 @@ alias i='         iex' # elixir
 alias iexm='      iex -S mix'
 alias dial='      mix dialyzer'
 alias iexp='      iex -S mix phx.server'
-    #alias mixf='      mix format'
-    #alias mixc='      mix compile'
-    #alias iexm='      MIX_ENV=test iex -S mix'
+alias mixf='      mix format'
+alias mixc='      mix compile'
+alias iexm='      MIX_ENV=test iex -S mix'
 #--------------------------------------------------expac---------------------------------#
 alias exspace='   expac -HM "%m %n" | sort -n'           # Size of packages pacman
 alias exlast="    expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
@@ -84,8 +84,8 @@ alias cnf='       fzf_cd -d "${XDG_CONFIG_HOME}" -u -d1'
 alias conf='      cd "${XDG_CONFIG_HOME}"'
 alias ncde='      cd "${CODING}"; nf'
 alias nswp='      cd "${HOME}/.mynvim/swapfiles/"'
-alias cde='       fzf_cd -d "${CODING}" -d3'
-alias clne='      fzf_cd -d "${CLONED}"'
+alias cde='       fzf_cd -d "${CODING}" -u -d3'
+alias clne='      fzf_cd -d "${CLONED}" -u -d1'
 #--------------------------------------------------find----------------------------------#
 #alias listaudio=' fd . -tf -e mp3 -e flac'
 #alias listpics='  fd . -tf -e jpg -e jpeg -e png -e tiff -e webp -e bmp -e avif -e ico -e gif -e gifv'
@@ -95,6 +95,11 @@ alias i3e='       fd . -d1 -0 -a -tf "${XDG_CONFIG_HOME}/i3/" | sort -z | xargs 
 alias full_i3e='  fd .     -0 -a -tf "${XDG_CONFIG_HOME}/i3/" | sort -z | xargs -0 nvim -c "Buffers"' 
 alias gf='        fd --search-path "/" -u --mount'
 #--------------------------------------------------Python--------------------------------#
+alias p='         python'
+alias px='        python <<EOF'
+alias vid='       open_mpv'
+alias fvid='      open_mpv --fzf'
+alias ipy='       ipython'
 alias pips='      poetry search'
 alias pipf='      pip freeze'
 alias pipsl='     pip list | grep -i'
