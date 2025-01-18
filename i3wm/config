@@ -91,7 +91,7 @@
     floating_modifier             $mod+Ctrl      
     focus_follows_mouse           yes            
     floating_maximum_size         1920 x 1080
-    font                          pango:Hermit 7 
+    font                          pango:Agave 10
     show_marks                    yes            
     workspace_auto_back_and_forth no             
 #---------------------------------------------------------EXECS-----------#
