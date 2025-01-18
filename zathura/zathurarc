@@ -30,6 +30,8 @@
 #---------------------------------------#
     unmap =
     unmap -
+    unmap [
+    unmap ]
     unmap f
 #---------------------------------------#
 #----MAPPINGS----------------CTRL-------#
@@ -45,6 +47,11 @@
     map  <C-j>  navigate          'next'
     map  <C-k>  navigate          'previous'
     map  <C-l>  focus_inputbar    ':blist '
+    map  ]      jumplist forward
+    map  [      jumplist backward
+    map  z      jumplist forward
+    map  {      feedkeys ':jumplist 40<Return>'
+    map  i      feedkeys ':info<Return>'
 #---------------------------------------#
 #----MAPPINGS----------------COMMA------#
 #---------------------------------------#
