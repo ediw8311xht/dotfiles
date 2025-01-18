@@ -30,6 +30,7 @@
 #---------------------------------------#
     unmap =
     unmap -
+    unmap f
 #---------------------------------------#
 #----MAPPINGS----------------CTRL-------#
 #---------------------------------------#
@@ -59,17 +60,19 @@
 #----MAPPINGS----------------REGULAR----#
 #---------------------------------------#
     map  b      recolor
+    map  e      set 'guioptions sv' # show vertical scrollbar
+    map  j      scroll 'down'
+    map  k      scroll 'up'
+    map  f      toggle_fullscreen
+    map  F      follow
     map  B      focus_inputbar ':bmark '
-    map  k      scroll    'up'
-    map  j      scroll    'down'
-    map  K      navigate  'previous'
-    map  J      navigate  'next'
-    map  e      set       'guioptions sv' # show vertical scrollbar
-    map  E      set       'guioptions s'  # hide vertical scrollbar
-    map  _      zoom      'out'
-    map  -      zoom      'out'
-    map  =      zoom      'in'
-    map  +      zoom      'in'
+    map  K      navigate 'previous'
+    map  J      navigate 'next'
+    map  E      set 'guioptions s'  # hide vertical scrollbar
+    map  _      zoom 'out'
+    map  -      zoom 'out'
+    map  =      zoom 'in'
+    map  +      zoom 'in'
 
 #---------------------------------------#
 #---DBUS--------------------------------#
