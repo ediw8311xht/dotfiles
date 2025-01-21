@@ -41,5 +41,6 @@ preview latex .tex {{
 preview mymd .md {{
     export CLICOLOR_FORCE=1
 	export COLORTERM=truecolor
+    glow -s "$XDG_CONFIG_HOME/glow/my_default.json" "${f}"
 }}
 
