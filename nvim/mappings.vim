@@ -1,2 +1,0 @@
-
-vnoremap ftg gg

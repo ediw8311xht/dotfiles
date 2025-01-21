@@ -61,7 +61,7 @@ end
 -------------------------
 -- Vars -----------------
 -------------------------
-local exts = { "sh", "py", "kalker", "exs", "tex", "ex", "html", "cpp" }
+local exts = { "sh", "py", "kalker", "exs", "tex", "ex", "html", "cpp", "md" }
 local globcomms = {
   [home .. "/.bashrc"] = {
       "setfiletype bash",

@@ -92,7 +92,7 @@ alias clne='      fzf_cd -d "${CLONED}" -u -d1'
 #alias listvids='  fd . -tf -e mov -e m4v -e mkv -e mpeg -e mp4 -e mpv -e webm -e avi -e amv'
 #alias listmedia=" listaudio; listpics; listvids"
 alias i3e='       fd . -d1 -0 -a -tf "${XDG_CONFIG_HOME}/i3/" | sort -z | xargs -0 nvim -c "Buffers"'
-alias full_i3e='  fd .     -0 -a -tf "${XDG_CONFIG_HOME}/i3/" | sort -z | xargs -0 nvim -c "Buffers"' 
+alias fi3e='      fd .     -0 -a -tf "${XDG_CONFIG_HOME}/i3/" | sort -z | xargs -0 nvim -c "Buffers"' 
 alias gf='        fd --search-path "/" -u --mount'
 #--------------------------------------------------Python--------------------------------#
 alias p='         python'
@@ -125,7 +125,7 @@ alias sman='      man -K --regex'
 alias getfonts_latex='fc-list :outline -f "%{family}\n"' # https://tex.stackexchange.com/questions/12881/how-to-get-a-list-of-all-available-ttf-fonts-with-xetex
 alias nv='        nvim'
 alias nvgr='      fd . -tf "${XDG_CONFIG_HOME}/nvim/" -x grep --color="always" -Pi'
-alias full_ednv=' fd . -tf -0 "${HOME}/.config/nvim/" "${HOME}/.local/share/nvim/site/ftplugin/" -X nvim -c "Buffers"'
+alias fednv='     fd . -tf -0 "${HOME}/.config/nvim/" "${HOME}/.local/share/nvim/site/ftplugin/" -X nvim -c "Buffers"'
 alias ednv='      nvim -c "Buffers" "${XDG_CONFIG_HOME}/nvim/lua/"*.lua "${XDG_CONFIG_HOME}/nvim/"*.vim'
 alias echad='     cd "${XDG_CONFIG_HOME}/NVIM_CHAD/"; nd; cd -'
 alias nva='       fd . --exact-depth 1 -tf -0 -X nvim -c "Buffers"'

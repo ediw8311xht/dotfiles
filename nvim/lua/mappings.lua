@@ -16,7 +16,7 @@ local t = 't';
 local v = 'v';
 
 
-local regular_mappings={
+REGULAR_MAPPINGS={
   { i,    F, '',                       '<C-S-t>',  '<C-d>'                                      },
   { i,    F, '',                       '<C-S-k>',  '<C-o>C'                                     },
   { i,    F, '',                       '<C-\\>',   '<C-o>u'                                     },
@@ -66,7 +66,7 @@ local regular_mappings={
   { v,    F, '',                       '`',        'zf'                                         },
 }
 
-local leader_mappings={
+LEADER_MAPPINGS={
   { n, F, 'Prev Tab',               'tb'  ,  ':tabmove -1<esc>'                                                      },
   { n, F, 'Next Tab',               'tn'  ,  ':tabmove +1<esc>'                                                      },
   { n, F, 'New Tab',                'tt'  ,  ':tabnew<esc>'                                                          },
@@ -124,11 +124,13 @@ local leader_mappings={
   { v, F, '',                       'vs'  ,  ':sort<enter>'                                                          },
 }
 
-for _, map in ipairs(regular_mappings) do
+-- ALL_MAPPINGS = { [""] = REGULAR_MAPPINGS, ["<LEADER>"] = LEADER_MAPPINGS}
+
+for _, map in ipairs(REGULAR_MAPPINGS) do
   vim.keymap.set(map[1], map[4], map[5], {remap = map[2]})
 end
 
-for _, map in ipairs(leader_mappings) do
+for _, map in ipairs(LEADER_MAPPINGS) do
   vim.keymap.set(map[1], '<leader>' .. map[4], map[5], {remap = map[2]})
 end
 

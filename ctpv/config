@@ -38,7 +38,8 @@ preview latex .tex {{
     highlight "${f}" --stdout --out-format="truecolor"
 }}
 
-#preview mymd .md {{
-#    mdt 
-#}}
+preview mymd .md {{
+    export CLICOLOR_FORCE=1
+	export COLORTERM=truecolor
+}}
 

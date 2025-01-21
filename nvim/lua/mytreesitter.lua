@@ -1,5 +1,5 @@
 
-DisabledLangs = { "txt", "help", "vimdoc", "vim", "doc", "man", "plantuml" }
+DisabledLangs = { "txt", "help", "vimdoc", "vim", "doc", "man", "plantuml", "latex" }
 local treesitter = require('nvim-treesitter.configs')
 
 treesitter.setup {

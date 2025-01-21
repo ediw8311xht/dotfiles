@@ -7,11 +7,11 @@ export  HISTSIZE=25000
 export  HISTFILE="${HOME}/.bash_history"
 export  HISTCONTROL=ignoreboth
 export  TMPDIR="/tmp/"
-#------------------XDG-----------------#
 export  XDG_CONFIG_HOME="${HOME}/.config"
 export  XDG_CACHE_HOME="${HOME}/.cache"
 export  XDG_DATA_HOME="${HOME}/.local/share"
 export  XDG_STATE_HOME="${HOME}/.local/state"
+#------------------XDG-----------------#
 #---------------RIPGREP-(RG)-----------#
 export  RIPGREP_CONFIG_PATH="${HOME}/.config/rg/ripgreprc"
 #------------------FZF-----------------#
@@ -41,9 +41,9 @@ export  BEMENU_OPTS=''
 export  EMACS_SOCKET_NAME="${USER}_emacs_daemon"
 export  DOOMDIR="${HOME}/.config/doom"
 export  SUDO_EDITOR='nvim'
+export  EDITOR='nvim'
 export  TERM='kitty'
 export  TERMINAL='/usr/bin/kitty'
-export  EDITOR='nvim'
 export  ERL_AFLAGS="-kernel shell_history enabled"
 #------------------MINE----------------#
 export  STANDARD_IFS=$' \t\n'
@@ -73,15 +73,15 @@ export  LESS='-R'
 export  DMENU_SCRIPT="${HOME}/bin/my_dmenu.sh"
 #------------------MULTI-LEVEL---------#
 export  PYTHONPATH="${PYTHONPATH}:/usr/bin/python3"
+#####################   Fixes colored man pages when using `most`, for some reason, TY https://stackoverflow.com/users/26449/bill                 #
+export  GROFF_NO_SGR=1 ### https://stackoverflow.com/a/32456403                                                                                   #
+#####################   https://stackoverflow.com/questions/32384644/color-setting-works-for-only-for-help-tab-in-man-page-dosent-work-for-the-en #
 #------------------APPLICATIONS--------#
 export  NO_AT_BRIDGE=1
 export  QT_QPA_PLATFORMTHEME="qt6ct"
 export  npm_config_prefix="${HOME}/.local"
 export  GTK2_RC_FILES="/usr/share/themes/Midnight/gtk-2.0/gtkrc"
 #------------------------------------------------------------------------------------------------------------------------------------------------ #
-#####################   Fixes colored man pages when using `most`, for some reason, TY https://stackoverflow.com/users/26449/bill                 #
-export  GROFF_NO_SGR=1 ### https://stackoverflow.com/a/32456403                                                                                   #
-#####################   https://stackoverflow.com/questions/32384644/color-setting-works-for-only-for-help-tab-in-man-page-dosent-work-for-the-en #
 
 
 

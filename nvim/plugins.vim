@@ -42,6 +42,7 @@ let g:my_plugins = {
 \    'vim latex snips for vimtex':  [ 'micangl',            'cmp-vimtex'                    ],
 \    'Sidebar file explorer':       [ 'preservim',          'nerdtree'                      ],
 \    'PlantUML Syntax':             [ 'aklt',               'plantuml-syntax'               ],
+\    'markdown Syntax':             [ 'drmingdrmer',        'vim-syntax-markdown'           ],
 \ }
 "https://github.com/aklt/plantuml-syntax.git
 "\    'latex lsp':                   [ 'latex-lsp',          'texlab'                      ],

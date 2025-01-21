@@ -269,6 +269,8 @@ lspconfig.clangd.setup({
     fallbackFlags = {'--std=c++20'}
   },
 })
+-- lspconfig.marksman.setup({
+-- })
 -- lspconfig.elixirls.setup{
 --   credo = { enable = false },
 --   cmd = { "/usr/lib/elixir-ls/language_server.sh" },
