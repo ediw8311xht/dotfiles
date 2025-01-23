@@ -2,7 +2,7 @@
 
 #set forceueberzug
 #set forcechafa
-#set forcekitty
+set forcekitty
 #set chafasixel
 set shell "/usr/bin/bash"
 
