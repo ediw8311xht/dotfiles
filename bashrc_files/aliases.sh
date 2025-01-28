@@ -206,6 +206,7 @@ alias ydl='       cd "${VIDEOS}"; yt-dlp -f "bestvideo[height<=?1080]+bestaudio/
 alias ystream='   stream_ytdl_mpv'
 alias getkeysall='   xmodmap -pke'
 alias betterkey='     showkey -k'
+alias pad='perl -pe '
 #-    q #
 #-    u #
 #alias m='         mimetype'

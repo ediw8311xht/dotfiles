@@ -14,6 +14,7 @@ application/json=nvim.desktop;
 application/mobi=zathura.desktop;
 application/pdf=zathura.desktop;
 application/schema+json=nvim.desktop;
+application/sql=nvim.desktop;
 application/toml=nvim.desktop;
 application/vnd.ms-publisher=nvim.desktop;
 application/vnd.ms-publisher=nvim.desktop;

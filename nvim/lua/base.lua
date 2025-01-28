@@ -257,10 +257,17 @@ lspconfig.bashls.setup({
     }
   }
 })
-lspconfig.pyright.setup({
+lspconfig.pyright.setup{
   on_attach = lsp_status.on_attach,
   capabilities = cmp_capabilities,
-})
+  settings = {
+      python = {
+        analysis = {
+          typeCheckingMode = "standard",
+      }
+    }
+  }
+}
 -- lspconfig.ccls.setup({
 --   filetypes = {"c", "cpp", "h", "cc", "hpp"},
 -- })
