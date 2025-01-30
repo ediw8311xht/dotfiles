@@ -17,6 +17,7 @@ local v = 'v';
 
 
 REGULAR_MAPPINGS={
+  { i,    F, '',                       '<C-BS>',   '<C-w>'                                      },
   { i,    F, '',                       '<C-S-t>',  '<C-d>'                                      },
   { i,    F, '',                       '<C-S-k>',  '<C-o>C'                                     },
   { i,    F, '',                       '<C-\\>',   '<C-o>u'                                     },
