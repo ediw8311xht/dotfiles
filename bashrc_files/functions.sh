@@ -1,5 +1,11 @@
 #!/bin/bash
 
+md_to_html() {
+    local md
+    md="${1:-"$(xclip -o)"}"
+    if [[ -z "${md}" ]] ; then echo "Nothing passed or in clipboard"; return 1; fi
+    pandoc -f markdown -t html -o /dev/stdout <<< "${md}" | xclip -selection "clipboard"
+}
 list_files_pac() {
     if   yay -Qi "${1}" &>/dev/null ; then
         yay -Ql "${1}"

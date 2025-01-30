@@ -204,9 +204,9 @@ alias szofall='   du -ahc  --time --max-depth=1'
 alias bgsz='      szof | grep -P "^[^ ]*G"'
 alias ydl='       cd "${VIDEOS}"; yt-dlp -f "bestvideo[height<=?1080]+bestaudio/best" -o "%(title)s.%(ext)s" --restrict-filename'
 alias ystream='   stream_ytdl_mpv'
-alias getkeysall='   xmodmap -pke'
-alias betterkey='     showkey -k'
-alias pad='perl -pe '
+alias getkeysall='xmodmap -pke'
+alias betterkey=' showkey -k'
+alias pad='       perl -pe '
 #-    q #
 #-    u #
 #alias m='         mimetype'
