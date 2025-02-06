@@ -16,14 +16,15 @@ alias free='free -h'
 alias pacman='pacman --color="auto"'
 alias yay='yay --color="auto"'
 #--------------------------------------------------ls------------------------------------#
+alias transcript_ytdlp=' yt-dlp --ignore-config --skip-download --write-subs --write-auto-subs --sub-lang en --output "$VIDEOS/transcripts/%(title)s%(ext)s"'
 alias nd='        NVIM_APPNAME="NVIM_CHAD" nvim'
 alias rgf='       source "${HOME}/bin/rg_fzf.sh"'
 alias L='         ls++'
 alias n='         lsd --group-directories-first -t -r --icon="never" --permission="octal"  --date=+" %l:%M%P %y %m %_d " --blocks="permission,user,date,size,name"'
-alias lsn="       lsd --icon='never' -l"
-alias lst="       lsd --icon='never' -ltrh"
-alias lsz="       lsd --icon='never' -lSrh"
-alias ll="        lsd --group-directories-first --icon='never' -rt --permission='octal'  --date=+'[%_H:%M:%S|%a|%D]' --blocks='permission,user,date,name'"
+alias lsn='       lsd --icon="never" -l'
+alias lst='       lsd --icon="never" -ltrh'
+alias lsz='       lsd --icon="never" -lSrh'
+alias ll='        lsd --group-directories-first --icon="never" -rt --permission="octal"  --date=+"[%_H:%M:%S|%a|%D]" --blocks="permission,user,date,name"'
 alias lla='       ll -a'
 #--------------------------------------------------elixir--------------------------------#
 alias i='         iex' # elixir
@@ -35,7 +36,7 @@ alias mixc='      mix compile'
 alias iexm='      MIX_ENV=test iex -S mix'
 #--------------------------------------------------expac---------------------------------#
 alias exspace='   expac -HM "%m %n" | sort -n'           # Size of packages pacman
-alias exlast="    expac --timefmt='%Y    %m    %d    %R' '%l    --    %n' | sort | grep"
+alias exlast='    expac --timefmt="%Y    %m    %d    %R" "%l    --    %n" | sort | grep'
 alias exopt='     expac -Qv -l "\n\t" "%n:\n\t%O"'
 alias exdep='     expac -Qv -l "\n\t" "%n:\n\t%D"'
 #--------------------------------------------------yay-----------------------------------#
@@ -56,7 +57,7 @@ alias pacse='     pacman -Ss'
 alias paci='      pacman -Si'
 alias pacdep='    pacman -T'
 alias pacneed='   pacman -Qet'
-alias pacprog="   pacman -F"
+alias pacprog='   pacman -F'
 alias paclocal='  pacman -Qm'
 alias pacsel='    pacman -Qs'
 alias pacil='     pacman -Qi'
@@ -123,7 +124,7 @@ alias manlist='   man -f'
 alias men='       man_all_pages'
 alias sman='      man -K --regex'
 #--------------------------------------------------nvim----------------------------------#
-alias getfonts_latex='fc-list :outline -f "%{family}\n"' # https://tex.stackexchange.com/questions/12881/how-to-get-a-list-of-all-available-ttf-fonts-with-xetex
+alias fontgets_latex='fc-list :outline -f "%{family}\n"' # https://tex.stackexchange.com/questions/12881/how-to-get-a-list-of-all-available-ttf-fonts-with-xetex
 alias nv='        nvim'
 alias nvgr='      fd . -tf "${XDG_CONFIG_HOME}/nvim/" -x grep --color="always" -Pi'
 alias fednv='     fd . -tf -0 "${HOME}/.config/nvim/" "${HOME}/.local/share/nvim/site/ftplugin/" -X nvim -c "Buffers"'
@@ -174,20 +175,19 @@ alias decl='      declare -f'
 alias doren='     perl-rename -v'
 alias rifs="      IFS=$' \t\n'"
 alias pifs='      printf "\n_%q_\n\n" "${IFS}"'
-alias getfont='   fc-list -v | grep -i '
+alias fontget='   fc-list -v | grep -i '
 alias gital='     git log --source --all -S'
 alias gitig='     git status --ignored'
 alias pp='        procs'
 alias git_mt='    git log --pretty=format:"%h %s" --graph'
 alias gport='     netstat -lntu | grep -Pi'
-alias gd='        xclip -selection "clipboard" <<< "${PWD}"'
+alias gd='        printf "%s" "${PWD}" | xclip -selection "clipboard"'
 alias img='       nsxiv -0'
 alias ldi='       fdisk -l -o +uuid'
 alias list_coms=' compgen -c'
 alias pgr='       $PAGER'
 alias quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g'"
 alias rml='       rmlint --no-followlinks --keep-all-tagged --no-crossdev --paranoid --progress --types="duplicates"'
-alias testpy='    nv "$HOME/TEST/test.py"'
 alias sap='       apropos'
 alias snv='       sudoedit'
 alias tracenet='  strace'
@@ -199,10 +199,10 @@ alias emime='     nvim "${HOME}/.config/mimeapps.list"'
 alias ysb='       source "${HOME}/.bashrc"'
 alias i3gr='      grep --file="-" -Pri "${HOME}/.config/i3/"   <<< '
 alias chx='       chmod 700'
-alias szof="      du -axhc --time --max-depth=1 | sort -h"
+alias szof='      du -axhc --time --max-depth=1 | sort -h'
 alias szofall='   du -ahc  --time --max-depth=1'
 alias bgsz='      szof | grep -P "^[^ ]*G"'
-alias ydl='       cd "${VIDEOS}"; yt-dlp -f "bestvideo[height<=?1080]+bestaudio/best" -o "%(title)s.%(ext)s" --restrict-filename'
+#alias ydl='       cd "${VIDEOS}"; yt-dlp -f "bestvideo[height<=?1080]+bestaudio/best" -o "%(title)s.%(ext)s" --restrict-filename'
 alias ystream='   stream_ytdl_mpv'
 alias getkeysall='xmodmap -pke'
 alias betterkey=' showkey -k'

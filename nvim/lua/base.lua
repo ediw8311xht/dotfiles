@@ -257,20 +257,22 @@ lspconfig.bashls.setup({
     }
   }
 })
-lspconfig.pyright.setup{
-  on_attach = lsp_status.on_attach,
-  capabilities = cmp_capabilities,
-  settings = {
-      python = {
-        analysis = {
-          typeCheckingMode = "standard",
-      }
-    }
-  }
-}
+-- lspconfig.pyright.setup{
+--   on_attach = lsp_status.on_attach,
+--   capabilities = cmp_capabilities,
+--   settings = {
+--       python = {
+--         analysis = {
+--           typeCheckingMode = "standard",
+--       }
+--     }
+--   }
+-- }
 -- lspconfig.ccls.setup({
 --   filetypes = {"c", "cpp", "h", "cc", "hpp"},
 -- })
+lspconfig.jedi_language_server.setup({
+})
 lspconfig.clangd.setup({
   init_options = {
     fallbackFlags = {'--std=c++20'}

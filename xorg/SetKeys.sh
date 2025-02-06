@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# shellcheck disable=SC2120
 # vi: ft=bash
 
 toggle_r_rate() {
@@ -12,15 +13,28 @@ toggle_r_rate() {
     notify-send -t 3000 "Keyboard Repeat Toggled" "${status}"
 }
 
+set_mouse_sensitivity() {
+    if [[ "${1,,}" = 'r' ]] ; then
+        xinput --set-prop "${MY_MOUSE}" "libinput Accel Speed" 1
+        xinput --set-prop "${MY_MOUSE}" "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 1
+    else
+        xinput --set-prop "${MY_MOUSE}" "libinput Accel Speed" -1
+        xinput --set-prop "${MY_MOUSE}" "Coordinate Transformation Matrix" 50, 0, 0, 0, 50, 0, 0, 0, 1
+    fi
+}
+
 main() {
     if [[ "${1,,}" = "-r" ]] ; then
         toggle_r_rate "${@:2}"
+    elif [[ "${1,,}" = "-m" ]] ; then
+        set_mouse_sensitivity "${@:2}"
     else
         if [[ ! "${1,,}" = '--y' ]] ; then
             xset +fp /usr/share/fonts/misc          2>/dev/null
             xset +fp /usr/share/fonts/*             2>/dev/null
             xset +fp "${HOME}/.local/share/fonts/"* 2>/dev/null
         fi
+        #set_mouse_sensitivity
         xset -dpms
         toggle_r_rate "on"
         xmodmap     "$HOME/.Xmodmap"

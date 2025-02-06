@@ -22,7 +22,7 @@ preview log text/x-log {{
     pygmentize "${f}"
 }}
 
-preview lisp .txt .lisp .fasl {{
+preview lisp .lisp .fasl {{
     highlight "${f}" --stdout --out-format="truecolor"
 }}
 
@@ -44,3 +44,10 @@ preview mymd .md {{
     glow -s "$XDG_CONFIG_HOME/glow/my_default.json" "${f}"
 }}
 
+preview mypy .py {{
+    highlight "${f}" --stdout --out-format="truecolor"
+}}
+
+preview mytxt .txt {{
+    head -1000 "${f}"
+}}

@@ -36,7 +36,7 @@
             set $SmallWidth     40ppt
             set $SmallHeight    50ppt
     #---------------------------------#
-    set $EXC    exec 	   --no-startup-id
+    set $EXC    exec 	    --no-startup-id
     set $EXC_A  exec_always --no-startup-id
     set $B1 ;
     set $B2 ;
@@ -67,6 +67,7 @@
     include $BORDER_FILE
     include regular_bindings.conf
     include modes.conf
+    include shortcuts.conf
     include windows.conf
 #-------WORKSPACES--------------------------------------------------------#
     #-------------------------------LEFT--------#
@@ -90,6 +91,7 @@
     smart_gaps                    off            
     floating_modifier             $mod+Ctrl      
     focus_follows_mouse           yes            
+    mouse_warping                 output
     floating_maximum_size         1920 x 1080
     font                          pango:Agave 10
     show_marks                    yes            

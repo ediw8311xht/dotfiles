@@ -89,26 +89,26 @@
 #---------------------------------------#
 #---APPEARANCE--------------------------#
 #---------------------------------------#
-    set   font                      "Hack regular 8"
-    set   recolor-keephue           true
-    set   statusbar-h-padding       20
-    set   statusbar-v-padding       5
-    set   statusbar-bg              "#222222"
-    set   statusbar-fg              "#00AA00"
-    #set  highlight-fg              "#000000"
-    #set  highlight-color           "#F5D769"
-    set   highlight-color           "#F0C080"
-    set   highlight-active-color    "#5FA0C0"
-    set   completion-highlight-fg   "#151515"
-    set   completion-highlight-bg   "#90A050"
-    set   completion-bg             "#333333"
-    set   completion-fg             "#DDDDDD"
-    set   notification-bg           "#222222"
-    set   notification-fg           "#0099FF"
-    set   recolor                   true
-    #     set                      default-bg          "#000000"  #    Background
+    set     font                    "Cantarell regular 8"
+    set     recolor-keephue         true
+    set     statusbar-h-padding     20
+    set     statusbar-v-padding     5
+    set     statusbar-bg            "#222222"
+    set     statusbar-fg            "#00AA00"
+    #set    highlight-fg            "#000000"
+    #set    highlight-color         "#F5D769"
+    set     highlight-color         "#F0C080"
+    set     highlight-active-color  "#5FA0C0"
+    set     completion-highlight-fg "#151515"
+    set     completion-highlight-bg "#90A050"
+    set     completion-bg           "#333333"
+    set     completion-fg           "#DDDDDD"
+    set     notification-bg         "#222222"
+    set     notification-fg         "#0099FF"
+    set     recolor                 true
+    #set     default-bg              "#FFFFFF" 
+#set     recolor-darkcolor       "#BBBBBB"
     #     set                      default-fg          "#000000"  #    Foreground
     #     set                      recolor-lightcolor  "#101010"  #    Background
-    #     set                      recolor-darkcolor   "#00FF00"  #    Foreground
     #     set                      adjust-open         width
 

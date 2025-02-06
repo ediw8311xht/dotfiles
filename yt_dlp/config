@@ -1,0 +1,12 @@
+
+#------------------------------------------------------#
+# Format
+-f bestvideo[height<=?1080]+bestaudio/best
+
+# Limit Filename Size
+--restrict-filename
+
+# Output File
+-o $VIDEOS/ytdl/%(title)s%(ext)s
+#------------------------------------------------------#
+
