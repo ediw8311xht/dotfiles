@@ -42,7 +42,7 @@ REGULAR_MAPPINGS={
   { n,    '<C-S-K>',  F, '',                       '<C-w>k'                                     },
   { n,    '<C-S-L>',  F, '',                       '<C-w>l'                                     },
   { n,    '<C-S-s>',  F, 'Sub char sensitive',     ':%s/\\v'                                    },
-  { n,    '<C-\\>',   F, '',                       '/\\V'                                       },
+  { n,    '<C-|>',    F, '',                       '/\\V'                                       },
   { n,    '<C-_>',    F, '',                       '/\\v'                                       },
   { n,    '<C-h>',    F, '',                       '<C-w>h'                                     },
   { n,    '<C-j>',    F, '',                       '<C-w>j'                                     },
@@ -55,7 +55,7 @@ REGULAR_MAPPINGS={
   { n,    '<esc>',    F, '',                       ':noh<esc>:echon ""<enter>'                  },
   { n,    '?',        F, '',                       '?\\v\\c'                                    },
   { n,    'ZG',       F, '',                       ':wqall<CR>'                                 },
-  { n,    '\\',       F, '',                       '/\\V\\c'                                    },
+  { n,    '|',        F, '',                       '/\\V\\c'                                    },
   { n,    '\\|',      F, '',                       '?\\V\\c'                                    },
   { n,    '`',        F, '',                       '@=(foldlevel(\'.\')?\'za\':"<Space>")<CR>'  },
   { t,    '<C-w>',    T, '',                       '<C-\\><C-n>'                                },
@@ -65,6 +65,7 @@ REGULAR_MAPPINGS={
 }
 
 LEADER_MAPPINGS={
+  -- { n, 'I'   ,  F, '+ lsp_lines',            ':lua require("lsp_lines").toggle()<CR>'                                },
   { n, ','   ,  F, 'Alternate File',         '<C-^>'                                                                 },
   { n, '-'   ,  F, 'Equalize Split Hori',    '20<c-w><'                                                              },
   { n, '='   ,  F, 'Equalize Split Vert',    '20<c-w>>'                                                              },
@@ -72,10 +73,9 @@ LEADER_MAPPINGS={
   { n, 'D'   ,  F, 'Delete Buffer',          ':bd<esc><enter>'                                                       },
   { n, 'E'   ,  F, 'CWD Edit',               ':call feedkeys(":e " . FilePathFull() . "/")<CR>'                      },
   { n, 'H'   ,  F, 'Helpgrep',               ':vert helpgrep '                                                       },
-  { n, 'I'   ,  F, '+ lsp_lines',            ':lua require("lsp_lines").toggle()<CR>'                                },
   { n, 'L'   ,  F, 'Prev Background',        ':call CyBack(-1)<CR>'                                                  },
   { n, 'N'   ,  F, 'Previous Buffer',        ':cnext<esc>'                                                           },
-  { n, 'S'   ,  F, '',                       ':source ~/.config/nvim/init.vim<esc>'                                  },
+  -- { n, 'S'   ,  F, '',                       ':source ~/.config/nvim/init.vim<esc>'                                  },
   { n, 'T'   ,  F, '',                       ':term<esc>'                                                            },
   { n, 'W'   ,  F, 'VimwikiIndex',           '<Plug>VimwikiIndex'                                                    },
   { n, 'X'   ,  F, 'Execute with args',      ':!%:p '                                                                },
@@ -87,13 +87,13 @@ LEADER_MAPPINGS={
   { n, 'cJ'  ,  F, 'Prev Scheme',            ':call SetColScheme(-1)<CR>'                                           },
   { n, 'cS'  ,  F, '+ spell',                ':set spell!<CR>'                                                       },
   { n, 'cc'  ,  F, '+ Line Len Indicator',   ':call TogCC()<CR>'                                                     },
+  { n, 'ce'  ,  F, '+ CursorColumn',         ':set cuc!<CR>'                                                         },
+  { n, 'cf'  ,  F, '+ Wrap',                 ':set wrap!<esc>'                                                       },
   { n, 'cj'  ,  F, 'Next Scheme',            ':call SetColScheme(+1)<CR>'                                           },
   { n, 'ck'  ,  F, 'CorrectColor',           ':call CorrectColors()<CR>'                                            },
   { n, 'cl'  ,  F, '+ CursorLine',           ':set nocul!<CR>'                                                       },
   { n, 'cs'  ,  F, '+ Statusline',           ':call TogSL()<CR>'                                                     },
   { n, 'df'  ,  F, 'Find Space EOL',         ':%s/\\s\\+\\ze$//gc<CR>'                                               },
-  { n, 'e'   ,  F, '+ CursorColumn',         ':set cuc!<CR>'                                                         },
-  { n, 'f'   ,  F, '+ Wrap',                 ':set wrap!<esc>'                                                       },
   { n, 'gh'  ,  F, 'Get highlight',          ':call GetHL()<ESC>'                                                    },
   { n, 'gm'  ,  F, 'Print Mappings',         ':call GMaps()<CR>'                                                     },
   { n, 'gn'  ,  F, 'New File',               ':enew<esc>'                                                            },
@@ -111,7 +111,7 @@ LEADER_MAPPINGS={
   { n, 'tt'  ,  F, 'New Tab',                ':tabnew<esc>'                                                          },
   { n, 'u'   ,  F, '',                       ':Lf<esc>'                                                              },
   { n, 'vv'  ,  F, '',                       ':call TogVE()<CR>'                                                     },
-  { n, 'w'   ,  F, 'Write',                  ':w<esc>'                                                               },
+  { n, 'wr'  ,  F, 'Write',                  ':w<esc>'                                                               },
   { n, 'x'   ,  F, 'Execute',                ':!%:p<esc>'                                                            },
   { n, 'y'   ,  F, '',                       ':hi Normal guibg=Transparent<esc>'                                     },
   { n, 'z'   ,  F, '',                       'z'                                                                     },
@@ -123,12 +123,24 @@ LEADER_MAPPINGS={
 
 -- ALL_MAPPINGS = { [""] = REGULAR_MAPPINGS, ["<LEADER>"] = LEADER_MAPPINGS}
 
+function MyMap(map, prep)
+  local description = map[4]
+  if prep == nil then prep = '' end
+  if map[4] == nil or map[4] == '' then
+    description = map[5]
+  end
+
+  vim.keymap.set(map[1], prep .. map[2], map[5], {remap = map[3], desc = description})
+end
+
 for _, map in ipairs(REGULAR_MAPPINGS) do
-  vim.keymap.set(map[1], map[2], map[5], {remap = map[3]})
+  MyMap(map)
+  -- vim.keymap.set(map[1], map[2], map[5], {remap = map[3]})
 end
 
 for _, map in ipairs(LEADER_MAPPINGS) do
-  vim.keymap.set(map[1], '<leader>' .. map[2], map[5], {remap = map[3]})
+  MyMap(map, '<leader>')
+  -- vim.keymap.set(map[1], '<leader>' .. map[2], map[5], {remap = map[3], desc = map[4]})
 end
 
 

@@ -15,6 +15,7 @@ let g:my_plugins = {
 \    "fzf":                         [ 'junegunn',           'fzf.vim'                       ],
 \    "git":                         [ 'lewis6991',          'gitsigns.nvim'                 ],
 \    "lf":                          [ 'ptzz',               'lf.vim'                        ],
+\    'lisp autoformat':             [ 'vim-autoformat',     'vim-autoformat'                ],
 \    "lisp paredit":                [ 'vim-scripts',        'paredit.vim'                   ],
 \    "lisp vlime":                  [ 'vlime',              'vlime',                        {'rtp': 'vim/'} ],
 \    "live preview html":           [ 'turbio',             'bracey.vim',                   {'do': 'npm install --prefix server'} ],
