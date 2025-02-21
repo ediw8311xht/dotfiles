@@ -8,6 +8,8 @@ let g:my_plugins = {
 \    "cmp luasnip":                 [ 'saadparwaiz1',       'cmp_luasnip'                   ],
 \    "cmp path":                    [ 'hrsh7th',            'cmp-path'                      ],
 \    'cmp plain english':           [ 'uga-rosa',           'cmp-dictionary'                ],
+\    "nvim cmp":                    [ 'hrsh7th',            'nvim-cmp'                      ],
+\    "vlime cmp":                   [ 'HiPhish',            'nvim-cmp-vlime'                ],
 \    "devicons":                    [ 'nvim-tree',          'nvim-web-devicons'             ],
 \    "elixir":                      [ 'elixir-tools',       'elixir-tools.nvim'             ],
 \    "elixirfiledetect":            [ 'elixir-editors',     'vim-elixir'                    ],
@@ -27,7 +29,6 @@ let g:my_plugins = {
 \    "marks":                       [ 'chentoast',          'marks.nvim'                    ],
 \    "neoterm":                     [ 'kassio',             'neoterm'                       ],
 \    "nui":                         [ 'MunifTanjim',        'nui.nvim'                      ],
-\    "nvim cmp":                    [ 'hrsh7th',            'nvim-cmp'                      ],
 \    "orgmode":                     [ 'nvim-orgmode',       'orgmode'                       ],
 \    "plenary":                     [ 'nvim-lua',           'plenary.nvim'                  ],
 \    "restore view":                [ 'vim-scripts',        'restore_view.vim'              ],
@@ -45,6 +46,7 @@ let g:my_plugins = {
 \    'kitty syntax':                [ 'fladson',            'vim-kitty',                    { 'tag': '*' } ],
 \    'PlantUML Syntax':             [ 'aklt',               'plantuml-syntax'               ],
 \    'markdown Syntax':             [ 'drmingdrmer',        'vim-syntax-markdown'           ],
+\    'move file':                   [ 'kovetskiy',          'neovim-move',                  { 'do' : ':UpdateRemotePlugins' } ],
 \ }
 "https://github.com/aklt/plantuml-syntax.git
 "\    'latex lsp':                   [ 'latex-lsp',          'texlab'                      ],

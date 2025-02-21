@@ -284,7 +284,7 @@ Zutty.border:               5px
 !*.shading:	   	20
 !*.alphaOffset: 0.1
 i3wm.browser: brave
-i3wm.BORDER_FILE: borders/border_regular.conf
+i3wm.BORDER_FILE: borders/border_flash.conf
 
 i3wm.IN_GAPS:   20
 i3wm.OUT_GAPS:  10

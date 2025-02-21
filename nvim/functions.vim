@@ -98,24 +98,24 @@ fu! M_Map(maptype, keys, leader=0)
 endfu
 
 fu! CyBack(nextprevious)
-    let lenny = len(g:myBg)
+    let lenny = len(g:MyColorTable)
     let i = 0
     let current_background = synIDattr(hlID("Normal"), "bg")
     if current_background == ""
         "CATCH NO BACKGROUND (Transparency)
         let current_background="NONE"
     endif
-    for _ in g:myBg
-        if current_background ==? _
-            let j = (i + (a:nextprevious)) % lenny
-            execute "highlight Normal guibg=" . g:myBg[j]
-            execute "highlight Normal guifg=" . g:myFg[j]
-            echo j . ' / ' . lenny
+    while i < lenny
+        if current_background ==? g:MyColorTable[i][0]
+            let j = (i + a:nextprevious + lenny) % lenny
+            execute "highlight Normal guibg=" . g:MyColorTable[j][0]
+            execute "highlight Normal guifg=" . g:MyColorTable[j][1]
+            echo j . ' / ' . (lenny-1)
             syntax on
             return
         endif
         let i += 1
-    endfor
+    endwhile
 endfu
 
 fu! SetScheme(scheme)

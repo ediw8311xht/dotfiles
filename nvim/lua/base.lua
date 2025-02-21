@@ -138,6 +138,11 @@ cmp.setup({
     { name = 'dotenv'},
   })
 })
+cmp.setup.filetype( { 'lisp' }, {
+  sources = {
+    { name = 'vlime' }
+  }
+})
 gitsigns.setup({
   signs = {
     add      = { text = '+' },

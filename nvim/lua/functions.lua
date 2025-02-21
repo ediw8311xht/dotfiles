@@ -42,6 +42,13 @@ function Contains(t, check_value, callback)
   return false
 end
 
+function SearchAllBuffs(s)
+  -- vim.cmd.buf
+  -- vim.cmd.
+end
+-- function Format(t)
+-- end
+
 -- function SearchMaps(search_string)
 --   for i,v in pairs(ALL_MAPPINGS) do
 --   end
@@ -49,3 +56,5 @@ end
 -- function SearchBuffers(s)
 --   vc( {cmd="vimgrep", args={s, "##"} } )
 -- end
+
+

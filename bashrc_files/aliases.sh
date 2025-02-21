@@ -24,7 +24,7 @@ alias n='         lsd --group-directories-first -t -r --icon="never" --permissio
 alias lsn='       lsd --icon="never" -l'
 alias lst='       lsd --icon="never" -ltrh'
 alias lsz='       lsd --icon="never" -lSrh'
-alias ll='        lsd --group-directories-first --icon="never" -rt --permission="octal"  --date=+"[%_H:%M:%S|%a|%D]" --blocks="permission,user,date,name"'
+alias ll='        lsd --group-directories-first --icon="never" -rt --permission="octal"  --date=+" [ %_H:%M:%S | %a | %D ]" --blocks="permission,user,date,name"'
 alias lla='       ll -a'
 #--------------------------------------------------elixir--------------------------------#
 alias i='         iex' # elixir
