@@ -263,7 +263,7 @@ Xmessage*message*Scroll:    Never
 Xmessage*message*Border:    0
 Xmessage*background:        #008fF8
 Xmessage*foreground:        #000000
-Xmessage*geometry:          +40+40
+Xmessage*geometry:          +100+40
 Xmessage*.*bw:              0
 Xmessage*renderFont:        true
 !Xmessage*faceName:          xos4Terminus
@@ -306,9 +306,9 @@ brave.BRAVE_SCALE: 1
 i3wm.other_monitor_1: HDMI-2
 i3wm.other_monitor_1_resx: 1920
 i3wm.other_monitor_1_resy: 1080
-i3wm.primary_monitor: DP-1
+i3wm.primary_monitor: HDMI-3
 i3wm.primary_monitor_resx: 1920
 i3wm.primary_monitor_resy: 1080
-i3wm.other_monitor_2: HDMI-3
-i3wm.other_monitor_2_resx: 1920
-i3wm.other_monitor_2_resy: 1080
+i3wm.other_monitor_2: DP-1
+i3wm.other_monitor_2_resx: 1080
+i3wm.other_monitor_2_resy: 1920

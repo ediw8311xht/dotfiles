@@ -188,7 +188,7 @@ alias pad='       perl -pe '
 alias pgr='       $PAGER'
 alias pifs='      printf "\n_%q_\n\n" "${IFS}"'
 alias pp='        procs'
-alias quickren="  perl-rename -v 's/[^0-9a-zA-Z\-.]/_/g'"
+alias quickren="  perl-rename -v 's/[^0-9a-zA-Z.]/_/g'"
 alias r='         \rg --pcre2 -i'
 alias ren='       renamer'
 alias rifs="      IFS=$' \t\n'"

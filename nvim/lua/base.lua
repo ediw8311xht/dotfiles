@@ -26,14 +26,9 @@ marks.setup({
     "nui",
   },
   mappings = {
-    set_next = "m,",
-    next = "m]",
-    prev = "m[",
-    preview = "m:",
-    delete_line = "dml",
-    delete_buf = "dmf",
-    annotate = "mk",
-    toggle = "m'",
+    set_next = "m,", next        = "m]",  prev       = "m[",
+    preview  = "m:", delete_line = "dml", delete_buf = "dmf",
+    annotate = "mk", toggle      = "m'",
   }
 })
 lspstatus.config({
@@ -47,58 +42,36 @@ which_key.setup({
     border = "none", -- none, single, double, shadow
     padding = {0, 0},
     wo = {
-         winblend = 5, -- value between 0-100 0 for fully opaque and 100 for fully transparent
-      }
+      winblend = 5, -- value between 0-100 0 for fully opaque and 100 for fully transparent
     },
-    layout = {
-      height = { min = 4, max = 50 }, -- min and max height of the columns
-      width = { min = 4, max = 70 }, -- min and max width of the columns
-      spacing = 1, -- spacing between columns
-      align = "left", -- align columns left, center or right
+  },
+  layout = {
+    height = { min = 4, max = 50 }, -- min and max height of the columns
+    width = { min = 4, max = 70 }, -- min and max width of the columns
+    spacing = 1, -- spacing between columns
+    align = "left", -- align columns left, center or right
+  },
+  icons = {
+    breadcrumb = "> ", -- symbol used in the command line area that shows your active key combo
+    separator = "|", -- symbol used between a key and it's label
+    group = "+", -- symbol prepended to a group
+    ellipsis = "…",
+    mappings = false, -- set to false to disable all mapping icons, both those explicitely added in a mapping and those from rules
+    rules = {},
+    colors = true,
+    keys = {
+        BS    = '󰁮 ',      Space           = '<leader>',  Tab           = '<Tab>',
+        Up    = '<up>',    Down            = '<down>',    Left          = '<left>',
+        Right = '<right>', C               = '^',         M             = '󰘵 ',
+        D     = '󰘳 ',      S               = '<S>',       CR            = '<CR>',
+        Esc   = '󱊷 ',      ScrollWheelDown = '󱕐 ',        ScrollWheelUp = '󱕑 ',
+        NL    = '󰌑 ',      F1              = '󱊫 ',        F2            = '󱊬 ',
+        F3    = '󱊭 ',      F4              = '󱊮 ',        F5            = '󱊯 ',
+        F6    = '󱊰 ',      F7              = '󱊱 ',        F8            = '󱊲 ',
+        F9    = '󱊳 ',      F10             = '󱊴 ',        F11           = '󱊵 ',
+        F12   = '󱊶 ',
     },
-    icons = {
-      breadcrumb = "> ", -- symbol used in the command line area that shows your active key combo
-      separator = "|", -- symbol used between a key and it's label
-      group = "+", -- symbol prepended to a group
-      ellipsis = "…",
-      -- set to false to disable all mapping icons,
-      -- both those explicitely added in a mapping
-      -- and those from rules
-      mappings = false,
-      rules = {},
-      colors = true,
-      -- used by key format
-      keys = {
-          BS = '󰁮 ',
-          Space = '<leader>',
-          Tab = '<Tab>',
-          Up = '<up>',
-          Down = '<down>',
-          Left = '<left>',
-          Right = '<right>',
-          C = '^',
-          M = '󰘵 ',
-          D = '󰘳 ',
-          S = '<S>',
-          CR = '<CR>',
-          Esc = '󱊷 ',
-          ScrollWheelDown = '󱕐 ',
-          ScrollWheelUp = '󱕑 ',
-          NL = '󰌑 ',
-          F1 = '󱊫 ',
-          F2 = '󱊬 ',
-          F3 = '󱊭 ',
-          F4 = '󱊮 ',
-          F5 = '󱊯 ',
-          F6 = '󱊰 ',
-          F7 = '󱊱 ',
-          F8 = '󱊲 ',
-          F9 = '󱊳 ',
-          F10 = '󱊴 ',
-          F11 = '󱊵 ',
-          F12 = '󱊶 ',
-      },
-    },
+  },
 })
 luasnip.setup({})
 lspsaga.setup({})
@@ -126,6 +99,7 @@ cmp.setup({
     ['<C-e>'] = cmp.mapping.close(),
   },
   sources = cmp.config.sources({
+    { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'vimtex' },
@@ -277,11 +251,17 @@ lspconfig.bashls.setup({
 --   filetypes = {"c", "cpp", "h", "cc", "hpp"},
 -- })
 lspconfig.jedi_language_server.setup({
+  capabilities = cmp_capabilities,
 })
 lspconfig.clangd.setup({
+  japabilities = cmp_capabilities,
   init_options = {
     fallbackFlags = {'--std=c++20'}
   },
+})
+lspconfig.eslint.setup({})
+lspconfig.ts_ls.setup({
+  capabilities = cmp_capabilities,
 })
 -- lspconfig.marksman.setup({
 -- })

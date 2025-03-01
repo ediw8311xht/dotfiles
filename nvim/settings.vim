@@ -1,24 +1,6 @@
 
 
-"let g:MyDefaultScheme = [ 'pop-punk', 'call CorrectColors()' ]
-
-"let g:MySchemes=[ 
-"    \g:MyDefaultScheme  ,
-"    \[ 'cyberpunk-neon' ,   'call CorrectColors()'  ],
-"    \[ 'eldar'          ,   "."                     ],
-"    \[ 'elflord'        ,   "."                     ],
-"    \[ 'delek'          ,   "."                     ],
-"    \[ 'morning'        ,   "."                     ],
-"    \[ 'blue'           ,   "."                     ],
-"    \[ 'peachpuff'      ,   "."                     ],
-"    \[ 'industry'       ,   "."                     ],
-"    \[ 'murphy'         ,   "."                     ],
-"\]
-"
-"let g:myBg          = [ "#010101",  "#333333",  "#111111", "#220000",  "#002200",  "#000022",  "#002244" ] + [ "NONE" ]
-"let g:myFg          = [ ".",        ".",         ".",       ".",        ".",        ".",        "#aaawaa" ] + [ "." ]
-"
-"let g:python3_host_prog="/usr/bin/python"
+let g:python3_host_prog="/usr/bin/python"
 
 filetype on
 filetype plugin on
@@ -26,7 +8,7 @@ filetype plugin indent on
 syntax enable
 set termguicolors
 set autoread
-set cindent
+set nocindent
 set backup
 set clipboard=unnamedplus
 set encoding=utf-8

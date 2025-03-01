@@ -70,7 +70,8 @@
     map  e      set 'guioptions sv' # show vertical scrollbar
     map  j      scroll 'down'
     map  k      scroll 'up'
-    map  f      toggle_fullscreen
+    #map  f      toggle_fullscreen
+    map  f      follow
     map  F      follow
     map  B      focus_inputbar ':bmark '
     map  K      navigate 'previous'

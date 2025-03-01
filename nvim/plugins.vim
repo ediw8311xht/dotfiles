@@ -7,6 +7,7 @@ let g:my_plugins = {
 \    "cmp env":                     [ 'SergioRibera',       'cmp-dotenv'                    ],
 \    "cmp luasnip":                 [ 'saadparwaiz1',       'cmp_luasnip'                   ],
 \    "cmp path":                    [ 'hrsh7th',            'cmp-path'                      ],
+\    "cmp auto hint":               [ 'hrsh7th',            'cmp-nvim-lsp-signature-help'   ],
 \    'cmp plain english':           [ 'uga-rosa',           'cmp-dictionary'                ],
 \    "nvim cmp":                    [ 'hrsh7th',            'nvim-cmp'                      ],
 \    "vlime cmp":                   [ 'HiPhish',            'nvim-cmp-vlime'                ],

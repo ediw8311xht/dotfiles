@@ -67,7 +67,7 @@
     include $BORDER_FILE
     include regular_bindings.conf
     include modes.conf
-    include shortcuts.conf
+    #include shortcuts.conf
     include windows.conf
 #-------WORKSPACES--------------------------------------------------------#
     #-------------------------------LEFT--------#
