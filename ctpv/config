@@ -18,15 +18,15 @@ preview gzip application/gzip {{
     zcat "${f}"
 }}
 
-preview log text/x-log {{
-    pygmentize "${f}"
+preview text_files text/* {{
+    head -1000 "${f}" | pygmentize
 }}
 
 preview lisp .lisp .fasl {{
     highlight "${f}" --stdout --out-format="truecolor"
 }}
 
-preview jshtml .js .json .html {{
+preview jshtml text/javascript .js .json .html {{
     highlight "${f}" --stdout --out-format="truecolor"
 }}
 
@@ -38,16 +38,14 @@ preview latex .tex {{
     highlight "${f}" --stdout --out-format="truecolor"
 }}
 
+preview mypy .py {{
+    highlight "${f}" --stdout --out-format="truecolor"
+}}
+
 preview mymd .md {{
     export CLICOLOR_FORCE=1
 	export COLORTERM=truecolor
     glow -s "$XDG_CONFIG_HOME/glow/my_default.json" "${f}"
 }}
 
-preview mypy .py {{
-    highlight "${f}" --stdout --out-format="truecolor"
-}}
 
-preview mytxt .txt {{
-    head -1000 "${f}"
-}}

@@ -13,16 +13,20 @@ toggle_r_rate() {
     notify-send -t 3000 "Keyboard Repeat Toggled" "${status}"
 }
 
+
 set_mouse_sensitivity() {
-    if [[ "${1,,}" = 'r' ]] ; then
-        xinput --set-prop "${MY_MOUSE}" "libinput Accel Speed" 0.4
-        #xinput --set-prop "${MY_MOUSE}" "libinput Accel Speed" 1
-        #xinput --set-prop "${MY_MOUSE}" "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 1
-    else
-        xinput --set-prop "${MY_MOUSE}" "libinput Accel Speed" 0
-        #xinput --set-prop "${MY_MOUSE}" "libinput Accel Speed" -1
-        #xinput --set-prop "${MY_MOUSE}" "Coordinate Transformation Matrix" 50, 0, 0, 0, 50, 0, 0, 0, 1
+    local DEFAULT=0
+    local vs
+    if [[ -z "${1,,}" ]] || [[ "${1,,}" = 'z' ]] ; then
+        vs="${DEFAULT}"
+    elif [[ "$(bc <<< "-1 <= ${1,,} <= 1" 2>/dev/null)" = "1" ]] ; then 
+        vs="${1,,}"
+    else 
+        echo "Invalid number must be float between -1 and +1." >&2
+        return 1
     fi
+
+    xinput --set-prop "${MY_MOUSE}" "libinput Accel Speed" "${vs}"
 }
 
 main() {

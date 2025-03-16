@@ -99,10 +99,11 @@ cmp.setup({
     ['<C-e>'] = cmp.mapping.close(),
   },
   sources = cmp.config.sources({
-    { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lsp' },
+    { name = 'nvim_lua' },
     { name = 'luasnip' },
     { name = 'vimtex' },
+    { name = 'nvim_lsp_signature_help' },
     -- { name = "latex_symbols" },
     -- { name = "dictionary", keyword_length = 2, },
   }, {

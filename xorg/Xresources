@@ -183,8 +183,8 @@ URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-c:           perl:clipboard:copy
 URxvt.keysym.M-v:           perl:clipboard:paste
 URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
-*dpi:                       96
-*Brave*dpi:                  120
+*dpi:                       94
+*Brave*dpi:                 120
 !*antialias:              True
 !*hinting:                Full
 URxvt.keysym.KP_Add:        +
@@ -251,6 +251,7 @@ dmenu.color48:      #FFFFFF
 !xmessage*font: -*-dejavu sans-medium-r-*-*-40-*-*-*-*-*-*-*
 !-misc-fira code medium-*-r-normal-*-32-94-0-0-m-98-iso8859-15
 !xofontsel*font: -misc-fira code medium-*-r-normal-*-32-94-0-0-m-98-iso8859-15
+Xcursor.size:   5px
 Xft.antialias:  1
 Xft.hinting:    1
 Xft.hintstyle:  hintfull

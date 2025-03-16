@@ -1,7 +1,7 @@
 #
 #- ~/.bashrc
 #
-# shellcheck disable=SC2016,SC2064,SC1094,SC2089
+# shellcheck disable=SC2016,SC2064,SC1094,SC2089,SC2090
 
 #[[ $- == *i* ]] && source "${HOME}/.local/share/blesh/ble.sh" --noattach
 
@@ -37,3 +37,6 @@ export PERL_LOCAL_LIB_ROOT
 PERL_MB_OPT='--install_base "/$HOME/perl5"'; export PERL_MB_OPT
 PERL_MM_OPT="INSTALL_BASE=/$HOME/perl5"; export PERL_MM_OPT
 export GEM_HOME="$HOME/.local/share/gem/ruby/3.3.0/"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"

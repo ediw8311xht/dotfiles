@@ -1,7 +1,8 @@
 
 let g:my_plugins = {
 \    "luasnip":                     [ 'L3MON4D3',           'LuaSnip'                       ],
-\    "cmp":                         [ 'hrsh7th',            'cmp-nvim-lsp'                  ],
+\    "cmp lsp":                     [ 'hrsh7th',            'cmp-nvim-lsp'                  ],
+\    "cmp lua":                     [ 'hrsh7th',            'cmp-nvim-lua'                  ],
 \    "cmp buffer":                  [ 'hrsh7th',            'cmp-buffer'                    ],
 \    "cmp cmdline":                 [ 'hrsh7th',            'cmp-cmdline'                   ],
 \    "cmp env":                     [ 'SergioRibera',       'cmp-dotenv'                    ],
@@ -9,8 +10,8 @@ let g:my_plugins = {
 \    "cmp path":                    [ 'hrsh7th',            'cmp-path'                      ],
 \    "cmp auto hint":               [ 'hrsh7th',            'cmp-nvim-lsp-signature-help'   ],
 \    'cmp plain english':           [ 'uga-rosa',           'cmp-dictionary'                ],
-\    "nvim cmp":                    [ 'hrsh7th',            'nvim-cmp'                      ],
 \    "vlime cmp":                   [ 'HiPhish',            'nvim-cmp-vlime'                ],
+\    "nvim cmp":                    [ 'hrsh7th',            'nvim-cmp'                      ],
 \    "devicons":                    [ 'nvim-tree',          'nvim-web-devicons'             ],
 \    "elixir":                      [ 'elixir-tools',       'elixir-tools.nvim'             ],
 \    "elixirfiledetect":            [ 'elixir-editors',     'vim-elixir'                    ],
