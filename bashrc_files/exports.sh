@@ -71,8 +71,9 @@ export  PAGER='most'
 export  LESSOPEN='|pygmentize -g %s'
 export  LESS='-R'
 export  DMENU_SCRIPT="${HOME}/bin/my_dmenu.sh"
+export  MY_RESOURCES="${HOME}/bin/Resources/"
 #------------------MULTI-LEVEL---------#
-export  PYTHONPATH="${PYTHONPATH}:/usr/bin/python3"
+export  PYTHONPATH="${PYTHONPATH}:/usr/bin/python3:${HOME}/.local/lib/python3.13"
 #####################   Fixes colored man pages when using `most`, for some reason, TY https://stackoverflow.com/users/26449/bill                 #
 export  GROFF_NO_SGR=1 ### https://stackoverflow.com/a/32456403                                                                                   #
 #####################   https://stackoverflow.com/questions/32384644/color-setting-works-for-only-for-help-tab-in-man-page-dosent-work-for-the-en #
