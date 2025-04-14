@@ -49,6 +49,7 @@ let g:my_plugins = {
 \    'PlantUML Syntax':             [ 'aklt',               'plantuml-syntax'               ],
 \    'markdown Syntax':             [ 'drmingdrmer',        'vim-syntax-markdown'           ],
 \    'move file':                   [ 'kovetskiy',          'neovim-move',                  { 'do' : ':UpdateRemotePlugins' } ],
+\    'code-action previews':        [ 'aznhe21',            'actions-preview.nvim'          ],
 \ }
 "https://github.com/aklt/plantuml-syntax.git
 "\    'latex lsp':                   [ 'latex-lsp',          'texlab'                      ],

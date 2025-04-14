@@ -1,5 +1,5 @@
 #include <iostream>
-#include "easy_input.h"
+//#include "easy_input.h"
 
 int main()
 {

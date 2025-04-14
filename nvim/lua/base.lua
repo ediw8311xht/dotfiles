@@ -13,10 +13,12 @@ local gitsigns          = require('gitsigns')
 local marks             = require('marks')
 local lspstatus         = require('lsp-status')
 local cmp_capabilities  = require('cmp_nvim_lsp').default_capabilities()
+local actions_preview   = require('actions-preview');
 
 marks.setup({
   default_mappings = true,
-  builtin_marks = {".", "<", ">", "^"},
+  -- builtin_marks = {".", "<", ">", "^"},
+  builtin_marks = {},
   cyclic = true,
   refresh_interval = 400,
   sign_priority = {lower=10, uppwer=15, built=8, bookmark=20 },
@@ -73,6 +75,7 @@ which_key.setup({
     },
   },
 })
+actions_preview.setup({})
 luasnip.setup({})
 lspsaga.setup({})
 cmp.setup({
