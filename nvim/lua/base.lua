@@ -1,6 +1,5 @@
 
 local HOME              = os.getenv("HOME")
-local lsp_status        = require('lsp-status')
 local lspconfig         = require('lspconfig')
 local luasnip           = require('luasnip')
 local cmp               = require('cmp')
@@ -11,9 +10,11 @@ local elixirls          = require('elixir.elixirls')
 local lspsaga           = require('lspsaga')
 local gitsigns          = require('gitsigns')
 local marks             = require('marks')
-local lspstatus         = require('lsp-status')
 local cmp_capabilities  = require('cmp_nvim_lsp').default_capabilities()
 local actions_preview   = require('actions-preview');
+
+require('lsp-progress').setup({})
+-- vim.opt.runtimepath:prepend(
 
 marks.setup({
   default_mappings = true,
@@ -33,10 +34,11 @@ marks.setup({
     annotate = "mk", toggle      = "m'",
   }
 })
-lspstatus.config({
-  indicator_ok = 'Ok',
-})
-lsp_status.register_progress()
+-- local lspstatus         = require('lsp-status')
+-- lspstatus.config({
+--   indicator_ok = 'Ok',
+-- })
+-- lsp_status.register_progress()
 which_key.setup({
 --    notify = false,
   win = {
@@ -231,7 +233,7 @@ lspconfig.lua_ls.setup({
   },
 })
 lspconfig.bashls.setup({
-  on_attach = lsp_status.on_attach,
+  -- on_attach = lsp_status.on_attach,
   capabilities = cmp_capabilities,
   filetypes = { "bash" },
   settings = {

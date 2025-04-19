@@ -179,7 +179,7 @@ alias gr='        grep --file="-" -Pin "${HOME}/.bashrc" "${HOME}/bashrc_files/"
 alias grf='       grep --file="-" -Fin "${HOME}/.bashrc" "${HOME}/bashrc_files/"* <<<'
 alias htmlcheck=' xmllint --html'
 alias i3gr='      grep --file="-" -Pri "${HOME}/.config/i3/"   <<< '
-alias img='       nsxiv -0'
+alias nsx='       nsxiv -a -0'
 alias ldi='       fdisk -l -o +uuid'
 alias list_coms=' compgen -c'
 alias mdview='    markdown_view_w3m "$( fd -tf ".*[.]md" | fzf)"'

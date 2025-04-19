@@ -69,9 +69,9 @@ set statusline+=%m
 "set statusline+=[%v]\ (%L\ lines)\ 
 "set statusline+=(%{wordcount().words}\ words\)
 set statusline+=%=
-"set statusline+=%#HLspStatus#%{LspStatus()}
+set statusline+=%#HLspStatus#%{LspStatus()}
 set statusline+=%*
-set statusline+=[%{LspStatus()}]\ 
+"set statusline+=[%{LspStatus()}]\ 
 set statusline+=[%F]
 
 let g:neoterm_automap_keys=',Tt'

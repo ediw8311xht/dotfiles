@@ -9,6 +9,7 @@ application/zip=engrampa.desktop;
 text/csv=gvim.desktop;nvim.desktop;
 video/quicktime=vlc.desktop;
 image/gif=brave-browser.desktop;sxiv.desktop;
+text/x-c++src=okularApplication_txt.desktop;vim.desktop;nvim.desktop;
 
 [Default Applications]
 application/epub+zip=zathura.desktop;
@@ -106,7 +107,7 @@ text/tcl=nvim.desktop;
 text/vbscript=nvim.desktop;
 text/vnd.trolltech.linguist=nvim.desktop;
 text/x-c++hdr=nvim.desktop;
-text/x-c++src=nvim.desktop;
+text/x-c++src=nvim.desktop
 text/x-chdr=nvim.desktop;
 text/x-cmake=nvim.desktop;
 text/x-common-lisp=nvim.desktop;

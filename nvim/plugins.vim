@@ -26,7 +26,6 @@ let g:my_plugins = {
 \    "lspconfig":                   [ 'neovim',             'nvim-lspconfig'                ],
 \    "lsp lines":                   [ 'maan2003',           'lsp_lines.nvim'                ],
 \    "lsp saga":                    [ 'nvimdev',            'lspsaga.nvim'                  ],
-\    "lsp statusline":              [ 'nvim-lua',           'lsp-status.nvim'               ],
 \    "markdown preview":            [ 'iamcco',             'markdown-preview.nvim',        { 'do': 'cd app && yarn install' } ],
 \    "marks":                       [ 'chentoast',          'marks.nvim'                    ],
 \    "neoterm":                     [ 'kassio',             'neoterm'                       ],
@@ -50,8 +49,10 @@ let g:my_plugins = {
 \    'markdown Syntax':             [ 'drmingdrmer',        'vim-syntax-markdown'           ],
 \    'move file':                   [ 'kovetskiy',          'neovim-move',                  { 'do' : ':UpdateRemotePlugins' } ],
 \    'code-action previews':        [ 'aznhe21',            'actions-preview.nvim'          ],
+\    'lsp status line':             [ 'linrongbin16',       'lsp-progress.nvim',            ],
 \ }
 "https://github.com/aklt/plantuml-syntax.git
+"\    "lsp statusline":              [ 'nvim-lua',           'lsp-status.nvim'               ],
 "\    'latex lsp':                   [ 'latex-lsp',          'texlab'                      ],
 "\    'vim latex snippest':          [ 'evesdropper',        'luasnip-latex-snippets.nvim' ],
 "\    'latex cmp':                   [ 'kdheepak',           'cmp-latex-symbols'           ],
