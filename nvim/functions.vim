@@ -203,7 +203,7 @@ endfunction
 
 fu! LspStatus() abort
     if luaeval('#vim.lsp.get_clients(bufnr) > 0')
-        return luaeval("require('lsp-progress').progress({})")
+        return luaeval("require('lsp-progress').progress()")
     endif
     return ""
 endfu
