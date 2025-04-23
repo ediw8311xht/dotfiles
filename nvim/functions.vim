@@ -7,7 +7,7 @@ fu! CorrectColors()
         hi Comment          gui=italic guifg=#005FEF guibg=NONE
     endif
     hi ColorColumn          gui=NONE    guibg=#222222   guifg=NONE
-    hi CursorLine           gui=bold    guibg=#002233   guifg=NONE
+    hi CursorLine           gui=bold    guibg=#111111   guifg=NONE
     hi CursorLineNr         gui=NONE    guibg=NONE      guifg=#FFFF00
     hi DiagnosticError                  guifg=#000000   guibg=#990000 
     hi DiagnosticHint                   guifg=#000000   guibg=#888888 
@@ -203,7 +203,7 @@ endfunction
 
 fu! LspStatus() abort
     if luaeval('#vim.lsp.get_clients(bufnr) > 0')
-        return luaeval("require('lsp-progress').progress()")
+        return luaeval("require('lsp-status').status()")
     endif
     return ""
 endfu

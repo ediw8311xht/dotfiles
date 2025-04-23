@@ -1,92 +1,13 @@
 
-local HOME              = os.getenv("HOME")
-local lspconfig         = require('lspconfig')
+local lsp_status        = require('lsp-status')
 local luasnip           = require('luasnip')
 local cmp               = require('cmp')
 local org               = require('orgmode')
-local elixir            = require('elixir')
 local which_key         = require('which-key')
-local elixirls          = require('elixir.elixirls')
 local lspsaga           = require('lspsaga')
 local gitsigns          = require('gitsigns')
 local marks             = require('marks')
-local cmp_capabilities  = require('cmp_nvim_lsp').default_capabilities()
-local actions_preview   = require('actions-preview')
-local lsp_progress      = require('lsp-progress')
-
-lsp_progress.setup({
-   client_format = function(client_name, spinner, series_messages)
-        if #series_messages == 0 then
-            return nil
-        end
-        return {
-            name = client_name,
-            body = spinner .. " " .. table.concat(series_messages, ", "),
-        }
-    end,
-    format = function(client_messages)
-        --- @param name string
-        --- @param msg string?
-        --- @return string
-        local function stringify(name, msg)
-            return msg and string.format("%s %s", name, msg) or name
-        end
-
-        local sign = "✅" -- nf-fa-gear \uf013
-        local lsp_clients = vim.lsp.get_clients()
-        local messages_map = {}
-        for _, climsg in ipairs(client_messages) do
-            messages_map[climsg.name] = climsg.body
-        end
-
-        if #lsp_clients > 0 then
-            table.sort(lsp_clients, function(a, b)
-                return a.name < b.name
-            end)
-            local builder = {}
-            for _, cli in ipairs(lsp_clients) do
-                if
-                    type(cli) == "table"
-                    and type(cli.name) == "string"
-                    and string.len(cli.name) > 0
-                then
-                    if messages_map[cli.name] then
-                        table.insert(
-                            builder,
-                            stringify(cli.name, messages_map[cli.name])
-                        )
-                    else
-                        table.insert(builder, stringify(cli.name))
-                    end
-                end
-            end
-            if #builder > 0 then
-                return sign .. " " .. table.concat(builder, ", ")
-            end
-        end
-        return ""
-    end,
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- vim.opt.runtimepath:prepend(
+local actions_preview   = require('actions-preview');
 
 marks.setup({
   default_mappings = true,
@@ -106,11 +27,8 @@ marks.setup({
     annotate = "mk", toggle      = "m'",
   }
 })
--- local lspstatus         = require('lsp-status')
--- lspstatus.config({
---   indicator_ok = 'Ok',
--- })
--- lsp_status.register_progress()
+lsp_status.config({ indicator_ok = 'Ok', })
+lsp_status.register_progress()
 which_key.setup({
 --    notify = false,
   win = {
@@ -238,125 +156,3 @@ org.setup({
   org_agenda_files = {'~/Documents/Dropbox/org/*', '~/Documents/my-orgs/**/*'},
   org_default_notes_file = '~/Documents/Dropbox/org/refile.org',
 })
--- Elixir --
-elixir.setup({
-  nextls = {
-    enable = true,
-    filetypes = { "elixir" },
-    init_options = {
-      mix_env = "dev",
-      mix_target = "host",
-      experimental = {
-        completions = { enable = true }
-      }
-    },
-  },
-  elixirls = {
-    enable = false,
-    filetypes = { "elixir" },
-    -- cmd = "/usr/bin/elixir-ls",
-    -- default settings, use the `settings` function to override settings
-    settings = elixirls.settings {
-      dialyzerEnabled = true,
-      fetchDeps = true,
-      enableTestLenses = true,
-      suggestSpecs = true,
-    },
-    -- on_attach = function(client, bufnr)
-    --     vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
-    --     vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
-    --     vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
-    -- end
-  },
-  dependencies = {
-  "nvim-lua/plenary.nvim",
-  },
-})
--- LSP --
-lspconfig.tailwindcss.setup({
-  filetype = {},
-  filetypes = { "html-eex", "heex"},
-  capabilities = cmp_capabilities,
-  init_options = {
-    userLanguages = {
-      elixir = "html-eex",
-      eelixir = "html-eex",
-      heex = "html-eex",
-    },
-  },
-})
-lspconfig.cssls.setup({
-  capabilities = cmp_capabilities,
-})
-lspconfig.html.setup({
-  capabilities = cmp_capabilities,
-})
-lspconfig.vimls.setup({
-  capabilities = cmp_capabilities,
-})
-lspconfig.lua_ls.setup({
-  capabilities = cmp_capabilities,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { 'vim' }
-      }
-    }
-  },
-})
-lspconfig.bashls.setup({
-  -- on_attach = lsp_status.on_attach,
-  capabilities = cmp_capabilities,
-  filetypes = { "bash" },
-  settings = {
-    bashIde = {
-      shellcheckArguments = '--rcfile='..HOME..'/.shellcheckrc'
-    }
-  }
-})
--- lspconfig.pyright.setup{
---   on_attach = lsp_status.on_attach,
---   capabilities = cmp_capabilities,
---   settings = {
---       python = {
---         analysis = {
---           typeCheckingMode = "standard",
---       }
---     }
---   }
--- }
--- lspconfig.ccls.setup({
---   filetypes = {"c", "cpp", "h", "cc", "hpp"},
--- })
-lspconfig.jedi_language_server.setup({
-  capabilities = cmp_capabilities,
-})
-lspconfig.clangd.setup({
-  japabilities = cmp_capabilities,
-  init_options = {
-    fallbackFlags = {'--std=c++20'}
-  },
-})
-lspconfig.eslint.setup({})
-lspconfig.ts_ls.setup({
-  capabilities = cmp_capabilities,
-})
--- lspconfig.marksman.setup({
--- })
--- lspconfig.elixirls.setup{
---   credo = { enable = false },
---   cmd = { "/usr/lib/elixir-ls/language_server.sh" },
---   -- on_attach = custom_attach, -- this may be required for extended functionalities of the LSP
---   on_attach = lsp_status.on_attach,
---   capabilities = cmp_capabilities,
---   flags = {
---     debounce_text_changes = 150,
---   },
---   elixirLS = {
---     dialyzerEnabled   =  false,
---     fetchDeps     =  false,
---     enableTestLenses  =  false,
---     suggestSpecs    =  false,
---   };
--- }
-

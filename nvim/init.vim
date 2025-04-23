@@ -21,6 +21,8 @@ source $XDG_CONFIG_HOME/nvim/plugins.vim
 source $XDG_CONFIG_HOME/nvim/functions.vim
 lua require('mytreesitter')
 lua require('base')
+lua require('my_elixir')
+lua require('lsp_configs')
 
 
 lua require('mappings')
