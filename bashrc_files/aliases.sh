@@ -17,6 +17,7 @@ alias pacman='pacman --color="auto"'
 alias yay='yay --color="auto"'
 #--------------------------------------------------ls------------------------------------#
 alias transcript_ytdlp=' yt-dlp --ignore-config --skip-download --write-subs --write-auto-subs --sub-lang en --output "$VIDEOS/transcripts/%(title)s%(ext)s"'
+alias pkg_inf='   pkgfile_lib_info'
 alias nd='        NVIM_APPNAME="NVIM_CHAD" nvim'
 alias rgf='       source "${HOME}/bin/rg_fzf.sh"'
 alias L='         ls++'

@@ -19,6 +19,9 @@ list_files_pac() {
     return 0
     #if yay -Qi "${1}" 
 }
+pkgfile_lib_info() {
+    pkg-config --cflags --libs "${1}"
+}
 mps() {
     local h1='\[\e[00;01;07;34m\]'  h2='\[\e[00;01m\]'  h3='\[\e[00;01;34m\]'   h4='\[\e[00;01;33m\]'
     local d1='\D{%F}'               d2='\D{%T}'         d3='\D{%s}'
