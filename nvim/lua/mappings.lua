@@ -53,6 +53,8 @@ REGULAR_MAPPINGS={
   { n,    '<C-s>',    F, 'Sub char insensitive',   ':%s/\\v\\c'                                 },
   { n,    '<C-w>n',   F, '',                       ':new<esc><C-w>L'                            },
   { n,    '<esc>',    F, '',                       ':noh<esc>:echon ""<enter>'                  },
+  { n,    '<Tab>',    F, '',                       ':earlier<CR>'                               },
+  { n,    '<S-Tab>',  F, '',                       ':later<CR>'                                 },
   { n,    '?',        F, '',                       '?\\v\\c'                                    },
   { n,    'ZG',       F, '',                       ':wqall<CR>'                                 },
   { n,    '|',        F, '',                       '/\\V\\c'                                    },
