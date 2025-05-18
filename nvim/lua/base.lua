@@ -1,13 +1,14 @@
 
-local lsp_status        = require('lsp-status')
 local luasnip           = require('luasnip')
 local cmp               = require('cmp')
 local org               = require('orgmode')
 local which_key         = require('which-key')
-local lspsaga           = require('lspsaga')
 local gitsigns          = require('gitsigns')
 local marks             = require('marks')
 local actions_preview   = require('actions-preview');
+local auto_session      = require('auto-session');
+
+auto_session.setup({})
 
 marks.setup({
   default_mappings = true,
@@ -27,8 +28,6 @@ marks.setup({
     annotate = "mk", toggle      = "m'",
   }
 })
-lsp_status.config({ indicator_ok = 'Ok', })
-lsp_status.register_progress()
 which_key.setup({
 --    notify = false,
   win = {
@@ -69,7 +68,6 @@ which_key.setup({
 })
 actions_preview.setup({})
 luasnip.setup({})
-lspsaga.setup({})
 cmp.setup({
   -- performance = {
   --   throttle = 0.3,
@@ -99,6 +97,8 @@ cmp.setup({
     { name = 'luasnip' },
     { name = 'vimtex' },
     { name = 'nvim_lsp_signature_help' },
+    { name = 'ctags' },
+    { name = 'cmp-nvim-tags' },
     -- { name = "latex_symbols" },
     -- { name = "dictionary", keyword_length = 2, },
   }, {

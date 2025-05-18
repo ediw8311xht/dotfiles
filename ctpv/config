@@ -6,6 +6,7 @@ set forcekitty
 #set chafasixel
 set shell "/usr/bin/bash"
 
+
 preview epub .epub {{
     a="$((w*h))"
     [[ "${a}" -gt 500 ]] && a="500"
@@ -15,8 +16,12 @@ preview epub .epub {{
 }}
 
 preview gzip application/gzip {{
-    zcat "${f}"
+    zcat --list "${f}"
 }}
+
+# preview tarball .tar.gz {{
+#     tar --restrict --list --file "${f}"
+# }}
 
 preview text_files text/* {{
     head -1000 "${f}" | pygmentize
@@ -42,6 +47,12 @@ preview mypy .py {{
     highlight "${f}" --stdout --out-format="truecolor"
 }}
 
+# preview myd .md {{
+#     outfile="$(mktemp /tmp/rmarkXXXXXXXX.png)"
+#     RenderMarkdown --overwrite "${f}" "${outfile}"
+#     setup_image
+#     send_image "${outfile}"
+# }}
 preview mymd .md {{
     export CLICOLOR_FORCE=1
 	export COLORTERM=truecolor

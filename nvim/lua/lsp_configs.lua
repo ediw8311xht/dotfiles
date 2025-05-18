@@ -44,9 +44,12 @@ lspconfig.bashls.setup({
   }
 })
 lspconfig.clangd.setup({
-  japabilities = cmp_capabilities,
+  capabilities = cmp_capabilities,
   init_options = {
-    fallbackFlags = {'--std=c++20'}
+    fallbackFlags = {
+      '--std=gnu++20',
+      '-DMAGICKCORE_HDRI_ENABLE=1',
+    }
   },
 })
 

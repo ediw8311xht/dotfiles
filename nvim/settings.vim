@@ -30,10 +30,11 @@ set undofile
 set undolevels=10000
 set undoreload=10000
 set updatetime=400
-let NERDTreeIgnore = ['\.o$']
+"let NERDTreeIgnore = ['\.o$']
 "set dir=~/.mynvim/swapfiles
 "set backupdir=~/.mynvim/backupfiles
 " [Retain undo history if file is edited outside of Vim](https://stackoverflow.com/a/75553217)
+"set tags=$HOME/.config/.ctags
 let nvim_backup_swap = $HOME . '/.mynvim/' . getpid()
 silent! call mkdir(vimtmp, "p", 0700)
 let &backupdir=nvim_backup_swap
@@ -80,8 +81,8 @@ let g:lf_width=0.9
 let g:lf_height=0.9
 "let g:floaterm_borderchars='        '
 
-let g:coc_start_at_startup = v:true
-let g:coc_enable_at_startup = v:false
+"let g:coc_start_at_startup = v:false
+"let g:coc_enable_at_startup = v:false
 let g:mapleader = " "
 "let mapleader = " "
 let g:maplocalleader = ","

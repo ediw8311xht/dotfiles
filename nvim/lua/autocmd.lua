@@ -4,7 +4,9 @@ local va    = vim.api
 local vauto = vim.api.nvim_create_autocmd
 local vc    = vim.cmd
 
-TemplatePath = home .. "/.config/nvim/language_specific/templates/"
+ConfigDir = home .. "/.config/nvim"
+LanguageSpecificDir = ConfigDir .. "/language_specific"
+TemplateDir = home .. "/.config/nvim/language_specific/templates"
 MaxLinesCMP = 5000
 
 
@@ -43,11 +45,11 @@ end
 -------------------------
 -- Templates ------------
 -------------------------
-local function template_add(glob, template_path)
+local function template_add(glob, template_file)
   vauto({"BufNewFile"}, {
     pattern = glob,
     callback = function()
-      local full_path = TemplatePath .. template_path
+      local full_path = TemplateDir .. template_file
       vc("0read " .. full_path)
       vc("silent w")
       vc("silent !chmod 700 %")
@@ -55,7 +57,7 @@ local function template_add(glob, template_path)
 end
 local function template_add_e(exts)
   for _,ext in ipairs(exts) do
-    template_add("*." .. ext, "template." .. ext)
+    template_add("*." .. ext, "/template." .. ext)
   end
 end
 -------------------------
@@ -63,20 +65,25 @@ end
 -------------------------
 local exts = { "sh", "py", "kalker", "exs", "tex", "ex", "html", "cpp", "md", "lisp" }
 local globcomms = {
-  [home .. "/.bashrc"] = {
+  ---- Syntax ----
+  [ home .. "/bashrc_files/*" ]              = { "setfiletype bash"      } ,
+  [ "*.sh" ]                                 = { "setfiletype bash"      } ,
+  [ home .. "/.config/polybar/*.ini" ]       = { "setfiletype dosini"    } ,
+  [ home .. "/.config/polybar/*/*.ini" ]     = { "setfiletype dosini"    } ,
+  [ "*.kalker" ]                             = { "setfiletype kalker"    } ,
+  [ home .. "/.config/i3/*" ]                = { "setfiletype i3"        } ,
+  [ "*.ex,*.exs" ]                           = { "setfiletype elixir"    } ,
+  [ "*.schema" ]                             = { "setfiletype sql"       } ,
+  [ "*.md" ]                                 = { "setfiletype markdown"  } ,
+  [ home .. "/.config/zathura/*" ]           = { "set syntax=zathurarc"  } ,
+  ---- Special ----
+  [ home .. "/.bashrc"] = {
       "setfiletype bash",
       "source ${HOME}/.config/nvim/language_specific/bashrc.vim"
-    },
-  [home .. "/bashrc_files/*" ]              = { "setfiletype bash"      } ,
-  ["*.sh" ]                                 = { "setfiletype bash"      } ,
-  [home .. "/.config/polybar/*.ini" ]       = { "setfiletype dosini"    } ,
-  [home .. "/.config/polybar/*/*.ini" ]     = { "setfiletype dosini"    } ,
-  ["*.kalker" ]                             = { "setfiletype kalker"    } ,
-  [home .. "/.config/i3/*" ]                = { "setfiletype i3"        } ,
-  ["*.ex,*.exs" ]                           = { "setfiletype elixir"    } ,
-  ["*.schema" ]                             = { "setfiletype sql"       } ,
-  ["*.md" ]                                 = { "setfiletype markdown"  } ,
-  [home .. "/.config/zathura/*"]            = { "set syntax=zathurarc"  } ,
+  },
+  [ home .. "/TEST/QUICK/*.cpp" ] = {
+      "source" .. LanguageSpecificDir .. "/quick_cpp.vim"
+  },
 }
 template_add_e(exts)
 bufnr_add(globcomms)

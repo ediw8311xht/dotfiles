@@ -1,15 +1,16 @@
 vim.g.MyDefaultScheme = { 'pop-punk', 'call CorrectColors()' }
 vim.g.MySchemes = {
     vim.g.MyDefaultScheme ,
-    { 'cyberpunk-neon' ,   'call CorrectColors()'  },
-    { 'eldar'          ,   "."                     },
-    { 'elflord'        ,   "."                     },
-    { 'delek'          ,   "."                     },
-    { 'morning'        ,   "."                     },
-    { 'blue'           ,   "."                     },
-    { 'peachpuff'      ,   "."                     },
-    { 'industry'       ,   "."                     },
-    { 'murphy'         ,   "."                     },
+    { 'vividchalk'     ,   "."  },
+    { 'cyberpunk-neon' ,   "."  },
+    { 'eldar'          ,   "."  },
+    { 'elflord'        ,   "."  },
+    { 'delek'          ,   "."  },
+    { 'morning'        ,   "."  },
+    { 'blue'           ,   "."  },
+    { 'peachpuff'      ,   "."  },
+    { 'industry'       ,   "."  },
+    { 'murphy'         ,   "."  },
 }
 
 vim.g.MyColorTable = {

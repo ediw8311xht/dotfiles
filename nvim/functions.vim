@@ -26,13 +26,13 @@ fu! CorrectColors()
     hi MarkSignVirtTextHL   gui=NONE    guibg=NONE      guifg=#00FF00
     "hi ModeMsg              gui=NONE    guibg=#00ff00   guifg=#000087 
     "hi MoreMsg              gui=NONE    guibg=NONE      guifg=#5fffff 
-    hi NonText              gui=NONE    guibg=NONE      guifg=#00FF00 
-    hi Normal               gui=NONE    guibg=NONE      guifg=#D0D0D0
+    "hi NonText              gui=NONE    guibg=NONE      guifg=#00FF00 
+    "hi Normal               gui=NONE    guibg=NONE      guifg=#D0D0D0
     hi Search               gui=NONE    guibg=#FF00FF   guifg=#000000
     hi StatusLine           gui=NONE    guibg=NONE      guifg=#229922
     hi StatusLineNC         gui=NONE    guibg=NONE      guifg=#999999
     hi TabLine              gui=NONE    guibg=NONE      guifg=#999999
-    hi TabLineSel           gui=bold    guibg=NONE      guifg=#00FF00
+    hi TabLineSel           gui=NONE    guibg=NONE      guifg=#00FF00
     hi TermCursor                       guibg=NONE      guifg=#00AA00 
     hi HLspStatus           gui=NONE    guibg=NONE      guifg=#00FF00
     hi HStatusFullFile      gui=NONE    guibg=NONE      guifg=#999999
@@ -59,24 +59,27 @@ fu! CorrectColors()
         hi Floaterm                     guibg=#000000
         hi FloatermBorder               guibg=#000000   guifg=#000000
     "------------------------Tree-Sitter------------------------#
-        hi @module                                      guifg=#00FF00 
-        hi @keyword                                     guifg=#777777 
-        hi @keyword.function                            guifg=#009900
-        hi @function                                    guifg=#00AAAA
+        "hi @module                                      guifg=#00FF00 
+        "hi @keyword                                     guifg=#777777 
+        "hi @keyword.function                            guifg=#009900
+        "hi @function                                    guifg=#00AAAA
+    "------------------------LSP-CPP----------------------------------"
+        "hi @lsp.type.variable.cpp=NONE
+        hi clear @lsp.mod
     "-----Markdown--------"
         "hi Title gui=bold guifg=green
-        hi @markup.heading.1.markdown gui=bold,underdouble  guibg=#00FF00 guifg=#000000 guisp=#000000
-        hi @markup.heading.2.markdown gui=bold,underline    guibg=#00DD00 guifg=#000000
-        hi @markup.heading.3.markdown gui=bold              guibg=#00AA00 guifg=#000000
-        hi @markup.heading.4.markdown gui=bold              guibg=#009900 guifg=#000000
-        hi @markup.heading.5.markdown gui=bold              guibg=#007700 guifg=#000000
-        hi @markup.heading.6.markdown gui=bold              guibg=#00AA00 guifg=#000000
-        hi @markup.heading.7.markdown gui=bold              guibg=#00AA00 guifg=#000000
-
-        hi @markup.heading.markdown   gui=bold              guibg=#444444 guifg=#000000
-
-        hi @markup.raw.markdown_inline gui=bold guibg=#111111   guifg=#00FF00
-        hi @conceal.markdown_inline    gui=NONE guibg=NONE      guifg=#009900
+        hi @markup.heading.1.markdown gui=bold,underdouble  guibg=#000000 guifg=#00FFFF guisp=#000000
+        hi @markup.heading.2.markdown gui=bold,underline    guibg=#000000 guifg=#00DDDD
+        hi @markup.heading.3.markdown gui=bold              guibg=#000000 guifg=#00AAAA
+        hi @markup.heading.4.markdown gui=bold              guibg=#000000 guifg=#009999
+        hi @markup.heading.5.markdown gui=bold              guibg=#000000 guifg=#009900
+        hi @markup.heading.6.markdown gui=bold              guibg=#000000 guifg=#004400
+        "hi @markup.heading.7.markdown gui=bold              guibg=#999900 guifg=#000000
+        "
+        "hi @markup.heading.markdown   gui=bold              guibg=#444444 guifg=#000000
+        "
+        "hi @markup.raw.markdown_inline gui=bold guibg=#111111   guifg=#00FF00
+        "hi @conceal.markdown_inline    gui=NONE guibg=NONE      guifg=#009900
         "hi @markup.link.label.markdown_inline gui=NONE guifg=#009999
         "hi @markup.link.markdown_inline         gui=NONE
         "hi @markup.link.url.markdown_inline     gui=NONE

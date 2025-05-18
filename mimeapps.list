@@ -13,6 +13,7 @@ text/x-c++src=okularApplication_txt.desktop;vim.desktop;nvim.desktop;
 
 [Default Applications]
 application/epub+zip=zathura.desktop;
+application/vnd.oasis.opendocument.text=libreoffice-writer.desktop;
 application/epub=zathura.desktop;
 application/gzip=engrampa.desktop;
 application/json=nvim.desktop;
@@ -162,3 +163,5 @@ x-scheme-handler/gitkraken=GitKraken.desktop;
 x-scheme-handler/http=brave-browser.desktop;
 x-scheme-handler/https=brave-browser.desktop;
 x-scheme-handler/unknown=brave-browser.desktop;
+x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+x-scheme-handler/nxm=com.nexusmods.app.desktop

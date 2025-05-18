@@ -10,6 +10,8 @@ let g:my_plugins = {
 \    "cmp path":                    [ 'hrsh7th',            'cmp-path'                      ],
 \    "cmp auto hint":               [ 'hrsh7th',            'cmp-nvim-lsp-signature-help'   ],
 \    'cmp plain english':           [ 'uga-rosa',           'cmp-dictionary'                ],
+\    'cmp nvim tags':               [ 'quangnguyen30192',   'cmp-nvim-tags'                 ],
+\    'cmp ctags':                   [ 'delphinus',          'cmp-ctags'                     ],
 \    "vlime cmp":                   [ 'HiPhish',            'nvim-cmp-vlime'                ],
 \    "nvim cmp":                    [ 'hrsh7th',            'nvim-cmp'                      ],
 \    "devicons":                    [ 'nvim-tree',          'nvim-web-devicons'             ],
@@ -50,7 +52,9 @@ let g:my_plugins = {
 \    'markdown Syntax':             [ 'drmingdrmer',        'vim-syntax-markdown'           ],
 \    'move file':                   [ 'kovetskiy',          'neovim-move',                  { 'do' : ':UpdateRemotePlugins' } ],
 \    'code-action previews':        [ 'aznhe21',            'actions-preview.nvim'          ],
+\    'auto session':                [ 'rmagatti',           'auto-session'                  ],
 \ }
+"\    'ctags':                       [ 'universal-ctags',    'ctags'                         ],
 "https://github.com/aklt/plantuml-syntax.git
 "\    'latex lsp':                   [ 'latex-lsp',          'texlab'                      ],
 "\    'vim latex snippest':          [ 'evesdropper',        'luasnip-latex-snippets.nvim' ],
