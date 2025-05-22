@@ -68,8 +68,8 @@ fu! CorrectColors()
         hi clear @lsp.mod
     "-----Markdown--------"
         "hi Title gui=bold guifg=green
-        hi @markup.heading.1.markdown gui=bold,underdouble  guibg=#000000 guifg=#00FFFF guisp=#000000
-        hi @markup.heading.2.markdown gui=bold,underline    guibg=#000000 guifg=#00DDDD
+        hi @markup.heading.1.markdown gui=bold              guibg=#000000 guifg=#00FFFF guisp=#000000
+        hi @markup.heading.2.markdown gui=bold              guibg=#000000 guifg=#00DDDD
         hi @markup.heading.3.markdown gui=bold              guibg=#000000 guifg=#00AAAA
         hi @markup.heading.4.markdown gui=bold              guibg=#000000 guifg=#009999
         hi @markup.heading.5.markdown gui=bold              guibg=#000000 guifg=#009900

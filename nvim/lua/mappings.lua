@@ -81,7 +81,6 @@ LEADER_MAPPINGS={
   { n, 'S'   ,  F, '',                       ':source ~/.config/nvim/init.vim<esc>'                                 },
   { n, 'T'   ,  F, '',                       ':term<esc>'                                                           },
   { n, 'W'   ,  F, 'VimwikiIndex',           '<Plug>VimwikiIndex'                                                   },
-  { n, 'X'   ,  F, 'Execute with args',      ':!%:p '                                                               },
   { n, 'ZC'  ,  F, '',                       ':bd<esc>'                                                             },
   { n, '['   ,  F, 'Prev Buffer',            ':bprevious<CR>'                                                       },
   { n, ']'   ,  F, 'Next Buffer',            ':bnext<CR>'                                                           },
@@ -117,13 +116,14 @@ LEADER_MAPPINGS={
   { n, 'u'   ,  F, '',                       ':Lf<esc>'                                                             },
   { n, 'vv'  ,  F, '',                       ':call TogVE()<CR>'                                                    },
   { n, 'wr'  ,  F, 'Write',                  ':w<esc>'                                                              },
-  { n, 'x'   ,  F, 'Execute',                ':!%:p<esc>'                                                           },
   { n, 'y'   ,  F, '',                       ':hi Normal guibg=Transparent<esc>'                                    },
   { n, 'z'   ,  F, '',                       'z'                                                                    },
   { v, 'M'   ,  F, '',                       ':!dc<esc>'                                                            },
   { v, 'm'   ,  F, '',                       ':!bc<esc>'                                                            },
   { v, 'vc'  ,  F, '',                       ':!column -o " " -t<enter>'                                            },
   { v, 'vs'  ,  F, '',                       ':sort<enter>'                                                         },
+  { n, '<C-x>'   ,  F, 'Execute',                ':!%:p<esc>'                                                       },
+  { n, '<C-S-x>' ,  F, 'Execute with args',      ':!%:p '                                                           },
 }
 
 -- ALL_MAPPINGS = { [""] = REGULAR_MAPPINGS, ["<LEADER>"] = LEADER_MAPPINGS}

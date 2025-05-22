@@ -131,10 +131,10 @@ alias nvgr='      fd . -tf "${XDG_CONFIG_HOME}/nvim/" -x rg -H -u --color="alway
 alias fednv='     fd . -tf -0 "${HOME}/.config/nvim/" "${HOME}/.local/share/nvim/site/ftplugin/" -X nvim -c "Buffers"'
 alias ednv='      nvim -c "Buffers" "${XDG_CONFIG_HOME}/nvim/lua/"*.lua "${XDG_CONFIG_HOME}/nvim/"*.vim'
 alias echad='     cd "${XDG_CONFIG_HOME}/NVIM_CHAD/"; nd; cd -'
-alias nva='       fd . --exact-depth 1 -tf -0 -X nvim -c "Buffers"'
+alias nva='       fd . --exact-depth 1 --exclude "*.o" -tf -0 -X nvim -c "Buffers"'
 alias nvc='       fd . --case-sensitive --exact-depth 1 -e C -e cpp -e h -tf -0 -X nvim -c "Buffers"'
 #--------------------------------------------------zathura-------------------------------#
-alias z='         zathura --fork'
+#alias z='         zathura --fork'
 alias eread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --print0 | xargs -0 -r -o zathura --fork; exit'
 alias fread='     fd "[.](pdf|epub|mobi|azw2|djvu)$" | fzf --print0 | xargs -0 -r -o zathura --fork'
 #--------------------------------------------------df------------------------------------#
