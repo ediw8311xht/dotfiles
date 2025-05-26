@@ -293,7 +293,7 @@ i3wm.TOP_GAPS:   0
 i3wm.BOP_GAPS:   0
 i3wm.R_GAPS:     0
 i3wm.L_GAPS:     0
-brave.BRAVE_SCALE: 1
+i3wm.BRAVE_SCALE: 0.9
 
 
 

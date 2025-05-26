@@ -61,7 +61,7 @@
         set_from_resource $BOT_GAPS    i3wm.BOT_GAPS 0
         set_from_resource $R_GAPS      i3wm.R_GAPS   0
         set_from_resource $L_GAPS      i3wm.L_GAPS   0
-        set_from_resource $BRAVE_SCALE brave.BRAVE_SCALE 1
+        set_from_resource $BRAVE_SCALE i3wm.BRAVE_SCALE 0.9
         set_from_resource $BROWSER     i3wm.browser brave
 #-------------------------------------------------------INCLUDE-----------#
     include $BORDER_FILE
@@ -99,7 +99,7 @@
 #---------------------------------------------------------EXECS-----------#
     #$EXC    xcmenu
     $EXC    xcompmgr 	-n
-    $EXC    /usr/bin/dunst
+    #$EXC    /usr/bin/dunst
     $EXC    unclutter --timeout 2 --fork
     #$EXC    arbtt-capture -r 30
     $EXC_A  $HOME/.config/polybar/launch.sh

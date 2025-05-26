@@ -1,4 +1,4 @@
-
+# vim:set syntax=lf
 set shell bash
 set shellopts '-eu'
 ##USE DOUBLE QUOTES FOR 'set ifs "something"'
@@ -70,11 +70,6 @@ cmd trash ${{
     done
 }}
 
-#cmd autocd ${{
-#    echo "${PWD}" > "$(mktemp /tmp/tmplf.XXXXXXXX)"
-#    lf -remote "send ${id} quit" 2>/dev/null
-#}}
-
 cmd toggle_info ${{
     if [[ -n "$lf_info" ]] ; then
         lf -remote "send ${id} set info"
@@ -83,13 +78,24 @@ cmd toggle_info ${{
     fi
 }}
 
-
-# - CD -
+# 
+#------------- zoxide integration ----------#
+cmd z %{{
+    result="$(zoxide query --exclude "$PWD" "$@" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    lf -remote "send $id cd \"$result\""
+}}
+cmd zi ${{
+    result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    lf -remote "send $id cd \"$result\""
+}}
+cmd on-cd &{{
+    zoxide add "$PWD"
+}}
+#------------- CD --------------------------#
 # Uppercase
 map  <gt>C  cd  ~/.config/
 map  <gt>D  cd  ~/Desktop/
 map  <gt>P  cd  ~/Pictures/                                         
-
 # Lowercase
 map  <gt>b  cd  ~/bin/
 map  <gt>c  cd  ~/Desktop/Coding/
@@ -103,6 +109,7 @@ map  <gt>p  cd  ~/Pictures/
 map  <gt>t  cd  ~/TEST/
 map  <gt>v  cd  ~/Videos/
 
+#------------- RATIOS ----------------------#
 map <lt>t       set ratios 1:1:1:1
 map <lt>p       set preview!
 map <lt><lt>    set ratios 2:3:5
@@ -116,37 +123,43 @@ map <lt>6       set ratios 1:6
 map <lt>7       set ratios 1:7
 map <lt>8       set ratios 1:8
 map <lt>9       set ratios 1:9
-map <esc>       clear
-map <enter>     shell
-map <c-f>       :filter
-#map C 		:quit
-#map C 		!
+
+#------------- ETC -------------------------#
+map <c-f>   :filter
+map <enter> shell
+map <esc>   clear
 map ;		:mark-save
 map ?       :maps
+
 map	K		push 3k
 map E       :open_editor
 map H		set hidden!
 map I       :toggle_info "size:atime"
 map J		push 3j
-map O 		$mimeopen --ask $fx #-----------ASK AND THEN OPEN IN NEW WINDOW-----------------#
+map O 		$mimeopen --ask $fx
 map P		push :!echo<space>""<left>
 map Q 		&lf -remote 'send quit'; lf -remote 'quit'
+
 map RF	    push :rename<enter><c-u>
 map RN		rename
 map RR      :reload
+
 map Sb      :set drawbox!
 map Ss      :set number!; set relativenumber!
+
 map TR		:trash
 map U       :unselect; clear
 map VG		invert-below
 map Vg		:invert-below; invert
+
 map bB      &$BROWSER $fx
 map bQ      &qutebrowser $fx
+
 map c 		&sed "s@${HOME}/@\$\{HOME\}/@"  <<< "${fx[*]}" | xclip -selection "clipboard" -i -r
 map d  	  	set dironly!
 map e       np
 map m       push :!mkdir<space>
-map o 		&mimeopen $fx       #-----------OPEN IN NEW WINDOW------------------------------#
+map o 		&mimeopen $fx
 map r 		set reverse!
 map t       push :!touch<space>
 map x       cut
@@ -167,4 +180,12 @@ map x       cut
 #
 
 
+#--------------REMOVED----------------------#
+#cmd autocd ${{
+#    echo "${PWD}" > "$(mktemp /tmp/tmplf.XXXXXXXX)"
+#    lf -remote "send ${id} quit" 2>/dev/null
+#}}
+
+#map C 		:quit
+#map C 		!
 

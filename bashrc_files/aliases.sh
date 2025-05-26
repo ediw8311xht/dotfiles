@@ -6,7 +6,8 @@
 # w           RESERVED
 # X           RESERVED
 #--------------------------------------------------utilities-----------------------------#
-alias ls='ls --color="auto" '
+alias ls='ls --color="auto"'
+alias mv='mv -i'
 alias grep='grep --colour="auto" --group-separator="===================================" '
 alias systemctl='systemctl --no-pager'
 alias info='info --vi-keys'
