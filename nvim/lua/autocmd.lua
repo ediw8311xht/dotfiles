@@ -118,35 +118,7 @@ vauto({"FileType"}, {
   end
 })
 
--------------------------
--- Help File ------------
--------------------------
-
-local pattern_a = "'\\l{2,}'"
-local pattern_b = "[|]\\zs\\S+\\ze[|]"
-local combined  = pattern_a .. "|" .. pattern_b
-local bindings_help_buffer={
-    [ "CR"   ] = "<C-]>",
-    [ "BS"   ] = "<C-T>",
-    [ "o"    ] = "/\\v(" .. combined .. ")<CR>",
-    [ "O"    ] = "?\\v(" .. combined .. ")<CR>",
-    [ "<CR>" ] = "<C-]>",
-    [ "<BS>" ] = "<C-T>",
-}
-
-vauto({"FileType"}, {
-  pattern = "help",
-  callback = function()
-    for key,bind in pairs(bindings_help_buffer) do
-      vim.keymap.set( "n", key, bind, { remap = false, buffer = true } )
-    end
-  end
-})
-
--- autocmd FileType help nnoremap <buffer> <CR> <C-]>
--- autocmd FileType help nnoremap <buffer> <BS> <C-T>
-
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+vauto({"BufNewFile", "BufRead"}, {
   pattern = "/$HOME/.config/i3/*",
   callback = function()
     vim.cmd("setfiletype i3")
@@ -154,4 +126,4 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
 })
 
 
-
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
