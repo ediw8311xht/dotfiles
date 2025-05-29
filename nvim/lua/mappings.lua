@@ -35,8 +35,47 @@
 --  ||      l      ":lmap" mappings for Insert, Command-line and Lang-Arg      ||
 --  ||      c      Command-line                                                ||
 --  ||      t      Terminal-Job                                                ||
---  ||_________________________________________________________________________||
---
+--  ||-------------------------------------------------------------------------||
+--  || mode([{expr}])                                             [*mode()*]   ||
+--  ||_________________________________________________________________________||________
+--  ||    n         | Normal                                                           ||
+--  ||    no        | Op-pending                                                       ||
+--  ||    nov       | Op-pending (forced charwise |o_v|)                               ||
+--  ||    noV       | Op-pending (forced linewise |o_V|)                               ||
+--  ||    noCTRL-V  | Op-pending (forced blockwise |o_CTRL-V|) CTRL-V is one character ||
+--  ||    niI       | Normal using |i_CTRL-O| in |Insert-mode|                         ||
+--  ||    niR       | Normal using |i_CTRL-O| in |Replace-mode|                        ||
+--  ||    niV       | Normal using |i_CTRL-O| in |Virtual-Replace-mode|                ||
+--  ||    nt        | Normal in |terminal-emulator| (insert goes to Terminal mode)     ||
+--  ||    ntT       | Normal using |t_CTRL-\_CTRL-O| in |Terminal-mode|                ||
+--  ||    v         | Visual by character                                              ||
+--  ||    vs        | Visual by character using |v_CTRL-O| in Select mode              ||
+--  ||    V         | Visual by line                                                   ||
+--  ||    Vs        | Visual by line using |v_CTRL-O| in Select mode                   ||
+--  ||    CTRL-V    | Visual blockwise                                                 ||
+--  ||    CTRL-Vs   | Visual blockwise using |v_CTRL-O| in Select mode                 ||
+--  ||    s         | Select by character                                              ||
+--  ||    S         | Select by line                                                   ||
+--  ||    CTRL-S    | Select blockwise                                                 ||
+--  ||    i         | Insert                                                           ||
+--  ||    ic        | Insert mode completion |compl-generic|                           ||
+--  ||    ix        | Insert mode |i_CTRL-X| completion                                ||
+--  ||    R         | Replace |R|                                                      ||
+--  ||    Rc        | Replace mode completion |compl-generic|                          ||
+--  ||    Rx        | Replace mode |i_CTRL-X| completion                               ||
+--  ||    Rv        | Virtual Replace |gR|                                             ||
+--  ||    Rvc       | Virtual Replace mode completion |compl-generic|                  ||
+--  ||    Rvx       | Virtual Replace mode |i_CTRL-X| completion                       ||
+--  ||    c         | Command-line editing                                             ||
+--  ||    cr        | Command-line editing overstrike mode |c_<Insert>|                ||
+--  ||    cv        | Vim Ex mode |gQ|                                                 ||
+--  ||    cvr       | Vim Ex mode while in overstrike mode |c_<Insert>|                ||
+--  ||    r         | Hit-enter prompt                                                 ||
+--  ||    rm        | The -- more -- prompt                                            ||
+--  ||    r?        | A |:confirm| query of some sort                                  ||
+--  ||    !         | Shell or external command is executing                           ||
+--  ||    t         | Terminal mode: keys go to the job                                ||
+--  ||_________________________________________________________________________________||
 
 local F = false;
 local T = true;
@@ -46,6 +85,7 @@ local t = 't';
 local v = 'v';
 local e = '';
 local c = 'c';
+local l = 'l';
 
 REGULAR_MAPPINGS={
    [e] = {
@@ -57,13 +97,13 @@ REGULAR_MAPPINGS={
    [i] = {
      [ '<C-BS>'   ] = {F, '',                       '<C-w>'                                      },
      [ '<C-S-\\>' ] = {F, '',                       '<C-o><C-r>'                                 },
-     [ '<C-S-k>'  ] = {F, '',                       '<C-o>C'                                     },
+     [ '<C-S-k>'  ] = {F, '',                       '<C-o>D'                                     },
      [ '<C-S-t>'  ] = {F, '',                       '<C-d>'                                      },
      [ '<C-S-w>'  ] = {F, '',                       '<S-left>'                                   },
      [ '<C-\\>'   ] = {F, '',                       '<C-o>u'                                     },
-     [ '<C-a>'    ] = {F, '',                       '<C-o>I'                                     },
+     [ '<C-a>'    ] = {F, '',                       '<home>'                                     },
      [ '<C-b>'    ] = {F, '',                       '<left>'                                     },
-     [ '<C-e>'    ] = {F, '',                       '<C-o>A'                                     },
+     [ '<C-e>'    ] = {F, '',                       '<end>'                                      },
      [ '<C-f>'    ] = {F, '',                       '<right>'                                    },
      [ '<C-w>'    ] = {F, '',                       '<S-right>'                                  },
      [ 'jk'       ] = {F, '',                       '<esc>'                                      },
@@ -71,20 +111,20 @@ REGULAR_MAPPINGS={
    [n] = {
      [ '/'        ] = {F, '',                       '/\\v\\c'                                    },
      [ '<C-S-E>'  ] = {F, '',                       'bbe'                                        },
-     [ '<C-S-H>'  ] = {F, '',                       '<C-w>h'                                     },
-     [ '<C-S-J>'  ] = {F, '',                       '<C-w>j'                                     },
-     [ '<C-S-K>'  ] = {F, '',                       '<C-w>k'                                     },
-     [ '<C-S-L>'  ] = {F, '',                       '<C-w>l'                                     },
-     [ '<C-S-Tab>'] = {F, '',                       ':tabprevious<CR>'                           },
-     [ '<C-S-s>'  ] = {F, 'Sub char sensitive',     ':%s/\\v'                                    },
-     [ '<C-Tab>'  ] = {F, '',                       ':tabnext<CR>'                               },
+     [ '<C-S-H>'  ] = {F, 'Left pane',              '<C-w>h'                                     },
+     [ '<C-S-J>'  ] = {F, 'Down pane',              '<C-w>j'                                     },
+     [ '<C-S-K>'  ] = {F, 'Up Pane',                '<C-w>k'                                     },
+     [ '<C-S-L>'  ] = {F, 'Right pane',             '<C-w>l'                                     },
+     [ '<C-S-Tab>'] = {F, 'Previous tab',           ':tabprevious<CR>'                           },
+     [ '<C-S-s>'  ] = {F, 'Substitute char sens',   ':%s/\\v'                                    },
+     [ '<C-Tab>'  ] = {F, 'Next tab',               ':tabnext<CR>'                               },
      [ '<C-h>'    ] = {F, 'Left Pane',              '<C-w>h'                                     },
      [ '<C-j>'    ] = {F, 'Down Pane',              '<C-w>j'                                     },
      [ '<C-k>'    ] = {F, 'Up Pane',                '<C-w>k'                                     },
      [ '<C-l>'    ] = {F, 'Right Pane',             '<C-w>l'                                     },
      [ '<C-n>'    ] = {F, '+Nerd Tree',             ':NERDTreeToggle<CR>'                        },
-     [ '<C-p>'    ] = {F, 'Substitute',             '<C-i>'                                      },
-     [ '<C-s>'    ] = {F, 'Sub char insensitive',   ':%s/\\v\\c'                                 },
+     [ '<C-s>'    ] = {F, 'Substitute i',           ':%s/\\v\\c'                                 },
+     -- [ '<C-p>'    ] = {F, 'Substitute [All Buffs]', ':%s/\\v\\c'                                 },
      [ '<C-w>n'   ] = {F, 'New Buffer Right',       ':new<esc><C-w>L'                            },
      [ '<esc>'    ] = {F, 'Clear',                  ':noh<esc>:echon ""<enter>'                  },
      [ '?'        ] = {F, '',                       '?\\v\\c'                                    },
@@ -101,8 +141,11 @@ REGULAR_MAPPINGS={
      [ '`'        ] = {F, '',                       'zf'                                         },
    },
    [c] = {
-     [ '<C-a>'    ] = {F, 'Goto Beginning',         '<Home>'                                     },
-     [ '<C-e>'    ] = {F, 'Goto End',               '<End>'                                      },
+     [ '<C-a>'    ] = {F, '',                       '<home>'                                     },
+     [ '<C-b>'    ] = {F, '',                       '<left>'                                     },
+     [ '<C-e>'    ] = {F, '',                       '<end>'                                      },
+     [ '<C-f>'    ] = {F, '',                       '<right>'                                    },
+     [ '<C-k>'    ] = {F, '',                       '<C-c>D<C-c>'                                },
    }
 }
 -- beginning 
@@ -181,6 +224,7 @@ end
 
 KeyMapSetter(LEADER_MAPPINGS, "<leader>")
 KeyMapSetter(REGULAR_MAPPINGS, "")
+
 -- local status1 = '%t %r%m%=[%v] (%L lines) (%{wordcount().words} words)%=%#HLspStatus#%{LspStatus()}%*[%{LspStatus()}] [%F]'
 
 
@@ -194,3 +238,5 @@ KeyMapSetter(REGULAR_MAPPINGS, "")
 
 -- local _l = '<leader>'
 -- { n, 'I'   ,  F, '+ lsp_lines',            ':lua require("lsp_lines").toggle()<CR>'                            },
+     -- [ '<C-p>'    ] = {F, 'Substitute',             '<C-i>'                                      },
+
