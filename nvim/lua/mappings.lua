@@ -85,7 +85,7 @@ local t = 't';
 local v = 'v';
 local e = '';
 local c = 'c';
-local l = 'l';
+-- local l = 'l';
 
 REGULAR_MAPPINGS={
    [e] = {
@@ -146,7 +146,18 @@ REGULAR_MAPPINGS={
      [ '<C-w>'    ] = {F, '',                       '<S-right>'                                  },
      [ '<C-S-w>'  ] = {F, '',                       '<S-left>'                                   },
      [ '<C-BS>'   ] = {F, '',                       '<C-w>'                                      },
-   }
+   },
+   [ {n, v, t} ] = {
+     [ "<C-1>" ] = { F, 'Go to tab 1',    "1gt"       },
+     [ "<C-2>" ] = { F, 'Go to tab 2',    "2gt"       },
+     [ "<C-3>" ] = { F, 'Go to tab 3',    "3gt"       },
+     [ "<C-4>" ] = { F, 'Go to tab 4',    "4gt"       },
+     [ "<C-5>" ] = { F, 'Go to tab 5',    "5gt"       },
+     [ "<C-6>" ] = { F, 'Go to tab 6',    "6gt"       },
+     [ "<C-7>" ] = { F, 'Go to tab 7',    "7gt"       },
+     [ "<C-8>" ] = { F, 'Go to tab 8',    "8gt"       },
+     [ "<C-9>" ] = { F, 'Go to last tab', ":tablast"  },
+   },
 }
 -- beginning 
 LEADER_MAPPINGS = {
