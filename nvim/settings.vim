@@ -61,7 +61,7 @@ set statuscolumn=
 "set laststatus=3
 "set stc=%s%r%=\ %l\ \|\ 
 "Make sure vimwiki doesn't run on markdown not in ~/vimwiki dir.
-let g:vimwiki_global_ext = 0
+"let g:vimwiki_global_ext = 0
 
 set statusline=%t\ 
 set statusline+=%r

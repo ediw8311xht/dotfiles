@@ -1,7 +1,7 @@
 
 local luasnip           = require('luasnip')
 local cmp               = require('cmp')
-local org               = require('orgmode')
+-- local org               = require('orgmode')
 local which_key         = require('which-key')
 local gitsigns          = require('gitsigns')
 local marks             = require('marks')
@@ -152,7 +152,7 @@ gitsigns.setup({
     col = 1
   }
 })
-org.setup({
-  org_agenda_files = {'~/Documents/Dropbox/org/*', '~/Documents/my-orgs/**/*'},
-  org_default_notes_file = '~/Documents/Dropbox/org/refile.org',
-})
+-- org.setup({
+--   org_agenda_files = {'~/Documents/Dropbox/org/*', '~/Documents/my-orgs/**/*'},
+--   org_default_notes_file = '~/Documents/Dropbox/org/refile.org',
+-- })
