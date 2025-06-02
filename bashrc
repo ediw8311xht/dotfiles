@@ -18,7 +18,7 @@ PS1=':\w/:> '
 PS2=''
 
 #export PROMPT_COMMAND='history -a'
-#source "${HOME}/bashrc_files/exports.sh"
+source "${HOME}/bashrc_files/exports.sh"
 source "${HOME}/bashrc_files/functions.sh"
 source "${HOME}/bashrc_files/aliases.sh"
 source "${HOME}/.config/broot/launcher/bash/br"

@@ -123,14 +123,12 @@ fzf_edit() {
     rg "${RG[@]}" | fzf "${FZF[@]}"
 }
 fzf_open() {
-    local FZF=( --preview="highlight -O ansi -l {} 2>/dev/null"
-                --bind="enter:become(xdg-open {}; echo {})" )
     if [[ -d "${1}" ]] ; then 
         cd "${1}" || { echo "Error cding into '${1}'" >&2; return 1; }
     fi
     echo "HI"
     # shellcheck disable=SC2164 
-    fd -tf -u | fzf "${FZF[@]}" || cd -
+    fd -tf -u | fzf || cd -
 }
 bash_history_grab() {
     grep -Pi "${1}" "${HISTFILE}" | tail -n "${2:-50}"

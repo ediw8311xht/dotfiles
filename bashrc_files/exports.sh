@@ -17,7 +17,10 @@ export  RIPGREP_CONFIG_PATH="${HOME}/.config/rg/ripgreprc"
 #------------------FZF-----------------#
 export  HTML_TIDY="${XDG_CONFIG_HOME}/tidy/tidy.conf"
 export  FZF_DEFAULT_COMMAND='fd -H'
+# https://github.com/junegunn/fzf/discussions/2528
+# export  FZF_DEFAULT_OPTS_FILE="${XDG_CONFIG_HOME}/fzf/.fzfrc"
 export  FZF_DEFAULT_OPTS='
+    --preview "fzf-preview.sh {}"
     --bind ctrl-a:first
     --bind ctrl-e:last
     --bind ctrl-u:half-page-up

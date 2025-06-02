@@ -26,6 +26,7 @@
     bindsym Mod1+Shift+o    exec "sleep 0.5; xset dpms force off"
 #-------------------------------------------------Set---------------------#
     set $mod Mod1
+    set $FORCE_NON_FLOAT pavucontrol-qt
     #--Floating-Size------------------#
         # Default
             set $DefaultSize    55ppt 70ppt
