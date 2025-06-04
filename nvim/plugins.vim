@@ -87,8 +87,8 @@ call plug#begin()
         call MyInstallPlugin(plugin)
     endfor
     " Extra "
-    "Plug 'AndrewRadev/tagalong.vim'
-    "Plug 'alvan/vim-closetag'
+    Plug 'AndrewRadev/tagalong.vim'
+    Plug 'alvan/vim-closetag'
 call plug#end()
 
 

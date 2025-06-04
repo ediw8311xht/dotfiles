@@ -5,14 +5,24 @@ local lspconfig         = require('lspconfig')
 local cmp_capabilities  = require('cmp_nvim_lsp').default_capabilities()
 
 -- LSP --
-lspconfig.cssls.setup(                { capabilities = cmp_capabilities , })
-lspconfig.html.setup(                 { capabilities = cmp_capabilities , })
-lspconfig.jedi_language_server.setup( { capabilities = cmp_capabilities , })
-lspconfig.jsonls.setup(               { capabilities = cmp_capabilities , })
-lspconfig.ts_ls.setup(                { capabilities = cmp_capabilities , })
-lspconfig.vimls.setup(                { capabilities = cmp_capabilities , })
-lspconfig.eslint.setup({})
+lspconfig.cssls.setup(                { capabilities = cmp_capabilities })
+lspconfig.html.setup(                 { capabilities = cmp_capabilities })
+lspconfig.jsonls.setup(               { capabilities = cmp_capabilities })
+lspconfig.ts_ls.setup(                { capabilities = cmp_capabilities })
+lspconfig.vimls.setup(                { capabilities = cmp_capabilities })
+lspconfig.eslint.setup( { } )
 
+lspconfig.pyright.setup({
+  on_attach = lsp_status.on_attach,
+  capabilities = cmp_capabilities,
+  settings = {
+    python = {
+      analysis = {
+        typeCheckingMode = "standard",
+      }
+    }
+  }
+})
 lspconfig.tailwindcss.setup({
   filetype = {},
   filetypes = { "html-eex", "heex"},
@@ -21,17 +31,19 @@ lspconfig.tailwindcss.setup({
     userLanguages = {
       elixir = "html-eex",
       eelixir = "html-eex",
-      heex = "html-eex",
-    },
-  },
+      heex = "html-eex"
+    }
+  }
 })
 lspconfig.lua_ls.setup({
   capabilities = cmp_capabilities,
   settings = {
     Lua = {
-      diagnostics = { globals = { 'vim' } }
+      diagnostics = {
+        globals = { 'vim' }
+      }
     }
-  },
+  }
 })
 lspconfig.bashls.setup({
   on_attach = lsp_status.on_attach,
@@ -50,9 +62,10 @@ lspconfig.clangd.setup({
       '--std=gnu++20',
       '-DMAGICKCORE_HDRI_ENABLE=1',
     }
-  },
+  }
 })
 
+-- lspconfig.jedi_language_server.setup( { capabilities = cmp_capabilities , })
 -- lspconfig.marksman.setup({
 -- })
 -- lspconfig.pyright.setup{

@@ -32,6 +32,11 @@ $if mode=vi
     set keymap vi-command
 $endif
 
+# Get key sequence:
+# 1. (try)
+#   `showkey -a`
+# 2. (try) - https://unix.stackexchange.com/questions/264791/ctrl-backspace-and-ctrl-delete-in-bash
+#   Type in terminal `ctrl-v + [key]`
 ################################################################################
 $if mode=emacs
 # for linux console and RH/Debian xterm
@@ -59,3 +64,4 @@ $if mode=emacs
     "\e[F": end-of-line
 $endif
 
+"\C-h": backward-kill-word

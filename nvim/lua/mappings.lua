@@ -164,8 +164,12 @@ LEADER_MAPPINGS = {
   [n] = {
     [ ','       ] = { F, 'Alternate File',         '<C-^>'                                                                },
     [ '-'       ] = { F, 'Equalize Split Hori',    '20<c-w><'                                                             },
+    -- Excute --
     [ '<C-S-x>' ] = { F, 'Execute with args',      ':!%:p '                                                               },
     [ '<C-x>'   ] = { F, 'Execute',                ':!%:p<esc>'                                                           },
+    [ '<S-x>'   ] = { F, 'Execute with args',      ':!%:p '                                                               },
+    [ 'x'       ] = { F, 'Execute',                ':!%:p<esc>'                                                           },
+
     [ '<S-Tab>' ] = { F, 'Later',                  ':later<CR>'                                                           },
     [ '<Tab>'   ] = { F, 'Earlier',                ':earlier<CR>'                                                         },
     [ '='       ] = { F, 'Equalize Split Vert',    '20<c-w>>'                                                             },
