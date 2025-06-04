@@ -7,8 +7,8 @@ local gitsigns          = require('gitsigns')
 local marks             = require('marks')
 local actions_preview   = require('actions-preview');
 local auto_session      = require('auto-session');
-
 auto_session.setup({})
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 marks.setup({
   default_mappings = true,

@@ -117,12 +117,11 @@ vauto({"FileType"}, {
   end
 })
 
--- vauto({"BufNewFile", "BufRead"}, {
---   pattern = "/$HOME/.config/i3/*",
---   callback = function()
---     vim.cmd("setfiletype i3")
---   end
--- })
+vauto({"BufNewFile", "BufRead"}, {
+  pattern = "/$HOME/.config/i3/*",
+  callback = function()
+    vim.cmd("setfiletype i3")
+  end
+})
 
 
--- vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

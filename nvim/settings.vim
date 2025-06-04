@@ -80,7 +80,7 @@ let g:floaterm_opener='edit'
 let g:lf_width=0.9
 let g:lf_height=0.9
 "let g:floaterm_borderchars='        '
-
+autocmd FileType bash setlocal keywordprg=:Man
 "let g:coc_start_at_startup = v:false
 "let g:coc_enable_at_startup = v:false
 let g:mapleader = " "
@@ -92,6 +92,7 @@ let g:is_bash        = 1
 "let g:vlime_leader   = "~"
 let g:vlime_leader   = "\\"
 "-------Latex----------"
+let g:is_bash	   = 1
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0

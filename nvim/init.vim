@@ -12,10 +12,9 @@
 "<==------------------======================================------------------==>
 "<==============================================================================>
 "<==============================================================================>
-lua require('variables')
 source $XDG_CONFIG_HOME/nvim/settings.vim
-
 lua require('autocmd')
+lua require('variables')
 lua require('functions')
 source $XDG_CONFIG_HOME/nvim/plugins.vim
 source $XDG_CONFIG_HOME/nvim/functions.vim
