@@ -1,9 +1,9 @@
 #!/bin/python3
-from functools import reduce
+# from functools import reduce
 
 
 def filter_paste(text):
-    return reduce(lambda x, y: x+y.strip(" "), text.split("\n"), "")
+    return text.strip(" \n")
 
 if __name__ == "__main__":
     from sys import argv
