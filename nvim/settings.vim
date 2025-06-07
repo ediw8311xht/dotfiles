@@ -99,6 +99,10 @@ let g:vimtex_quickfix_mode=0
 let g:vimtex_compiler_latexmk = {
     \ 'out_dir' : '/tmp',
     \}
+
+"let g:fzf_vim = {
+"            \ }
+"let g:fzf_vim.buffers_options = ['--style', 'full', '--border-label', ' Open Buffers ']
     "\ 'aux_dir' : '',
     "\ 'callback' : 1,
     "\ 'continuous' : 1,

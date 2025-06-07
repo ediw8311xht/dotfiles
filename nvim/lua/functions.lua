@@ -42,9 +42,12 @@ function Contains(t, check_value, callback)
   return false
 end
 
+function SearchMyMappings(s)
+end
 function SubAllBuffs(s)
   vim.api.nvim_set_option_value("autowriteall", "true")
 end
+
 
 -- function SearchAllBuffs(s)
 --   -- vim.cmd.buf

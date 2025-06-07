@@ -165,6 +165,8 @@ LEADER_MAPPINGS = {
     [ ','       ] = { F, 'Alternate File',         '<C-^>'                                                                },
     [ '-'       ] = { F, 'Equalize Split Hori',    '20<c-w><'                                                             },
     -- Excute --
+
+    [ '<C-s>'   ] = { F, 'Sub in all buffs',       ':budfo %s/\\v\\c'                                                     },
     [ '<C-S-x>' ] = { F, 'Execute with args',      ':!%:p '                                                               },
     [ '<C-x>'   ] = { F, 'Execute',                ':!%:p<esc>'                                                           },
     [ '<S-x>'   ] = { F, 'Execute with args',      ':!%:p '                                                               },

@@ -19,16 +19,20 @@ export  HTML_TIDY="${XDG_CONFIG_HOME}/tidy/tidy.conf"
 export  FZF_DEFAULT_COMMAND='fd -H'
 # https://github.com/junegunn/fzf/discussions/2528
 # export  FZF_DEFAULT_OPTS_FILE="${XDG_CONFIG_HOME}/fzf/.fzfrc"
-export  FZF_DEFAULT_OPTS='
-    --preview "fzf-preview.sh {}"
-    --bind ctrl-a:first
-    --bind ctrl-e:last
-    --bind ctrl-u:half-page-up
-    --bind ctrl-d:half-page-down
-    --bind ctrl-g:preview-half-page-down
-    --bind ctrl-h:preview-half-page-up
-    --bind ctrl-K:clear-query
-    --bind ctrl-t:toggle-preview'
+# --nth="-1"
+# FZF_DEFAULT_OPTS+=' --nth="-1"'
+export  FZF_DEFAULT_OPTS=''
+FZF_DEFAULT_OPTS+=' --delimiter="/"'
+FZF_DEFAULT_OPTS+=' --with-nth="{1..-2}/ {-1}"'
+FZF_DEFAULT_OPTS+=' --preview "fzf-preview.sh {}"'
+FZF_DEFAULT_OPTS+=' --bind ctrl-a:first'
+FZF_DEFAULT_OPTS+=' --bind ctrl-e:last'
+FZF_DEFAULT_OPTS+=' --bind ctrl-u:half-page-up'
+FZF_DEFAULT_OPTS+=' --bind ctrl-d:half-page-down'
+FZF_DEFAULT_OPTS+=' --bind ctrl-g:preview-half-page-down'
+FZF_DEFAULT_OPTS+=' --bind ctrl-h:preview-half-page-up'
+FZF_DEFAULT_OPTS+=' --bind ctrl-K:clear-query'
+FZF_DEFAULT_OPTS+=' --bind ctrl-t:toggle-preview'
 export  LS_PREVIEW='lsd   \
     --color=always        \
     --group-dirs="first"  \
@@ -40,6 +44,8 @@ export  LS_PREVIEW='lsd   \
     --blocks="permission,user,date,name"'
 #------------------BEMENU--------------#
 export  BEMENU_OPTS=''
+#------------------LOCATE--------------#
+export  LOCATE_DATABASE="${HOME}/.local/data/plocate/home.db"
 #------------------SYSTEM--------------#
 export  EMACS_SOCKET_NAME="${USER}_emacs_daemon"
 export  DOOMDIR="${HOME}/.config/doom"
