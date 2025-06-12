@@ -29,4 +29,6 @@ lua require('textobjects')
 
 colorscheme pop-punk
 :call CorrectColors()
-
+"set foldmethod=marker
+"set foldmarker=\/**,*\/
+"set foldtext='\ '

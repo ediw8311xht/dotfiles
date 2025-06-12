@@ -1,0 +1,55 @@
+#!/usr/bin/bash
+
+#
+# ~/.dmenurc
+#
+
+## define the font for dmenu to be used
+# DMENU_FN="FiraCode"
+#
+# ## background colour for unselected menu-items
+# DMENU_NB="#000000"
+#
+# ## textcolour for unselected menu-items
+# DMENU_NF="#FF0000"
+#
+# ## background colour for selected menu-items
+# DMENU_SB="#990000"
+#
+# ## textcolour for selected menu-items
+# DMENU_SF="#990000"
+#
+# ## command for the terminal application to be used:
+# TERMINAL_CMD="kitty"
+#
+# ## export our variables
+# DMENU_OPTIONS="-b -i -nf -l 9 '#FF0000' -nb '#FF0000' -l 10 -fn 'Office Code Pro:pixelsize=17:antialias=true:autohint=true'"
+
+DMENU_OPTS=(
+-i
+-l '40'
+-b
+-x '20'
+-y '20'
+-z '1000'
+-sb '#222222'
+-sf '#00FF00'
+-nf '#AAAAAA'
+-nb '#000000'
+-fn 'Hermit:style=Regular:pixelsize=12:antialias=true:autohint=true'
+)
+# DMENU_OPTS=(
+# '-i'
+# '-l' '40'
+# '-b'
+# '-x' '20'
+# '-y' '20'
+# '-z' '1000'
+# '-sb' '#222222'
+# '-sf' '#00FF00'
+# '-nf' '#AAAAAA'
+# '-nb' '#000000'
+# '-fn' 'Hermit:style=Regular:pixelsize=12:antialias=true:autohint=true'
+# )
+export DMENU_OPTIONS="${DMENU_OPTS[*]}"
+export DMENU_OPTIONS_G="${DMENU_OPTS[*]/*/\'&\'}"

@@ -37,7 +37,8 @@ fu! CorrectColors()
     hi HLspStatus           gui=NONE    guibg=NONE      guifg=#00FF00
     hi HStatusFullFile      gui=NONE    guibg=NONE      guifg=#999999
     hi WinSeparator         gui=NONE    guibg=NONE      guifg=#009900
-    "------------------------SPELLING---------------------------#
+    "hi Type                 gui=italic guisp=#444444    "guibg=#444400   guifg=#000000
+
     hi SpellBad gui=undercurl guisp=#FF0000 guibg=NONE guifg=#AAAAAA
     hi ModeMsg guifg=#000000 guibg=#009900 gui=NONE cterm=NONE
     "hi MoreMsg guifg=#5fffff guibg=NONE gui=NONE cterm=NONE
@@ -53,12 +54,15 @@ fu! CorrectColors()
         hi  WhichKeyGroup               guibg=NONE      " guifg=#000000 
         hi  WhichKeySeparator           guibg=NONE      " guifg=#000000 
         hi  WhichKeyDesc                guibg=NONE      " guifg=#BBBBBB 
-        "hi WhichKeyBorder              guibg=#999999   guifg=#777777 
+        hi  WhichKeyBorder              guibg=NONE   guifg=#777777 
         hi  WhichKeyValue   gui=italic guibg=NONE   guifg=#777777 
     "-----Floaterm-----"
         hi Floaterm                     guibg=#000000
         hi FloatermBorder               guibg=#000000   guifg=#000000
     "------------------------Tree-Sitter------------------------#
+        "hi @punctuation.delimiter.cpp guibg=NONE guifg=#999999
+        "hi @punctuation.bracket.cpp gui=bold guibg=black guifg=#FF9900
+        "hi @type.vim
         "hi @module                                      guifg=#00FF00 
         "hi @keyword                                     guifg=#777777 
         "hi @keyword.function                            guifg=#009900
@@ -142,20 +146,39 @@ fu! SetColScheme(nextprevious)
         endif
         let l:i += 1
     endfor
-    call SetScheme(g:MySchemes[j])
+    call SetScheme(g:MySchemes[0])
 endfu
 
-fu! TogVE() 
-    call Toggle(&ve, "none", "set ve=all \| echo &ve", "set ve=none \| echo &ve")
-endfu
-fu! TogSL()
-    call Toggle(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0")
-endfu
-fu! TogCC()
-    call Toggle(&cc, 0, "set cc=80", "set cc=0")
+"let TogSL = {-> QuickToggle(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0") }
+"let TogCC = {-> QuickToggle(&cc, 0, "set cc=80", "set cc=0") }
+let TogVirtualEdit  = {-> QuickToggle(&virtualedit, "none", "set ve=all \| echo &ve", "set ve=none \| echo &ve") }
+let TogLastStatus   = {-> VarToggle("laststatus"  , "2" , "0"             ) }
+let TogColorColumn  = {-> VarToggle("colorcolumn" , "0" , "80" , "window" ) }
+let TogFoldColumn   = {-> VarToggle("foldcolumn"  , "0" , "2"             ) }
+
+":setl[ocal] {option}<	Set the effective value of {option} to its global
+"			value by copying the global value to the local value.
+"let VarToggle = {var, v1, v2 -> execute("set ".."var="..v2) }
+"" setbufvar(bufnr(), var, (var == v1 ? v1 : v2))  }
+
+fu! VarToggle(var, v1, v2, type="global")
+    if a:type == "window"
+        let l:Get={svar->nvim_win_get_option(win_getid(), svar)} 
+        let l:Set={svar,sval->nvim_win_set_option(win_getid(), svar, sval)}
+    else
+        let l:Get={svar->nvim_get_option(svar)} 
+        let l:Set={svar,sval->nvim_set_option(svar, sval)}
+    endif
+
+    if l:Get(a:var) == a:v2
+        call l:Set(a:var, a:v1)
+    else
+        call l:Set(a:var, a:v2)
+    endif
+    echo a:var.." = "..l:Get(a:var)
 endfu
 
-fu! Toggle(c1, c2, r1, r2)
+fu! QuickToggle(c1, c2, r1, r2)
     if a:c1 == a:c2
         execute a:r1
     else

@@ -88,9 +88,10 @@ export  GROFF_NO_SGR=1 ### https://stackoverflow.com/a/32456403                 
 #####################   https://stackoverflow.com/questions/32384644/color-setting-works-for-only-for-help-tab-in-man-page-dosent-work-for-the-en #
 #------------------APPLICATIONS--------#
 export  NO_AT_BRIDGE=1
-export  QT_QPA_PLATFORMTHEME="qt6ct"
+#export  QT_QPA_PLATFORMTHEME="qt6ct"
+export QT_STYLE_OVERRIDE=kvantum
 export  npm_config_prefix="${HOME}/.local"
-export  GTK2_RC_FILES="/usr/share/themes/Midnight/gtk-2.0/gtkrc"
+#export  GTK2_RC_FILES="/usr/share/themes/Midnight/gtk-2.0/gtkrc"
 #------------------CPP-----------------#
 # export  CPATH="/usr/include/ImageMagick-7/:$CPATH"
 #------------------------------------------------------------------------------------------------------------------------------------------------ #

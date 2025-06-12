@@ -266,7 +266,7 @@ c.content.cookies.store                         =   True
 c.content.dns_prefetch                          =   True
 c.content.geolocation                           =   False
 c.content.headers.accept_language               =   'en-US,en;q=0.9'
-c.content.headers.user_agent                    =   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
+#c.content.headers.user_agent                    =   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
 c.content.javascript.enabled                    =   True
 c.content.pdfjs                                 =   True
 c.content.site_specific_quirks.enabled          =   True

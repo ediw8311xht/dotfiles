@@ -4,19 +4,20 @@
 #---------------------------------------------------------------------|
 # i3 config file (v4)
 #-------------------------------------------------Scripts-----------------#
-    set $zathura_script     $HOME/bin/zathura_dbus_controller.sh
-    set $monitor_script     $HOME/bin/auto_monitor.sh
-    set $wallpaper_script   $HOME/bin/xwallpaperauto.sh
-    set $dmenu_script       $HOME/bin/my_dmenu.sh
-    set $dmenu_search       $HOME/bin/dmenu_websearch.sh
-    set $border_script      $HOME/bin/i3wm_change_border.sh
-    set $clipboard_script   $HOME/bin/add_to_clip.sh
-    set $refresh_script     $HOME/bin/refresh_browser.sh
-    set $balance_workspace  $HOME/.local/bin/i3_balance_workspace
-    set $polybar_script     $HOME/bin/polybar_manipulate.sh
-    set $xmsg_script        $HOME/bin/xmsg_quick.sh
-    set $bluetooth_script   $HOME/bin/ubluetoggle.sh
-    set $toggle_r_rate      $HOME/bin/SetKeys.sh
+    set $zathura_script         $HOME/bin/zathura_dbus_controller.sh
+    set $monitor_script         $HOME/bin/auto_monitor.sh
+    set $wallpaper_script       $HOME/bin/xwallpaperauto.sh
+    set $dmenu_script           $HOME/bin/my_dmenu.sh
+    set $dmenu_search           $HOME/bin/dmenu_websearch.sh
+    set $border_script          $HOME/bin/i3wm_change_border.sh
+    set $clipboard_script       $HOME/bin/add_to_clip.sh
+    set $refresh_script         $HOME/bin/refresh_browser.sh
+    set $balance_workspace      $HOME/.local/bin/i3_balance_workspace
+    set $polybar_script         $HOME/bin/polybar_manipulate.sh
+    set $xmsg_script            $HOME/bin/xmsg_quick.sh
+    set $bluetooth_script       $HOME/bin/ubluetoggle.sh
+    set $toggle_r_rate          $HOME/bin/SetKeys.sh
+    set $kitty_session_script   $HOME/bin/kitty_session_dmenu.sh
 #-------------------------------------------------Special-Binds-----------#
     #sticky toggle
     set $scratchpad_default floating enable, move scratchpad, scratchpad show, move position center
