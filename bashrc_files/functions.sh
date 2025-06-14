@@ -129,7 +129,7 @@ fzf_open() {
         cd "${1}" || { echo "Error cding into '${1}'" >&2; return 1; }
     fi
     # shellcheck disable=SC2164 
-    fd -tf -u | fzf "${FZF[@]}" || cd -
+    fd -tf -tl -u | fzf "${FZF[@]}" || cd -
 }
 bash_history_grab() {
     grep -Pi "${1}" "${HISTFILE}" | tail -n "${2:-50}"

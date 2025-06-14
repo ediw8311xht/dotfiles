@@ -67,7 +67,9 @@ let g:my_plugins['Syntax markdown']             = [ 'drmingdrmer',        'vim-s
 
 "colorscheme
 let g:my_plugins["tokyonight"]                  = [ 'folke',              'tokyonight.nvim'               ]
-let g:my_plugins["ufo"]                         = [ 'kevinhwang91',       'nvim-ufo'                      ]
+"let g:my_plugins["comceal__conceal_comments"]   = [ 'vim-scripts',        'Comceal'                       ]
+"let g:my_plugins["ufo_req_1"]                   = [ 'kevinhwang91',       'promise-async'                 ]
+"let g:my_plugins["ufo"]                         = [ 'kevinhwang91',       'nvim-ufo'                      ]
 " -------------------------------------------------------------------------------------------------------- "
 " -------------------------------------------------------------------------------------------------------- "
 " -------------------------------------------------------------------------------------------------------- "

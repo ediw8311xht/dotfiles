@@ -18,12 +18,15 @@ vauto({"BufEnter", "BufWinEnter"}, {
     if va.nvim_buf_line_count(args.buf) > MaxLinesCMP then
       require('cmp').setup.buffer( { enabled = false } )
     end
-  end})
+  end}
+)
+
 vauto({"FocusGained", "CursorHold", "CursorHoldI"}, {
   pattern = { "*" },
   callback = function()
     vc("silent! checktime")
-  end})
+  end}
+)
 -------------------------
 -- BufNewFile, BufRead --
 -------------------------
@@ -36,11 +39,13 @@ local function bufnew_bufread(glob, comms)
       end
     end})
 end
+
 local function bufnr_add(globcomms)
   for glob,comms in pairs(globcomms) do
     bufnew_bufread(glob, comms)
   end
 end
+
 -------------------------
 -- Templates ------------
 -------------------------
@@ -54,6 +59,7 @@ local function template_add(glob, template_file)
       vc("silent !chmod 700 %")
     end})
 end
+
 local function template_add_e(exts)
   for _,ext in ipairs(exts) do
     template_add("*." .. ext, "/template." .. ext)
@@ -107,7 +113,7 @@ vauto({"TermOpen"}, {
   end
 })
 
--------------------------
+------------------------
 -- FileType Formatting --
 -------------------------
 vauto({"FileType"}, {

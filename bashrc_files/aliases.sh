@@ -95,8 +95,8 @@ alias clne='      fzf_cd -d "${CLONED}" -u -d1'
 #alias listpics='  fd . -tf -e jpg -e jpeg -e png -e tiff -e webp -e bmp -e avif -e ico -e gif -e gifv'
 #alias listvids='  fd . -tf -e mov -e m4v -e mkv -e mpeg -e mp4 -e mpv -e webm -e avi -e amv'
 #alias listmedia=" listaudio; listpics; listvids"
-alias i3e='       fd . -d1 -0 -a -tf "${XDG_CONFIG_HOME}/i3/" | sort -z | xargs -0 nvim -c "Buffers"'
-alias fi3e='      fd .     -0 -a -tf "${XDG_CONFIG_HOME}/i3/" | sort -z | xargs -0 nvim -c "Buffers"' 
+alias i3e='       fd . -d1 -0 -a -tfl "${XDG_CONFIG_HOME}/i3/" | sort -z | xargs -0 nvim -c "Buffers"'
+alias fi3e='      fd .     -0 -a -tfl "${XDG_CONFIG_HOME}/i3/" | sort -z | xargs -0 nvim -c "Buffers"' 
 alias gf='        fd --search-path "/" -u --mount'
 #--------------------------------------------------Python--------------------------------#
 alias p='         python'

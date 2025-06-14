@@ -3,8 +3,6 @@ local HOME              = os.getenv("HOME")
 local lsp_status        = require('lsp-status')
 local lspconfig         = require('lspconfig')
 local cmp_capabilities  = require('cmp_nvim_lsp').default_capabilities()
-
--- LSP --
 lspconfig.cssls.setup(                { capabilities = cmp_capabilities })
 lspconfig.html.setup(                 { capabilities = cmp_capabilities })
 lspconfig.jsonls.setup(               { capabilities = cmp_capabilities })
@@ -23,6 +21,7 @@ lspconfig.pyright.setup({
     }
   }
 })
+
 lspconfig.tailwindcss.setup({
   filetype = {},
   filetypes = { "html-eex", "heex"},
@@ -35,6 +34,7 @@ lspconfig.tailwindcss.setup({
     }
   }
 })
+
 lspconfig.lua_ls.setup({
   capabilities = cmp_capabilities,
   settings = {
@@ -45,6 +45,7 @@ lspconfig.lua_ls.setup({
     }
   }
 })
+
 lspconfig.bashls.setup({
   on_attach = lsp_status.on_attach,
   capabilities = cmp_capabilities,
@@ -55,6 +56,7 @@ lspconfig.bashls.setup({
     }
   }
 })
+
 lspconfig.clangd.setup({
   capabilities = cmp_capabilities,
   init_options = {
@@ -64,7 +66,6 @@ lspconfig.clangd.setup({
     }
   }
 })
-
 -- lspconfig.jedi_language_server.setup( { capabilities = cmp_capabilities , })
 -- lspconfig.marksman.setup({
 -- })

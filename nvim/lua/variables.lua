@@ -41,6 +41,14 @@ vim.g.fzf_colors = {
   [ "hl"  ]  = { 'bg', 'Search' },
   [ "hl+" ]  = { 'bg', 'Search' }
 }
+
+vim.g.my_statuslines = {
+  { 'default' , "%t %r %m%=" .. "[%#HLspStatus#%{LspStatus()} %*][%F]"             },
+  { 'small'   , '%t %r %m'   .. "[%#HLspStatus#%{LspStatus()} %*]"                 },
+  { 'large'   , "%t %r %m%=" .. "[%#HLspStatus#%{LspStatus()} %*][%F][%c,%l,%p%%]" },
+  -- { 'large'  , '%t %r %m' .. '[%#HLspStatus#%{LspStatus()} %*][%l %c%V% %P]'  },
+  -- '[%{LspStatus()}]\\ [%f] [%h%w%m%r%=%-14.(%l,%c%V%)\\ %P]',
+}
  -- { 'fg':      ['fg', 'Normal'],
  --   'bg':      ['bg', 'Normal'],
  --   'hl':      ['fg', 'Search'],

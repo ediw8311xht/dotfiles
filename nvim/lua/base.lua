@@ -2,13 +2,14 @@
 local luasnip           = require('luasnip')
 local cmp               = require('cmp')
 -- local org               = require('orgmode')
-local which_key         = require('which-key')
 local gitsigns          = require('gitsigns')
 local marks             = require('marks')
-local actions_preview   = require('actions-preview');
-local auto_session      = require('auto-session');
+local actions_preview   = require('actions-preview')
+local auto_session      = require('auto-session')
+
 auto_session.setup({})
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 
 marks.setup({
   default_mappings = true,
@@ -23,48 +24,10 @@ marks.setup({
     "nui",
   },
   mappings = {
-    set_next = "m,", next        = "m]",  prev       = "m[",
-    preview  = "m:", delete_line = "dml", delete_buf = "dmf",
-    annotate = "mk", toggle      = "m'",
+    set_next = "M,", prev        = "<C-,>", next       = "<C-.>",
+    preview  = "M:", delete_line = "dml",   delete_buf = "dm;",
+    annotate = "Mk", toggle      = "M'",
   }
-})
-which_key.setup({
-  notify = true,
-  win = {
-    no_overlap = false,
-    border = "single", -- none, single, double, shadow
-    padding = {2, 2},
-    wo = {
-      winblend = 25, -- value between 0-100 0 for fully opaque and 100 for fully transparent
-    },
-  },
-  layout = {
-    height = { min = 4, max = 70 }, -- min and max height of the columns
-    width = { min = 4, max = 50 }, -- min and max width of the columns
-    spacing = 1, -- spacing between columns
-    align = "center", -- align columns left, center or right
-  },
-  icons = {
-    breadcrumb = "> ", -- symbol used in the command line area that shows your active key combo
-    separator = "|", -- symbol used between a key and it's label
-    group = "+", -- symbol prepended to a group
-    ellipsis = "…",
-    mappings = false, -- set to false to disable all mapping icons, both those explicitely added in a mapping and those from rules
-    rules = {},
-    colors = true,
-    keys = {
-        BS    = '<BS>',    Space           = '<leader>',  Tab           = '<Tab>',
-        Up    = '<up>',    Down            = '<down>',    Left          = '<left>',
-        Right = '<right>', C               = '^',         M             = '󰘵 ',
-        D     = '󰘳 ',      S               = '<S>',       CR            = '<CR>',
-        Esc   = '<ESC>',   ScrollWheelDown = '󱕐 ',        ScrollWheelUp = '󱕑 ',
-        NL    = '󰌑 ',      F1              = '󱊫 ',        F2            = '󱊬 ',
-        F3    = '󱊭 ',      F4              = '󱊮 ',        F5            = '󱊯 ',
-        F6    = '󱊰 ',      F7              = '󱊱 ',        F8            = '󱊲 ',
-        F9    = '󱊳 ',      F10             = '󱊴 ',        F11           = '󱊵 ',
-        F12   = '󱊶 ',
-    },
-  },
 })
 actions_preview.setup({})
 luasnip.setup({})

@@ -6,6 +6,7 @@ fu! CorrectColors()
     else
         hi Comment          gui=italic guifg=#005FEF guibg=NONE
     endif
+
     hi ColorColumn          gui=NONE    guibg=#222222   guifg=NONE
     hi CursorLine           gui=bold    guibg=#111111   guifg=NONE
     hi CursorLineNr         gui=NONE    guibg=NONE      guifg=#FFFF00
@@ -27,7 +28,7 @@ fu! CorrectColors()
     "hi ModeMsg              gui=NONE    guibg=#00ff00   guifg=#000087 
     "hi MoreMsg              gui=NONE    guibg=NONE      guifg=#5fffff 
     "hi NonText              gui=NONE    guibg=NONE      guifg=#00FF00 
-    "hi Normal               gui=NONE    guibg=NONE      guifg=#D0D0D0
+    hi Normal               gui=NONE    guibg=NONE      guifg=#D0D0D0
     hi Search               gui=NONE    guibg=#FF00FF   guifg=#000000
     hi StatusLine           gui=NONE    guibg=NONE      guifg=#229922
     hi StatusLineNC         gui=NONE    guibg=NONE      guifg=#999999
@@ -114,7 +115,7 @@ fu! CyBack(nextprevious)
     endif
     while i < lenny
         if current_background ==? g:MyColorTable[i][0]
-            let j = (i + a:nextprevious + lenny) % lenny
+            let j = (i + a:nextprevious) % lenny
             execute "highlight Normal guibg=" . g:MyColorTable[j][0]
             execute "highlight Normal guifg=" . g:MyColorTable[j][1]
             echo j . ' / ' . (lenny-1)
@@ -152,9 +153,9 @@ endfu
 "let TogSL = {-> QuickToggle(&ls, 0, "set ru \| set ls=2", "set noru \| set ls=0") }
 "let TogCC = {-> QuickToggle(&cc, 0, "set cc=80", "set cc=0") }
 let TogVirtualEdit  = {-> QuickToggle(&virtualedit, "none", "set ve=all \| echo &ve", "set ve=none \| echo &ve") }
-let TogLastStatus   = {-> VarToggle("laststatus"  , "2" , "0"             ) }
+let TogLastStatus   = {-> VarToggle("laststatus"  , 2 , 0             ) }
 let TogColorColumn  = {-> VarToggle("colorcolumn" , "0" , "80" , "window" ) }
-let TogFoldColumn   = {-> VarToggle("foldcolumn"  , "0" , "2"             ) }
+let TogFoldColumn   = {-> VarToggle("foldcolumn"  , '0' , '2'  , "window" ) }
 
 ":setl[ocal] {option}<	Set the effective value of {option} to its global
 "			value by copying the global value to the local value.

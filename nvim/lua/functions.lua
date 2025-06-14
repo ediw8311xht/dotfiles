@@ -1,7 +1,7 @@
 
 local va    = vim.api
-local vauto = vim.api.nvim_create_autocmd
-local vc    = vim.cmd
+-- local vauto = vim.api.nvim_create_autocmd
+-- local vc    = vim.cmd
 
 -- local function concat_table (...)
 --   local new_table = {}
@@ -42,17 +42,34 @@ function Contains(t, check_value, callback)
   return false
 end
 
-function SearchMyMappings(s)
+function Cycle(check_var, list, func)
+  local o = vim.api.nvim_get_option(check_var)
+  if not func then
+    func = (function(l) vim.api.nvim_set_option(check_var, l[2]) return l[1] end)
+  end
+  if #list <= 0 then return end
+  for i,v in ipairs(list) do
+    if v[2] == o then
+      local j = (i) % (#list)+1
+      return func(list[j])
+    end
+  end
+  return func(list[1])
 end
-function SubAllBuffs(s)
-  vim.api.nvim_set_option_value("autowriteall", "true")
-end
-
-
+-- function SearchMyMappings(s)
+-- end
+-- function SubAllBuffs(s)
+--   vim.api.nvim_set_option_value("autowriteall", "true")
+-- end
 -- function SearchAllBuffs(s)
 --   -- vim.cmd.buf
 --   -- vim.cmd.
 -- end
+
+
+
+
+
 
 -- function Format(t)
 -- end

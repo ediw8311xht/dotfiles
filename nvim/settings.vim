@@ -18,10 +18,12 @@ set magic
 set modelines=5
 set nocompatible
 set nowrap
+
+"-------------------line numbers 
 set number
 set relativenumber
 set ruler
-set signcolumn=auto:2-9
+set signcolumn=auto:2-5
 set splitright
 set t_Co=256
 "set termguicolors
@@ -45,7 +47,6 @@ set backup
 set timeoutlen=500
 set ttimeoutlen=0
 set wildmode=longest,list,full
-set foldcolumn=auto
 set showmode
 set virtualedit=none
 set softtabstop=4
@@ -62,19 +63,18 @@ set statuscolumn=
 "set stc=%s%r%=\ %l\ \|\ 
 "Make sure vimwiki doesn't run on markdown not in ~/vimwiki dir.
 "let g:vimwiki_global_ext = 0
-
-set statusline=%t\ 
-set statusline+=%r
-set statusline+=%m
+"set statusline=%t\ 
+"set statusline+=%r
+"set statusline+=%m
+""set statusline+=%=
+""set statusline+=[%v]\ (%L\ lines)\ 
+""set statusline+=(%{wordcount().words}\ words\)
 "set statusline+=%=
-"set statusline+=[%v]\ (%L\ lines)\ 
-"set statusline+=(%{wordcount().words}\ words\)
-set statusline+=%=
-set statusline+=[%#HLspStatus#%{LspStatus()}
-set statusline+=%*]
-"set statusline+=[%{LspStatus()}]\ 
-set statusline+=[%F]
-
+"set statusline+=[%#HLspStatus#%{LspStatus()}
+"set statusline+=%*]
+""set statusline+=[%{LspStatus()}]\ 
+"set statusline+=[%f]
+"set statusline+=[%h%w%m%r%=%-14.(%l,%c%V%)\ %p%%]
 let g:neoterm_automap_keys=',Tt'
 let g:floaterm_opener='edit'
 let g:lf_width=0.9
@@ -96,10 +96,20 @@ let g:is_bash	   = 1
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
-let g:vimtex_compiler_latexmk = {
-    \ 'out_dir' : '/tmp',
-    \}
-
+let g:vimtex_compiler_latexmk = { 'out_dir' : '/tmp', }
+set foldcolumn=2
+set sessionoptions=blank,buffers,curdir,help,tabpages,winsize,winpos,terminal
+"set foldlevel=99
+"set foldlevelstart=99
+"set foldmethod=expr
+"set foldtext=''
+"set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions
+",localoptions
+"set foldlevel=99
+"set foldlevelstart=1
+"set foldnestmax=2
+"set foldexpr='v:lua.vim.treesitter.foldexpr()'
+"set viewoptions=cursor,folds,slash,unix
 "let g:fzf_vim = {
 "            \ }
 "let g:fzf_vim.buffers_options = ['--style', 'full', '--border-label', ' Open Buffers ']
