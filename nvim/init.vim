@@ -23,6 +23,8 @@ lua require('mytreesitter')
 lua require('base')
 lua require('lsp_configs')
 lua require('my_elixir')
+lua require('cmp_config')
+lua require('gitsigns_config')
 
 
 lua require('mappings')
