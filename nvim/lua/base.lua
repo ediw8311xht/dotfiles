@@ -1,13 +1,12 @@
 
 -- local org               = require('orgmode')
-local marks             = require('marks')
-local actions_preview   = require('actions-preview')
-local auto_session      = require('auto-session')
-local telescope         = require('telescope')
+local marks         = require('marks')
+local auto_session  = require('auto-session')
 
-actions_preview.setup({})
-auto_session.setup({})
-vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+require('telescope').setup({})
+auto_session.setup({
+  auto_save = false,
+})
 
 
 marks.setup({
@@ -28,7 +27,10 @@ marks.setup({
     annotate = "Mk", toggle      = "M'",
   }
 })
-
+-- require('commentless').setup({})
+-- autocmd TreeSitter require('commentless').setup({})
+-- vim.opt.foldminlines = 0 -- Allow folding/hiding single lines
+-- vim.opt.fillchars = "fold: " -- Remove the trailing dots
 -- org.setup({
 --   org_agenda_files = {'~/Documents/Dropbox/org/*', '~/Documents/my-orgs/**/*'},
 --   org_default_notes_file = '~/Documents/Dropbox/org/refile.org',

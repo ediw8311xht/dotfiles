@@ -17,7 +17,6 @@ alias free='free -h'
 alias pacman='pacman --color="auto"'
 alias yay='yay --color="auto"'
 #--------------------------------------------------ls------------------------------------#
-alias transcript_ytdlp=' yt-dlp --ignore-config --skip-download --write-subs --write-auto-subs --sub-lang en --output "$VIDEOS/transcripts/%(title)s%(ext)s"'
 alias pkg_inf='   pkgfile_lib_info'
 alias nd='        NVIM_APPNAME="NVIM_CHAD" nvim'
 alias rgf='       source "${HOME}/bin/rg_fzf.sh"'
@@ -41,6 +40,8 @@ alias exspace='   expac -HM "%m %n" | sort -n'           # Size of packages pacm
 alias exlast='    expac --timefmt="%Y    %m    %d    %R" "%l    --    %n" | sort | grep'
 alias exopt='     expac -Qv -l "\n\t" "%n:\n\t%O"'
 alias exdep='     expac -Qv -l "\n\t" "%n:\n\t%D"'
+alias pacdep='    expac -l "\n" "%D"'
+alias pacopt='    expac -l "\n" "%o"'
 #--------------------------------------------------yay-----------------------------------#
 alias yayse='     yay -Ss'
 alias yayi='      yay -Si'
@@ -51,10 +52,9 @@ alias yayfrom='   yay -Qo'
 alias yayfiles='  yay -Qql'
 alias yaycool='   yay -Sl aur | grep "Installed"'
 alias yaysalt='   yay -Sl | grep -Pio ".*(?=\[installed\])"'
-alias pacdep='    expac -l "\n" "%D"'
-alias pacopt='    expac -l "\n" "%o"'
 #--------------------------------------------------pacman--------------------------------#
 alias ptc='       pactree --color' #Pacman Dependencies
+alias pac_all='   expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqen | sort) <({ pacman -Qqg xorg; expac -l "\n" "%E" base; } | sort -u)) | sort -n'
 alias pacse='     pacman -Ss'
 alias paci='      pacman -Si'
 alias pacdep='    pacman -T'
@@ -126,7 +126,6 @@ alias manlist='   man -f'
 alias men='       man_all_pages'
 alias sman='      man -K --regex'
 #--------------------------------------------------nvim----------------------------------#
-alias fontgets_latex='fc-list :outline -f "%{family}\n"' # https://tex.stackexchange.com/questions/12881/how-to-get-a-list-of-all-available-ttf-fonts-with-xetex
 alias nv='        nvim'
 alias nvgr='      fd . -tf "${XDG_CONFIG_HOME}/nvim/" -x rg -H -u --color="always" -Pi'
 alias fednv='     fd . -tf -0 "${HOME}/.config/nvim/" "${HOME}/.local/share/nvim/site/ftplugin/" -X nvim -c "Buffers"'
@@ -151,6 +150,7 @@ alias stop_vlime='  pkill vlime'
 #----------------------------------------------------------------------------------------#
 #alias kld='       kalker --angle-unit deg'
 #alias klr='       kalker --angle-unit rad'
+alias fontgets_latex='fc-list :outline -f "%{family}\n"' # https://tex.stackexchange.com/questions/12881/how-to-get-a-list-of-all-available-ttf-fonts-with-xetex
 alias B='         bat'
 alias C='         cd ..'
 alias P='         readlink -f'
@@ -210,6 +210,7 @@ alias xf='        xdg-open "$(fzf --preview="ctpv {}")"'
 alias xr='        echo ""; nvim "${HOME}/.Xresources"; xrdb "${HOME}/.Xresources"'
 alias ydlv='      yt-dlp'
 alias ydla='      yt-dlp --extract-audio --audio-format "mp3"'
+alias ydlt='      yt-dlp --ignore-config --skip-download --write-subs --write-auto-subs --sub-lang en --output "$VIDEOS/transcripts/%(title)s%(ext)s"'
 alias ysb='       source "${HOME}/.bashrc"'
 alias ystream='   stream_ytdl_mpv'
 #-    q #

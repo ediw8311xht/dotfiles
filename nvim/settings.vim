@@ -97,19 +97,22 @@ let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
 let g:vimtex_compiler_latexmk = { 'out_dir' : '/tmp', }
+set foldmethod=manual
 set foldcolumn=2
 set sessionoptions=blank,buffers,curdir,help,tabpages,winsize,winpos,terminal
+set viewoptions=cursor,folds
+set foldexpr=''
+"set foldexpr='v:lua.vim.treesitter.foldexpr()'
+"set foldexpr='v:lua.vim.treesitter.foldexpr()'
+
 "set foldlevel=99
 "set foldlevelstart=99
-"set foldmethod=expr
 "set foldtext=''
 "set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions
 ",localoptions
 "set foldlevel=99
 "set foldlevelstart=1
 "set foldnestmax=2
-"set foldexpr='v:lua.vim.treesitter.foldexpr()'
-"set viewoptions=cursor,folds,slash,unix
 "let g:fzf_vim = {
 "            \ }
 "let g:fzf_vim.buffers_options = ['--style', 'full', '--border-label', ' Open Buffers ']

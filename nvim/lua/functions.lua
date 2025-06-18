@@ -1,6 +1,6 @@
 
 local va    = vim.api
--- local vauto = vim.api.nvim_create_autocmd
+   -- local vauto = vim.api.nvim_create_autocmd
 -- local vc    = vim.cmd
 
 -- local function concat_table (...)
@@ -56,6 +56,13 @@ function Cycle(check_var, list, func)
   end
   return func(list[1])
 end
+
+-- function CommentExpr(lnum)
+--   if not lnum then
+--     return 0
+--   end
+--
+-- end
 -- function SearchMyMappings(s)
 -- end
 -- function SubAllBuffs(s)

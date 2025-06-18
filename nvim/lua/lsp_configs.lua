@@ -3,6 +3,10 @@ local HOME              = os.getenv("HOME")
 local lsp_status        = require('lsp-status')
 local lspconfig         = require('lspconfig')
 local cmp_capabilities  = require('cmp_nvim_lsp').default_capabilities()
+local actions_preview   = require('actions-preview')
+
+actions_preview.setup({})
+
 lspconfig.cssls.setup(                { capabilities = cmp_capabilities })
 lspconfig.html.setup(                 { capabilities = cmp_capabilities })
 lspconfig.jsonls.setup(               { capabilities = cmp_capabilities })
