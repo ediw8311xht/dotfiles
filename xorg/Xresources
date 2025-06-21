@@ -289,11 +289,11 @@ i3wm.BORDER_FILE: borders/border_flash.conf
 
 i3wm.IN_GAPS:   20
 i3wm.OUT_GAPS:  10
-i3wm.TOP_GAPS:   0
+i3wm.TOP_GAPS:	20
 i3wm.BOP_GAPS:   0
 i3wm.R_GAPS:     0
 i3wm.L_GAPS:     0
-i3wm.BRAVE_SCALE: 0.9
+i3wm.BRAVE_SCALE: 0.88
 
 
 

@@ -10,6 +10,7 @@ text/csv=gvim.desktop;nvim.desktop;
 video/quicktime=vlc.desktop;
 image/gif=brave-browser.desktop;sxiv.desktop;
 text/x-c++src=okularApplication_txt.desktop;vim.desktop;nvim.desktop;
+image/webp=brave-browser.desktop;pix.desktop;
 
 [Default Applications]
 application/epub+zip=zathura.desktop;

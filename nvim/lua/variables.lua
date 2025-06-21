@@ -1,4 +1,9 @@
-vim.g.MyDefaultScheme = { 'pop-punk', 'call CorrectColors()' }
+
+-- vim.api.nvim_set_hl
+-- vim.highlight.create
+
+require("my_highlight")
+vim.g.MyDefaultScheme = { 'pop-punk', 'lua CorrectColors()' }
 vim.g.MySchemes = {
     vim.g.MyDefaultScheme ,
     { 'vividchalk'     ,   "."  },
@@ -49,6 +54,7 @@ vim.g.my_statuslines = {
   -- { 'large'  , '%t %r %m' .. '[%#HLspStatus#%{LspStatus()} %*][%l %c%V% %P]'  },
   -- '[%{LspStatus()}]\\ [%f] [%h%w%m%r%=%-14.(%l,%c%V%)\\ %P]',
 }
+
  -- { 'fg':      ['fg', 'Normal'],
  --   'bg':      ['bg', 'Normal'],
  --   'hl':      ['fg', 'Search'],
@@ -62,3 +68,4 @@ vim.g.my_statuslines = {
  --   'marker':  ['fg', 'Keyword'],
  --   'spinner': ['fg', 'Label'],
  --   'header':  ['fg', 'Comment'] }
+

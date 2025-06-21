@@ -57,6 +57,30 @@ function Cycle(check_var, list, func)
   return func(list[1])
 end
 
+function ReloadConfig()
+  for i,v in pairs(package.loaded) do
+    print(i, vim.inspect(package.loaded))
+  end
+end
+
+function CorrectColors()
+  local function Main(comm, hl_table)
+    if #hl_table == 0 then
+      for c,v in pairs(hl_table) do Main(comm .. c, v) end
+    else
+      vim.cmd("hi " .. comm .. " " .. table.concat(hl_table, " "))
+    end
+    -- for c,v in pairs(table) do
+    --   if type(v) == "table" then
+    --     Main(comm..c)
+    --   else
+    --     vim.cmd(comm
+    --   end
+    -- end
+  end
+  Main("", vim.g.my_highlight)
+end
+
 -- function CommentExpr(lnum)
 --   if not lnum then
 --     return 0
