@@ -22,7 +22,7 @@
     #sticky toggle
     set $scratchpad_default floating enable, move scratchpad, scratchpad show, move position center
     set $floating_default   floating enable, move position center
-    bindsym Mod1+Shift+r    exec --no-startup-id    "xrdb ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --3"
+    bindsym Mod1+Shift+r    exec --no-startup-id    "xrdb -override ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --3"
     #bindsym Mod1+Shift+c    exec --no-startup-id    "xrdb ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --NOASK --0"
     bindsym Mod1+Shift+o    exec "sleep 0.5; xset dpms force off"
 #-------------------------------------------------Set---------------------#
@@ -104,5 +104,5 @@
     #$EXC    /usr/bin/dunst
     $EXC    unclutter --timeout 2 --fork
     #$EXC    arbtt-capture -r 30
-    $EXC_A  $HOME/.config/polybar/launch.sh
+    $EXC_A  $polybar_script "launch"
 #-------END---------------------------------------------------------------#

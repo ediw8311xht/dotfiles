@@ -29,7 +29,18 @@ $else
 $endif
 
 $if mode=vi
-    set keymap vi-command
+    set editing-mode vi
+    "\C-h": backward-kill-word
+    "\C-a": beginning-of-line
+    "\C-e": end-of-line
+    # "\C-w": forward-word 
+    # Can't bind since special
+    "\C-f": forward-char
+    "\C-b": backward-char
+    "\C-n": next-history
+    "\C-p": previous-history
+    "\C-g": end-of-history
+    "\C-o": beginning-of-history
 $endif
 
 # Get key sequence:
@@ -63,5 +74,3 @@ $if mode=emacs
     "\e[H": beginning-of-line
     "\e[F": end-of-line
 $endif
-
-"\C-h": backward-kill-word
