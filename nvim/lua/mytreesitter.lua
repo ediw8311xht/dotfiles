@@ -19,6 +19,23 @@ treesitter.setup {
   ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
   -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
 
+  textobjects = {
+    lsp_interop = {
+      enable = true
+    },
+    move = {
+      enable = true
+    },
+    select = {
+      enable = true
+    },
+    swap = {
+      enable = true
+    },
+  },
+  incremental_selection = {
+    enable = true
+  },
   highlight = {
     enable = true,
 

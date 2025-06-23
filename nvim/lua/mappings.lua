@@ -95,14 +95,14 @@ REGULAR_MAPPINGS={
      [ 'x'        ] = {F, '',                       '"xx'                                        },
    },
    [n] = {
-     [ '/'        ] = {F, '',                       '/\\v\\c'                                    },
-     [ '<C-S-E>'  ] = {F, '',                       'bbe'                                        },
+     [ '/'        ] = {F, 'Search +vmagic',         '/\\v\\c'                                    },
+     [ '<C-S-E>'  ] = {F, 'End of previous word',   'ge'                                         },
      [ '<C-S-H>'  ] = {F, 'Left pane',              '<C-w>h'                                     },
      [ '<C-S-J>'  ] = {F, 'Down pane',              '<C-w>j'                                     },
      [ '<C-S-K>'  ] = {F, 'Up Pane',                '<C-w>k'                                     },
      [ '<C-S-L>'  ] = {F, 'Right pane',             '<C-w>l'                                     },
      [ '<C-S-Tab>'] = {F, 'Previous tab',           ':tabprevious<CR>'                           },
-     [ '<C-S-s>'  ] = {F, 'Substitute char sens',   ':%s/\\v'                                    },
+     [ '<C-S-s>'  ] = {F, 'Substitute +char +vmagic', ':%s/\\v'                                    },
      [ '<C-Tab>'  ] = {F, 'Next tab',               ':tabnext<CR>'                               },
      [ '<C-h>'    ] = {F, 'Left Pane',              '<C-w>h'                                     },
      [ '<C-j>'    ] = {F, 'Down Pane',              '<C-w>j'                                     },
@@ -113,39 +113,39 @@ REGULAR_MAPPINGS={
      -- [ '<C-p>'    ] = {F, 'Substitute [All Buffs]', ':%s/\\v\\c'                                 },
      [ '<C-w>n'   ] = {F, 'New Buffer Right',       ':new<esc><C-w>L'                            },
      [ '<esc>'    ] = {F, 'Clear',                  ':noh<esc>:echon ""<enter>'                  },
-     [ '?'        ] = {F, '',                       '?\\v\\c'                                    },
-     [ 'ZG'       ] = {F, '',                       ':wqall<CR>'                                 },
-     [ '`'        ] = {F, '',                       '@=(foldlevel(\'.\')?\'za\':"<Space>")<CR>'  },
-     [ '|'        ] = {F, '',                       '/\\V\\c'                                    },
+     [ '?'        ] = {F, 'Search +back +vmagic',   '?\\v\\c'                                    },
+     [ 'ZG'       ] = {F, 'Write quit all',         ':wqall<CR>'                                 },
+     [ '`'        ] = {F, 'Fold',                   '@=(foldlevel(\'.\')?\'za\':"<Space>")<CR>'  },
+     [ '|'        ] = {F, 'Search -magic',          '/\\V\\c'                                    },
    },
    [t] = {
      [ '<C-w>'    ] = {T, '',                       '<C-\\><C-n>'                                },
    },
    [v] = {
-     [ '<C-S-s>'  ] = {F, 'Sub char sensitive',     ':s/\\%V\\v'                                 },
-     [ '<C-s>'    ] = {F, 'Sub char insensitive',   ':s/\\%V\\v\\c'                              },
+     [ '<C-S-s>'  ] = {F, 'Sub +char +vm',          ':s/\\%V\\v'                                 },
+     [ '<C-s>'    ] = {F, 'Sub +vm',                ':s/\\%V\\v\\c'                              },
      [ '`'        ] = {F, '',                       'zf'                                         },
    },
    [i] = {
-     [ '<C-S-\\>' ] = {F, '',                       '<C-o><C-r>'                                 },
-     [ '<C-k>'    ] = {F, '',                       '<C-o>D'                                     },
-     [ '<C-S-k>'  ] = {F, '',                       '<C-o>D'                                     },
-     [ '<C-S-t>'  ] = {F, '',                       '<C-d>'                                      },
-     [ '<C-\\>'   ] = {F, '',                       '<C-o>u'                                     },
-     [ 'jk'       ] = {F, '',                       '<esc>'                                      },
+     [ '<C-S-\\>' ] = {F, 'Redo',                   '<C-o><C-r>'                                 },
+     [ '<C-k>'    ] = {F, 'Redo',                   '<C-o>D'                                     },
+     [ '<C-S-k>'  ] = {F, 'Delete to end of line',  '<C-o>D'                                     },
+     [ '<C-S-t>'  ] = {F, 'Remove indent',          '<C-d>'                                      },
+     [ '<C-\\>'   ] = {F, 'Undo',                   '<C-o>u'                                     },
+     [ 'jk'       ] = {F, 'Exit Insert[m]',         '<esc>'                                      },
    },
    [c] = {
      [ '<C-k>'    ] = {F, '',                       '<C-c>D<C-c>'                                },
      [ '<C-S-k>'  ] = {F, '',                       '<C-c>D<C-c>'                                },
    },
    [ {c, i} ] = {
-     [ '<C-a>'    ] = {F, '',                       '<home>'                                     },
-     [ '<C-b>'    ] = {F, '',                       '<left>'                                     },
-     [ '<C-e>'    ] = {F, '',                       '<end>'                                      },
-     [ '<C-f>'    ] = {F, '',                       '<right>'                                    },
-     [ '<C-w>'    ] = {F, '',                       '<S-right>'                                  },
-     [ '<C-S-w>'  ] = {F, '',                       '<S-left>'                                   },
-     [ '<C-BS>'   ] = {F, '',                       '<C-w>'                                      },
+     [ '<C-a>'    ] = {F, 'Start of line',          '<home>'                                     },
+     [ '<C-b>'    ] = {F, 'Backward char',          '<left>'                                     },
+     [ '<C-e>'    ] = {F, 'End of line',            '<end>'                                      },
+     [ '<C-f>'    ] = {F, 'Forward char',           '<right>'                                    },
+     [ '<C-w>'    ] = {F, 'Forward word',           '<S-right>'                                  },
+     [ '<C-S-w>'  ] = {F, 'Backward word',          '<S-left>'                                   },
+     [ '<C-BS>'   ] = {F, 'Delete word backwards',  '<C-w>'                                      },
    },
    [ {n, v, t} ] = {
      [ "<C-1>" ] = { F, 'Go to tab 1',    "1gt"           },
@@ -159,13 +159,13 @@ REGULAR_MAPPINGS={
      [ "<C-9>" ] = { F, 'Go to last tab', ":tablast<CR>"  },
    },
 }
+
 -- beginning 
 LEADER_MAPPINGS = {
   [n] = {
     [ ','       ] = { F, 'Alternate File',         '<C-^>'                                                                },
     [ '-'       ] = { F, 'Equalize Split Hori',    '20<c-w><'                                                             },
     -- Excute --
-
     [ '<C-s>'   ] = { F, 'Sub in all buffs',       ':budfo %s/\\v\\c'                                                     },
     [ '<C-S-x>' ] = { F, 'Execute with args',      ':!%:p '                                                               },
     [ '<C-x>'   ] = { F, 'Execute',                ':!%:p<esc>'                                                           },
@@ -204,6 +204,7 @@ LEADER_MAPPINGS = {
     [ 'cl'      ] = { F, '+ CursorLine',           ':set nocul!<CR>'                                                      },
     [ 'cs'      ] = { F, '+ Statusline',           ':call TogLastStatus()<CR>'                                            },
     [ 'cv'      ] = { F, '+Virtualedit',           ':call TogVirtualEdit()<CR>'                                           },
+    [ 'cV'      ] = { F, '+ lsp_lines',            ':lua require("lsp_lines").toggle()<CR>'                               },
     [ 'df'      ] = { F, 'Find Space EOL',         ':%s/\\s\\+\\ze$//gc<CR>'                                              },
     [ 'gh'      ] = { F, 'Get highlight',          ':call GetHL()<ESC>'                                                   },
     [ 'gm'      ] = { F, 'Print Mappings',         ':call GMaps()<CR>'                                                    },
@@ -217,6 +218,8 @@ LEADER_MAPPINGS = {
     [ 'oq'      ] = { F, 'Open in Qutebrowser',    ':silent !"qutebrowser" %<CR>'                                         },
     [ 'q'       ] = { F, 'Delete buffer',          ':bd'                                                                  },
     [ 's'       ] = { F, 'Switch pane',            '<C-w><C-p>'                                                           },
+    [ 'Ss'      ] = { F, 'Source file',            ':%so<CR>'                                                             },
+    [ 'Sl'      ] = { F, 'Luafile',                ':luafile %<CR>'                                                       },
     [ 'tb'      ] = { F, 'Prev Tab',               ':tabmove -1<esc>'                                                     },
     [ 'tn'      ] = { F, 'Next Tab',               ':tabmove +1<esc>'                                                     },
     [ 'tt'      ] = { F, 'New Tab',                ':tabnew<esc>'                                                         },
@@ -232,7 +235,6 @@ LEADER_MAPPINGS = {
     [ 'vs'      ] = { F, 'sort',                   ':sort<enter>'                                                         },
   }
 }
-
 ALL_MAPPINGS = { [""] = REGULAR_MAPPINGS, ["<LEADER>"] = LEADER_MAPPINGS}
 function KeyMapSetter(map, pre)
   for mode, mode_map in pairs(map) do

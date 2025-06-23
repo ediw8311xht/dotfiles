@@ -100,7 +100,7 @@ set foldmethod=manual
 set foldcolumn=2
 set sessionoptions=blank,buffers,curdir,help,tabpages,winsize,winpos,terminal
 set viewoptions=cursor,folds
-set foldexpr=''
+"set foldexpr=''
 "set foldexpr='v:lua.vim.treesitter.foldexpr()'
 "set foldexpr='v:lua.vim.treesitter.foldexpr()'
 
