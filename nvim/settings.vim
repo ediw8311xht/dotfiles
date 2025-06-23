@@ -18,12 +18,11 @@ set magic
 set modelines=5
 set nocompatible
 set nowrap
-
 "-------------------line numbers 
 set number
 set relativenumber
 set ruler
-set signcolumn=auto:2-5
+set signcolumn=auto:1-5
 set splitright
 set t_Co=256
 "set termguicolors

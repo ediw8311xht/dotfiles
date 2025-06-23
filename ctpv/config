@@ -15,13 +15,17 @@ preview epub .epub {{
     send_image "${cache_f}.png"
 }}
 
-preview gzip application/gzip {{
-    zcat --list "${f}"
+preview tarball .tar.zst .tar.gz .tgz application/x-compressed-tar {{
+    tar --restrict --list --file "${f}"
 }}
 
-# preview tarball .tar.gz {{
-#     tar --restrict --list --file "${f}"
+preview zip .zip application/zip {{
+    unzip -l "${f}"
+}}
+# preview gzipt application/gzip {{
+#     zcat --list "${f}"
 # }}
+
 
 preview text_files text/* {{
     head -1000 "${f}" | pygmentize

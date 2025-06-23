@@ -12,32 +12,27 @@ MaxLinesCMP = 5000
 ---------------------------------
 -- Disable CMP For Large Files --
 ---------------------------------
-vauto({"BufEnter", "BufWinEnter"}, {
-  pattern = {"*"},
+vauto({ "BufEnter", "BufWinEnter" }, { pattern = { "*" },
   callback = function(args)
     if va.nvim_buf_line_count(args.buf) > MaxLinesCMP then
       require('cmp').setup.buffer( { enabled = false } )
     end
-  end}
-)
+  end
+})
 
-vauto({"FocusGained", "CursorHold", "CursorHoldI"}, {
-  pattern = { "*" },
+vauto({ "FocusGained", "CursorHold", "CursorHoldI" }, { pattern = { "*" },
   callback = function()
     vc("silent! checktime")
-  end}
-)
+  end
+})
+
 -------------------------
 -- BufNewFile, BufRead --
 -------------------------
 local function bufnew_bufread(glob, comms)
-  vauto({"BufNewFile", "BufRead"}, {
-    pattern = glob,
-    callback = function()
-      for _,com in ipairs(comms) do
-        vc(com)
-      end
-    end})
+  vauto({ "BufNewFile", "BufRead" }, { pattern = glob,
+    callback = function() for _,com in ipairs(comms) do vc(com) end end
+  })
 end
 
 local function bufnr_add(globcomms)
@@ -50,8 +45,7 @@ end
 -- Templates ------------
 -------------------------
 local function template_add(glob, template_file)
-  vauto({"BufNewFile"}, {
-    pattern = glob,
+  vauto({ "BufNewFile" }, { pattern = glob,
     callback = function()
       local full_path = TemplateDir .. template_file
       vc("0read " .. full_path)
@@ -97,48 +91,28 @@ bufnr_add(globcomms)
 -------------------------
 -- VimLeave -------------
 -------------------------
-vauto({"VimLeave"}, {
-  pattern = "*",
-  callback = function()
-    ClipBoardExit()
-  end
+vauto({ "VimLeave" }, { pattern = "*",
+  callback = function() ClipBoardExit() end
 })
 
 -------------------------
 -- TermOpen -------------
 -------------------------
-vauto({"TermOpen"}, {
-  pattern = "*",
-  callback = function()
-    vc("setlocal statusline=%{b:term_title}")
-  end
+vauto({ "TermOpen" }, { pattern = "*",
+  callback = function() vc("setlocal statusline=%{b:term_title}") end
 })
 
 ------------------------
 -- FileType Formatting --
 -------------------------
-vauto({"FileType"}, {
-  pattern = "*",
-  callback = function()
-    vc("setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
-  end
+vauto({ "FileType" }, { pattern = "*",
+  callback = function() vc("setlocal formatoptions-=c formatoptions-=r formatoptions-=o") end
 })
-
-vauto({"BufNewFile", "BufRead"}, {
-  pattern = "/$HOME/.config/i3/*",
-  callback = function()
-    vim.cmd("setfiletype i3")
-  end
-})
-
 
 -------------------------
 -- YankedText -----------
 -------------------------
-vauto({"TextYankPost"}, {
-  pattern = "*",
-  callback = function()
-    vim.hl.on_yank( { higroup="Visual", timeout=500 } )
-  end
+vauto({ "TextYankPost" }, { pattern = "*",
+  callback = function() vim.hl.on_yank( { higroup="Visual", timeout=300 } ) end
 })
 

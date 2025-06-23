@@ -33,11 +33,10 @@ vim.g.python3_host_prog="/usr/bin/python"
 
 vim.g.fzf_vim = {
   ["buffers_options"] = {
-    '--ansi'         ,
     '--style'        ,  'full'      ,
     '--border-label' ,  "Buffers"   ,
-    '--nth'          ,  '-1'        ,
-    '--with-nth'     ,  '{-1}'      ,
+    -- '--nth'          ,  '-1'        ,
+    -- '--with-nth'     ,  '{-1}'      ,
   }
 
 }
