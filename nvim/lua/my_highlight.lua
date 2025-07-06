@@ -78,6 +78,9 @@ vim.g.my_highlight = {
       ["6.markdown"] = { "gui=bold", "guibg=#000000", "guifg=#004400", },
     },
   },
+  -- ["@string."] = {
+  --   ["cpp"] = { "gui=NONE", "guibg=NONE", "guifg=#00DD99" },
+  -- },
 }
 
     -- hi MoreMsg guifg=#5fffff guibg=NONE gui=NONE cterm=NONE

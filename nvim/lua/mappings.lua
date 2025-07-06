@@ -146,8 +146,9 @@ REGULAR_MAPPINGS={
      [ '<C-w>'    ] = {F, 'Forward word',           '<S-right>'                                  },
      [ '<C-S-w>'  ] = {F, 'Backward word',          '<S-left>'                                   },
      [ '<C-BS>'   ] = {F, 'Delete word backwards',  '<C-w>'                                      },
+     -- [ '<C-S-e>'  ] = {F, '',                       '<C-e>'                                      },
    },
-   [ {n, v, t} ] = {
+   [ {n, v, t, i} ] = {
      [ "<C-1>" ] = { F, 'Go to tab 1',    "1gt"           },
      [ "<C-2>" ] = { F, 'Go to tab 2',    "2gt"           },
      [ "<C-3>" ] = { F, 'Go to tab 3',    "3gt"           },
@@ -209,6 +210,10 @@ LEADER_MAPPINGS = {
     [ 'gh'      ] = { F, 'Get highlight',          ':call GetHL()<ESC>'                                                   },
     [ 'gm'      ] = { F, 'Print Mappings',         ':call GMaps()<CR>'                                                    },
     [ 'gn'      ] = { F, 'New File',               ':enew<esc>'                                                           },
+
+    [ 'gns'      ] = {F, 'Next Function Start',    ':GotoNextFunctionStart<CR>'                                           },
+    [ 'gne'      ] = {F, 'Next Function End',      ':GotoNextFunctionEnd<CR>'                                             },
+
     [ 'i'       ] = { F, 'Show diagnostics',       ':lua vim.diagnostic.open_float(nil, {focus=T, scope="cursor"})<CR>'   },
     [ 'l'       ] = { F, 'Next Background',        ':call CyBack(+1)<CR>'                                                 },
     [ 'mh'      ] = { F, 'Checkhealth',            ':checkhealth<CR>'                                                     },

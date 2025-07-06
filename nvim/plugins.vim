@@ -17,6 +17,7 @@ let g:my_plugins["cmp luasnip"]         = [ 'saadparwaiz1',     'cmp_luasnip'   
 let g:my_plugins['cmp plain english']   = [ 'uga-rosa',         'cmp-dictionary'                ]
 let g:my_plugins['cmp nvim tags']       = [ 'quangnguyen30192', 'cmp-nvim-tags'                 ]
 let g:my_plugins['cmp ctags']           = [ 'delphinus',        'cmp-ctags'                     ]
+let g:my_plugins['cmp treesitter']      = [ 'ray-x',            'cmp-treesitter',               ]
 let g:my_plugins['latex snips 4 vimtex']= [ 'micangl',          'cmp-vimtex'                    ]
 let g:my_plugins["vlime cmp"]           = [ 'HiPhish',          'nvim-cmp-vlime'                ]
 let g:my_plugins["luasnip"]             = [ 'L3MON4D3',         'LuaSnip'                       ]

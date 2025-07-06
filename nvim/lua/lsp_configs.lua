@@ -63,6 +63,7 @@ lspconfig.bashls.setup({
 
 lspconfig.clangd.setup({
   capabilities = cmp_capabilities,
+  cmd = { "clangd", "--log=verbose" },
   init_options = {
     fallbackFlags = {
       '--std=gnu++20',

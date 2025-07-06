@@ -1,5 +1,7 @@
 
 local va    = vim.api
+local vfn   = vim.fn
+local ts    = vim.treesitter
    -- local vauto = vim.api.nvim_create_autocmd
 -- local vc    = vim.cmd
 
@@ -57,12 +59,6 @@ function Cycle(check_var, list, func)
   return func(list[1])
 end
 
--- function ReloadConfig()
---   for i, v in pairs(package.loaded) do
---     print(i, vim.inspect(package.loaded))
---   end
--- end
-
 function CorrectColors()
   local function Main(comm, hl_table)
     if #hl_table == 0 then
@@ -73,6 +69,13 @@ function CorrectColors()
   end
   Main("", vim.g.my_highlight)
 end
+
+-- function ReloadConfig()
+--   for i, v in pairs(package.loaded) do
+--     print(i, vim.inspect(package.loaded))
+--   end
+-- end
+
 
 -- function CommentExpr(lnum)
 --   if not lnum then

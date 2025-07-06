@@ -30,4 +30,4 @@ lua require('base')
 call nvim_set_option("statusline", g:my_statuslines[0][1])
 colorscheme pop-punk
 lua CorrectColors()
-lua require('mytreesitter')
+lua require('my_treesitter')

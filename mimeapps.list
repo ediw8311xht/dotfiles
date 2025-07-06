@@ -167,3 +167,4 @@ x-scheme-handler/https=brave-browser.desktop;
 x-scheme-handler/unknown=brave-browser.desktop;
 x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
 x-scheme-handler/nxm=com.nexusmods.app.desktop;
+x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop

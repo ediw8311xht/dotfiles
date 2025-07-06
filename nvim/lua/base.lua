@@ -6,6 +6,9 @@ require('lsp_configs')
 require('my_elixir')
 require('gitsigns_config')
 require('notify_config')
+-- My own module for using treesitter to navigate stuff
+require("my_treesitter_module").create_commands()
+-- My Mappings
 require('mappings')
 require('textobjects')
 require('marks_config')
