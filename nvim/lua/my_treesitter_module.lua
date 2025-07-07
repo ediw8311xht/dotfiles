@@ -73,12 +73,21 @@ function M.Init()
   M.br = vapi.nvim_get_current_buf()
   M.ft = vapi.nvim_get_option_value("ft", { buf = M.br })
   M.lang = ts.language.get_lang(M.ft)
-  -- M.hle = require("vim.treesitter.highlighter")
+  M.hle = require("vim.treesitter.highlighter")
   M.tree = ts.get_parser():parse()[1]
 end
 
-function M.IsInner(cpos, nstart, nend)
-  return cpos >= nstart and cpos <= nend
+
+function M.Less(p1, p2)      return (p1[1]  < p2[1]) end -- or ( p1[1] == p2[1] and p1[2]   < p2[2] )) end
+function M.LessEqual(p1, p2) return (p1[1] <= p2[1]) end -- or ( p1[1] == p2[1] and p1[2]  <= p2[2] )) end
+function M.Equal(p1, p2)     return (p1[1] == p2[1]) end -- and p1[2] == p2[2]) end
+
+function M.IsInner(cpos, spos, epos)
+  return M.LessEqual(spos, cpos) and M.LessEqual(cpos, epos)
+end
+
+function M.SetCursorPos(pos)
+  return vapi.nvim_win_set_cursor(0, pos)
 end
 
 function M.GoToQuery(query, args)
@@ -88,19 +97,22 @@ function M.GoToQuery(query, args)
   local inner = args.inner or false
   ---------------------------------------
 
-  local cpos, _ = unpack(vapi.nvim_win_get_cursor(0))
-  cpos = cpos - 1
+  local cpos_row, cpos_col = unpack(vapi.nvim_win_get_cursor(0))
+  local cpos = {cpos_row, cpos_col}
 
   local parsed_query = ts.query.parse(M.lang, query)
 
-  for _, node, _ in parsed_query:iter_captures(M.tree:root(), 0, cpos) do
+  -- Treesitter uses 0 indexed row and nvim uses 1 indexed
+  for _, node, _ in parsed_query:iter_captures(M.tree:root(), 0, cpos_row-1) do
     local node_start_row, node_start_col, node_end_row, node_end_col = node:range()
+    local node_start = {node_start_row+1, node_start_col}
+    local node_end = {node_end_row+1, node_end_col}
 
-    local new_pos = goto_end and {node_end_row+1,node_end_col} or {node_start_row+1,node_start_col}
-    if M.IsInner(cpos, node_start_row, node_end_row) then
-      if inner then return vapi.nvim_win_set_cursor(0, new_pos) end
-    else
-      return vapi.nvim_win_set_cursor(0, new_pos)
+    local new_pos = goto_end and node_end or node_start
+    if not M.IsInner(cpos, node_start, node_end) then
+      return M.SetCursorPos(new_pos)
+    elseif inner or M.Less(cpos, new_pos) then
+      return M.SetCursorPos(new_pos)
     end
   end
 end
