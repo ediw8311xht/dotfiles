@@ -1,7 +1,7 @@
 
 -- local org               = require('orgmode')
-require('which_key_config')
 require('cmp_config')
+require('which_key_config')
 require('lsp_configs')
 require('my_elixir')
 require('gitsigns_config')

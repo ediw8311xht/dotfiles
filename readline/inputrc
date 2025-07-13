@@ -39,8 +39,9 @@ $if mode=vi
     "\C-b": backward-char
     "\C-n": next-history
     "\C-p": previous-history
-    "\C-g": end-of-history
-    "\C-o": beginning-of-history
+    set keymap vi-command
+    "G": end-of-history
+    "gg": beginning-of-history
 $endif
 
 # Get key sequence:

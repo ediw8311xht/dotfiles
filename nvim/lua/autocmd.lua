@@ -115,4 +115,3 @@ vauto({ "FileType" }, { pattern = "*",
 vauto({ "TextYankPost" }, { pattern = "*",
   callback = function() vim.hl.on_yank( { higroup="Visual", timeout=300 } ) end
 })
-

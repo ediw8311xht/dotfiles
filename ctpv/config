@@ -15,6 +15,10 @@ preview epub .epub {{
     send_image "${cache_f}.png"
 }}
 
+preview mp3 .mp3 {{
+    mediainfo "${f}"
+}}
+
 preview tarball .tar.zst .tar.gz .tgz application/x-compressed-tar {{
     tar --restrict --list --file "${f}"
 }}

@@ -117,6 +117,10 @@ REGULAR_MAPPINGS={
      [ 'ZG'       ] = {F, 'Write quit all',         ':wqall<CR>'                                 },
      [ '`'        ] = {F, 'Fold',                   '@=(foldlevel(\'.\')?\'za\':"<Space>")<CR>'  },
      [ '|'        ] = {F, 'Search -magic',          '/\\V\\c'                                    },
+     [ '{'        ] = {F, 'Prev Function Start',    ':GotoPrevFunctionStart<CR>'                 },
+     [ '}'        ] = {F, 'Next Function Start',    ':GotoNextFunctionStart<CR>'                 },
+     [ 'gne'      ] = {F, 'Next Function End',      ':GotoNextFunctionEnd<CR>'                   },
+
    },
    [t] = {
      [ '<C-w>'    ] = {T, '',                       '<C-\\><C-n>'                                },
@@ -210,9 +214,6 @@ LEADER_MAPPINGS = {
     [ 'gh'      ] = { F, 'Get highlight',          ':call GetHL()<ESC>'                                                   },
     [ 'gm'      ] = { F, 'Print Mappings',         ':call GMaps()<CR>'                                                    },
     [ 'gn'      ] = { F, 'New File',               ':enew<esc>'                                                           },
-
-    [ 'gns'      ] = {F, 'Next Function Start',    ':GotoNextFunctionStart<CR>'                                           },
-    [ 'gne'      ] = {F, 'Next Function End',      ':GotoNextFunctionEnd<CR>'                                             },
 
     [ 'i'       ] = { F, 'Show diagnostics',       ':lua vim.diagnostic.open_float(nil, {focus=T, scope="cursor"})<CR>'   },
     [ 'l'       ] = { F, 'Next Background',        ':call CyBack(+1)<CR>'                                                 },

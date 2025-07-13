@@ -1,15 +1,15 @@
 
-local luasnip           = require('luasnip')
 local cmp               = require('cmp')
-luasnip.setup({})
 cmp.setup({
   -- performance = {
-  --   throttle = 0.3,
+  --   fetching_timeout = 500,
+  --   throttle = 2000,
   --   async_budget = 20,
+  --   max_view_entries = 50,
   -- },
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body)
+      require('luasnip').lsp_expand(args.body)
     end,
   },
   window = {
@@ -29,7 +29,7 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
     { name = 'luasnip' },
-    { name = 'treesitter' },
+    -- { name = 'treesitter' },
     { name = 'vimtex' },
     { name = 'nvim_lsp_signature_help' },
     { name = 'ctags' },

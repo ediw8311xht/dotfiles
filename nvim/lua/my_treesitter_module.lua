@@ -5,6 +5,7 @@
 -- Thank you to Joohoon Cha <3
 
 local ts = vim.treesitter
+local ts_utils = require("nvim-treesitter.ts_utils")
 local vfn = vim.fn
 local vapi = vim.api
 
@@ -99,33 +100,39 @@ function M.GoToQuery(query, args)
 
   local cpos_row, cpos_col = unpack(vapi.nvim_win_get_cursor(0))
   local cpos = {cpos_row, cpos_col}
+  local iter_range = reverse and {0, cpos_row-1} or {cpos_row-1, vfn.line('$')-1}
+  local new_pos
 
   local parsed_query = ts.query.parse(M.lang, query)
 
   -- Treesitter uses 0 indexed row and nvim uses 1 indexed
-  for _, node, _ in parsed_query:iter_captures(M.tree:root(), 0, cpos_row-1) do
+  for _, node, _ in parsed_query:iter_captures(M.tree:root(), 0, iter_range[1], iter_range[2]) do
     local node_start_row, node_start_col, node_end_row, node_end_col = node:range()
     local node_start = {node_start_row+1, node_start_col}
     local node_end = {node_end_row+1, node_end_col}
 
-    local new_pos = goto_end and node_end or node_start
-    if not M.IsInner(cpos, node_start, node_end) then
+    new_pos = goto_end and node_end or node_start
+    if reverse then
+      goto continue
+    elseif not M.IsInner(cpos, node_start, node_end) then
       return M.SetCursorPos(new_pos)
     elseif inner or M.Less(cpos, new_pos) then
       return M.SetCursorPos(new_pos)
     end
+    ::continue::
   end
+  return new_pos and M.SetCursorPos(new_pos)
 end
 
 function M.GoToFunction(args)
   M.Init()
+  args = args or {}
   local func_query
-  if M.ft == "lua" then
-    func_query = " ( (function_declaration) @func_decl ) "
-  else
-    func_query = " ( (function_definition) @func_decl ) "
+  if     args and args.test then return M.test_g()
+  elseif M.ft == "lua"      then func_query = " ( (function_declaration) @func_decl ) "
+  else                           func_query = " ( (function_definition) @func_decl ) "
   end
-  M.GoToQuery(func_query, args or {})
+  M.GoToQuery(func_query, args)
 end
 
 function M.create_commands()
@@ -133,6 +140,12 @@ function M.create_commands()
     "GotoNextFunctionStart",
     M.GoToFunction,
     { desc="Go to start of next function", nargs=0 }
+  )
+
+  vapi.nvim_create_user_command(
+    "GotoPrevFunctionStart",
+    function() M.GoToFunction({reverse=true}) end,
+    { desc="Go to previous function start", nargs=0 }
   )
 
   vapi.nvim_create_user_command(
@@ -153,6 +166,10 @@ function M.create_commands()
     { desc="Go to the end of function cursor is currently inside", nargs=0 }
   )
 end
+
+
+-- M.GoToFunction({test = true})
+
 
 return M
 
