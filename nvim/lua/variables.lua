@@ -31,20 +31,6 @@ vim.g.MyColorTable = {
 
 vim.g.python3_host_prog="/usr/bin/python"
 
-vim.g.fzf_vim = {
-  ["buffers_options"] = {
-    '--style'        ,  'full'      ,
-    '--border-label' ,  "Buffers"   ,
-    -- '--nth'          ,  '-1'        ,
-    -- '--with-nth'     ,  '{-1}'      ,
-  }
-
-}
-
-vim.g.fzf_colors = {
-  [ "hl"  ]  = { 'bg', 'Search' },
-  [ "hl+" ]  = { 'bg', 'Search' }
-}
 
 vim.g.my_statuslines = {
   { 'default' , "%t %r %m%=" .. "[%#HLspStatus#%{LspStatus()} %*][%F]"             },
@@ -54,17 +40,27 @@ vim.g.my_statuslines = {
   -- '[%{LspStatus()}]\\ [%f] [%h%w%m%r%=%-14.(%l,%c%V%)\\ %P]',
 }
 
- -- { 'fg':      ['fg', 'Normal'],
- --   'bg':      ['bg', 'Normal'],
- --   'hl':      ['fg', 'Search'],
- --   'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
- --   'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
- --   'hl+':     ['fg', 'Visual'],
- --   'info':    ['fg', 'PreProc'],
- --   'border':  ['fg', 'StatusLineNC'],
- --   'prompt':  ['fg', 'Conditional'],
- --   'pointer': ['fg', 'Exception'],
- --   'marker':  ['fg', 'Keyword'],
- --   'spinner': ['fg', 'Label'],
- --   'header':  ['fg', 'Comment'] }
+----------------------------------------------------------
+---------------------- FZF SETTINGS ----------------------
+----------------------------------------------------------
+vim.g.fzf_vim = {
+  [ 'buffers_options' ] = {
+    '--style'        ,  'full'      ,
+    '--no-border'
+    -- '--border-label' ,  "Buffers"   ,
+    -- '--nth'          ,  '-1'        ,
+    -- '--with-nth'     ,  '{-1}'      ,
+  }
+
+}
+
+vim.g.fzf_colors = {
+  [ 'hl'     ] = { 'bg', 'Search' },
+  [ 'hl+'    ] = { 'bg', 'Search' },
+  -- [ 'border' ] = { 'bg', 'Ignore' },
+}
+
+vim.g.fzf_layout = {
+  [ 'window' ] = { width = 0.9, height = 0.9 } --, border = 'no' }
+}
 

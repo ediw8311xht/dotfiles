@@ -25,6 +25,9 @@ let g:my_plugins["luasnip"]             = [ 'L3MON4D3',         'LuaSnip'       
 "latex
 "let g:my_plugins['vim latex']           = [ 'lervag',           'vimtex'                        ]
 
+"Documentation
+let g:my_plugins["dasht (docs)"] = [ 'sunaku',  'vim-dasht' ]
+
 "lsp
 let g:my_plugins["lspconfig"]           = [ 'neovim',           'nvim-lspconfig'                ]
 let g:my_plugins["lsp lines"]           = [ 'maan2003',         'lsp_lines.nvim'                ]

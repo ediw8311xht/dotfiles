@@ -5,7 +5,7 @@
 -- Thank you to Joohoon Cha <3
 
 local ts = vim.treesitter
-local ts_utils = require("nvim-treesitter.ts_utils")
+-- local ts_utils = require("nvim-treesitter.ts_utils")
 local vfn = vim.fn
 local vapi = vim.api
 

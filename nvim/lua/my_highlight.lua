@@ -24,6 +24,8 @@ vim.g.my_highlight = {
     ["TermCursor"]      = { "gui=NONE",      "guibg=NONE",    "guifg=#00AA00",   },
     ["WinSeparator"]    = { "gui=NONE",      "guibg=NONE",    "guifg=#009900",   },
     ["lCursor"]         = { "gui=NONE",      "guibg=NONE",    "guifg=NONE",      },
+    ["Function"]        = { "gui=NONE" },
+    ["Keyword"]         = { "gui=NONE" },
   },
 
   ["StatusLine"] = {
@@ -41,7 +43,7 @@ vim.g.my_highlight = {
   },
 
   ["CursorLine"] = {
-    [""]     = { "gui=bold",      "guibg=#111111", "guifg=NONE", },
+    [""]     = { "gui=BOLD", "guibg=#101010", "guifg=NONE", },
     ["Nr"]   = { "gui=NONE",      "guibg=NONE",    "guifg=#FFFF00", },
     ["Sign"] = { "gui=NONE",      "guibg=#000022", "guifg=#000000", },
   },
