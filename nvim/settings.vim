@@ -88,8 +88,6 @@ let g:maplocalleader = ","
 let g:lf_map_keys    = 0
 let g:html_mode      = 1
 let g:is_bash        = 1
-"let g:vlime_leader   = "~"
-let g:vlime_leader   = "\\"
 "-------Latex----------"
 let g:is_bash	   = 1
 let g:tex_flavor='latex'
@@ -136,3 +134,13 @@ set viewoptions=cursor,folds
 "let g:bracey_eval_on_save       = 1
 "let g:bracey_auto_start_browser = 0
 "let g:bracey_server_port        = 4842
+
+"-------------------- vlime --------------------------"
+"let g:vlime_leader   = "~"
+let g:vlime_leader   = "\\"
+let g:vlime_cl_impl  = "ros"
+function! VlimeBuildServerCommandFor_ros(vlime_loader, vlime_eval)
+    return ["ros", "run",
+                \ "--load", a:vlime_loader,
+                \ "--eval", a:vlime_eval]
+endfunction
