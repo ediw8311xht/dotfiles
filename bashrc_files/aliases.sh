@@ -86,6 +86,7 @@ alias ww='        cd "${MY_WEB}"'
 alias inf='       fzf_open "${MY_INFORMATION}"'
 alias infc='      fzf_cd -d "${MY_INFORMATION}"  -u -d1'
 alias cnf='       fzf_cd -d "${XDG_CONFIG_HOME}" -u -d1'
+alias cnf='       fzf_cd -d "${XDG_CONFIG_HOME}" -u -d1'
 alias conf='      cd "${XDG_CONFIG_HOME}"'
 alias cde='       fzf_cd -d "${CODING}" -u -d4'
 alias clne='      fzf_cd -d "${CLONED}" -u -d1'
@@ -135,7 +136,7 @@ alias l='         cd_from_lf' # my lf, so it cd's shell after exiting lf
 alias tl='        task list'
 alias tw='        taskwarrior-tui'
 #--------------------------------------------------lisp----------------------------------#
-alias vlime_start=' sbcl --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp'
+alias vlime_start=' rlwrap sbcl --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp'
 alias stop_vlime='  pkill vlime'
 #--------------------------------------------------yt-dlp--------------------------------#
 alias yda='      yt-dlp --extract-audio --audio-format "mp3"'
@@ -180,6 +181,8 @@ alias xf='        xdg-open "$(fzf --preview="ctpv {}")"'
 alias xr='        echo ""; nvim "${HOME}/.Xresources"; xrdb -override "${HOME}/.Xresources"'
 alias ysb='       source "${HOME}/.bashrc"'
 alias ystream='   stream_ytdl_mpv'
+# LISP
+alias y='         rlwrap sbcl'
 
 # alias sctl='      journalctl | ccze -m ansi'
 # alias wh='        whereis'

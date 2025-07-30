@@ -7,7 +7,7 @@ set incfilter
 set ifs         "\n"
 set ratios      2:4:4
 set info        size:time
-set scrolloff   8
+set scrolloff   4
 set autoquit
 #set drawbox
 set dircounts

@@ -48,7 +48,7 @@ local function template_add(glob, template_file)
   vauto({ "BufNewFile" }, { pattern = glob,
     callback = function()
       local full_path = TemplateDir .. template_file
-      vc("0read " .. full_path)
+      vc("keepalt 0read " .. full_path)
       vc("silent w")
       vc("silent !chmod 700 %")
     end})

@@ -114,13 +114,16 @@ fzf_cd() {
 }
 
 fzf_edit() {
-    # local f=""
-    local RG=( --ignore-file="${XDG_CONFIG_HOME}/rg/code.rg"
-                --hidden
-                --files "${1:-.}" )
     local FZF=( --preview="highlight -O ansi -l {} 2>/dev/null"
-                --bind="enter:become(${EDITOR} -o {}; echo {})" )
-    rg "${RG[@]}" | fzf "${FZF[@]}"
+                --bind="enter:become(${EDITOR:-vim} -o {}; echo {})" )
+    local SEARCH_PATH="${PWD}"
+    [[ -n "${1}"  ]] && [[ -d "${1}"  ]] && \
+        { SEARCH_PATH="${1}"; shift 1; }
+
+    if [[ -f "${LOCATE_DATABASE}" ]] 
+        then plocate "${SEARCH_PATH}/*" -d "${LOCATE_DATABASE}"
+        else fd . -u -tf "${SEARCH_PATH}"
+    fi | fzf "${FZF[@]}"
 }
 fzf_open() {
     local FZF=( --preview="highlight -O ansi -l {} 2>/dev/null"

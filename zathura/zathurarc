@@ -43,6 +43,8 @@
     map  <C-B>  feedkeys          ':bmark     quickbookmark<Return>'
     map  <C-b>  feedkeys          ':blist     quickbookmark<Return>'
     map  <C-g>  feedkeys          ':bjump     quickbookmark<Return>'
+    # map  <C-b> feedkeys         ':bjump <Tab>'
+    # map  <C-g> feedkeys         ':bmark '
     map  <C-h>  toggle_statusbar
     map  <C-j>  navigate          'next'
     map  <C-k>  navigate          'previous'
