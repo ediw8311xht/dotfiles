@@ -18,7 +18,6 @@ treesitter.setup {
 
   ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
   -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
-
   textobjects = {
     lsp_interop = {
       enable = true
@@ -32,6 +31,11 @@ treesitter.setup {
     swap = {
       enable = true
     },
+  },
+  -- highlight inside brackets
+  -- https://github.com/nvim-treesitter/nvim-treesitter-refactor#highlight-current-scope
+  refactor = {
+    highlight_current_scope = { enable = true },
   },
   incremental_selection = {
     enable = true

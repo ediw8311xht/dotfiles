@@ -159,12 +159,12 @@ c.colors.webpage.darkmode.algorithm      =  'lightness-cielab'
 c.colors.webpage.darkmode.enabled        =  True
 c.colors.webpage.preferred_color_scheme  =  'dark'
 c.content.canvas_reading                 =  False
-c.fonts.default_family                   =  ["Iosevka", "Agave", "Monospace"]
-c.fonts.default_size                     =  '10pt'
+c.fonts.default_family                   =  [ "Agave", "Noto Sans", "Monospace"]
+c.fonts.default_size                     =  '9pt'
 c.fonts.downloads                        =  'default_size default_family'
-c.fonts.statusbar                        =  '10px Iosevka'
-c.fonts.tabs.selected                    =  '10pt Iosevka'
-c.fonts.tabs.unselected                  =  '10pt Iosevka'
+c.fonts.statusbar                        =  '9pt Noto Sans'
+c.fonts.tabs.selected                    =  '9pt Noto Sans'
+c.fonts.tabs.unselected                  =  '9pt Noto Sans'
 c.spellcheck.languages                   =  []
 c.tabs.favicons.scale                    =  1.0
 c.tabs.favicons.show                     =  'always'
@@ -283,7 +283,7 @@ c.session.lazy_restore                          =   True
 c.statusbar.widgets                             =   ['progress', 'keypress', 'url', 'scroll', 'history', 'tabs', 'progress']
 c.url.default_page                              =   my_start_page
 c.url.start_pages                               =   my_start_pages
-c.zoom.default                                  =   '100%'
+c.zoom.default                                  =   '90%'
 c.zoom.levels                                   =   zoom_levels
 c.zoom.mouse_divider                            =   512
 c.zoom.text_only                                =   False
@@ -308,6 +308,8 @@ c.content.media.audio_capture        =  False
 c.content.media.audio_video_capture  =  False
 c.content.media.video_capture        =  False
 c.content.notifications.enabled      =  False
+c.colors.webpage.darkmode.policy.page = 'always'
+c.colors.webpage.darkmode.policy.page = 'smart'
 
 #----------regular_binding--------#
 config.bind("'",                        'mode-enter jump_mark')

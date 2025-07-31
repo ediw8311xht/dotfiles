@@ -26,6 +26,8 @@ vim.g.my_highlight = {
     ["lCursor"]         = { "gui=NONE",      "guibg=NONE",    "guifg=NONE",      },
     ["Function"]        = { "gui=NONE" },
     ["Keyword"]         = { "gui=NONE" },
+    -- Tree Sitter --
+    ["TSCurrentScope"]  = { "gui=NONE", "guibg=#000022" },
   },
 
   ["StatusLine"] = {

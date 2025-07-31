@@ -45,7 +45,7 @@ export  LS_PREVIEW='lsd   \
 #------------------BEMENU--------------#
 export  BEMENU_OPTS=''
 #------------------LOCATE--------------#
-export  LOCATE_DATABASE="${HOME}/.local/data/plocate/home.db"
+export  LOCATE_DATABASE="${XDG_DATA_HOME}/plocate/home.db"
 #------------------SYSTEM--------------#
 export  EMACS_SOCKET_NAME="${USER}_emacs_daemon"
 export  DOOMDIR="${HOME}/.config/doom"

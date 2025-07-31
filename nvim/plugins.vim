@@ -56,6 +56,7 @@ let g:my_plugins["restore view"]        = [ 'vim-scripts',      'restore_view.vi
 "treesitter
 let g:my_plugins["treesitter"]          = [ 'nvim-treesitter',  'nvim-treesitter',              { 'do': ':TSUpdate'} ]
 let g:my_plugins["treesitter-textobjs"] = [ 'nvim-treesitter',  'nvim-treesitter-textobjects'   ]
+let g:my_plugins["treesitter-refector"] = [ 'nvim-treesitter',  'nvim-treesitter-refactor'      ]
 
 "syntax
 let g:my_plugins['Syntax i3']           = [ 'PotatoesMaster',   'i3-vim-syntax'                 ]

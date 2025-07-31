@@ -64,6 +64,7 @@ end
 -- Vars -----------------
 -------------------------
 local exts = { "sh", "py", "kalker", "exs", "tex", "ex", "html", "cpp", "md", "lisp" }
+
 local globcomms = {
   ---- Syntax ----
   [ home .. "/bashrc_files/*" ]              = { "setfiletype bash"      } ,
@@ -85,6 +86,7 @@ local globcomms = {
       "source" .. LanguageSpecificDir .. "/quick_cpp.vim"
   },
 }
+
 template_add_e(exts)
 bufnr_add(globcomms)
 
