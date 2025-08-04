@@ -69,9 +69,11 @@ open_mpv() {
     done
 
     if [[ -n "${FILE_FZF}" ]] ; then
-        mpv --audio-channels="${AUD:-"auto"}" "${FILE_FZF}" --input-ipc-server=/tmp/mpvsocket & disown
+        # mpv --audio-channels="${AUD:-"auto"}" "${FILE_FZF}" --input-ipc-server=/tmp/mpvsocket & disown
+        mpv "${FILE_FZF}" --input-ipc-server=/tmp/mpvsocket & disown
     else
-        mpv --audio-channels="${AUD:-"auto"}" "${@:-.}" --input-ipc-server=/tmp/mpvsocket & disown
+        # mpv --audio-channels="${AUD:-"auto"}" "${@:-.}" --input-ipc-server=/tmp/mpvsocket & disown
+        mpv "${@:-.}" --input-ipc-server=/tmp/mpvsocket & disown
     fi
     [[ "${CLOSE}" = 'close' ]] && exit
 }
@@ -100,40 +102,6 @@ alias_conflict() {
         fi
     done < <(alias -p | grep -Pio '^[ \t]*alias[ \t]*\K[^=]*')
 }
-fzf_cd() {
-    local out_dir
-    if [[ "${1,,}" = -d ]] && [[ -d "${2}" ]] ; then
-        { cd "${2}" && shift 2; } || return 1
-    fi
-    local OPTIONS=(
-        --preview="${LS_PREVIEW[*]:-ls} {}"
-    )
-
-    out_dir="$(fd "${@}" -td | fzf "${OPTIONS[@]}")"
-    [[ -d "${out_dir}" ]] && cd "${out_dir}" || return 1
-}
-
-fzf_edit() {
-    local FZF=( --preview="highlight -O ansi -l {} 2>/dev/null"
-                --bind="enter:become(${EDITOR:-vim} -o {}; echo {})" )
-    local SEARCH_PATH="${PWD}"
-    [[ -n "${1}"  ]] && [[ -d "${1}"  ]] && \
-        { SEARCH_PATH="${1}"; shift 1; }
-
-    if [[ -f "${LOCATE_DATABASE}" ]] 
-        then plocate "${SEARCH_PATH}/*" -d "${LOCATE_DATABASE}"
-        else fd . -u -tf "${SEARCH_PATH}"
-    fi | fzf "${FZF[@]}"
-}
-fzf_open() {
-    local FZF=( --preview="highlight -O ansi -l {} 2>/dev/null"
-                --bind="enter:become(xdg-open {}; echo {})" )
-    if [[ -d "${1}" ]] ; then 
-        cd "${1}" || { echo "Error cding into '${1}'" >&2; return 1; }
-    fi
-    # shellcheck disable=SC2164 
-    fd -tf -tl -u | fzf "${FZF[@]}" || cd -
-}
 bash_history_grab() {
     grep -Pi "${1}" "${HISTFILE}" | tail -n "${2:-50}"
 }
@@ -157,6 +125,67 @@ size_of_dir() {
     else
         du -axhc --time --max-depth=1 "${tdir}" | sort -h
     fi
+}
+# i have a few different fzf functions i have written for some reason, need to
+# put into just one, also need to use plocate, since searching through
+# filesystem is so dang slow. easily could do something like --bind :become
+# instead of separate function calls for each command, will fix this when i get
+# time.
+fzf_cd() {
+    local out_dir
+    if [[ "${1,,}" = -d ]] && [[ -d "${2}" ]] ; then
+        { cd "${2}" && shift 2; } || return 1
+    fi
+    local OPTIONS=(
+        --preview="${LS_PREVIEW[*]:-ls} {}"
+    )
+
+    out_dir="$(fd "${@}" -td | fzf "${OPTIONS[@]}")"
+    [[ -d "${out_dir}" ]] && cd "${out_dir}" || return 1
+}
+
+fzf_edit() {
+    local FZF=( --preview="highlight -O ansi -l {} 2>/dev/null"
+                --bind="enter:become(${EDITOR:-vim} -o {}; echo {})" )
+    local SEARCH_PATH="${PWD}"
+    [[ -n "${1}"  ]] && [[ -d "${1}"  ]] && \
+        { SEARCH_PATH="${1}"; shift 1; }
+
+    if [[ -f "${LOCATE_DATABASE}" ]] 
+    then plocate "${SEARCH_PATH}/*" -d "${LOCATE_DATABASE}"
+    else fd . -tf "${SEARCH_PATH}"
+    fi | fzf "${FZF[@]}"
+}
+fzf_open() {
+    local FZF=( --preview="highlight -O ansi -l {} 2>/dev/null"
+                --bind="enter:become(xdg-open {}; echo {})" )
+    if [[ -d "${1}" ]] ; then 
+        cd "${1}" || { echo "Error cding into '${1}'" >&2; return 1; }
+    fi
+    # shellcheck disable=SC2164 
+    fd -tf -tl -u | fzf "${FZF[@]}" || cd -
+}
+myfzf() {
+    local VALID_COMMANDS=( 'cd' 'xdg-open' 'nvim' 'vim' )
+    local command='cd'
+    local OPTIONS=(
+        '--type' 'directory'
+    )
+    while [[ "${#}" -gt 0 ]] ; do
+        if   [[ "${1,,}" = 'g' ]] ; then OPTIONS+=( '--search-path' '/' )
+        elif [[ "${1,,}" = 'h' ]] ; then OPTIONS+=( '--hidden' )
+        elif [[ "${1,,}" = 'u' ]] ; then OPTIONS+=( '--unrestricted' )
+        elif [[ "${1,,}" = 'c' ]] ; then
+            if ! in_array "${2}" "${VALID_COMMANDS[@]}" ; then
+                echo "Invliad Command: not in '${VALID_COMMANDS[*]}'" >&2
+                return 1
+            fi
+            command="${2}";  shift 1
+        elif [[ "${1,,}" =~ ^[0-9]+$ ]] ; then OPTIONS+=( '--max-depth' "${1#-}" )
+        else echo "invalid option"; return 1; fi
+        shift 1
+    done
+    "${command}" "$(fd "${OPTIONS[@]}" | fzf --preview="${LS_PREVIEW:-"ls -l"} {}")" || return 1
 }
 #get_outdated_pip() {
 #    local zfile

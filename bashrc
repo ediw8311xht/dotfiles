@@ -40,5 +40,7 @@ export GEM_HOME="$HOME/.local/share/gem/ruby/3.3.0/"
 export PYENV_ROOT="$HOME/.pyenv"
 
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# Zoxide
 eval "$(pyenv init - bash)"
+# Zoxide
 eval "$(zoxide init bash)"

@@ -9,7 +9,7 @@ vim.g.my_highlight = {
     ["EndOfBuffer"]     = { "gui=NONE",      "guibg=NONE",    "guifg=#333333",   },
     ["ExtraWhiteSpace"] = { "gui=NONE",      "guibg=#0099FF", "guifg=NONE",      },
     ["FoldColumn"]      = { "gui=italic",    "guibg=NONE",    "guifg=#00FF00",   },
-    ["Folded"]          = { "gui=italic",    "guibg=NONE",    "guifg=#777777",   },
+    ["Folded"]          = { "gui=italic",    "guibg=#777777", "guifg=#000000",   },
     ["HLspStatus"]      = { "gui=NONE",      "guibg=NONE",    "guifg=#00FF00",   },
     ["HStatusFullFile"] = { "gui=NONE",      "guibg=NONE",    "guifg=#999999",   },
     ["IncSearch"]       = { "gui=NONE",      "guibg=#FF0000", "guifg=#000000",   },
@@ -27,7 +27,7 @@ vim.g.my_highlight = {
     ["Function"]        = { "gui=NONE" },
     ["Keyword"]         = { "gui=NONE" },
     -- Tree Sitter --
-    ["TSCurrentScope"]  = { "gui=NONE", "guibg=#000022" },
+    ["TSCurrentScope"]  = { "gui=NONE", "guibg=#090909" },
   },
 
   ["StatusLine"] = {
@@ -62,14 +62,14 @@ vim.g.my_highlight = {
   },
 
   ["WhichKey"] = {
-    [""]           = { "guibg=NONE", "guifg=#22FF22", },
-    ["Normal"]     = { "guibg=NONE", "guifg=#00FF00", },
-    ["Float"]      = { "guibg=NONE", },
-    ["Group"]      = { "guibg=NONE", },
-    ["Separator"]  = { "guibg=NONE", },
-    ["Desc"]       = { "guibg=NONE", },
-    ["Border"]     = { "guibg=NONE", "guifg=#777777", },
-    ["Value"]      = { "gui=italic", "guibg=NONE", "guifg=#777777", },
+    [""]           = { "guibg=#010101", "guifg=#22FF22",            },
+    ["Normal"]     = { "guibg=#010101", "guifg=#00FF00",            },
+    ["Float"]      = { "guibg=#010101",                             },
+    -- ["Group"]      = { "guibg=NONE",                                },
+    -- ["Separator"]  = { "guibg=NONE",                                },
+    -- ["Desc"]       = { "guibg=NONE",                                },
+    -- ["Border"]     = { "guibg=NONE", "guifg=#777777",               },
+    -- ["Value"]      = { "gui=italic", "guibg=NONE", "guifg=#777777", },
   },
 
   ["@markup."] = {

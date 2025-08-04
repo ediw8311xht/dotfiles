@@ -131,6 +131,7 @@ map <esc>   clear
 map ;		:mark-save
 map ?       :maps
 
+map x       cut
 map	K		push 3k
 map E       :open_editor
 map H		set hidden!
@@ -147,23 +148,25 @@ map RR      :reload
 map Sb      :set drawbox!
 map Ss      :set number!; set relativenumber!
 
-map TR		:trash
 map U       :unselect; clear
-map VG		invert-below
-map Vg		:invert-below; invert
 
 map bB      &$BROWSER $fx
 map bQ      &qutebrowser $fx
 
-map c 		&sed "s@${HOME}/@\$\{HOME\}/@"  <<< "${fx[*]}" | xclip -selection "clipboard" -i -r
-map d  	  	set dironly!
-map e       np
-map m       push :!mkdir<space>
-map o 		&mimeopen $fx
-map r 		set reverse!
-map t       push :!touch<space>
-map x       cut
+
+map ,
+map ,c 		&sed "s@${HOME}/@\$\{HOME\}/@"  <<< "${fx[*]}" | xclip -selection "clipboard" -i -r
+map ,t		:trash #trash
+map ,d  	set dironly!
+map ,p      nopreview
+map ,m      push :!mkdir<space>
+map ,o 		&mimeopen $fx
+map ,r 		set reverse!
+map ,T      push :!touch<space>
 ## remove filter with <c-r>
+## No longer needed, version r36 adds visual mode
+# map VG		invert-below 
+# map Vg		:invert-below; invert
 #------------------------------------------------------------------#
 #-----------CALL WITH THIS function to use autocd------------------#
 #------------------------------------------------------------------#
