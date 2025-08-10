@@ -15,37 +15,38 @@ alias snv='sudoedit'
 #--------------------------------------------------quick---------------------------------#
 # lower
 alias b=' cd         "${BIN}"'
-alias c='            myfzf'
+alias c=' myfzf'
 alias d=' \df -h     | ccze -m ansi'
 alias g=' grep       -Pi'
 alias h=' cd         "${HOME}"'
 alias l=' cd_from_lf' # my lf, so it cd's shell after exiting lf
 alias n=' lsd        --group-directories-first -t  -r --icon="never" --permission="octal" --date=+" %l:%M%P %y %m %_d " --blocks="permission,user,date,size,name"'
-alias p=' python'
+alias p=' plocate --database="${LOCATE_DATABASE}" --regex'
 alias r=' \rg        --pcre2 -i'
-alias s='            sad --pager never'
+alias s=' sad --pager never'
 alias t=' trash-put'
 alias y=' rlwrap     sbcl'
 # upper
 alias B=' bat'
 alias C=' cd         ..'
 alias D=' \df -h     | grep -Po "^[ ]*[/]dev[/].*" | ccze -m ansi'
-alias L=' ls++'
 alias F=' readlink   -f'
+alias L=' ls++'
 alias P=' ps ax | grep -Pi'
+alias T=' task'
 alias Y=' yay --color="auto"'
 #--------------------------------------------------utilities-----------------------------#
 # alias ally='      my_alias_function'
-alias ysb='       source "${HOME}/.bashrc"' # reload config
-alias pgr='       $PAGER'
 alias ac='        compgen -c  | grep -x'
-alias ac_part='   alias_conflict'
 alias ac_full='   alias_conflict --full'
+alias ac_part='   alias_conflict'
+alias key='       showkey -k'
+alias nsx='       nsxiv -a -0'
+alias pgr='       $PAGER'
 alias ren='       renamer'
 alias sap='       apropos'
 alias tracenet='  strace'
-alias key='       showkey -k'
-alias nsx='       nsxiv -a -0'
+alias ysb='       source "${HOME}/.bashrc"' # reload config
 # alias pgs='       pgrep'
 #--------------------------------------------------ls------------------------------------#
 alias ll='          lsd --group-directories-first --icon="never" -rt --permission="octal"  --date=+" [ %_H:%M:%S | %a | %D ]" --blocks="permission,user,date,name"'
@@ -107,6 +108,10 @@ alias c_walls='     cd     "${WALLPAPERS}"'
 #--------------------------------------------------edit----------------------------------#
 alias E_code='    fzf_open "${CODING}"'
 alias E_conf='    fzf_open "${XDG_CONFIG_HOME}"'
+#--------------------------------------------------copy----------------------------------#
+alias copy_text='     xclip -selection "clipboard" -i -r <<<'
+alias copy_file='     xclip -selection "clipboard" -i -r'
+alias copy_cwd='      printf "%s" "${PWD}" | xclip -selection "clipboard"'
 #--------------------------------------------------config-edit---------------------------#
 alias e_i3='      fd . -d1 -0 -a -tf -tl -L "${XDG_CONFIG_HOME}/i3/" | sort -z | xargs -0 nvim -c "Buffers"'
 alias e_inf='     fzf_open "${MY_INFORMATION}"'
@@ -117,11 +122,11 @@ alias e_bash='    nvim -c "Buffers" "${HOME}/bashrc_files/"* "${HOME}/.bash_comp
 alias e_mime='    nvim "${HOME}/.config/mimeapps.list"'
 alias e_xrec='    echo ""; nvim "${HOME}/.Xresources"; xrdb -override "${HOME}/.Xresources"'
 #--------------------------------------------------find----------------------------------#
-alias fi3e='      fd .     -0 -a -tf -tl -L "${XDG_CONFIG_HOME}/i3/" | sort -z | xargs -0 nvim -c "Buffers"'
 alias gf='        fd --search-path "/" -u --mount'
 #--------------------------------------------------Python--------------------------------#
-alias px='        python <<EOF'
-alias ipy='       ipython'
+alias py_heredoc=' python <<EOF'
+alias py_i='       ipython'
+alias py='         python'
 #--------------------------------------------------ps------------------------------------#
 alias pse='       ps -eo comm=, | grep --ignore-case'
 alias pso='       ps -eo cmd=, | grep --ignore-case'
@@ -135,14 +140,14 @@ alias man_search_in='  man -K --regex'
 #--------------------------------------------------nvim----------------------------------#
 alias nv='      nvim'
 alias nv_chad=' NVIM_APPNAME="NVIM_CHAD" nvim'
-alias nv_a='    fd . --exact-depth 1 --exclude "*.o" -tf -0 -X nvim -c "Buffers"'
-alias nv_c='    fd . --case-sensitive --exact-depth 1 -e C -e cpp -e h -tf -0 -X nvim -c "Buffers"'
-#--------------------------------------------------TaskWarrior---------------------------#
-alias tl='        task list'
-alias tw='        taskwarrior-tui'
+alias nv_cwd_files='    fd . --exact-depth 1 --exclude "*.o" -tf -0 -X nvim -c "Buffers"'
+alias nv_s='    nvim +SessionSearch'
+alias nv_cpp='    fd . --case-sensitive --exact-depth 1 -e C -e cpp -e h -tf -0 -X nvim -c "Buffers"'
 #--------------------------------------------------lisp----------------------------------#
-alias vlime_start=' rlwrap sbcl   --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp'
-alias stop_vlime='  pkill  vlime'
+alias vlime_start='        rlwrap sbcl   --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp'
+alias vlime_start_dspace=' rlwrap sbcl   --dynamic-space-size 4096 --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp'
+alias vlime_stop='         pkill  vlime'
+alias rlsp=' sbcl --script'
 #--------------------------------------------------yt-dlp--------------------------------#
 alias yda='       yt-dlp --extract-audio --audio-format "mp3"'
 alias ydt='       yt-dlp --ignore-config --skip-download --write-subs --write-auto-subs --sub-lang en --output "$VIDEOS/transcripts/%(title)s%(ext)s"'
@@ -162,14 +167,18 @@ alias s_nvim='    fd . -tf "${XDG_CONFIG_HOME}/nvim/" -x rg -H -u --color="alway
 #--------------------------------------------------ifs-----------------------------------#
 alias ifs_print=' printf "\n_%q_\n\n" "${IFS}"'
 alias ifs_reset=" IFS=$' \t\n'"
+#--------------------------------------------------TaskWarrior---------------------------#
+alias t_l='        task list'
+alias tw='        taskwarrior-tui'
+alias t_cal="task calendar"
+alias t_proj="task projects"
+alias t_=""
 #----------------------------------------------------------------------------------------#
 alias vid='       open_mpv'
 alias alas_np='   alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
 alias bgsz='      szof | grep -P "^[^ ]*G"'
-alias cop='       xclip -selection "clipboard" -i -r <<< '
 alias font_get='   fc-list -v | grep -i '
 alias font_get_latex=' fc-list :outline -f "%{family}\n"' # https://tex.stackexchange.com/questions/12881/how-to-get-a-list-of-all-available-ttf-fonts-with-xetex
-alias gpwd='      printf "%s" "${PWD}" | xclip -selection "clipboard"'
 alias mdview='    markdown_view_w3m "$( fd -tf ".*[.]md" | fzf)"'
 alias pkg_inf='   pkgfile_lib_info'
 alias rml='       rmlint --algorithm="blake2bp" --types="duplicates" --rank-by="D" --no-crossdev --keep-all-tagged --no-followlinks --progress'

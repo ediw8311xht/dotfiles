@@ -1,23 +1,24 @@
 
 ################################################################################
 # do not bell on tab-completion
-set completion-display-width 80
-set page-completions off
-set bell-style none
-set meta-flag on
-set input-meta on
-set convert-meta off
-set output-meta on
-set colored-stats on
+set bell-style                none
 set colored-completion-prefix on
-set mark-modified-lines off
-set visible-stats on
-set show-all-if-ambiguous on
-set completion-map-case on
-set completion-query-items 300
-set keymap vi
-set editing-mode vi
-set keyseq-timeout 10
+set colored-stats             on
+set completion-display-width  80
+set completion-map-case       on
+set completion-query-items    300
+set convert-meta              off
+set editing-mode              vi
+set input-meta                on
+set keymap                    vi
+set keyseq-timeout            10
+set mark-modified-lines       off
+set match-hidden-files        off
+set meta-flag                 on
+set output-meta               on
+set page-completions          off
+set show-all-if-ambiguous     on
+set visible-stats             on
 
 set show-mode-in-prompt on
 $if term=linux

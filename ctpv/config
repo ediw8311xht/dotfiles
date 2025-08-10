@@ -55,6 +55,9 @@ preview mypy .py {{
     highlight "${f}" --stdout --out-format="truecolor"
 }}
 
+preview elisp .el {{
+    highlight "${f}" --stdout --out-format="truecolor"
+}}
 # preview myd .md {{
 #     outfile="$(mktemp /tmp/rmarkXXXXXXXX.png)"
 #     RenderMarkdown --overwrite "${f}" "${outfile}"

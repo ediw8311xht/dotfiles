@@ -18,6 +18,7 @@ lua require('variables')
 lua require('functions')
 source $XDG_CONFIG_HOME/nvim/plugins.vim
 source $XDG_CONFIG_HOME/nvim/functions.vim
+lua require('my_treesitter')
 lua require('base')
 "lua require('cmp_config')
 "lua require('lsp_configs')
@@ -30,4 +31,3 @@ lua require('base')
 call nvim_set_option("statusline", g:my_statuslines[0][1])
 colorscheme pop-punk
 lua CorrectColors()
-lua require('my_treesitter')
