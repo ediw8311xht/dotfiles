@@ -112,6 +112,7 @@ alias E_conf='    fzf_open "${XDG_CONFIG_HOME}"'
 alias copy_text='     xclip -selection "clipboard" -i -r <<<'
 alias copy_file='     xclip -selection "clipboard" -i -r'
 alias copy_cwd='      printf "%s" "${PWD}" | xclip -selection "clipboard"'
+# alias copy_command_output=' '
 #--------------------------------------------------config-edit---------------------------#
 alias e_i3='      fd . -d1 -0 -a -tf -tl -L "${XDG_CONFIG_HOME}/i3/" | sort -z | xargs -0 nvim -c "Buffers"'
 alias e_inf='     fzf_open "${MY_INFORMATION}"'
@@ -163,7 +164,7 @@ alias szofall='   du -ahc  --time --max-depth=1'
 alias s_bash='    grep --file="-" -Pin "${HOME}/.bashrc" "${HOME}/.profile" "${HOME}/.bash_profile" "${HOME}/bashrc_files/"* <<<'
 alias s_bashf='   grep --file="-" -Fin "${HOME}/.bashrc" "${HOME}/bashrc_files/"* <<<'
 alias s_i3='      grep --file="-" -Pri "${HOME}/.config/i3/"   <<< '
-alias s_nvim='    fd . -tf "${XDG_CONFIG_HOME}/nvim/" -x rg -H -u --color="always" -Pi'
+alias s_nv='    fd . -tf "${XDG_CONFIG_HOME}/nvim/" -x rg -H -u --color="always" -Pi'
 #--------------------------------------------------ifs-----------------------------------#
 alias ifs_print=' printf "\n_%q_\n\n" "${IFS}"'
 alias ifs_reset=" IFS=$' \t\n'"

@@ -18,9 +18,14 @@ lspconfig.pyright.setup({
   on_attach = lsp_status.on_attach,
   capabilities = cmp_capabilities,
   settings = {
+    pyright = {
+      autoImportCompletion = true,
+    },
     python = {
       analysis = {
-        typeCheckingMode = "standard",
+        autoSearchPaths = true,
+        diagnosticMode = "openFilesOnly",
+        typeCheckingMode = "off",
       }
     }
   }

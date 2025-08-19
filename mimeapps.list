@@ -11,6 +11,7 @@ video/quicktime=vlc.desktop;
 image/gif=brave-browser.desktop;sxiv.desktop;
 text/x-c++src=okularApplication_txt.desktop;vim.desktop;nvim.desktop;
 image/webp=brave-browser.desktop;pix.desktop;
+image/svg+xml=org.gnome.eog.desktop;
 
 [Default Applications]
 application/epub+zip=zathura.desktop;
@@ -85,7 +86,7 @@ image/jp2=nsxiv.desktop;
 image/jpeg=nsxiv.desktop;
 image/jxl=nsxiv.desktop;
 image/png=nsxiv.desktop;
-image/svg+xml=nsxiv.desktop;
+image/svg+xml=org.gnome.eog.desktop
 image/tiff=nsxiv.desktop;
 image/vnd.djvu+multipage=org.pwmt.zathura-pdf-mupdf.desktop;
 image/webp=nsxiv.desktop;

@@ -1,5 +1,8 @@
 configuration {
-    modi: "window,drun,run,filebrowser";
+    drun {
+        scan-desktop: true;
+    }
+    modes: "window,drun,run,filebrowser,windowcd";
     element-icon { size: 2.65ch; }
 }
 //@theme "/usr/share/rofi/themes/Monokai.rasi"
@@ -7,8 +10,10 @@ configuration {
 //@theme "/usr/share/rofi/themes/rounded-green-dark.rasi"
 //@theme "/$HOME/.config/rofi/themes/my_rounded_green_dark_theme.rasi"
 //@theme "/$HOME/.config/rofi/themes/my_rounded_green_dark_theme.rasi"
-@theme "/$HOME/.config/rofi/themes/AA_black.rasi"
+//@theme "/$HOME/.config/rofi/themes/AA_black.rasi"
 window {
     width: 70%;
     height: 70%;
 }
+
+@theme "/usr/share/rofi/themes/fullscreen-preview.rasi"

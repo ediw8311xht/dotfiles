@@ -86,15 +86,15 @@ local v = 'v';
 local e = '';
 local c = 'c';
 -- local l = 'l';
+-- [ '<C-p>'    ] = {F, 'Substitute [All Buffs]', ':%s/\\v\\c'                              },
 
 REGULAR_MAPPINGS={
-   [e] = {
-     [ '+'        ] = {T, 'End of line',            'g_'                                         },
-     [ ','        ] = {T, '<leader>',               '<leader>'                                   },
-     [ ',;'       ] = {F, '',                       ','                                          },
-     [ 'x'        ] = {F, '',                       '"xx'                                        },
-   },
-   [n] = {
+  [e] = {
+    [ '+'        ] = {T, 'End of line',            'g_'                                          },
+    [ ','        ] = {T, '<leader>',               '<leader>'                                    },
+    [ ',;'       ] = {F, '',                       ','                                           },
+    [ 'x'        ] = {F, '',                       '"xx'                                         },
+  }, [n] = {
      [ '/'        ] = {F, 'Search +vmagic',         '/\\v\\c'                                    },
      [ '<C-S-E>'  ] = {F, 'End of previous word',   'ge'                                         },
      [ '<C-S-H>'  ] = {F, 'Left pane',              '<C-w>h'                                     },
@@ -102,7 +102,7 @@ REGULAR_MAPPINGS={
      [ '<C-S-K>'  ] = {F, 'Up Pane',                '<C-w>k'                                     },
      [ '<C-S-L>'  ] = {F, 'Right pane',             '<C-w>l'                                     },
      [ '<C-S-Tab>'] = {F, 'Previous tab',           ':tabprevious<CR>'                           },
-     [ '<C-S-s>'  ] = {F, 'Substitute +char +vmagic', ':%s/\\v'                                    },
+     [ '<C-S-s>'  ] = {F, 'Substitute +char +vmagic', ':%s/\\v'                                  },
      [ '<C-Tab>'  ] = {F, 'Next tab',               ':tabnext<CR>'                               },
      [ '<C-h>'    ] = {F, 'Left Pane',              '<C-w>h'                                     },
      [ '<C-j>'    ] = {F, 'Down Pane',              '<C-w>j'                                     },
@@ -110,7 +110,6 @@ REGULAR_MAPPINGS={
      [ '<C-l>'    ] = {F, 'Right Pane',             '<C-w>l'                                     },
      [ '<C-n>'    ] = {F, '+Nerd Tree',             ':NERDTreeToggle<CR>'                        },
      [ '<C-s>'    ] = {F, 'Substitute i',           ':%s/\\v\\c'                                 },
-     -- [ '<C-p>'    ] = {F, 'Substitute [All Buffs]', ':%s/\\v\\c'                                 },
      [ '<C-w>n'   ] = {F, 'New Buffer Right',       ':new<esc><C-w>L'                            },
      [ '<esc>'    ] = {F, 'Clear',                  ':noh<esc>:echon ""<enter>'                  },
      [ '?'        ] = {F, 'Search +back +vmagic',   '?\\v\\c'                                    },
@@ -121,49 +120,43 @@ REGULAR_MAPPINGS={
      [ '}'        ] = {F, 'Next Function Start',    ':GotoNextFunctionStart<CR>'                 },
      [ 'gne'      ] = {F, 'Next Function End',      ':GotoNextFunctionEnd<CR>'                   },
      [ '<C-S-g>'  ] = {F, '! Floating Term',        ':FloatermToggle!<esc>'                      },
-   },
-   [t] = {
-     [ '<C-w>'    ] = {T, 'Normal Mode Terminal',   '<C-\\><C-n>'                                },
-     [ '<C-S-g>'  ] = {T, '! Floating Term',        '<C-w>:FloatermToggle!<esc>'                 },
-   },
-   [v] = {
-     [ '<C-S-s>'  ] = {F, 'Sub +char +vm',          ':s/\\%V\\v'                                 },
-     [ '<C-s>'    ] = {F, 'Sub +vm',                ':s/\\%V\\v\\c'                              },
-     [ '`'        ] = {F, '',                       'zf'                                         },
-   },
-   [i] = {
-     [ '<C-S-\\>' ] = {F, 'Redo',                   '<C-o><C-r>'                                 },
-     [ '<C-k>'    ] = {F, 'Redo',                   '<C-o>D'                                     },
-     [ '<C-S-k>'  ] = {F, 'Delete to end of line',  '<C-o>D'                                     },
-     [ '<C-S-t>'  ] = {F, 'Remove indent',          '<C-d>'                                      },
-     [ '<C-\\>'   ] = {F, 'Undo',                   '<C-o>u'                                     },
-     [ 'jk'       ] = {F, 'Exit Insert[m]',         '<esc>'                                      },
-   },
-   [c] = {
-     [ '<C-k>'    ] = {F, '',                       '<C-c>D<C-c>'                                },
-     [ '<C-S-k>'  ] = {F, '',                       '<C-c>D<C-c>'                                },
-   },
-   [ {c, i} ] = {
-     [ '<C-a>'    ] = {F, 'Start of line',          '<home>'                                     },
-     [ '<C-b>'    ] = {F, 'Backward char',          '<left>'                                     },
-     [ '<C-e>'    ] = {F, 'End of line',            '<end>'                                      },
-     [ '<C-f>'    ] = {F, 'Forward char',           '<right>'                                    },
-     [ '<C-w>'    ] = {F, 'Forward word',           '<S-right>'                                  },
-     [ '<C-S-w>'  ] = {F, 'Backward word',          '<S-left>'                                   },
-     [ '<C-BS>'   ] = {F, 'Delete word backwards',  '<C-w>'                                      },
-     -- [ '<C-S-e>'  ] = {F, '',                       '<C-e>'                                      },
-   },
-   [ {n, v, t, i} ] = {
-     [ "<C-1>" ] = { F, 'Go to tab 1',    "1gt"           },
-     [ "<C-2>" ] = { F, 'Go to tab 2',    "2gt"           },
-     [ "<C-3>" ] = { F, 'Go to tab 3',    "3gt"           },
-     [ "<C-4>" ] = { F, 'Go to tab 4',    "4gt"           },
-     [ "<C-5>" ] = { F, 'Go to tab 5',    "5gt"           },
-     [ "<C-6>" ] = { F, 'Go to tab 6',    "6gt"           },
-     [ "<C-7>" ] = { F, 'Go to tab 7',    "7gt"           },
-     [ "<C-8>" ] = { F, 'Go to tab 8',    "8gt"           },
-     [ "<C-9>" ] = { F, 'Go to last tab', ":tablast<CR>"  },
-   },
+  }, [t] = {
+     [ '<C-w>'    ] = {T, 'Normal Mode Terminal',   '<C-\\><C-n>'                },
+     [ '<C-S-g>'  ] = {T, '! Floating Term',        '<C-w>:FloatermToggle!<esc>' },
+  }, [v] = {
+    [ '<C-S-s>'  ] = {F, 'Sub +char +vm',          ':s/\\%V\\v'                                  },
+    [ '<C-s>'    ] = {F, 'Sub +vm',                ':s/\\%V\\v\\c'                               },
+    [ '`'        ] = {F, '',                       'zf'                                          },
+  }, [i] = {
+    [ '<C-S-\\>' ] = {F, 'Redo',                   '<C-o><C-r>'                                  },
+    [ '<C-k>'    ] = {F, 'Redo',                   '<C-o>D'                                      },
+    [ '<C-S-k>'  ] = {F, 'Delete to end of line',  '<C-o>D'                                      },
+    [ '<C-S-t>'  ] = {F, 'Remove indent',          '<C-d>'                                       },
+    [ '<C-\\>'   ] = {F, 'Undo',                   '<C-o>u'                                      },
+    [ 'jk'       ] = {F, 'Exit Insert[m]',         '<esc>'                                       },
+  }, [c] = {
+   [ '<C-k>'    ] = {F, '',                       '<C-c>D<C-c>'                                  },
+   [ '<C-S-k>'  ] = {F, '',                       '<C-c>D<C-c>'                                  },
+  }, [ {c, i} ] = {
+    [ '<C-a>'    ] = {F, 'Start of line',          '<home>'                                      },
+    [ '<C-b>'    ] = {F, 'Backward char',          '<left>'                                      },
+    [ '<C-e>'    ] = {F, 'End of line',            '<end>'                                       },
+    [ '<C-f>'    ] = {F, 'Forward char',           '<right>'                                     },
+    [ '<C-w>'    ] = {F, 'Forward word',           '<S-right>'                                   },
+    [ '<C-S-w>'  ] = {F, 'Backward word',          '<S-left>'                                    },
+    [ '<C-BS>'   ] = {F, 'Delete word backwards',  '<C-w>'                                       },
+   -- [ '<C-S-e>'  ] = {F, '',                       '<C-e>'                                   },
+  }, [ {n, v, t, i} ] = {
+    [ "<C-1>" ] = { F, 'Go to tab 1',    "1gt"           },
+    [ "<C-2>" ] = { F, 'Go to tab 2',    "2gt"           },
+    [ "<C-3>" ] = { F, 'Go to tab 3',    "3gt"           },
+    [ "<C-4>" ] = { F, 'Go to tab 4',    "4gt"           },
+    [ "<C-5>" ] = { F, 'Go to tab 5',    "5gt"           },
+    [ "<C-6>" ] = { F, 'Go to tab 6',    "6gt"           },
+    [ "<C-7>" ] = { F, 'Go to tab 7',    "7gt"           },
+    [ "<C-8>" ] = { F, 'Go to tab 8',    "8gt"           },
+    [ "<C-9>" ] = { F, 'Go to last tab', ":tablast<CR>"  },
+  },
 }
 
 -- beginning 
@@ -236,12 +229,12 @@ LEADER_MAPPINGS = {
     [ 'wr'      ] = { F, 'Write',                  ':w<esc>'                                                              },
     [ 'y'       ] = { F, 'bg transparent',         ':hi Normal guibg=Transparent<esc>'                                    },
     [ 'z'       ] = { F, '',                       'z'                                                                    },
-  },
-  [v] = {
-    [ 'M'       ] = { F, 'dc [math]',              ':!dc<esc>'                                                            },
-    [ 'm'       ] = { F, 'bc [math]',              ':!bc<esc>'                                                            },
-    [ 'vc'      ] = { F, 'column',                 ':!column -o " " -t<enter>'                                            },
-    [ 'vs'      ] = { F, 'sort',                   ':sort<enter>'                                                         },
+  }, [v] = {
+    [ 'mf'       ] = { F, 'bc [math] float',        ':!bc -l<esc>'                                                         },
+    [ 'mi'       ] = { F, 'bc [math] int',          ':!bc -l<esc>'                                                         },
+    [ 'mq'       ] = { F, 'qalc [math]',            ':!xargs qalc --color=never --terse<esc>'                              },
+    [ 'vc'       ] = { F, 'column',                 ':!column -o " " -t<enter>'                                            },
+    [ 'vs'       ] = { F, 'sort',                   ':sort<enter>'                                                         },
   }
 }
 ALL_MAPPINGS = { [""] = REGULAR_MAPPINGS, ["<LEADER>"] = LEADER_MAPPINGS}
@@ -253,6 +246,9 @@ function KeyMapSetter(map, pre)
   end
 end
 
+-- vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end)
+-- vim.keymap.set('n', 'grr', function() vim.lsp.buf.references() end)
+-- vim.keymap.set('n', '<C-m>', function() vim.diagnostic.open_float() end)
 KeyMapSetter(LEADER_MAPPINGS, "<leader>")
 KeyMapSetter(REGULAR_MAPPINGS, "")
 

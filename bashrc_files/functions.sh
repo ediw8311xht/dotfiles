@@ -187,6 +187,20 @@ myfzf() {
     done
     "${command}" "$(fd "${OPTIONS[@]}" | fzf --preview="${LS_PREVIEW:-"ls -l"} {}")" || return 1
 }
+
+edit_make_path() {
+    local d
+    local i
+    if d="$(dirname "${@: -1}")" && [[ ! -d "${d}" ]] ; then
+        read -r -p "Create directory, ${d} ? [y|N] " i
+        [[ ! "${i,,}" =~ ^y ]] && { echo "Not making dir....."; return 0; }
+        mkdir -p "${d}" || { echo "Error making dir...." ; return 1; }
+    fi
+    if [[ ! "${*}" =~ ^(-n|--no-edit) ]] ; then
+        "${EDITOR}" "${@: -1}"
+    fi
+}
+
 #get_outdated_pip() {
 #    local zfile
 #    local IFS=$'\n'

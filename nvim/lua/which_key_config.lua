@@ -9,9 +9,11 @@ which_key.setup({
   triggers = {
     {"<auto>", mode = "nixostc"},
     {"m"     , mode = "nixostc"},
-    {"M"     , mode = "nixostc"}
+    {"M"     , mode = "nixostc"},
+    {"<leader>"     , mode = "vnixostc"},
   },
-  sort = { "group", "local", "alphanum" },
+  -- sort = { "group", "local", "alphanum" },
+  sort = { "alphanum" },
   expand = 3,
   win = {
     no_overlap = false,
