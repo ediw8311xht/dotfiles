@@ -3,3 +3,8 @@
 *.dump
 *.log
 *erl_crash.dump
+*/*.bak
+*/*log.txt
+*/*.dump
+*/*.log
+*/*erl_crash.dump

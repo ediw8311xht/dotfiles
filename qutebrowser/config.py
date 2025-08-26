@@ -25,7 +25,7 @@ c.url.searchengines = {
     ':bref':                    'https://www.basketball-reference.com/search/search.fcgi?hint=&search={}',
     ':br':                      'https://search.brave.com/search?q={}',
     ':bsdman':                  'https://man.openbsd.org/?query={}&apropos=0&sec=0&arch=default&manpath=OpenBSD-current',
-    ':camel':                    'https://camelcamelcamel.com/search?sq={}',
+    ':camel':                   'https://camelcamelcamel.com/search?sq={}',
     ':cfs':                     'https://search.brave.com/search?q={}+site:forums.phoenixrising.me',
     ':coin':                    'https://en.numista.com/catalogue/index.php?r={}&ct=coin',
     ':criticallytouched':       'https://criticallytouched.wordpress.com/?s={}',
