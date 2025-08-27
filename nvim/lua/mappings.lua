@@ -203,6 +203,7 @@ LEADER_MAPPINGS = {
     [ 'cj'      ] = { F, 'Next Scheme',            ':call SetColScheme(+1)<CR>'                                           },
     [ 'ck'      ] = { F, 'CorrectColors()',        ':lua CorrectColors()<CR>'                                             },
     [ 'cl'      ] = { F, '! CursorLine',           ':set nocul!<CR>'                                                      },
+    -- [ 'cp'      ] = { F, '! Rainbow Parenth',      ':RainbowToggle<CR>'                                                   },
     [ 'cs'      ] = { F, '! Statusline',           ':call TogLastStatus()<CR>'                                            },
     [ 'cv'      ] = { F, '! Virtualedit',          ':call TogVirtualEdit()<CR>'                                           },
     [ 'cV'      ] = { F, '! lsp_lines',            ':lua require("lsp_lines").toggle()<CR>'                               },
@@ -210,6 +211,7 @@ LEADER_MAPPINGS = {
     [ 'gh'      ] = { F, 'Get Highlight',          ':call GetHL()<ESC>'                                                   },
     [ 'gm'      ] = { F, 'Print Mappings',         ':call GMaps()<CR>'                                                    },
     [ 'gn'      ] = { F, 'New File',               ':enew<esc>'                                                           },
+    [ 'grg'     ] = { F, 'Search in All Buffers',  ':Lines<esc>'                                                          },
 
     [ 'i'       ] = { F, 'Show diagnostics',       ':lua vim.diagnostic.open_float(nil, {focus=T, scope="cursor"})<CR>'   },
     [ 'l'       ] = { F, 'Next Background',        ':call CyBack(+1)<CR>'                                                 },
@@ -220,8 +222,10 @@ LEADER_MAPPINGS = {
     [ 'oq'      ] = { F, 'Open in Qutebrowser',    ':silent !"qutebrowser" %<CR>'                                         },
     [ 'q'       ] = { F, 'Delete buffer',          ':bd'                                                                  },
     [ 's'       ] = { F, 'Switch pane',            '<C-w><C-p>'                                                           },
-    [ 'Ss'      ] = { F, 'Source file',            ':%so<CR>'                                                             },
     [ 'Sl'      ] = { F, 'Luafile',                ':luafile %<CR>'                                                       },
+    [ 'Ss'      ] = { F, 'Source file',            ':%so<CR>'                                                             },
+    [ 'Sx'      ] = { F, 'Execute',                ':!%<CR>'                                                              },
+    [ 'SX'      ] = { F, 'Execute with args',      ':!%'                                                                  },
     [ 'tb'      ] = { F, 'Prev Tab',               ':tabmove -1<esc>'                                                     },
     [ 'tn'      ] = { F, 'Next Tab',               ':tabmove +1<esc>'                                                     },
     [ 'tt'      ] = { F, 'New Tab',                ':tabnew<esc>'                                                         },
@@ -237,20 +241,24 @@ LEADER_MAPPINGS = {
     [ 'vs'       ] = { F, 'sort',                   ':sort<enter>'                                                         },
   }
 }
+
 ALL_MAPPINGS = { [""] = REGULAR_MAPPINGS, ["<LEADER>"] = LEADER_MAPPINGS}
+local which_key = require("which-key")
+
 function KeyMapSetter(map, pre)
   for mode, mode_map in pairs(map) do
     for key, tbl in pairs(mode_map) do
+      which_key.add({ pre .. key, desc = tbl[2], mode = mode })
       vim.keymap.set(mode, pre .. key, tbl[3], { remap = tbl[1], desc = tbl[2] } )
     end
   end
 end
 
+KeyMapSetter(LEADER_MAPPINGS, "<leader>")
+KeyMapSetter(REGULAR_MAPPINGS, "")
 -- vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end)
 -- vim.keymap.set('n', 'grr', function() vim.lsp.buf.references() end)
 -- vim.keymap.set('n', '<C-m>', function() vim.diagnostic.open_float() end)
-KeyMapSetter(LEADER_MAPPINGS, "<leader>")
-KeyMapSetter(REGULAR_MAPPINGS, "")
 
 -- local status1 = '%t %r%m%=[%v] (%L lines) (%{wordcount().words} words)%=%#HLspStatus#%{LspStatus()}%*[%{LspStatus()}] [%F]'
 

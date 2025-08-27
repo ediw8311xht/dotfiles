@@ -201,6 +201,11 @@ edit_make_path() {
     fi
 }
 
+# make_completions() {
+#     complete -F _"${1}" "${2}"
+#     alias "${2}"="${3}"
+# }
+
 #get_outdated_pip() {
 #    local zfile
 #    local IFS=$'\n'

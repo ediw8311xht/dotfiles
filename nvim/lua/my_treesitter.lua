@@ -55,7 +55,7 @@ treesitter.setup {
 }
 local my_installed_langs = {
    'bash',
-   'common_lisp',
+   'commonlisp',
    'doc',
    'lua',
    'man',

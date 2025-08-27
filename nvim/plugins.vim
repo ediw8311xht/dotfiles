@@ -86,7 +86,8 @@ let g:my_plugins['neoterm']             = [ 'kassio',           'neoterm'       
 let g:my_plugins['show key hints']      = [ 'folke',            'which-key.nvim'                ]
 let g:my_plugins['luarocks for nvim']   = [ 'theHamsta',        'nvim_rocks',                   { 'do': 'pipx install hererocks && python3 -mhererocks . -j2.1.0-beta3 -r3.0.0 && cp nvim_rocks.lua lua'}]
 let g:my_plugins['file explorer']       = [ 'preservim',        'nerdtree'                      ]
-
+let g:my_plugins['rainbow del']         = [ 'HiPhish',          'rainbow-delimiters.nvim'       ]
+"let g:my_plugins['rainbow parenthesize'] = [ 'luochen1990',      'rainbow'                       ]
 "let g:my_plugins["live preview html bracey"]    = [ 'turbio',             'bracey.vim', { 'do': 'npm install --prefix server'} ]
 "let g:my_plugins["comceal__conceal_comments"]   = [ 'vim-scripts',        'Comceal'                       ]
 "let g:my_plugins["ufo_req_1"]                   = [ 'kevinhwang91',       'promise-async'                 ]
@@ -114,6 +115,3 @@ call plug#begin()
     Plug 'AndrewRadev/tagalong.vim'
     Plug 'alvan/vim-closetag'
 call plug#end()
-
-
-

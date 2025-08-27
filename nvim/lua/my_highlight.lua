@@ -82,6 +82,16 @@ vim.g.my_highlight = {
       ["6.markdown"] = { "gui=bold", "guibg=#000000", "guifg=#004400", },
     },
   },
+  ["RainbowDelimiter"] = {
+    [ '1' ] = { "gui=BOLD", "guibg=#000000", "guifg=#A020F0", },
+    [ '2' ] = { "gui=NONE", "guibg=#000000", "guifg=#FF0000", },
+    [ '3' ] = { "gui=NONE", "guibg=#000000", "guifg=#770000", },
+    [ '4' ] = { "gui=NONE", "guibg=#000000", "guifg=#449900", },
+    [ '5' ] = { "gui=NONE", "guibg=#000000", "guifg=#99FF00", },
+    [ '6' ] = { "gui=NONE", "guibg=#000000", "guifg=#FFFFFF", },
+    [ '7' ] = { "gui=NONE", "guibg=#000000", "guifg=#9944FF", },
+  }
+
   -- ["@string."] = {
   --   ["cpp"] = { "gui=NONE", "guibg=NONE", "guifg=#00DD99" },
   -- },

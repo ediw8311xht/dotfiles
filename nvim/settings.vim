@@ -91,9 +91,9 @@ let g:is_bash        = 1
 "-------Latex----------"
 let g:is_bash	   = 1
 let g:tex_flavor='latex'
-let g:vimtex_view_method='zathura'
-let g:vimtex_quickfix_mode=0
 let g:vimtex_compiler_latexmk = { 'out_dir' : '/tmp', }
+let g:vimtex_quickfix_mode=0
+let g:vimtex_view_method='zathura'
 set foldmethod=manual
 set foldcolumn=2
 set sessionoptions=blank,buffers,curdir,help,tabpages,winsize,winpos,terminal
@@ -135,12 +135,3 @@ set viewoptions=cursor,folds
 "let g:bracey_auto_start_browser = 0
 "let g:bracey_server_port        = 4842
 
-"-------------------- vlime --------------------------"
-"let g:vlime_leader   = "~"
-let g:vlime_leader   = "\\"
-let g:vlime_cl_impl  = "ros"
-function! VlimeBuildServerCommandFor_ros(vlime_loader, vlime_eval)
-    return ["ros", "run",
-                \ "--load", a:vlime_loader,
-                \ "--eval", a:vlime_eval]
-endfunction
