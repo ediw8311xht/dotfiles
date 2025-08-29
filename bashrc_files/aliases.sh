@@ -145,7 +145,7 @@ alias man_search_in='  man -K --regex'
 alias nv='      nvim'
 alias nv_chad=' NVIM_APPNAME="NVIM_CHAD" nvim'
 alias nv_cwd_files='    fd . --exact-depth 1 --exclude "*.o" -tf -0 -X nvim -c "Buffers"'
-alias nv_s='    nvim +SessionSearch'
+alias nv_s='    nvim +"AutoSession search"'
 alias nv_cpp='    fd . --case-sensitive --exact-depth 1 -e C -e cpp -e h -tf -0 -X nvim -c "Buffers"'
 #--------------------------------------------------lisp----------------------------------#
 alias vlime_start='        rlwrap sbcl   --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp'
