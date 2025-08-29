@@ -1,15 +1,15 @@
 
 -- local org               = require('orgmode')
-require('cmp_config')
-require('lsp_configs')
-require('my_elixir')
-require('gitsigns_config')
-require('notify_config')
+require('config_cmp')
+require('config_lsp')
+require('config_elixir')
+require('config_gitsigns')
+require('config_notify')
 -- My own module for using treesitter to navigate stuff
 require("my_treesitter_module").create_commands()
 require('textobjects')
-require('marks_config')
-require('which_key_config')
+require('config_marks')
+require('config_which_key')
 -- My Mappings
 require('mappings')
 local auto_session  = require('auto-session')

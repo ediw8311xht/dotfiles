@@ -19,7 +19,7 @@ lua require('variables')
 lua require('functions')
 source $XDG_CONFIG_HOME/nvim/plugins.vim
 source $XDG_CONFIG_HOME/nvim/functions.vim
-lua require('my_treesitter')
+lua require('config_treesitter')
 lua require('base')
 "lua require('cmp_config')
 "lua require('lsp_configs')
