@@ -29,6 +29,8 @@ lua require('base')
 "lua require('mappings')
 "lua require('textobjects')
 "
+
+nnoremap <leader>Uj :!"$HOME/.config/joplin-desktop/update_joplin_userstyle.sh"<ESC>
 call nvim_set_option("statusline", g:my_statuslines[0][1])
 colorscheme pop-punk
 lua CorrectColors()
