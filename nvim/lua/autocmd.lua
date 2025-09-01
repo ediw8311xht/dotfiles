@@ -82,6 +82,9 @@ local globcomms = {
       "setfiletype bash",
       "source ${HOME}/.config/nvim/language_specific/bashrc.vim"
   },
+  [ home .. "/.config/joplin-desktop/userstyle.css"] = {
+      "source ${HOME}/.config/nvim/language_specific/joplin_userstyle.vim"
+  },
   [ home .. "/TEST/QUICK/*.cpp" ] = {
       "source" .. LanguageSpecificDir .. "/quick_cpp.vim"
   },
