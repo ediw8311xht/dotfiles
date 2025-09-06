@@ -19,6 +19,7 @@
     set $wallpaper_script       $HOME/bin/xwallpaperauto.sh
     set $xmsg_script            $HOME/bin/xmsg_quick.sh
     set $zathura_script         $HOME/bin/zathura_dbus_controller.sh
+    set $latex_screenshot       $HOME/bin/ocr_latex.sh
 #-------------------------------------------------Special-Binds-----------#
     #sticky toggle
     set $scratchpad_default floating enable, move scratchpad, scratchpad show, move position center

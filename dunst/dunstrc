@@ -5,7 +5,7 @@
     #separator_height = 1
     enable_recursive_icon_lookup = true
     width            = (0, 1400)
-    font             = Input Mono 8
+    font             = Input Mono 10
     padding          = 8
     horizontal_padding = 20
     markup = full
@@ -14,7 +14,7 @@
     format = "<b>%s</b>\n%b"
     icon_path = /usr/share/icons/Adwaita/16x16/mimetypes/
     # The maximum height of a single notification, excluding the frame.
-    height = (0, 400)
+    height = (0, 800)
     origin = top-right
     # Offset from the origin
     offset = (5, 5)
@@ -28,18 +28,35 @@
     # Otherwise the "#" and following would be interpreted as a comment.
     background  = "#000000"
     foreground  = "#999999"
-    timeout = 10
+    timeout = 15
 
 [urgency_normal]
     background = "#000000"
     foreground = "#AAAAAA"
-    timeout = 10
+    timeout = 15
 
 [urgency_critical]
     background = "#000000"
     foreground = "#ff0000"
     frame_color = "#ff0000"
     timeout = 0
+
+[category=".*"]
+    category = ".*"
+    frame_color = "#000000"
+
+[category="success"]
+    category = "success"
+    background = "#000000"
+    foreground = "#AAAAAA"
+    frame_color = "#009900"
+
+[category="error"]
+    category = "error"
+    background = "#000000"
+    foreground = "#AAAAAA"
+    frame_color = "#FF0000"
+
 #
 #
 #    # Horizontal padding.

@@ -16,7 +16,10 @@ local auto_session  = require('auto-session')
 
 require('telescope').setup({})
 auto_session.setup({
+  auto_delete_empty_sessions = true,
+  auto_restore = false,
   auto_save = false,
+  suppressed_dirs = { "${HOME}/", "${HOME}/bin/" },
 })
 
 

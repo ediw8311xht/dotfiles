@@ -83,60 +83,12 @@ vim.g.my_highlight = {
     },
   },
   ["RainbowDelimiter"] = {
-    [ '1' ] = { "gui=BOLD", "guibg=#000000", "guifg=#A020F0", },
-    [ '2' ] = { "gui=NONE", "guibg=#000000", "guifg=#FF0000", },
-    [ '3' ] = { "gui=NONE", "guibg=#000000", "guifg=#770000", },
-    [ '4' ] = { "gui=NONE", "guibg=#000000", "guifg=#449900", },
-    [ '5' ] = { "gui=NONE", "guibg=#000000", "guifg=#99FF00", },
-    [ '6' ] = { "gui=NONE", "guibg=#000000", "guifg=#FFFFFF", },
-    [ '7' ] = { "gui=NONE", "guibg=#000000", "guifg=#9944FF", },
+    [ '1' ] = { "gui=BOLD", "guibg=#000000", "guifg=#FF0000", },
+    [ '2' ] = { "gui=NONE", "guibg=#000000", "guifg=#FF79C6", },
+    [ '3' ] = { "gui=NONE", "guibg=#000000", "guifg=#F1FA8C", },
+    [ '4' ] = { "gui=NONE", "guibg=#000000", "guifg=#50FA7B", },
+    [ '5' ] = { "gui=NONE", "guibg=#000000", "guifg=#FFB86C", },
+    [ '6' ] = { "gui=NONE", "guibg=#000000", "guifg=#6272A4", },
+    [ '7' ] = { "gui=NONE", "guibg=#000000", "guifg=#BD93F9", },
   }
-
-  -- ["@string."] = {
-  --   ["cpp"] = { "gui=NONE", "guibg=NONE", "guifg=#00DD99" },
-  -- },
 }
-
-    -- hi MoreMsg guifg=#5fffff guibg=NONE gui=NONE cterm=NONE
-    -- hi NonText guifg=#d787d7 guibg=NONE gui=NONE cterm=NONE
-    -- hi StatusLine guifg=#000087 guibg=#5fffff gui=NONE cterm=NONE
-    -- hi Type                 gui=italic guisp=#444444    "guibg=#444400   guifg=#000000
-    -- hi ModeMsg              gui=NONE    guibg=#00ff00   guifg=#000087
-    -- hi MoreMsg              gui=NONE    guibg=NONE      guifg=#5fffff
-    -- hi NonText              gui=NONE    guibg=NONE      guifg=#00FF00
-    -- -----Sign Column-----"
-    -- -----Which Key-----"
-    -- ------------------------Tree-Sitter------------------------#
-        -- hi @punctuation.delimiter.cpp guibg=NONE guifg=#999999
-        -- hi @punctuation.bracket.cpp gui=bold guibg=black guifg=#FF9900
-        -- hi @type.vim
-        -- hi @module                                      guifg=#00FF00
-        -- hi @keyword                                     guifg=#777777
-        -- hi @keyword.function                            guifg=#009900
-        -- hi @function                                    guifg=#00AAAA
-    -- ------------------------LSP-CPP----------------------------------"
-        -- hi @lsp.type.variable.cpp=NONE
-    -- -----Markdown--------"
-        -- hi Title gui=bold guifg=green
-        -- hi @markup.heading.7.markdown gui=bold              guibg=#999900 guifg=#000000
-        --
-        -- hi @markup.heading.markdown   gui=bold              guibg=#444444 guifg=#000000
-        --
-        -- hi @markup.raw.markdown_inline gui=bold guibg=#111111   guifg=#00FF00
-        -- hi @conceal.markdown_inline    gui=NONE guibg=NONE      guifg=#009900
-        -- hi @markup.link.label.markdown_inline gui=NONE guifg=#009999
-        -- hi @markup.link.markdown_inline         gui=NONE
-        -- hi @markup.link.url.markdown_inline     gui=NONE
-        -- hi @_label.markdown_inline              gui=NONE
-        -- hi @_url gui=NONE
-        -- hi @_url.markdown_inline gui=NONE
-        -- hi @nospell.markdown_inline gui=NONE
-    -- hi @keyword.repeat guifg=#FF0000
-
--- if os.getenv("DISPLAY") then
---     -- hi Comment      gui=NONE guibg=#444444 guifg=#000000
---     hi Comment          gui=italic guifg=#005FEF guibg=NONE
--- else
---     hi Comment          gui=italic guifg=#005FEF guibg=NONE
--- endif
-

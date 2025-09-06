@@ -201,10 +201,21 @@ edit_make_path() {
     fi
 }
 
-# make_completions() {
-#     complete -F _"${1}" "${2}"
-#     alias "${2}"="${3}"
-# }
+alias_with_completion() {
+    # local com="${2%% *}"
+    [[ "${#}" -lt 2 ]] &&  \
+        { printf 'Usage:\n\t%s\n' "make_completions alias_name definition" >/dev/stderr; return 1; }
+    grep -Pqv '^[a-zA-Z0-9_-]+$' <<< "${1}" &&  \
+        { printf 'Error:\n\t%s\n' "invalid alias name: '${1}'" >/dev/stderr; return 1; }
+    grep -Fqx "${1}" <<< "$(compgen -b)" && \
+        { printf 'Error:\n\t%s\n' "Alias conflicts with bash builtin: '${1}'" >/dev/stderr; return 1; }
+
+    # shellcheck disable=SC2139,SC2086
+    alias ${1}="${*: 2}"
+    complete -F _complete_alias "${1}"
+}
+
+
 
 #get_outdated_pip() {
 #    local zfile

@@ -4,8 +4,9 @@ let g:python3_host_prog="/usr/bin/python"
 
 filetype on
 filetype plugin on
-filetype plugin indent on
+"filetype plugin indent on
 syntax enable
+let g:markdown_recommended_style=0
 set termguicolors
 set autoread
 set nocindent
