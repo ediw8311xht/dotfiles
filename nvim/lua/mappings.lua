@@ -249,7 +249,7 @@ LEADER_MAPPINGS = {
   }
 }
 
-ALL_MAPPINGS = { [""] = REGULAR_MAPPINGS, ["<LEADER>"] = LEADER_MAPPINGS}
+ALL_MAPPINGS = { [""] = REGULAR_MAPPINGS, ["<LEADER>"] = LEADER_MAPPINGS }
 local which_key = require("which-key")
 
 function KeyMapSetter(map, pre)

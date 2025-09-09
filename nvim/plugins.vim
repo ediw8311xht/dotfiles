@@ -12,6 +12,7 @@ let g:my_plugins['cmp buffer']          = [ 'hrsh7th',          'cmp-buffer'    
 let g:my_plugins['cmp cmdline']         = [ 'hrsh7th',          'cmp-cmdline'                   ]
 let g:my_plugins['cmp path']            = [ 'hrsh7th',          'cmp-path'                      ]
 let g:my_plugins['cmp auto hint']       = [ 'hrsh7th',          'cmp-nvim-lsp-signature-help'   ]
+let g:my_plugins['cmp dictionary']      = [ 'uga-rosa',         'cmp-dictionary',               ]
 let g:my_plugins['cmp env']             = [ 'SergioRibera',     'cmp-dotenv'                    ]
 let g:my_plugins['cmp luasnip']         = [ 'saadparwaiz1',     'cmp_luasnip'                   ]
 let g:my_plugins['cmp plain english']   = [ 'uga-rosa',         'cmp-dictionary'                ]
@@ -78,6 +79,8 @@ let g:my_plugins['notify (dep: noice)'] = [ 'rcarriga',         'nvim-notify'   
 let g:my_plugins['nui (dep: noice)']    = [ 'MunifTanjim',        'nui.nvim'                      ]
 "let g:my_plugins['noice, ui system']    = [ 'folke',            'noice.nvim'                    ]
 "ETC'
+
+let g:my_plugins['plenary']             = [ 'nvim-lua',         'plenary.nvim',                 ]
 let g:my_plugins['autoformat']          = [ 'vim-autoformat',   'vim-autoformat'                ]
 let g:my_plugins['fzf']                 = [ 'junegunn',         'fzf.vim'                       ]
 let g:my_plugins['gitsigns']            = [ 'lewis6991',        'gitsigns.nvim'                 ]

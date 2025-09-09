@@ -15,7 +15,7 @@
     set $monitor_script         $HOME/bin/auto_monitor.sh
     set $polybar_script         $HOME/bin/polybar_manipulate.sh
     set $refresh_script         $HOME/bin/refresh_browser.sh
-    set $toggle_r_rate          $HOME/bin/SetKeys.sh
+    set $key_mouse_script       $HOME/bin/SetKeys.sh
     set $wallpaper_script       $HOME/bin/xwallpaperauto.sh
     set $xmsg_script            $HOME/bin/xmsg_quick.sh
     set $zathura_script         $HOME/bin/zathura_dbus_controller.sh

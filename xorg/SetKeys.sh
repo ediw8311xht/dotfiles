@@ -13,20 +13,29 @@ toggle_r_rate() {
     notify-send -t 3000 "Keyboard Repeat Toggled" "${status}"
 }
 
+get_prop() {
+    xinput list-props "${MY_MOUSE}" | grep -Pxio "[\t ]*${prop}[ \t]*\([0-9]*\)[:][ \t]*\K(.*)[ \t]*$"
+}
 
 set_mouse_sensitivity() {
-    local DEFAULT=0
+    local prop='libinput Accel Speed'
     local vs
-    if [[ -z "${1,,}" ]] || [[ "${1,,}" = 'z' ]] ; then
-        vs="${DEFAULT}"
-    elif [[ "$(bc <<< "-1 <= ${1,,} <= 1" 2>/dev/null)" = "1" ]] ; then 
+    local current
+    current="$(get_prop "${prop}")"
+    if  [[ "${#}" -le 0 ]] ; then
+        return
+    elif  [[ "$(bc <<< "${current} == ${1}" 2>/dev/null)" = "1" ]]; then
+        set_mouse_sensitivity "${@:2}"
+        return
+    elif [[ "$(bc <<< "-1 <= ${1,,} && ${1,,} <= 1" 2>/dev/null)" = "1" ]] ; then 
         vs="${1,,}"
     else 
         echo "Invalid number must be float between -1 and +1." >&2
         return 1
     fi
+    # echo "${vs}"
 
-    xinput --set-prop "${MY_MOUSE}" "libinput Accel Speed" "${vs}"
+    xinput set-prop "${MY_MOUSE}" "${prop}" "${vs}"
 }
 
 main() {

@@ -19,8 +19,8 @@ cmp.setup({
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-d>'] = cmp.mapping.scroll_docs(4),
     ['<C-y>'] = cmp.mapping.confirm( { select = true} ),
     ['<C-S-y>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
@@ -35,7 +35,6 @@ cmp.setup({
     { name = 'ctags' },
     { name = 'cmp-nvim-tags' },
     -- { name = "latex_symbols" },
-    -- { name = "dictionary", keyword_length = 2, },
   }, {
     { name = 'buffer'},
     { name = 'path'},
@@ -46,6 +45,24 @@ cmp.setup({
 
 cmp.setup.filetype( { 'lisp' }, {
   sources = {
-    { name = 'vlime' }
+    { name = 'vlime' },
   }
+})
+
+cmp.setup.filetype( { 'markdown' }, {
+  sources = {
+    { name = "dictionary" },
+  }
+})
+
+require("cmp_dictionary").setup({
+  paths = { "$XDG_DATA_HOME/dict/en_words" },
+  exact_length = 2,
+  first_case_insensitive = true,
+  document = {
+	  enable = true,
+	  command = {
+      "definition_search.sh", "${label}",
+    },
+	}
 })
