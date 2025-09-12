@@ -70,6 +70,10 @@ function CorrectColors()
   Main("", vim.g.my_highlight)
 end
 
+function AutoSessionStatusLine()
+  return require("auto-session.lib").current_session_name(true)
+end
+
 -- function ReloadConfig()
 --   for i, v in pairs(package.loaded) do
 --     print(i, vim.inspect(package.loaded))

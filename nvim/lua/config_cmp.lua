@@ -1,5 +1,6 @@
 
-local cmp               = require('cmp')
+local cmp = require('cmp')
+local cmp_dict = require("cmp_dictionary")
 cmp.setup({
   -- performance = {
   --   fetching_timeout = 500,
@@ -49,13 +50,13 @@ cmp.setup.filetype( { 'lisp' }, {
   }
 })
 
-cmp.setup.filetype( { 'markdown' }, {
+cmp.setup.filetype( { 'markdown', 'text' }, {
   sources = {
     { name = "dictionary" },
   }
 })
 
-require("cmp_dictionary").setup({
+cmp_dict.setup({
   paths = { "$XDG_DATA_HOME/dict/en_words" },
   exact_length = 2,
   first_case_insensitive = true,

@@ -32,10 +32,14 @@ vim.g.MyColorTable = {
 vim.g.python3_host_prog="/usr/bin/python"
 
 
+-- global return 
 vim.g.my_statuslines = {
-  { 'default' , "%t %r %m%=" .. "[%#HLspStatus#%{LspStatus()} %*][%F]"             },
-  { 'small'   , '%t %r %m'   .. "[%#HLspStatus#%{LspStatus()} %*]"                 },
-  { 'large'   , "%t %r %m%=" .. "[%#HLspStatus#%{LspStatus()} %*][%F][%l,%c,%p%%]" },
+  -- { 'default' , "%t %r %m%=" .. "[%#HLspStatus#%{LspStatus()} %*][%F]"             },
+  -- { 'small'   , '%t %r %m'   .. "[%#HLspStatus#%{LspStatus()} %*]"                 },
+  -- { 'large'   , "%t %r %m%=" .. "[%#HLspStatus#%{LspStatus()} %*][%F][%l,%c,%p%%]" },
+  { 'default' , "%t %r" .. "[%{v:lua.require('auto-session.lib').current_session_name()}]" .. "%m%=" .. "[%#HLspStatus#%{LspStatus()} %*][%F]"             },
+  { 'small'   , "%t %r" .. "%m"   .. "[%#HLspStatus#%{LspStatus()} %*]"                 },
+  { 'large'   , "%t %r" .. "[%{v:lua.require('auto-session.lib').current_session_name()}]" .. "%m%=" .. "[%#HLspStatus#%{LspStatus()} %*][%F][%l,%c,%p%%]" },
   -- { 'large'  , '%t %r %m' .. '[%#HLspStatus#%{LspStatus()} %*][%l %c%V% %P]'  },
   -- '[%{LspStatus()}]\\ [%f] [%h%w%m%r%=%-14.(%l,%c%V%)\\ %P]',
 }
@@ -64,3 +68,9 @@ vim.g.fzf_layout = {
   [ 'window' ] = { width = 0.9, height = 0.9 } --, border = 'no' }
 }
 
+
+-- For use with MapCommandsToReg
+vim.g.reg_filter_map = {
+  [ 'normal' ] = { 'd', 'c', 'D', 'C' },
+  [ 'visual' ] = { 'd', 'c', 'D', 'C', 'p', 'P' },
+}

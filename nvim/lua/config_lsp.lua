@@ -72,7 +72,7 @@ lspconfig.clangd.setup({
   init_options = {
     fallbackFlags = {
       '--std=gnu++20',
-      '-DMAGICKCORE_HDRI_ENABLE=1',
+      -- '-DMAGICKCORE_HDRI_ENABLE=1',
     }
   }
 })

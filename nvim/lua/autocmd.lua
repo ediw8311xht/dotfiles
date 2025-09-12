@@ -1,6 +1,7 @@
 
 local home  = vim.env.HOME
 local va    = vim.api
+local vfn   = vim.fn
 local vauto = vim.api.nvim_create_autocmd
 local vc    = vim.cmd
 
@@ -114,9 +115,72 @@ vauto({ "FileType" }, { pattern = "*",
   callback = function() vc("setlocal formatoptions-=c formatoptions-=r formatoptions-=o") end
 })
 
+
 -------------------------
 -- YankedText -----------
 -------------------------
-vauto({ "TextYankPost" }, { pattern = "*",
-  callback = function() vim.hl.on_yank( { higroup="Visual", timeout=300 } ) end
+
+function MapCommandsToReg(event)
+  if event['regname'] ~= "" then
+    return
+  end
+  local reg = vim.g.reg_filter_map['normal'][event['operator']]
+  -- if event['visual'] and 
+  -- else
+  -- end
+  -- if Contains(vim.g.reg_filter_map, event["operator"]) then
+  --   print(vim.inspect(event))
+  -- end
+end
+vauto({ "TextYankPost" }, {
+  pattern = "*",
+  callback = function()
+    vim.hl.on_yank( { higroup="Visual", timeout=300 } )
+    -- MapCommandsToReg(vim.v.event)
+  end
 })
+
+
+-- if vfn.exists("##TextYankPost") then
+--   vauto({ 
+-- end
+--   function! SmallDeleteRing(event) abort
+--     if a:event['operator'] == 'y'
+--       " Don't care about actual yanks
+--       return
+--     endif
+--     if a:event['regtype'] ==# 'V'
+--       " Vim already handles linewise deletions
+--       return
+--     endif
+--
+--     let regcontents = a:event['regcontents']
+--     if len(regcontents) > 1
+--       " Vim already handles deletions spanning multiple lines
+--       return
+--     endif
+--
+--     let deleted = regcontents[0]
+--
+--     if len(deleted) == 1
+--       " Don't want to catch single-character deletions (in particular, x)
+--       return
+--     endif
+--
+--     " Grab registers 1-8
+--     let one_through_eight = mapnew(range(1, 8), {k, v -> getreg(v)})
+--
+--     " Set register "1
+--     call setreg(1, deleted)
+--
+--     " Set registers 2-9
+--     for i in range(1, 8)
+--       call setreg(i + 1, one_through_eight[i - 1])
+--     endfor
+--   endfunction
+--
+--   augroup small_delete_ring
+--     autocmd!
+--     autocmd TextYankPost * call SmallDeleteRing(v:event)
+--   augroup END
+-- endif

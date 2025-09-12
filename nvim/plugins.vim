@@ -72,7 +72,7 @@ let g:my_plugins['tokyonight']          = [ 'folke',            'tokyonight.nvim
 
 "telescope
 let g:my_plugins['plenary']             = [ 'nvim-lua',         'plenary.nvim'                  ]
-let g:my_plugins['telescope']           = [ 'nvim-telescope',   'telescope.nvim',               { 'branch': '0.1.x' } ]
+let g:my_plugins['telescope']           = [ 'nvim-telescope',   'telescope.nvim',               { 'branch': 'master' } ]
 
 "UI
 let g:my_plugins['notify (dep: noice)'] = [ 'rcarriga',         'nvim-notify'                   ]

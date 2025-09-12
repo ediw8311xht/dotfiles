@@ -7,6 +7,7 @@ filetype plugin on
 "filetype plugin indent on
 syntax enable
 let g:markdown_recommended_style=0
+set shada=!,'300,<50,s10,h
 set termguicolors
 set autoread
 set nocindent

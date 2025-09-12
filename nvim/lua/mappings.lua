@@ -79,21 +79,21 @@
 
 local F = false;
 local T = true;
-local n = 'n';
+local c = 'c';
+local e = '';
 local i = 'i';
+local n = 'n';
 local t = 't';
 local v = 'v';
-local e = '';
-local c = 'c';
 -- local l = 'l';
 -- [ '<C-p>'    ] = {F, 'Substitute [All Buffs]', ':%s/\\v\\c'                              },
 
 REGULAR_MAPPINGS={
   [e] = {
-    [ '+'        ] = {T, 'End of line',            'g_'                                          },
-    [ ','        ] = {T, '<leader>',               '<leader>'                                    },
-    [ ',;'       ] = {F, '',                       ','                                           },
-    [ 'x'        ] = {F, '',                       '"xx'                                         },
+    [ '+'        ] = {T, 'End of line',            'g_'                                         },
+    [ ','        ] = {T, '<leader>',               '<leader>'                                   },
+    [ ',;'       ] = {F, '',                       ','                                          },
+    [ 'x'        ] = {F, '',                       '"xx'                                        },
   }, [n] = {
     [ '/'        ] = {F, 'Search +vmagic',         '/\\v\\c'                                    },
     [ '<C-S-E>'  ] = {F, 'End of previous word',   'ge'                                         },
@@ -126,16 +126,16 @@ REGULAR_MAPPINGS={
   }, [v] = {
     -- [ '{'        ] = {F, 'Prev Function Start',    ':GotoPrevFunctionStart<CR>'                  },
     -- [ '}'        ] = {F, 'Next Function Start',    ':GotoNextFunctionStart<CR>'                  },
-    [ '<C-S-s>'  ] = {F, 'Sub +char +vm',          ':s/\\%V\\v'                                  },
-    [ '<C-s>'    ] = {F, 'Sub +vm',                ':s/\\%V\\v\\c'                               },
+    [ '<C-S-s>'  ] = {F, 'Sub +vmagic',            ':s/\\%V\\v'                                  },
+    [ '<C-s>'    ] = {F, 'Sub +i +vmagic',         ':s/\\%V\\v\\c'                               },
     [ '`'        ] = {F, '',                       'zf'                                          },
   }, [i] = {
-    [ '<C-S-\\>' ] = {F, 'Redo',                   '<C-o><C-r>'                                  },
-    [ '<C-k>'    ] = {F, 'Redo',                   '<C-o>D'                                      },
+    [ '<C-k>'    ] = {F, 'Delete to end of line',  '<C-o>D'                                      },
     [ '<C-S-k>'  ] = {F, 'Delete to end of line',  '<C-o>D'                                      },
     [ '<C-S-t>'  ] = {F, 'Remove indent',          '<C-d>'                                       },
-    [ '<C-\\>'   ] = {F, 'Undo',                   '<C-o>u'                                      },
     [ 'jk'       ] = {F, 'Exit Insert[m]',         '<esc>'                                       },
+    -- [ '<C-S-\\>' ] = {F, 'Redo',                   '<C-o><C-r>'                                  },
+    -- [ '<C-\\>'   ] = {F, 'Undo',                   '<C-o>u'                                      },
   }, [c] = {
     [ '<C-k>'    ] = {F, '',                       '<C-c>D<C-c>'                                  },
     [ '<C-S-k>'  ] = {F, '',                       '<C-c>D<C-c>'                                  },
@@ -161,21 +161,22 @@ REGULAR_MAPPINGS={
   },
 }
 
--- beginning 
+---------- Remember -----------
+-- inoremap <expr> key command
+-------------------------------
+-- beginning
 LEADER_MAPPINGS = {
   [n] = {
     [ ','       ] = { F, 'Alternate File',         '<C-^>'                                                                },
-    [ '-'       ] = { F, 'Equalize Split Hori',    '20<c-w><'                                                             },
+    [ '-'       ] = { F, 'Resize Split +20',       '20<c-w><'                                                             },
     -- Excute --
     [ '<C-s>'   ] = { F, 'Sub in all buffs',       ':budfo %s/\\v\\c'                                                     },
     [ '<C-S-x>' ] = { F, 'Execute with args',      ':!%:p '                                                               },
     [ '<C-x>'   ] = { F, 'Execute',                ':!%:p<esc>'                                                           },
     [ '<S-x>'   ] = { F, 'Execute with args',      ':!%:p '                                                               },
-    [ 'x'       ] = { F, 'Execute',                ':!%:p<esc>'                                                           },
-
     [ '<S-Tab>' ] = { F, 'Later',                  ':later<CR>'                                                           },
     [ '<Tab>'   ] = { F, 'Earlier',                ':earlier<CR>'                                                         },
-    [ '='       ] = { F, 'Equalize Split Vert',    '20<c-w>>'                                                             },
+    [ '='       ] = { F, 'Resize Split +20',       '20<c-w>>'                                                             },
     [ 'D'       ] = { F, 'Delete Buffer',          ':bd<esc><enter>'                                                      },
     [ 'E'       ] = { F, 'CWD Edit',               ':call feedkeys(":e " . FilePathFull() . "/")<CR>'                     },
     -- Session --
@@ -186,7 +187,7 @@ LEADER_MAPPINGS = {
     [ 'H'       ] = { F, 'Helpgrep',               ':vert helpgrep '                                                      },
     [ 'I'       ] = { F, 'Show code-action',       ':lua require("actions-preview").code_actions()<CR>'                   },
     [ 'L'       ] = { F, 'Prev Background',        ':call CyBack(-1)<CR>'                                                 },
-    [ 'N'       ] = { F, 'Previous Buffer',        ':cnext<esc>'                                                          },
+    [ 'Oo'      ] = { F, 'Recent files',           ':Telescope oldfiles<CR>'                                              },
     -- [ 'S'       ] = { F, 'Source vim config',      ':source ~/.config/nvim/init.vim<esc>'                                 },
     [ 'Tt'      ] = { F, 'Terminal',               ':term<esc>'                                                           },
     [ 'Te'      ] = { F, 'Telescope',              ':Telescope<cr>'                                                       },
@@ -223,7 +224,7 @@ LEADER_MAPPINGS = {
     [ 'l'       ] = { F, 'Next Background',        ':call CyBack(+1)<CR>'                                                 },
     [ 'mh'      ] = { F, 'Checkhealth',            ':checkhealth<CR>'                                                     },
     [ 'mm'      ] = { F, 'Messages',               ':messages<esc>'                                                       },
-    [ 'n'       ] = { F, 'Next Buffer',            ':next<esc>'                                                           },
+    [ 'mc'      ] = { F, 'Clear Notifications',    ':lua require("notify").dismiss({silent = true})<esc>'                 },
     [ 'ob'      ] = { F, 'Open in Browser',        ':silent !"${BROWSER:-"brave"}"  %<CR>'                                },
     [ 'oq'      ] = { F, 'Open in Qutebrowser',    ':silent !"qutebrowser" %<CR>'                                         },
     [ 'q'       ] = { F, 'Delete buffer',          ':bd'                                                                  },
@@ -237,6 +238,7 @@ LEADER_MAPPINGS = {
     [ 'tt'      ] = { F, 'New Tab',                ':tabnew<esc>'                                                         },
     [ 'u'       ] = { F, 'lf file manager',        ':Lf<esc>'                                                             },
     [ 'wr'      ] = { F, 'Write',                  ':w<esc>'                                                              },
+    [ 'x'       ] = { F, 'Execute',                ':!%:p<esc>'                                                           },
     [ 'y'       ] = { F, 'bg transparent',         ':hi Normal guibg=Transparent<esc>'                                    },
     [ 'z'       ] = { F, '',                       'z'                                                                    },
   }, [v] = {
