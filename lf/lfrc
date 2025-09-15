@@ -152,6 +152,7 @@ map U       :unselect; clear
 
 map bB      &$BROWSER $fx
 map bQ      &qutebrowser $fx
+map st      :{{ set sortby time; set info time; set reverse; }}
 
 
 map ,

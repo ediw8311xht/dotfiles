@@ -108,7 +108,7 @@ bash_history_grab() {
 stream_ytdl_mpv() {
     yt-dlp "${1}" -f "bestvideo[height<=?1080]+bestaudio/best" -o - | mpv --input-ipc-server=/tmp/mpvsocket -
 }
-rg_with_p()       {
+rg_with_p() {
     rg "${@}" | "${PAGER}"
 }
 man_all_pages() {

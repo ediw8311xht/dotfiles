@@ -11,7 +11,7 @@
     markup = full
     icon_position = left
     # format = "<b>%a</b>\n<b>%s</b>\n%b"
-    format = "<b>%s</b>\n%b"
+    format = "<span color='#00FF00'><b>%s</b></span>\n%b"
     icon_path = /usr/share/icons/Adwaita/16x16/mimetypes/
     # The maximum height of a single notification, excluding the frame.
     height = (0, 800)
@@ -39,6 +39,7 @@
     background = "#000000"
     foreground = "#ff0000"
     frame_color = "#ff0000"
+    format = "<span font='Input Mono 30px'><b>%s</b></span>\n<span color='#FFAA00'>%b</span>"
     timeout = 0
 
 [category=".*"]

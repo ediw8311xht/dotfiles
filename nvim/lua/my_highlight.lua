@@ -83,12 +83,12 @@ vim.g.my_highlight = {
     },
   },
   ["RainbowDelimiter"] = {
-    [ '1' ] = { "gui=BOLD", "guibg=#000000", "guifg=#FF0000", },
-    [ '2' ] = { "gui=NONE", "guibg=#000000", "guifg=#FF79C6", },
-    [ '3' ] = { "gui=NONE", "guibg=#000000", "guifg=#F1FA8C", },
-    [ '4' ] = { "gui=NONE", "guibg=#000000", "guifg=#50FA7B", },
-    [ '5' ] = { "gui=NONE", "guibg=#000000", "guifg=#FFB86C", },
-    [ '6' ] = { "gui=NONE", "guibg=#000000", "guifg=#6272A4", },
-    [ '7' ] = { "gui=NONE", "guibg=#000000", "guifg=#BD93F9", },
+    [ '1' ] = { "gui=ITALIC", "guibg=#000000", "guifg=#FF0000", },
+    [ '2' ] = { "gui=ITALIC", "guibg=#000000", "guifg=#FFA956", },
+    [ '3' ] = { "gui=ITALIC", "guibg=#000000", "guifg=#a1FA8C", },
+    [ '4' ] = { "gui=ITALIC", "guibg=#000000", "guifg=#50FA7B", },
+    [ '5' ] = { "gui=ITALIC", "guibg=#000000", "guifg=#FFB86C", },
+    [ '6' ] = { "gui=ITALIC", "guibg=#000000", "guifg=#6272A4", },
+    [ '7' ] = { "gui=ITALIC", "guibg=#000000", "guifg=#BD93F9", },
   }
 }
