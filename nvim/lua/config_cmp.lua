@@ -50,11 +50,11 @@ cmp.setup.filetype( { 'lisp' }, {
   }
 })
 
-cmp.setup.filetype( { 'markdown', 'text' }, {
-  sources = {
-    { name = "dictionary" },
-  }
-})
+-- cmp.setup.filetype( { 'markdown', 'text' }, {
+--   sources = {
+--     { name = "dictionary" },
+--   }
+-- })
 
 cmp_dict.setup({
   paths = { "$XDG_DATA_HOME/dict/en_words" },

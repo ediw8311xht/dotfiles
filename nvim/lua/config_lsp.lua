@@ -5,6 +5,7 @@ local lspconfig         = require('lspconfig')
 local cmp_capabilities  = require('cmp_nvim_lsp').default_capabilities()
 local actions_preview   = require('actions-preview')
 
+vim.lsp.enable('marksman')
 actions_preview.setup({})
 
 lspconfig.cssls.setup(                { capabilities = cmp_capabilities })
