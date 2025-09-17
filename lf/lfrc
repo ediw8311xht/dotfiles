@@ -1,28 +1,29 @@
 # vim:set syntax=lf
 set shell bash
 set shellopts '-eu'
-##USE DOUBLE QUOTES FOR 'set ifs "something"'
-#set period 1
-set incfilter
 set ifs         "\n"
 set ratios      2:4:4
 set info        size:time
-set scrolloff   4
+set scrolloff   5
+set sortby      natural
+set promptfmt   "\033[34;1m%d\033[0m\033[1m%S%f\033[0m %F"
+set borderfmt   "\033[0;34m"
+set cursorparentfmt "\033[02;49m"
+set cursoractivefmt "\033[7m"
+##USE DOUBLE QUOTES FOR 'set ifs "something"'
+#set period 1
+set icons false
+set dirfirst
+set mouse
+set incfilter
 set autoquit
-#set drawbox
+set drawbox
 set dircounts
 set preview
 set number
 set ignorecase
-set noicons
+set roundbox
 set relativenumber
-set sortby natural
-#set sixel true
-set dirfirst true
-set mouse true
-set borderfmt "\033[1;37m"
-set cursorparentfmt "\033[02;49m"
-set cursoractivefmt "\033[7m"
 
 set previewer ctpv
 set cleaner ctpvclear
@@ -130,40 +131,38 @@ map <enter> shell
 map <esc>   clear
 map ;		:mark-save
 map ?       :maps
+map ,
 
 map x       cut
 map	K		push 3k
-map E       :open_editor
 map H		set hidden!
-map I       :toggle_info "size:atime"
-map J		push 3j
-map O 		$mimeopen --ask $fx
-map P		push :!echo<space>""<left>
 map Q 		&lf -remote 'send quit'; lf -remote 'quit'
-
-map RF	    push :rename<enter><c-u>
-map RN		rename
-map RR      :reload
-
-map Sb      :set drawbox!
-map Ss      :set number!; set relativenumber!
-
+map st     :{{ set sortby time; set info time; set reverse; top; }}
 map U       :unselect; clear
 
-map bB      &$BROWSER $fx
-map bQ      &qutebrowser $fx
-map st      :{{ set sortby time; set info time; set reverse; }}
 
 
-map ,
+
+map ,C      push :!touch<space>
+map ,E       :open_editor
+map ,I       :toggle_info "size:atime"
+map ,J		push 3j
+map ,O 		$mimeopen --ask $fx
+map ,P		push :!echo<space>""<left>
+map ,RF	    push :rename<enter><c-u>
+map ,RN		rename
+map ,Sb      :set drawbox!
+map ,Ss      :set number!; set relativenumber!
+map ,bB     &$BROWSER $fx
+map ,bQ     &qutebrowser $fx
 map ,c 		&sed "s@${HOME}/@\$\{HOME\}/@"  <<< "${fx[*]}" | xclip -selection "clipboard" -i -r
-map ,t		:trash #trash
 map ,d  	set dironly!
-map ,p      nopreview
 map ,m      push :!mkdir<space>
 map ,o 		&mimeopen $fx
-map ,r 		set reverse!
-map ,T      push :!touch<space>
+map ,p      nopreview
+map ,t		:trash #trash
+map RR      :reload
+map r       :{{ set reverse!; top; }}
 ## remove filter with <c-r>
 ## No longer needed, version r36 adds visual mode
 # map VG		invert-below 
