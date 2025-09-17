@@ -12,6 +12,8 @@ image/gif=brave-browser.desktop;sxiv.desktop;
 text/x-c++src=okularApplication_txt.desktop;vim.desktop;nvim.desktop;
 image/webp=brave-browser.desktop;pix.desktop;
 image/svg+xml=org.gnome.eog.desktop;
+text/plain=nvim.desktop;
+application/x-zim-notebook=nvim.desktop;
 
 [Default Applications]
 application/epub+zip=zathura.desktop;
@@ -103,7 +105,7 @@ text/csv=visidata.desktop;
 text/html=nvim.desktop;
 text/javascript=nvim.desktop;
 text/markdown=nvim.desktop;
-text/plain=nvim.desktop;
+text/plain=nvim.desktop
 text/python=nvim.desktop;
 text/spreadsheet=nvim.desktop;
 text/tab-separated-values=nvim.desktop;
@@ -165,7 +167,7 @@ x-scheme-handler/chrome=brave-browser.desktop;
 x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop
 x-scheme-handler/ftp=brave-browser.desktop;
 x-scheme-handler/gitkraken=GitKraken.desktop;
-x-scheme-handler/http=brave-browser.desktop;
-x-scheme-handler/https=brave-browser.desktop;
+x-scheme-handler/http=nvim.desktop
+x-scheme-handler/https=nvim.desktop
 x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
 x-scheme-handler/unknown=brave-browser.desktop;
