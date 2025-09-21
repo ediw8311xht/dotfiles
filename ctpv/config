@@ -41,6 +41,11 @@ preview tarball .tar.zst .tar.gz .tgz application/x-compressed-tar {{
 preview zip .zip application/zip {{
     unzip -l "${f}"
 }}
+
+preview txt .txt {{
+    head -1000 "${f}" | pygmentize -f 'text'
+}}
+
 preview text_files text/* {{
     head -1000 "${f}" | pygmentize
 }}

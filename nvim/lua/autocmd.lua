@@ -64,7 +64,7 @@ end
 -------------------------
 -- Vars -----------------
 -------------------------
-local exts = { "sh", "py", "kalker", "exs", "tex", "ex", "html", "cpp", "md", "lisp" }
+local exts = { "sh", "py", "kalker", "exs", "tex", "ex", "html", "cpp", "md", "lisp", "hs" }
 
 local globcomms = {
   ---- Syntax ----

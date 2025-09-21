@@ -1,21 +1,31 @@
 
 local HOME              = os.getenv("HOME")
 local lsp_status        = require('lsp-status')
-local lspconfig         = require('lspconfig')
+local lspconfig         = vim.lsp.config
 local cmp_capabilities  = require('cmp_nvim_lsp').default_capabilities()
 local actions_preview   = require('actions-preview')
+local lang_servers      = { 'cssls', 'html', 'jsonls', 'ts_ls', 'vimls', 'eslint', 'pyright', 'tailwindcss', 'luals', 'bashls', 'clangd', 'hls' }
 
 vim.lsp.enable('marksman')
 actions_preview.setup({})
 
-lspconfig.cssls.setup(                { capabilities = cmp_capabilities })
-lspconfig.html.setup(                 { capabilities = cmp_capabilities })
-lspconfig.jsonls.setup(               { capabilities = cmp_capabilities })
-lspconfig.ts_ls.setup(                { capabilities = cmp_capabilities })
-lspconfig.vimls.setup(                { capabilities = cmp_capabilities })
-lspconfig.eslint.setup( { } )
+-- vim.lsp.config('*', {
+--   capabilities = {
+--     textDocument = {
+--       semanticTokens = {
+--         multilineTokenSupport = true,
+--       }
+--     }
+--   }
+-- })
+lspconfig('cssls',   { capabilities = cmp_capabilities })
+lspconfig('html',    { capabilities = cmp_capabilities })
+lspconfig('jsonls',  { capabilities = cmp_capabilities })
+lspconfig('ts_ls',   { capabilities = cmp_capabilities })
+lspconfig('vimls',   { capabilities = cmp_capabilities })
+lspconfig('eslint',  { } )
 
-lspconfig.pyright.setup({
+lspconfig('pyright', {
   on_attach = lsp_status.on_attach,
   capabilities = cmp_capabilities,
   settings = {
@@ -32,7 +42,7 @@ lspconfig.pyright.setup({
   }
 })
 
-lspconfig.tailwindcss.setup({
+lspconfig('tailwindcss', {
   filetype = {},
   filetypes = { "html-eex", "heex"},
   capabilities = cmp_capabilities,
@@ -45,7 +55,7 @@ lspconfig.tailwindcss.setup({
   }
 })
 
-lspconfig.lua_ls.setup({
+lspconfig('luals', {
   capabilities = cmp_capabilities,
   settings = {
     Lua = {
@@ -56,7 +66,7 @@ lspconfig.lua_ls.setup({
   }
 })
 
-lspconfig.bashls.setup({
+lspconfig('bashls', {
   on_attach = lsp_status.on_attach,
   capabilities = cmp_capabilities,
   filetypes = { "bash" },
@@ -67,9 +77,10 @@ lspconfig.bashls.setup({
   }
 })
 
-lspconfig.clangd.setup({
+lspconfig('clangd', {
   capabilities = cmp_capabilities,
   cmd = { "clangd", "--log=verbose" },
+  filetypes = {'c', 'cpp'},
   init_options = {
     fallbackFlags = {
       '--std=gnu++20',
@@ -77,6 +88,17 @@ lspconfig.clangd.setup({
     }
   }
 })
+
+lspconfig('hls', {
+  capabilities = cmp_capabilities,
+  cmd = { "haskell-language-server-wrapper", "--lsp" },
+  filestypes = { "haskell", "lhaskell" },
+  single_file_support = true,
+})
+
+for _,v in ipairs(lang_servers) do
+  vim.lsp.enable(v)
+end
 -- lspconfig.jedi_language_server.setup( { capabilities = cmp_capabilities , })
 -- lspconfig.marksman.setup({
 -- })

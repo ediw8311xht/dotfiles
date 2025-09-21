@@ -1,4 +1,4 @@
-[Added Associations]
+[Added Associations];
 x-scheme-handler/chrome=brave-browser.desktop;
 x-scheme-handler/ftp=brave-browser.desktop;
 x-scheme-handler/http=brave-browser.desktop;
@@ -15,7 +15,7 @@ image/svg+xml=org.gnome.eog.desktop;
 text/plain=nvim.desktop;
 application/x-zim-notebook=nvim.desktop;
 
-[Default Applications]
+[Default Applications];
 application/epub+zip=zathura.desktop;
 application/epub=zathura.desktop;
 application/gzip=engrampa.desktop;
@@ -88,7 +88,7 @@ image/jp2=nsxiv.desktop;
 image/jpeg=nsxiv.desktop;
 image/jxl=nsxiv.desktop;
 image/png=nsxiv.desktop;
-image/svg+xml=org.gnome.eog.desktop
+image/svg+xml=org.gnome.eog.desktop;
 image/tiff=nsxiv.desktop;
 image/vnd.djvu+multipage=org.pwmt.zathura-pdf-mupdf.desktop;
 image/webp=nsxiv.desktop;
@@ -100,12 +100,13 @@ image/x-tga=nsxiv.desktop;
 image/x-xpixmap=nsxiv.desktop;
 inode/directory=thunar.desktop;
 text/cpp=nvim.desktop;
+text/x-haskell=nvim.desktop;
 text/css=nvim.desktop;
 text/csv=visidata.desktop;
 text/html=nvim.desktop;
 text/javascript=nvim.desktop;
 text/markdown=nvim.desktop;
-text/plain=nvim.desktop
+text/plain=nvim.desktop;
 text/python=nvim.desktop;
 text/spreadsheet=nvim.desktop;
 text/tab-separated-values=nvim.desktop;
@@ -164,10 +165,10 @@ video/x-ogm+ogg=mpv.desktop;
 video/x-theora+ogg=mpv.desktop;
 x-scheme-handler/about=brave-browser.desktop;
 x-scheme-handler/chrome=brave-browser.desktop;
-x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop
+x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop;
 x-scheme-handler/ftp=brave-browser.desktop;
 x-scheme-handler/gitkraken=GitKraken.desktop;
-x-scheme-handler/http=nvim.desktop
-x-scheme-handler/https=nvim.desktop
-x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+x-scheme-handler/http=nvim.desktop;
+x-scheme-handler/https=nvim.desktop;
+x-scheme-handler/jetbrains=jetbrains-toolbox.desktop;
 x-scheme-handler/unknown=brave-browser.desktop;
