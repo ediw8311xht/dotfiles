@@ -130,7 +130,8 @@ function M.GoToFunction(args)
   local func_query
   if     args and args.test then return M.test_g()
   elseif M.ft == "lua"      then func_query = " ( (function_declaration) @func_decl ) "
-  else                           func_query = " ( (function_definition) @func_decl ) "
+  elseif M.ft == "lisp"     then func_query = " ( (defun)                @func_decl ) "
+  else                           func_query = " ( (function_definition)  @func_decl ) "
   end
   M.GoToQuery(func_query, args)
 end
@@ -166,7 +167,6 @@ function M.create_commands()
     { desc="Go to the end of function cursor is currently inside", nargs=0 }
   )
 end
-
 
 -- M.GoToFunction({test = true})
 

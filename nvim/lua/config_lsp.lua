@@ -4,7 +4,7 @@ local lsp_status        = require('lsp-status')
 local lspconfig         = vim.lsp.config
 local cmp_capabilities  = require('cmp_nvim_lsp').default_capabilities()
 local actions_preview   = require('actions-preview')
-local lang_servers      = { 'cssls', 'html', 'jsonls', 'ts_ls', 'vimls', 'eslint', 'pyright', 'tailwindcss', 'luals', 'bashls', 'clangd', 'hls' }
+local lang_servers      = { 'cssls', 'html', 'jsonls', 'ts_ls', 'vimls', 'eslint', 'pyright', 'tailwindcss', 'lua_ls', 'bashls', 'clangd', 'hls' }
 
 vim.lsp.enable('marksman')
 actions_preview.setup({})
@@ -55,7 +55,7 @@ lspconfig('tailwindcss', {
   }
 })
 
-lspconfig('luals', {
+lspconfig('lua_ls', {
   capabilities = cmp_capabilities,
   settings = {
     Lua = {

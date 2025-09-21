@@ -38,8 +38,8 @@ let g:my_plugins['code-action preview'] = [ 'aznhe21',          'actions-preview
 let g:my_plugins['devicons']            = [ 'nvim-tree',        'nvim-web-devicons'             ]
 
 "lisp
-"let g:my_plugins['lisp paredit']        = [ 'vim-scripts',      'paredit.vim'                   ]
-let g:my_plugins['lisp parinfer']       = [ 'eraserhd',         'parinfer-rust',                {'do': 'cargo build --release'}                 ]
+let g:my_plugins['lisp paredit']        = [ 'vim-scripts',      'paredit.vim'                   ]
+"let g:my_plugins['lisp parinfer']       = [ 'eraserhd',         'parinfer-rust',                {'do': 'cargo build --release'}                 ]
 let g:my_plugins['lisp vlime']          = [ 'vlime',            'vlime', { 'rtp': 'vim/'} ]
 
 "elixir
