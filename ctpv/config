@@ -6,7 +6,7 @@
 # ? #
 # set forcekittyanim
 # ? #
-set forcekitty
+# set forcekitty
 set shell "/usr/bin/bash"
 
 preview dejavu image/vnd.djvu {{
@@ -40,6 +40,10 @@ preview tarball .tar.zst .tar.gz .tgz application/x-compressed-tar {{
 
 preview zip .zip application/zip {{
     unzip -l "${f}"
+}}
+
+preview ris .ris {{
+    head -1000 "${f}" | highlight --syntax="ris" --stdout --out-format="truecolor" -
 }}
 
 preview txt .txt {{
