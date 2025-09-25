@@ -3,11 +3,11 @@
 (load "~/.sbclrc")
 
 ; required packages
-; (require :import-package-1) -- require here
+; (require :import-package-1) ; require here
 ; ..
 ; (require :import-package-n)
 ; (defpackage :my-package-name
-;   (:use :required-package .. :required-package-n)
+;   (:use :cl :required-package :required-package-n)
 ;   (:export #:main))
 
 

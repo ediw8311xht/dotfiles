@@ -44,11 +44,11 @@ cmp.setup({
   })
 })
 
-cmp.setup.filetype( { 'lisp' }, {
-  sources = {
-    { name = 'vlime' },
-  }
-})
+-- cmp.setup.filetype( { 'lisp' }, {
+--   sources = {
+--     { name = 'vlime' },
+--   }
+-- })
 
 -- cmp.setup.filetype( { 'markdown', 'text' }, {
 --   sources = {

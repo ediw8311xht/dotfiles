@@ -13,7 +13,8 @@
 "<==============================================================================>
 "<==============================================================================>
 source $XDG_CONFIG_HOME/nvim/settings.vim
-source $XDG_CONFIG_HOME/nvim/vlime_settings.vim
+source $XDG_CONFIG_HOME/nvim/slimv_settings.vim
+"source $XDG_CONFIG_HOME/nvim/vlime_settings.vim
 lua require('autocmd')
 lua require('variables')
 lua require('functions')

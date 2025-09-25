@@ -20,7 +20,6 @@ let g:my_plugins['cmp nvim tags']       = [ 'quangnguyen30192', 'cmp-nvim-tags' 
 let g:my_plugins['cmp ctags']           = [ 'delphinus',        'cmp-ctags'                     ]
 let g:my_plugins['cmp treesitter']      = [ 'ray-x',            'cmp-treesitter',               ]
 let g:my_plugins['latex snips 4 vimtex']= [ 'micangl',          'cmp-vimtex'                    ]
-let g:my_plugins['cmp vlime']           = [ 'HiPhish',          'nvim-cmp-vlime'                ]
 let g:my_plugins['luasnip']             = [ 'L3MON4D3',         'LuaSnip'                       ]
 
 "latex
@@ -38,10 +37,12 @@ let g:my_plugins['code-action preview'] = [ 'aznhe21',          'actions-preview
 let g:my_plugins['devicons']            = [ 'nvim-tree',        'nvim-web-devicons'             ]
 
 "lisp
-let g:my_plugins['lisp paredit']        = [ 'vim-scripts',      'paredit.vim'                   ]
-"let g:my_plugins['lisp parinfer']       = [ 'eraserhd',         'parinfer-rust',                {'do': 'cargo build --release'}                 ]
-let g:my_plugins['lisp vlime']          = [ 'vlime',            'vlime', { 'rtp': 'vim/'} ]
+"let g:my_plugins['lisp paredit']        = [ 'vim-scripts',      'paredit.vim'                   ]
+""let g:my_plugins['lisp parinfer']       = [ 'eraserhd',         'parinfer-rust',                {'do': 'cargo build --release'}                 ]
+"let g:my_plugins['lisp vlime']          = [ 'vlime',            'vlime', { 'rtp': 'vim/'} ]
+"let g:my_plugins['cmp vlime']           = [ 'HiPhish',          'nvim-cmp-vlime'                ]
 
+let g:my_plugins['slimv']              = [ 'kovisoft', 'slimv' ]
 "elixir
 let g:my_plugins['elixir']              = [ 'elixir-tools',     'elixir-tools.nvim'             ]
 let g:my_plugins['elixirfiledetect']    = [ 'elixir-editors',   'vim-elixir'                    ]

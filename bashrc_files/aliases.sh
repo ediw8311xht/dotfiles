@@ -152,9 +152,10 @@ alias nv_cwd_files='    fd . --exact-depth 1 --exclude "*.o" -tf -0 -X nvim -c "
 alias nv_s='    nvim +"AutoSession search"'
 alias nv_cpp='    fd . --case-sensitive --exact-depth 1 -e C -e cpp -e h -tf -0 -X nvim -c "Buffers"'
 #--------------------------------------------------lisp----------------------------------#
-alias vlime_start='        rlwrap sbcl   --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp'
-alias vlime_start_dspace=' rlwrap sbcl   --dynamic-space-size 4096 --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp'
-alias vlime_stop='         pkill  vlime'
+# alias vlime_start='        rlwrap sbcl   --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp'
+# alias vlime_start_dspace=' rlwrap sbcl   --dynamic-space-size 4096 --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp'
+# alias vlime_stop='         pkill  vlime'
+alias slimv_start=' rlwrap sbcl --load "${XDG_DATA_HOME}/nvim/plugged/slimv/slime/start-swank.lisp"'
 alias rlsp=' sbcl --script'
 #--------------------------------------------------yt-dlp--------------------------------#
 alias yda='       yt-dlp --extract-audio --audio-format "mp3"'

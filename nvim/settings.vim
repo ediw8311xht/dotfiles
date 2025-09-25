@@ -87,7 +87,6 @@ autocmd FileType bash setlocal keywordprg=:Man
 let g:mapleader = " "
 "let mapleader = " "
 let g:maplocalleader = ","
-let g:paredit_leader='['
 let g:lf_map_keys    = 0
 let g:html_mode      = 1
 let g:is_bash        = 1
