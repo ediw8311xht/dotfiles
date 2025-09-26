@@ -48,6 +48,38 @@ require('rainbow-delimiters.setup').setup {
     },
 }
 
+
+vim.g.fzf_vim = {
+  [ 'buffers_options' ] = {
+    '--style'        ,  'full'      ,
+    '--no-border'
+    -- '--border-label' ,  "Buffers"   ,
+    -- '--nth'          ,  '-1'        ,
+    -- '--with-nth'     ,  '{-1}'      ,
+  },
+  [ 'preview_window' ] = {
+    'hidden,right,50%,<70(up,40%)', 'ctrl-/'
+  }
+
+}
+
+vim.g.fzf_colors = {
+  [ 'hl'     ] = { 'bg', 'Search' },
+  [ 'hl+'    ] = { 'bg', 'Search' },
+  -- [ 'border' ] = { 'bg', 'Ignore' },
+}
+
+vim.g.fzf_layout = {
+  [ 'window' ] = { width = 0.9, height = 0.9 } --, border = 'no' }
+}
+
+
+-- For use with MapCommandsToReg
+vim.g.reg_filter_map = {
+  [ 'normal' ] = { 'd', 'c', 'D', 'C' },
+  [ 'visual' ] = { 'd', 'c', 'D', 'C', 'p', 'P' },
+}
+
 -- require('noice').setup({
 
 --   presets = {

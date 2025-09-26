@@ -10,6 +10,7 @@ set promptfmt   "\033[34;1m%d\033[0m\033[1m%S%f\033[0m %F"
 set borderfmt   "\033[0;34m"
 set cursorparentfmt "\033[02;49m"
 set cursoractivefmt "\033[7m"
+set filtermethod regex
 ##USE DOUBLE QUOTES FOR 'set ifs "something"'
 #set period 1
 set icons false
@@ -163,6 +164,9 @@ map ,p      nopreview
 map ,t		:trash #trash
 map RR      :reload
 map r       :{{ set reverse!; top; }}
+map ,fi     :{{ setfilter [.](jpg|jpeg|gif|webp|gif|avi|png)$ ; }}
+map ,ft     :{{ setfilter [.](txt|md|css|cpp|h|c|lisp|py|hs|sh|bash)$ ; }}
+# .*(jpg|jpeg|gif|webp|gif|avi|png)$
 ## remove filter with <c-r>
 ## No longer needed, version r36 adds visual mode
 # map VG		invert-below 
