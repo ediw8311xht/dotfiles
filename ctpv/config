@@ -9,11 +9,6 @@
 # set forcekitty
 set shell "/usr/bin/bash"
 
-
-# preview rnote .rnote {{
-#     rnote-cli thumbnail "${f}"
-# }}
-
 preview dejavu image/vnd.djvu {{
     if ! [[ -f "${cache_f}.png" ]] ; then
         echo "HERE" >> /$HOME/mylog.txt
@@ -78,10 +73,15 @@ preview mypy .py {{
 preview elisp .el {{
     highlight "${f}" --stdout --out-format="truecolor"
 }}
+
 preview mymd .md {{
+    min() {
+        expr "(" "(" "${1}" "<" "${2}" ")" "*" "${1}" ")" "|" "${2}"
+    }
     export CLICOLOR_FORCE=1
 	export COLORTERM=truecolor
-    glow -s "$XDG_CONFIG_HOME/glow/my_default.json" "${f}"
+    MAX_WIDTH=150
+    glow --width "$(min "${w}" "${MAX_WIDTH}")" -s "$XDG_CONFIG_HOME/glow/my_default.json" "${f}"
 }}
 
 
@@ -94,9 +94,65 @@ preview mymd .md {{
 #
 
 
+# preview rnote .rnote {{
+#     rnote-cli thumbnail "${f}"
+# }}
+
 # preview myd .md {{
 #     outfile="$(mktemp /tmp/rmarkXXXXXXXX.png)"
 #     RenderMarkdown --overwrite "${f}" "${outfile}"
 #     setup_image
 #     send_image "${outfile}"
 # }}
+
+#-----------------------------------------------------------------------------
+# From ctpv man page (ref)
+#-----------------------------------------------------------------------------
+# Defining custom previews User-defined previews are added with preview
+# command.
+#
+#     An example below defines a new preview with name “manpage” that
+#     applies to files with extension “.1”.  A preview itself is a shell
+#     script enclosed within double curly braces.
+#
+#            preview manpage .1 {{
+#                groff -man -tep -Tutf8 -rLL="${w}n" "${f}" | col -x
+#            }}
+#
+#     Running ctpv file.1 where file.1 is a source code for a manpage will
+#     run groff(1) to produce a formatted manpage like the one you are
+#     reading.
+#
+#     Manpages filenames may also end with other extensions: “.2”, “.3”,
+#     “.4” and so on.  It's possible to make user-defines previews apply to
+#     several file types at once:
+#
+#            preview manpage .1 .2 .3 .4 .5 .6 .7 .8 {{
+#                # groff command
+#            }}
+#
+#     Variable $f stores file that was passed as a first argument to ctpv.
+#     It's strongly suggested to enclose $f with double quotes ("$f")
+#     because otherwise the script will not work as expected if $f stores
+#     a filename with whitespace.
+#
+#     There are other variables that are exported into preview script
+#     environment: $w, $h, $x, $y and $id.  There are also $m and $e which
+#     store MIME type and extension of file.
+#
+#     You can specify MIME type instead of filename extension in preview
+#     definition:
+#
+#            preview json_example application/json {{
+#                # preview json files
+#            }}
+#
+#     You can omit subtype part of the MIME type by replacing it with '*'.
+#
+#            preview any_text_example text/* {{
+#                # this one applies to all text files
+#            }}
+#
+#     Setting subtype to '*' will make the preview above apply to any file
+#     which MIME type starts with text/.
+#-----------------------------------------------------------------------------

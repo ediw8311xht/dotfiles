@@ -6,7 +6,7 @@ local cmp_capabilities  = require('cmp_nvim_lsp').default_capabilities()
 local actions_preview   = require('actions-preview')
 local lang_servers      = { 'cssls', 'html', 'jsonls', 'ts_ls', 'vimls', 'eslint', 'pyright', 'tailwindcss', 'lua_ls', 'bashls', 'clangd', 'hls' }
 
-vim.lsp.enable('marksman')
+-- vim.lsp.enable('marksman')
 actions_preview.setup({})
 
 -- vim.lsp.config('*', {

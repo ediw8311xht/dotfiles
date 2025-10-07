@@ -215,6 +215,19 @@ alias_with_completion() {
     complete -F _complete_alias "${1}"
 }
 
+find_one() {
+    local m="${2}"
+    for i in "${@:2}" ; do
+        m="$(expr "(" "(" "${m}" "${1}" "${i}" ")" "*" "${m}" ")" "|" "${i}")"
+    done ; echo "${m}"
+}
+min_of() {
+    find_one "<" "${@}"
+}
+
+max_of() {
+    find_one ">" "${@}"
+}
 
 
 #get_outdated_pip() {
