@@ -41,7 +41,7 @@ let g:my_plugins['devicons']            = [ 'nvim-tree',        'nvim-web-devico
 ""let g:my_plugins['lisp parinfer']       = [ 'eraserhd',         'parinfer-rust',                {'do': 'cargo build --release'}                 ]
 "let g:my_plugins['lisp vlime']          = [ 'vlime',            'vlime', { 'rtp': 'vim/'} ]
 "let g:my_plugins['cmp vlime']           = [ 'HiPhish',          'nvim-cmp-vlime'                ]
-
+"let g:my_plugins['cl-neovim']          = [ 'adolenc', 'cl-neovim' ]
 let g:my_plugins['slimv']              = [ 'kovisoft', 'slimv' ]
 "elixir
 let g:my_plugins['elixir']              = [ 'elixir-tools',     'elixir-tools.nvim'             ]

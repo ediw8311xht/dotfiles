@@ -9,6 +9,11 @@
 # set forcekitty
 set shell "/usr/bin/bash"
 
+
+# preview rnote .rnote {{
+#     rnote-cli thumbnail "${f}"
+# }}
+
 preview dejavu image/vnd.djvu {{
     if ! [[ -f "${cache_f}.png" ]] ; then
         echo "HERE" >> /$HOME/mylog.txt

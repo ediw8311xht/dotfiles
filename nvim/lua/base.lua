@@ -58,7 +58,7 @@ vim.g.fzf_vim = {
     -- '--with-nth'     ,  '{-1}'      ,
   },
   [ 'preview_window' ] = {
-    'hidden,right,50%,<70(up,40%)', 'ctrl-/'
+    'right,50%,<70(up,40%)', 'ctrl-/'
   }
 
 }

@@ -127,7 +127,6 @@ alias e_nv_full=' fd . -tf -0 "${HOME}/.config/nvim/" "${HOME}/.local/share/nvim
 alias e_nv='      nvim -c "Buffers" "${XDG_CONFIG_HOME}/nvim/lua/"*.lua "${XDG_CONFIG_HOME}/nvim/"*.vim'
 alias e_chad='    cd "${XDG_CONFIG_HOME}/NVIM_CHAD/"; nd; cd -'
 alias e_bash='    nvim -c "Buffers" "${HOME}/bashrc_files/"* "${HOME}/.bash_completion" "${HOME}/.bashrc" "${HOME}/.bash_profile" "${HOME}/.profile" ; source "${HOME}/.bashrc"'
-alias e_mime='    nvim "${HOME}/.config/mimeapps.list"'
 alias e_xrec='    echo ""; nvim "${HOME}/.Xresources"; xrdb -override "${HOME}/.Xresources"'
 #--------------------------------------------------find----------------------------------#
 alias gf='        fd --search-path "/" -u --mount'
