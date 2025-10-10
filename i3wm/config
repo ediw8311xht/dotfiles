@@ -32,13 +32,13 @@
     set $FORCE_NON_FLOAT pavucontrol-qt
     #--Floating-Size------------------#
         # Default
-            set $DefaultSize    55ppt 70ppt
-            set $DefaultWidth   55ppt
-            set $DefaultHeight  80ppt
+            set $DefaultSize    70ppt 70ppt
+            # set $DefaultWidth   55ppt
+            # set $DefaultHeight  80ppt
         # Small
             set $SmallSize      40ppt 50ppt
-            set $SmallWidth     40ppt
-            set $SmallHeight    50ppt
+            # set $SmallWidth     40ppt
+            # set $SmallHeight    50ppt
     #---------------------------------#
     set $EXC    exec 	    --no-startup-id
     set $EXC_A  exec_always --no-startup-id

@@ -1,8 +1,6 @@
 
--- Much help for creating this, not really too good rn still a work in progress
--- Very useful guide to treesitter querying in nvim
+-- Useful guide to treesitter querying in nvim
 -- https://jhcha.app/blog/the-power-of-treesitter/
--- Thank you to Joohoon Cha <3
 
 local ts = vim.treesitter
 -- local ts_utils = require("nvim-treesitter.ts_utils")
@@ -78,7 +76,6 @@ function M.Init()
   M.tree = ts.get_parser():parse()[1]
 end
 
-
 function M.Less(p1, p2)      return (p1[1]  < p2[1]) end -- or ( p1[1] == p2[1] and p1[2]   < p2[2] )) end
 function M.LessEqual(p1, p2) return (p1[1] <= p2[1]) end -- or ( p1[1] == p2[1] and p1[2]  <= p2[2] )) end
 function M.Equal(p1, p2)     return (p1[1] == p2[1]) end -- and p1[2] == p2[2]) end
@@ -128,10 +125,11 @@ function M.GoToFunction(args)
   M.Init()
   args = args or {}
   local func_query
-  if     args and args.test then return M.test_g()
-  elseif M.ft == "lua"      then func_query = " ( (function_declaration) @func_decl ) "
-  elseif M.ft == "lisp"     then func_query = " ( (defun)                @func_decl ) "
-  else                           func_query = " ( (function_definition)  @func_decl ) "
+  if     args and args.test   then  return M.test_g()
+  elseif M.ft == "lua"        then  func_query = " ( (function_declaration) @func_decl ) "
+  elseif M.ft == "lisp"       then  func_query = " ( (defun)                @func_decl ) "
+  elseif M.ft == "commonlisp" then  func_query = " ( (defun)                @func_decl ) "
+  else                              func_query = " ( (function_definition)  @func_decl ) "
   end
   M.GoToQuery(func_query, args)
 end

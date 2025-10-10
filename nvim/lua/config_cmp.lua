@@ -2,12 +2,13 @@
 local cmp = require('cmp')
 local cmp_dict = require("cmp_dictionary")
 cmp.setup({
-  -- performance = {
-  --   fetching_timeout = 500,
-  --   throttle = 2000,
-  --   async_budget = 20,
-  --   max_view_entries = 50,
-  -- },
+  performance = {
+    fetching_timeout = 500,
+    debounce = 60,
+    throttle = 1000,
+    async_budget = 40,
+    max_view_entries = 20,
+  },
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
@@ -31,16 +32,19 @@ cmp.setup({
     { name = 'nvim_lua' },
     { name = 'luasnip' },
     -- { name = 'treesitter' },
-    { name = 'vimtex' },
-    { name = 'nvim_lsp_signature_help' },
-    { name = 'ctags' },
-    { name = 'cmp-nvim-tags' },
-    -- { name = "latex_symbols" },
+    -- { name = 'nvim_lsp_signature_help' },
+    -- { name = 'ctags' },
+    -- { name = 'cmp-nvim-tags' },
   }, {
-    { name = 'buffer'},
-    { name = 'path'},
+    { name = 'buffer' },
+    { name = 'path',
+      option = {
+        indexing_interval = 80,
+        indexing_batch_size = 110,
+      },
+    },
+    { name = 'dotenv' },
     --{ name = 'cmdline'},
-    { name = 'dotenv'},
   })
 })
 
@@ -49,12 +53,19 @@ cmp.setup({
 --     { name = 'vlime' },
 --   }
 -- })
+cmp.setup.filetype( { 'tex' }, {
+  sources = {
+    { name = 'vimtex' },
+    { name = "latex_symbols" },
+    -- { name = "dictionary" },
+  }
+})
 
--- cmp.setup.filetype( { 'markdown', 'text' }, {
---   sources = {
---     { name = "dictionary" },
---   }
--- })
+cmp.setup.filetype( { 'markdown', 'text' }, {
+  sources = {
+    { name = "dictionary" },
+  }
+})
 
 cmp_dict.setup({
   paths = { "$XDG_DATA_HOME/dict/en_words" },

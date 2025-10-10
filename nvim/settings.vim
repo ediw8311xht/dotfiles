@@ -91,14 +91,14 @@ let g:lf_map_keys    = 0
 let g:html_mode      = 1
 let g:is_bash        = 1
 "-------Latex----------"
-let g:is_bash	   = 1
 let g:tex_flavor='latex'
 let g:vimtex_compiler_latexmk = { 'out_dir' : '/tmp', }
 let g:vimtex_quickfix_mode=0
 let g:vimtex_view_method='zathura'
+let g:vimtex_view_continuous=1
 set foldmethod=manual
 set foldcolumn=2
-set sessionoptions=blank,buffers,curdir,help,tabpages,winsize,winpos,terminal
+set sessionoptions=blank,buffers,curdir,help,tabpages,winsize,winpos,terminal,folds
 set viewoptions=cursor,folds
 
 "set foldexpr=''

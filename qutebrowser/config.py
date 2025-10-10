@@ -159,19 +159,20 @@ c.colors.webpage.darkmode.algorithm      =  'lightness-cielab'
 c.colors.webpage.darkmode.enabled        =  True
 c.colors.webpage.preferred_color_scheme  =  'dark'
 c.content.canvas_reading                 =  False
+c.downloads.position                     =  'bottom'
 c.fonts.default_family                   =  [ "Agave", "Noto Sans", "Monospace"]
 c.fonts.default_size                     =  '9pt'
 c.fonts.downloads                        =  'default_size default_family'
-c.fonts.statusbar                        =  '9pt Noto Sans'
+c.fonts.statusbar                        =  '10pt Noto Sans'
 c.fonts.tabs.selected                    =  '9pt Noto Sans'
 c.fonts.tabs.unselected                  =  '9pt Noto Sans'
+c.qt.highdpi                             =  True
 c.spellcheck.languages                   =  []
+c.statusbar.padding                      =  {'top': 1, 'bottom': 1, 'left': 1, 'right': 1}
 c.tabs.favicons.scale                    =  1.0
 c.tabs.favicons.show                     =  'always'
 c.tabs.position                          =  'left'
-c.downloads.position                     =  'bottom'
 c.window.transparent                     =  True
-c.qt.highdpi                             =  True
 
 #----------variables--------------#
 hint_all = [
@@ -243,6 +244,8 @@ zoom_levels = [
 ]
 
 #----------settings---------------#
+c.changelog_after_upgrade = 'minor'
+c.backend = 'webengine'
 c.new_instance_open_target = 'tab-silent'
 c.content.local_content_can_access_remote_urls = True
 c.content.javascript.log_message.excludes = {

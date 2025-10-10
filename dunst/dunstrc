@@ -5,7 +5,7 @@
     #separator_height = 1
     enable_recursive_icon_lookup = true
     width            = (0, 1400)
-    font             = Input Mono 10
+    font             = Hermit 9
     padding          = 8
     horizontal_padding = 20
     markup = full
@@ -20,26 +20,26 @@
     offset = (5, 5)
     min_icon_size = 4
     max_icon_size = 40
-    frame_width = 2
+    frame_width = 5
     frame_color = "#444444"
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
     background  = "#000000"
-    foreground  = "#999999"
+    foreground  = "#AAAAAA"
     timeout = 15
 
 [urgency_normal]
     background = "#000000"
-    foreground = "#AAAAAA"
+    foreground = "#DDDDDD"
     timeout = 15
 
 [urgency_critical]
     background = "#000000"
     foreground = "#ff0000"
     frame_color = "#ff0000"
-    format = "<span font='Input Mono 30px'><b>%s</b></span>\n<span color='#FFAA00'>%b</span>"
+    format = "<span font='Hermit 20px'><b>%s</b></span>\n<span color='#FFAA00'>%b</span>"
     timeout = 0
 
 [category=".*"]

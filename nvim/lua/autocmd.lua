@@ -8,7 +8,7 @@ local vc    = vim.cmd
 ConfigDir = home .. "/.config/nvim"
 LanguageSpecificDir = ConfigDir .. "/language_specific"
 TemplateDir = home .. "/.config/nvim/language_specific/templates"
-MaxLinesCMP = 5000
+MaxLinesCMP = 2000
 
 ---------------------------------
 -- Disable CMP For Large Files --
@@ -62,39 +62,6 @@ local function template_add_e(exts)
 end
 
 -------------------------
--- Vars -----------------
--------------------------
-local exts = { "sh", "py", "kalker", "exs", "tex", "ex", "html", "cpp", "md", "lisp", "hs" }
-
-local globcomms = {
-  ---- Syntax ----
-  [ home .. "/bashrc_files/*" ]              = { "setfiletype bash"      } ,
-  [ "*.sh" ]                                 = { "setfiletype bash"      } ,
-  [ home .. "/.config/polybar/*.ini" ]       = { "setfiletype dosini"    } ,
-  [ home .. "/.config/polybar/*/*.ini" ]     = { "setfiletype dosini"    } ,
-  [ "*.kalker" ]                             = { "setfiletype kalker"    } ,
-  [ home .. "/.config/i3/*" ]                = { "setfiletype i3"        } ,
-  [ "*.ex,*.exs" ]                           = { "setfiletype elixir"    } ,
-  [ "*.schema" ]                             = { "setfiletype sql"       } ,
-  [ "*.md" ]                                 = { "setfiletype markdown"  } ,
-  [ home .. "/.config/zathura/*" ]           = { "set syntax=zathurarc"  } ,
-  ---- Special ----
-  [ home .. "/.bashrc"] = {
-      "setfiletype bash",
-      "source ${HOME}/.config/nvim/language_specific/bashrc.vim"
-  },
-  [ home .. "/.config/joplin-desktop/userstyle.css"] = {
-      "source ${HOME}/.config/nvim/language_specific/joplin_userstyle.vim"
-  },
-  [ home .. "/TEST/QUICK/*.cpp" ] = {
-      "source" .. LanguageSpecificDir .. "/quick_cpp.vim"
-  },
-}
-
-template_add_e(exts)
-bufnr_add(globcomms)
-
--------------------------
 -- VimLeave -------------
 -------------------------
 vauto({ "VimLeave" }, { pattern = "*",
@@ -140,47 +107,36 @@ vauto({ "TextYankPost" }, {
   end
 })
 
+-------------------------
+-- EXTENSION SPECIFIC ---
+-------------------------
+local exts = { "sh", "py", "kalker", "exs", "tex", "ex", "html", "cpp", "md", "lisp", "hs" }
 
--- if vfn.exists("##TextYankPost") then
---   vauto({ 
--- end
---   function! SmallDeleteRing(event) abort
---     if a:event['operator'] == 'y'
---       " Don't care about actual yanks
---       return
---     endif
---     if a:event['regtype'] ==# 'V'
---       " Vim already handles linewise deletions
---       return
---     endif
---
---     let regcontents = a:event['regcontents']
---     if len(regcontents) > 1
---       " Vim already handles deletions spanning multiple lines
---       return
---     endif
---
---     let deleted = regcontents[0]
---
---     if len(deleted) == 1
---       " Don't want to catch single-character deletions (in particular, x)
---       return
---     endif
---
---     " Grab registers 1-8
---     let one_through_eight = mapnew(range(1, 8), {k, v -> getreg(v)})
---
---     " Set register "1
---     call setreg(1, deleted)
---
---     " Set registers 2-9
---     for i in range(1, 8)
---       call setreg(i + 1, one_through_eight[i - 1])
---     endfor
---   endfunction
---
---   augroup small_delete_ring
---     autocmd!
---     autocmd TextYankPost * call SmallDeleteRing(v:event)
---   augroup END
--- endif
+local globcomms = {
+  ---- Syntax ----
+  [ home .. "/bashrc_files/*" ]              = { "setfiletype bash"      } ,
+  [ "*.sh" ]                                 = { "setfiletype bash"      } ,
+  [ home .. "/.config/polybar/*.ini" ]       = { "setfiletype dosini"    } ,
+  [ home .. "/.config/polybar/*/*.ini" ]     = { "setfiletype dosini"    } ,
+  [ "*.kalker" ]                             = { "setfiletype kalker"    } ,
+  [ home .. "/.config/i3/*" ]                = { "setfiletype i3"        } ,
+  [ "*.ex,*.exs" ]                           = { "setfiletype elixir"    } ,
+  [ "*.schema" ]                             = { "setfiletype sql"       } ,
+  [ "*.md" ]                                 = { "setfiletype markdown"  } ,
+  [ home .. "/.config/zathura/*" ]           = { "set syntax=zathurarc"  } ,
+  ---- Special ----
+  [ home .. "/.bashrc"] = {
+      "setfiletype bash",
+      "source ${HOME}/.config/nvim/language_specific/bashrc.vim"
+  },
+  [ home .. "/.config/joplin-desktop/userstyle.css"] = {
+      "source ${HOME}/.config/nvim/language_specific/joplin_userstyle.vim"
+  },
+  [ home .. "/TEST/QUICK/*.cpp" ] = {
+      "source" .. LanguageSpecificDir .. "/quick_cpp.vim"
+  },
+}
+
+template_add_e(exts)
+bufnr_add(globcomms)
+

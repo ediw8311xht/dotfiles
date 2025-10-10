@@ -23,7 +23,7 @@ let g:my_plugins['latex snips 4 vimtex']= [ 'micangl',          'cmp-vimtex'    
 let g:my_plugins['luasnip']             = [ 'L3MON4D3',         'LuaSnip'                       ]
 
 "latex
-"let g:my_plugins['vim latex']           = [ 'lervag',           'vimtex'                        ]
+let g:my_plugins['vim latex']           = [ 'lervag',           'vimtex'                        ]
 
 "Documentation
 let g:my_plugins['dasht (docs)'] = [ 'sunaku',  'vim-dasht' ]
