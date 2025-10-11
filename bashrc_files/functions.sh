@@ -58,9 +58,10 @@ cd_from_lf() {
     fi
 }
 open_mpv() {
-    local AUD CLOSE FILE_FZF
+    # local AUD
+    local CLOSE FILE_FZF
     while [[ "${1,,}" =~ ^-[-?].*$ ]] ; do
-        [[ "${1,,}" =~ ^-m(ono)?      ]] && AUD="mono"
+        # [[ "${1,,}" =~ ^-m(ono)?      ]] && AUD="mono"
         [[ "${1,,}" =~ ^(-c|--close)$ ]] && CLOSE="close"
         [[ "${1,,}" =~ ^(-f|--fzf)$   ]] && \
             FILE_FZF="$(fd -H "[.](mp4|mkv|avi|mpeg|mpeg4|mpv|mpv4|m4v|mpg|m4p|mov|wmv|webm)$" | fzf --preview="ctpv {}")"
@@ -80,17 +81,17 @@ open_mpv() {
 open_prog() {
     xdg-open "${1}" & disown
 }
-fpend() {
-    if [[ "$1" =~ ^-[dD](ate)? ]] ; then shift 1; local MDATE; MDATE="#$(date)"; fi
-    if [[ -f "${1}"            ]] ; then
-        for i in "${@:2}" "${MDATE:-"_"}"; do
-            echo "${i}" '  |---|  ' "${1}"
-            echo "${i}" >> "${1}"
-        done
-        return "$?"
-    fi
-    echo "INCORRECT ARGUMENTS"; return 1
-}
+# fpend() {
+#     if [[ "$1" =~ ^-[dD](ate)? ]] ; then shift 1; local MDATE; MDATE="#$(date)"; fi
+#     if [[ -f "${1}"            ]] ; then
+#         for i in "${@:2}" "${MDATE:-"_"}"; do
+#             echo "${i}" '  |---|  ' "${1}"
+#             echo "${i}" >> "${1}"
+#         done
+#         return "$?"
+#     fi
+#     echo "INCORRECT ARGUMENTS"; return 1
+# }
 alias_conflict() {
     local cvm wcl
     cvm="$(compgen -c)"
@@ -218,6 +219,7 @@ alias_with_completion() {
 find_one() {
     local m="${2}"
     for i in "${@:2}" ; do
+        #shellcheck disable=SC2003
         m="$(expr "(" "(" "${m}" "${1}" "${i}" ")" "*" "${m}" ")" "|" "${i}")"
     done ; echo "${m}"
 }
@@ -228,7 +230,6 @@ min_of() {
 max_of() {
     find_one ">" "${@}"
 }
-
 
 #get_outdated_pip() {
 #    local zfile

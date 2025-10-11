@@ -6,7 +6,7 @@
 # ? #
 # set forcekittyanim
 # ? #
-# set forcekitty
+set forcekitty
 set shell "/usr/bin/bash"
 
 preview dejavu image/vnd.djvu {{

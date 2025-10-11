@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# shellcheck disable=SC2120
 # vi: ft=bash
+# shellcheck disable=SC2120
 
 toggle_r_rate() {
     local status='On'
@@ -16,9 +16,18 @@ toggle_r_rate() {
 get_prop() {
     xinput list-props "${MY_MOUSE}" | grep -Pxio "[\t ]*${prop}[ \t]*\([0-9]*\)[:][ \t]*\K(.*)[ \t]*$"
 }
+set_prop() {
+    local out=""
+    if out="$(xinput set-prop "${@}")" ; then
+        notify-send -t 3000 --category="success" "$0" "${*/#/$'\n'}"
+    else
+        notify-send -t 3000 --category="error" "$0" "Error: ${out} ${*/#/$'\n'}"
+    fi
+
+}
 
 set_mouse_sensitivity() {
-    local DEFAULT_SENS='-0.5'
+    # local DEFAULT_SENS='-0.5'
     local prop='libinput Accel Speed'
     local vs
     local current
@@ -36,7 +45,7 @@ set_mouse_sensitivity() {
     fi
     # echo "${vs}"
 
-    xinput set-prop "${MY_MOUSE}" "${prop}" "${vs}"
+    set_prop "${MY_MOUSE}" "${prop}" "${vs}"
 }
 
 keyboard_set() {

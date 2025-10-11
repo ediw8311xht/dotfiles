@@ -83,7 +83,7 @@ lspconfig('clangd', {
   filetypes = {'c', 'cpp'},
   init_options = {
     fallbackFlags = {
-      '--std=gnu++20',
+      -- '--std=gnu++20',
       -- '-DMAGICKCORE_HDRI_ENABLE=1',
     }
   }
