@@ -33,7 +33,7 @@
     set $FORCE_NON_FLOAT pavucontrol-qt
     #--Floating-Size------------------#
         # Default
-            set $DefaultSize    70ppt 70ppt
+            set $DefaultSize    70ppt 80ppt
             # set $DefaultWidth   55ppt
             # set $DefaultHeight  80ppt
         # Small

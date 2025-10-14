@@ -28,6 +28,7 @@ mps 'r' #setting PS1
 shopt -s histappend
 eval "$(pyenv init - bash)"
 eval "$(zoxide init bash)"
+eval "$(dircolors -b ~/.dircolors)"
 #[[ ${BLE_VERSION-} ]] && ble-attach
 
 # export GEM_HOME="$(gem env user_gemhome)"

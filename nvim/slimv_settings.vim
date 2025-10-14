@@ -1,10 +1,19 @@
 
 
-let g:paredit_leader='['   " [
-let g:slimv_leader = "\\"  " \
-let g:slimv_repl_split = 3 "split left
-let g:slimv_impl = 'sbcl'
-let g:slimv_swank_path = expand('~/quicklisp/slime-helper.el')
+let g:paredit_leader     = '['          "[
+let g:slimv_impl         = 'sbcl'       "sbcl
+let g:slimv_leader       = '\'         "\
+let g:slimv_menu         = 1            "enable slimv menu
+let g:slimv_repl_name    = 'cl-repl'    "repl buffer name
+let g:slimv_repl_split   = 3            "split left
+let g:slimv_repl_syntax  = 1            "enable syntax highlighting in repl
+let g:slimv_swank_path   = expand('~/quicklisp/slime-helper.el')
+
+"fu! SetReplMappings() 
+"    echo "HI"
+"endfu
+"
+"autocmd Filetype commonlisp call SetReplMappings()
 "let g:slimv_swank_cmd = '! kitty -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
 
 " ------------------------------------------- INFO -------------------------------- "

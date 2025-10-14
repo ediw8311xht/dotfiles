@@ -20,6 +20,7 @@ alias d=' \df -h     | ccze -m ansi'
 alias h=' cd         "${HOME}"'
 alias l=' cd_from_lf' # my lf, so it cd's shell after exiting lf
 # alias n=' lsd        --group-directories-first -t  -r --icon="never" --permission="octal" --date=+" %l:%M%P %y %m %_d " --blocks="permission,user,date,size,name"'
+alias_with_completion rm 'rm' '-i'
 alias_with_completion p 'ps'        'ax | grep -Pi'
 alias_with_completion r '\rg'       '--pcre2 -i'
 alias_with_completion s 'sad'       '--pager never'
@@ -45,16 +46,17 @@ alias_with_completion g   'g'       '-l --time-style=+"%-2m  %-2d | %Y" --dir-fi
 alias_with_completion ll  'lsd'     ' --group-directories-first --icon="never" -rt --permission="octal"  --date=+" [ %_H:%M:%S | %a | %D ]" --blocks="permission,user,date,name"'
 alias_with_completion ren 'renamer'
 alias_with_completion sap 'apropos'
-alias se=' plocate --database="${LOCATE_DATABASE}" --regex'
-alias tracenet='  strace'
-alias gg='        g --sort="time-descend"'
-alias g_s='       g --sort=size'
+#shellcheck disable=SC2016
+alias_with_completion se 'plocate' '--database="${LOCATE_DATABASE}" --regex'
+alias_with_completion tracenet 'strace'
+alias_with_completion gg 'g' ' --sort="time-descend"'
+alias_with_completion g_s 'g' ' --sort=size'
 alias ac='        compgen -c  | grep -x'
 alias ac_full='   alias_conflict --full'
 alias ac_part='   alias_conflict'
-alias key='       showkey -k'
-alias nsx='       nsxiv -a -0'
-alias pgr='       $PAGER'
+alias_with_completion key 'showkey' ' -k'
+alias_with_completion nsx 'nsxiv' ' -a -0'
+alias_with_completion pgr "${PAGER}"
 alias ysb='       source "${HOME}/.bashrc"' # reload config
 # alias pgs='       pgrep'
 #--------------------------------------------------expac---------------------------------#
@@ -129,13 +131,14 @@ alias e_xrec='    echo ""; nvim "${HOME}/.Xresources"; xrdb -override "${HOME}/.
 alias gf='        fd --search-path "/" -u --mount'
 #--------------------------------------------------Python--------------------------------#
 alias py_heredoc=' python <<EOF'
-alias py_i='       ipython'
-alias py='         python'
+alias_with_completion py_i 'ipython'
+alias_with_completion py 'python'
+alias_with_completion py_act 'source .venv/bin/activate'
 #--------------------------------------------------ps------------------------------------#
 alias pse='       ps -eo comm=, | grep --ignore-case'
 alias pso='       ps -eo cmd=, | grep --ignore-case'
-alias tret='      ps -ejH'
-alias tres='      ps -eHo euser,ruser,suser,fuser,f,comm,label'
+alias_with_completion tret 'ps' ' -ejH'
+alias_with_completion tres 'ps' ' -eHo euser,ruser,suser,fuser,f,comm,label'
 alias trev='      ps axjf'
 #--------------------------------------------------man-----------------------------------#
 alias_with_completion man_search_for 'man'  '-f'
