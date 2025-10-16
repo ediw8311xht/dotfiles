@@ -8,6 +8,8 @@ let g:slimv_repl_name    = 'cl-repl'    "repl buffer name
 let g:slimv_repl_split   = 3            "split left
 let g:slimv_repl_syntax  = 1            "enable syntax highlighting in repl
 let g:slimv_swank_path   = expand('~/quicklisp/slime-helper.el')
+let g:slimv_balloon      = 1
+let g:slimv_strip_ansi   = 1
 
 "fu! SetReplMappings() 
 "    echo "HI"

@@ -21,7 +21,7 @@ PS2=''
 source "${HOME}/bashrc_files/exports.sh"
 source "${HOME}/bashrc_files/functions.sh"
 source "${HOME}/bashrc_files/aliases.sh"
-source "${HOME}/.config/broot/launcher/bash/br"
+# source "${HOME}/.config/broot/launcher/bash/br"
 mps 'r' #setting PS1
 #------------------BASH-HISTORY--------#
 

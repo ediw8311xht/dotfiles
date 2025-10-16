@@ -3,11 +3,13 @@ local cmp = require('cmp')
 local cmp_dict = require("cmp_dictionary")
 cmp.setup({
   performance = {
-    fetching_timeout = 500,
-    debounce = 60,
-    throttle = 1000,
-    async_budget = 40,
-    max_view_entries = 20,
+    -- filtering_context_budget = 100,
+    -- confirm_resolve_timeout = 100,
+    -- fetching_timeout = 100,
+    -- debounce = 60,
+    -- throttle = 1000,
+    -- async_budget = 40,
+    -- max_view_entries = 20,
   },
   snippet = {
     expand = function(args)
@@ -25,14 +27,14 @@ cmp.setup({
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
     ['<C-y>'] = cmp.mapping.confirm( { select = true} ),
     ['<C-S-y>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
+    ['<C-S-e>'] = cmp.mapping.close(),
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
     { name = 'luasnip' },
     -- { name = 'treesitter' },
-    -- { name = 'nvim_lsp_signature_help' },
+    { name = 'nvim_lsp_signature_help' },
     -- { name = 'ctags' },
     -- { name = 'cmp-nvim-tags' },
   }, {
@@ -48,11 +50,11 @@ cmp.setup({
   })
 })
 
--- cmp.setup.filetype( { 'lisp' }, {
---   sources = {
---     { name = 'vlime' },
---   }
--- })
+cmp.setup.filetype( { 'lisp', 'commonlisp' }, {
+  sources = {
+    { name = 'omni', },
+  }
+})
 cmp.setup.filetype( { 'tex' }, {
   sources = {
     { name = 'vimtex' },

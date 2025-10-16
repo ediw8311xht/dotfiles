@@ -12,6 +12,7 @@ let g:my_plugins['cmp buffer']          = [ 'hrsh7th',          'cmp-buffer'    
 let g:my_plugins['cmp cmdline']         = [ 'hrsh7th',          'cmp-cmdline'                   ]
 let g:my_plugins['cmp path']            = [ 'hrsh7th',          'cmp-path'                      ]
 let g:my_plugins['cmp auto hint']       = [ 'hrsh7th',          'cmp-nvim-lsp-signature-help'   ]
+let g:my_plugins['cmp omni']            = [ 'hrsh7th',          'cmp-omni'                      ]
 let g:my_plugins['cmp dictionary']      = [ 'uga-rosa',         'cmp-dictionary',               ]
 let g:my_plugins['cmp env']             = [ 'SergioRibera',     'cmp-dotenv'                    ]
 let g:my_plugins['cmp luasnip']         = [ 'saadparwaiz1',     'cmp_luasnip'                   ]

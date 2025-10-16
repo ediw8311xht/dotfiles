@@ -231,6 +231,23 @@ max_of() {
     find_one ">" "${@}"
 }
 
+show_help() {
+    local command="${1}"
+    local type
+    type="$(type -t "${command}")" || { echo "'${1}' not found."; }
+    echo -e "Type: ${type}\n"
+    case "${type,,}" in
+        # shellharden takes input from stdin if ended with ''
+        alias)    alias "${command}" | \
+                    sed -E -e 's/^[ ]*alias[^=]*[=].[ ]*(.*).$/\1/' -e 's/[ ][ ]+/ /g'
+    ;;  function) declare -f "${command}"
+    ;;  builtin)  help "${command}"
+    ;;  file)     cat "$(which "${1}")"
+    ;;  *) echo "no clue"
+    ;; esac | shellharden --syntax '' | sed 's/^/    /'
+    echo ""
+}
+
 #get_outdated_pip() {
 #    local zfile
 #    local IFS=$'\n'
