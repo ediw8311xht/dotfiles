@@ -70,6 +70,17 @@ function CorrectColors()
   Main("", vim.g.my_highlight)
 end
 
+function ToggleOne()
+  if not vim.t.ToggleOne__on or not vim.t.ToggleOne__state then
+    vim.t.ToggleOne__state = vfn.winrestcmd()
+    vim.cmd("vertical resize")
+    vim.t.ToggleOne__on = true
+  else
+    vim.cmd("execute t:ToggleOne__state")
+    vim.t.ToggleOne__on = false
+  end
+end
+
 function AutoSessionStatusLine()
   return require("auto-session.lib").current_session_name(true)
 end

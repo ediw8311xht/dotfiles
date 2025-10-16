@@ -25,7 +25,7 @@ alias_with_completion p 'ps'        'ax | grep -Pi'
 alias_with_completion r '\rg'       '--pcre2 -i'
 alias_with_completion s 'sad'       '--pager never'
 alias_with_completion t 'trash-put'
-alias_with_completion v 'kitty'     'icat'
+alias_with_completion v 'kitty'     'icat' # view image in terminal
 alias_with_completion y 'rlwrap'    'sbcl'
 # upper
 alias C=' cd         ..'
@@ -39,6 +39,7 @@ alias_with_completion L 'ls++'
 alias_with_completion P 'pacman'    '--color="auto"'
 alias_with_completion S 'systemctl' '--no-pager'
 alias_with_completion T 'task'
+alias_with_completion V 'viu' # view fitted image in terminal
 alias_with_completion Y 'yay'       '--color="auto"'
 #--------------------------------------------------utilities-----------------------------#
 # alias ally='      my_alias_function'

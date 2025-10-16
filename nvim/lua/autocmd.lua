@@ -86,19 +86,25 @@ vauto({ "FileType" }, { pattern = "*",
 -------------------------
 -- YankedText -----------
 -------------------------
+--
+-- -- For use with MapCommandsToReg
+-- vim.g.reg_filter_map = {
+--   [ 'normal' ] = { 'd', 'c', 'D', 'C' },
+--   [ 'visual' ] = { 'd', 'c', 'D', 'C', 'p', 'P' },
+-- }
+-- function MapCommandsToReg(event)
+--   if event['regname'] ~= "" then
+--     return
+--   end
+--   local reg = vim.g.reg_filter_map['normal'][event['operator']]
+--   -- if event['visual'] and 
+--   -- else
+--   -- end
+--   -- if Contains(vim.g.reg_filter_map, event["operator"]) then
+--   --   print(vim.inspect(event))
+--   -- end
+-- end
 
-function MapCommandsToReg(event)
-  if event['regname'] ~= "" then
-    return
-  end
-  local reg = vim.g.reg_filter_map['normal'][event['operator']]
-  -- if event['visual'] and 
-  -- else
-  -- end
-  -- if Contains(vim.g.reg_filter_map, event["operator"]) then
-  --   print(vim.inspect(event))
-  -- end
-end
 vauto({ "TextYankPost" }, {
   pattern = "*",
   callback = function()

@@ -115,6 +115,7 @@ set viewoptions=cursor,folds
 "set foldnestmax=2
 "let g:fzf_vim = {
 "            \ }
+
 "let g:fzf_vim.buffers_options = ['--style', 'full', '--border-label', ' Open Buffers ']
     "\ 'aux_dir' : '',
     "\ 'callback' : 1,
