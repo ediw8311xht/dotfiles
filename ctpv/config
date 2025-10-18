@@ -51,27 +51,9 @@ preview txt .txt {{
 }}
 
 preview text_files text/* {{
-    head -1000 "${f}" | pygmentize
-}}
-
-preview lisp .lisp .fasl {{
-    highlight "${f}" --stdout --out-format="truecolor"
-}}
-
-preview lua .lua {{
-    highlight "${f}" --stdout --out-format="truecolor"
-}}
-
-preview latex .tex {{
-    highlight "${f}" --stdout --out-format="truecolor"
-}}
-
-preview mypy .py {{
-    highlight "${f}" --stdout --out-format="truecolor"
-}}
-
-preview elisp .el {{
-    highlight "${f}" --stdout --out-format="truecolor"
+    ksyntaxhighlighter6 --no-ansi-background --output-format=ansi256 "${f}" 2>/dev/null \
+        || pygmentize "${f}" \
+        || head -1000 "${f}"
 }}
 
 preview mymd .md {{
@@ -84,26 +66,6 @@ preview mymd .md {{
     glow --width "$(min "${w}" "${MAX_WIDTH}")" -s "$XDG_CONFIG_HOME/glow/my_default.json" "${f}"
 }}
 
-
-# preview gzipt application/gzip {{
-#     zcat --list "${f}"
-# }}
-# preview jshtml text/javascript .js .json .html {{
-#     highlight "${f}" --stdout --out-format="truecolor"
-# }}
-#
-
-
-# preview rnote .rnote {{
-#     rnote-cli thumbnail "${f}"
-# }}
-
-# preview myd .md {{
-#     outfile="$(mktemp /tmp/rmarkXXXXXXXX.png)"
-#     RenderMarkdown --overwrite "${f}" "${outfile}"
-#     setup_image
-#     send_image "${outfile}"
-# }}
 
 #-----------------------------------------------------------------------------
 # From ctpv man page (ref)

@@ -237,13 +237,13 @@ EXEC 01;32
 .md  04;90
 
 # programming
-.cpp  01;36;7
-.h    01;36;7
-.py   01;36;7
-.lisp 01;36;7
-.lua  01;36;7
-.sh   01;36;7
-.bash 01;36;7
+.cpp  00;93
+.h    00;93
+.py   00;93
+.lisp 00;93
+.lua  00;93
+.sh   00;93
+.bash 00;93
 
 # audio formats
 .aac 00;36
