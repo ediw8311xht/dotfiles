@@ -163,10 +163,10 @@ alias o_rg='      source "${HOME}/bin/rg_fzf.sh"'
 alias szof='      du -axhc --time --max-depth=1 | sort -h'
 alias szofall='   du -ahc  --time --max-depth=1'
 #--------------------------------------------------search-in-----------------------------#
-alias s_bash='    grep --file="-" -Pin "${HOME}/.bashrc" "${HOME}/.profile" "${HOME}/.bash_profile" "${HOME}/bashrc_files/"*.sh <<<'
-alias s_bashf='   grep --file="-" -Fin "${HOME}/.bashrc" "${HOME}/bashrc_files/"* <<<'
-alias s_i3='      grep --file="-" -Pri "${HOME}/.config/i3/"   <<< '
-alias s_nv='    fd . -tf "${XDG_CONFIG_HOME}/nvim/" -x rg -H -u --color="always" -Pi'
+alias s_bash='    grep -C "5" --file="-" -Pin "${HOME}/.bashrc" "${HOME}/.profile" "${HOME}/.bash_profile" "${HOME}/bashrc_files/"*.sh <<<'
+alias s_bashf='   grep -C "5" --file="-" -Fin "${HOME}/.bashrc" "${HOME}/bashrc_files/"* <<<'
+alias s_i3='      grep -C "5" --file="-" -Pri "${HOME}/.config/i3/"   <<< '
+alias s_nv='      fd . -tf "${XDG_CONFIG_HOME}/nvim/" -x rg -H -u --color="always" -Pi'
 #--------------------------------------------------ifs-----------------------------------#
 alias ifs_print=' printf "\n_%q_\n\n" "${IFS}"'
 alias ifs_reset=" IFS=$' \t\n'"
