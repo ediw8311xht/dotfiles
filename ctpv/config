@@ -5,14 +5,14 @@
 #set forcechafa
 # set chafasixel
 # ? #
-set forcekittyanim
+# set forcekittyanim
 # ? #
 # set forcekitty
 set shell "/usr/bin/bash"
 
 preview dejavu image/vnd.djvu {{
     if ! [[ -f "${cache_f}.png" ]] ; then
-        echo "HERE" >> /$HOME/mylog.txt
+        # echo "HERE" >> /$HOME/mylog.txt
 	    djvused "${f}" -e 'select 1; save-page /dev/stdout' | magick convert -density 150 - "${cache_f}.png" > /dev/null 2>&1
     fi
     setup_image
@@ -24,7 +24,7 @@ preview epub .epub {{
     a="$((w*h))"
     # [[ "${a}" -gt 500 ]] && a="500"
     if ! [[ -f "${cache_f}.png" ]] ; then
-        echo "HERE" >> /$HOME/mylog.txt
+        # echo "HERE" >> /$HOME/mylog.txt
         gnome-epub-thumbnailer -s "${a}" "${f}" "${cache_f}.png"
     fi
     setup_image

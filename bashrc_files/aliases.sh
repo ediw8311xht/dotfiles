@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#shellcheck disable=SC2016
 #--------------------------------------------------commands------------------------------#
 alias_with_completion cp        'cp'        '-i'                                                                     
 alias_with_completion free      'free'      '-h'                                                                     
@@ -48,8 +49,8 @@ alias_with_completion g   'g'       '-l --time-style=+"%-2m  %-2d | %Y" --dir-fi
 alias_with_completion ll  'lsd'     ' --group-directories-first --icon="never" -rt --permission="octal"  --date=+" [ %_H:%M:%S | %a | %D ]" --blocks="permission,user,date,name"'
 alias_with_completion ren 'renamer'
 alias_with_completion sap 'apropos'
-#shellcheck disable=SC2016
-alias_with_completion se 'plocate' '--database="${LOCATE_DATABASE}" --regex'
+alias_with_completion se 'plocate' '-i' '--database="${LOCATE_DATABASE}" --regex'
+alias_with_completion sec 'plocate' '--database="${LOCATE_DATABASE}" --regex'
 alias_with_completion tracenet 'strace'
 alias_with_completion gg 'g' ' --sort="time-descend"'
 alias_with_completion g_s 'g' ' --sort=size'

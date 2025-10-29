@@ -204,13 +204,19 @@ edit_make_path() {
 
 alias_with_completion() {
     # local com="${2%% *}"
-    [[ "${#}" -lt 2 ]] &&  \
-        { printf 'Usage:\n\t%s\n' "make_completions alias_name definition" >/dev/stderr; return 1; }
-    grep -Pqv '^[a-zA-Z0-9_-]+$' <<< "${1}" &&  \
-        { printf 'Error:\n\t%s\n' "invalid alias name: '${1}'" >/dev/stderr; return 1; }
-    grep -Fqx "${1}" <<< "$(compgen -b)" && \
-        { printf 'Error:\n\t%s\n' "Alias conflicts with bash builtin: '${1}'" >/dev/stderr; return 1; }
-
+    if [[ "${1,,}" =~ ^[-]-c(heck)?$ ]] ; then
+        shift 1
+        if [[ "${#}" -lt 2 ]] ; then
+            printf 'Usage:\n\t%s\n' "make_completions alias_name definition" >/dev/stderr
+            return 1;
+        elif grep -Pqv '^[a-zA-Z0-9_-]+$' <<< "${1}" ; then
+            printf 'Error:\n\t%s\n' "invalid alias name: '${1}'" >/dev/stderr
+            return 1
+        elif grep -Fqx "${1}" <<< "$(compgen -b)" ; then
+            printf 'Error:\n\t%s\n' "Alias conflicts with bash builtin: '${1}'" >/dev/stderr
+            return 1;
+        fi
+    fi
     # shellcheck disable=SC2139,SC2086
     alias ${1}="${*: 2}"
     complete -F _complete_alias "${1}"

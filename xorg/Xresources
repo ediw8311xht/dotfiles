@@ -246,10 +246,7 @@ dmenu.color7:       #DDDDDD
 dmenu.color15:      #777777
 !
 dmenu.color48:      #FFFFFF
-!!!!!!!!!!!!!!!!!!!!!!!----------------XMESSAGE--------!!!!!!!
-!Xmessage*font: -abode-*-*-r-*-*-*-100-*-*-p-*-*-*
-!Xmessage*font: -*-dejavu sans-medium-r-*-*-40-*-*-*-*-*-*-*
-!xmessage*font: -*-dejavu sans-medium-r-*-*-40-*-*-*-*-*-*-*
+xfontsel*font:              -misc-dejavu sans mono-bold-r-normal--30-*-*-*-m-60-*-*
 !-misc-fira code medium-*-r-normal-*-32-94-0-0-m-98-iso8859-15
 !xofontsel*font: -misc-fira code medium-*-r-normal-*-32-94-0-0-m-98-iso8859-15
 Xcursor.size:   5px
@@ -260,20 +257,23 @@ Xft.lcdfilter:  lcddefault
 Xft.rgba:       rgb
 Xft.font:       -misc-inconsolata condensed-medium-r-condensed--25-180-100-100-m-150-ascii-0
 
-xfontsel*font:              -misc-dejavu sans mono-bold-r-normal--30-*-*-*-m-60-*-*
+!!!!!!!!!!!!!!!!!!!!!!!----------------XMESSAGE--------!!!!!!!
+! Xmessage*font*Button:      -*-clean-*-*-*-*-25-*-*-*-*-*-*-*
+! Xmessage*font:              -*-inputmono-*-r-*-*-25-*-*-*-*-*-*-**
+! Xmessage*faceName:          xos4Terminus
+! Xmessage*font: -abode-*-*-r-*-*-*-100-*-*-p-*-*-*
+! Xmessage*font: -*-dejavu sans-medium-r-*-*-40-*-*-*-*-*-*-*
+! xmessage*font: -*-dejavu sans-medium-r-*-*-40-*-*-*-*-*-*-*
 Xmessage*message*Scroll:    Never
-Xmessage*message*Border:    0
-Xmessage*background:        #008fF8
-Xmessage*foreground:        #000000
-Xmessage*geometry:          +100+40
+Xmessage*message*Border:    2px
+Xmessage*background:        #000000
+Xmessage*foreground:        #009900
+! Xmessage*geometry:          +90+400
 Xmessage*.*bw:              0
 Xmessage*renderFont:        true
-!Xmessage*faceName:          xos4Terminus
-Xmessage*faceSize:          20
-/*Xmessage*font:              -*-inputmono-*-r-*-*-25-*-*-*-*-*-*-**/
-Xmessage*font:              -misc-dejavu sans mono-bold-r-normal--30-*-*-*-m-60-*-*
+Xmessage*faceSize:          9 
+Xmessage*font:              -*-dejavu sans-medium-r-*-*-32-*-*-*-*-*-*-*
 Xmessage*Buttons:
-!Xmessage*font*Button:      -*-clean-*-*-*-*-25-*-*-*-*-*-*-*
 !!!!!!!!!!!!!!!!!!!!!!!----------------Zutty-----------!!!!!!!!!!!!!!!!!!!!!!!
 Zutty.fontsize:             18
 Zutty.font:                 Agave-Regular-Slashed

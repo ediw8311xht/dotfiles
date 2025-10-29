@@ -92,7 +92,7 @@
 #---------------------------------------#
 #---APPEARANCE--------------------------#
 #---------------------------------------#
-    set     font                    "Cantarell regular 8"
+    set     font                    "Cantarell regular 9"
     set     recolor-keephue         true
     set     statusbar-h-padding     20
     set     statusbar-v-padding     5
