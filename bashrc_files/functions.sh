@@ -28,18 +28,21 @@ mps() {
     local d4='\D{%d-%m-%y}'         d5='\D{%H%M}'       d6='\D{%Y%m%d}'
     local s1=':\w/:>'               s2='-\$'            s3=':\W/:>'
     local spec_ssh=''
-    if [[ -n "${SSH_CLIENT}" ]] || [[ -n "${SSH_TTY}" ]] ; then
+    [[ "${1,,}" =~ ^[0-9]+$ ]] && {
+        PROMPT_DIRTRIM="${1}"
+        [[ -n "${2}" ]] && shift 1 || return
+    }
+    [[ -n "${SSH_CLIENT}" ]] || [[ -n "${SSH_TTY}" ]] && {
         local spec_ssh='\[\e[01m\]\[\e[37m\][\[\e[32m\]SSH\[\e[37m\]]'
-    fi
+    }
     #- INITIALIZE -#
-    PROMPT_DIRTRIM='0'
     case "${1,,}" in
-             l) PROMPT_DIRTRIM='2'; PS1="${spec_ssh}$h1 $d1 | $d2 $h2 $s1 "
-        ;;   r) PROMPT_DIRTRIM='5'; PS1="${spec_ssh}${h4} :\w:$ ${h2}"
-        ;;   m) PROMPT_DIRTRIM='1'; PS1="${spec_ssh}$h1 $d4 $d5 $h2 $s3 "
-        ;;   s) PROMPT_DIRTRIM='0'; PS1="${spec_ssh} $d3 $s2 "
+             l) PS1="${spec_ssh}$h1 $d1 | $d2 $h2 $s1 "
+        ;;   r) PS1="${spec_ssh}${h4} :\w:$ ${h2}"
+        ;;   m) PS1="${spec_ssh}$h1 $d4 $d5 $h2 $s3 "
+        ;;   s) PS1="${spec_ssh} $d3 $s2 "
                 #PS0="${h1} ${PWD} | ${d1} | ${d2} \n"'\e[0 q\[\e[0m\]'
-        ;;   x) PROMPT_DIRTRIM='5'; PS1="${spec_ssh}${h3} |${d6}|\w:$ "
+        ;;   x) PS1="${spec_ssh}${h3} |${d6}|\w:$ "
         ;;   *) return 2
     esac
     PS1+='\[\e[0m\]'
@@ -48,7 +51,7 @@ cd_from_lf() {
     #lf -log="${MY_LOGS}/LF_LOGS/$(date +'%s')_LF_LOG.txt"
     local dir tmp_file
     tmp_file="$(mktemp "/tmp/tmp_lf.XXXXXXXX")"
-    lf -last-dir-path="${tmp_file}"
+    lf -last-dir-path="${tmp_file}" "${@}"
 
     dir="$(cat "${tmp_file}")"
     trash-put "${tmp_file}"
@@ -149,7 +152,7 @@ fzf_edit() {
     local FZF=( --preview="highlight -O ansi -l {} 2>/dev/null"
                 --bind="enter:become(${EDITOR:-vim} -o {}; echo {})" )
     local SEARCH_PATH="${PWD}"
-    [[ -n "${1}"  ]] && [[ -d "${1}"  ]] && \
+    [[ -n "${1}"  ]] && [[ -d "${1}"  ]] &&
         { SEARCH_PATH="${1}"; shift 1; }
 
     if [[ -f "${LOCATE_DATABASE}" ]] 
@@ -160,11 +163,13 @@ fzf_edit() {
 fzf_open() {
     local FZF=( --preview="highlight -O ansi -l {} 2>/dev/null"
                 --bind="enter:become(xdg-open {}; echo {})" )
-    if [[ -d "${1}" ]] ; then 
-        cd "${1}" || { echo "Error cding into '${1}'" >&2; return 1; }
+    if [[ -d "${1}" ]] ; then
+        cd "${1}" ||
+            { echo "Error cding into '${1}'" >&2; return 1; }
+        shift 1
     fi
     # shellcheck disable=SC2164 
-    fd -tf -tl -u | fzf "${FZF[@]}" || cd -
+    fd -tf -tl -u "${@}" | fzf "${FZF[@]}" || cd -
 }
 myfzf() {
     local VALID_COMMANDS=( 'cd' 'xdg-open' 'nvim' 'vim' )
@@ -194,8 +199,8 @@ edit_make_path() {
     local i
     if d="$(dirname "${@: -1}")" && [[ ! -d "${d}" ]] ; then
         read -r -p "Create directory, ${d} ? [y|N] " i
-        [[ ! "${i,,}" =~ ^y ]] && { echo "Not making dir....."; return 0; }
-        mkdir -p "${d}" || { echo "Error making dir...." ; return 1; }
+        [[ ! "${i,,}" =~ ^y ]] && { echo "Not making dir....."  ; return 0; }
+        mkdir -p "${d}"        || { echo "Error making dir...." ; return 1; }
     fi
     if [[ ! "${*}" =~ ^(-n|--no-edit) ]] ; then
         "${EDITOR}" "${@: -1}"

@@ -1,6 +1,6 @@
 
-!URxvt*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Medium:autohint=false:antialias=false
-!xterm*font: xft:Agave:style=Medium:size=11:antialias=false:autohint=false
+URxvt*font: xft:TerminessTTF Nerd Font Mono:pixelsize=16:style=Medium:autohint=false:antialias=false
+xterm*font: xft:Agave:style=Medium:size=11:antialias=false:autohint=false
 
 !!!!!!!!!!!!!!!!!!!!!!!!! -----------------_FONTS
 ! *.alpha:	    0.92
@@ -10,20 +10,20 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!! MY FAVORITE FONTSHH
 !!!Kitty.font: 	    Agave:style=Regular:size=11:antialias=false:autohint=false
 !!!*Ida*.font:     -*-*-*-*-*--*-*-*-*-*-*-*-*
-!!!*.font: 	    IosevkaTerm:style=Medium:pixelsize=12:antialias=true:autohint=true
+!*.font: 	    IosevkaTerm:style=Medium:pixelsize=12:antialias=true:autohint=true
 !!!*.font: 	    MononokiNerdFontMono:style=Medium:pixelsize=12:antialias=true:autohint=true
 !!!*.font: 	    InputMono:style=Medium:size=7:antialias=true:autohint=true
 !!!*.font: 	    BriemAkademiMono:style=Regular:size=11:antialias=false:autohint=false
 !!!*.font: 	    CopperplateGothicStd:style=Regular:size=11:antialias=false:autohint=false
 !!!*.font: 	    Agave:style=Regular:size=11:antialias=false:autohint=false
-!!!*.font: 	    FiraCode:style=Medium:pixelsize=12:antialias=true:autohint=false
-!!!*.font: 	    IosevkaCustom:style=Regular:pixelsize=12:antialias=false:autohint=false
+*.font: 	    FiraCode:style=Medium:pixelsize=12:antialias=true:autohint=false
+! *.font: 	    IosevkaCustom:style=Regular:pixelsize=12:antialias=false:autohint=false
 !!!*.font: 	    3270NarrowNerdFont:style=Medium:size=12
 !!!*.font: 	    Consolas:size=11:antialias=true:autohint=true
 !!!*.font:        TerminessTTF Nerd Font Mono:style=Medium:size=10:autohint=false:antialias=false
 !!!*.font:        Lekton Nerd Font Mono:style=Medium:size=10:autohint=false:antialias=false
-!!!*.font: 	    Hack:style=Medium:pixelsize=14:antialias=true:autohint=true
-!!!*.font: 	    Hermit:pixelsize=12:antialias=true:autohint=true
+! *.font: 	    Hack:style=Medium:pixelsize=14:antialias=true:autohint=true
+!*.font: 	    Hermit:pixelsize=12:antialias=true:autohint=true
 !!!*.font: 	    Courier:style=Medium:size=10:antialias=false
 !!!*.font: 	    FantasqueSansMono:style=Regular:pixelsize=14:autohint=true:antialias=true
 !!!!!!!!!IBM 3270, Agave, SarasaMonoSlab, Iosevka Custom, Hack, Hermit, Menlo, Fira Code, Input Mono
@@ -34,34 +34,33 @@
 ! *.font: 	Agave:style=Regular:size=12:antialias=true:autohint=false
 ! emacs.font: 	Agave:style=Regular:size=15:antialias=true:autohint=false
 ! *.cursorColor:  #FF0
-! *.foreground:   #FFF
-! *.background:   #000
-! ! black
-! *.color0:       #000
-! *.color8:       #2a495d
-! ! red
-! !*.color1:       #f12f2c
-! *.color1:       #F00
-! *.color9:       #d700ff
-! ! green
-! *.color2:       #0F0
-! *.color10:      #0D3
-! ! yellow
-! *.color3:       #e0c500
-! *.color11:      #f9c400
-! ! blue
-! *.color4:       #0AF
-! *.color12:      #09F
-! ! magenta
-! *.color5:       #898edf
-! *.color13:      #a0a6f8
-! ! cyan
-! *.color6:       #58ccc3
-! *.color14:      #63f5ea
-! ! white
-! *.color7:       #DDD
-! *.color15:      #777
-! *.color16:      #FFF
+ *.foreground:   #FFF
+ *.background:   #000
+ *.color0:       #000
+ *.color8:       #2a495d
+! red
+ !*.color1:       #f12f2c
+ *.color1:       #F00
+ *.color9:       #d700ff
+! green
+ *.color2:       #0F0
+ *.color10:      #0D3
+! yellow
+ *.color3:       #e0c500
+ *.color11:      #f9c400
+! blue
+ *.color4:       #0AF
+ *.color12:      #09F
+! magenta
+ *.color5:       #898edf
+ *.color13:      #a0a6f8
+! cyan
+ *.color6:       #58ccc3
+ *.color14:      #63f5ea
+! white
+ *.color7:       #DDD
+ *.color15:      #777
+ *.color16:      #FFF
 ! !
 ! *.color48:      #FFF
 !!------------------------*.color4:       #2587cc
@@ -286,7 +285,7 @@ Zutty.border:               5px
 !*.shading:	   	20
 !*.alphaOffset: 0.1
 i3wm.browser: brave
-i3wm.BORDER_FILE: borders/border_flash.conf
+i3wm.BORDER_FILE: borders/border_none.conf
 
 i3wm.IN_GAPS:   20
 i3wm.OUT_GAPS:  10

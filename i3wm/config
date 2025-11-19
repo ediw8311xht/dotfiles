@@ -17,29 +17,33 @@
     set $refresh_script         $HOME/bin/refresh_browser.sh
     set $key_mouse_script       $HOME/bin/SetKeys.sh
     set $wallpaper_script       $HOME/bin/xwallpaperauto.sh
-    set $xmsg_script            $HOME/bin/xmsg_quick.sh
     set $zathura_script         $HOME/bin/zathura_dbus_controller.sh
     set $latex_screenshot       $HOME/bin/ocr_latex.sh
     set $screenshot_script      $HOME/bin/clipboard_copy_image.sh
+    # set $xmsg_script            $HOME/bin/xmsg_quick.sh
+    set $Br             bindsym Mod1+
+    set $Br_CTRL        bindsym Mod1+Ctrl
+    set $SF             bindsym Mod1+Shift+
+    set $SF_CTRL        bindsym Mod1+Shift+Ctrl
+    set $Mb             bindsym --whole-window 
 #-------------------------------------------------Special-Binds-----------#
     #sticky toggle
     set $scratchpad_default floating enable, move scratchpad, scratchpad show, move position center
     set $floating_default   floating enable, move position center
     bindsym Mod1+Shift+r    exec --no-startup-id    "xrdb -override ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --3"
-    #bindsym Mod1+Shift+c    exec --no-startup-id    "xrdb ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --NOASK --0"
     bindsym Mod1+Shift+o    exec "sleep 0.5; xset dpms force off"
+    $Mb button9         $_  exec $key_mouse_script -m "-0.5" "-0.3"
+    $Mb button8         $_  exec $screenshot_script --shot
+    $Mb Mod1+button8    $_  exec screengrab
+    # $Mb button8         $_  exec screengrab --no-win
 #-------------------------------------------------Set---------------------#
     set $mod Mod1
     set $FORCE_NON_FLOAT pavucontrol-qt
     #--Floating-Size------------------#
         # Default
             set $DefaultSize    70ppt 80ppt
-            # set $DefaultWidth   55ppt
-            # set $DefaultHeight  80ppt
         # Small
             set $SmallSize      40ppt 50ppt
-            # set $SmallWidth     40ppt
-            # set $SmallHeight    50ppt
     #---------------------------------#
     set $EXC    exec 	    --no-startup-id
     set $EXC_A  exec_always --no-startup-id
@@ -47,9 +51,9 @@
     set $B2 ;
     set $_  ;
     set $-  #000000
-    set $focuse_TEXT  #FFFFFF
-    set $inacti_TEXT  #888888
-    set $unfocu_TEXT  #888888
+    set $focuse_TEXT  #00BB00
+    set $inacti_TEXT  #00AAFF
+    set $unfocu_TEXT  #999999
 #-------------------------------------------------Resources---------------#
     #-----Border-File------------------------------------#
         set_from_resource $BORDER_FILE i3wm.BORDER_FILE borders/border_flash.conf
@@ -72,40 +76,25 @@
     include $BORDER_FILE
     include regular_bindings.conf
     include modes.conf
-    #include shortcuts.conf
-    include windows.conf
 #-------WORKSPACES--------------------------------------------------------#
-    #-------------------------------LEFT--------#
-        workspace    1  output	$MON_1
-        workspace    2	output  $MON_1
-        workspace    3	output	$MON_1
-    #-------------------------------CENTER------#
-        workspace   10	output	$MON_P
-        workspace    4	output	$MON_P
-        workspace    7	output	$MON_P
-        workspace    8	output	$MON_P
-        workspace    9	output	$MON_P
-        workspace   11	output	$MON_P
-        workspace   12	output	$MON_P
-        workspace    5	output	$MON_P
-        workspace    6	output	$MON_P
-    #-------------------------------RIGHT-------#
-        workspace   13	output	$MON_2
-        workspace   14	output	$MON_2
+    include windows.conf
 #-------------------------------------------------------SETTINGS----------#
     smart_gaps                    off            
     floating_modifier             $mod+Ctrl      
     focus_follows_mouse           yes            
     mouse_warping                 output
-    floating_maximum_size         1920 x 1080
-    font                          pango:Agave 10
+    # i have vertical monitor so not 1080
+    floating_maximum_size         1500 x 1500
+    font                          pango:Agave 12
     show_marks                    yes            
     workspace_auto_back_and_forth no             
 #---------------------------------------------------------EXECS-----------#
-    #$EXC    xcmenu
-    $EXC    xcompmgr 	-n
-    #$EXC    /usr/bin/dunst
+    # compositor
+    $EXC    picom --daemon
+    # hide mouse
     $EXC    unclutter --timeout 2 --fork
-    #$EXC    arbtt-capture -r 30
+    # desktop bar
     $EXC_A  $polybar_script "launch"
+    # time tracking
+    #$EXC    arbtt-capture -r 30
 #-------END---------------------------------------------------------------#

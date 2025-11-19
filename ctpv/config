@@ -5,7 +5,7 @@
 #set forcechafa
 # set chafasixel
 # ? #
-# set forcekittyanim
+set forcekittyanim
 # ? #
 # set forcekitty
 set shell "/usr/bin/bash"
@@ -51,7 +51,7 @@ preview txt .txt {{
     head -1000 "${f}" | pygmentize -f 'text'
 }}
 
-preview text_files text/* .lua {{
+preview text_files text/* .lua .lisp .vim {{
     declare -A SYNTAX_TYPE=( [asd]="lisp" [asdf]="lisp" )
     ext="${f##*.}"
     if [[ "${ext}" = "${f}" ]] ; then
@@ -59,7 +59,8 @@ preview text_files text/* .lua {{
     elif [[ -n "${SYNTAX_TYPE[${ext}]}" ]] ; then
         ksyntaxhighlighter6 --syntax "${SYNTAX_TYPE[${ext}]}" --no-ansi-background --output-format=ansi256 "${f}" 2>/dev/null
     else
-        ksyntaxhighlighter6 --no-ansi-background --output-format=ansi256 "${f}" 2>/dev/null
+        ksyntaxhighlighter6 --no-ansi-background --output-format=ansi256 "${f}" 2>/dev/null \
+            || highlight --out-format="truecolor" --stdout "${f}"
     fi
 }}
 

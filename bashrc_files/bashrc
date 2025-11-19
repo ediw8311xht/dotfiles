@@ -22,13 +22,14 @@ source "${HOME}/bashrc_files/exports.sh"
 source "${HOME}/bashrc_files/functions.sh"
 source "${HOME}/bashrc_files/aliases.sh"
 # source "${HOME}/.config/broot/launcher/bash/br"
-mps 'r' #setting PS1
+mps 3 'r' #setting PS1
 #------------------BASH-HISTORY--------#
 
 shopt -s histappend
 eval "$(pyenv init - bash)"
 eval "$(zoxide init bash)"
 eval "$(dircolors -b ~/.dircolors)"
+eval "$(tv init bash)"
 #[[ ${BLE_VERSION-} ]] && ble-attach
 
 # export GEM_HOME="$(gem env user_gemhome)"

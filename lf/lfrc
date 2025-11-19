@@ -80,36 +80,65 @@ cmd toggle_info ${{
     fi
 }}
 
-# 
+#
 #------------- zoxide integration ----------#
-cmd z %{{
+cmd Zoxide %{{
     result="$(zoxide query --exclude "$PWD" "$@" | sed 's/\\/\\\\/g;s/"/\\"/g')"
     lf -remote "send $id cd \"$result\""
 }}
-cmd zi ${{
+cmd ZoxideSelect ${{
     result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
     lf -remote "send $id cd \"$result\""
 }}
 cmd on-cd &{{
     zoxide add "$PWD"
 }}
+
+cmd CD ${{
+    declare -A assoc_array
+    assoc_array=(
+            [Config]=~/".config/"
+           [Desktop]=~/"Desktop/"
+          [Pictures]=~/"Pictures/"
+               [Bin]=~/"bin/"
+            [Coding]=~/"Desktop/Coding/"
+            [Elixir]=~/"Desktop/Coding/ELIXIR/"
+              [Lisp]=~/"Desktop/Coding/lisp/"
+         [Downloads]=~/"Downloads/"
+         [Documents]=~/"Documents/"
+              [Home]=~
+       [Information]=~/"Documents/INFORMATION/"
+           [Library]=~/"MyLibrary/"
+              [Pics]=~/"Pictures/"
+              [Test]=~/"TEST/"
+              [Vids]=~/"Videos/"
+    )
+    lf -remote "send $id cd ${assoc_array[${1}]}"
+}}
+
+cmd CreateFile push -- [:!touch<space>]
+cmd ClipCWD &sed "s@${HOME}/@\$\{HOME\}/@"  <<< "${fx[*]}" | xclip -selection "clipboard" -i -r
+
 #------------- CD --------------------------#
+
 # Uppercase
-map  <gt>C  cd  ~/.config/
-map  <gt>D  cd  ~/Desktop/
-map  <gt>P  cd  ~/Pictures/                                         
+map  <gt>C  CD    Config
+map  <gt>D  CD    Downloads
+map  <gt>P  CD    Pictures
+
 # Lowercase
-map  <gt>b  cd  ~/bin/
-map  <gt>c  cd  ~/Desktop/Coding/
-map  <gt>d  cd  ~/Downloads/
-map  <gt>e  cd  ~/Desktop/Coding/ELIXIR/
-map  <gt>f  cd  ~/Documents/
-map  <gt>h  cd  ~/
-map  <gt>i  cd  ~/Documents/INFORMATION/
-map  <gt>l  cd  ~/MyLibrary/
-map  <gt>p  cd  ~/Pictures/
-map  <gt>t  cd  ~/TEST/
-map  <gt>v  cd  ~/Videos/
+map  <gt>b  CD    Bin
+map  <gt>c  CD    Coding
+map  <gt>d  CD    Desktop
+map  <gt>e  CD    Elixir
+map  <gt>f  CD    Documents
+map  <gt>h  CD    Home
+map  <gt>i  CD    Information
+map  <gt>l  CD    Library
+map  <gt>p  CD    Pics
+map  <gt>t  CD    Test
+map  <gt>v  CD    Vids
+
 
 #------------- RATIOS ----------------------#
 map <lt>t       set ratios 1:1:1:1
@@ -127,49 +156,47 @@ map <lt>8       set ratios 1:8
 map <lt>9       set ratios 1:9
 
 #------------- ETC -------------------------#
-map <c-f>   :filter
+map <c-f>   filter
 map <enter> shell
 map <esc>   clear
-map ;		:mark-save
-map ?       :maps
-map ,
-
-map x       cut
+map ;		mark-save
+map ?       maps
 map	K		push 3k
+map	J		push 3j
 map H		set hidden!
 map Q 		&lf -remote 'send quit'; lf -remote 'quit'
-map st     :{{ set sortby time; set info time; set reverse; top; }}
+map RR      reload
 map U       :unselect; clear
-
-
-
-
+map r       :{{ set reverse!; top; }}
+map st      :{{ set sortby time; set info time; set reverse; top; }}
+map x       cut
+# leader (not really)
+map ,
+map ,bB     &$BROWSER $fx
+map ,bQ     &qutebrowser $fx
 map ,C      push :!touch<space>
-map ,E       :open_editor
-map ,I       :toggle_info "size:atime"
-map ,J		push 3j
+map ,c 		ClipCWD
+map ,d  	set dironly!
+map ,E      :open_editor
+map ,fi     :{{ setfilter [.](jpg|jpeg|gif|webp|gif|avi|png)$ ; }}
+map ,ft     :{{ setfilter [.](txt|md|css|cpp|h|c|lisp|py|hs|sh|bash)$ ; }}
+map ,I      toggle_info "size:atime"
+map ,m      push :!mkdir<space>
 map ,O 		$mimeopen --ask $fx
+map ,o 		&mimeopen $fx
+map ,p      nopreview
 map ,P		push :!echo<space>""<left>
 map ,RF	    push :rename<enter><c-u>
 map ,RN		rename
-map ,Sb      :set drawbox!
-map ,Ss      :set number!; set relativenumber!
-map ,bB     &$BROWSER $fx
-map ,bQ     &qutebrowser $fx
-map ,c 		&sed "s@${HOME}/@\$\{HOME\}/@"  <<< "${fx[*]}" | xclip -selection "clipboard" -i -r
-map ,d  	set dironly!
-map ,m      push :!mkdir<space>
-map ,o 		&mimeopen $fx
-map ,p      nopreview
+map ,Sb     set drawbox!
+map ,Ss     :set number!; set relativenumber!
 map ,t		:trash #trash
-map RR      :reload
-map r       :{{ set reverse!; top; }}
-map ,fi     :{{ setfilter [.](jpg|jpeg|gif|webp|gif|avi|png)$ ; }}
-map ,ft     :{{ setfilter [.](txt|md|css|cpp|h|c|lisp|py|hs|sh|bash)$ ; }}
+map ,z      push :Zoxide<space>
+map ,Z      ZoxideSelect
 # .*(jpg|jpeg|gif|webp|gif|avi|png)$
 ## remove filter with <c-r>
 ## No longer needed, version r36 adds visual mode
-# map VG		invert-below 
+# map VG		invert-below
 # map Vg		:invert-below; invert
 #------------------------------------------------------------------#
 #-----------CALL WITH THIS function to use autocd------------------#

@@ -1,5 +1,7 @@
 ## See dunst(5) for all configuration options
 #
+## vim: ft=cfg
+#
 [global]
     #separator_color  = "#0000FF"
     #separator_height = 1
@@ -22,6 +24,16 @@
     max_icon_size = 40
     frame_width = 5
     frame_color = "#444444"
+    mouse_left_click = close_current
+    # mouse_middle_click = do_action, close_current
+    mouse_right_click = do_action
+    class = Dunst
+    title = Dunst
+    sticky_history = yes
+    history_length = 20
+    browser = /usr/bin/brave -new-tab
+    always_run_script = true
+    corner_radius = 4
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
@@ -58,6 +70,13 @@
     foreground = "#AAAAAA"
     frame_color = "#FF0000"
 
+[Brave]
+   appname = "Brave"
+   background = "#000000"
+   foreground = "#DDDDDD"
+   timeout = 15
+   # skip_display = true
+   # script = "brave_script.sh"
 #
 #
 #    # Horizontal padding.
@@ -441,10 +460,4 @@
 ##    appname = "some_volume_notifiers"
 ##    set_stack_tag = "volume"
 ##
-## vim: ft=cfg
-#
-#[Brave]
-#    appname = "Brave"
-#    skip_display = true
-#    script = "brave_script.sh"
 #

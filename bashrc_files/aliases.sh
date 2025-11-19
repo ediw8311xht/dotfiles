@@ -151,6 +151,7 @@ alias nv_cpp='    fd . --case-sensitive --exact-depth 1 -e C -e cpp -e h -tf -0 
 # alias vlime_start_dspace=' rlwrap sbcl   --dynamic-space-size 4096 --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp'
 # alias vlime_stop='         pkill  vlime'
 alias slimv_start=' rlwrap sbcl --load "${XDG_DATA_HOME}/nvim/plugged/slimv/slime/start-swank.lisp"'
+alias sslimv_start=' rlwrap sbcl --control-stack-size 1000000 --load "${XDG_DATA_HOME}/nvim/plugged/slimv/slime/start-swank.lisp"'
 alias rlsp=' sbcl --script'
 #--------------------------------------------------yt-dlp--------------------------------#
 alias yda='       yt-dlp --extract-audio --audio-format "mp3"'

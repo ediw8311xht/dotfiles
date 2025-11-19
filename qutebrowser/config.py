@@ -134,7 +134,7 @@ c.url.searchengines = {
 }
 
 #----------appearance-------------#
-c.colors.tabs.bar.bg                     =  '#DF111111'
+c.colors.tabs.bar.bg                     =  '#00111111'
 c.colors.tabs.even.bg                    =  '#000000'
 c.colors.tabs.even.fg                    =  '#AAAAAA'
 c.colors.tabs.indicator.error            =  '#ff0000'
@@ -142,10 +142,10 @@ c.colors.tabs.indicator.start            =  '#0000aa'
 c.colors.tabs.indicator.system           =  'none'
 c.colors.tabs.odd.bg                     =  '#000000'
 c.colors.tabs.odd.fg                     =  '#AAAAAA'
-c.colors.tabs.pinned.even.bg             =  'darkseagreen'
-c.colors.tabs.pinned.even.fg             =  'white'
-c.colors.tabs.pinned.odd.bg              =  'seagreen'
-c.colors.tabs.pinned.odd.fg              =  'white'
+c.colors.tabs.pinned.even.bg             =  '#000000'
+c.colors.tabs.pinned.even.fg             =  '#00FF00'
+c.colors.tabs.pinned.odd.bg              =  '#000000'
+c.colors.tabs.pinned.odd.fg              =  '#FFFF00'
 c.colors.tabs.pinned.selected.even.bg    =  'black'
 c.colors.tabs.pinned.selected.even.fg    =  'white'
 c.colors.tabs.pinned.selected.odd.bg     =  'black'
@@ -301,8 +301,8 @@ c.tabs.width                                =  '15%'
 c.tabs.show = "multiple"
 
 #----------external-commands------#
-c.fileselect.folder.command =  ['st', '-e', 'ranger', '--choosedir={}']
-c.editor.command = ['st', '-e', 'nvim', '-f', '{file}', '-c', 'normal {line}G{column0}l']
+c.fileselect.folder.command =  ['kitty', '-e', 'ranger', '--choosedir={}']
+c.editor.command = ['kitty', '-e', 'nvim', '-f', '{file}', '-c', 'normal {line}G{column0}l']
 c.editor.encoding = 'utf-8'
 c.editor.remove_file = True
 
@@ -311,7 +311,7 @@ c.content.media.audio_capture        =  False
 c.content.media.audio_video_capture  =  False
 c.content.media.video_capture        =  False
 c.content.notifications.enabled      =  False
-c.colors.webpage.darkmode.policy.page = 'always'
+# c.colors.webpage.darkmode.policy.page = 'always'
 c.colors.webpage.darkmode.policy.page = 'smart'
 
 #----------regular_binding--------#
@@ -390,6 +390,8 @@ config.bind('wIw',                      'devtools window')
 config.bind('yD',                       'yank domain -s')
 config.bind('yf',                       'hint links yank')
 config.bind('yp',                       'yank pretty-url')
+config.bind('<Ctrl-,>',            'tab-move +')
+config.bind('<Ctrl-.>',            'tab-move -')
 
 #----------command_binding--------#
 config.bind('<Ctrl-p>',                 'completion-item-focus prev',           mode='command')
@@ -399,6 +401,7 @@ config.bind('<Ctrl-]>',                 'command-history-prev',                 
 config.bind('<Shift-Tab>',              'completion-item-focus prev',           mode='command')
 config.bind('<Tab>',                    'completion-item-focus next',           mode='command')
 config.bind('<Up>',                     'completion-item-focus --history prev', mode='command')
+config.bind('m',                        'set-mark', mode='prompt')
 
 #----------insert__binding--------#
 config.bind('<Ctrl-i>',                 'open -- {clipboard}',                  mode='insert')

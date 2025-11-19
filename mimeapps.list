@@ -17,13 +17,13 @@ text/plain=nvim.desktop;
 application/x-zim-notebook=nvim.desktop;
 
 [Default Applications]
-application/rnote=com.github.flxzt.rnote.desktop
 application/epub+zip=zathura.desktop;
 application/epub=zathura.desktop;
 application/gzip=engrampa.desktop;
 application/json=nvim.desktop;
 application/mobi=zathura.desktop;
 application/pdf=zathura.desktop;
+application/rnote=com.github.flxzt.rnote.desktop
 application/schema+json=nvim.desktop;
 application/sql=nvim.desktop;
 application/toml=nvim.desktop;
@@ -114,6 +114,7 @@ text/spreadsheet=nvim.desktop;
 text/tab-separated-values=nvim.desktop;
 text/tcl=nvim.desktop;
 text/vbscript=nvim.desktop;
+text/vnd.graphviz=nvim.desktop;
 text/vnd.trolltech.linguist=nvim.desktop;
 text/x-c++hdr=nvim.desktop;
 text/x-c++src=nvim.desktop;

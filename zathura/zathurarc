@@ -96,8 +96,8 @@
     set     recolor-keephue         true
     set     statusbar-h-padding     20
     set     statusbar-v-padding     5
-    set     statusbar-bg            "#222222"
-    set     statusbar-fg            "#00AA00"
+    set     statusbar-bg            "#111111"
+    set     statusbar-fg            "#595959"
     # set     highlight-fg            "#99FF0000"
     # set     highlight-color         "#99F0C080"
     # # set     highlight-active-color  "#44888888"
