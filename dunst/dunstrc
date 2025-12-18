@@ -3,78 +3,90 @@
 ## vim: ft=cfg
 #
 [global]
-    #separator_color  = "#0000FF"
-    #separator_height = 1
-    enable_recursive_icon_lookup = true
-    width            = (0, 1400)
-    font             = Hermit 9
-    padding          = 8
-    horizontal_padding = 20
-    markup = full
-    icon_position = left
-    # format = "<b>%a</b>\n<b>%s</b>\n%b"
-    format = "<span color='#00FF00'><b>%s</b></span>\n%b"
-    icon_path = /usr/share/icons/Adwaita/16x16/mimetypes/
-    # The maximum height of a single notification, excluding the frame.
-    height = (0, 800)
-    origin = top-right
-    # Offset from the origin
-    offset = (5, 5)
-    min_icon_size = 4
-    max_icon_size = 40
-    frame_width = 5
-    frame_color = "#444444"
-    mouse_left_click = close_current
-    # mouse_middle_click = do_action, close_current
-    mouse_right_click = do_action
-    class = Dunst
-    title = Dunst
-    sticky_history = yes
-    history_length = 20
-    browser = /usr/bin/brave -new-tab
-    always_run_script = true
-    corner_radius = 4
+  #separator_color  = "#0000FF"
+  #separator_height = 1
+  enable_recursive_icon_lookup = true
+  width            = (200, 1400)
+  font             = Hermit 9
+  padding          = 8
+  horizontal_padding = 20
+  markup = full
+  icon_position = left
+  # format = "<b>%a</b>\n<b>%s</b>\n%b"
+  format = "<span color='#999999'><b>%s</b></span>\n%b"
+  background = "#00000055"
+  icon_path = /usr/share/icons/Adwaita/16x16/mimetypes/
+  # The maximum height of a single notification, excluding the frame.
+  height = (0, 800)
+  origin = top-right
+  # Offset from the origin
+  offset = (20, 10)
+  min_icon_size = 4
+  max_icon_size = 40
+  frame_width = 2
+  frame_color = "#444444"
+  mouse_left_click = close_current
+  # mouse_middle_click = do_action, close_current
+  mouse_right_click = do_action
+  class = Dunst
+  title = Dunst
+  sticky_history = yes
+  history_length = 20
+  browser = /usr/bin/brave -new-tab
+  always_run_script = true
+  corner_radius = 4
 
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    background  = "#000000"
-    foreground  = "#AAAAAA"
-    timeout = 15
+  # IMPORTANT: colors have to be defined in quotation marks.
+  # Otherwise the "#" and following would be interpreted as a comment.
+  foreground  = "#AAAAAA"
+  timeout = 15
 
 [urgency_normal]
-    background = "#000000"
-    foreground = "#DDDDDD"
-    timeout = 15
+  foreground = "#DDDDDD"
+  timeout = 15
 
 [urgency_critical]
-    background = "#000000"
-    foreground = "#ff0000"
-    frame_color = "#ff0000"
-    format = "<span font='Hermit 20px'><b>%s</b></span>\n<span color='#FFAA00'>%b</span>"
-    timeout = 0
+  foreground = "#ff0000"
+  frame_color = "#ff0000"
+  # format = "<span font='Hermit 20px'><b>%s</b></span>\n<span color='#FFAA00'>%b</span>"
+  timeout = 0
 
 [category=".*"]
-    category = ".*"
-    frame_color = "#000000"
+  category = ".*"
+  frame_color = "#000000"
 
 [category="success"]
-    category = "success"
-    background = "#000000"
-    foreground = "#AAAAAA"
-    frame_color = "#009900"
+  category = "success"
+  foreground = "#AAAAAA"
+  frame_color = "#009900"
 
 [category="error"]
-    category = "error"
-    background = "#000000"
-    foreground = "#AAAAAA"
-    frame_color = "#FF0000"
+  category = "error"
+  foreground = "#AAAAAA"
+  frame_color = "#FF0000"
+
 
 [Brave]
-   appname = "Brave"
-   background = "#000000"
-   foreground = "#DDDDDD"
-   timeout = 15
+  appname = Brave
+  urgency = normal
+  frame_color = "#999999"
+  foreground = "#DDDDDD"
+  timeout = 15
+
+[i3-Mode]
+  appname = "i3-Mode"
+  alignment = center
+  frame_color = "#AAAA00"
+  format = "<span font='Hermit 15px' color='#AAAA00'><b>%s</b></span>"
+  timeout = 0
+
+[[Wallpaper Script]]
+  appname = "Wallpaper Script"
+  timeout = 3
+  urgency = low
+
+
    # skip_display = true
    # script = "brave_script.sh"
 #

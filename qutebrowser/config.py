@@ -2,7 +2,9 @@
 ## This is here so configs done via the GUI are still loaded.
 ## Remove it to not load settings done via the GUI.
 config.load_autoconfig(False)
+c.backend = 'webengine'
 
+# c.colors.webpage.bg = "#44000000"
 c.url.searchengines = {
     'DEFAULT':                  'https://www.google.com/search?q={}',
     'wt':                       'https://www.google.com/search?q=site%3Ahttps%3A%2F%2Fwww.webtoolkit.eu%2Fwt%2Fdoc%2Freference+{}',
@@ -134,7 +136,7 @@ c.url.searchengines = {
 }
 
 #----------appearance-------------#
-c.colors.tabs.bar.bg                     =  '#00111111'
+c.colors.tabs.bar.bg                     =  '#00000000'
 c.colors.tabs.even.bg                    =  '#000000'
 c.colors.tabs.even.fg                    =  '#AAAAAA'
 c.colors.tabs.indicator.error            =  '#ff0000'
@@ -154,14 +156,14 @@ c.colors.tabs.selected.even.bg           =  '#002244'
 c.colors.tabs.selected.even.fg           =  '#00FF00'
 c.colors.tabs.selected.odd.bg            =  '#002244'
 c.colors.tabs.selected.odd.fg            =  '#00FFFF'
-c.colors.webpage.bg                      =  "#000000"
+c.colors.webpage.bg                      =  "#00000000"
 c.colors.webpage.darkmode.algorithm      =  'lightness-cielab'
 c.colors.webpage.darkmode.enabled        =  True
 c.colors.webpage.preferred_color_scheme  =  'dark'
 c.content.canvas_reading                 =  False
 c.downloads.position                     =  'bottom'
 c.fonts.default_family                   =  [ "Agave", "Noto Sans", "Monospace"]
-c.fonts.default_size                     =  '9pt'
+c.fonts.default_size                     =  '10pt'
 c.fonts.downloads                        =  'default_size default_family'
 c.fonts.statusbar                        =  '10pt Noto Sans'
 c.fonts.tabs.selected                    =  '9pt Noto Sans'
@@ -245,7 +247,6 @@ zoom_levels = [
 
 #----------settings---------------#
 c.changelog_after_upgrade = 'minor'
-c.backend = 'webengine'
 c.new_instance_open_target = 'tab-silent'
 c.content.local_content_can_access_remote_urls = True
 c.content.javascript.log_message.excludes = {
@@ -278,12 +279,12 @@ c.downloads.remove_finished                     =   -1
 c.messages.timeout                              =   0
 c.qt.workarounds.disable_accelerated_2d_canvas  =   'always'
 c.scrolling.smooth                              =   False
-c.search.ignore_case                            =   'smart'
+c.search.ignore_case                            =   'always'
 c.search.incremental                            =   True
 c.search.wrap                                   =   True
 c.session.default_name                          =   "Default"
 c.session.lazy_restore                          =   True
-c.statusbar.widgets                             =   ['progress', 'keypress', 'url', 'scroll', 'history', 'tabs', 'progress']
+c.statusbar.widgets                             =   ['history', 'progress', 'keypress', 'url', 'scroll', 'tabs', 'progress']
 c.url.default_page                              =   my_start_page
 c.url.start_pages                               =   my_start_pages
 c.zoom.default                                  =   '90%'
@@ -318,10 +319,13 @@ c.colors.webpage.darkmode.policy.page = 'smart'
 config.bind("'",                        'mode-enter jump_mark')
 config.bind(',ab',                      'bookmark-add')
 config.bind(',aq',                      'quickmark-save')
+config.bind(',aq',                      'quickmark-save')
+config.bind(',lq',                      'cmd-set-text -s :quickmark-load -t')
 config.bind(',oc',                      'spawn mpv {url}')
 config.bind(',om',                      'hint links spawn mpv {hint-url}')
 config.bind(',rb',                      'bookmark-del')
 config.bind(',rq',                      'quickmark-del')
+config.bind(';m',                       'mode-enter set_mark')
 config.bind(';;',                       'config-cycle tabs.show always never')
 config.bind(';Ta',                      'set tabs.show "always"')
 config.bind(';Tm',                      'set tabs.show "multiple"')
@@ -401,7 +405,6 @@ config.bind('<Ctrl-]>',                 'command-history-prev',                 
 config.bind('<Shift-Tab>',              'completion-item-focus prev',           mode='command')
 config.bind('<Tab>',                    'completion-item-focus next',           mode='command')
 config.bind('<Up>',                     'completion-item-focus --history prev', mode='command')
-config.bind('m',                        'set-mark', mode='prompt')
 
 #----------insert__binding--------#
 config.bind('<Ctrl-i>',                 'open -- {clipboard}',                  mode='insert')

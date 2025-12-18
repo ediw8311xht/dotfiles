@@ -1,100 +1,105 @@
+# vi:ft=i3
 
+bindsym Mod1+Shift+r    exec --no-startup-id    "xrdb -override ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --3"
+bindsym Mod1+Shift+c    reload
+bindsym Mod1+Shift+o    exec "sleep 0.5; xset dpms force off"
+bindsym --whole-window button9         $_  exec $key_mouse_script -m "-0.5" "-0.3"
+bindsym --whole-window button8         $_  exec $screenshot_script --shot
+bindsym --whole-window Mod1+button8    $_  exec screengrab
 #---------------------------------------------------------------------|
 #----MAXIMILIAN-BALLARD-(MY-i3/CONFIG)--------------------------------|
 #---------------------------------------------------------------------|
 # i3 config file (v4)
 #-------------------------------------------------Scripts-----------------#
-    set $balance_workspace      $HOME/.local/bin/i3_balance_workspace
-    set $bluetooth_script       $HOME/bin/ubluetoggle.sh
-    set $border_script          $HOME/bin/i3wm_change_border.sh
-    set $clipboard_script       $HOME/bin/add_to_clip.sh
-    set $dmenu_script           $HOME/bin/my_dmenu.sh
-    set $dmenu_search           $HOME/bin/dmenu_websearch.sh
-    set $joplin_start_script    $HOME/.local/bin/Joplin_start.sh
-    set $kitty_session_script   $HOME/bin/kitty_session_dmenu.sh
-    set $monitor_script         $HOME/bin/auto_monitor.sh
-    set $polybar_script         $HOME/bin/polybar_manipulate.sh
-    set $refresh_script         $HOME/bin/refresh_browser.sh
-    set $key_mouse_script       $HOME/bin/SetKeys.sh
-    set $wallpaper_script       $HOME/bin/xwallpaperauto.sh
-    set $zathura_script         $HOME/bin/zathura_dbus_controller.sh
-    set $latex_screenshot       $HOME/bin/ocr_latex.sh
-    set $screenshot_script      $HOME/bin/clipboard_copy_image.sh
-    # set $xmsg_script            $HOME/bin/xmsg_quick.sh
-    set $Br             bindsym Mod1+
-    set $Br_CTRL        bindsym Mod1+Ctrl
-    set $SF             bindsym Mod1+Shift+
-    set $SF_CTRL        bindsym Mod1+Shift+Ctrl
-    set $Mb             bindsym --whole-window 
+  set $balance_workspace      $HOME/.local/bin/i3_balance_workspace
+  set $bluetooth_script       $HOME/bin/ubluetoggle.sh
+  set $border_script          $HOME/bin/i3wm_change_border.sh
+  set $clipboard_script       $HOME/bin/add_to_clip.sh
+  set $dmenu_script           $HOME/bin/my_dmenu.sh
+  set $dmenu_search           $HOME/bin/dmenu_websearch.sh
+  set $joplin_start_script    $HOME/.local/bin/Joplin_start.sh
+  set $kitty_session_script   $HOME/bin/kitty_session_dmenu.sh
+  set $monitor_script         $HOME/bin/auto_monitor.sh
+  set $polybar_script         $HOME/bin/polybar_manipulate.sh
+  set $refresh_script         $HOME/bin/refresh_browser.sh
+  set $key_mouse_script       $HOME/bin/SetKeys.sh
+  set $wallpaper_script       $HOME/bin/xwallpaperauto.sh
+  set $zathura_script         $HOME/bin/zathura_dbus_controller.sh
+  set $latex_screenshot       $HOME/bin/ocr_latex.sh
+  set $screenshot_script      $HOME/bin/clipboard_copy_image.sh
+
+  # set $xmsg_script            $HOME/bin/xmsg_quick.sh
+  set $Br             bindsym Mod1+
+  set $Br_CTRL        bindsym Mod1+Ctrl
+  set $SF             bindsym Mod1+Shift+
+  set $SF_CTRL        bindsym Mod1+Shift+Ctrl
+  set $Mb             bindsym --whole-window 
 #-------------------------------------------------Special-Binds-----------#
-    #sticky toggle
-    set $scratchpad_default floating enable, move scratchpad, scratchpad show, move position center
-    set $floating_default   floating enable, move position center
-    bindsym Mod1+Shift+r    exec --no-startup-id    "xrdb -override ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --3"
-    bindsym Mod1+Shift+o    exec "sleep 0.5; xset dpms force off"
-    $Mb button9         $_  exec $key_mouse_script -m "-0.5" "-0.3"
-    $Mb button8         $_  exec $screenshot_script --shot
-    $Mb Mod1+button8    $_  exec screengrab
-    # $Mb button8         $_  exec screengrab --no-win
+  #sticky toggle
+  set $SCRATCHPAD_DEFAULT floating enable, move scratchpad, scratchpad show, move position center
+  set $FLOATING_DEFAULT   floating enable, move position center
+  # $Mb button8         $_  exec screengrab --no-win
 #-------------------------------------------------Set---------------------#
-    set $mod Mod1
-    set $FORCE_NON_FLOAT pavucontrol-qt
-    #--Floating-Size------------------#
-        # Default
-            set $DefaultSize    70ppt 80ppt
-        # Small
-            set $SmallSize      40ppt 50ppt
-    #---------------------------------#
-    set $EXC    exec 	    --no-startup-id
-    set $EXC_A  exec_always --no-startup-id
-    set $B1 ;
-    set $B2 ;
-    set $_  ;
-    set $-  #000000
-    set $focuse_TEXT  #00BB00
-    set $inacti_TEXT  #00AAFF
-    set $unfocu_TEXT  #999999
+  set $mod Mod1
+  #|qutebrowser
+  #-----------Size------------------#
+    set $QUTEBROWSER_SIZE 90ppt 90ppt
+    # Default
+      set $DefaultSize    70ppt 80ppt
+    # Small
+      set $SmallSize      40ppt 50ppt
+  #---------------------------------#
+  set $EXC    exec 	    --no-startup-id
+  set $EXC_A  exec_always --no-startup-id
+  set $B1 ;
+  set $B2 ;
+  set $_  ;
+  set $-  #000000
+  set $FOCUSE_TEXT  #00BB00
+  set $INACTI_TEXT  #00AAFF
+  set $UNFOCU_TEXT  #999999
 #-------------------------------------------------Resources---------------#
-    #-----Border-File------------------------------------#
-        set_from_resource $BORDER_FILE i3wm.BORDER_FILE borders/border_flash.conf
-    #-----Left-Monitor-----------------------------------#
-        set_from_resource $MON_P       i3wm.primary_monitor DVI-D-1
-    #---Center-Monitor-----------------------------------#
-        set_from_resource $MON_1       i3wm.other_monitor_1 DVI-D-1
-    #----Right-Monitor-----------------------------------#
-        set_from_resource $MON_2       i3wm.other_monitor_2 DVI-D-1
-    #----Gaps--------------------------------------------#
-        set_from_resource $IN_GAPS     i3wm.IN_GAPS  0
-        set_from_resource $OUT_GAPS    i3wm.OUT_GAPS 0
-        set_from_resource $TOP_GAPS    i3wm.TOP_GAPS 0
-        set_from_resource $BOT_GAPS    i3wm.BOT_GAPS 0
-        set_from_resource $R_GAPS      i3wm.R_GAPS   0
-        set_from_resource $L_GAPS      i3wm.L_GAPS   0
-        set_from_resource $BRAVE_SCALE i3wm.BRAVE_SCALE 0.9
-        set_from_resource $BROWSER     i3wm.browser brave
+  #-----Border-File------------------------------------#
+    set_from_resource $BORDER_FILE i3wm.BORDER_FILE borders/border_flash.conf
+  #-----Left-Monitor-----------------------------------#
+    set_from_resource $MON_P       i3wm.primary_monitor DVI-D-1
+  #---Center-Monitor-----------------------------------#
+    set_from_resource $MON_1       i3wm.other_monitor_1 DVI-D-1
+  #----Right-Monitor-----------------------------------#
+    set_from_resource $MON_2       i3wm.other_monitor_2 DVI-D-1
+  #----Gaps--------------------------------------------#
+    set_from_resource $IN_GAPS     i3wm.IN_GAPS  0
+    set_from_resource $OUT_GAPS    i3wm.OUT_GAPS 0
+    set_from_resource $TOP_GAPS    i3wm.TOP_GAPS 0
+    set_from_resource $BOT_GAPS    i3wm.BOT_GAPS 0
+    set_from_resource $R_GAPS      i3wm.R_GAPS   0
+    set_from_resource $L_GAPS      i3wm.L_GAPS   0
+    set_from_resource $BRAVE_SCALE i3wm.BRAVE_SCALE 0.9
+    set_from_resource $BROWSER     i3wm.browser brave
 #-------------------------------------------------------INCLUDE-----------#
-    include $BORDER_FILE
-    include regular_bindings.conf
-    include modes.conf
+  include $BORDER_FILE
+  include regular_bindings.conf
+  include modes.conf
 #-------WORKSPACES--------------------------------------------------------#
-    include windows.conf
+  include windows.conf
 #-------------------------------------------------------SETTINGS----------#
-    smart_gaps                    off            
-    floating_modifier             $mod+Ctrl      
-    focus_follows_mouse           yes            
-    mouse_warping                 output
-    # i have vertical monitor so not 1080
-    floating_maximum_size         1500 x 1500
-    font                          pango:Agave 12
-    show_marks                    yes            
-    workspace_auto_back_and_forth no             
+  smart_gaps                    off            
+  font                          pango:Agave 12
+  focus_on_window_activation    focus
+  focus_follows_mouse           yes            
+  floating_modifier             $mod+Ctrl      
+  mouse_warping                 output
+  # i have vertical monitor so not 1080
+  floating_maximum_size         1500 x 1500
+  workspace_auto_back_and_forth no             
+  show_marks                    yes            
 #---------------------------------------------------------EXECS-----------#
-    # compositor
-    $EXC    picom --daemon
-    # hide mouse
-    $EXC    unclutter --timeout 2 --fork
-    # desktop bar
-    $EXC_A  $polybar_script "launch"
-    # time tracking
-    #$EXC    arbtt-capture -r 30
+  # compositor
+  $EXC    picom --daemon
+  # hide mouse
+  $EXC    unclutter --timeout 2 --fork
+  # desktop bar
+  $EXC_A  $polybar_script "launch"
+  # time tracking
+  #$EXC    arbtt-capture -r 30
 #-------END---------------------------------------------------------------#

@@ -15,8 +15,8 @@ xterm*font: xft:Agave:style=Medium:size=11:antialias=false:autohint=false
 !!!*.font: 	    InputMono:style=Medium:size=7:antialias=true:autohint=true
 !!!*.font: 	    BriemAkademiMono:style=Regular:size=11:antialias=false:autohint=false
 !!!*.font: 	    CopperplateGothicStd:style=Regular:size=11:antialias=false:autohint=false
-!!!*.font: 	    Agave:style=Regular:size=11:antialias=false:autohint=false
-*.font: 	    FiraCode:style=Medium:pixelsize=12:antialias=true:autohint=false
+*.font: 	    Agave:style=Regular:size=11:antialias=false:autohint=false
+! *.font: 	    FiraCode:style=Medium:pixelsize=12:antialias=true:autohint=false
 ! *.font: 	    IosevkaCustom:style=Regular:pixelsize=12:antialias=false:autohint=false
 !!!*.font: 	    3270NarrowNerdFont:style=Medium:size=12
 !!!*.font: 	    Consolas:size=11:antialias=true:autohint=true
@@ -298,7 +298,7 @@ i3wm.BRAVE_SCALE: 0.88
 
 
 !---------------NSXIV---------------!
-*.window.background: #000000
+Nsxiv.window.background: #000000
 *.window.foreground: #AAAAAA
 *.bar.background:    #0077DD
 *.bar.foreground:    #000000
