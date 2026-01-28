@@ -8,13 +8,14 @@ color status        color3      color234
 color underline     color40     color0
 color overstrike    color202    color0
 
-%setkey digit_arg		dig
-%setkey digit_arg		esc dig
-%setkey digit_arg		gold dig
+%% setkey digit_ard   ig
+%% setkey digit_arg		esc dig
+%% setkey digit_arg		gold dig
 
 setkey extended_key	":"
 
 unsetkey  "k"
+unsetkey  "r"
 unsetkey  "j"
 unsetkey "gg"
 unsetkey  "G"

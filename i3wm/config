@@ -101,5 +101,5 @@ bindsym --whole-window Mod1+button8    $_  exec screengrab
   # desktop bar
   $EXC_A  $polybar_script "launch"
   # time tracking
-  #$EXC    arbtt-capture -r 30
+  $EXC    arbtt-capture -r 30
 #-------END---------------------------------------------------------------#
