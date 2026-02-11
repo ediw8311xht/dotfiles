@@ -6,7 +6,7 @@ set ratios      2:4:4
 set info        size:time
 set scrolloff   5
 set sortby      natural
-set promptfmt   "\033[34;1m%d\033[0m\033[1m%S%f\033[0m %F"
+set promptfmt   "\033[0;34m %f \033[38;2;255;48;48m %F \033[0m %S \033[0;34;7m %d "
 set borderfmt   "\033[0;34m"
 set cursorparentfmt "\033[02;49m"
 set cursoractivefmt "\033[7m"
@@ -193,6 +193,9 @@ map ,Ss     :set number!; set relativenumber!
 map ,t		:trash #trash
 map ,z      push :Zoxide<space>
 map ,Z      ZoxideSelect
+
+# map ,Ai
+# map ,AI set 
 # .*(jpg|jpeg|gif|webp|gif|avi|png)$
 ## remove filter with <c-r>
 ## No longer needed, version r36 adds visual mode

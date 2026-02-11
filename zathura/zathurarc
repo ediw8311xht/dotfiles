@@ -2,115 +2,114 @@
 #---------------------------------------#
 #----SETTINGS---------------------------#
 #---------------------------------------#
-    set     incremental-search      false
-    set     show-recent             100
-    set     adjust-open             best-fit
-    set     continuous-hist-save    true
-    set     database                sqlite
-    set     guioptions              s
-    set     n-completion-items      5
-    set     page-padding            0
-    set     pages-per-row           1
-    #set     sandbox                none
-    #set s  andbox strict
-    set     page-cache-size         200
-    set     scroll-step             100
-    set     selection-clipboard     clipboard
-    set     show-hidden             true
-    #set    smooth-reload           true
-    set     window-title-home-tilde true
-    set     statusbar-home-tilde    true
-    set     vertical-center         true
-    set     window-title-basename   true
-    set     window-title-home-tilde true
-    set     zoom-step               4
+set incremental-search      false
+set show-recent             100
+set adjust-open             best-fit
+set continuous-hist-save    true
+set database                sqlite
+set guioptions              s
+set n-completion-items      5
+set page-padding            0
+set pages-per-row           1
+set page-cache-size         200
+set scroll-step             100
+set selection-clipboard     clipboard
+set show-hidden             true
+set window-title-home-tilde true
+set statusbar-home-tilde    true
+set vertical-center         true
+set window-title-basename   true
+set window-title-home-tilde true
+set zoom-step               4
 # status bar and scrollbar
 #---------------------------------------#
 #----MAPPINGS----------------UNSET------#
 #---------------------------------------#
-    unmap =
-    unmap -
-    unmap [
-    unmap ]
-    unmap f
+unmap =
+unmap -
+unmap [
+unmap ]
+unmap f
 #---------------------------------------#
 #----MAPPINGS----------------CTRL-------#
 #---------------------------------------#
-    map  <C-+>  adjust_window     width
-    map  <C-->  adjust_window     best-fit
-    map  <C-=>  adjust_window     width
-    map  <C-_>  adjust_window     best-fit
-    map  <C-B>  feedkeys          ':bmark     quickbookmark<Return>'
-    map  <C-b>  feedkeys          ':blist     quickbookmark<Return>'
-    map  <C-g>  feedkeys          ':bjump     quickbookmark<Return>'
-    # map  <C-b> feedkeys         ':bjump <Tab>'
-    # map  <C-g> feedkeys         ':bmark '
-    map  <C-h>  toggle_statusbar
-    map  <C-j>  navigate          'next'
-    map  <C-k>  navigate          'previous'
-    map  <C-l>  focus_inputbar    ':blist '
-    map  ]      jumplist forward
-    map  [      jumplist backward
-    map  z      jumplist forward
-    map  {      feedkeys ':jumplist 40<Return>'
-    map  i      feedkeys ':info<Return>'
+map <C-+>  adjust_window     width
+map <C-->  adjust_window     best-fit
+map <C-=>  adjust_window     width
+map <C-_>  adjust_window     best-fit
+map <C-B>  feedkeys          ':bmark     quickbookmark<Return>'
+map <C-b>  feedkeys          ':blist     quickbookmark<Return>'
+map <C-g>  feedkeys          ':bjump     quickbookmark<Return>'
+map <C-h>  toggle_statusbar
+map <C-j>  navigate          'next'
+map <C-k>  navigate          'previous'
+map <C-l>  focus_inputbar    ':blist '
+map ]      jumplist forward
+map [      jumplist backward
+map z      jumplist forward
+map {      feedkeys ':jumplist 40<Return>'
+map i      feedkeys ':info<Return>'
 #---------------------------------------#
 #----MAPPINGS----------------COMMA------#
 #---------------------------------------#
-    map  ,,     set 'scroll-step   1'
-    map  ..     set 'scroll-step   5'
-    map  ,.     set 'scroll-step  10'
-    map  .,     set 'scroll-step  20'
-    map  <<     set 'scroll-step  40'
-    map  >>     set 'scroll-step 100'
-    map  <>     set 'scroll-step 200'
-    map  ><     set 'scroll-step 300'
+map ,,     set 'scroll-step   1'
+map ..     set 'scroll-step   5'
+map ,.     set 'scroll-step  10'
+map .,     set 'scroll-step  20'
+map <<     set 'scroll-step  40'
+map >>     set 'scroll-step 100'
+map <>     set 'scroll-step 200'
+map ><     set 'scroll-step 300'
 #---------------------------------------#
 #----MAPPINGS----------------REGULAR----#
 #---------------------------------------#
-    map  b      recolor
-    map  e      set 'guioptions sv' # show vertical scrollbar
-    map  j      scroll 'down'
-    map  k      scroll 'up'
-    #map  f      toggle_fullscreen
-    map  f      follow
-    map  F      follow
-    map  B      focus_inputbar ':bmark '
-    map  K      navigate 'previous'
-    map  J      navigate 'next'
-    map  E      set 'guioptions s'  # hide vertical scrollbar
-    map  _      zoom 'out'
-    map  -      zoom 'out'
-    map  =      zoom 'in'
-    map  +      zoom 'in'
+map b      recolor
+map e      set 'guioptions sv'
+map j      scroll 'down'
+map k      scroll 'up'
+map f      follow
+map F      follow
+map B      focus_inputbar ':bmark '
+map K      navigate 'previous'
+map J      navigate 'next'
+map E      set 'guioptions s'  # hide vertical scrollbar
+map _      zoom 'out'
+map -      zoom 'out'
+map =      zoom 'in'
+map +      zoom 'in'
 
 #---------------------------------------#
 #---DBUS--------------------------------#
 #---------------------------------------#
-    set   dbus-service              true
-    set   dbus-raise-window         false
+set dbus-service              true
+set dbus-raise-window         false
 #---------------------------------------#
 #---APPEARANCE--------------------------#
 #---------------------------------------#
-    set     font                    "Cantarell regular 9"
-    set     recolor-keephue         true
-    set     statusbar-h-padding     20
-    set     statusbar-v-padding     5
-    set     statusbar-bg            "#111111"
-    set     statusbar-fg            "#595959"
-    # set     highlight-fg            "#99FF0000"
-    # set     highlight-color         "#99F0C080"
-    # # set     highlight-active-color  "#44888888"
-    # set     completion-highlight-fg "#151515"
-    # set     completion-highlight-bg "#8190A050"
-    # set     completion-bg           "#333333"
-    # set     completion-fg           "#000000"
-    set     notification-bg         "#222222"
-    set     notification-fg         "#0099FF"
-    set     recolor                 true
-    #set     default-bg              "#FFFFFF" 
-#set     recolor-darkcolor       "#BBBBBB"
-    #     set                      default-fg          "#000000"  #    Foreground
-    #     set                      recolor-lightcolor  "#101010"  #    Background
-    #     set                      adjust-open         width
-
+set font                    "Cantarell regular 9"
+set recolor-keephue         true
+set statusbar-h-padding     20
+set statusbar-v-padding     5
+set statusbar-bg            "#111111"
+set statusbar-fg            "#595959"
+set notification-bg         "#222222"
+set notification-fg         "#0099FF"
+set recolor                 true
+# set default-bg              "#FFFFFF" 
+# set recolor-darkcolor       "#BBBBBB"
+# set default-fg          "#000000"  #    Foreground
+# set recolor-lightcolor  "#101010"  #    Background
+# set adjust-open         width
+# set highlight-fg            "#99FF0000"
+# set highlight-color         "#99F0C080"
+# set highlight-active-color  "#44888888"
+# set completion-highlight-fg "#151515"
+# set completion-highlight-bg "#8190A050"
+# set completion-bg           "#333333"
+# set completion-fg           "#000000"
+# map f      toggle_fullscreen
+# map <C-b> feedkeys         ':bjump <Tab>'
+# map <C-g> feedkeys         ':bmark '
+# set sandbox                none
+# set s  andbox strict
+# set smooth-reload           true

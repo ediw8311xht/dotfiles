@@ -84,17 +84,6 @@ open_mpv() {
 open_prog() {
     xdg-open "${1}" & disown
 }
-# fpend() {
-#     if [[ "$1" =~ ^-[dD](ate)? ]] ; then shift 1; local MDATE; MDATE="#$(date)"; fi
-#     if [[ -f "${1}"            ]] ; then
-#         for i in "${@:2}" "${MDATE:-"_"}"; do
-#             echo "${i}" '  |---|  ' "${1}"
-#             echo "${i}" >> "${1}"
-#         done
-#         return "$?"
-#     fi
-#     echo "INCORRECT ARGUMENTS"; return 1
-# }
 alias_conflict() {
     local cvm wcl
     cvm="$(compgen -c)"
@@ -258,8 +247,19 @@ show_help() {
     ;; esac | shellharden --syntax '' | sed 's/^/    /'
     echo ""
 }
-
-#get_outdated_pip() {
+# {{{ removed
+# fpend() {
+#     if [[ "$1" =~ ^-[dD](ate)? ]] ; then shift 1; local MDATE; MDATE="#$(date)"; fi
+#     if [[ -f "${1}"            ]] ; then
+#         for i in "${@:2}" "${MDATE:-"_"}"; do
+#             echo "${i}" '  |---|  ' "${1}"
+#             echo "${i}" >> "${1}"
+#         done
+#         return "$?"
+#     fi
+#     echo "INCORRECT ARGUMENTS"; return 1
+# }
+# get_outdated_pip() {
 #    local zfile
 #    local IFS=$'\n'
 #    zfile="$(mktemp /tmp/get_outdated_pip_XXXXXXXX.txt)"
@@ -267,4 +267,4 @@ show_help() {
 #    pip list --outdated > "${zfile}"
 #    nvim "${zfile}"
 #}
-
+# }}}
