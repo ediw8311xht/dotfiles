@@ -118,7 +118,7 @@ alias o_nv='        fzf_edit'
 alias szof='        du -axhc --time --max-depth=1 | sort -h'
 alias s_bash='      grep -C "5" --file="-" -Pin "${HOME}/.bashrc" "${HOME}/.profile" "${HOME}/.bash_profile" "${HOME}/bashrc_files/"*.sh <<<'
 alias s_bashf='     grep -C "5" --file="-" -Fin "${HOME}/.bashrc" "${HOME}/bashrc_files/"* <<<'
-alias s_i3='        fd . -tf "${XDG_CONFIG_HOME}/i3/"   -x rg -C 3 -H -u --color="always" -Pi'
+alias s_i3='        fd . -tf "${XDG_CONFIG_HOME}/i3/"   -X rg -C 3 -H -u --color="always" -Pi'
 alias s_nv='        fd . -tf "${XDG_CONFIG_HOME}/nvim/" -x rg -C 3 -H -u --color="always" -Pi'
 alias ifs_print='   printf "\n_%q_\n\n" "${IFS}"'
 alias ifs_reset="   IFS=$' \t\n'"
