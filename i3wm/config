@@ -23,7 +23,7 @@ bindsym --whole-window Mod1+button8    $_  exec screengrab
   set $polybar_script         $HOME/bin/polybar_manipulate.sh
   set $refresh_script         $HOME/bin/refresh_browser.sh
   set $key_mouse_script       $HOME/bin/SetKeys.sh
-  set $wallpaper_script       $HOME/bin/xwallpaperauto.sh
+  set $wallpaper_script       $HOME/bin/feh_wallpaper.sh
   set $zathura_script         $HOME/bin/zathura_dbus_controller.sh
   set $latex_screenshot       $HOME/bin/ocr_latex.sh
   set $screenshot_script      $HOME/bin/clipboard_copy_image.sh
@@ -99,7 +99,8 @@ bindsym --whole-window Mod1+button8    $_  exec screengrab
   # hide mouse
   $EXC    unclutter --timeout 2 --fork
   # desktop bar
-  $EXC_A  $polybar_script "launch"
+  $EXC    $wallpaper_script "launch"
   # time tracking
   $EXC    arbtt-capture -r 30
+  $EXC_A  $polybar_script "launch"
 #-------END---------------------------------------------------------------#

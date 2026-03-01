@@ -2,9 +2,9 @@
 --smart-case
 --no-ignore-global
 --ignore-file=/$HOME/.config/rg/basic_ignore.gitignore
---context-separator=\x1b[48;2;99;99;99mhi
+--context-separator=\x1b[48;2;0;255;255m\x1b[38;2;0;0;0m---------------------------------------------------------\x1b[0m
 # --field-context-separator=\x1b[48;2;99;99;99mhi
---field-match-separator= \x1b[38;2;00;255;255m========================\n\x1b[0m
+--field-match-separator= \x1b[38;2;00;255;255m->\x1b[0m
 --hyperlink-format=kitty
 --with-filename
 

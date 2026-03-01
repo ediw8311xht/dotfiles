@@ -8,9 +8,9 @@
 # Add this line at the end of .bashrc:
 #-If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-stty -ixon  #- Prevent <Ctrl-s> from being binded by terminal -#
-set  -o vi  #- Use VI Keys -#
-umask 077   #- Default Permissions -#
+stty -ixon #- Prevent <Ctrl-s> from being binded by terminal -#
+set -o vi  #- Use VI Keys -#
+umask 077  #- Default Permissions -#
 
 #- Default PS0,PS1,PS3 if mps() doesn't run -#
 PS0='\e[0 q\[\e[0m\]'
