@@ -13,7 +13,7 @@ alias_with_completion systemctl 'systemctl' '--no-pager'
 alias_with_completion yay       'yay'       '--color="auto"'                                                         
 alias_with_completion rm 'rm' '-i'
 alias_with_completion p 'ps'        'ax | grep -Pi'
-alias_with_completion r '\rg'       '--pcre2 -i'
+alias_with_completion r 'rg'       '--pcre2 -i'
 alias_with_completion s 'sad'       '--pager never'
 alias_with_completion t 'trash-put'
 alias_with_completion v 'kitty'     'icat' # view image in terminal
@@ -79,8 +79,8 @@ alias H='           show_help'
 alias ac='          compgen -c  | grep -x'
 alias ac_full='     alias_conflict --full'
 alias ac_part='     alias_conflict'
-alias ac_np='       alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | column'
-alias ac_se='       alias -p | grep -Pio "^[ \t]*alias[ \t]*\K[^=]*" | grep -Pi '
+alias ac_np='       alias -p | sed "s/^alias[ ]*\([^=]*\)[=][^ ][ ]*/\1\t/g" | column -t --separator '"$'\t'"
+alias ac_se='       alias -p | sed "s/^alias[ ]*\([^=]*\)[=]./\1 /g" | rg --color=always -Pi'
 alias ysb='         source "${HOME}/.bashrc"' # reload config
 alias ex_space='    expac -HM "%m %n" | sort -n'           # Size of packages pacman
 alias ex_last='     expac --timefmt="%Y %m %d %R" "%l -- %n" | sort | grep'

@@ -4,7 +4,7 @@
 --ignore-file=/$HOME/.config/rg/basic_ignore.gitignore
 --context-separator=\x1b[48;2;0;255;255m\x1b[38;2;0;0;0m---------------------------------------------------------\x1b[0m
 # --field-context-separator=\x1b[48;2;99;99;99mhi
---field-match-separator= \x1b[38;2;00;255;255m->\x1b[0m
+--field-match-separator= \x1b[38;2;00;255;255m-> \x1b[0m
 --hyperlink-format=kitty
 --with-filename
 
@@ -101,10 +101,10 @@
 # Colors 
 # ------------
 --colors
-line:bg:green
+line:fg:magenta
 
 --colors
-line:fg:black
+line:bg:black
 
 --colors
 line:style:bold
@@ -116,17 +116,13 @@ path:fg:blue
 path:style:nobold
 
 --colors
-path:bg:white
+path:fg:yellow
 
 --colors
-path:fg:black
-
-
---colors
-match:fg:black
+match:bg:black
 
 --colors
-match:bg:green
+match:fg:green
 
 --colors
 match:style:bold
