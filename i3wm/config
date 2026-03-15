@@ -55,8 +55,8 @@ bindsym --whole-window Mod1+button8    $_  exec screengrab
   set $B2 ;
   set $_  ;
   set $-  #000000
-  set $FOCUSE_TEXT  #00BB00
-  set $INACTI_TEXT  #00AAFF
+  set $FOCUSE_TEXT  #999999
+  set $INACTI_TEXT  #0099FF
   set $UNFOCU_TEXT  #999999
 #-------------------------------------------------Resources---------------#
   #-----Border-File------------------------------------#

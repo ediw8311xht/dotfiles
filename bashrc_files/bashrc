@@ -30,6 +30,7 @@ eval "$(pyenv init - bash)"
 eval "$(zoxide init bash)"
 eval "$(dircolors -b ~/.dircolors)"
 eval "$(tv init bash)"
+
 #[[ ${BLE_VERSION-} ]] && ble-attach
 
 # export GEM_HOME="$(gem env user_gemhome)"
@@ -47,3 +48,4 @@ eval "$(tv init bash)"
 ## To add completions for only the specified command, modify next line e.g. argc_scripts=( cargo git )
 #argc_scripts=( $(ls -p -1 "$ARGC_COMPLETIONS_ROOT/completions/linux" "$ARGC_COMPLETIONS_ROOT/completions" | sed -n 's/\.sh$//p') )
 #source <(argc --argc-completions bash "${argc_scripts[@]}")
+
