@@ -11,67 +11,67 @@ set forcekittyanim
 set shell "/usr/bin/bash"
 
 preview dejavu image/vnd.djvu {{
-    if ! [[ -f "${cache_f}.png" ]] ; then
-        # echo "HERE" >> /$HOME/mylog.txt
-	    djvused "${f}" -e 'select 1; save-page /dev/stdout' | magick convert -density 150 - "${cache_f}.png" > /dev/null 2>&1
-    fi
-    setup_image
-    send_image "${cache_f}.png"
-    exit 1
+  if ! [[ -f "${cache_f}.png" ]] ; then
+    # echo "HERE" >> /$HOME/mylog.txt
+	  djvused "${f}" -e 'select 1; save-page /dev/stdout' | magick convert -density 150 - "${cache_f}.png" > /dev/null 2>&1
+  fi
+  setup_image
+  send_image "${cache_f}.png"
+  exit 1
 }}
 
 preview epub .epub {{
-    a="$((w*h))"
-    # [[ "${a}" -gt 500 ]] && a="500"
-    if ! [[ -f "${cache_f}.png" ]] ; then
-        # echo "HERE" >> /$HOME/mylog.txt
-        gnome-epub-thumbnailer -s "${a}" "${f}" "${cache_f}.png"
-    fi
-    setup_image
-    send_image "${cache_f}.png"
+  a="$((w*h))"
+  # [[ "${a}" -gt 500 ]] && a="500"
+  if ! [[ -f "${cache_f}.png" ]] ; then
+    # echo "HERE" >> /$HOME/mylog.txt
+    gnome-epub-thumbnailer -s "${a}" "${f}" "${cache_f}.png"
+  fi
+  setup_image
+  send_image "${cache_f}.png"
 }}
 
 preview mp3 .mp3 {{
-    mediainfo "${f}"
+  mediainfo "${f}"
 }}
 
 preview tarball .tar.zst .tar.gz .tgz application/x-compressed-tar {{
-    tar --restrict --list --file "${f}"
+  tar --restrict --list --file "${f}"
 }}
 
 preview zip .zip application/zip {{
-    unzip -l "${f}"
+  unzip -l "${f}"
 }}
 
 preview ris .ris {{
-    head -1000 "${f}" | highlight --syntax="ris" --stdout --out-format="truecolor" -
+  head -1000 "${f}" | highlight --syntax="ris" --stdout --out-format="truecolor" -
 }}
 
 preview txt .txt {{
-    head -1000 "${f}" | pygmentize -f 'text'
+  head -1000 "${f}" | pygmentize -f 'text'
 }}
 
 preview text_files text/* .lua .lisp .vim {{
-    declare -A SYNTAX_TYPE=( [asd]="lisp" [asdf]="lisp" )
-    ext="${f##*.}"
-    if [[ "${ext}" = "${f}" ]] ; then
-        cat "${f}"
-    elif [[ -n "${SYNTAX_TYPE[${ext}]}" ]] ; then
-        ksyntaxhighlighter6 --syntax "${SYNTAX_TYPE[${ext}]}" --no-ansi-background --output-format=ansi256 "${f}" 2>/dev/null
-    else
-        ksyntaxhighlighter6 --no-ansi-background --output-format=ansi256 "${f}" 2>/dev/null \
-            || highlight --out-format="truecolor" --stdout "${f}"
-    fi
+  declare -A SYNTAX_TYPE=( [asd]="lisp" [asdf]="lisp" )
+  ext="${f##*.}"
+  if [[ "${ext}" = "${f}" ]] ; then
+    cat "${f}"
+  elif [[ -n "${SYNTAX_TYPE[${ext}]}" ]] ; then
+    ksyntaxhighlighter6 --syntax "${SYNTAX_TYPE[${ext}]}" --no-ansi-background --output-format=ansi256 "${f}" 2>/dev/null
+  else
+    ksyntaxhighlighter6 --no-ansi-background --output-format=ansi256 "${f}" 2>/dev/null \
+      || highlight --out-format="truecolor" --stdout "${f}"
+  fi
 }}
 
 preview mymd .md {{
-    min() {
-        expr "(" "(" "${1}" "<" "${2}" ")" "*" "${1}" ")" "|" "${2}"
-    }
-    export CLICOLOR_FORCE=1
-	export COLORTERM=truecolor
-    MAX_WIDTH=150
-    glow --width "$(min "${w}" "${MAX_WIDTH}")" -s "$XDG_CONFIG_HOME/glow/my_default.json" "${f}"
+  min() {
+  expr "(" "(" "${1}" "<" "${2}" ")" "*" "${1}" ")" "|" "${2}"
+  }
+  export CLICOLOR_FORCE=1
+  export COLORTERM=truecolor
+  MAX_WIDTH=150
+  glow --width "$(min "${w}" "${MAX_WIDTH}")" -s "$XDG_CONFIG_HOME/glow/my_default.json" "${f}"
 }}
 
 
@@ -81,48 +81,48 @@ preview mymd .md {{
 # Defining custom previews User-defined previews are added with preview
 # command.
 #
-#     An example below defines a new preview with name “manpage” that
-#     applies to files with extension “.1”.  A preview itself is a shell
-#     script enclosed within double curly braces.
+#   An example below defines a new preview with name “manpage” that
+#   applies to files with extension “.1”.  A preview itself is a shell
+#   script enclosed within double curly braces.
 #
-#            preview manpage .1 {{
-#                groff -man -tep -Tutf8 -rLL="${w}n" "${f}" | col -x
-#            }}
+#      preview manpage .1 {{
+#        groff -man -tep -Tutf8 -rLL="${w}n" "${f}" | col -x
+#      }}
 #
-#     Running ctpv file.1 where file.1 is a source code for a manpage will
-#     run groff(1) to produce a formatted manpage like the one you are
-#     reading.
+#   Running ctpv file.1 where file.1 is a source code for a manpage will
+#   run groff(1) to produce a formatted manpage like the one you are
+#   reading.
 #
-#     Manpages filenames may also end with other extensions: “.2”, “.3”,
-#     “.4” and so on.  It's possible to make user-defines previews apply to
-#     several file types at once:
+#   Manpages filenames may also end with other extensions: “.2”, “.3”,
+#   “.4” and so on.  It's possible to make user-defines previews apply to
+#   several file types at once:
 #
-#            preview manpage .1 .2 .3 .4 .5 .6 .7 .8 {{
-#                # groff command
-#            }}
+#      preview manpage .1 .2 .3 .4 .5 .6 .7 .8 {{
+#        # groff command
+#      }}
 #
-#     Variable $f stores file that was passed as a first argument to ctpv.
-#     It's strongly suggested to enclose $f with double quotes ("$f")
-#     because otherwise the script will not work as expected if $f stores
-#     a filename with whitespace.
+#   Variable $f stores file that was passed as a first argument to ctpv.
+#   It's strongly suggested to enclose $f with double quotes ("$f")
+#   because otherwise the script will not work as expected if $f stores
+#   a filename with whitespace.
 #
-#     There are other variables that are exported into preview script
-#     environment: $w, $h, $x, $y and $id.  There are also $m and $e which
-#     store MIME type and extension of file.
+#   There are other variables that are exported into preview script
+#   environment: $w, $h, $x, $y and $id.  There are also $m and $e which
+#   store MIME type and extension of file.
 #
-#     You can specify MIME type instead of filename extension in preview
-#     definition:
+#   You can specify MIME type instead of filename extension in preview
+#   definition:
 #
-#            preview json_example application/json {{
-#                # preview json files
-#            }}
+#      preview json_example application/json {{
+#        # preview json files
+#      }}
 #
-#     You can omit subtype part of the MIME type by replacing it with '*'.
+#   You can omit subtype part of the MIME type by replacing it with '*'.
 #
-#            preview any_text_example text/* {{
-#                # this one applies to all text files
-#            }}
+#      preview any_text_example text/* {{
+#        # this one applies to all text files
+#      }}
 #
-#     Setting subtype to '*' will make the preview above apply to any file
-#     which MIME type starts with text/.
+#   Setting subtype to '*' will make the preview above apply to any file
+#   which MIME type starts with text/.
 #-----------------------------------------------------------------------------
