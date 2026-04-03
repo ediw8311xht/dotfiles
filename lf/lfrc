@@ -119,14 +119,11 @@ cmd CD ${{
 cmd CreateFile push -- [:!touch<space>]
 cmd ClipCWD &sed "s@${HOME}/@\$\{HOME\}/@"  <<< "${fx[*]}" | xclip -selection "clipboard" -i -r
 
-#------------- CD --------------------------#
 
-# Uppercase
 map  <gt>C  CD    Config
 map  <gt>D  CD    Downloads
 map  <gt>P  CD    Pictures
 
-# Lowercase
 map  <gt>b  CD    Bin
 map  <gt>c  CD    Coding
 map  <gt>d  CD    Desktop
@@ -140,7 +137,6 @@ map  <gt>t  CD    Test
 map  <gt>v  CD    Vids
 
 
-#------------- RATIOS ----------------------#
 map <lt>t       set ratios 1:1:1:1
 map <lt>p       set preview!
 map <lt><lt>    set ratios 2:3:5
@@ -155,44 +151,48 @@ map <lt>7       set ratios 1:7
 map <lt>8       set ratios 1:8
 map <lt>9       set ratios 1:9
 
-#------------- ETC -------------------------#
-map <c-f>   filter
-map <enter> shell
-map <esc>   clear
-map ;		mark-save
+map ,
+
+map ,bB     &$BROWSER $fx
+map ,bQ     &qutebrowser $fx
+map ,c 	    ClipCWD
+map ,d      set dironly!
+map ,fi     :{{ setfilter [.](jpg|jpeg|gif|webp|gif|avi|png)$ ; }}
+map ,ft     :{{ setfilter [.](txt|md|css|cpp|h|c|lisp|py|hs|sh|bash)$ ; }}
+map ,m      push :!mkdir<space>
+map ,o 	    &mimeopen $fx
+map ,p      nopreview
+map ,t	    :trash #trash
+map ,z      push :Zoxide<space>
+
+map ,C      push :!touch<space>
+map ,E      :open_editor
+map ,I      toggle_info "size:atime"
+map ,O 	    $mimeopen --ask $fx
+map ,P	    push :!echo<space>""<left>
+map ,RF	    push :rename<enter><c-u>
+map ,RN	    rename
+map ,Sb     set drawbox!
+map ,Ss     :set number!; set relativenumber!
+map ,Z      ZoxideSelect
+
+map ;		    mark-save
 map ?       maps
-map	K		push 3k
-map	J		push 3j
-map H		set hidden!
-map Q 		&lf -remote 'send quit'; lf -remote 'quit'
-map RR      reload
-map U       :unselect; clear
+
 map r       :{{ set reverse!; top; }}
 map st      :{{ set sortby time; set info time; set reverse; top; }}
 map x       cut
-# leader (not really)
-map ,
-map ,bB     &$BROWSER $fx
-map ,bQ     &qutebrowser $fx
-map ,C      push :!touch<space>
-map ,c 		ClipCWD
-map ,d  	set dironly!
-map ,E      :open_editor
-map ,fi     :{{ setfilter [.](jpg|jpeg|gif|webp|gif|avi|png)$ ; }}
-map ,ft     :{{ setfilter [.](txt|md|css|cpp|h|c|lisp|py|hs|sh|bash)$ ; }}
-map ,I      toggle_info "size:atime"
-map ,m      push :!mkdir<space>
-map ,O 		$mimeopen --ask $fx
-map ,o 		&mimeopen $fx
-map ,p      nopreview
-map ,P		push :!echo<space>""<left>
-map ,RF	    push :rename<enter><c-u>
-map ,RN		rename
-map ,Sb     set drawbox!
-map ,Ss     :set number!; set relativenumber!
-map ,t		:trash #trash
-map ,z      push :Zoxide<space>
-map ,Z      ZoxideSelect
+
+map	J		    push 3j
+map	K		    push 3k
+map H		    set hidden!
+map Q 	    &lf -remote 'send quit'; lf -remote 'quit'
+map RR      reload
+map U       :unselect; clear
+
+map <c-f>   filter
+map <enter> shell
+map <esc>   clear
 
 # map ,Ai
 # map ,AI set 

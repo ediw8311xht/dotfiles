@@ -2,14 +2,20 @@
 
 # shellcheck disable=SC2121,SC2154,SC1089,SC1083
 # set forceueberzug
-#set forcechafa
+# set forcechafa
 # set chafasixel
-# ? #
-set forcekittyanim
-# ? #
 # set forcekitty
+set forcekittyanim
 set shell "/usr/bin/bash"
 
+preview sqlite application/vnd.sqlite3 {{
+  echo -e 
+  a="$((w*h))"
+  info="$(sqlite3 "${f}" '.dbinfo;')"
+  tables="$(sqlite3 "${f}" -table "SELECT tbl_name from sqlite_master WHERE TYPE='table';")"
+  size="$((${#info}+${#tables}))"
+  pr -m  -t -w "${w}" <(echo -e "\e[07m  Sqlite DB  \e[0m\n${info}") <(sed -E 's/\t/ /g' <<< "${tables}") 
+}}
 preview dejavu image/vnd.djvu {{
   if ! [[ -f "${cache_f}.png" ]] ; then
     # echo "HERE" >> /$HOME/mylog.txt
