@@ -26,10 +26,10 @@ mps 3 'r' #setting PS1
 #------------------BASH-HISTORY--------#
 
 shopt -s histappend
-eval "$(pyenv init - bash)"
 eval "$(zoxide init bash)"
 eval "$(dircolors -b ~/.dircolors)"
 eval "$(tv init bash)"
+eval "$(pyenv init - bash)"
 
 #[[ ${BLE_VERSION-} ]] && ble-attach
 

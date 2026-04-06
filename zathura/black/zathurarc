@@ -1,0 +1,7 @@
+# vi: filetype=zathurarc syntax=zathurarc
+
+include ../zathurarc
+set default-bg              rgba(0,0,0,1)
+set recolor-darkcolor       "#DDDDDD"
+set recolor-lightcolor      "#000000"
+set recolor                 true

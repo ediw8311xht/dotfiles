@@ -70,15 +70,19 @@ preview text_files text/* .lua .lisp .vim {{
   fi
 }}
 
-preview mymd .md {{
+preview mymd .md .page {{
   min() {
   expr "(" "(" "${1}" "<" "${2}" ")" "*" "${1}" ")" "|" "${2}"
   }
   export CLICOLOR_FORCE=1
   export COLORTERM=truecolor
   MAX_WIDTH=150
-  glow --width "$(min "${w}" "${MAX_WIDTH}")" -s "$XDG_CONFIG_HOME/glow/my_default.json" "${f}"
+  glow --width "$(min "${w}" "${MAX_WIDTH}")" -s "$XDG_CONFIG_HOME/glow/my_default.json" <"${f}"
 }}
+
+# preview page text/plain .page {{
+#   glow ${f}
+# }}
 
 
 #-----------------------------------------------------------------------------

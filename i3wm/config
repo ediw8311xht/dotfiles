@@ -1,15 +1,30 @@
 # vi:ft=i3
 
-bindsym Mod1+Shift+r    exec --no-startup-id    "xrdb -override ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --3"
-bindsym Mod1+Shift+c    reload
-bindsym Mod1+Shift+o    exec "sleep 0.5; xset dpms force off"
-bindsym --whole-window button9         $_  exec $key_mouse_script -m "-0.5" "-0.3"
-bindsym --whole-window button8         $_  exec $screenshot_script --shot
-bindsym --whole-window Mod1+button8    $_  exec screengrab
 #---------------------------------------------------------------------|
 #----MAXIMILIAN-BALLARD-(MY-i3/CONFIG)--------------------------------|
 #---------------------------------------------------------------------|
 # i3 config file (v4)
+#-------------------------------------------------Special-Binds-----------#
+set $mod Mod1
+set $Br             bindsym Mod1+
+set $Br_CTRL        bindsym Mod1+Ctrl
+set $SF             bindsym Mod1+Shift+
+set $SF_CTRL        bindsym Mod1+Shift+Ctrl
+set $Mb             bindsym --whole-window 
+# $Mb button8         $_  exec screengrab --no-win
+bindsym $mod+Shift+r    exec --no-startup-id    "xrdb -override ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --3"
+bindsym $mod+Shift+c    reload
+bindsym $mod+Shift+o    exec "sleep 0.5; xset dpms force off"
+bindsym --whole-window button9         exec $key_mouse_script -m "-0.5" "-0.3"
+bindsym --whole-window button8         exec $screenshot_script --shot
+bindsym --whole-window $mod+button8    exec screengrab
+bindsym $mod+Escape           [tiling] border pixel 1
+bindsym --release $mod+Escape [tiling] border pixel 0
+bindsym $mod+Shift+Escape     exec i3-input -F 'border pixel %s' -l 2 -P 'Width: ' 
+
+
+set $B1         exec " i3-msg 'border pixel 1' " ;
+set $B2         exec " sleep 0.01; i3-msg '[tiling] border pixel 0' "
 #-------------------------------------------------Scripts-----------------#
   set $balance_workspace      $HOME/.local/bin/i3_balance_workspace
   set $bluetooth_script       $HOME/bin/ubluetoggle.sh
@@ -29,18 +44,10 @@ bindsym --whole-window Mod1+button8    $_  exec screengrab
   set $screenshot_script      $HOME/bin/clipboard_copy_image.sh
 
   # set $xmsg_script            $HOME/bin/xmsg_quick.sh
-  set $Br             bindsym Mod1+
-  set $Br_CTRL        bindsym Mod1+Ctrl
-  set $SF             bindsym Mod1+Shift+
-  set $SF_CTRL        bindsym Mod1+Shift+Ctrl
-  set $Mb             bindsym --whole-window 
-#-------------------------------------------------Special-Binds-----------#
   #sticky toggle
   set $SCRATCHPAD_DEFAULT floating enable, move scratchpad, scratchpad show, move position center
   set $FLOATING_DEFAULT   floating enable, move position center
-  # $Mb button8         $_  exec screengrab --no-win
 #-------------------------------------------------Set---------------------#
-  set $mod Mod1
   #|qutebrowser
   #-----------Size------------------#
     set $QUTEBROWSER_SIZE 90ppt 90ppt

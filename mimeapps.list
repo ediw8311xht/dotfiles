@@ -149,6 +149,7 @@ text/x-scala=sc-im.desktop;
 text/x-shellscript=nvim.desktop;
 text/x-tex=nvim.desktop;
 text/x-todo-txt=nvim.desktop;
+text/x-scheme=nvim.desktop;
 video/3gpp2=mpv.desktop;
 video/3gpp=mpv.desktop;
 video/avi=mpv.desktop;

@@ -114,8 +114,9 @@ alias copy_cwd='    printf "%s" "${PWD}" | xclip -selection "clipboard"'
 alias copy_img='    clipboard_copy_image.sh'
 alias copy_fimg='   clipboard_copy_image.sh --fzf'
 alias py_heredoc='  python <<EOF'
-alias pse='         ps -eo comm=, | grep --ignore-case'
-alias pso='         ps -eo cmd=, | grep --ignore-case'
+alias ps_e='         ps -eo comm=, | grep --ignore-case'
+alias ps_o='         ps -eo cmd=, | grep --ignore-case'
+alias ps_t='         ps -eo pid,etimes,comm,cmd'
 alias slimv_start=' rlwrap sbcl --load "${XDG_DATA_HOME}/nvim/plugged/slimv/slime/start-swank.lisp"'
 alias o_nv='        fzf_edit'
 alias szof='        du -axhc --time --max-depth=1 | sort -h'
@@ -129,8 +130,6 @@ alias tw='          taskwarrior-tui'
 alias t_l='         task list'
 alias t_cal="       task calendar"
 alias t_proj="      task projects"
-
-unset FZF_DEFAULT_OPTS
 # {{{ removed
 # alias font_get='  fc-list -v | grep -i '
 # alias pkg_inf='   pkgfile_lib_info'

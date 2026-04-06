@@ -28,21 +28,23 @@ mps() {
     local d4='\D{%d-%m-%y}'         d5='\D{%H%M}'       d6='\D{%Y%m%d}'
     local s1=':\w/:>'               s2='-\$'            s3=':\W/:>'
     local spec_ssh=''
-    [[ "${1,,}" =~ ^[0-9]+$ ]] && {
+    local guix_env=''
+    [[ -n "${GUIX_ENVIRONMENT}" ]] && \
+      guix_env="[guix env]"
+    [[ -n "${SSH_CLIENT}" ]] || [[ -n "${SSH_TTY}" ]] && \
+      spec_ssh='\[\e[01m\]\[\e[37m\][\[\e[32m\]SSH\[\e[37m\]]'
+    if [[ "${1,,}" =~ ^[0-9]+$ ]] ; then
         PROMPT_DIRTRIM="${1}"
-        [[ -n "${2}" ]] && shift 1 || return
-    }
-    [[ -n "${SSH_CLIENT}" ]] || [[ -n "${SSH_TTY}" ]] && {
-        local spec_ssh='\[\e[01m\]\[\e[37m\][\[\e[32m\]SSH\[\e[37m\]]'
-    }
+        { [[ -n "${2}" ]] && shift 1; } || return
+    fi
     #- INITIALIZE -#
     case "${1,,}" in
-             l) PS1="${spec_ssh}$h1 $d1 | $d2 $h2 $s1 "
-        ;;   r) PS1="${spec_ssh}${h4} :\w:$ ${h2}"
-        ;;   m) PS1="${spec_ssh}$h1 $d4 $d5 $h2 $s3 "
-        ;;   s) PS1="${spec_ssh} $d3 $s2 "
+             l) PS1="${spec_ssh}${guix_env}$h1 $d1 | $d2 $h2 $s1 "
+        ;;   r) PS1="${spec_ssh}${guix_env}${h4} :\w:$ ${h2}"
+        ;;   m) PS1="${spec_ssh}${guix_env}$h1 $d4 $d5 $h2 $s3 "
+        ;;   s) PS1="${spec_ssh}${guix_env} $d3 $s2 "
                 #PS0="${h1} ${PWD} | ${d1} | ${d2} \n"'\e[0 q\[\e[0m\]'
-        ;;   x) PS1="${spec_ssh}${h3} |${d6}|\w:$ "
+        ;;   x) PS1="${spec_ssh}${guix_env}${h3} |${d6}|\w:$ "
         ;;   *) return 2
     esac
     PS1+='\[\e[0m\]'
@@ -105,7 +107,7 @@ rg_with_p() {
     rg "${@}" | "${PAGER}"
 }
 man_all_pages() {
-    MAN_KEEP_FORMATTING=1 man -a "${@}" 2>/dev/null | "${PAGER}"
+    MAN_KEEP_FORMATTING=1 man -a "${@}" 2>/dev/null | ${MANPAGER}
 }
 markdown_view_w3m() {
     w3m -T text/html < <(pandoc -s "${1}" 2>/dev/null)

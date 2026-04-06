@@ -1,3 +1,4 @@
+# vi: filetype=zathurarc syntax=zathurarc
 
 #---------------------------------------#
 #----SETTINGS---------------------------#
@@ -9,7 +10,8 @@ set continuous-hist-save    true
 set database                sqlite
 set guioptions              s
 set n-completion-items      5
-set page-padding            0
+set page-v-padding          5
+set page-h-padding          5
 set pages-per-row           1
 set page-cache-size         200
 set scroll-step             100
@@ -77,6 +79,8 @@ map _      zoom 'out'
 map -      zoom 'out'
 map =      zoom 'in'
 map +      zoom 'in'
+# map <C-l>  feedkeys ":source ~/.config/zathura/zathurarc<Return>"
+# map <
 
 #---------------------------------------#
 #---DBUS--------------------------------#
@@ -86,8 +90,12 @@ set dbus-raise-window         false
 #---------------------------------------#
 #---APPEARANCE--------------------------#
 #---------------------------------------#
-set font                    "Cantarell regular 9"
+set default-bg              rgba(0,0,0,1)
+set recolor-darkcolor       "#E0E0E0"
+set recolor-lightcolor      "#0D0D0D"
+set font                    "Sans regular 9"
 set recolor-keephue         true
+set recolor-reverse-video   true # don't change image colors when recoloring
 set statusbar-h-padding     20
 set statusbar-v-padding     5
 set statusbar-bg            "#111111"
@@ -95,12 +103,13 @@ set statusbar-fg            "#595959"
 set notification-bg         "#222222"
 set notification-fg         "#0099FF"
 set recolor                 true
-# set default-bg              "#FFFFFF" 
 # set recolor-darkcolor       "#BBBBBB"
-# set default-fg          "#000000"  #    Foreground
-# set recolor-lightcolor  "#101010"  #    Background
+# set recolor-lightcolor      "#222222"  #    Background
+# set default-fg              "#000000"  #    Foreground
+set highlight-active-color  rgba(255,155,0,0.5) # [bg] active highlight
+set highlight-color         rgba(0,255,255,0.5) # [bg] inactive highlight/links
+set highlight-fg            rgba(0,0,0,1) # [fg] links
 # set adjust-open         width
-# set highlight-fg            "#99FF0000"
 # set highlight-color         "#99F0C080"
 # set highlight-active-color  "#44888888"
 # set completion-highlight-fg "#151515"
