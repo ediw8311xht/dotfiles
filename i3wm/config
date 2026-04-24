@@ -6,21 +6,21 @@
 # i3 config file (v4)
 #-------------------------------------------------Special-Binds-----------#
 set $mod Mod1
-set $Br             bindsym Mod1+
-set $Br_CTRL        bindsym Mod1+Ctrl
-set $SF             bindsym Mod1+Shift+
-set $SF_CTRL        bindsym Mod1+Shift+Ctrl
-set $Mb             bindsym --whole-window 
-# $Mb button8         $_  exec screengrab --no-win
-bindsym $mod+Shift+r    exec --no-startup-id    "xrdb -override ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --3"
-bindsym $mod+Shift+c    reload
-bindsym $mod+Shift+o    exec "sleep 0.5; xset dpms force off"
-bindsym --whole-window button9         exec $key_mouse_script -m "-0.5" "-0.3"
-bindsym --whole-window button8         exec $screenshot_script --shot
-bindsym --whole-window $mod+button8    exec screengrab
-bindsym $mod+Escape           [tiling] border pixel 1
-bindsym --release $mod+Escape [tiling] border pixel 0
+set $Br       bindsym Mod1+
+set $Br_CTRL  bindsym Mod1+Ctrl
+set $SF       bindsym Mod1+Shift+
+set $SF_CTRL  bindsym Mod1+Shift+Ctrl
+set $Mb       bindsym --whole-window 
 bindsym $mod+Shift+Escape     exec i3-input -F 'border pixel %s' -l 2 -P 'Width: ' 
+bindsym $mod+Shift+c          reload
+bindsym $mod+Shift+o          exec "sleep 0.5; xset dpms force off"
+bindsym $mod+Shift+r          exec --no-startup-id    "xrdb -override ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --3"
+bindsym                $mod+Escape [tiling] border pixel 1
+bindsym --release      $mod+Escape [tiling] border pixel 0
+bindsym --whole-window $mod+button8    exec screengrab
+bindsym --whole-window button8         exec $screenshot_script --shot
+bindsym --whole-window button9         exec $key_mouse_script -m "-0.5" "-0.3"
+# $Mb button8         $_  exec screengrab --no-win
 
 
 set $B1         exec " i3-msg 'border pixel 1' " ;
@@ -42,6 +42,12 @@ set $B2         exec " sleep 0.01; i3-msg '[tiling] border pixel 0' "
   set $zathura_script         $HOME/bin/zathura_dbus_controller.sh
   set $latex_screenshot       $HOME/bin/ocr_latex.sh
   set $screenshot_script      $HOME/bin/clipboard_copy_image.sh
+  set $note                   kitty_note
+  set $EXCLUDE_FLOAT_POPUP    qutebrowser|kitty_term|kitty_note|emacs|Tor Browser
+  set $default_title_format   "<span size='smaller' background='#000000' > %class </span> <span foreground='#FFFFFF99' background='#000000AA' size='smaller'> %title </span>" 
+  # set $active_title_format    "<span size='smaller' background='#005500' foreground='#000000'> %class </span> <span foreground='#00FF00' size='smaller'> %title </span>"
+  set $nsxiv_title_format     "<span size='smaller' background='#005500'> %class </span>"
+
 
   # set $xmsg_script            $HOME/bin/xmsg_quick.sh
   #sticky toggle
@@ -91,7 +97,7 @@ set $B2         exec " sleep 0.01; i3-msg '[tiling] border pixel 0' "
   include windows.conf
 #-------------------------------------------------------SETTINGS----------#
   smart_gaps                    off            
-  font                          pango:Agave 12
+  font                          pango:Hack 10
   focus_on_window_activation    focus
   focus_follows_mouse           yes            
   floating_modifier             $mod+Ctrl      
@@ -100,6 +106,7 @@ set $B2         exec " sleep 0.01; i3-msg '[tiling] border pixel 0' "
   floating_maximum_size         1500 x 1500
   workspace_auto_back_and_forth no             
   show_marks                    yes            
+  title_align left
 #---------------------------------------------------------EXECS-----------#
   # compositor
   $EXC    picom --daemon

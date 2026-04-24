@@ -37,7 +37,7 @@ preview epub .epub {{
   send_image "${cache_f}.png"
 }}
 
-preview mp3 .mp3 {{
+preview mp3 .mp3 .ogg {{
   mediainfo "${f}"
 }}
 
@@ -53,15 +53,16 @@ preview ris .ris {{
   head -1000 "${f}" | highlight --syntax="ris" --stdout --out-format="truecolor" -
 }}
 
-preview txt .txt {{
+preview txt text/plain .txt {{
   head -1000 "${f}" | pygmentize -f 'text'
 }}
 
-preview text_files text/* .lua .lisp .vim {{
+preview text_files text/* .el .lua .lisp .vim .js .ts {{
   declare -A SYNTAX_TYPE=( [asd]="lisp" [asdf]="lisp" )
   ext="${f##*.}"
-  if [[ "${ext}" = "${f}" ]] ; then
-    cat "${f}"
+  if [[ "${ext}" = "${f}" ]] || [[ "${ext}" = "txt" ]] ; then
+    # preview txt
+    echo
   elif [[ -n "${SYNTAX_TYPE[${ext}]}" ]] ; then
     ksyntaxhighlighter6 --syntax "${SYNTAX_TYPE[${ext}]}" --no-ansi-background --output-format=ansi256 "${f}" 2>/dev/null
   else
@@ -71,14 +72,20 @@ preview text_files text/* .lua .lisp .vim {{
 }}
 
 preview mymd .md .page {{
-  min() {
-  expr "(" "(" "${1}" "<" "${2}" ")" "*" "${1}" ")" "|" "${2}"
-  }
+  min() { expr "(" "(" "${1}" "<" "${2}" ")" "*" "${1}" ")" "|" "${2}"; }
   export CLICOLOR_FORCE=1
   export COLORTERM=truecolor
   MAX_WIDTH=150
   glow --width "$(min "${w}" "${MAX_WIDTH}")" -s "$XDG_CONFIG_HOME/glow/my_default.json" <"${f}"
 }}
+
+preview json application/json .json {{
+  jq -C . "${f}" 2>/dev/null || highlight --out-format="truecolor" --stdout "${f}"
+}}
+# preview myjson application/json .json {{
+#   highlight --out-format="truecolor" --stdout "${f}" \
+#     || ksyntaxhighlighter6 --syntax "json" --no-ansi-background --output-format=ansi256 "${f}" 2>/dev/null
+# }}
 
 # preview page text/plain .page {{
 #   glow ${f}

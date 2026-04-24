@@ -48,6 +48,8 @@ set_mouse_sensitivity() {
     set_prop "${MY_MOUSE}" "${prop}" "${vs}"
 }
 
+#
+#
 keyboard_set() {
     #set_mouse_sensitivity
     # xset -dpms

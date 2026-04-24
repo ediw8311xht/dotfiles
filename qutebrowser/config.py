@@ -135,6 +135,7 @@ c.url.searchengines = {
     ':ytube':                   'https://www.youtube.com/results?search_query={}&page={{startPage?}}&utm_source=opensearch',
 }
 
+c.qt.force_software_rendering            =  'chromium'
 #----------appearance-------------#
 c.colors.tabs.bar.bg                     =  '#00000000'
 c.colors.tabs.even.bg                    =  '#000000'
@@ -156,13 +157,13 @@ c.colors.tabs.selected.even.bg           =  '#002244'
 c.colors.tabs.selected.even.fg           =  '#00FF00'
 c.colors.tabs.selected.odd.bg            =  '#002244'
 c.colors.tabs.selected.odd.fg            =  '#00FFFF'
-c.colors.webpage.bg                      =  "#00000000"
+c.colors.webpage.bg                      =  '#111111'
 c.colors.webpage.darkmode.algorithm      =  'lightness-cielab'
 c.colors.webpage.darkmode.enabled        =  True
 c.colors.webpage.preferred_color_scheme  =  'dark'
 c.content.canvas_reading                 =  False
 c.downloads.position                     =  'bottom'
-c.fonts.default_family                   =  [ "Agave", "Noto Sans", "Monospace"]
+c.fonts.default_family                   =  [ 'Agave', 'Noto Sans', 'Monospace']
 c.fonts.default_size                     =  '10pt'
 c.fonts.downloads                        =  'default_size default_family'
 c.fonts.statusbar                        =  '10pt Noto Sans'
@@ -240,9 +241,9 @@ aliases = {
     'wqa': 'quit --save'
 }
 zoom_levels = [
-    '5%',    '10%',   '15%',   '25%',   '30%',   '35%',   '40%',   '45%',
-    '50%',   '55%',   '65%',   '75%',   '90%',   '100%',  '110%',  '125%',
-    '150%',  '175%',  '200%',  '250%',  '300%',  '400%',  '500%'
+    '5%',  '10%',  '15%',  '25%',  '30%',  '35%',  '40%',  '45%',                  
+    '50%', '55%',  '60%',  '65%',  '70%'   '75%',  '80%',  '85%',                  
+    '90%', '100%', '110%', '125%', '150%', '175%', '200%', '250%', '300%', '400%', '500%'
 ]
 
 #----------settings---------------#
@@ -279,7 +280,7 @@ c.downloads.remove_finished                     =   -1
 c.messages.timeout                              =   0
 c.qt.workarounds.disable_accelerated_2d_canvas  =   'always'
 c.scrolling.smooth                              =   False
-c.search.ignore_case                            =   'always'
+c.search.ignore_case                            =   'smart'
 c.search.incremental                            =   True
 c.search.wrap                                   =   True
 c.session.default_name                          =   "Default"

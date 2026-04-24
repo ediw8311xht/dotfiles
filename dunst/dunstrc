@@ -3,38 +3,43 @@
 ## vim: ft=cfg
 #
 [global]
-  #separator_color  = "#0000FF"
-  #separator_height = 1
-  enable_recursive_icon_lookup = true
-  width            = (200, 1400)
-  font             = Hermit 9
-  padding          = 8
-  horizontal_padding = 20
-  markup = full
-  icon_position = left
-  # format = "<b>%a</b>\n<b>%s</b>\n%b"
-  format = "<span color='#999999'><b>%s</b></span>\n%b"
-  background = "#00000055"
-  icon_path = /usr/share/icons/Adwaita/16x16/mimetypes/
-  # The maximum height of a single notification, excluding the frame.
-  height = (0, 800)
-  origin = top-right
   # Offset from the origin
-  offset = (20, 10)
-  min_icon_size = 4
-  max_icon_size = 40
-  frame_width = 2
-  frame_color = "#444444"
-  mouse_left_click = close_current
+  # The maximum height of a single notification, excluding the frame.
   # mouse_middle_click = do_action, close_current
-  mouse_right_click = do_action
-  class = Dunst
-  title = Dunst
-  sticky_history = yes
-  history_length = 20
-  browser = /usr/bin/brave -new-tab
+  # transparency = 10
   always_run_script = true
+  background = "#00000077"
+  browser = /usr/bin/brave -new-tab
+  class = Dunst
   corner_radius = 4
+  enable_recursive_icon_lookup = true
+  font             = Hermit 9
+  separator_height = 0
+  format = "<span color='#999999'><b>%s</b></span>\n%b"
+  # frame_color = "#000000"
+  frame_width = 0
+  height = (20, 800)
+  hide_duplicate_count = false # Hide the count of stacked notifications with the same content
+  history_length = 20
+  horizontal_padding =  10
+  icon_path = /usr/share/icons/Adwaita/16x16/mimetypes/
+  icon_position = left
+  markup = full
+  max_icon_size = 20
+  min_icon_size = 4
+  mouse_left_click = close_current
+  mouse_right_click = do_action
+  offset = (20, 10)
+  origin = top-right
+  padding          = 10
+  show_indicators      = yes   # Display indicators for URLs (U) and actions (A).
+  stack_duplicates     = true  # stack duplicates
+  sticky_history = yes
+  text_icon_padding = 20
+  title = Dunst
+  alignment = left
+  vertical_alignment = center
+  width            = (200, 1400)
 
 [urgency_low]
   # IMPORTANT: colors have to be defined in quotation marks.
@@ -48,38 +53,49 @@
 
 [urgency_critical]
   foreground = "#ff0000"
-  frame_color = "#ff0000"
+  # frame_color = "#ff0000"
   # format = "<span font='Hermit 20px'><b>%s</b></span>\n<span color='#FFAA00'>%b</span>"
   timeout = 0
 
 [category=".*"]
   category = ".*"
-  frame_color = "#000000"
+  # frame_color = "#000000"
+  format = "<span font='Hermit 10px' color='#999999'><b>%s</b></span>%b"
 
 [category="success"]
   category = "success"
   foreground = "#AAAAAA"
-  frame_color = "#009900"
+  # frame_color = "#009900"
+  timeout = 15
+  format = "<span font='Hermit 10px' color='#00FF00'><b>%s</b></span>%b"
 
 [category="error"]
   category = "error"
   foreground = "#AAAAAA"
-  frame_color = "#FF0000"
+  # frame_color = "#FF0000"
+  timeout = 0
+  format = "<span font='Hermit 10px' color='#FF0000'><b>%s</b></span>%b"
 
+
+[bluetoothtoggle]
+  appname = Ublue
+  new_icon = "/$HOME/bin/Resources/Images/bluetooth.png"
+  format = "<span font='Hermit 10px' color='#AAAA00'><b>%s</b></span>%b"
 
 [Brave]
   appname = Brave
   urgency = normal
-  frame_color = "#999999"
+  # frame_color = "#999999"
   foreground = "#DDDDDD"
   timeout = 15
 
 [i3-Mode]
   appname = "i3-Mode"
   alignment = center
-  frame_color = "#AAAA00"
+  # frame_color = "#AAAA00"
   format = "<span font='Hermit 15px' color='#AAAA00'><b>%s</b></span>"
   timeout = 0
+  frame_width = 2
 
 [[Wallpaper Script]]
   appname = "Wallpaper Script"
