@@ -63,6 +63,7 @@ keyboard_set() {
     xmodmap -e 'remove Mod1 = Meta_R'
     xmodmap -e 'remove Mod4 = asciitilde'
     xmodmap -e 'add Mod1 = Alt_L'
+    # $XMESSAGE_SCRIPT --kill
 }
 
 add_fonts() {
@@ -85,22 +86,4 @@ main() {
 
 main "${@}"
 
-##### This turns off mouse acceleration
-##### xinput --set-prop 12   "libinput Accel Speed" -1
-##### Increases mouse speed, neccesary to adjust this value if you do not want mouse acceleration.
-##### xinput --set-prop 12   "Coordinate Transformation Matrix" 1, 0, 0, 0, 1, 0, 0, 0, 0.44
-#xmodmap -e  "keycode 49  = 0x0000 0xffeb 0x0000 0xffeb"
-#xmodmap -e  "keycode 108 = 0x007e 0x0060 0x007e 0x0060"
-#xmodmap -e  "keycode 133 = 0x007e 0x0060 0x007e 0x0060"
-#check_mod_map() {
-#    local a=(
-#        'Mod1 Alt_R'
-#        'Mod1 Meta_R'
-#        'Mod4 asciitilde'
-#    )
-#    for i in "${a[@]}"  ; do
-#        if xmodmap -pm | grep -qF "${i}" ; then
-#            xmodmap -e 'remove Mod1 = Alt_R'
-#        fi
-#    done
-#}
+

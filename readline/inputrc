@@ -42,9 +42,9 @@ $if mode=vi
     "\C-p": previous-history
     "\C-n": next-history
     "\C-l": clear-screen
-    "\C-g": '\eddicd -\015'
+    "\C-g": '\eddicd -\015' # goto previous dir
   set keymap vi-command
-    "\C-g": 'ddicd -\015'
+    "\C-g": 'ddicd -\015' # goto previous dir
     "G":        end-of-history
     "gg":       beginning-of-history
     # override with \e<key>

@@ -52,9 +52,9 @@
   timeout = 15
 
 [urgency_critical]
-  foreground = "#ff0000"
-  # frame_color = "#ff0000"
-  # format = "<span font='Hermit 20px'><b>%s</b></span>\n<span color='#FFAA00'>%b</span>"
+  foreground = "#000000FF"
+  background = "#99000099"
+  format = "<span background='#000000' color='#FF0000' font='Hermit 20px'>  <b>%s</b>  </span>\n\n<span background='#000000' color='#FFFFFF'>  %b  </span>"
   timeout = 0
 
 [category=".*"]

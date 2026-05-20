@@ -11,10 +11,15 @@ set $Br_CTRL  bindsym Mod1+Ctrl
 set $SF       bindsym Mod1+Shift+
 set $SF_CTRL  bindsym Mod1+Shift+Ctrl
 set $Mb       bindsym --whole-window 
+bindsym $mod+Menu             exec killall wish
 bindsym $mod+Shift+Escape     exec i3-input -F 'border pixel %s' -l 2 -P 'Width: ' 
-bindsym $mod+Shift+c          reload
 bindsym $mod+Shift+o          exec "sleep 0.5; xset dpms force off"
-bindsym $mod+Shift+r          exec --no-startup-id    "xrdb -override ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --3"
+# no confirm reload
+bindsym $mod+Shift+c          reload
+# reload
+bindsym $mod+Shift+r          exec $HOME/bin/i3wm_config_check.sh --3
+# hard reload
+bindsym $mod+Shift+Ctrl+r     exec --no-startup-id    "xrdb -override ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --3"
 bindsym                $mod+Escape [tiling] border pixel 1
 bindsym --release      $mod+Escape [tiling] border pixel 0
 bindsym --whole-window $mod+button8    exec screengrab

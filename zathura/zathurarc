@@ -42,6 +42,8 @@ map <C-_>  adjust_window     best-fit
 map <C-B>  feedkeys          ':bmark     quickbookmark<Return>'
 map <C-b>  feedkeys          ':blist     quickbookmark<Return>'
 map <C-g>  feedkeys          ':bjump     quickbookmark<Return>'
+# map <C-m>  mark_add
+map m      mark_add
 map <C-h>  toggle_statusbar
 map <C-j>  navigate          'next'
 map <C-k>  navigate          'previous'

@@ -263,7 +263,6 @@ find_function() {
   done < <(declare -F | grep -ZPo '^declare\s+[-]f\s+\K[^_].*$')
 }
 
-
 # {{{ removed
 # fpend() {
 #     if [[ "$1" =~ ^-[dD](ate)? ]] ; then shift 1; local MDATE; MDATE="#$(date)"; fi

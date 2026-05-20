@@ -41,7 +41,7 @@ preview mp3 .mp3 .ogg {{
   mediainfo "${f}"
 }}
 
-preview tarball .tar.zst .tar.gz .tgz application/x-compressed-tar {{
+preview tarball .tar.gz .tzst .tgz application/x-zstd-compressed-tar application/x-compressed-tar {{
   tar --restrict --list --file "${f}"
 }}
 
