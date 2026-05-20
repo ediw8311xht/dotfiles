@@ -29,7 +29,6 @@ shopt -s histappend
 eval "$(zoxide init bash)"
 eval "$(dircolors -b ~/.dircolors)"
 eval "$(tv init bash)"
-eval "$(pyenv init - bash)"
 
 #[[ ${BLE_VERSION-} ]] && ble-attach
 
