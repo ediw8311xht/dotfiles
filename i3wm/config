@@ -122,4 +122,5 @@ set $B2         exec " sleep 0.01; i3-msg '[tiling] border pixel 0' "
   # time tracking
   $EXC    arbtt-capture -r 30
   $EXC_A  $polybar_script "launch"
+  # $EXC    $key_mouse_script -k -y -r 'on'
 #-------END---------------------------------------------------------------#
