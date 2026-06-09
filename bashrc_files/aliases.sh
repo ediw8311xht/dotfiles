@@ -13,23 +13,6 @@ alias_with_completion systemctl      'systemctl' '--no-pager'
 alias_with_completion yay            'yay'       '--color="auto"'
 alias_with_completion rm             'rm'        '-i'
 alias sudo='sudo -v; sudo '
-
-alias_with_completion B              'bat'
-alias_with_completion F              'readlink'  '-f'
-alias_with_completion G              'grep'      '-Pi'
-alias_with_completion L              'ls++'
-alias_with_completion P              'pacman'    '--color="auto"'
-alias_with_completion S              'systemctl' '--no-pager'
-alias_with_completion U              'systemctl' '--no-pager'
-alias_with_completion V              'viu'       # view fitted image in terminal
-alias_with_completion Y              'yay'       '--color="auto"'
-alias_with_completion i              'exiftool'
-alias_with_completion p              'ps'        'ax | grep -Pi'
-alias_with_completion r              'rg'        '--pcre2 -i'
-alias_with_completion s              'sad'       '--pager never'
-alias_with_completion t              'trash-put'
-alias_with_completion v              'kitty'     'icat' # view image in terminal
-alias_with_completion y              'rlwrap'    'sbcl'
 alias D='\df -h | grep -Po "^[ ]*[/]dev[/].*" | ccze -m ansi'
 alias H='show_help'
 alias b='cd "${BIN}"'
@@ -38,6 +21,25 @@ alias d='\df -h | ccze -m ansi'
 alias h='cd "${HOME}"'
 alias l='cd_from_lf' # my lf, so it cd's shell after exiting lf
 
+
+alias_with_completion B              'bat'
+alias_with_completion F              'readlink'  '-f'
+alias_with_completion G              'grep'      '-Pi'
+alias_with_completion L              'ls++'
+alias_with_completion P              'pacman'    '--color="auto"'
+alias_with_completion S              'systemctl' '--no-pager'
+alias_with_completion U              'systemctl' '--user' '--no-pager'
+alias_with_completion V              'viu'       # view fitted image in terminal
+alias_with_completion Y              'yay'       '--color="auto"'
+alias_with_completion i              'exiftool'
+alias_with_completion n              'nvim'      '+":Telescope oldfiles"'
+alias_with_completion p              'ps'        'ax | grep -Pi'
+alias_with_completion r              'rg'        '--pcre2 -i'
+alias_with_completion s              'sad'       '--pager never'
+alias_with_completion t              'trash-put'
+alias_with_completion v              'kitty'     'icat' # view image in terminal
+alias_with_completion y              'rlwrap'    'sbcl'
+alias_with_completion ii             'icl' # very cool lisp repl for terminal
 alias_with_completion key            'showkey'   ' -k'
 alias_with_completion gl             'glow'
 alias_with_completion gse            'plocate'   '-i' '--database="/var/lib/plocate/plocate.db" --regex'
@@ -225,3 +227,4 @@ alias t_proj="      task projects"
 # alias_with_completion llf 'lsd'     '--group-directories-first --icon="never" -rt --permission="octal"  --date=+" [ %_H:%M:%S | %a | %D ]" --blocks="permission,user,date,name"'
 # alias n=' lsd        --group-directories-first -t  -r --icon="never" --permission="octal" --date=+" %l:%M%P %y %m %_d " --blocks="permission,user,date,size,name"'
 # }}}
+alias get_local_date_format='locale -k d_fmt'

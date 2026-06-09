@@ -48,8 +48,10 @@ set $B2         exec " sleep 0.01; i3-msg '[tiling] border pixel 0' "
   set $latex_screenshot       $HOME/bin/ocr_latex.sh
   set $screenshot_script      $HOME/bin/clipboard_copy_image.sh
   set $note                   kitty_note
+  set $calculator             octave
   set $EXCLUDE_FLOAT_POPUP    qutebrowser|kitty_term|kitty_note|emacs|Tor Browser
-  set $default_title_format   "<span size='smaller' background='#000000' > %class </span> <span foreground='#FFFFFF99' background='#000000AA' size='smaller'> %title </span>" 
+  set $default_title_format   "<span size='smaller' background='#000000' > %class </span> <span foreground='#FFFFFF99' background='#000000BB' size='smaller'> %title </span>" 
+  set $zathura_title_format   "<span foreground='#FFFFFF99' background='#000000FF' size='smaller'> %title </span>" 
   # set $active_title_format    "<span size='smaller' background='#005500' foreground='#000000'> %class </span> <span foreground='#00FF00' size='smaller'> %title </span>"
   set $nsxiv_title_format     "<span size='smaller' background='#005500'> %class </span>"
 
@@ -102,7 +104,7 @@ set $B2         exec " sleep 0.01; i3-msg '[tiling] border pixel 0' "
   include windows.conf
 #-------------------------------------------------------SETTINGS----------#
   smart_gaps                    off            
-  font                          pango:Hack 10
+  font                          pango:Noto Sans 10
   focus_on_window_activation    focus
   focus_follows_mouse           yes            
   floating_modifier             $mod+Ctrl      

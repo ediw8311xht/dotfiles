@@ -1,3 +1,9 @@
+!clear Mod1
+! remove Mod1 = Super_R
+! remove Mod1 = Meta_R
+clear Mod1
+remove Mod4 = asciitilde
+add Mod1 = Alt_L
 keycode   8 =
 keycode   9 = Escape NoSymbol Escape NoSymbol Escape
 keycode  10 = 1 exclam 1 exclam 1 exclam

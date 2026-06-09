@@ -1,3 +1,4 @@
+# vim: ft=bash:syntax=bash
 #
 #- ~/.bashrc
 #
@@ -8,9 +9,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 # maybe above line doesn't work...
-# https://github.com/pyenv/pyenv/issues/264#issuecomment-654813922
-[[ -z "$PS1" ]] && return
-eval "$(pyenv init -)"
+# # https://github.com/pyenv/pyenv/issues/264#issuecomment-654813922
+# [[ -z "$PS1" ]] && return
 # keep at top
 
 stty -ixon #- Prevent <Ctrl-s> from being binded by terminal -#
@@ -34,6 +34,7 @@ shopt -s histappend
 eval "$(zoxide init bash)"
 eval "$(dircolors -b ~/.dircolors)"
 eval "$(tv init bash)"
+# eval "$(pyenv init - bash)"
 
 
 
@@ -55,3 +56,34 @@ eval "$(tv init bash)"
 #argc_scripts=( $(ls -p -1 "$ARGC_COMPLETIONS_ROOT/completions/linux" "$ARGC_COMPLETIONS_ROOT/completions" | sed -n 's/\.sh$//p') )
 #source <(argc --argc-completions bash "${argc_scripts[@]}")
 
+
+activate_conda() {
+  __conda_setup="$('/$HOME/.local/share/miniconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "/$HOME/.local/share/miniconda/etc/profile.d/conda.sh" ]; then
+          . "/$HOME/.local/share/miniconda/etc/profile.d/conda.sh"
+      else
+          export PATH="/$HOME/.local/share/miniconda/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
+}
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if [[ "${MY_CONDA}" -eq 1 ]] ; then
+  __conda_setup="$('/$HOME/.local/share/miniconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "/$HOME/.local/share/miniconda/etc/profile.d/conda.sh" ]; then
+          . "/$HOME/.local/share/miniconda/etc/profile.d/conda.sh"
+      else
+          export PATH="/$HOME/.local/share/miniconda/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
+fi

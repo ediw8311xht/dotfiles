@@ -1,5 +1,14 @@
 #!/bin/bash
 
+with_error() {
+  local err_color="${COLOR_ERROR:-\e[31m}"
+  echo -en "${err_color}"
+  {
+  printf "error:\t%s\n" "${1}"
+  printf "\t%s\n" "${@:2}"
+  } # > >(column --table)
+  echo -en '\e[0m'
+}
 md_to_html() {
   local md
   md="${1:-"$(xclip -o)"}"
@@ -7,7 +16,7 @@ md_to_html() {
   pandoc -f markdown -t html -o /dev/stdout <<< "${md}" | xclip -selection "clipboard"
 }
 list_files_pac() {
-  if   yay -Qi "${1}" &>/dev/null ; then
+  if yay -Qi "${1}" &>/dev/null ; then
     yay -Ql "${1}"
   elif yay -Si "${1}" &>/dev/null ; then
     if ! pkgfile -sl "${1}" ; then
@@ -104,7 +113,7 @@ alias_conflict() {
   done < <(alias -p | grep -Pio '^[ \t]*alias[ \t]*\K[^=]*')
 }
 bash_history_grab() {
-  grep -Pi "${1}" "${HISTFILE}" | tail -n "${2:-50}"
+  grep -Pi --color="always" "${1}" "${HISTFILE}" | tail -n "${2:-50}"
 }
 stream_ytdl_mpv() {
   yt-dlp "${1}" -f "bestvideo[height<=?1080]+bestaudio/best" -o - | mpv --input-ipc-server=/tmp/mpvsocket -
@@ -113,7 +122,7 @@ rg_with_p() {
   rg "${@}" | "${PAGER}"
 }
 man_all_pages() {
-  MAN_KEEP_FORMATTING=1 man -a "${@}" 2>/dev/null | ${MANPAGER}
+  $MANPAGER < <(MAN_KEEP_FORMATTING=1 man -a "${@}" 2>/dev/null)
 }
 markdown_view_w3m() {
   w3m -T text/html < <(pandoc -s "${1}" 2>/dev/null)
@@ -206,7 +215,7 @@ edit_make_path() {
 
 alias_with_completion() {
   # local com="${2%% *}"
-  if [[ "${1,,}" =~ ^[-]-c(heck)?$ ]] ; then
+  if [[ "${1,,}" =~ ^[-]?-c(heck)?$ ]] ; then
     shift 1
     if [[ "${#}" -lt 2 ]] ; then
         printf 'Usage:\n\t%s\n' "make_completions alias_name definition" >/dev/stderr
@@ -261,6 +270,140 @@ find_function() {
     grep -Piq "${1}" <<< "$(declare -f "${func}")" &&
       declare -f "${func}"
   done < <(declare -F | grep -ZPo '^declare\s+[-]f\s+\K[^_].*$')
+}
+
+in_array() {
+  if   [[ "${#}" -le 1     ]] ; then return 1
+  elif [[ "${1}"  = "${2}" ]] ; then return 0
+  else in_array "${1}" "${@:3}" ; fi
+} #; readonly -f in_array
+# -------------------------------------------------- #
+# -------------------------------------------------- #
+# -------------------------------------------------- #
+new_md_note() {
+  local notes_dir="${DESKTOP}/SCHOOL/NOTES/"
+  local file_name="${1}.md"
+  if ! [[ -d "${notes_dir}" ]] || ! cd "${notes_dir}"
+  then echo "Error: Directory, '${notes_dir}' not found."
+  elif [[ -z "${1}" ]]
+  then echo "Must provide argument for file name."
+  elif  [[ -f "${file_name}" ]]
+  then echo "That file already exists"
+  else
+    cp "$XDG_CONFIG_HOME/nvim/language_specific/templates/template_note.md" "${file_name}"
+    # +$ to open file at end
+    nv "${file_name}" +$
+    return 0
+  fi
+  return 1
+}
+addally() {
+  if type "${1}" &>/dev/null; then
+    echo "CONFLICTS WITH DEFINED COMMAND"
+    type "${1}"
+  elif whatis "${1}" &>/dev/null; then
+    echo "CONFLICTS WITH OTHER"
+    whatis "${1}"
+  else
+    # shellcheck disable=SC2086,SC2139
+    if [[ "${1,,}" =~ ^[a-z][a-z0-9_]*$ ]] ; then
+      alias ${1}="cd \"${PWD/$HOME/\$\{HOME\}}\""
+      alias ${1} >> "${HOME}/bashrc_files/personal_aliases.sh"
+    else
+      echo "invalid name"
+    fi
+  fi
+  #printf "alias %s='\''cd "%s"'\''\n'  "${1}"  >> "${HOME}/bashrc_files/personal_aliases"
+}
+mix_decompile() { mix decompile "${1}" --to expanded;  }
+open_st()       { st & disown; }
+termdown_mine() {
+  # shellcheck disable=SC2155
+  local f="${HOME}/.time/time_$(date +%s).txt"
+  termdown -o "${f}" --outfile-keep
+  sed -i '1d' "${f}"
+  echo "${f}"
+}
+test_quick() {
+  local testdir="${HOME}/TEST/QUICK"
+  local testfile
+  [[ -d "${testdir}" ]] || { echo "Testdir: '${testdir}' not found." >&2; return 1; }
+
+  call_back() {
+    testfile="${2}/$(date +'%Y_%m_%d')__quick.${1}"
+    nvim "${testfile}"
+  }
+  if [[ -n "${1}" ]] ; then
+    call_back "${1}" "${testdir}"
+    return
+  fi
+  fd -u -tf --exact-depth 1 'quick[.].*' "${testdir}" \
+    | fzf --bind="enter:become(${EDITOR:-vim} -o {}; echo {})"
+  # [[ -f "${testfile}" ]] && nvim "${testfile}"
+}
+doc_view() {
+  local doc_dir='/usr/share/doc'
+  local l
+  cd "${doc_dir}" || return 1
+  l="$(fd -u -td --max-depth 7 \
+    | fzf --scheme="path" --info='right' --info-command='ls -l' --preview="${LS_PREVIEW:-"ls -l"} {}")"
+  if [[ -d "${l}" ]] ; then
+    cd "${l}" || { echo -e "\e[1;31mCan't cd into: '${l}'" >/dev/stderr; return 1; }
+  fi
+}
+ez_perm() {
+  chown "${USER}":"${USER}" "${1}"
+  chmod 600 "${1}"
+}
+binary_files() {
+  local search_dir="${1-"${PWD}"}"
+  local limit=1000
+  while ((--limit)) && read -r -d $'\0' file ; do
+    if file --mime-encoding --brief  "${file}" | grep --invert-match -qFx 'binary' ; then
+      printf '%s\0' "${file}"
+    fi
+  done < <(fd -H -tf --print0 . "${search_dir}")
+}
+chattr_edit() {
+  sudo chattr -i "${1}" || return 1
+  nvim  "${1}"
+  sudo chattr +i "${1}"
+}
+gif_animated_towebp() {
+  [[ "${1}" =~ -d ]] && {
+    local delete=true
+    shift 1
+  }
+  local base_file="${1%.*}"
+  local outfile="${base_file}.webp"
+  if [[ ! -f "${1}" ]] ; then
+    echo "file, '${1}', doesn't exist"
+  elif [[ -f "${outfile}" ]] ; then
+    echo "outfile, '${outfile}', already exists"
+  else
+    ffmpeg -i "${base_file}" \
+      -vf "scale=180:-1"     \
+      -vcodec webp           \
+      -loop 0                \
+      -pix_fmt yuva420p      \
+      "${outfile}"           \
+        &&  {
+          [[ "${delete}" ]] && trash-put "${1}"
+        }
+  fi
+}
+ssh_correct() {
+  local old_term="${TERM}"
+  export TERM="vt100"
+  ssh "${@}"
+  export TERM="${old_term}"
+}
+definition_search() {
+  if [[ "${2,,}" = '--color' ]] ; then
+      sdcv -n -e -0 "${1,,}" | elinks -dump -dump-color-mode 2
+  else
+      sdcv -n -e -0 "${1,,}" | elinks -dump -dump-color-mode 0
+  fi
 }
 
 # {{{ removed
