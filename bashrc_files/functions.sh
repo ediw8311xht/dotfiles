@@ -236,7 +236,7 @@ alias_with_completion() {
 find_one() {
   local m="${2}"
   for i in "${@:2}" ; do
-    #shellcheck disable=SC2003
+    # shellcheck disable=SC2003
     m="$(expr "(" "(" "${m}" "${1}" "${i}" ")" "*" "${m}" ")" "|" "${i}")"
   done ; echo "${m}"
 }

@@ -12,14 +12,26 @@ alias_with_completion snv            'sudoedit'
 alias_with_completion systemctl      'systemctl' '--no-pager'
 alias_with_completion yay            'yay'       '--color="auto"'
 alias_with_completion rm             'rm'        '-i'
+
+alias_with_completion column_color   'column' \
+  '--table'                                   \
+  '-C "color=blue,headercolor=reverse"'       \
+  '-C "color=green,headercolor=reverse"'      \
+  '-C "color=yellow,headercolor=reverse"'     \
+  '-C "color=magenta,headercolor=reverse"'    \
+  '-C "color=lightcyan,headercolor=reverse"'  \
+  '-C "color=gray,headercolor=reverse"'
 alias sudo='sudo -v; sudo '
-alias D='\df -h | grep -Po "^[ ]*[/]dev[/].*" | ccze -m ansi'
+# alias D='\df -h | grep -Po "^[ ]*[/]dev[/].*" | ccze -m ansi'
+alias D='\df -h | grep -Po "^[ ]*[/]dev[/].*" | column_color'
 alias H='show_help'
 alias b='cd "${BIN}"'
 alias c='myfzf'
-alias d='\df -h | ccze -m ansi'
+# alias d='\df -h | ccze -m ansi'
+alias d='\df -h | column_color'
 alias h='cd "${HOME}"'
 alias l='cd_from_lf' # my lf, so it cd's shell after exiting lf
+# column --table --separator $'\t' --color=always --table-colorscheme=cooltable
 
 
 alias_with_completion B              'bat'
@@ -75,6 +87,7 @@ alias_with_completion tret 'ps' ' -ejH'
 alias_with_completion yd  'yt-dlp'
 alias_with_completion yda 'yt-dlp' '--extract-audio --audio-format "mp3"'
 alias_with_completion ydt 'yt-dlp' '--ignore-config --skip-download --write-subs --write-auto-subs --sub-lang en --output "$VIDEOS/transcripts/%(title)s%(ext)s"'
+alias clog_builder='sbcl --eval "(ql:quickload :swank)" --eval "(asdf:load-system :clog/tools)" --eval "(clog-tools:clog-builder :port 0 :app t)"'
 alias ac='          compgen -c  | grep -x'
 alias ac_full='     alias_conflict --full'
 alias ac_part='     alias_conflict'

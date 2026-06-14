@@ -51,6 +51,7 @@ $if mode=vi
     "\eN":      non-incremental-forward-search-history-again
     "\en":      non-incremental-reverse-search-history-again
     "\C-l":     clear-screen
+    "\C-r": vi-redo
     # "\C-x\C-x": re-read-init-file
     # "gf": "f'"
     # "Z": history-expand-line

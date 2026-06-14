@@ -28,8 +28,9 @@ bindsym --whole-window button9         exec $key_mouse_script -m "-0.5" "-0.3"
 # $Mb button8         $_  exec screengrab --no-win
 
 
-set $B1         exec " i3-msg 'border pixel 1' " ;
-set $B2         exec " sleep 0.01; i3-msg '[tiling] border pixel 0' "
+# this sets default border flash, will be overwritten 
+# set $B1         exec " i3-msg 'border pixel 1' " ;
+# set $B2         exec " sleep 0.01; i3-msg '[tiling] border pixel 0' "
 #-------------------------------------------------Scripts-----------------#
   set $balance_workspace      $HOME/.local/bin/i3_balance_workspace
   set $bluetooth_script       $HOME/bin/ubluetoggle.sh
@@ -49,7 +50,7 @@ set $B2         exec " sleep 0.01; i3-msg '[tiling] border pixel 0' "
   set $screenshot_script      $HOME/bin/clipboard_copy_image.sh
   set $note                   kitty_note
   set $calculator             octave
-  set $EXCLUDE_FLOAT_POPUP    qutebrowser|kitty_term|kitty_note|emacs|Tor Browser
+  set $EXCLUDE_FLOAT_POPUP    qutebrowser|kitty_term|kitty_note|emacs|Tor Browser|octave
   set $default_title_format   "<span size='smaller' background='#000000' > %class </span> <span foreground='#FFFFFF99' background='#000000BB' size='smaller'> %title </span>" 
   set $zathura_title_format   "<span foreground='#FFFFFF99' background='#000000FF' size='smaller'> %title </span>" 
   # set $active_title_format    "<span size='smaller' background='#005500' foreground='#000000'> %class </span> <span foreground='#00FF00' size='smaller'> %title </span>"
@@ -121,8 +122,6 @@ set $B2         exec " sleep 0.01; i3-msg '[tiling] border pixel 0' "
   $EXC    unclutter --timeout 2 --fork
   # desktop bar
   $EXC    $wallpaper_script "launch"
-  # time tracking
-  $EXC    arbtt-capture -r 30
   $EXC_A  $polybar_script "launch"
   # $EXC    $key_mouse_script -k -y -r 'on'
 #-------END---------------------------------------------------------------#
