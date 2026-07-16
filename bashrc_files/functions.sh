@@ -213,7 +213,7 @@ edit_make_path() {
   fi
 }
 
-alias_with_completion() {
+_alias() {
   # local com="${2%% *}"
   if [[ "${1,,}" =~ ^[-]?-c(heck)?$ ]] ; then
     shift 1
@@ -306,7 +306,7 @@ addally() {
     whatis "${1}"
   else
     # shellcheck disable=SC2086,SC2139
-    if [[ "${1,,}" =~ ^[a-z][a-z0-9_]*$ ]] ; then
+    if [[ "${1,,}" =~ ^[a-z][a-z0-9_-]*$ ]] ; then
       alias ${1}="cd \"${PWD/$HOME/\$\{HOME\}}\""
       alias ${1} >> "${HOME}/bashrc_files/personal_aliases.sh"
     else

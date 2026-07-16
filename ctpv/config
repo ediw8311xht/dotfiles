@@ -8,7 +8,7 @@
 set forcekittyanim
 set shell "/usr/bin/bash"
 
-preview sqlite application/vnd.sqlite3 {{
+preview sqlite application/vnd.sqlite3 .db {{
   echo -e 
   a="$((w*h))"
   info="$(sqlite3 "${f}" '.dbinfo;')"
@@ -41,7 +41,8 @@ preview mp3 .mp3 .ogg {{
   mediainfo "${f}"
 }}
 
-preview tarball .tar.gz .tzst .tgz application/x-zstd-compressed-tar application/x-compressed-tar {{
+
+preview tarball .tar.gz .tzst .tgz application/x-zstd-compressed-tar application/x-compressed-tar application/gzip {{
   tar --restrict --list --file "${f}"
 }}
 
@@ -57,12 +58,12 @@ preview txt text/plain .txt {{
   head -1000 "${f}" | pygmentize -f 'text'
 }}
 
-preview text_files text/* .el .lua .lisp .vim .js .ts {{
-  declare -A SYNTAX_TYPE=( [asd]="lisp" [asdf]="lisp" )
+preview text_files text/* .el .lua .lisp .vim .js .ts .sql .asd .exs {{
+  declare -A SYNTAX_TYPE=( [asd]="lisp" [asdf]="lisp" [sql]="sql" [exs]="elixir" )
   ext="${f##*.}"
   if [[ "${ext}" = "${f}" ]] || [[ "${ext}" = "txt" ]] ; then
     # preview txt
-    echo
+    cat "${f}"
   elif [[ -n "${SYNTAX_TYPE[${ext}]}" ]] ; then
     ksyntaxhighlighter6 --syntax "${SYNTAX_TYPE[${ext}]}" --no-ansi-background --output-format=ansi256 "${f}" 2>/dev/null
   else
@@ -79,9 +80,10 @@ preview mymd .md .page {{
   glow --width "$(min "${w}" "${MAX_WIDTH}")" -s "$XDG_CONFIG_HOME/glow/my_default.json" <"${f}"
 }}
 
-preview json application/json .json {{
+preview json .json application/json {{
   jq -C . "${f}" 2>/dev/null || highlight --out-format="truecolor" --stdout "${f}"
 }}
+
 # preview myjson application/json .json {{
 #   highlight --out-format="truecolor" --stdout "${f}" \
 #     || ksyntaxhighlighter6 --syntax "json" --no-ansi-background --output-format=ansi256 "${f}" 2>/dev/null
