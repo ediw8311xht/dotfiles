@@ -1,17 +1,17 @@
+
+# vi:foldmarker={{{,}}}:foldlevel=0:foldmethod=marker:
+
 --hidden
 --smart-case
 --no-ignore-global
 --ignore-file=/$HOME/.config/rg/basic_ignore.gitignore
---context-separator=\x1b[48;2;0;122;122m\x1b[38;2;0;0;0m                                                         \x1b[0m
+--context-separator=\x1b[48;2;0;0;0m\x1b[38;2;155;155;0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\x1b[0m
 --field-match-separator= \x1b[38;2;00;255;255m-> \x1b[0m
 --with-filename
 # --field-context-separator=$'\n'
 # --hyperlink-format=kitty
 
-# Modeline 
-# vim: set foldmarker={{{,}}} foldlevel=0 foldmethod=marker : 
-# Ignores 
-# {{{
+# Ignores  {{{
 #--glob
 #!*.log
 #
@@ -97,7 +97,6 @@
 #!*.webm
 ## ---------
 ## }}}
-
 # Colors 
 # ------------
 --colors
@@ -113,10 +112,13 @@ line:style:bold
 path:fg:blue
 
 --colors
-path:style:nobold
+path:style:bold
 
 --colors
-path:fg:yellow
+path:fg:black
+
+--colors
+path:bg:yellow
 
 --colors
 match:bg:black

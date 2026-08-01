@@ -398,14 +398,6 @@ ssh_correct() {
   ssh "${@}"
   export TERM="${old_term}"
 }
-definition_search() {
-  if [[ "${2,,}" = '--color' ]] ; then
-      sdcv -n -e -0 "${1,,}" | elinks -dump -dump-color-mode 2
-  else
-      sdcv -n -e -0 "${1,,}" | elinks -dump -dump-color-mode 0
-  fi
-}
-
 # {{{ removed
 # fpend() {
 #     if [[ "$1" =~ ^-[dD](ate)? ]] ; then shift 1; local MDATE; MDATE="#$(date)"; fi
