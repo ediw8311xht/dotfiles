@@ -1,2 +1,43 @@
-disable=SC1091,SC2317
+disable=SC1091,SC2155
+# SC1091 Not following (source)
+# SC2155 declare and assign seperately
+
+# external-sources=true
+#
+
+#,SC2317 command appears to be unreachable
 #,SC2003
+
+# SC1091 – ShellCheck Wiki
+# See this page on GitHub
+# Not following: (error message here)
+# Reasons include: file not found, no permissions, not included on the command line, not allowing shellcheck to follow files with -x, etc.
+# 
+# Problematic code:
+# source somefile
+# Correct code:
+# In case you have access to the file, e.g. if it is included in your source code repository:
+# 
+# # shellcheck source=somefile
+# source somefile
+# In case you do not have access to the file:
+# 
+# # shellcheck source=/dev/null
+# source somefile
+# Rationale:
+# ShellCheck, for whichever reason, is not able to access the source file.
+# 
+# This could be because:
+# 
+# you did not include it on the command line,
+# did not use shellcheck -x (or specified external-sources=true in the .shellcheckrc) to allow following other files
+# don't have permissions, or
+# a variety of other problems.
+# Feel free to ignore the error with a directive.
+# 
+# Exceptions:
+# ShellCheck is unable to follow dynamic paths, such as source "$somedir/file". For these cases, see SC1090: Can't follow non-constant source. Use a directive to specify location instead. You may be seeing SC1091 because ShellCheck tried to be helpful and strip a leading dynamic path element as described on that page.
+# 
+# If you're fine with it, ignore the message with a directive.
+# 
+# ShellCheck is a static analysis tool for shell scripts. This page is part of its documentation.

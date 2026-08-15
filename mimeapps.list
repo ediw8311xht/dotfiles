@@ -13,7 +13,6 @@ image/gif=brave-browser.desktop;sxiv.desktop;
 text/x-c++src=nvim.desktop;
 image/webp=brave-browser.desktop;pix.desktop;
 image/svg+xml=org.gnome.eog.desktop;
-text/plain=nvim.desktop;
 application/x-zim-notebook=nvim.desktop;
 
 [Default Applications]

@@ -1,30 +1,33 @@
-# vim:set syntax=lf
+# vim: ft=lf:syntax=lf
+##USE DOUBLE QUOTES FOR 'set ifs "something"'
+# set period 1
 set shell bash
 set shellopts '-eu'
 set ifs         "\n"
-set ratios      2:4:4
-set info        size:time
-set scrolloff   5
-set sortby      natural
-set promptfmt   "\033[0;34m %f \033[38;2;255;48;48m %F \033[0m %S \033[0;34;7m %d "
-set borderfmt   "\033[0;34m"
+
+set borderfmt       "\033[38;2;100;100;100m"
+set borderstyle     'roundbox'
+# set cursoractivefmt "\033[7m >> \033[0m "
 set cursorparentfmt "\033[02;49m"
-set cursoractivefmt "\033[7m >> \033[0m "
-set filtermethod regex
-##USE DOUBLE QUOTES FOR 'set ifs "something"'
-#set period 1
-set icons false
-set dirfirst
-set mouse
-set incfilter
+set filtermethod    regex
+set info            size:time
+set promptfmt       "\033[0;34m %f %F \033[38;2;255;48;48m %F \033[0m %S \033[0;34;7m %d "
+set ratios          2:4:4
+set scrolloff       5
+set sortby          natural
+
 set autoquit
-set drawbox
 set dircounts
-set preview
-set number
+set dirfirst
+set drawbox
+set icons           false
 set ignorecase
-set roundbox
+set incfilter
+set mouse
+set number
+set preview
 set relativenumber
+# set icons false
 
 set previewer ctpv
 set cleaner ctpvclear
@@ -32,88 +35,92 @@ set cleaner ctpvclear
 &ctpvquit $id
 
 cmd np &{{
-	if   [[ "$lf_ratios" = "1:2:3" ]] ; then  lf -remote "send ${id} set nopreview     "
-                                              lf -remote "send ${id} set ratios 1:3    "
-	elif [[  "$lf_ratios" =  "1:3" ]] ; then  lf -remote "send ${id} set preview       "
-                                              lf -remote "send ${id} set ratios 1:1    "
-    else								      lf -remote "send ${id} set preview       "
-										      lf -remote "send ${id} set ratios 1:2:3  "; fi
+  if   [[ "$lf_ratios" = "1:2:3" ]] ; then
+    lf -remote "send ${id} set nopreview"
+    lf -remote "send ${id} set ratios 1:3"
+  elif [[  "$lf_ratios" =  "1:3" ]] ; then  
+    lf -remote "send ${id} set preview"
+    lf -remote "send ${id} set ratios 1:1"
+  else
+    lf -remote "send ${id} set preview"
+    lf -remote "send ${id} set ratios 1:2:3"
+  fi
 }}
 
 cmd rep &{{
-	i="$1"; while [[ $((i--)) -gt 0 ]] ; do lf -remote "send $id ${2}"; done
+  i="$1"; while [[ $((i--)) -gt 0 ]] ; do lf -remote "send $id ${2}"; done
 }}
 
 cmd open_editor &{{
-    lf -remote "send $id \$$EDITOR \$fx"
+  lf -remote "send $id \$$EDITOR \$fx"
 }}
 
 cmd open &{{
-    for i in ${fx[@]} ; do
-        zz="$(xdg-mime query default "$(mimetype -Lb "${i}")")"
-        if ! [[ "${zz}" = "${EDITOR}.desktop" ]] ; then
-            for j in ${fx[@]}; do
-                mimeopen "${j}" &>/dev/null & disown
-            done
-            return
-        fi
-    done
-    lf -remote "send $id \$$EDITOR \$fx"
+  for i in ${fx[@]} ; do
+    zz="$(xdg-mime query default "$(mimetype -Lb "${i}")")"
+    if ! [[ "${zz}" = "${EDITOR}.desktop" ]] ; then
+      for j in ${fx[@]}; do
+        mimeopen "${j}" &>/dev/null & disown
+      done
+      return
+    fi
+  done
+  lf -remote "send $id \$$EDITOR \$fx"
 }}
 
 cmd oneforone &{{
-    lf -remote "send ${id} set nopreview"
-    lf -remote "send ${id} set ratios 1"
+  lf -remote "send ${id} set nopreview"
+  lf -remote "send ${id} set ratios 1"
 }}
 
 cmd trash ${{
-    for i in ${fx[@]} ; do
-        trash-put "${i}"
-    done
+  for i in ${fx[@]} ; do
+    trash-put "${i}"
+  done
 }}
 
 cmd toggle_info ${{
-    if [[ -n "$lf_info" ]] ; then
-        lf -remote "send ${id} set info"
-    else
-        lf -remote "send ${id} set info ${1}"
-    fi
+  if [[ -n "$lf_info" ]] ; then
+    lf -remote "send ${id} set info"
+  else
+    lf -remote "send ${id} set info ${1}"
+  fi
 }}
 
 #
 #------------- zoxide integration ----------#
 cmd Zoxide %{{
-    result="$(zoxide query --exclude "$PWD" "$@" | sed 's/\\/\\\\/g;s/"/\\"/g')"
-    lf -remote "send $id cd \"$result\""
+  result="$(zoxide query --exclude "$PWD" "$@" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+  lf -remote "send $id cd \"$result\""
 }}
 cmd ZoxideSelect ${{
-    result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
-    lf -remote "send $id cd \"$result\""
+  result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+  lf -remote "send $id cd \"$result\""
 }}
 cmd on-cd &{{
-    zoxide add "$PWD"
+  zoxide add "$PWD"
 }}
 
 cmd CD ${{
-    declare -A assoc_array
-    assoc_array=(
-            [Config]=~/".config/"
-           [Desktop]=~/"Desktop/"
-          [Pictures]=~/"Pictures/"
-               [Bin]=~/"bin/"
-            [Coding]=~/"Desktop/Coding/"
-            [Elixir]=~/"Desktop/Coding/ELIXIR/"
-              [Lisp]=~/"Desktop/Coding/lisp/"
-         [Downloads]=~/"Downloads/"
-         [Documents]=~/"Documents/"
-              [Home]=~
-       [Information]=~/"Documents/INFORMATION/"
-           [Library]=~/"MyLibrary/"
-              [Pics]=~/"Pictures/"
-              [Test]=~/"TEST/"
-              [Vids]=~/"Videos/"
-    )
-    lf -remote "send $id cd ${assoc_array[${1}]}"
+  declare -A assoc_array
+  assoc_array=(
+    [Config]=~/".config/"
+    [Desktop]=~/"Desktop/"
+    [Pictures]=~/"Pictures/"
+    [Bin]=~/"bin/"
+    [Coding]=~/"Desktop/Coding/"
+    [Elixir]=~/"Desktop/Coding/ELIXIR/"
+    [Lisp]=~/"Desktop/Coding/lisp/"
+    [Downloads]=~/"Downloads/"
+    [Documents]=~/"Documents/"
+    [Home]=~
+    [Information]=~/"Documents/INFORMATION/"
+    [Library]=~/"MyLibrary/"
+    [Pics]=~/"Pictures/"
+    [Test]=~/"TEST/"
+    [Vids]=~/"Videos/"
+  )
+  lf -remote "send $id cd ${assoc_array[${1}]}"
 }}
 
 cmd CreateFile push -- [:!touch<space>]
@@ -137,6 +144,7 @@ map  <gt>t  CD    Test
 map  <gt>v  CD    Vids
 
 
+# map e $$EDITOR "$f" # default mapping
 map <lt>t       set ratios 1:1:1:1
 map <lt>p       set preview!
 map <lt><lt>    set ratios 2:3:5
@@ -155,38 +163,38 @@ map ,
 
 map ,bB     &$BROWSER $fx
 map ,bQ     &qutebrowser $fx
-map ,c 	    ClipCWD
+map ,c      ClipCWD
 map ,d      set dironly!
 map ,fi     :{{ setfilter [.](jpg|jpeg|gif|webp|gif|avi|png)$ ; }}
 map ,ft     :{{ setfilter [.](txt|md|css|cpp|h|c|lisp|py|hs|sh|bash)$ ; }}
 map ,m      push :!mkdir<space>
-map ,o 	    &mimeopen $fx
+map ,o      &mimeopen $fx
 map ,p      nopreview
-map ,t	    :trash #trash
+map ,t      :trash #trash
 map ,z      push :Zoxide<space>
 
 map ,C      push :!touch<space>
 map ,E      :open_editor
 map ,I      toggle_info "size:atime"
-map ,O 	    $mimeopen --ask $fx
-map ,P	    push :!echo<space>""<left>
-map ,RF	    push :rename<enter><c-u>
-map ,RN	    rename
+map ,O      $mimeopen --ask $fx
+map ,P      push :!echo<space>""<left>
+map ,RF     push :rename<enter><c-u>
+map ,RN     rename
 map ,Sb     set drawbox!
 map ,Ss     :set number!; set relativenumber!
 map ,Z      ZoxideSelect
 
-map ;		    mark-save
+map ;       mark-save
 map ?       maps
 
 map r       :{{ set reverse!; top; }}
 map st      :{{ set sortby time; set info time; set reverse; top; }}
 map x       cut
 
-map	J		    push 3j
-map	K		    push 3k
-map H		    set hidden!
-map Q 	    &lf -remote 'send quit'; lf -remote 'quit'
+map J       push 3j
+map K       push 3k
+map H       set hidden!
+map Q       &lf -remote 'send quit'; lf -remote 'quit'
 map RR      reload
 map U       :unselect; clear
 
@@ -195,16 +203,16 @@ map <enter> shell
 map <esc>   clear
 
 # map ,Ai
-# map ,AI set 
+# map ,AI set
 # .*(jpg|jpeg|gif|webp|gif|avi|png)$
 ## remove filter with <c-r>
 ## No longer needed, version r36 adds visual mode
-# map VG		invert-below
-# map Vg		:invert-below; invert
+# map VG    invert-below
+# map Vg    :invert-below; invert
 #------------------------------------------------------------------#
 #-----------CALL WITH THIS function to use autocd------------------#
 #------------------------------------------------------------------#
-#map q 		    :autocd
+#map q        :autocd
 #
 #   function cd_from_lf() {
 #       lf
@@ -223,6 +231,6 @@ map <esc>   clear
 #    lf -remote "send ${id} quit" 2>/dev/null
 #}}
 
-#map C 		:quit
-#map C 		!
+#map C    :quit
+#map C    !
 

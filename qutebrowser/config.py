@@ -167,11 +167,11 @@ c.fonts.default_family                   =  [ 'Agave', 'Noto Sans', 'Monospace']
 c.fonts.default_size                     =  '10pt'
 c.fonts.downloads                        =  'default_size default_family'
 c.fonts.statusbar                        =  '10pt Noto Sans'
-c.fonts.tabs.selected                    =  '9pt Noto Sans'
-c.fonts.tabs.unselected                  =  '9pt Noto Sans'
+c.fonts.tabs.selected                    =  '10pt Noto Sans'
+c.fonts.tabs.unselected                  =  '10pt Noto Sans'
 c.qt.highdpi                             =  True
 c.spellcheck.languages                   =  []
-c.statusbar.padding                      =  {'top': 1, 'bottom': 1, 'left': 1, 'right': 1}
+c.statusbar.padding                      =  {'top': 5, 'bottom': 5, 'left': 10, 'right': 10}
 c.tabs.favicons.scale                    =  1.0
 c.tabs.favicons.show                     =  'always'
 c.tabs.position                          =  'left'
@@ -291,16 +291,27 @@ c.url.start_pages                               =   my_start_pages
 c.zoom.default                                  =   '90%'
 c.zoom.levels                                   =   zoom_levels
 c.zoom.mouse_divider                            =   512
-c.zoom.text_only                                =   False
+# c.zoom.text_only                                =   False
 
 #----------tab-settings-----------#
-c.tabs.indicator.padding            = {'top': 0, 'bottom': 0, 'left': 0, 'right': 9}
-c.tabs.focus_stack_size                     =  100
-c.tabs.indicator.width                      =  1
-c.tabs.title.format                         =  '{audio}{current_title}'
-c.tabs.undo_stack_size                      =  -1
-c.tabs.width                                =  '15%'
-c.tabs.show = "multiple"
+# c.tabs.indicator.width     = 1
+c.tabs.close_mouse_button        = 'none'
+c.tabs.close_mouse_button_on_bar = 'ignore'
+c.tabs.focus_stack_size          = 100
+c.tabs.indicator.padding         = {'top': 2, 'bottom': 2, 'left': 0, 'right': 2}
+# c.tabs.indicator.padding         = {'top': 0, 'bottom': 0, 'left': 0, 'right': 9}
+c.tabs.indicator.width           = 2  # pixels
+c.tabs.mode_on_change            = 'restore'
+c.tabs.padding                   = dict(bottom=2, top=2, left=5, right=5)
+c.tabs.pinned.frozen             = True
+c.tabs.position                  = 'left'
+c.tabs.select_on_remove          = 'last-used'
+c.tabs.show                      = 'multiple'
+c.tabs.title.format              = '[{aligned_index}]   {audio}{current_title}'
+c.tabs.title.format_pinned       = '[{aligned_index}]📌 {audio}{current_title}'
+c.tabs.undo_stack_size           = -1
+c.tabs.width                     = '15%'
+# c.tabs.width                     = '15%'
 
 #----------external-commands------#
 c.fileselect.folder.command =  ['kitty', '-e', 'ranger', '--choosedir={}']
@@ -337,6 +348,8 @@ config.bind(';i',                       'hint images')
 config.bind(';o',                       'hint links fill :open {hint-url}')
 config.bind(';r',                       'hint --rapid links tab-bg')
 config.bind(';t',                       'hint inputs')
+config.bind(';Cr',                      'config-source')
+config.bind(';Ce',                      'config-edit')
 
 config.bind('<Ctrl-->',                 'zoom-out')
 config.bind('<Ctrl-1>',                 'tab-focus 1')
@@ -360,8 +373,8 @@ config.bind('<Escape>',                 'clear-keychain ;; search ;; clear-messa
 config.bind('<Ctrl-b>',                 'config-cycle colors.webpage.darkmode.enabled true false')
 config.bind('<Ctrl-d>',                 'scroll-page 0 0.5')
 config.bind('<Ctrl-e>',                 'prompt-fileselect-external', mode='prompt')
-config.bind('<Ctrl-j>',                 'tab-next')
-config.bind('<Ctrl-k>',                 'tab-prev')
+config.bind('<Ctrl-k>',                 'tab-next')
+config.bind('<Ctrl-j>',                 'tab-prev')
 config.bind('<Ctrl-o>',                 'cmd-set-text :open {url:pretty}')
 config.bind('<Ctrl-u>',                 'scroll-page 0 -0.5')
 config.bind('<Ctrl-v>',                 'mode-enter passthrough')
@@ -395,8 +408,9 @@ config.bind('wIw',                      'devtools window')
 config.bind('yD',                       'yank domain -s')
 config.bind('yf',                       'hint links yank')
 config.bind('yp',                       'yank pretty-url')
-config.bind('<Ctrl-,>',            'tab-move +')
-config.bind('<Ctrl-.>',            'tab-move -')
+config.bind('<Ctrl-,>',                 'tab-move +')
+config.bind('<Ctrl-.>',                 'tab-move -')
+config.bind('?', '                      help')
 
 #----------command_binding--------#
 config.bind('<Ctrl-p>',                 'completion-item-focus prev',           mode='command')

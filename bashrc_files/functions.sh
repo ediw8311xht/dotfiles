@@ -4,11 +4,29 @@ with_error() {
   local err_color="${COLOR_ERROR:-\e[31m}"
   echo -en "${err_color}"
   {
-  printf "error:\t%s\n" "${1}"
-  printf "\t%s\n" "${@:2}"
-  } # > >(column --table)
+    printf "error:\t%s\n" "${1}"
+    [[ "${#}" -gt 1 ]] &&
+      printf "\t%s\n" "${@:2}"
+  } > >(column --table)
   echo -en '\e[0m'
 }
+# sudoedit_with_backup() {
+#   if ! [[ -f "${1}" ]] ; then
+#     with_error "FILE NOT FOUND" "'${1}'"
+#     return 1
+#   fi
+#   local BACKUP_DIR="${BACKUP:-"${HOME}/.cache"}/sudoedit"
+#   local file="${1}"
+#   local backup_file="$(basename "${file}")_$(date +%s).bak"
+#   if ! cp "${file}" "${BACKUP_DIR}/${backup_file}" ; then
+#     with_error "couldn't copy '${file}' to '${BACKUP_DIR}/${backup_file}'"
+#     return 1
+#   fi
+#   sueoedit "${file}"
+#   if cmp -s "${file}" "${backup_file}" ; then
+#     trash-put "${backup_file}"
+#   fi
+# }
 md_to_html() {
   local md
   md="${1:-"$(xclip -o)"}"
@@ -248,10 +266,22 @@ max_of() {
   find_one ">" "${@}"
 }
 
+ss_g() {
+  man nvim
+}
 show_help() {
   local command="${1}"
   local type
-  type="$(type -t "${command}")" || { echo "'${1}' not found."; }
+  show_help_file() {
+    local fullpath="$(which "${command}")"
+    if ! file -b --mime-encoding "${fullpath}" | grep -qi 'binary' ; then
+      cat "${fullpath}"
+    else
+      # man "${command}" || info "${command}" || whatis "${command}" || echo "${command}: '${fullpath}'"
+      man "${command}"
+    fi
+  }
+  type="$(type -t "${command}")" || { echo "'${1}' not found."; return 1; }
   echo -e "Type: ${type}\n"
   case "${type,,}" in
       # shellharden takes input from stdin if ended with ''
@@ -259,7 +289,7 @@ show_help() {
                 sed -E -e 's/^[ ]*alias[^=]*[=].[ ]*(.*).$/\1/' -e 's/[ ][ ]+/ /g'
   ;;  function) declare -f "${command}"
   ;;  builtin)  help "${command}"
-  ;;  file)     cat "$(which "${1}")"
+  ;;  file) show_help_file; return
   ;;  *) echo "no clue"
   ;; esac | shellharden --syntax '' | sed 's/^/    /'
   echo ""

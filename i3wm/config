@@ -49,8 +49,8 @@ bindsym --whole-window button9         exec $key_mouse_script -m "-0.5" "-0.3"
   set $note                    kitty_note
   set $calculator              octave
   set $EXCLUDE_FLOAT_POPUP     qutebrowser|kitty_term|kitty_note|emacs|Tor Browser|octave
-  set $title_format_default    "<span size='smaller' background='#000000' > %class </span> <span foreground='#FFFFFF99' background='#000000BB' size='smaller'> <b>%title</b> </span>" 
-  set $title_format_only_title "<span foreground='#FFFFFF99' background='#000000FF' size='smaller'> <b>%title</b> </span>" 
+  set $title_format_default    "<span size='smaller' background='#000000' > %class </span> <span foreground='#AAAAAA' background='#000000BB' size='smaller'> %title </span>" 
+  set $title_format_only_title "<span foreground='#AAAAAA' background='#000000FF' size='smaller'> %title </span>" 
   # set $active_title_format    "<span size='smaller' background='#005500' foreground='#000000'> %class </span> <span foreground='#00FF00' size='smaller'> %title </span>"
   # set $nsxiv_title_format     "<span size='smaller' background='#005500'> %class </span>"
 
@@ -63,7 +63,7 @@ bindsym --whole-window button9         exec $key_mouse_script -m "-0.5" "-0.3"
 #-------------------------------------------------Set---------------------|
   #|qutebrowser
   #-----------Size------------------|
-    set $QUTEBROWSER_SIZE 90ppt 90ppt
+    set $QUTEBROWSER_SIZE 80ppt 80ppt
     # Default
       set $DefaultSize    70ppt 80ppt
     # Small
