@@ -41,6 +41,7 @@ application/x-extension-html=nvim.desktop;
 application/x-extension-shtml=nvim.desktop;
 application/x-extension-xht=nvim.desktop;
 application/x-extension-xhtml=nvim.desktop;
+application/x-keepass2=org.keepassxc.KeePassXC.desktop;
 application/x-mimearchive=nvim.desktop;
 application/x-mobipocket-ebook=calibre-ebook-viewer.desktop;
 application/x-mozilla-bookmarks=nvim.desktop;

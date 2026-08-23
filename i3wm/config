@@ -11,7 +11,6 @@ set $Br_CTRL  bindsym Mod1+Ctrl
 set $SF       bindsym Mod1+Shift+
 set $SF_CTRL  bindsym Mod1+Shift+Ctrl
 set $Mb       bindsym --whole-window 
-bindsym $mod+Menu             exec killall wish
 bindsym $mod+Shift+Escape     exec i3-input -F 'border pixel %s' -l 2 -P 'Width: ' 
 bindsym $mod+Shift+o          exec "sleep 0.5; xset dpms force off"
 # no confirm reload
@@ -23,29 +22,30 @@ bindsym $mod+Shift+Ctrl+r     exec --no-startup-id    "xrdb -override ~/.Xresour
 bindsym                $mod+Escape [tiling] border pixel 1
 bindsym --release      $mod+Escape [tiling] border pixel 0
 bindsym --whole-window $mod+button8    exec screengrab
-bindsym --whole-window button8         exec $screenshot_script --shot
-bindsym --whole-window button9         exec $key_mouse_script -m "-0.5" "-0.3"
+bindsym --whole-window button8         exec $SCRIPT_screenshot --shot
+bindsym --whole-window button9         exec $SCRIPT_key_mouse -m "-0.5" "-0.3"
 # $Mb button8         $_  exec screengrab --no-win
 # this sets default border flash, will be overwritten 
 # set $B1         exec " i3-msg 'border pixel 1' " ;
 # set $B2         exec " sleep 0.01; i3-msg '[tiling] border pixel 0' "
 #-------------------------------------------------Scripts-----------------|
   set $balance_workspace       $HOME/.local/bin/i3_balance_workspace
-  set $bluetooth_script        $HOME/bin/ubluetoggle.sh
-  set $border_script           $HOME/bin/i3wm_change_border.sh
-  set $clipboard_script        $HOME/bin/add_to_clip.sh
-  set $dmenu_script            $HOME/bin/my_dmenu.sh
+  set $SCRIPT_bluetooth        $HOME/bin/ubluetoggle.sh
+  set $SCRIPT_border           $HOME/bin/i3wm_change_border.sh
+  set $SCRIPT_clipboard        $HOME/bin/add_to_clip.sh
+  set $SCRIPT_dmenu            $HOME/bin/my_dmenu.sh
   set $dmenu_search            $HOME/bin/dmenu_websearch.sh
-  set $joplin_start_script     $HOME/.local/bin/Joplin_start.sh
-  set $kitty_session_script    $HOME/bin/kitty_session_dmenu.sh
-  set $monitor_script          $HOME/bin/auto_monitor.sh
-  set $polybar_script          $HOME/bin/polybar_manipulate.sh
-  set $refresh_script          $HOME/bin/refresh_browser.sh
-  set $key_mouse_script        $HOME/bin/SetKeys.sh
-  set $wallpaper_script        $HOME/bin/feh_wallpaper.sh
-  set $zathura_script          $HOME/bin/zathura_dbus_controller.sh
+  set $SCRIPT_joplin_start     $HOME/.local/bin/Joplin_start.sh
+  set $SCRIPT_kitty_session    $HOME/bin/kitty_session_dmenu.sh
+  set $SCRIPT_monitor          $HOME/bin/auto_monitor.sh
+  set $SCRIPT_polybar          $HOME/bin/polybar_manipulate.sh
+  set $SCRIPT_key_mouse        $HOME/bin/SetKeys.sh
+  set $SCRIPT_wallpaper        $HOME/bin/feh_wallpaper.sh
+  set $SCRIPT_zathura          $HOME/bin/zathura_dbus_controller.sh
   set $latex_screenshot        $HOME/bin/ocr_latex.sh
-  set $screenshot_script       $HOME/bin/clipboard_copy_image.sh
+  set $SCRIPT_screenshot       $HOME/bin/clipboard_copy_image.sh
+  set $SCRIPT_send_key         $HOME/bin/i3wm_send_keys_to_window.sh
+  set $mark_quickswitch        "QS"
   set $note                    kitty_note
   set $calculator              octave
   set $EXCLUDE_FLOAT_POPUP     qutebrowser|kitty_term|kitty_note|emacs|Tor Browser|octave
@@ -55,10 +55,11 @@ bindsym --whole-window button9         exec $key_mouse_script -m "-0.5" "-0.3"
   # set $nsxiv_title_format     "<span size='smaller' background='#005500'> %class </span>"
 
 
-  # set $xmsg_script            $HOME/bin/xmsg_quick.sh
+  # set $SCRIPT_xmsg            $HOME/bin/xmsg_quick.sh
   #sticky toggle
   set $SCRATCHPAD_DEFAULT floating enable, move scratchpad, scratchpad show, move position center
   set $FLOATING_DEFAULT   floating enable, move position center
+  set $SCRATCHPAD_TOP     floating enable, move scratchpad, scratchpad show, resize set 100ppt 59ppt, move position 100ppt 0ppt
   # set $POPUP_DEFAULT      floating enable, 
 #-------------------------------------------------Set---------------------|
   #|qutebrowser
@@ -111,7 +112,7 @@ bindsym --whole-window button9         exec $key_mouse_script -m "-0.5" "-0.3"
   focus_follows_mouse           yes            
   floating_modifier             $mod+Ctrl      
   mouse_warping                 output
-  floating_maximum_size         1800 x 1800
+  floating_maximum_size         2000 x 2000
   workspace_auto_back_and_forth no             
   show_marks                    yes            
   title_align left
@@ -121,6 +122,6 @@ bindsym --whole-window button9         exec $key_mouse_script -m "-0.5" "-0.3"
   # hide mouse
   $EXC    unclutter --timeout 2 --fork
   # wallpaper
-  $EXC    $wallpaper_script "launch"
+  $EXC    $SCRIPT_wallpaper "launch"
   # desktop bar
-  $EXC_A  $polybar_script "launch"
+  $EXC_A  $SCRIPT_polybar "launch"

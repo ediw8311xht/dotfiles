@@ -123,11 +123,6 @@ open_mpv() {
   [[ "${CLOSE}" = 'close' ]] && exit
 }
 
-open_prog() {
-  xdg-open "${1}" &
-  disown
-}
-
 alias_conflict() {
   local cvm wcl
   cvm="$(compgen -c)"
@@ -251,25 +246,6 @@ myfzf() {
   "${command}" "$(fd "${OPTIONS[@]}" | fzf --preview="${LS_PREVIEW:-"ls -l"} {}")" || return 1
 }
 
-edit_make_path() {
-  local d
-  local i
-  if d="$(dirname "${@: -1}")" && [[ ! -d "${d}" ]]; then
-    read -r -p "Create directory, ${d} ? [y|N] " i
-    [[ ! "${i,,}" =~ ^y ]] && {
-      echo "Not making dir....."
-      return 0
-    }
-    mkdir -p "${d}" || {
-      echo "Error making dir...."
-      return 1
-    }
-  fi
-  if [[ ! "${*}" =~ ^(-n|--no-edit) ]]; then
-    "${EDITOR}" "${@: -1}"
-  fi
-}
-
 _alias() {
   # local com="${2%% *}"
   if [[ "${1,,}" =~ ^[-]?-c(heck)?$ ]]; then
@@ -305,10 +281,6 @@ min_of() {
 
 max_of() {
   find_one ">" "${@}"
-}
-
-ss_g() {
-  man nvim
 }
 
 show_help() {
@@ -408,19 +380,6 @@ addally() {
 
 mix_decompile() {
   mix decompile "${1}" --to expanded
-}
-
-open_st() {
-  st &
-  disown
-}
-
-termdown_mine() {
-  # shellcheck disable=SC2155
-  local f="${HOME}/.time/time_$(date +%s).txt"
-  termdown -o "${f}" --outfile-keep
-  sed -i '1d' "${f}"
-  echo "${f}"
 }
 
 test_quick() {

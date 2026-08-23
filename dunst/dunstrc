@@ -8,7 +8,7 @@
   # mouse_middle_click = do_action, close_current
   # transparency = 10
   always_run_script = true
-  background = "#00000077"
+  background = "#00000099"
   browser = /usr/bin/brave -new-tab
   class = Dunst
   corner_radius = 4
@@ -16,8 +16,8 @@
   font             = Hermit 9
   separator_height = 0
   format = "<span color='#999999'><b>%s</b></span>\n%b"
-  # frame_color = "#000000"
-  frame_width = 0
+  frame_color = "#555555"
+  frame_width = 1
   height = (20, 800)
   hide_duplicate_count = false # Hide the count of stacked notifications with the same content
   history_length = 20
@@ -60,27 +60,27 @@
 [category=".*"]
   category = ".*"
   # frame_color = "#000000"
-  format = "<span font='Hermit 10px' color='#999999'><b>%s</b></span>%b"
+  format = "<span font='Hermit 11px' color='#999999'><b>%s</b></span>\n%b"
 
 [category="success"]
   category = "success"
   foreground = "#AAAAAA"
   # frame_color = "#009900"
   timeout = 15
-  format = "<span font='Hermit 10px' color='#00FF00'><b>%s</b></span>%b"
+  format = "<span font='Hermit 11px' color='#00FF00'><b>%s</b></span>\n%b"
 
 [category="error"]
   category = "error"
   foreground = "#AAAAAA"
   # frame_color = "#FF0000"
   timeout = 0
-  format = "<span font='Hermit 10px' color='#FF0000'><b>%s</b></span>%b"
+  format = "<span font='Hermit 11px' color='#FF0000'><b>%s</b></span>\n%b"
 
 
 [bluetoothtoggle]
   appname = Ublue
   new_icon = "/$HOME/bin/Resources/Images/bluetooth.png"
-  format = "<span font='Hermit 10px' color='#AAAA00'><b>%s</b></span>%b"
+  format = "<span font='Hermit 11px' color='#AAAA00'><b>%s</b></span>\n%b"
 
 [Brave]
   appname = Brave
@@ -93,7 +93,7 @@
   appname = "i3-Mode"
   alignment = center
   # frame_color = "#AAAA00"
-  format = "<span font='Hermit 15px' color='#AAAA00'><b>%s</b></span>"
+  format = "<span font='Hermit 15px' color='#AAAA00'><b>%s</b></span>\n%b"
   timeout = 0
   frame_width = 2
 
