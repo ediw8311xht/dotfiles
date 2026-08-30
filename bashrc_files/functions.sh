@@ -341,24 +341,6 @@ in_array() {
 # -------------------------------------------------- #
 # -------------------------------------------------- #
 # -------------------------------------------------- #
-new_md_note() {
-  local notes_dir="${DESKTOP}/SCHOOL/NOTES/"
-  local file_name="${1}.md"
-  if ! [[ -d "${notes_dir}" ]] || ! cd "${notes_dir}"; then
-    echo "Error: Directory, '${notes_dir}' not found."
-  elif [[ -z "${1}" ]]; then
-    echo "Must provide argument for file name."
-  elif [[ -f "${file_name}" ]]; then
-    echo "That file already exists"
-  else
-    cp "$XDG_CONFIG_HOME/nvim/language_specific/templates/template_note.md" "${file_name}"
-    # +$ to open file at end
-    nv "${file_name}" +$
-    return 0
-  fi
-  return 1
-}
-
 addally() {
   if type "${1}" &>/dev/null; then
     echo "CONFLICTS WITH DEFINED COMMAND"

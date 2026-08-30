@@ -53,25 +53,23 @@ preview zip .zip application/zip {{
   unzip -l "${f}"
 }}
 
-preview ris .ris {{
-  head -1000 "${f}" | highlight --syntax="ris" --stdout --out-format="truecolor" -
-}}
-
-preview txt text/plain .txt {{
-  head -1000 "${f}" | pygmentize -f 'text'
-}}
-
 preview text_files text/* .el .lua .lisp .vim .js .ts .sql .asd .exs {{
   declare -A SYNTAX_TYPE=( [asd]="lisp" [asdf]="lisp" [sql]="sql" [exs]="elixir" )
   ext="${f##*.}"
-  if [[ "${ext}" = "${f}" ]] || [[ "${ext}" = "txt" ]] ; then
-    # preview txt
+  # printf "%$(((w/2)-${#m}))s" " "
+  echo -n $'\e[48;2;0;150;255m\e[38;2;0;0;0m'
+  printf "%-$((w+5))s\n" " ${m}" 
+  echo $'\e[0m'
+  if [[ "${ext}" = "txt" ]] ; then
     cat "${f}"
+  elif [[ "${ext}" = "ris" ]] ; then
+    head -1000 "${f}" | highlight --syntax="ris" --stdout --out-format="truecolor" -
   elif [[ -n "${SYNTAX_TYPE[${ext}]}" ]] ; then
     ksyntaxhighlighter6 --syntax "${SYNTAX_TYPE[${ext}]}" --no-ansi-background --output-format=ansi256 "${f}" 2>/dev/null
   else
-    ksyntaxhighlighter6 --no-ansi-background --output-format=ansi256 "${f}" 2>/dev/null \
-      || highlight --out-format="truecolor" --stdout "${f}"
+    ksyntaxhighlighter6 --syntax auto --no-ansi-background --output-format=ansi256 "${f}" 2>/dev/null \
+      || highlight --out-format="truecolor" -f --stdout "${f}" \
+      || head -1000 "${f}" | pygmentize
   fi
 }}
 
@@ -87,7 +85,7 @@ preview json .json application/json {{
   jq -C . "${f}" 2>/dev/null || highlight --out-format="truecolor" --stdout "${f}"
 }}
 
-# preview myjson application/json .json {{
+# preview myjson application/json .json {{{{{
 #   highlight --out-format="truecolor" --stdout "${f}" \
 #     || ksyntaxhighlighter6 --syntax "json" --no-ansi-background --output-format=ansi256 "${f}" 2>/dev/null
 # }}
@@ -147,4 +145,4 @@ preview json .json application/json {{
 #
 #   Setting subtype to '*' will make the preview above apply to any file
 #   which MIME type starts with text/.
-#-----------------------------------------------------------------------------
+#-----------------------------------------------------------------------------# }}}

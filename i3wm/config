@@ -15,9 +15,9 @@ bindsym $mod+Shift+Escape     exec i3-input -F 'border pixel %s' -l 2 -P 'Width:
 bindsym $mod+Shift+o          exec "sleep 0.5; xset dpms force off"
 # no confirm reload
 bindsym $mod+Shift+c          reload
-# reload
+# restart
 bindsym $mod+Shift+r          exec $HOME/bin/i3wm_config_check.sh --3
-# hard reload
+# hard restart
 bindsym $mod+Shift+Ctrl+r     exec --no-startup-id    "xrdb -override ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --3"
 bindsym                $mod+Escape [tiling] border pixel 1
 bindsym --release      $mod+Escape [tiling] border pixel 0
@@ -29,39 +29,38 @@ bindsym --whole-window button9         exec $SCRIPT_key_mouse -m "-0.5" "-0.3"
 # set $B1         exec " i3-msg 'border pixel 1' " ;
 # set $B2         exec " sleep 0.01; i3-msg '[tiling] border pixel 0' "
 #-------------------------------------------------Scripts-----------------|
-  set $balance_workspace       $HOME/.local/bin/i3_balance_workspace
   set $SCRIPT_bluetooth        $HOME/bin/ubluetoggle.sh
   set $SCRIPT_border           $HOME/bin/i3wm_change_border.sh
   set $SCRIPT_clipboard        $HOME/bin/add_to_clip.sh
   set $SCRIPT_dmenu            $HOME/bin/my_dmenu.sh
-  set $dmenu_search            $HOME/bin/dmenu_websearch.sh
   set $SCRIPT_joplin_start     $HOME/.local/bin/Joplin_start.sh
+  set $SCRIPT_key_mouse        $HOME/bin/SetKeys.sh
   set $SCRIPT_kitty_session    $HOME/bin/kitty_session_dmenu.sh
   set $SCRIPT_monitor          $HOME/bin/auto_monitor.sh
   set $SCRIPT_polybar          $HOME/bin/polybar_manipulate.sh
-  set $SCRIPT_key_mouse        $HOME/bin/SetKeys.sh
-  set $SCRIPT_wallpaper        $HOME/bin/feh_wallpaper.sh
-  set $SCRIPT_zathura          $HOME/bin/zathura_dbus_controller.sh
-  set $latex_screenshot        $HOME/bin/ocr_latex.sh
   set $SCRIPT_screenshot       $HOME/bin/clipboard_copy_image.sh
   set $SCRIPT_send_key         $HOME/bin/i3wm_send_keys_to_window.sh
-  set $mark_quickswitch        "QS"
-  set $note                    kitty_note
-  set $calculator              octave
-  set $EXCLUDE_FLOAT_POPUP     qutebrowser|kitty_term|kitty_note|emacs|Tor Browser|octave
-  set $title_format_default    "<span size='smaller' background='#000000' > %class </span> <span foreground='#AAAAAA' background='#000000BB' size='smaller'> %title </span>" 
-  set $title_format_only_title "<span foreground='#AAAAAA' background='#000000FF' size='smaller'> %title </span>" 
+  set $SCRIPT_wallpaper        $HOME/bin/feh_wallpaper.sh
+  set $SCRIPT_zathura          $HOME/bin/zathura_dbus_controller.sh
+  set $balance_workspace       $HOME/.local/bin/i3_balance_workspace
+  set $dmenu_search            $HOME/bin/dmenu_websearch.sh
+  set $latex_screenshot        $HOME/bin/ocr_latex.sh
   # set $active_title_format    "<span size='smaller' background='#005500' foreground='#000000'> %class </span> <span foreground='#00FF00' size='smaller'> %title </span>"
   # set $nsxiv_title_format     "<span size='smaller' background='#005500'> %class </span>"
-
-
   # set $SCRIPT_xmsg            $HOME/bin/xmsg_quick.sh
   #sticky toggle
-  set $SCRATCHPAD_DEFAULT floating enable, move scratchpad, scratchpad show, move position center
-  set $FLOATING_DEFAULT   floating enable, move position center
-  set $SCRATCHPAD_TOP     floating enable, move scratchpad, scratchpad show, resize set 100ppt 59ppt, move position 100ppt 0ppt
   # set $POPUP_DEFAULT      floating enable, 
 #-------------------------------------------------Set---------------------|
+  set $EXCLUDE_FLOAT_POPUP      qutebrowser|kitty_term|kitty_note|emacs|Tor Browser|octave
+  set $calculator               octave
+  set $mark_quickswitch         "QS"
+  set $note                     kitty_note
+  set $title_format_default     "<span size='smaller' background='#000000' > %class </span> <span foreground='#AAAAAA' background='#000000FF' size='smaller'> %title </span>" 
+  set $title_format_only_title  "<span foreground='#AAAAAA' background='#000000FF' size='smaller'> %title </span>" 
+  set $SCRATCHPAD_DEFAULT       floating enable, move scratchpad, scratchpad show, move position center
+  set $FLOATING_DEFAULT         floating enable, move position center
+  # set $SCRATCHPAD_TOP           scratchpad show, resize set 100ppt 59ppt, move position 100ppt 0ppt
+  # set $SCRATCHPAD_BOTTOM        scratchpad show, resize set 100ppt 59ppt, move position 100ppt 40ppt
   #|qutebrowser
   #-----------Size------------------|
     set $QUTEBROWSER_SIZE 80ppt 80ppt
@@ -72,16 +71,18 @@ bindsym --whole-window button9         exec $SCRIPT_key_mouse -m "-0.5" "-0.3"
   #---------------------------------|
   set $EXC    exec 	      --no-startup-id
   set $EXC_A  exec_always --no-startup-id
-  # --- set by border --| {{{
+  set $FOCUSE_TEXT  #999999
+  set $INACTI_TEXT  #0099FF
+  set $UNFOCU_TEXT  #999999
+  # ----set by border---| {{{
   set $B1 ;
   set $B2 ;
   set $_  ;
   set $-  #000000
   # --------------------| }}}
-  set $FOCUSE_TEXT  #999999
-  set $INACTI_TEXT  #0099FF
-  set $UNFOCU_TEXT  #999999
 #-------------------------------------------------Resources---------------|
+    set_from_resource $BRAVE_SCALE i3wm.BRAVE_SCALE 0.9
+    set_from_resource $BROWSER     i3wm.browser brave
   #-----Border-File------------------------------------|
     set_from_resource $BORDER_FILE i3wm.BORDER_FILE borders/border_flash.conf
   #-----Left-Monitor-----------------------------------|
@@ -97,8 +98,6 @@ bindsym --whole-window button9         exec $SCRIPT_key_mouse -m "-0.5" "-0.3"
     set_from_resource $BOT_GAPS    i3wm.BOT_GAPS 0
     set_from_resource $R_GAPS      i3wm.R_GAPS   0
     set_from_resource $L_GAPS      i3wm.L_GAPS   0
-    set_from_resource $BRAVE_SCALE i3wm.BRAVE_SCALE 0.9
-    set_from_resource $BROWSER     i3wm.browser brave
 #-------------------------------------------------------INCLUDE-----------|
   # border method
   include $BORDER_FILE
@@ -125,3 +124,4 @@ bindsym --whole-window button9         exec $SCRIPT_key_mouse -m "-0.5" "-0.3"
   $EXC    $SCRIPT_wallpaper "launch"
   # desktop bar
   $EXC_A  $SCRIPT_polybar "launch"
+  $EXC    conky
