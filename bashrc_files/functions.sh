@@ -148,7 +148,12 @@ rg_with_p() {
 }
 
 man_all_pages() {
-  $MANPAGER < <(MAN_KEEP_FORMATTING=1 man -a "${@}" 2>/dev/null)
+  local n
+  if n="$(MAN_KEEP_FORMATTING=1 man -a "${@}" 2>&1)" ; then
+    $MANPAGER <<< "${n}"
+  else
+    with_error "${n}"
+  fi
 }
 
 markdown_view_w3m() {
@@ -172,15 +177,16 @@ size_of_dir() {
 # time.
 fzf_cd() {
   local out_dir
-  if [[ "${1,,}" = -d ]] && [[ -d "${2}" ]]; then
-    { cd "${2}" && shift 2; } || return 1
-  fi
   local OPTIONS=(
     --preview="${LS_PREVIEW[*]:-ls} {}"
   )
 
+  if [[ "${1,,}" = -d ]] && [[ -d "${2}" ]]; then
+    { cd "${2}" && shift 2; } || return 1
+  fi
   out_dir="$(fd "${@}" -td | fzf "${OPTIONS[@]}")"
-  [[ -d "${out_dir}" ]] && cd "${out_dir}" || return 1
+  { [[ -d "${out_dir}" ]] && cd "${out_dir}"
+  } || return 1
 }
 
 fzf_edit() {

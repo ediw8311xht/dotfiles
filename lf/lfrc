@@ -5,6 +5,7 @@ set shell bash
 set shellopts '-eu'
 set ifs         "\n"
 
+# get option value %echo 
 set borderfmt       "\033[38;2;100;100;100m"
 set borderstyle     'roundbox'
 # set cursoractivefmt "\033[7m >> \033[0m "
@@ -34,6 +35,9 @@ set cleaner ctpvclear
 &ctpv -s $id
 &ctpvquit $id
 
+# ------------------------------ #
+# ---------- Commands ---------- #
+# ------------------------------ #
 cmd np &{{
   if   [[ "$lf_ratios" = "1:2:3" ]] ; then
     lf -remote "send ${id} set nopreview"
@@ -126,6 +130,9 @@ cmd CD ${{
 cmd CreateFile push -- [:!touch<space>]
 cmd ClipCWD &sed "s@${HOME}/@\$\{HOME\}/@"  <<< "${fx[*]}" | xclip -selection "clipboard" -i -r
 
+# ------------------------------ #
+# ---------- Mappings ---------- #
+# ------------------------------ #
 
 map  <gt>C  CD    Config
 map  <gt>D  CD    Downloads
