@@ -86,6 +86,8 @@
   appname = Brave
   urgency = normal
   # frame_color = "#999999"
+  format = "<span font='Hermit 11px' color='#999999'><b>%s</b></span>\n%b"
+  background = "#000000"
   foreground = "#DDDDDD"
   timeout = 15
 

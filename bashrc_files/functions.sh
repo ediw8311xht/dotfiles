@@ -456,6 +456,17 @@ ssh_correct() {
   ssh "${@}"
   export TERM="${old_term}"
 }
+
+list_pages() {
+  while read -r -d $'\0' f ; do
+    # echo "${f}"
+    local f="${f/#\.\//}"
+    printf "%s||%s\n" "${f}" "$(pdfinfo "${f}" | grep -Pio '^Pages:\s*\K[0-9,]+$')"
+  done < <(fd -tf -e pdf --max-depth 1 --print0 . "${@:-.}" ) \
+    | column --table --table-right 3 --separator '||'
+  # "${@:-.}"
+}
+
 # {{{ removed
 # fpend() {
 #     if [[ "$1" =~ ^-[dD](ate)? ]] ; then shift 1; local MDATE; MDATE="#$(date)"; fi

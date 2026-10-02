@@ -59,7 +59,7 @@ bindsym --whole-window button9         exec $SCRIPT_key_mouse -m "-0.5" "-0.3"
   set $mark_quickswitch         "QS"
   set $note                     kitty_note
   set $popup_term               kitty_term
-  set $title_format_default     "<span size='smaller' background='#000000' > %class </span> <span foreground='#AAAAAA' background='#000000FF' size='smaller'> %title </span>" 
+  set $title_format_default     "<span size='smaller' background='#000000' > %class </span> <span foreground='#000000' background='#999999FF' size='smaller'> %title </span>" 
   set $title_format_only_title  "<span foreground='#AAAAAA' background='#000000FF' size='smaller'> %title </span>" 
   # set $SCRATCHPAD_TOP           scratchpad show, resize set 100ppt 59ppt, move position 100ppt 0ppt
   # set $SCRATCHPAD_BOTTOM        scratchpad show, resize set 100ppt 59ppt, move position 100ppt 40ppt

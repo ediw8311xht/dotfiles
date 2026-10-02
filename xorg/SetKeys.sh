@@ -40,9 +40,24 @@ main() {
       return 1
     fi
   }
+  remove-xmodmap-if() {
+    local a
+    if a="$(xmodmap -pm | grep -Pio "${1}")" ; then
+      xmodmap -e "remove ${2:-"${a}"}"
+    else
+      return 0
+    fi
+  }
   set_key_mods() {
-    xmodmap -pm | grep -iq 'Mod1.*Alt_R' &&
-      xmodmap -e 'remove Mod1 = Alt_R'
+    # local a
+    # if a="$(xmodmap -pm | grep -iq 'Mod1.*Alt_R')"
+    #   xmodmap -e 'remove Mod1 = Alt_R'
+    # if a="$(xmodmap -pm | grep -Piqo 'lock[ \t]*[^ \t]')" ; then
+    #   xmodmap -e "${a}"
+    # fi
+    remove-xmodmap-if 'Mod1.*Alt_R' 'remove Mod1 = Alt_R'
+    remove-xmodmap-if '^lock[ \t]*[^ \t]+$'
+
     xmodmap -e 'remove Mod1 = Super_R'
     xmodmap -e 'remove Mod1 = Meta_R'
     xmodmap -e 'remove Mod4 = asciitilde'

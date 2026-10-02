@@ -2,86 +2,94 @@
 title: cool programs
 ---
 
-| command              | package                                                          | description                                            |
-|----------------------|------------------------------------------------------------------|--------------------------------------------------------|
-| `httpx`              | httpx                                                            | HTTP Client in `python`                                |
-| `httrack/webhttrack` | httrack                                                          | Download/Scrape Websites                               |
-| `hwinfo`             | hwinfo                                                           | Get hardware info                                      |
-| `kalker`             | kalker                                                           | Terminal Calculator (Press tab for quick symbol)       |
-| `nvtop`              | nvtop                                                            | GPU top                                                |
-| `powertop`           | powertop                                                         | Cool top                                               |
-| `pygmentize`         | python-pygments                                                  | Syntax highlight                                       |
-| `renamer`            | pipe-rename                                                      | Rename files/directories with editor                   |
-| `rnote`              | rnote                                                            | Simple drawing appli`cat`ion for notes/etc             |
-| `sigil`              | sigil                                                            | Ebook (Epub/PDF) Editor                                |
-| `task`               | taskwarrior                                                      | Tasks from the command line                            |
-| `tjournal`           | tjournal                                                         | Notes program from Terminal                            |
-| `xmllint`            | libxml2-utils                                                    | Use with `--html` option to validate HTML              |
-| `yazi`               | yazi                                                             | Terminal File Manager                                  |
-| `br`                 | broot                                                            | Fuzzy file editor and `cd`                             |
-| `qalc`               | qalculate                                                        | Terminal and gui calculator                            |
-| `skipp-xd`           | skippy-xd                                                        | Workspace previewer/switcher                           |
-| `yad`                | yad                                                              | Create GTK Windows/Dialogues                           |
-| `arbtt`              | arbtt                                                            | Time Tracking Software                                 |
-| `setzer`             | setzer                                                           | Latex Editor (written in `python`)                     |
-| `speedcrunch`        | speedcrunch                                                      | Calculator                                             |
-| `geogebra`           | geogebra                                                         | Graphing Calculator (best)                             |
-| `kitten`             | kitty                                                            | Cool stuff for `kitty` terminal                        |
-| `tlmgr`              | texlive-basic                                                    | TeX Live Manager, install packages stuff, Latex        |
-| `weasyprint`         | python-weasyprint                                                | Awesome: URL(s) / File(s) to pdf                       |
-| `qdbusviewer`        | qt5-tools                                                        | Cool GUI `dbus` viewer                                 |
-| `remmina`            | remmina                                                          | SSH/remote desktop                                     |
-| `hck`                | hck                                                              | `cut` with regex delimeter                             |
-| `ag`                 | the_silver_searcher                                              | Code searcher, like ack but faster                     |
-| `pandoc`             | pandoc                                                           | Convert/edit documents                                 |
-| `entr`               | entr                                                             | Run command on file change                             |
-| `doxygen`            | graphviz                                                         | `c++` to UML                                           |
-| `hpp2plantuml`       | [github link](https://github.com/thibaultmarin/hpp2plantuml.git) | `c++` to PlantUML                                      |
-| `gimagereader`       | gimagereader-qt                                                  | OCR GUI. Scrape text from Image/Document               |
-| `valgrind`           | valgrind                                                         | Memory debugging/leak detection                        |
-| `giac`               | giac                                                             | Math Calculator/Graph                                  |
-| `xcas`               | giac                                                             | User Interface for `giac` (Math Calculator)            |
-| `glade`              | glade                                                            | User Interface Designer                                |
-| `wkhtmltopdf`        | https://wkhtmltopdf.org/                                         | Download webpages as pdf                               |
-| `genius`             | genius                                                           | Advanced math calculator.                              |
-| `htmldoc`            | htmldoc                                                          | Convert HTML/Markdown to EPUB/PS/PDF                   |
-| `zoxide`             | zoxide                                                           | Better `cd` with ranking, `fzf`, etc.                  |
-| `gtk3-icon-browser`  | gtk3-demos                                                       | Visually browse icons on system                        |
-| `cantor`             | cantor                                                           | Front end for Sagemath, `qalculate`, etc.              |
-| `gendesk`            | gendesk                                                          | Generate desktop files                                 |
-| `zeal`               | zeal                                                             | Offline Documentation Viewer                           |
-| `anytype`            | anytype                                                          | Note taking                                            |
-| `yt`                 | yewtube (pip)                                                    | Terminal yewtube viewer                                |
-| `mcfly`              | mcfly                                                            | Search through Shell History                           |
-| `aria2c`             | aria2                                                            | Download Utility                                       |
-| `g`                  | g-ls                                                             | Awesome `ls` replacement                               |
-| `uv`                 | uv                                                               | `python` package managing, better than pip/pipx        |
-| `elvish`             | elvish                                                           | Cool shell/scripting language [link](https://elv.sh/)  |
-| `vhs`                | vhs                                                              | Record terminal gifs                                   |
-| `gnu-octave`         | octave                                                           | Cool Math/Plotting                                     |
-| `gitit`              | gitit                                                            | Cool personal wiki                                     |
-| `wikiman`            | wikiman                                                          | Cool wiki browser terminal                             |
-| `mandown`            | mandown                                                          | markdown to man page                                   |
-| `pdfgrep`            | pdfgrep                                                          | search in pdf file                                     |
-| `jnettop`            | jnettop                                                          | network visualize                                      |
-| `drawy`              | drawy                                                            | whiteboard / drawing / brainstorm                      |
-| `kupfer`             | kupfer                                                           | look up program or file by word                        |
-| `openboard`          | openboard                                                        | whiteboard / draw on screen                            |
-| `gloomberb`          | [github link](https://github.com/vincelwt/gloomberb)             | stock cli/desktop app                                  |
-|                      |                                                                  |                                                        |
-| utilities            |                                                                  |                                                        |
-| `bat`                | bat                                                              | `cat` clone with Syntax Highlighting and Pager support |
-| `lsd`                | lsd                                                              | Modern `ls` with extra features                        |
-| `ls++`               | ls++                                                             | Colorized `ls` on steroids                             |
-| `sad`                | sad                                                              | Space age `sed`                                        |
-| `sd`                 | sd                                                               | Find and replace                                       |
-| `handler-regex`      | handler-regex                                                    | Replaces xdg-uti`ls`                                   |
-|                      |                                                                  |                                                        |
-| lisp stuff           |                                                                  |                                                        |
-| `dunesh`             | dunesh                                                           | cool shell `lisp`                                      |
-| `icl`                | icl                                                              | very cool improvements to `lisp` repl (for `sbcl`)     |
+| command              | description                                           | package                                                     |
+|----------------------|-------------------------------------------------------|-------------------------------------------------------------|
+| `httpx`              | HTTP Client in `python`                               | httpx                                                       |
+| `httrack/webhttrack` | Download/Scrape Websites                              | httrack                                                     |
+| `hwinfo`             | Get hardware info                                     | hwinfo                                                      |
+| `nvtop`              | GPU top                                               | nvtop                                                       |
+| `powertop`           | Cool top                                              | powertop                                                    |
+| `pygmentize`         | Syntax highlight                                      | python-pygments                                             |
+| `renamer`            | Rename files/directories with editor                  | pipe-rename                                                 |
+| `rnote`              | Simple drawing appli`cat`ion for notes/etc            | rnote                                                       |
+| `sigil`              | Ebook (Epub/PDF) Editor                               | sigil                                                       |
+| `task`               | Tasks from the command line                           | taskwarrior                                                 |
+| `tjournal`           | Notes program from Terminal                           | tjournal                                                    |
+| `xmllint`            | Use with `--html` option to validate HTML             | libxml2-utils                                               |
+| `yazi`               | Terminal File Manager                                 | yazi                                                        |
+| `br`                 | Fuzzy file editor and `cd`                            | broot                                                       |
+| `skipp-xd`           | Workspace previewer/switcher                          | skippy-xd                                                   |
+| `yad`                | Create GTK Windows/Dialogues                          | yad                                                         |
+| `arbtt`              | Time Tracking Software                                | arbtt                                                       |
+| `setzer`             | Latex Editor (written in `python`)                    | setzer                                                      |
+| `kitten`             | Cool stuff for `kitty` terminal                       | kitty                                                       |
+| `tlmgr`              | TeX Live Manager, install packages stuff, Latex       | texlive-basic                                               |
+| `weasyprint`         | Awesome: URL(s) / File(s) to pdf                      | python-weasyprint                                           |
+| `qdbusviewer`        | Cool GUI `dbus` viewer                                | qt5-tools                                                   |
+| `remmina`            | SSH/remote desktop                                    | remmina                                                     |
+| `hck`                | `cut` with regex delimeter                            | hck                                                         |
+| `ag`                 | Code searcher, like ack but faster                    | the_silver_searcher                                         |
+| `pandoc`             | Convert/edit documents                                | pandoc                                                      |
+| `entr`               | Run command on file change                            | entr                                                        |
+| `doxygen`            | `c++` to UML                                          | graphviz                                                    |
+| `hpp2plantuml`       | `c++` to PlantUML                                     | [github](https://github.com/thibaultmarin/hpp2plantuml.git) |
+| `gimagereader`       | OCR GUI. Scrape text from Image/Document              | gimagereader-qt                                             |
+| `valgrind`           | Memory debugging/leak detection                       | valgrind                                                    |
+| `glade`              | User Interface Designer                               | glade                                                       |
+| `wkhtmltopdf`        | Download webpages as pdf                              | [link](https://wkhtmltopdf.org/)                            |
+| `htmldoc`            | Convert HTML/Markdown to EPUB/PS/PDF                  | htmldoc                                                     |
+| `zoxide`             | Better `cd` with ranking, `fzf`, etc.                 | zoxide                                                      |
+| `gtk3-icon-browser`  | Visually browse icons on system                       | gtk3-demos                                                  |
+| `gendesk`            | Generate desktop files                                | gendesk                                                     |
+| `zeal`               | Offline Documentation Viewer                          | zeal                                                        |
+| `anytype`            | Note taking                                           | anytype                                                     |
+| `yt`                 | Terminal yewtube viewer                               | yewtube (pip)                                               |
+| `mcfly`              | Search through Shell History                          | mcfly                                                       |
+| `aria2c`             | Download Utility                                      | aria2                                                       |
+| `g`                  | Awesome `ls` replacement                              | g-ls                                                        |
+| `uv`                 | `python` package managing, better than pip/pipx       | uv                                                          |
+| `elvish`             | Cool shell/scripting language [link](https://elv.sh/) | elvish                                                      |
+| `vhs`                | Record terminal gifs                                  | vhs                                                         |
+| `gitit`              | Cool personal wiki                                    | gitit                                                       |
+| `wikiman`            | Cool wiki browser terminal                            | wikiman                                                     |
+| `mandown`            | markdown to man page                                  | mandown                                                     |
+| `pdfgrep`            | search in pdf file                                    | pdfgrep                                                     |
+| `jnettop`            | network visualize                                     | jnettop                                                     |
+| `drawy`              | whiteboard / drawing / brainstorm                     | drawy                                                       |
+| `kupfer`             | look up program or file by word                       | kupfer                                                      |
+| `openboard`          | whiteboard / draw on screen                           | openboard                                                   |
+| `gloomberb`          | stock cli/desktop app                                 | [github link](https://github.com/vincelwt/gloomberb)        |
+| `fx`                 | json viewer                                           | fx                                                          |
+| `jq`                 | json parser/formatter/getter                          | jq                                                          |
+| `gitu`               | terminal git client                                   | gitu                                                        |
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| math          | description                                      | package     |
+|---------------|--------------------------------------------------|-------------|
+| `gnu-octave`  | Cool Math/Plotting                               | octave      |
+| `qalc`        | Terminal and gui calculator                      | qalculate   |
+| `giac`        | Math Calculator/Graph                            | giac        |
+| `xcas`        | User Interface for `giac` (Math Calculator)      | giac        |
+| `genius`      | Advanced math calculator.                        | genius      |
+| `cantor`      | Front end for Sagemath, `qalculate`, etc.        | cantor      |
+| `speedcrunch` | Calculator                                       | speedcrunch |
+| `geogebra`    | Graphing Calculator (best)                       | geogebra    |
+| `kalker`      | Terminal Calculator (Press tab for quick symbol) | kalker      |
+
+| utilities       | description                                            | package       |
+|-----------------|--------------------------------------------------------|---------------|
+| `bat`           | `cat` clone with Syntax Highlighting and Pager support | bat           |
+| `lsd`           | Modern `ls` with extra features                        | lsd           |
+| `ls++`          | Colorized `ls` on steroids                             | ls++          |
+| `sad`           | Space age `sed`                                        | sad           |
+| `sd`            | Find and replace                                       | sd            |
+| `handler-regex` | Replaces xdg-uti`ls`                                   | handler-regex |
+
+| lisp stuff |        |                                                    |
+|------------|--------|----------------------------------------------------|
+| `dunesh`   | dunesh | cool shell `lisp`                                  |
+| `icl`      | icl    | very cool improvements to `lisp` repl (for `sbcl`) |
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Other
 
