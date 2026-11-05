@@ -125,6 +125,15 @@ open_mpv() {
 
 alias_conflict() {
   local cvm wcl
+  if [[ "${1}" =~ ^[-][-]?(print|search)$ ]] ; then
+    shift 1
+    alias -p |
+      sed -E -e "s/^alias[ ]*([^= ]*)[=](['\"])[ ]*(.*)\2/\1\t\2\3\2/g" |
+      column -s $'\t' -t |
+      shellharden-highlight |
+      rg --pcre2 -i --no-filename "${@:-.}"
+    return 0
+  fi
   cvm="$(compgen -c)"
   while read -r -d$'\n' i; do
     wcl="$(grep -c -x "${i}" <<<"${cvm}")"
@@ -136,15 +145,18 @@ alias_conflict() {
 }
 
 bash_history_grab() {
-  grep -Pi --color="always" "${1}" "${HISTFILE}" | tail -n "${2:-50}"
+  grep -Pi --color="always" "${1}" "${HISTFILE}" |
+    tail -n "${2:-50}"
 }
 
 stream_ytdl_mpv() {
-  yt-dlp "${1}" -f "bestvideo[height<=?1080]+bestaudio/best" -o - | mpv --input-ipc-server=/tmp/mpvsocket -
+  yt-dlp "${1}" -f "bestvideo[height<=?1080]+bestaudio/best" -o - |
+    mpv --input-ipc-server=/tmp/mpvsocket -
 }
 
-rg_with_p() {
-  rg "${@}" | "${PAGER}"
+rg_with_pager() {
+  rg "${@}" |
+    "${PAGER}"
 }
 
 man_all_pages() {
@@ -289,11 +301,16 @@ max_of() {
   find_one ">" "${@}"
 }
 
+shellharden-highlight() { shellharden --syntax ''; }
+
+# nice little function I wrote to show info for aliases/functions/files/builtins
+# one day will update to correctly call -h --help option if it exists for a function/command
 show_help() {
   local command="${1}"
   local type
   show_help_file() {
     local fullpath="$(which "${command}")"
+    # ensure not binary before outputting file to screen
     if ! file -b --mime-encoding "${fullpath}" | grep -qi 'binary'; then
       cat "${fullpath}"
     else
@@ -310,10 +327,14 @@ show_help() {
   # shellharden takes input from stdin if ended with ''
   alias)
     alias "${command}" |
-      sed -E -e 's/^[ ]*alias[^=]*[=].[ ]*(.*).$/\1/' -e 's/[ ][ ]+/ /g'
+      sed -E -e 's/^[ ]*alias[^=]*[=].[ ]*(.*).$/\1/' -e 's/[ ][ ]+/ /g' |
+      shellharden-highlight |
+      sed 's/^/    /'
     ;;
   function)
-    declare -f "${command}"
+    declare -f "${command}" |
+    shellharden-highlight |
+    sed 's/^/    /'
     ;;
   builtin)
     help "${command}"
@@ -325,7 +346,7 @@ show_help() {
   *)
     echo "no clue"
     ;;
-  esac | shellharden --syntax '' | sed 's/^/    /'
+  esac
   echo ""
 }
 

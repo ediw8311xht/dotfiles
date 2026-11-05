@@ -299,11 +299,11 @@ i3wm.BRAVE_SCALE: 0.88
 
 
 !---------------NSXIV---------------!
-Nsxiv.window.background: #000000
-*.window.foreground: #AAAAAA
-*.bar.background:    #0077DD
-*.bar.foreground:    #000000
-*.bar.font: IosevkaTerm:style=Medium:pixelsize=12:antialias=true:autohint=true
+Nsxiv.window.foreground: #AAAAAA
+Nsxiv.window.background: #111111
+Nsxiv.bar.background:    #0044CC
+Nsxiv.bar.foreground:    #000000
+Nsxiv.bar.font: IosevkaTerm:style=Medium:pixelsize=12:antialias=true:autohint=true
 
 i3wm.other_monitor_1: HDMI-2
 i3wm.other_monitor_1_resx: 1920

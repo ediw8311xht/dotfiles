@@ -41,9 +41,8 @@ main() {
     fi
   }
   remove-xmodmap-if() {
-    local a
-    if a="$(xmodmap -pm | grep -Pio "${1}")" ; then
-      xmodmap -e "remove ${2:-"${a}"}"
+    if xmodmap -pm | grep -qPi "^${1}\W.*\W${2}(\W|$)" ; then
+      xmodmap -e "remove ${1} = ${2}"
     else
       return 0
     fi
@@ -55,8 +54,8 @@ main() {
     # if a="$(xmodmap -pm | grep -Piqo 'lock[ \t]*[^ \t]')" ; then
     #   xmodmap -e "${a}"
     # fi
-    remove-xmodmap-if 'Mod1.*Alt_R' 'remove Mod1 = Alt_R'
-    remove-xmodmap-if '^lock[ \t]*[^ \t]+$'
+    remove-xmodmap-if 'Mod1' 'Alt_R'
+    # remove-xmodmap-if 'lock' 'Escape'
 
     xmodmap -e 'remove Mod1 = Super_R'
     xmodmap -e 'remove Mod1 = Meta_R'

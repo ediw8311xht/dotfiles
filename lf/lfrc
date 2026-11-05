@@ -3,25 +3,29 @@
 # set period 1
 set shell bash
 set shellopts '-eu'
-set ifs         "\n"
+set ifs "\n"
 
 # get option value %echo 
-set borderfmt       "\033[38;2;100;100;100m"
-set borderstyle     'roundbox'
 # set cursoractivefmt "\033[7m >> \033[0m "
-set cursorparentfmt "\033[02;49m"
-set filtermethod    regex
-set info            size:time
-set promptfmt       "\033[0;34m %f %F \033[38;2;255;48;48m %F \033[0m %S \033[0;34;7m %d "
-set ratios          2:4:4
-set scrolloff       5
-set sortby          natural
+set borderfmt        "\033[38;2;100;100;100m"
+set borderstyle      'roundbox'
+set cursorpreviewfmt "\033[02m"
+set cursorparentfmt  "\033[02;49m"
+set filtermethod     regex
+set icons            false
+set info             size:time
+set promptfmt        "\033[0;34m %f %F \033[38;2;255;48;48m %F \033[0m %S \033[0;34;7m %d "
+set ratios           2:4:4
+set scrolloff        5
+set sortby           natural
+set timefmt          "(1/2/2006) Mon 3:04pm"
+#set timefmt          'Mon Jan _2 15:04:05 2006'
+
 
 set autoquit
 set dircounts
 set dirfirst
 set drawbox
-set icons           false
 set ignorecase
 set incfilter
 set mouse

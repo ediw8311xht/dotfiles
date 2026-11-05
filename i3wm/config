@@ -19,8 +19,8 @@ bindsym $mod+Shift+c          reload
 bindsym $mod+Shift+r          exec $HOME/bin/i3wm_config_check.sh --3
 # hard restart
 bindsym $mod+Shift+Ctrl+r     exec --no-startup-id    "xrdb -override ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --3"
-bindsym                $mod+Escape [tiling] border pixel 1
-bindsym --release      $mod+Escape [tiling] border pixel 0
+bindsym                $mod+Escape border pixel 4
+bindsym --release      $mod+Escape border pixel 0
 bindsym --whole-window $mod+button8    exec screengrab
 bindsym --whole-window button8         exec $SCRIPT_screenshot --shot
 bindsym --whole-window button9         exec $SCRIPT_key_mouse -m "-0.5" "-0.3"
@@ -55,8 +55,8 @@ bindsym --whole-window button9         exec $SCRIPT_key_mouse -m "-0.5" "-0.3"
   set $EXCLUDE_FLOAT_POPUP      qutebrowser|kitty_term|kitty_note|emacs|Tor Browser|octave
   set $FLOATING_DEFAULT         floating enable, move position center
   set $SCRATCHPAD_DEFAULT       floating enable, move scratchpad, scratchpad show, move position center
+  set $MARK_QUICKSWITCH         QS
   set $calculator               octave
-  set $mark_quickswitch         "QS"
   set $note                     kitty_note
   set $popup_term               kitty_term
   set $title_format_default     "<span size='smaller' background='#000000' > %class </span> <span foreground='#000000' background='#999999FF' size='smaller'> %title </span>" 
@@ -108,13 +108,17 @@ bindsym --whole-window button9         exec $SCRIPT_key_mouse -m "-0.5" "-0.3"
   include windows.conf
 #-------------------------------------------------------SETTINGS----------|
   smart_gaps                    off            
-  font                          pango:Hermit 11
+  font                          pango:AdwaitaSans 12
   focus_on_window_activation    focus
   focus_follows_mouse           yes            
+  # - `mod+ctrl+left_mouse`  to move window
+  # - `mod+ctrl+right_mouse` to resize window
   floating_modifier             $mod+Ctrl      
   mouse_warping                 output
   floating_maximum_size         2000 x 2000
   workspace_auto_back_and_forth no             
+  focus_wrapping                workspace
+  force_focus_wrapping          yes
   show_marks                    yes            
   title_align left
 #---------------------------------------------------------EXECS-----------|

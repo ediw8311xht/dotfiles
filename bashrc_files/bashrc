@@ -24,7 +24,6 @@ PS2=''
 
 #export PROMPT_COMMAND='history -a'
 # source "${HOME}/.config/broot/launcher/bash/br"
-source "${HOME}/bashrc_files/exports.sh"
 source "${HOME}/bashrc_files/functions.sh"
 source "${HOME}/bashrc_files/aliases.sh"
 mps 3 'r' #setting PS1
@@ -35,8 +34,6 @@ eval "$(zoxide init bash)"
 eval "$(dircolors -b ~/.dircolors)"
 eval "$(tv init bash)"
 # eval "$(pyenv init - bash)"
-
-
 
 # ---------- COMMENTED OUT ----------#
 #[[ ${BLE_VERSION-} ]] && ble-attach
@@ -56,21 +53,22 @@ eval "$(tv init bash)"
 #argc_scripts=( $(ls -p -1 "$ARGC_COMPLETIONS_ROOT/completions/linux" "$ARGC_COMPLETIONS_ROOT/completions" | sed -n 's/\.sh$//p') )
 #source <(argc --argc-completions bash "${argc_scripts[@]}")
 
-
 activate_conda() {
-  if __conda_setup="$('/$HOME/.local/share/miniconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)" ; then
-      eval "$__conda_setup"
+  if __conda_setup="$('/$HOME/.local/share/miniconda/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"; then
+    eval "$__conda_setup"
   else
-      if [ -f "/$HOME/.local/share/miniconda/etc/profile.d/conda.sh" ]; then
-          . "/$HOME/.local/share/miniconda/etc/profile.d/conda.sh"
-      else
-          export PATH="/$HOME/.local/share/miniconda/bin:$PATH"
-      fi
+    if [ -f "/$HOME/.local/share/miniconda/etc/profile.d/conda.sh" ]; then
+      . "/$HOME/.local/share/miniconda/etc/profile.d/conda.sh"
+    else
+      export PATH="/$HOME/.local/share/miniconda/bin:$PATH"
+    fi
   fi
   unset __conda_setup
 }
 
-if [[ "${MY_CONDA}" -eq 1 ]] ; then
+if [[ "${MY_CONDA}" -eq 1 ]]; then
   activate_conda
 fi
+
+# source "${HOME}/bashrc_files/exports.sh" # to remove (after restart) 2026_11_01
 

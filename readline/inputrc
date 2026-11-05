@@ -1,7 +1,8 @@
 
-################################################################################
+#-------------------------------------------------------------------------------
 # do not bell on tab-completion
 set bell-style                none
+set colored-completion-prefix on
 set colored-completion-prefix on
 set colored-stats             on
 set completion-display-width  80
@@ -18,9 +19,9 @@ set meta-flag                 on
 set output-meta               on
 set page-completions          off
 set show-all-if-ambiguous     on
+set show-mode-in-prompt       on
 set visible-stats             on
 
-set show-mode-in-prompt on
 # show mode string
 $if term=linux
 	set vi-ins-mode-string \1\e[?0c\2
@@ -29,43 +30,56 @@ $else
 	set vi-ins-mode-string \1\e[6 q\2
 	set vi-cmd-mode-string \1\e[2 q\2
 $endif
-set colored-completion-prefix on
+
+#----------vi-mode----------
 $if mode=vi
+  #--------------------
   set editing-mode vi
-    "\C-h": backward-kill-word
-    "\C-a": beginning-of-line
-    "\C-e": end-of-line
-    # "\C-w": forward-word 
-    # Can't bind since special
-    "\C-f": forward-char
-    "\C-b": backward-char
-    "\C-p": previous-history
-    "\C-n": next-history
-    "\C-l": clear-screen
+    "\C-a":      beginning-of-line
+    "\C-b":      backward-char
+    "\C-e":      end-of-line
+    "\C-f":      forward-char
     "\C-g":      '\eddicd -\015'  # goto previous dir
-    "\e[103;6u": '\eddicd ..\015' # go back dir ("\e[103;6u" is Ctrl-Shift-g
+    "\C-h":      backward-kill-word
+    "\C-l":      clear-screen
+    "\C-n":      next-history
+    "\C-p":      previous-history
+    "\e\C-w":    forward-word
+
+    "\C-x\C-x":  re-read-init-file
+    "\e[103;6u": '\eddicd ..\015' # <C-S-g> go back dir ("\e[103;6u" is Ctrl-Shift-g
+    "\e[119;6u": backward-word    # <C-S-w>
+    "\e[107;6u": kill-line        # <C-S-k>
+    # ??-- why did i put this here --??
+    #   Can't bind since special
+    #   "\C-w": forward-word
+    # ??--                         --??
+  #--------------------
   set keymap vi-command
+    "G":         end-of-history
+    "gg":        beginning-of-history
+
     "\C-g":      'ddicd -\015'    # goto previous dir
+    "\C-l":      clear-screen
+    "\C-r":      vi-redo
+    "\C-x\C-x":  re-read-init-file
     "\e[103;6u": '\eddicd ..\015' # go back dir ("\e[103;6u" is Ctrl-Shift-g
-    "G":        end-of-history
-    "gg":       beginning-of-history
+
     # override with \e<key>
-    "\eN":      non-incremental-forward-search-history-again
-    "\en":      non-incremental-reverse-search-history-again
-    "\C-l":     clear-screen
-    "\C-r": vi-redo
-    # "\C-x\C-x": re-read-init-file
+    "\en":       non-incremental-reverse-search-history-again
+    "\eN":       non-incremental-forward-search-history-again
     # "gf": "f'"
     # "Z": history-expand-line
     # "ct": "t self-insert\e\e"
 $endif
-
+#-------------------------------------------------------------------------------
 # Get key sequence:
 # 1. (try)
 #   `showkey -a`
 # 2. (try) - https://unix.stackexchange.com/questions/264791/ctrl-backspace-and-ctrl-delete-in-bash
 #   Type in terminal `ctrl-v + [key]`
-################################################################################
+#-------------------------------------------------------------------------------
+# fuck emac's bindings
 $if mode=emacs
 # for linux console and RH/Debian xterm
   set keymap emacs

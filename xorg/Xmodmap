@@ -2,6 +2,7 @@
 ! remove Mod1 = Super_R
 ! remove Mod1 = Meta_R
 clear Mod1
+clear lock
 remove Mod4 = asciitilde
 add Mod1 = Alt_L
 keycode   8 =
