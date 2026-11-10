@@ -21,6 +21,20 @@ md_to_html() {
   pandoc -f markdown -t html -o /dev/stdout <<<"${md}" | xclip -selection "clipboard"
 }
 
+open_file_from_location() {
+  local f="$(which "${1}")"
+  if [[ -f "${f}" ]] ; then
+    if ! is_elf "${f}" ; then
+      nvim "${f}"
+    else
+      xdg-open "${f}"
+    fi
+  else
+    echo "file: '${f}' not found" >&2
+    return 1
+  fi
+}
+
 list_files_pac() {
   if yay -Qi "${1}" &>/dev/null; then
     yay -Ql "${1}"

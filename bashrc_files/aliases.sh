@@ -33,84 +33,102 @@ alias d='\df -h | column_color'
 alias h='cd "${HOME}"'
 alias l='cd_from_lf' # my lf, so it cd's shell after exiting lf
 alias ee='eza -l --icon=never'
-_alias B              'bat'
-_alias F              'readlink'  '-f'
-_alias G              'grep'      '-Pi'
-_alias P              'pacman'    '--color="auto"'
-_alias S              'systemctl' '--no-pager'
-_alias U              'systemctl' '--user' '--no-pager'
-_alias V              'viu'       # view fitted image in terminal
-_alias Y              'yay'       '--color="auto"'
-_alias i              'exiftool'
-_alias n              'nvim'      '+":Telescope oldfiles"'
-_alias p              'ps'        'ax | grep -Pi'
-_alias r              'rg'        '--pcre2 -i'
-_alias s              'sad'       '--pager never'
-_alias t              'trash-put'
-_alias v              'kitty'     'icat' # view image in terminal
-_alias y              'rlwrap'    'sbcl'
-_alias gl             'glow'
-_alias gse            'plocate'   '-i'  '--database="/var/lib/plocate/plocate.db" --regex'
-_alias ii             'icl' # very cool lisp repl for terminal or use viu
-_alias key            'showkey'   ' -k'
-_alias ll             'lsd'       '-l'  '--group-directories-first' '--icon="never"' '-rt' '--permission="octal"' #  --date=+" [ %_H:%M:%S | %a | %D ]" --blocks="permission,user,date,name"'
-_alias ll-a           'lsd'       '-la' '--group-directories-first' '--icon="never"' '-rt' '--permission="octal"' '--date=+" [ %_H:%M:%S | %a | %D ]"' '--blocks="permission,user,date,name"'
-_alias ll-g           'g'        '-la' '--time-style=+"%-2m  %-2d | %Y"' '--dir-first' '--table' '--table-style=unicode'
-_alias ll-h           'lsd'       '-lda' '.*'
-_alias ll-mime        'g'         '--mime'
-_alias man_search_for 'man'       '-f'
-_alias man_search_in  'man'       '-K --regex'
-_alias nsx            'nsxiv'     ' -a -0'
-_alias nv             'nvim'
-_alias nv-s           'nvim'      '+"AutoSession search"'
-_alias nvc            'nvim'      '--clean'
-_alias o-rg           'source'    '"${HOME}/bin/rg_fzf.sh"'
-_alias o-xdg          'xdg-open'  '"$(fzf --preview="ctpv {}")"'
-_alias pac_tree       'pactree' '--color' # Pacman Dependencies
-_alias pacdep         'pacman'  '-T'      # Dependencies
-_alias pacf           'pacman'  '-Fl'
-_alias pacfrom        'pacman'  '-Qo'
-_alias paci           'pacman'  '-Si'     # Package Info
-_alias pacil          'pacman'  '-Qi'
-_alias paclocal       'pacman'  '-Qm'
-_alias pacneed        'pacman'  '-Qet'
-_alias pacprog        'pacman'  '-F'
-_alias pacse          'pacman'  '-Ss'     # Search
-_alias pacsel         'pacman'  '-Qs'
-_alias pgr            "${PAGER}"
-_alias py             'python'
-_alias pyi            'ipython'
-_alias ren            'renamer'
-_alias se             'plocate' '-i' '--database="${LOCATE_DATABASE}" --regex'
-_alias sec            'plocate'      '--database="${LOCATE_DATABASE}" --regex'
-_alias szofall        'du' '-ahc  --time --max-depth=1'
-_alias tracenet       'strace'
-_alias tres           'ps' ' -eHo euser,ruser,suser,fuser,f,comm,label'
-_alias tret           'ps' ' -ejH'
-_alias yd             'yt-dlp'
-_alias yda            'yt-dlp' '--extract-audio --audio-format "mp3" --output "${AUDIO:-"${HOME}/Audio"}/ytdl/%(title)s%(ext)s"'
-_alias ydt            'yt-dlp' '--ignore-config --skip-download --write-subs --write-auto-subs --sub-lang en --output "$VIDEOS/transcripts/%(title)s%(ext)s"'
+_alias B              bat
+_alias F              readlink  '-f'
+_alias G              grep      '-Pi'
+_alias P              pacman    '--color="auto"'
+_alias S              systemctl '--no-pager'
+_alias U              systemctl '--user' '--no-pager'
+_alias V              viu       # view fitted image in terminal
+_alias Y              yay       '--color="auto"'
+_alias i              exiftool
+_alias n              nvim      '+":Telescope oldfiles"'
+_alias p              ps        'ax | grep -Pi'
+_alias r              rg        '--pcre2 -i'
+_alias s              sad       '--pager never'
+_alias t              trash-put
+_alias v              kitty     'icat' # view image in terminal
+_alias y              rlwrap    'sbcl'
+_alias gl             glow
+_alias gse            plocate   '-i'  '--database="/var/lib/plocate/plocate.db" --regex'
+_alias ii             icl # very cool lisp repl for terminal or use viu
+_alias key            showkey   ' -k'
+_alias ll             lsd       '-l'  '--group-directories-first' '--icon="never"' '-rt' '--permission="octal"' #  --date=+" [ %_H:%M:%S | %a | %D ]" --blocks="permission,user,date,name"'
+_alias ll-a           lsd       '-la' '--group-directories-first' '--icon="never"' '-rt' '--permission="octal"' '--date=+" [ %_H:%M:%S | %a | %D ]"' '--blocks="permission,user,date,name"'
+_alias ll-g           g         '-la' '--time-style=+"%-2m  %-2d | %Y"' '--dir-first' '--table' '--table-style=unicode'
+_alias ll-h           lsd       '-lda' '.*'
+_alias ll-mime        g         '--mime'
+_alias man_search_for man       '-f'
+_alias man_search_in  man       '-K --regex'
+_alias nsx            nsxiv     ' -a -0'
+## nvim
+_alias nv             nvim
+_alias nv-s           nvim      '+"AutoSession search"'
+_alias nv-c           nvim      '--clean'
+## cd
+_alias c-clone        fzf_cd    '-d' '"${CLONED}"'          '-u' '-d1'
+_alias c-code         fzf_cd    '-d' '"${CODING}"'          '-u' '-d4'
+_alias c-conf         fzf_cd    '-d' '"${XDG_CONFIG_HOME}"' '-u' '-d1'
+_alias c-inf          fzf_cd    '-d' '"${MY_INFORMATION}"'  '-u' '-d1'
+_alias desk           cd        '"${DESKTOP}"'
+_alias docs           cd        '"${DOCUMENTS}"'
+_alias down           cd        '"${DOWNLOADS}"'
+## pacman
+_alias pac_tree       pactree   '--color' # pacman dependencies
+_alias pacdep         pacman    '-T'      # dependencies
+_alias pacf           pacman    '-Fl'     #
+_alias pacfrom        pacman    '-Qo'     # what package is a file from
+_alias paci           pacman    '-Si'     # package info
+_alias pacil          pacman    '-Qi'     # local package info
+_alias paclocal       pacman    '-Qm'     #
+_alias pacneed        pacman    '-Qet'    #
+_alias pacprog        pacman    '-F'      #
+_alias pacse          pacman    '-Ss'     # search
+_alias pacsel         pacman    '-Qs'     # search local
+## python
+_alias py             python
+_alias pyi            ipython
+##
+_alias note           tjournal
+_alias o-rg           source    '"${HOME}/bin/rg_fzf.sh"'
+_alias o-xdg          xdg-open  '"$(fzf --preview="ctpv {}")"'
+_alias pgr            '${PAGER}'
+_alias ren            renamer
+_alias se             plocate   '-i' '--database="${LOCATE_DATABASE}" --regex'
+_alias sec            plocate        '--database="${LOCATE_DATABASE}" --regex'
+_alias szofall        du        '-ahc  --time --max-depth=1'
+_alias tracenet       strace
+_alias tres           ps        '-eHo euser,ruser,suser,fuser,f,comm,label'
+_alias tret           ps        '-ejH'
+_alias yd             yt-dlp
+_alias yda            yt-dlp    '--extract-audio --audio-format "mp3" --output "${AUDIO:-"${HOME}/Audio"}/ytdl/%(title)s%(ext)s"'
+_alias ydt            yt-dlp    '--ignore-config --skip-download --write-subs --write-auto-subs --sub-lang en --output "$VIDEOS/transcripts/%(title)s%(ext)s"'
+## rg/grep
+alias r-p='          rg_with_pager'
+alias s-i3='         fd . -tf "${XDG_CONFIG_HOME}/i3/"   -X rg -H -u --color="always" -Pi'
+alias s-nv='         fd . -tf "${XDG_CONFIG_HOME}/nvim/" -X rg -H -u --color="always" -Pi'
+## alias conflict
 alias ac-full='      alias_conflict --search --full'
 alias ac-np='        alias -p | sed "s/^alias[ ]*\([^=]*\)[=][^ ][ ]*/\1\t/g" | column -t --separator '"$'\t'"
 alias ac-part='      alias_conflict --search'
 alias ac-se='        alias_conflict --search'
 alias ac='           compgen -c  | grep -x'
-alias c-clone='      fzf_cd -d "${CLONED}"          -u -d1'
-alias c-code='       fzf_cd -d "${CODING}"          -u -d4'
-alias c-conf='       fzf_cd -d "${XDG_CONFIG_HOME}" -u -d1'
-alias c-inf='        fzf_cd -d "${MY_INFORMATION}"  -u -d1'
-alias clipboard='    xclip -selection clipboard'
-alias clog_builder=' sbcl --eval "(ql:quickload :swank)" --eval "(asdf:load-system :clog/tools)" --eval "(clog-tools:clog-builder :port 0 :app t)"'
+## task
+alias t-cal="        task calendar"
+alias t-l='          task list'
+alias t-proj="       task projects"
+alias tw='           taskwarrior-tui'
+## copy
+alias clip='         xclip -selection clipboard'
 alias copy-cwd='     printf "%s" "${PWD}" | xclip -selection "clipboard"'
 alias copy-file='    xclip -selection clipboard -i -r'
 alias copy-fimg='    clipboard_copy_image.sh --fzf'
 alias copy-hist='    shellharden --syntax "${HISTFILE}" | tac |  fzf --ansi --no-preview | xclip -selection "clipboard"'
 alias copy-img='     clipboard_copy_image.sh'
 alias copy-text='    xclip -selection clipboard -i -r <<<'
+##
 alias cu='           myfzf u'
-alias desk='         cd "${DESKTOP}"'
-alias docs='         cd "${DOCUMENTS}"'
-alias down='         cd "${DOWNLOADS}"'
+alias clog_builder=' sbcl --eval "(ql:quickload :swank)" --eval "(asdf:load-system :clog/tools)" --eval "(clog-tools:clog-builder :port 0 :app t)"'
 alias e-code='       fzf_open "${CODING}"'
 alias e-conf='       fzf_open "${XDG_CONFIG_HOME}"'
 alias ex-dep='       expac -Qv -l "\n\t" "%n:\n\t%D"'
@@ -131,17 +149,10 @@ alias pics='         cd "${PICTURES}"'
 alias ps_e='         ps -eo comm=, | grep --ignore-case'
 alias ps_o='         ps -eo cmd=, | grep --ignore-case'
 alias ps_t='         ps -eo pid,etimes,comm,cmd'
-alias r-p='          rg_with_pager'
 alias s-bash='       grep -C "5" --file="-" -Pin "${HOME}/.bashrc" "${HOME}/.profile" "${HOME}/.bash_profile" "${HOME}/bashrc_files/"*.sh <<<'
 alias s-bashf='      grep -C "5" --file="-" -Fin "${HOME}/.bashrc" "${HOME}/bashrc_files/"* <<<'
-alias s-i3='         fd . -tf "${XDG_CONFIG_HOME}/i3/"   -X rg -H -u --color="always" -Pi'
-alias s-nv='         fd . -tf "${XDG_CONFIG_HOME}/nvim/" -X rg -H -u --color="always" -Pi'
 alias slimv_start='  rlwrap sbcl --load "${XDG_DATA_HOME}/nvim/plugged/slimv-neovim/slime/start-swank.lisp"'
 alias szof='         du -axhc --time --max-depth=1 | sort -h'
-alias t-cal="        task calendar"
-alias t-l='          task list'
-alias t-proj="       task projects"
-alias tw='           taskwarrior-tui'
 alias vid='          open_mpv'
 alias vids='         cd "${VIDEOS}"'
 alias ysb='          source "${HOME}/.bashrc"' # reload config

@@ -1,5 +1,5 @@
-#!/bin/bash
-#
+#!/bin/bash# 
+# {{{
 #  ~/.bashrc
 #
 # shellcheck disable=SC2016,SC2064,SC1094,SC2089,SC2090
@@ -11,7 +11,7 @@
 # maybe above line doesn't work...
 # # https://github.com/pyenv/pyenv/issues/264#issuecomment-654813922
 # [[ -z "$PS1" ]] && return
-# keep at top
+# keep at top}}}
 
 stty -ixon #- Prevent <Ctrl-s> from being binded by terminal -#
 set -o vi  #- Use VI Keys -#
@@ -22,8 +22,8 @@ PS0='\e[0 q\[\e[0m\]'
 PS1=':\w/:> '
 PS2=''
 
-#export PROMPT_COMMAND='history -a'
-# source "${HOME}/.config/broot/launcher/bash/br"
+#export PROMPT_COMMAND='history -a'# {{{
+# source "${HOME}/.config/broot/launcher/bash/br"}}}
 source "${HOME}/bashrc_files/functions.sh"
 source "${HOME}/bashrc_files/aliases.sh"
 mps 3 'r' #setting PS1
@@ -35,7 +35,7 @@ eval "$(dircolors -b ~/.dircolors)"
 eval "$(tv init bash)"
 # eval "$(pyenv init - bash)"
 
-# ---------- COMMENTED OUT ----------#
+# ---------- COMMENTED OUT ----------#{{{
 #[[ ${BLE_VERSION-} ]] && ble-attach
 
 # export GEM_HOME="$(gem env user_gemhome)"
@@ -51,7 +51,7 @@ eval "$(tv init bash)"
 #export PATH="${ARGC_COMPLETIONS_ROOT}/bin:$PATH"
 ## To add completions for only the specified command, modify next line e.g. argc_scripts=( cargo git )
 #argc_scripts=( $(ls -p -1 "$ARGC_COMPLETIONS_ROOT/completions/linux" "$ARGC_COMPLETIONS_ROOT/completions" | sed -n 's/\.sh$//p') )
-#source <(argc --argc-completions bash "${argc_scripts[@]}")
+#source <(argc --argc-completions bash "${argc_scripts[@]}")# }}}
 
 activate_conda() {
   if __conda_setup="$('/$HOME/.local/share/miniconda/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"; then
@@ -70,5 +70,4 @@ if [[ "${MY_CONDA}" -eq 1 ]]; then
   activate_conda
 fi
 
-# source "${HOME}/bashrc_files/exports.sh" # to remove (after restart) 2026_11_01
-
+export JAVA_HOME='/usr/lib/jvm/java-25-openjdk/'

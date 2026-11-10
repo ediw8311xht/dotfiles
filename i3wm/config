@@ -21,9 +21,10 @@ bindsym $mod+Shift+r          exec $HOME/bin/i3wm_config_check.sh --3
 bindsym $mod+Shift+Ctrl+r     exec --no-startup-id    "xrdb -override ~/.Xresources ; $HOME/bin/i3wm_config_check.sh --3"
 bindsym                $mod+Escape border pixel 4
 bindsym --release      $mod+Escape border pixel 0
-bindsym --whole-window $mod+button8    exec screengrab
+bindsym --whole-window $mod+button8    exec $SCRIPT_screenshot --save
 bindsym --whole-window button8         exec $SCRIPT_screenshot --shot
 bindsym --whole-window button9         exec $SCRIPT_key_mouse -m "-0.5" "-0.3"
+bindsym --whole-window $mod+button9    exec screengrab
 # $Mb button8         $_  exec screengrab --no-win
 # this sets default border flash, will be overwritten 
 # set $B1         exec " i3-msg 'border pixel 1' " ;
