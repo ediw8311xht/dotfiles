@@ -22,19 +22,21 @@ unsetkey  "G"
 unsetkey "^c"
 unsetkey "n"
 
-setkey   "bob"           "gg"
-setkey   "down"          "j"
-setkey   "up"            "k"
-setkey   "edt_find_next" "n"
-setkey   "redraw"        "r"
-setkey   "toggle_case"   "^c"
-%% setkey   "toggle_regex"     "^r"
-%% setkey   "find_file" 
+setkey bob            "gg"
+setkey down           "j"
+setkey up             "k"
+setkey edt_find_next  "n"
+setkey redraw         "r"
+setkey toggle_case   "^c"
+%% setkey   toggle_regex  "^r"
+%% setkey   find_file 
 
-setkey   "edit"          "E"
-setkey   "eob"           "G"
-setkey   "goto_line"     "L"
-setkey   "suspend"       "^Z"
+%% can't edit piped input, only files (stupid)
+setkey   edit       "e"
+setkey   edit       "E"
+setkey   eob        "G"
+setkey   goto_line  "L"
+setkey   suspend    "^Z"
 
 %% setkey "^/" "/
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
