@@ -144,7 +144,7 @@ alias_conflict() {
     alias -p |
       sed -E -e "s/^alias[ ]*([^= ]*)[=](['\"])[ ]*(.*)\2/\1\t\2\3\2/g" |
       column -s $'\t' -t |
-      shellharden-highlight |
+      shellharden_highlight |
       rg --pcre2 -i --no-filename "${@:-.}"
     return 0
   fi
@@ -315,7 +315,7 @@ max_of() {
   find_one ">" "${@}"
 }
 
-shellharden-highlight() { shellharden --syntax ''; }
+shellharden_highlight() { shellharden --syntax ''; }
 
 # nice little function I wrote to show info for aliases/functions/files/builtins
 # one day will update to correctly call -h --help option if it exists for a function/command
@@ -342,12 +342,12 @@ show_help() {
   alias)
     alias "${command}" |
       sed -E -e 's/^[ ]*alias[^=]*[=].[ ]*(.*).$/\1/' -e 's/[ ][ ]+/ /g' |
-      shellharden-highlight |
+      shellharden_highlight |
       sed 's/^/    /'
     ;;
   function)
     declare -f "${command}" |
-    shellharden-highlight |
+    shellharden_highlight |
     sed 's/^/    /'
     ;;
   builtin)
